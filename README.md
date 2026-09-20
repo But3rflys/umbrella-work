@@ -44,17 +44,14 @@ gh api repos/OWNER/REPO/releases --jq '.[].assets[] | "\(.name) \(.download_coun
 <!-- stats:start -->
 | репозиторий | загрузок | последний релиз |
 | --- | --- | --- |
-| [Lane-Pull](https://github.com/But3rflys/Lane-Pull) | 98 | `beta-v1.0.3` — 13 |
+| [Lane-Pull](https://github.com/But3rflys/Lane-Pull) | 99 | `beta-v1.0.3` — 14 |
 | [DSSpot](https://github.com/But3rflys/DSSpot) | 21 | `v1.0.1` — 14 |
 | [MusicUI](https://github.com/But3rflys/MusicUI) | 308 | `v1.0.7` — 20 |
 
-```mermaid
-xychart-beta
-    title "Загрузки, всего"
-    x-axis ["09-20"]
-    y-axis "шт" 417 --> 437
-    line [427]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="stats-dark.svg">
+  <img alt="Загрузки по дням" src="stats-light.svg" width="840">
+</picture>
 
 _обновлено 2026-09-20, считаются только файлы из релизов_
 <!-- stats:end -->

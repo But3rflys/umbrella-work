@@ -1,8 +1,12 @@
 import datetime
 import json
 import re
+import sys
 import urllib.request
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import chart
 
 REPOS = ["But3rflys/Lane-Pull", "But3rflys/DSSpot", "But3rflys/MusicUI"]
 BASE = Path(__file__).resolve().parents[1]
@@ -39,19 +43,17 @@ def append(rows):
     return [json.loads(l) for l in lines]
 
 
-def chart(history):
+def draw(history):
     tail = history[-30:]
     days = [h["date"][5:] for h in tail]
     totals = [h["total"] for h in tail]
-    lo = max(0, min(totals) - 10)
-    hi = max(totals) + 10
-    out = ["```mermaid", "xychart-beta"]
-    out.append('    title "Загрузки, всего"')
-    out.append("    x-axis [" + ", ".join('"%s"' % d for d in days) + "]")
-    out.append('    y-axis "шт" %d --> %d' % (lo, hi))
-    out.append("    line [" + ", ".join(str(t) for t in totals) + "]")
-    out.append("```")
-    return NL.join(out)
+    for theme in ("light", "dark"):
+        (BASE / ("stats-%s.svg" % theme)).write_text(
+            chart.build(days, totals, theme), encoding="utf-8", newline=NL)
+    return ('<picture>' + NL
+            + '  <source media="(prefers-color-scheme: dark)" srcset="stats-dark.svg">' + NL
+            + '  <img alt="Загрузки по дням" src="stats-light.svg" width="840">' + NL
+            + '</picture>')
 
 
 def table(rows):
@@ -72,7 +74,7 @@ def table(rows):
 
 def render(history, rows):
     day = history[-1]["date"]
-    block = NL.join([table(rows), "", chart(history), "", "_обновлено %s, считаются только файлы из релизов_" % day])
+    block = NL.join([table(rows), "", draw(history), "", "_обновлено %s, считаются только файлы из релизов_" % day])
     text = README.read_text(encoding="utf-8")
     start, end = "<!-- stats:start -->", "<!-- stats:end -->"
     new = start + NL + block + NL + end
