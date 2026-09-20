@@ -16,7 +16,8 @@ DATA = GH / "stats" / "stats.jsonl"
 README = BASE / "README.md"
 CATALOG = json.loads((GH / "catalog.json").read_text(encoding="utf-8"))
 REPO = CATALOG["repo"]
-LEGACY = ["But3rflys/Lane-Pull", "But3rflys/DSSpot", "But3rflys/MusicUI"]
+LEGACY_FILE = GH / "stats" / "legacy.json"
+LEGACY = json.loads(LEGACY_FILE.read_text(encoding="utf-8")) if LEGACY_FILE.exists() else {}
 NL = chr(10)
 
 
@@ -49,7 +50,7 @@ def match(name, tag):
 
 def fetch():
     rows = []
-    for repo in [REPO] + LEGACY:
+    for repo in [REPO]:
         for rel in api("https://api.github.com/repos/%s/releases?per_page=100" % repo):
             if rel.get("draft"):
                 continue
@@ -67,7 +68,7 @@ def fetch():
 
 def append(rows):
     day = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d")
-    total = sum(r["downloads"] for r in rows)
+    total = sum(r["downloads"] for r in rows) + sum(LEGACY.values())
     lines = []
     if DATA.exists():
         lines = [l for l in DATA.read_text(encoding="utf-8").splitlines() if l.strip()]
@@ -99,12 +100,12 @@ def table(rows):
     out = ["| script | downloads | latest |", "| --- | --- | --- |"]
     for script in CATALOG["scripts"]:
         items = by_script.get(script["id"], [])
-        if not items:
+        total = sum(i["downloads"] for i in items) + LEGACY.get(script["id"], 0)
+        if not items and not total:
             continue
-        total = sum(i["downloads"] for i in items)
-        last = max(items, key=lambda i: i["date"])
+        tag = max(items, key=lambda i: i["date"])["tag"] if items else "—"
         out.append("| [%s](scripts/%s) | %d | `%s` |"
-                   % (script["title"], script["id"], total, last["tag"]))
+                   % (script["title"], script["id"], total, tag))
     return NL.join(out)
 
 
