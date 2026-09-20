@@ -1,0 +1,9 @@
+$schema: https://api.gitbook.com/openapi.yaml#/components/schemas/GitSyncSiteConfig
+site:
+  title: umbrella-work
+  structure:
+    - type: space
+      key: docs
+      title: umbrella-work
+      content:
+        directory: ./gitbook
