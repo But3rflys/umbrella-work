@@ -56,7 +56,7 @@ The menu follows your cheat language; the scripts speak Russian and English.
 | --- | --- | --- |
 | [Lane Pull](scripts/lane_pull) | 103 | `beta-v1.0.3` |
 | [DS Spot Block](scripts/ds_spot_block) | 22 | `v1.0.1` |
-| [MusicUI](scripts/musicui) | 310 | `v1.0.7` |
+| [MusicUI](scripts/musicui) | 310 | `musicui-v1.0.7` |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/stats/stats-dark.svg">
