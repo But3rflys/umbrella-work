@@ -3,9 +3,13 @@
 блок спота Вакуумом за Dark Seer / Vacuum spot block for Dark Seer
 
 <!-- releases:start -->
-Релизов пока нет. No releases yet.
+Скачать: [ds_spot_block.lua](https://github.com/But3rflys/umbrella-work/releases/download/ds-spot-block-v1.0.1/ds_spot_block.lua) — `ds-spot-block-v1.0.1`, 2026-09-20
 
-[Релизы на GitHub](https://github.com/But3rflys/umbrella-work/releases?q=ds-spot-block&expanded=true)
+| версия | дата | файл | загрузок |
+| --- | --- | --- | --- |
+| [`ds-spot-block-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/ds-spot-block-v1.0.1) | 2026-09-20 | [ds_spot_block.lua](https://github.com/But3rflys/umbrella-work/releases/download/ds-spot-block-v1.0.1/ds_spot_block.lua) | 0 |
+
+[Все релизы](https://github.com/But3rflys/umbrella-work/releases?q=ds-spot-block&expanded=true)
 <!-- releases:end -->
 
 ## Что умеет
