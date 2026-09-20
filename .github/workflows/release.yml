@@ -25,5 +25,5 @@ jobs:
         if: steps.notes.outputs.found == 'true'
         with:
           files: scripts/${{ steps.notes.outputs.id }}/${{ steps.notes.outputs.file }}
-          name: ${{ steps.notes.outputs.title }} ${{ github.ref_name }}
+          name: ${{ steps.notes.outputs.title }} ${{ steps.notes.outputs.version }}
           body_path: body.md

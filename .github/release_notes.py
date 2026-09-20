@@ -48,13 +48,14 @@ def main():
     if script and script["kind"] == "lua":
         (BASE / "body.md").write_text(body(script, tag), encoding="utf-8", newline=NL)
         lines += ["found=true", "id=%s" % script["id"], "file=%s" % script["file"],
-                  "title=%s" % script["title"]]
+                  "title=%s" % script["title"], "version=%s" % tag[len(script["tag"]) + 1:]]
         print("release %s from scripts/%s/%s" % (tag, script["id"], script["file"]))
     else:
         lines += ["found=false"]
         if script:
             (BASE / "body.md").write_text(body(script, tag), encoding="utf-8", newline=NL)
-            lines += ["id=%s" % script["id"], "title=%s" % script["title"]]
+            lines += ["id=%s" % script["id"], "title=%s" % script["title"],
+                      "version=%s" % tag[len(script["tag"]) + 1:]]
             print("%s is built by its own workflow" % script["id"])
         else:
             print("no script in catalog.json matches tag %s" % tag)
