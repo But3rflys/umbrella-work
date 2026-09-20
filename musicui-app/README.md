@@ -3,8 +3,6 @@
 Music overlay for Dota 2: track, cover, equalizer and lyrics on top of the game.
 Оверлей плеера для Dota 2: трек, обложка, эквалайзер и текст песни поверх игры.
 
-Page · Страница: https://but3rflys.github.io/umbrella-work/musicui/
-
 ## Install (EN)
 
 1. [Download](https://github.com/But3rflys/umbrella-work/releases?q=musicui&expanded=true) the latest release.
