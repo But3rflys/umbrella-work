@@ -9,10 +9,3 @@ site:
       default: true
       content:
         directory: ./gitbook
-    - type: space
-      key: space-1
-      title: umbrella-work
-      path: umbrella-work
-      draft: true
-      content:
-        directory: ./gitbook
