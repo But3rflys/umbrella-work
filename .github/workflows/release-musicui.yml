@@ -1,0 +1,40 @@
+name: release-musicui
+
+on:
+  push:
+    tags: ["musicui-v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r musicui-app/requirements.txt
+          pip install pyinstaller
+
+      - name: build exe
+        working-directory: musicui-app
+        run: python tools/build.py
+
+      - name: pack
+        run: |
+          mkdir release
+          copy musicui-app\dist\MusicUI.exe release\
+          copy scripts\musicui\MusicUI.lua release\
+          copy musicui-app\README.md release\
+          Compress-Archive -Path release\* -DestinationPath MusicUI.zip
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: MusicUI.zip

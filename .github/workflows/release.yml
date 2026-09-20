@@ -1,0 +1,43 @@
+name: release
+
+on:
+  push:
+    tags: ["*-v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: resolve script from tag
+        id: pick
+        run: |
+          tag="$GITHUB_REF_NAME"
+          name="${tag%-v*}"
+          name="${name//-/_}"
+          if [ "$name" = "musicui" ]; then
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "musicui is released by release-musicui.yml"
+          elif [ -f "scripts/$name/$name.lua" ]; then
+            echo "name=$name"  >> "$GITHUB_OUTPUT"
+            echo "found=true"  >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "no scripts/$name/$name.lua - nothing to do for tag $tag"
+          fi
+
+      - name: changelog
+        if: steps.pick.outputs.found == 'true'
+        run: |
+          f="scripts/${{ steps.pick.outputs.name }}/CHANGELOG.md"
+          if [ -f "$f" ]; then cp "$f" body.md; else echo "$GITHUB_REF_NAME" > body.md; fi
+
+      - uses: softprops/action-gh-release@v2
+        if: steps.pick.outputs.found == 'true'
+        with:
+          files: scripts/${{ steps.pick.outputs.name }}/${{ steps.pick.outputs.name }}.lua
+          body_path: body.md
