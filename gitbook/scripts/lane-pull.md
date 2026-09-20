@@ -7,7 +7,7 @@ icon: route
 Крип с Доминатора по нажатию клавиши забирает вражескую волну и ведет ее к герою.
 
 <!-- versions:start -->
-**Скачать:** [lane_pull.lua](https://github.com/But3rflys/umbrella-work/releases/download/lane-pull-v1.0.3/lane_pull.lua) — `lane-pull-v1.0.3`, 2026-09-20
+**Скачать:** [lane_pull.lua](https://github.com/But3rflys/umbrella-work/releases/download/lane-pull-v1.0.4/lane_pull.lua) — `lane-pull-v1.0.4`, 2026-09-20
 
 <details>
 
@@ -15,7 +15,8 @@ icon: route
 
 | Версия | Дата | Файл | Загрузок |
 | --- | --- | --- | --- |
-| [`lane-pull-v1.0.3`](https://github.com/But3rflys/umbrella-work/releases/tag/lane-pull-v1.0.3) | 2026-09-20 | [lane_pull.lua](https://github.com/But3rflys/umbrella-work/releases/download/lane-pull-v1.0.3/lane_pull.lua) | 1 |
+| [`lane-pull-v1.0.4`](https://github.com/But3rflys/umbrella-work/releases/tag/lane-pull-v1.0.4) | 2026-09-20 | [lane_pull.lua](https://github.com/But3rflys/umbrella-work/releases/download/lane-pull-v1.0.4/lane_pull.lua) | 0 |
+| [`lane-pull-v1.0.3`](https://github.com/But3rflys/umbrella-work/releases/tag/lane-pull-v1.0.3) | 2026-09-20 | [lane_pull.lua](https://github.com/But3rflys/umbrella-work/releases/download/lane-pull-v1.0.3/lane_pull.lua) | 6 |
 
 </details>
 <!-- versions:end -->
