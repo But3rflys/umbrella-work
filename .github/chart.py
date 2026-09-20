@@ -2,29 +2,29 @@ NL = chr(10)
 
 THEMES = {
     "light": {
-        "surface": "#fcfcfb",
-        "text": "#0b0b0b",
-        "muted": "#52514e",
-        "grid": "#e4e3df",
-        "axis": "#c9c8c3",
-        "series": "#2a78d6",
-        "fill": "#2a78d6",
-        "fill_opacity": "0.10",
+        "surface": "#ffffff",
+        "text": "#141412",
+        "muted": "#5c5b55",
+        "grid": "#ebeae6",
+        "axis": "#d7d6d1",
+        "series": "#141412",
+        "fill": "#141412",
+        "fill_opacity": "0.05",
     },
     "dark": {
-        "surface": "#1a1a19",
-        "text": "#ffffff",
-        "muted": "#c3c2b7",
-        "grid": "#2f2f2d",
-        "axis": "#3d3d3a",
-        "series": "#3987e5",
-        "fill": "#3987e5",
-        "fill_opacity": "0.16",
+        "surface": "#0a0a0a",
+        "text": "#e9e9ea",
+        "muted": "#7d7d85",
+        "grid": "#1a1a1c",
+        "axis": "#2a2a2d",
+        "series": "#e9e9ea",
+        "fill": "#e9e9ea",
+        "fill_opacity": "0.05",
     },
 }
 
-W, H = 840, 300
-PAD_L, PAD_R, PAD_T, PAD_B = 62, 28, 86, 42
+W, H = 840, 280
+PAD_L, PAD_R, PAD_T, PAD_B = 56, 26, 62, 38
 FONT = "ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
 
 
@@ -69,12 +69,10 @@ def build(days, totals, theme_name):
 
     o = []
     o.append('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" width="%d" height="%d" role="img" aria-label="%s">'
-             % (W, H, W, H, esc("Загрузки, всего: %d" % totals[-1])))
-    o.append('<rect width="%d" height="%d" rx="12" fill="%s"/>' % (W, H, t["surface"]))
-    o.append('<text x="%d" y="40" font-family="%s" font-size="17" font-weight="600" fill="%s">%s</text>'
-             % (PAD_L - 34, FONT, t["text"], esc("Загрузки, всего")))
-    o.append('<text x="%d" y="64" font-family="%s" font-size="13" fill="%s">%s</text>'
-             % (PAD_L - 34, FONT, t["muted"], esc("релизные файлы Lane-Pull, DSSpot, MusicUI")))
+             % (W, H, W, H, esc("Downloads: %d" % totals[-1])))
+    o.append('<rect width="%d" height="%d" fill="%s"/>' % (W, H, t["surface"]))
+    o.append('<text x="%d" y="34" font-family="%s" font-size="15" font-weight="600" fill="%s">%s</text>'
+             % (PAD_L - 30, FONT, t["text"], esc("Загрузки, всего")))
 
     for v in ticks(lo, hi):
         y = py(v)

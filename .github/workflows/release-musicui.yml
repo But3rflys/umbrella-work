@@ -17,6 +17,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: notes
+        run: python .github/release_notes.py "$env:GITHUB_REF_NAME"
+
       - name: deps
         run: |
           python -m pip install --upgrade pip
@@ -38,3 +41,5 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: MusicUI.zip
+          name: MusicUI ${{ github.ref_name }}
+          body_path: body.md

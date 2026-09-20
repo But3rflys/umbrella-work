@@ -1,0 +1,132 @@
+{
+  "repo": "But3rflys/umbrella-work",
+  "site": "https://but3rflys.github.io/umbrella-work",
+  "scripts": [
+    {
+      "id": "lane_pull",
+      "tag": "lane-pull",
+      "title": "Lane Pull",
+      "kind": "lua",
+      "file": "lane_pull.lua",
+      "ru": {
+        "tagline": "выпул вражеской волны крипом с Доминатора",
+        "about": "По клавише подконтрольный крип уходит за вражеской волной и ведет ее к герою.",
+        "features": [
+          "три режима выбора волны: к герою, к нашему крипу, у курсора",
+          "сам выбирает место встречи: перед вышкой, за вышкой или ближе к герою",
+          "не берет волну, которая вот-вот сойдется с нашими крипами",
+          "обходит нейтральные лагеря и вражеских героев",
+          "ждет волну в деревьях, меняет укрытие, если его увидели",
+          "работает на миде через реку и на хайграунде",
+          "отмена по HP, по второму нажатию и при герое вплотную",
+          "панель статуса и отладочный оверлей"
+        ]
+      },
+      "en": {
+        "tagline": "pull the enemy wave with your Dominator creep",
+        "about": "One key and your dominated creep goes for the enemy wave and drags it to you.",
+        "features": [
+          "three ways to pick a wave: closest to you, to your creep, or by cursor",
+          "picks the catch spot itself: in front of their tower, behind it, or closer to you",
+          "skips a wave that is about to meet your own creeps",
+          "walks around neutral camps and enemy heroes",
+          "waits in the trees, changes cover once spotted",
+          "works on mid across the river and on the high ground",
+          "aborts on low HP, on a second key press, and when a hero gets close",
+          "status bar and a debug overlay"
+        ]
+      },
+      "icon": "fa:f4d7"
+    },
+    {
+      "id": "ds_spot_block",
+      "tag": "ds-spot-block",
+      "title": "DS Spot Block",
+      "kind": "lua",
+      "file": "ds_spot_block.lua",
+      "ru": {
+        "tagline": "блок спота Вакуумом за Dark Seer",
+        "about": "Рисует лагеря, радиус Вакуума, точку каста и место героя. По клавише подходит и кастует.",
+        "features": [
+          "значки над кемпами и кольца на крипах",
+          "радиус Вакуума, точка каста и позиция героя на земле",
+          "условие каста: все крипы, сильнейший, любой или без условия",
+          "авто-подход перед кастом",
+          "агр крипов по клавише"
+        ]
+      },
+      "en": {
+        "tagline": "Vacuum spot block for Dark Seer",
+        "about": "Draws the camps, the Vacuum radius, the cast point and where to stand. One key walks in and casts.",
+        "features": [
+          "camp icons and rings on the creeps",
+          "Vacuum radius, cast point and hero position on the ground",
+          "cast condition: all creeps, the strongest, any creep, or none",
+          "auto approach before the cast",
+          "creep aggro on a key"
+        ]
+      },
+      "icon": "img:https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dark_seer.png"
+    },
+    {
+      "id": "custom_background",
+      "tag": "custom-background",
+      "title": "Custom Background",
+      "kind": "lua",
+      "file": "custom_background.lua",
+      "ru": {
+        "tagline": "свои картинки на фоне меню",
+        "about": "До восьми картинок поверх игры, ссылкой или файлом рядом со скриптами.",
+        "features": [
+          "до восьми картинок, у каждой свои настройки",
+          "ссылка или файл рядом со скриптами",
+          "перетаскивание мышью и закрепление",
+          "размер, прозрачность, затемнение фона",
+          "только в меню или всегда"
+        ]
+      },
+      "en": {
+        "tagline": "your own pictures behind the menu",
+        "about": "Up to eight pictures on top of the game, by link or by file next to your scripts.",
+        "features": [
+          "up to eight pictures, each with its own settings",
+          "a link or a file next to your scripts",
+          "drag with the mouse, lock in place",
+          "size, opacity, background dim",
+          "menu only or always visible"
+        ]
+      },
+      "icon": "fa:f03e"
+    },
+    {
+      "id": "musicui",
+      "tag": "musicui",
+      "title": "MusicUI",
+      "kind": "app",
+      "file": "MusicUI.zip",
+      "ru": {
+        "tagline": "оверлей плеера: трек, обложка, эквалайзер, текст",
+        "about": "Lua-оверлей и приложение MusicUI.exe: приложение берет данные у Spotify и системного плеера, оверлей рисует их в игре.",
+        "features": [
+          "трек, обложка и прогресс в игре",
+          "эквалайзер по реальному звуку",
+          "текст песни с прокруткой",
+          "управление воспроизведением из оверлея",
+          "Spotify и системный плеер Windows"
+        ]
+      },
+      "en": {
+        "tagline": "player overlay: track, cover, equalizer, lyrics",
+        "about": "A Lua overlay plus MusicUI.exe: the app reads Spotify and the Windows player, the overlay draws it in game.",
+        "features": [
+          "track, cover art and progress in game",
+          "equalizer driven by the real audio",
+          "lyrics scrolling with the song",
+          "playback controls from the overlay",
+          "Spotify and the Windows system player"
+        ]
+      },
+      "icon": "fa:f001"
+    }
+  ]
+}

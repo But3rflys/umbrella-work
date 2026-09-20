@@ -1,0 +1,48 @@
+name: readme
+
+on:
+  release:
+    types: [published, edited, deleted]
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: readme
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: downloads
+        run: python .github/stats.py
+
+      - name: readme
+        run: python .github/pages.py
+
+      - name: commit
+        run: |
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add README.md scripts .github/stats
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "readme $(date -u +%F)"
+            git pull --rebase --autostash
+            git push
+          fi
