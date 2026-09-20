@@ -4,14 +4,14 @@
 
 ## Скрипты
 
-* [Lane Pull](scripts/lane-pull.md)
-* [DS Spot Block](scripts/ds-spot-block.md)
-* [Custom Background](scripts/custom-background.md)
+* [Lane Pull](skripty/lane-pull.md)
+* [DS Spot Block](skripty/ds-spot-block.md)
+* [Custom Background](skripty/custom-background.md)
 
 ## Приложения
 
-* [MusicUI](apps/musicui.md)
+* [MusicUI](prilozheniya/musicui.md)
 
 ## Релизы
 
-* [Как устроены релизы](releases.md)
+* [Как устроены релизы](relizy/releases.md)
