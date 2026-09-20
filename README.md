@@ -54,7 +54,7 @@ The menu follows your cheat language; the scripts speak Russian and English.
 <!-- stats:start -->
 | script | downloads | latest |
 | --- | --- | --- |
-| [Lane Pull](scripts/lane_pull) | 103 | `lane-pull-v1.0.3` |
+| [Lane Pull](scripts/lane_pull) | 105 | `lane-pull-v1.0.3` |
 | [DS Spot Block](scripts/ds_spot_block) | 22 | `ds-spot-block-v1.0.1` |
 | [Custom Background](scripts/custom_background) | 0 | `custom-background-v1.0.0` |
 | [MusicUI](scripts/musicui) | 310 | `musicui-v1.0.7` |
