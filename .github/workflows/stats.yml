@@ -14,36 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: collect download counts
-        run: |
-          python - <<'PY'
-          import json, urllib.request, datetime, pathlib
-
-          REPOS = ["But3rflys/Lane-Pull", "But3rflys/DSSpot", "But3rflys/MusicUI"]
-          rows = []
-          for repo in REPOS:
-              url = "https://api.github.com/repos/%s/releases?per_page=100" % repo
-              with urllib.request.urlopen(url) as r:
-                  for rel in json.load(r):
-                      for a in rel["assets"]:
-                          rows.append({
-                              "repo": repo,
-                              "tag": rel["tag_name"],
-                              "file": a["name"],
-                              "downloads": a["download_count"],
-                          })
-
-          day = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d")
-          line = json.dumps({"date": day, "total": sum(r["downloads"] for r in rows), "assets": rows}, ensure_ascii=False)
-          with open("stats.jsonl", "a", encoding="utf-8") as f:
-              f.write(line + "\n")
-          print(day, "total:", sum(r["downloads"] for r in rows))
-          PY
+      - name: collect and render
+        run: python .github/stats.py
 
       - name: commit
         run: |
           git config user.name github-actions
           git config user.email actions@github.com
-          git add stats.jsonl
+          git add stats.jsonl README.md
           git diff --cached --quiet || git commit -m "stats $(date -u +%F)"
           git push

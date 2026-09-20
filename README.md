@@ -38,3 +38,23 @@ GitHub считает загрузки только у файлов, прило�
 ```bash
 gh api repos/OWNER/REPO/releases --jq '.[].assets[] | "\(.name) \(.download_count)"'
 ```
+
+## Загрузки
+
+<!-- stats:start -->
+| репозиторий | загрузок | последний релиз |
+| --- | --- | --- |
+| [Lane-Pull](https://github.com/But3rflys/Lane-Pull) | 98 | `beta-v1.0.3` — 13 |
+| [DSSpot](https://github.com/But3rflys/DSSpot) | 21 | `v1.0.1` — 14 |
+| [MusicUI](https://github.com/But3rflys/MusicUI) | 308 | `v1.0.7` — 20 |
+
+```mermaid
+xychart-beta
+    title "Загрузки, всего"
+    x-axis ["09-20"]
+    y-axis "шт" 417 --> 437
+    line [427]
+```
+
+_обновлено 2026-09-20, считаются только файлы из релизов_
+<!-- stats:end -->
