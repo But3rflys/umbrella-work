@@ -3,9 +3,13 @@
 свои картинки на фоне меню / your own pictures behind the menu
 
 <!-- releases:start -->
-Релизов пока нет. No releases yet.
+Скачать: [custom_background.lua](https://github.com/But3rflys/umbrella-work/releases/download/custom-background-v1.0.0/custom_background.lua) — `custom-background-v1.0.0`, 2026-09-20
 
-[Релизы на GitHub](https://github.com/But3rflys/umbrella-work/releases?q=custom-background&expanded=true)
+| версия | дата | файл | загрузок |
+| --- | --- | --- | --- |
+| [`custom-background-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/custom-background-v1.0.0) | 2026-09-20 | [custom_background.lua](https://github.com/But3rflys/umbrella-work/releases/download/custom-background-v1.0.0/custom_background.lua) | 0 |
+
+[Все релизы](https://github.com/But3rflys/umbrella-work/releases?q=custom-background&expanded=true)
 <!-- releases:end -->
 
 ## Что умеет
