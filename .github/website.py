@@ -367,10 +367,8 @@ def asset_of(rel, script):
     for a in rel.get("assets", []):
         if a["name"].lower() == wanted:
             return a
-    for a in rel.get("assets", []):
-        if a["name"].lower().endswith((".lua", ".zip")):
-            return a
-    return None
+    assets = rel.get("assets", [])
+    return assets[0] if assets else None
 
 
 def short_tag(script, tag):
