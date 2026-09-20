@@ -34,6 +34,8 @@ CSS = """
   --mono:"Geist Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
 }
 *{box-sizing:border-box}
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.16s}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 var(--sans);
   -webkit-font-smoothing:antialiased;touch-action:manipulation;
@@ -52,6 +54,7 @@ p{margin:0 0 14px;max-width:62ch}
 .crumbs{font:400 13px var(--mono);color:var(--fg-3);min-width:0;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .crumbs a{color:var(--fg-2)}
+.crumbs a{transition:color .1s linear}
 .crumbs a:hover{color:var(--fg)}
 .crumbs .sep{padding:0 7px;color:var(--line-2)}
 .crumbs .here{color:var(--fg)}
@@ -59,6 +62,7 @@ p{margin:0 0 14px;max-width:62ch}
 .lang{display:flex;align-items:center;font:400 12px var(--mono);color:var(--fg-3)}
 .lang button{border:0;background:none;color:var(--fg-3);font:inherit;padding:4px 5px;
   cursor:pointer;touch-action:manipulation}
+.lang button{transition:color .1s linear}
 .lang button:hover{color:var(--fg-2)}
 .lang button[aria-pressed="true"]{color:var(--fg)}
 .lang .div{color:var(--line-2);padding:0 2px}
@@ -87,7 +91,8 @@ th{font:400 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;colo
   text-align:left;padding:0 14px 9px 0;border-bottom:1px solid var(--line);font-weight:400}
 td{padding:14px 14px 14px 0;border-bottom:1px solid var(--line);vertical-align:middle}
 th:last-child,td:last-child{padding-right:0;text-align:right}
-tbody tr:hover{background:var(--sur)}
+tbody tr{transition:background-color .1s linear,box-shadow .1s linear}
+tbody tr:hover,tbody tr:focus-within{background:var(--sur);box-shadow:inset 2px 0 0 var(--fg)}
 .idx{width:34px;color:var(--fg-3);font:400 12px var(--mono);font-variant-numeric:tabular-nums}
 .who{min-width:0}
 .who-line{display:flex;align-items:center;gap:11px;min-width:0}
@@ -100,7 +105,7 @@ tbody tr:hover .who a{text-decoration:underline;text-underline-offset:3px;
   font-variant-numeric:tabular-nums;white-space:nowrap}
 .when,.muted{color:var(--fg-3)}
 td a.file{color:var(--fg-2);text-decoration:underline;text-underline-offset:3px;
-  text-decoration-color:var(--line-2)}
+  text-decoration-color:var(--line-2);transition:color .1s linear,text-decoration-color .1s linear}
 td a.file:hover{color:var(--fg);text-decoration-color:var(--fg)}
 
 .ico{flex:none;display:grid;place-items:center;width:20px;height:20px;
@@ -111,12 +116,15 @@ td a.file:hover{color:var(--fg);text-decoration-color:var(--fg)}
 
 .grab{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:26px 0 0}
 .get{display:inline-flex;align-items:center;gap:10px;background:var(--fg);color:var(--inv);
-  font:500 13px var(--mono);padding:11px 16px;border:1px solid var(--fg)}
+  font:500 13px var(--mono);padding:11px 16px;border:1px solid var(--fg);
+  transition:background-color .12s ease,border-color .12s ease,transform .06s ease}
 .get:hover{background:#fff;border-color:#fff}
-.get .fa-solid{font-size:11px}
+.get:active{transform:translateY(1px)}
+.get .fa-solid{font-size:11px;transition:transform .14s ease}
+.get:hover .fa-solid{transform:translateY(2px)}
 .stamp{font:400 12.5px var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
 .stamp b{font-weight:500;color:var(--fg-2)}
-.more{font:400 12.5px var(--mono);color:var(--fg-3)}
+.more{font:400 12.5px var(--mono);color:var(--fg-3);transition:color .1s linear}
 .more:hover{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
 
 .list{list-style:none;padding:0;margin:0;counter-reset:n;
@@ -154,7 +162,10 @@ body[data-lang="ru"] [data-l="en"],body[data-lang="en"] [data-l="ru"]{display:no
   .who .desc{white-space:normal}
   td,th{padding-right:10px}
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (prefers-reduced-motion:reduce){
+  @view-transition{navigation:none}
+  *{animation:none!important;transition:none!important}
+}
 """
 
 JS = """

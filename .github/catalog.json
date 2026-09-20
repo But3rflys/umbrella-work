@@ -36,7 +36,8 @@
           "status bar and a debug overlay"
         ]
       },
-      "icon": "fa:f4d7"
+      "icon": "fa:f4d7",
+      "doc": "scripts/lane-pull.md"
     },
     {
       "id": "ds_spot_block",
@@ -66,7 +67,8 @@
           "creep aggro on a key"
         ]
       },
-      "icon": "img:https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dark_seer.png"
+      "icon": "img:https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dark_seer.png",
+      "doc": "scripts/ds-spot-block.md"
     },
     {
       "id": "custom_background",
@@ -96,7 +98,8 @@
           "menu only or always visible"
         ]
       },
-      "icon": "fa:f03e"
+      "icon": "fa:f03e",
+      "doc": "scripts/custom-background.md"
     },
     {
       "id": "musicui",
@@ -126,7 +129,8 @@
           "Spotify and the Windows system player"
         ]
       },
-      "icon": "fa:f001"
+      "icon": "fa:f001",
+      "doc": "apps/musicui.md"
     }
   ]
 }

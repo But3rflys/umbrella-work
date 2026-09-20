@@ -38,7 +38,7 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email actions@github.com
-          git add README.md scripts .github/stats
+          git add README.md scripts gitbook .github/stats
           if git diff --cached --quiet; then
             echo "nothing to commit"
           else

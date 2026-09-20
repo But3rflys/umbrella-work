@@ -14,6 +14,7 @@ NL = chr(10)
 
 START, END = "<!-- releases:start -->", "<!-- releases:end -->"
 CAT_RU_START, CAT_RU_END = "<!-- scripts:ru:start -->", "<!-- scripts:ru:end -->"
+DOC_START, DOC_END = "<!-- versions:start -->", "<!-- versions:end -->"
 CAT_EN_START, CAT_EN_END = "<!-- scripts:en:start -->", "<!-- scripts:en:end -->"
 
 INSTALL = {
@@ -156,6 +157,41 @@ def build_readme(script, rels):
     return len(mine)
 
 
+def gitbook_block(script, mine):
+    if not mine:
+        out = ["Релизов пока нет.", "",
+               "[Релизы на GitHub](%s)" % all_link(script)]
+        return NL.join(out)
+
+    top = mine[0]
+    a = asset_of(top, script)
+    day = (top.get("published_at") or "")[:10]
+    out = []
+    if a:
+        out += ["**Скачать:** [%s](%s) — `%s`, %s"
+                % (a["name"], a["browser_download_url"], top["tag_name"], day), ""]
+    out += ["<details>", "", "<summary>Все версии</summary>", "",
+            "| Версия | Дата | Файл | Загрузок |", "| --- | --- | --- | --- |"]
+    for r in mine:
+        a = asset_of(r, script)
+        link = "[%s](%s)" % (a["name"], a["browser_download_url"]) if a else "—"
+        count = a["download_count"] if a else 0
+        out.append("| [`%s`](%s) | %s | %s | %d |"
+                   % (r["tag_name"], r["html_url"], (r.get("published_at") or "")[:10], link, count))
+    out += ["", "</details>"]
+    return NL.join(out)
+
+
+def update_gitbook(script, mine):
+    doc = script.get("doc")
+    if not doc:
+        return
+    path = BASE / "gitbook" / doc
+    if not path.exists():
+        return
+    patch(path, DOC_START, DOC_END, gitbook_block(script, mine))
+
+
 def catalog_list(lang):
     out = []
     for script in CATALOG["scripts"]:
@@ -178,6 +214,7 @@ def main():
     rels = releases()
     for script in CATALOG["scripts"]:
         n = build_readme(script, rels)
+        update_gitbook(script, for_script(script, rels))
         print("%-20s releases: %d" % (script["id"], n))
     readme = BASE / "README.md"
     patch(readme, CAT_RU_START, CAT_RU_END, catalog_list("ru"))
