@@ -5,5 +5,7 @@ site:
     - type: space
       key: docs
       title: umbrella-work
+      path: docs
+      default: true
       content:
         directory: ./gitbook
