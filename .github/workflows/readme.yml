@@ -4,7 +4,7 @@ on:
   release:
     types: [published, edited, deleted]
   schedule:
-    - cron: "0 8 * * *"
+    - cron: "50 9 * * *"
       timezone: "Europe/Moscow"
   workflow_dispatch:
 
