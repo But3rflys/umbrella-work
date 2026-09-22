@@ -1,6 +1,5 @@
 {
   "repo": "But3rflys/umbrella-work",
-  "site": "https://but3rflys.github.io/umbrella-work",
   "scripts": [
     {
       "id": "lane_pull",
@@ -35,8 +34,7 @@
           "aborts on low HP, on a second key press, and when a hero gets close",
           "status bar and a debug overlay"
         ]
-      },
-      "icon": "fa:f4d7"
+      }
     },
     {
       "id": "ds_spot_block",
@@ -65,8 +63,7 @@
           "auto approach before the cast",
           "creep aggro on a key"
         ]
-      },
-      "icon": "img:https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dark_seer.png"
+      }
     },
     {
       "id": "custom_background",
@@ -95,8 +92,7 @@
           "size, opacity, background dim",
           "menu only or always visible"
         ]
-      },
-      "icon": "fa:f03e"
+      }
     },
     {
       "id": "musicui",
@@ -125,8 +121,7 @@
           "playback controls from the overlay",
           "Spotify and the Windows system player"
         ]
-      },
-      "icon": "fa:f001"
+      }
     }
   ]
 }

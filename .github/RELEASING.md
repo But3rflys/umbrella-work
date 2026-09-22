@@ -22,9 +22,8 @@ python tools/build.py
 `readme.yml` после релиза, раз в сутки и по кнопке пересчитывает загрузки и переписывает таблицы
 версий в README скриптов и на страницах GitBook.
 
-Описания скриптов и пути страниц лежат в `catalog.json`. Генераторы: `pages.py` — README и
-страницы GitBook, `stats.py` — загрузки и график, `website.py` — статический сайт в `docs/`,
-`release_notes.py` — тело релиза.
+Описания скриптов лежат в `catalog.json`. Генераторы: `pages.py` — README скриптов и страницы
+GitBook, `stats.py` — загрузки и график, `release_notes.py` — тело релиза.
 
 ## Что обновляется само
 

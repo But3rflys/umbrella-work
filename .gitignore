@@ -1,12 +1,8 @@
 __pycache__/
 *.pyc
-build/
-dist/
-*.spec
-site/
 body.md
-node_modules/
-.next/
-out/
 .agents/
 skills-lock.json
+musicui-app/build/
+musicui-app/dist/
+*.spec
