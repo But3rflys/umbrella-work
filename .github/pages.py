@@ -187,13 +187,18 @@ def gitbook_block(script, mine, lang):
 
 
 def update_gitbook(script, mine):
-    pages = (("gitbook", script.get("doc"), "ru"), ("gitbook-en", script.get("doc_en"), "en"))
-    for folder, doc, lang in pages:
-        if not doc:
+    name = script["tag"] + ".md"
+    for folder, lang in (("gitbook", "ru"), ("gitbook-en", "en")):
+        root = BASE / folder
+        if not root.exists():
             continue
-        path = BASE / folder / doc
-        if path.exists():
+        pages = [p for p in sorted(root.rglob(name)) if DOC_START in p.read_text(encoding="utf-8")]
+        if not pages:
+            print("  no page %s in %s" % (name, folder))
+            continue
+        for path in pages:
             patch(path, DOC_START, DOC_END, gitbook_block(script, mine, lang))
+            print("  %s" % path.relative_to(BASE).as_posix())
 
 
 def catalog_list(lang):
