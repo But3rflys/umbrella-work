@@ -12,9 +12,8 @@ site:
         language: ru
     - type: space
       key: space-1
-      title: umbrella-work-en
-      path: umbrella-work
-      draft: true
+      title: English
+      path: en
       content:
-        directory: ./gitbook
-        language: ru
+        directory: ./gitbook-en
+        language: en
