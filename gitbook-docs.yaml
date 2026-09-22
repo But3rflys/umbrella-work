@@ -4,8 +4,8 @@ site:
   structure:
     - type: space
       key: docs
-      title: umbrella-work
-      path: umbrella-work-en
+      title: Русский
+      path: ru
       default: true
       content:
         directory: ./gitbook
