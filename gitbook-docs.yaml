@@ -10,3 +10,11 @@ site:
       content:
         directory: ./gitbook
         language: ru
+    - type: space
+      key: space-1
+      title: umbrella-work-en
+      path: umbrella-work
+      draft: true
+      content:
+        directory: ./gitbook
+        language: ru
