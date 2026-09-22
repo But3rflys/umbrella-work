@@ -45,20 +45,17 @@ def main():
     script = find(tag)
     out = os.environ.get("GITHUB_OUTPUT")
     lines = []
-    if script and script["kind"] == "lua":
+    if script:
         (BASE / "body.md").write_text(body(script, tag), encoding="utf-8", newline=NL)
-        lines += ["found=true", "id=%s" % script["id"], "file=%s" % script["file"],
-                  "title=%s" % script["title"], "version=%s" % tag[len(script["tag"]) + 1:]]
-        print("release %s from scripts/%s/%s" % (tag, script["id"], script["file"]))
+        path = ""
+        if script["kind"] == "lua":
+            path = "scripts/%s/%s" % (script["id"], script["file"])
+        lines += ["found=true", "path=%s" % path, "title=%s" % script["title"],
+                  "version=%s" % tag[len(script["tag"]) + 1:]]
+        print("release %s%s" % (tag, (" with " + path) if path else " without files"))
     else:
         lines += ["found=false"]
-        if script:
-            (BASE / "body.md").write_text(body(script, tag), encoding="utf-8", newline=NL)
-            lines += ["id=%s" % script["id"], "title=%s" % script["title"],
-                      "version=%s" % tag[len(script["tag"]) + 1:]]
-            print("%s is built by its own workflow" % script["id"])
-        else:
-            print("no script in catalog.json matches tag %s" % tag)
+        print("no script in catalog.json matches tag %s" % tag)
     if out:
         with open(out, "a", encoding="utf-8") as f:
             f.write(NL.join(lines) + NL)

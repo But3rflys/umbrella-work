@@ -24,6 +24,6 @@ jobs:
       - uses: softprops/action-gh-release@v2
         if: steps.notes.outputs.found == 'true'
         with:
-          files: scripts/${{ steps.notes.outputs.id }}/${{ steps.notes.outputs.file }}
+          files: ${{ steps.notes.outputs.path }}
           name: ${{ steps.notes.outputs.title }} ${{ steps.notes.outputs.version }}
           body_path: body.md

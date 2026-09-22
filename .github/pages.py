@@ -157,21 +157,25 @@ def build_readme(script, rels):
     return len(mine)
 
 
-def gitbook_block(script, mine):
+def gitbook_block(script, mine, lang):
+    ru = lang == "ru"
     if not mine:
-        out = ["Релизов пока нет.", "",
-               "[Релизы на GitHub](%s)" % all_link(script)]
-        return NL.join(out)
+        return NL.join(["Релизов пока нет." if ru else "No releases yet.", "",
+                        "[%s](%s)" % ("Релизы на GitHub" if ru else "Releases on GitHub",
+                                      all_link(script))])
 
     top = mine[0]
     a = asset_of(top, script)
     day = (top.get("published_at") or "")[:10]
     out = []
     if a:
-        out += ["**Скачать:** [%s](%s) — `%s`, %s"
-                % (a["name"], a["browser_download_url"], top["tag_name"], day), ""]
-    out += ["<details>", "", "<summary>Все версии</summary>", "",
-            "| Версия | Дата | Файл | Загрузок |", "| --- | --- | --- | --- |"]
+        out += ["**%s** [%s](%s) — `%s`, %s"
+                % ("Скачать:" if ru else "Download:", a["name"], a["browser_download_url"],
+                   top["tag_name"], day), ""]
+    out += ["<details>", "", "<summary>%s</summary>" % ("Все версии" if ru else "All versions"), "",
+            "| %s | %s | %s | %s |" % (("Версия", "Дата", "Файл", "Загрузок") if ru
+                                       else ("Version", "Date", "File", "Downloads")),
+            "| --- | --- | --- | --- |"]
     for r in mine:
         a = asset_of(r, script)
         link = "[%s](%s)" % (a["name"], a["browser_download_url"]) if a else "—"
@@ -183,13 +187,13 @@ def gitbook_block(script, mine):
 
 
 def update_gitbook(script, mine):
-    doc = script.get("doc")
-    if not doc:
-        return
-    path = BASE / "gitbook" / doc
-    if not path.exists():
-        return
-    patch(path, DOC_START, DOC_END, gitbook_block(script, mine))
+    pages = (("gitbook", script.get("doc"), "ru"), ("gitbook-en", script.get("doc_en"), "en"))
+    for folder, doc, lang in pages:
+        if not doc:
+            continue
+        path = BASE / folder / doc
+        if path.exists():
+            patch(path, DOC_START, DOC_END, gitbook_block(script, mine, lang))
 
 
 def catalog_list(lang):

@@ -37,7 +37,8 @@
         ]
       },
       "icon": "fa:f4d7",
-      "doc": "scripts/lane-pull.md"
+      "doc": "skripty/lane-pull.md",
+      "doc_en": "scripts/lane-pull.md"
     },
     {
       "id": "ds_spot_block",
@@ -68,7 +69,8 @@
         ]
       },
       "icon": "img:https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/icons/dark_seer.png",
-      "doc": "scripts/ds-spot-block.md"
+      "doc": "skripty/ds-spot-block.md",
+      "doc_en": "scripts/ds-spot-block.md"
     },
     {
       "id": "custom_background",
@@ -99,7 +101,8 @@
         ]
       },
       "icon": "fa:f03e",
-      "doc": "scripts/custom-background.md"
+      "doc": "skripty/custom-background.md",
+      "doc_en": "scripts/custom-background.md"
     },
     {
       "id": "musicui",
@@ -130,7 +133,8 @@
         ]
       },
       "icon": "fa:f001",
-      "doc": "apps/musicui.md"
+      "doc": "prilozheniya/musicui.md",
+      "doc_en": "apps/musicui.md"
     }
   ]
 }
