@@ -8,12 +8,12 @@ site:
       path: ru
       default: true
       content:
-        directory: ./gitbook
+        directory: ./gitbook/ru
         language: ru
     - type: space
       key: space-1
       title: English
       path: en
       content:
-        directory: ./gitbook-en
+        directory: ./gitbook/en
         language: en

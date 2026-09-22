@@ -199,7 +199,7 @@ def changelog_block(script, lang):
 
 def update_gitbook(script, mine):
     name = script["tag"] + ".md"
-    for folder, lang in (("gitbook", "ru"), ("gitbook-en", "en")):
+    for folder, lang in (("gitbook/ru", "ru"), ("gitbook/en", "en")):
         root = BASE / folder
         if not root.exists():
             continue
