@@ -37,13 +37,10 @@ If an enemy hero gets right up close, or the creep drops below the HP threshold,
 2. Put the file into the `scripts` folder next to your cheat.
 3. Open **Scripts** in the cheat menu and turn it on.
 
-## What is new
+<!-- changelog:start -->
+## Changelog
 
-Version `v1.0.3`:
+**update v1.0.4**
 
-* **Picks the spot itself.** Takes the creep behind the enemy tower, so the wave never reaches ours. It catches closer only when it surely makes it.
-* **No pulling into our wave.** Skips a wave that is about to meet our own creeps and waits for the next one.
-* **Camps avoided.** Leads the pack past the neutral camps so it does not aggro them.
-* **High ground.** No longer stands afk when only the ranged creeps are hitting, and the pack stays whole.
-* **Mid.** No longer loses itself at the river or walks back and forth.
-* **Optimization.** Fewer recalculations every tick.
+* **pull.** improved creep pull logic
+<!-- changelog:end -->

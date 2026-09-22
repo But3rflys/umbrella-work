@@ -15,6 +15,7 @@ NL = chr(10)
 START, END = "<!-- releases:start -->", "<!-- releases:end -->"
 CAT_RU_START, CAT_RU_END = "<!-- scripts:ru:start -->", "<!-- scripts:ru:end -->"
 DOC_START, DOC_END = "<!-- versions:start -->", "<!-- versions:end -->"
+LOG_START, LOG_END = "<!-- changelog:start -->", "<!-- changelog:end -->"
 CAT_EN_START, CAT_EN_END = "<!-- scripts:en:start -->", "<!-- scripts:en:end -->"
 
 INSTALL = {
@@ -186,6 +187,16 @@ def gitbook_block(script, mine, lang):
     return NL.join(out)
 
 
+def changelog_block(script, lang):
+    text = changelog(script, lang)
+    if not text:
+        return ""
+    lines = ["## %s" % ("Что нового" if lang == "ru" else "Changelog"), ""]
+    for line in text.splitlines():
+        lines.append("* " + line[2:] if line.startswith("- ") else line)
+    return NL.join(lines)
+
+
 def update_gitbook(script, mine):
     name = script["tag"] + ".md"
     for folder, lang in (("gitbook", "ru"), ("gitbook-en", "en")):
@@ -198,6 +209,8 @@ def update_gitbook(script, mine):
             continue
         for path in pages:
             patch(path, DOC_START, DOC_END, gitbook_block(script, mine, lang))
+            if LOG_START in path.read_text(encoding="utf-8"):
+                patch(path, LOG_START, LOG_END, changelog_block(script, lang))
             print("  %s" % path.relative_to(BASE).as_posix())
 
 
