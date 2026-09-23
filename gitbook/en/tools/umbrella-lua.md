@@ -57,4 +57,5 @@ Once a day `luatool.exe` checks the releases on GitHub. When a new version is ou
 * **migrate.** safer
 * **output.** shorter
 * **drawing.** FontAwesome glyphs
+* **updates.** the agent installs them
 <!-- changelog:end -->
