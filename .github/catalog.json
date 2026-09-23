@@ -1,5 +1,12 @@
 {
   "repo": "But3rflys/umbrella-work",
+  "skill": {
+    "id": "umbrella_lua",
+    "tag": "umbrella-lua",
+    "title": "umbrella-lua",
+    "folder": "skill",
+    "file": "umbrella-lua.zip"
+  },
   "scripts": [
     {
       "id": "lane_pull",

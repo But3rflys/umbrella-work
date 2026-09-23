@@ -36,3 +36,14 @@ GitBook, `stats.py` — загрузки и график, `release_notes.py` —
 Страницы ищутся по имени файла в любой папке `gitbook/ru` и `gitbook/en`, поэтому переименование
 групп в GitBook ничего не ломает. Все остальное на страницах правится руками — хоть в репозитории,
 хоть прямо в GitBook.
+
+## Скилл umbrella-lua
+
+Тег `umbrella-lua-v<версия>`. Версия должна совпадать с `skill/src/luatool/AssemblyInfo.cs` и со
+строкой `Версия **x.y.z**` в `skill/README.md`, иначе `skill.yml` остановится.
+
+`skill.yml` собирает `luatool.exe` на Windows из `skill/src`, упаковывает папку `skill/umbrella-lua`
+в `umbrella-lua.zip`, создает релиз и запускает `readme.yml`. Текст «Что нового» берется из
+`skill/CHANGELOG.md`, если он есть. Загрузки скилла идут в общий график, но не в таблицу скриптов:
+скилл описан в `catalog.json` отдельно от `scripts`. Таблица версий с загрузками стоит в
+`skill/README.md`, ее переписывает `pages.py`.

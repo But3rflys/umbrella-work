@@ -232,12 +232,25 @@ def patch(path, start, end, block):
     path.write_text(text, encoding="utf-8", newline=NL)
 
 
+def update_skill(rels):
+    skill = CATALOG.get("skill")
+    if not skill:
+        return
+    path = BASE / skill["folder"] / "README.md"
+    if not path.exists():
+        return
+    mine = for_script(skill, rels)
+    patch(path, START, END, releases_block(skill, mine))
+    print("%-20s releases: %d" % (skill["id"], len(mine)))
+
+
 def main():
     rels = releases()
     for script in CATALOG["scripts"]:
         n = build_readme(script, rels)
         update_gitbook(script, for_script(script, rels))
         print("%-20s releases: %d" % (script["id"], n))
+    update_skill(rels)
     readme = BASE / "README.md"
     patch(readme, CAT_RU_START, CAT_RU_END, catalog_list("ru"))
     patch(readme, CAT_EN_START, CAT_EN_END, catalog_list("en"))

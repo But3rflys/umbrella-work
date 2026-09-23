@@ -1,0 +1,60 @@
+name: skill
+
+on:
+  push:
+    tags: ["umbrella-lua-v*"]
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    env:
+      UMBRELLA_LUA_NO_UPDATE: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: build
+        id: build
+        shell: pwsh
+        run: |
+          powershell -NoProfile -ExecutionPolicy Bypass -File skill/tools/build.ps1 -Strict
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          $version = "${{ github.ref_name }}".Substring("umbrella-lua-v".Length)
+          $built = (& skill/umbrella-lua/scripts/luatool.exe version | Select-Object -First 1) -replace '^umbrella-lua ', ''
+          if ($built -ne $version) { "tag says $version, luatool.exe says $built"; exit 1 }
+          "version=$version" >> $env:GITHUB_OUTPUT
+
+      - name: zip
+        shell: pwsh
+        working-directory: skill
+        run: 7z a -tzip ../umbrella-lua.zip umbrella-lua
+
+      - name: notes
+        shell: pwsh
+        run: |
+          $v = "${{ steps.build.outputs.version }}"
+          $lines = @("## umbrella-lua $v", "")
+          if (Test-Path skill/CHANGELOG.md) { $lines += @("### Что нового", "", (Get-Content skill/CHANGELOG.md -Raw -Encoding utf8).Trim(), "") }
+          $lines += @(
+            "Скачай ``umbrella-lua.zip``, распакуй и положи папку ``umbrella-lua`` в ``%USERPROFILE%\.claude\skills\`` (Claude Code) или ``%USERPROFILE%\.agents\skills\`` (Codex).",
+            "",
+            "---",
+            "",
+            "Описание и все версии: https://github.com/${{ github.repository }}/tree/main/skill"
+          )
+          $lines | Set-Content body.md -Encoding utf8
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: umbrella-lua.zip
+          name: umbrella-lua ${{ steps.build.outputs.version }}
+          body_path: body.md
+
+      - name: readme
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run readme.yml --ref main
