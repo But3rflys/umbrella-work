@@ -236,11 +236,11 @@ def update_skill(rels):
     skill = CATALOG.get("skill")
     if not skill:
         return
-    path = BASE / skill["folder"] / "README.md"
-    if not path.exists():
-        return
     mine = for_script(skill, rels)
-    patch(path, START, END, releases_block(skill, mine))
+    path = BASE / skill["folder"] / "README.md"
+    if path.exists():
+        patch(path, START, END, releases_block(skill, mine))
+    update_gitbook(skill, mine)
     print("%-20s releases: %d" % (skill["id"], len(mine)))
 
 

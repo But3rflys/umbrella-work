@@ -12,6 +12,10 @@
 
 * [MusicUI](apps/musicui.md)
 
+## Tools
+
+* [umbrella-lua](tools/umbrella-lua.md)
+
 ## Releases
 
 * [How releases work](releases.md)

@@ -1,0 +1,48 @@
+---
+icon: code
+---
+
+# umbrella-lua
+
+Скилл для Claude Code и Codex: агент пишет и правит Lua-скрипты Umbrella по общим правилам. Меню собирается по одному эталону, локализация en/ru встроена в каждый скрипт.
+
+<!-- versions:start -->
+**Скачать:** [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.0/umbrella-lua.zip) — `umbrella-lua-v1.0.0`, 2026-09-23
+
+<details>
+
+<summary>Все версии</summary>
+
+| Версия | Дата | Файл | Загрузок |
+| --- | --- | --- | --- |
+| [`umbrella-lua-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.0) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.0/umbrella-lua.zip) | 0 |
+
+</details>
+<!-- versions:end -->
+
+## Что умеет
+
+* пишет новые скрипты с меню по эталону и встроенным qLocalizer;
+* переводит чужой скрипт на правила: плоские ключи без точек, словари en и ru, обертка меню;
+* проверяет синтаксис так же, как Lua 5.4, и сверяет вызовы со справочником Umbrella API;
+* показывает ошибки скрипта из `debug.log` после перезагрузки скриптов.
+
+## Установка
+
+1. Скачай `umbrella-lua.zip` из последнего релиза и распакуй.
+2. Положи папку `umbrella-lua` в `%USERPROFILE%\.claude\skills\` (Claude Code) или в `%USERPROFILE%\.agents\skills\` (Codex).
+3. Перезапусти агента.
+
+{% hint style="info" %}
+Нужны Windows 10 или 11. Python и Lua не требуются: утилита `luatool.exe` работает на встроенном .NET Framework 4.
+{% endhint %}
+
+## Как пользоваться
+
+Попроси агента написать или поправить скрипт Umbrella, скилл включится сам. Явный вызов: `/umbrella-lua` в Claude Code, `$umbrella-lua` в Codex. Удобнее всего открывать агента в папке `scripts` чита: тогда он сразу работает с твоими скриптами.
+
+## Обновление
+
+Раз в день `luatool.exe` проверяет релизы на GitHub. Когда выходит новая версия, агент сообщает об этом и дает ссылку. Для обновления замени папку `umbrella-lua` целиком. Отключить проверку можно переменной окружения `UMBRELLA_LUA_NO_UPDATE=1`.
+
+`luatool.exe` собирается на GitHub Actions из [исходников в репозитории](https://github.com/But3rflys/umbrella-work/tree/main/skill/src/luatool).

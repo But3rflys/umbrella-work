@@ -12,6 +12,10 @@
 
 * [MusicUI](prilozheniya/musicui.md)
 
+## Инструменты
+
+* [umbrella-lua](instrumenty/umbrella-lua.md)
+
 ## Релизы
 
 * [Как устроены релизы](relizy/releases.md)

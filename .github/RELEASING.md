@@ -45,5 +45,5 @@ GitBook, `stats.py` — загрузки и график, `release_notes.py` —
 `skill.yml` собирает `luatool.exe` на Windows из `skill/src`, упаковывает папку `skill/umbrella-lua`
 в `umbrella-lua.zip`, создает релиз и запускает `readme.yml`. Текст «Что нового» берется из
 `skill/CHANGELOG.md`, если он есть. Загрузки скилла идут в общий график, но не в таблицу скриптов:
-скилл описан в `catalog.json` отдельно от `scripts`. Таблица версий с загрузками стоит в
-`skill/README.md`, ее переписывает `pages.py`.
+скилл описан в `catalog.json` отдельно от `scripts`. Таблицу версий с загрузками `pages.py`
+переписывает в `skill/README.md` и на страницах GitBook `umbrella-lua.md` (раздел «Инструменты»).
