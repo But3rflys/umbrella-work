@@ -35,7 +35,7 @@ Lua-оверлей и приложение MusicUI.exe: приложение б�
 
 **update v1.0.8**
 
-- **гайд по автозапуску.** подробная инструкция, куда вставить строку в Steam: Библиотека → Свойства → Общие → Параметры запуска. добавлена пометка, что на каждом аккаунте Steam строку нужно вставить заново. гайд нормально читается и на старых консолях
+- **гайд по автозапуску.** подробная инструкция, куда вставить строку в Steam: Библиотека → Свойства → Общие → Параметры запуска. добавлена пометка, что на каждом аккаунте Steam строку нужно вставить заново
 
 ---
 
@@ -63,5 +63,5 @@ The menu follows your cheat language; the script speaks Russian and English.
 
 **update v1.0.8**
 
-- **autostart guide.** step-by-step instructions on where to paste the line in Steam: Library → Properties → General → Launch Options. added a note that the line has to be pasted again on every Steam account. the guide reads fine on old consoles too
+- **autostart guide.** step-by-step instructions on where to paste the line in Steam: Library → Properties → General → Launch Options. added a note that the line has to be pasted again on every Steam account
 
