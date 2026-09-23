@@ -15,7 +15,7 @@ icon: route
 
 | Версия | Дата | Файл | Загрузок |
 | --- | --- | --- | --- |
-| [`lane-pull-v1.0.4`](https://github.com/But3rflys/umbrella-work/releases/tag/lane-pull-v1.0.4) | 2026-09-20 | [lane_pull.lua](https://github.com/But3rflys/umbrella-work/releases/download/lane-pull-v1.0.4/lane_pull.lua) | 73 |
+| [`lane-pull-v1.0.4`](https://github.com/But3rflys/umbrella-work/releases/tag/lane-pull-v1.0.4) | 2026-09-20 | [lane_pull.lua](https://github.com/But3rflys/umbrella-work/releases/download/lane-pull-v1.0.4/lane_pull.lua) | 81 |
 | [`lane-pull-v1.0.3`](https://github.com/But3rflys/umbrella-work/releases/tag/lane-pull-v1.0.3) | 2026-09-20 | [lane_pull.lua](https://github.com/But3rflys/umbrella-work/releases/download/lane-pull-v1.0.3/lane_pull.lua) | 7 |
 
 </details>

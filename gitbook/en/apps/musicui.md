@@ -15,7 +15,7 @@ A player overlay in game: track, cover art, equalizer and lyrics. It comes in tw
 
 | Version | Date | File | Downloads |
 | --- | --- | --- | --- |
-| [`musicui-v1.0.7`](https://github.com/But3rflys/umbrella-work/releases/tag/musicui-v1.0.7) | 2026-09-20 | [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.7/MusicUI.rar) | 25 |
+| [`musicui-v1.0.7`](https://github.com/But3rflys/umbrella-work/releases/tag/musicui-v1.0.7) | 2026-09-20 | [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.7/MusicUI.rar) | 70 |
 
 </details>
 <!-- versions:end -->
