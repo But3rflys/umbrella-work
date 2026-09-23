@@ -47,4 +47,9 @@ The console language follows your Windows language. Force it with `MusicUI.exe -
 <table><thead><tr><th width="230">Source</th><th>What you get</th></tr></thead><tbody><tr><td>Spotify</td><td>Track, artist, cover art, progress, playback controls.</td></tr><tr><td>Windows system player</td><td>The same for any player that reports itself to Windows.</td></tr></tbody></table>
 
 <!-- changelog:start -->
+## Changelog
+
+**update v1.0.8**
+
+* **autostart guide.** step-by-step instructions on where to paste the line in Steam: Library → Properties → General → Launch Options. added a note that the line has to be pasted again on every Steam account. the guide reads fine on old consoles too
 <!-- changelog:end -->
