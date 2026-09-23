@@ -109,6 +109,11 @@ namespace LuaTool
                 Update.Notify(true);
                 return 0;
             }
+            if (args.Length == 0 || (args.Length == 1 && (args[0] == "help" || args[0] == "--help" || args[0] == "-h")))
+            {
+                Console.WriteLine(Usage);
+                return 0;
+            }
             if (args.Length < 2)
             {
                 Console.WriteLine(Usage);
