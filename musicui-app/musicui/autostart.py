@@ -4,9 +4,17 @@ import subprocess
 import sys
 from pathlib import Path
 
-from musicui import config, i18n, logbook
+from musicui import config, console, i18n, logbook
 
 _journal = logbook.get("autostart")
+
+_PALETTE = {
+    "h": "\x1b[1m",
+    "a": "\x1b[96m",
+    "d": "\x1b[90m",
+    "w": "\x1b[93m",
+    "r": "\x1b[0m",
+}
 
 RUN_KEY = r"Software\Microsoft\Windows\CurrentVersion\Run"
 VALUE_NAME = "MusicUI"
@@ -59,16 +67,16 @@ def show() -> None:
     _journal.info(f"showed the Dota launch line, clipboard: {'yes' if copied else 'no'}")
     _journal.debug(line)
 
-    print(i18n.t("autostart.intro"))
-    print(i18n.t("autostart.here_clip") if copied else i18n.t("autostart.here"))
-    print(f"\n  {line}\n")
-    print(i18n.t("autostart.body1"))
-    print(i18n.t("autostart.body2"))
-    print(i18n.t("autostart.body3"))
-    print(i18n.t("autostart.body4"))
-    print(i18n.t("autostart.body5"))
-    print(i18n.t("autostart.body6"))
-    print(i18n.t("autostart.again", cmd=launcher()))
+    paint = _PALETTE if console.colors() else dict.fromkeys(_PALETTE, "")
+    hint = i18n.t("autostart.hint") if copied else ""
+    print(i18n.t(
+        "autostart.guide",
+        line=line,
+        cmd=launcher(),
+        here=i18n.t("autostart.here_clip") if copied else i18n.t("autostart.here"),
+        hint=f"{paint['d']}{hint}{paint['r']}" if hint else "",
+        **paint,
+    ))
     if not getattr(sys, "frozen", False):
         print(i18n.t("autostart.pybuild"))
 

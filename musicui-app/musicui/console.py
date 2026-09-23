@@ -4,6 +4,10 @@ import os
 import sys
 
 ATTACH_PARENT = -1
+CP_UTF8 = 65001
+ENABLE_VT = 0x0004
+
+_COLORS: bool | None = None
 
 
 def _kernel32():
@@ -61,11 +65,65 @@ def attach(title: str = "MusicUI") -> bool:
         ensure_stdio()
         return False
 
+    _utf8(kernel32)
     try:
         kernel32.SetConsoleTitleW(title)
     except Exception:
         pass
     return True
+
+
+def _utf8(kernel32) -> None:
+    try:
+        before = kernel32.GetConsoleOutputCP(), kernel32.GetConsoleCP()
+        if before == (CP_UTF8, CP_UTF8):
+            return
+        kernel32.SetConsoleOutputCP(CP_UTF8)
+        kernel32.SetConsoleCP(CP_UTF8)
+    except Exception:
+        return
+
+    import atexit
+
+    def restore() -> None:
+        try:
+            kernel32.SetConsoleOutputCP(before[0])
+            kernel32.SetConsoleCP(before[1])
+        except Exception:
+            pass
+
+    atexit.register(restore)
+
+
+def colors() -> bool:
+    global _COLORS
+    if _COLORS is None:
+        _COLORS = _enable_vt()
+    return _COLORS
+
+
+def _enable_vt() -> bool:
+    if os.environ.get("NO_COLOR"):
+        return False
+    stream = getattr(sys, "stdout", None)
+    try:
+        if stream is None or not stream.isatty():
+            return False
+        import ctypes
+        import msvcrt
+
+        kernel32 = _kernel32()
+        if kernel32 is None:
+            return False
+        handle = msvcrt.get_osfhandle(stream.fileno())
+        mode = ctypes.c_uint32()
+        if not kernel32.GetConsoleMode(ctypes.c_void_p(handle), ctypes.byref(mode)):
+            return False
+        if mode.value & ENABLE_VT:
+            return True
+        return bool(kernel32.SetConsoleMode(ctypes.c_void_p(handle), mode.value | ENABLE_VT))
+    except Exception:
+        return False
 
 
 def crash(exc: BaseException) -> None:

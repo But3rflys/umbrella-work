@@ -124,6 +124,72 @@ _SPOTIFY_GUIDE_RU = """
 аккаунту: файл не выкладывай и никому не показывай.
 """
 
+_AUTOSTART_GUIDE_EN = """
+{h}Autostart with Dota 2{r}
+{d}---------------------{r}
+
+One line in the launch options - and MusicUI comes up together with the game
+and shuts down when you leave it.
+
+{here}
+
+    {a}{line}{r}
+{hint}
+{h}Where to paste it{r}
+
+  1. Open Steam and go to {h}Library{r}.
+  2. Right-click {h}Dota 2{r} and pick {h}Properties...{r}
+  3. On the {h}General{r} tab, at the bottom - the {h}Launch Options{r} field.
+  4. Put the cursor at the very start of the field and press Ctrl+V.
+     Don't erase other options - they just stay after the line.
+
+     before:  -novid -high
+     after:   {d}<the line>{r} -novid -high
+
+{h}Important{r}
+
+  {w}*{r} The line always goes first. Don't touch %command% inside it.
+  {w}*{r} Launch options are stored per Steam account. Logged into another
+    account - paste the line there once more.
+  {w}*{r} Moved the MusicUI folder - the line is outdated, get a new one:
+    {cmd} --autostart
+
+That's it. Launch Dota as usual - no need to come back here.
+"""
+
+_AUTOSTART_GUIDE_RU = """
+{h}Автозапуск вместе с Dota 2{r}
+{d}--------------------------{r}
+
+Одна строка в параметрах запуска - и MusicUI сам поднимется вместе с игрой,
+а когда выйдешь из Доты, выключится.
+
+{here}
+
+    {a}{line}{r}
+{hint}
+{h}Куда вставить{r}
+
+  1. Открой Steam и перейди в {h}Библиотеку{r}.
+  2. Правой кнопкой по {h}Dota 2{r} - {h}Свойства...{r}
+  3. Во вкладке {h}Общие{r} внизу поле {h}Параметры запуска{r}.
+  4. Поставь курсор в самое начало поля и нажми Ctrl+V.
+     Остальные параметры не стирай - они просто остаются после строки.
+
+     было:    -novid -high
+     стало:   {d}<строка>{r} -novid -high
+
+{h}Важно{r}
+
+  {w}*{r} Строка всегда идёт первой. %command% внутри неё не трогай.
+  {w}*{r} Параметры запуска у каждого аккаунта Steam свои. Зашёл с другого
+    аккаунта - вставь строку туда заново.
+  {w}*{r} Переместил папку с MusicUI - строка устарела, возьми новую:
+    {cmd} --autostart
+
+Всё. Дальше запускай Доту как обычно - сюда возвращаться не нужно.
+"""
+
 _STRINGS = {
     "en": {
         "menu.header": "MusicUI // music overlay",
@@ -152,16 +218,10 @@ _STRINGS = {
         "spotify.browser2": "  allow access there once.",
         "spotify.need": "\n«Spotify» mode needs app keys, and there are none yet.",
         "common.cancelled": "  cancelled",
-        "autostart.intro": "\nto make the island come up with Dota, you need one line in the launch options.",
-        "autostart.here_clip": "here it is - already on your clipboard:",
-        "autostart.here": "here it is:",
-        "autostart.body1": "no need to delete anything, just paste it at the start.",
-        "autostart.body2": "important: this line goes first, before all other launch options.",
-        "autostart.body3": "paste it directly into Steam.",
-        "autostart.body4": "\nthat's it - launch Dota as usual and MusicUI will start with it",
-        "autostart.body5": "and shut down when you leave the game. No need to come back here",
-        "autostart.body6": "until the MusicUI folder moves somewhere else.",
-        "autostart.again": "\nshow the line again: {cmd} --autostart",
+        "autostart.guide": _AUTOSTART_GUIDE_EN,
+        "autostart.here_clip": "The line - already on your clipboard:",
+        "autostart.here": "The line:",
+        "autostart.hint": "\n    if you see squares or garbage instead of letters - no worries,\n    the clipboard has the correct line, just paste it into Steam.\n",
         "autostart.pybuild": "this is the line for the python launch; build the exe - python tools/build.py - and take the new one.",
         "autostart.quiet1": "\nok, I won't remind you again",
         "autostart.quiet2": "the line for Dota, when you need it: {cmd} --autostart",
@@ -232,16 +292,10 @@ _STRINGS = {
         "spotify.browser2": "  там нужно один раз разрешить доступ.",
         "spotify.need": "\nРежиму «Spotify» нужны ключи приложения, а их ещё нет.",
         "common.cancelled": "  отменено",
-        "autostart.intro": "\nчтобы островок сам поднимался с Дотой, нужна одна строка в параметрах запуска.",
-        "autostart.here_clip": "вот она - уже в буфере обмена:",
-        "autostart.here": "вот она:",
-        "autostart.body1": "стирать ничего не надо, просто вставить в начало.",
-        "autostart.body2": "важно: строка идёт первой, перед всеми остальными параметрами запуска.",
-        "autostart.body3": "нужно вставить напрямую в Steam.",
-        "autostart.body4": "\nвсё, дальше запускаешь Доту как обычно - MusicUI включится вместе с ней",
-        "autostart.body5": "и выключится, когда выйдешь из игры. Возвращаться сюда не надо,",
-        "autostart.body6": "пока папка с MusicUI не переедет в другое место.",
-        "autostart.again": "\nпоказать строку снова: {cmd} --autostart",
+        "autostart.guide": _AUTOSTART_GUIDE_RU,
+        "autostart.here_clip": "Строка - уже в буфере обмена:",
+        "autostart.here": "Строка:",
+        "autostart.hint": "\n    если вместо букв квадратики или кракозябры - не страшно,\n    в буфере строка правильная, просто вставь её в Steam.\n",
         "autostart.pybuild": "это строка для запуска через python; собери exe - python tools/build.py - и возьми новую.",
         "autostart.quiet1": "\nладно, больше не напомню",
         "autostart.quiet2": "строка для Доты, когда понадобится: {cmd} --autostart",
