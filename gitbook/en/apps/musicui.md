@@ -6,6 +6,10 @@ icon: music
 
 A player overlay in game: track, cover art, equalizer and lyrics. It comes in two parts — the Lua overlay and the `MusicUI.exe` app.
 
+{% hint style="danger" %}
+The script is not compatible with Yandex Browser.
+{% endhint %}
+
 <!-- versions:start -->
 **Download:** [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.8/MusicUI.rar) — `musicui-v1.0.8`, 2026-09-23
 
@@ -41,3 +45,6 @@ The console language follows your Windows language. Force it with `MusicUI.exe -
 ## Audio sources
 
 <table><thead><tr><th width="230">Source</th><th>What you get</th></tr></thead><tbody><tr><td>Spotify</td><td>Track, artist, cover art, progress, playback controls.</td></tr><tr><td>Windows system player</td><td>The same for any player that reports itself to Windows.</td></tr></tbody></table>
+
+<!-- changelog:start -->
+<!-- changelog:end -->

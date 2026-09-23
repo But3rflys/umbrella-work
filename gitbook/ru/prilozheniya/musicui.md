@@ -6,6 +6,10 @@ icon: music
 
 Оверлей плеера в игре: трек, обложка, эквалайзер и текст песни. Состоит из двух частей — Lua-оверлея и приложения `MusicUI.exe`.
 
+{% hint style="danger" %}
+Скрипт не совместим с Яндекс Браузером.
+{% endhint %}
+
 <!-- versions:start -->
 **Скачать:** [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.8/MusicUI.rar) — `musicui-v1.0.8`, 2026-09-23
 
@@ -41,3 +45,6 @@ icon: music
 ## Источники звука
 
 <table><thead><tr><th width="230">Источник</th><th>Что дает</th></tr></thead><tbody><tr><td>Spotify</td><td>Трек, исполнитель, обложка, прогресс, управление воспроизведением.</td></tr><tr><td>Системный плеер Windows</td><td>То же самое для любого плеера, который сообщает о себе Windows.</td></tr></tbody></table>
+
+<!-- changelog:start -->
+<!-- changelog:end -->
