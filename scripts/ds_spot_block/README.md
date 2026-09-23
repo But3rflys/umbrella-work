@@ -7,7 +7,7 @@
 
 | версия | дата | файл | загрузок |
 | --- | --- | --- | --- |
-| [`ds-spot-block-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/ds-spot-block-v1.0.1) | 2026-09-20 | [ds_spot_block.lua](https://github.com/But3rflys/umbrella-work/releases/download/ds-spot-block-v1.0.1/ds_spot_block.lua) | 11 |
+| [`ds-spot-block-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/ds-spot-block-v1.0.1) | 2026-09-20 | [ds_spot_block.lua](https://github.com/But3rflys/umbrella-work/releases/download/ds-spot-block-v1.0.1/ds_spot_block.lua) | 12 |
 
 [Все релизы](https://github.com/But3rflys/umbrella-work/releases?q=ds-spot-block&expanded=true)
 <!-- releases:end -->
