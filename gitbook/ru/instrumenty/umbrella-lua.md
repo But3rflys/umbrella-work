@@ -7,7 +7,7 @@ icon: code
 Скилл для Claude Code и Codex: агент пишет и правит Lua-скрипты Umbrella по общим правилам. Меню собирается по одному эталону, локализация en/ru встроена в каждый скрипт.
 
 <!-- versions:start -->
-**Скачать:** [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.0/umbrella-lua.zip) — `umbrella-lua-v1.0.0`, 2026-09-23
+**Скачать:** [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.1/umbrella-lua.zip) — `umbrella-lua-v1.0.1`, 2026-09-23
 
 <details>
 
@@ -15,7 +15,8 @@ icon: code
 
 | Версия | Дата | Файл | Загрузок |
 | --- | --- | --- | --- |
-| [`umbrella-lua-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.0) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.0/umbrella-lua.zip) | 5 |
+| [`umbrella-lua-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.1) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.1/umbrella-lua.zip) | 0 |
+| [`umbrella-lua-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.0) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.0/umbrella-lua.zip) | 6 |
 
 </details>
 <!-- versions:end -->
@@ -48,4 +49,11 @@ icon: code
 `luatool.exe` собирается на GitHub Actions из исходников, они лежат [в репозитории](https://github.com/But3rflys/umbrella-work/tree/main/skill) вместе с описанием сборки.
 
 <!-- changelog:start -->
+## Что нового
+
+**update v1.0.1**
+
+* **check.** новые проверки
+* **migrate.** аккуратнее
+* **вывод.** короче
 <!-- changelog:end -->
