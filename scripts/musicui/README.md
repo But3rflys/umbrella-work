@@ -8,7 +8,7 @@
 | версия | дата | файл | загрузок |
 | --- | --- | --- | --- |
 | [`musicui-v1.0.8`](https://github.com/But3rflys/umbrella-work/releases/tag/musicui-v1.0.8) | 2026-09-23 | [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.8/MusicUI.rar) | 0 |
-| [`musicui-v1.0.7`](https://github.com/But3rflys/umbrella-work/releases/tag/musicui-v1.0.7) | 2026-09-20 | [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.7/MusicUI.rar) | 201 |
+| [`musicui-v1.0.7`](https://github.com/But3rflys/umbrella-work/releases/tag/musicui-v1.0.7) | 2026-09-20 | [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.7/MusicUI.rar) | 203 |
 
 [Все релизы](https://github.com/But3rflys/umbrella-work/releases?q=musicui&expanded=true)
 <!-- releases:end -->
@@ -31,6 +31,12 @@ Lua-оверлей и приложение MusicUI.exe: приложение б�
 
 Язык меню берется из языка чита, скрипт понимает русский и английский.
 
+## Что нового
+
+**update v1.0.8**
+
+- **гайд по автозапуску.** подробная инструкция, куда вставить строку в Steam: Библиотека → Свойства → Общие → Параметры запуска. добавлена пометка, что на каждом аккаунте Steam строку нужно вставить заново. гайд нормально читается и на старых консолях
+
 ---
 
 # MusicUI (English)
@@ -52,4 +58,10 @@ A Lua overlay plus MusicUI.exe: the app reads Spotify and the Windows player, th
 3. Run `MusicUI.exe` and follow the prompts in the console.
 
 The menu follows your cheat language; the script speaks Russian and English.
+
+## Changelog
+
+**update v1.0.8**
+
+- **autostart guide.** step-by-step instructions on where to paste the line in Steam: Library → Properties → General → Launch Options. added a note that the line has to be pasted again on every Steam account. the guide reads fine on old consoles too
 
