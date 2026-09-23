@@ -15,7 +15,7 @@ icon: bullseye
 
 | Версия | Дата | Файл | Загрузок |
 | --- | --- | --- | --- |
-| [`ds-spot-block-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/ds-spot-block-v1.0.1) | 2026-09-20 | [ds_spot_block.lua](https://github.com/But3rflys/umbrella-work/releases/download/ds-spot-block-v1.0.1/ds_spot_block.lua) | 12 |
+| [`ds-spot-block-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/ds-spot-block-v1.0.1) | 2026-09-20 | [ds_spot_block.lua](https://github.com/But3rflys/umbrella-work/releases/download/ds-spot-block-v1.0.1/ds_spot_block.lua) | 14 |
 
 </details>
 <!-- versions:end -->

@@ -7,7 +7,7 @@ icon: music
 Оверлей плеера в игре: трек, обложка, эквалайзер и текст песни. Состоит из двух частей — Lua-оверлея и приложения `MusicUI.exe`.
 
 <!-- versions:start -->
-**Скачать:** [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.7/MusicUI.rar) — `musicui-v1.0.7`, 2026-09-20
+**Скачать:** [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.8/MusicUI.rar) — `musicui-v1.0.8`, 2026-09-23
 
 <details>
 
@@ -15,7 +15,8 @@ icon: music
 
 | Версия | Дата | Файл | Загрузок |
 | --- | --- | --- | --- |
-| [`musicui-v1.0.7`](https://github.com/But3rflys/umbrella-work/releases/tag/musicui-v1.0.7) | 2026-09-20 | [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.7/MusicUI.rar) | 109 |
+| [`musicui-v1.0.8`](https://github.com/But3rflys/umbrella-work/releases/tag/musicui-v1.0.8) | 2026-09-23 | [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.8/MusicUI.rar) | 0 |
+| [`musicui-v1.0.7`](https://github.com/But3rflys/umbrella-work/releases/tag/musicui-v1.0.7) | 2026-09-20 | [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.7/MusicUI.rar) | 201 |
 
 </details>
 <!-- versions:end -->
