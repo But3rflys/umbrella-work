@@ -45,4 +45,4 @@ icon: code
 
 Раз в день `luatool.exe` проверяет релизы на GitHub. Когда выходит новая версия, агент сообщает об этом и дает ссылку. Для обновления замени папку `umbrella-lua` целиком. Отключить проверку можно переменной окружения `UMBRELLA_LUA_NO_UPDATE=1`.
 
-`luatool.exe` собирается на GitHub Actions из исходников. Исходники и описание сборки лежат [в репозитории](https://github.com/But3rflys/umbrella-work/tree/main/skill).
+`luatool.exe` собирается на GitHub Actions из исходников, они лежат [в репозитории](https://github.com/But3rflys/umbrella-work/tree/main/skill) вместе с описанием сборки.
