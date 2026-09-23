@@ -3,3 +3,4 @@
 - **check.** new checks
 - **migrate.** safer
 - **output.** shorter
+- **drawing.** FontAwesome glyphs
