@@ -97,8 +97,22 @@ namespace LuaTool
             return r.ToArray();
         }
 
+        public static int CountLines(string text)
+        {
+            int n = 1;
+            foreach (char c in text) if (c == '\n') n++;
+            return n;
+        }
+
+        public static string StripVersion(string fileName)
+        {
+            string s = Regex.Replace(fileName, @"(?:[_\-\s]+v?|[_\-\s]*v)\d+(?:[._]\d+)*$", "", RegexOptions.IgnoreCase);
+            return s.Length > 0 ? s : fileName;
+        }
+
         public static string DefaultTitle(string fileName)
         {
+            fileName = StripVersion(fileName);
             StringBuilder sb = new StringBuilder();
             foreach (string w in Words(fileName))
             {
@@ -110,6 +124,7 @@ namespace LuaTool
 
         public static string DefaultPrefix(string fileName)
         {
+            fileName = StripVersion(fileName);
             StringBuilder sb = new StringBuilder();
             foreach (string w in Words(fileName))
             {
@@ -167,8 +182,14 @@ namespace LuaTool
 
         public static string KeyPart(string value)
         {
-            string s = Regex.Replace((value ?? "").ToLowerInvariant(), "[^a-z0-9]+", "_").Trim('_');
+            string s = Snake(value);
             return s.Length == 0 ? "item" : s;
+        }
+
+        public static string Snake(string value)
+        {
+            string split = Regex.Replace(value ?? "", "([a-z0-9])([A-Z])", "$1_$2");
+            return Regex.Replace(split.ToLowerInvariant(), "[^a-z0-9]+", "_").Trim('_');
         }
 
         public static string Short(string v)

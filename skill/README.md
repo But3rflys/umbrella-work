@@ -2,7 +2,7 @@
 
 Скилл для Claude Code и Codex: пишет и правит Lua-скрипты Umbrella (Dota 2) по общим правилам. Каждый скрипт выходит с меню по одному эталону и со встроенной локализацией en/ru.
 
-Версия **1.0.0**
+Версия **1.0.1**
 
 <!-- releases:start -->
 Скачать: [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.0/umbrella-lua.zip) — `umbrella-lua-v1.0.0`, 2026-09-23

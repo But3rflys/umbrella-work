@@ -46,3 +46,6 @@ Ask the agent to write or fix an Umbrella script and the skill kicks in by itsel
 Once a day `luatool.exe` checks the releases on GitHub. When a new version is out, the agent tells you and gives the link. To update, replace the whole `umbrella-lua` folder. Set `UMBRELLA_LUA_NO_UPDATE=1` to turn the check off.
 
 `luatool.exe` is built by GitHub Actions from its sources. The sources and build steps are [in the repository](https://github.com/But3rflys/umbrella-work/tree/main/skill).
+
+<!-- changelog:start -->
+<!-- changelog:end -->

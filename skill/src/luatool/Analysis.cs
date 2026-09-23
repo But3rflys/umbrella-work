@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LuaTool
 {
@@ -109,6 +110,11 @@ namespace LuaTool
         public readonly List<Expr> RawMenuCalls = new List<Expr>();
         public readonly List<BinaryExpr> Concats = new List<BinaryExpr>();
         public readonly HashSet<string> Guarded = new HashSet<string>();
+        public readonly List<CallExpr> NewCalls = new List<CallExpr>();
+        public readonly Dictionary<string, int> GlobalCalls = new Dictionary<string, int>();
+        public readonly HashSet<string> GlobalDefs = new HashSet<string>();
+        public int AiBridgeUnguardedLine;
+        int aiGuard;
         public bool UsesAiBridge;
         public int AiBridgeLine;
         public bool UsesPolyLine;
@@ -203,6 +209,7 @@ namespace LuaTool
             NameExpr n = target as NameExpr;
             if (n != null && n.Local != null)
             {
+                if (LocalizerStat != null && n.Local == LocalizerStat.Vars[0]) return;
                 locals[n.Local] = t;
                 return;
             }
@@ -213,7 +220,37 @@ namespace LuaTool
         void VisitBlock(Block b)
         {
             if (b == null) return;
-            foreach (Stat s in b.Stats) VisitStat(s);
+            int saved = aiGuard;
+            foreach (Stat s in b.Stats)
+            {
+                VisitStat(s);
+                IfStat exit = s as IfStat;
+                if (exit != null && exit.Conds.Count == 1 && exit.Else == null && Mentions(exit.Conds[0], "ai_bridge")
+                    && exit.Blocks[0].Stats.Count > 0 && exit.Blocks[0].Stats[exit.Blocks[0].Stats.Count - 1] is ReturnStat)
+                    aiGuard++;
+            }
+            aiGuard = saved;
+        }
+
+        static bool Mentions(Expr e, string name)
+        {
+            NameExpr n = e as NameExpr;
+            if (n != null) return n.Local == null && n.Name == name;
+            BinaryExpr b = e as BinaryExpr;
+            if (b != null) return Mentions(b.Left, name) || Mentions(b.Right, name);
+            UnaryExpr u = e as UnaryExpr;
+            if (u != null) return Mentions(u.Operand, name);
+            ParenExpr p = e as ParenExpr;
+            if (p != null) return Mentions(p.Inner, name);
+            IndexExpr ix = e as IndexExpr;
+            if (ix != null) return Mentions(ix.Obj, name);
+            CallExpr c = e as CallExpr;
+            if (c != null)
+            {
+                foreach (Expr a in c.Args) if (Mentions(a, name)) return true;
+                return Mentions(c.Func, name);
+            }
+            return false;
         }
 
         void VisitStat(Stat s)
@@ -245,6 +282,8 @@ namespace LuaTool
             {
                 foreach (Expr target in a.Targets)
                 {
+                    NameExpr global = target as NameExpr;
+                    if (global != null && global.Local == null) GlobalDefs.Add(global.Name);
                     IndexExpr ix = target as IndexExpr;
                     if (ix != null)
                     {
@@ -270,13 +309,18 @@ namespace LuaTool
             IfStat i2 = s as IfStat;
             if (i2 != null)
             {
+                bool aiTest = i2.Conds.Any(c => Mentions(c, "ai_bridge"));
                 for (int k = 0; k < i2.Conds.Count; k++)
                 {
                     GuardCondition(i2.Conds[k]);
                     Eval(i2.Conds[k]);
+                    if (aiTest) aiGuard++;
                     VisitBlock(i2.Blocks[k]);
+                    if (aiTest) aiGuard--;
                 }
+                if (aiTest) aiGuard++;
                 VisitBlock(i2.Else);
+                if (aiTest) aiGuard--;
                 return;
             }
             NumForStat nf = s as NumForStat;
@@ -297,6 +341,8 @@ namespace LuaTool
             FunctionStat fs = s as FunctionStat;
             if (fs != null)
             {
+                NameExpr global = fs.Target as NameExpr;
+                if (global != null && global.Local == null) GlobalDefs.Add(global.Name);
                 IndexExpr ix = fs.Target as IndexExpr;
                 if (ix != null) Eval(ix.Obj);
                 if (IsGetWrapper(fs.Func)) Assign(fs.Target, new TypeInfo { Kind = Kind.LocGet });
@@ -334,6 +380,8 @@ namespace LuaTool
 
         void Guard(Expr e)
         {
+            NameExpr name = e as NameExpr;
+            if (name != null && name.Local == null) { Guarded.Add(name.Name); return; }
             IndexExpr ix = e as IndexExpr;
             if (ix == null) return;
             NameExpr root = ix.Obj as NameExpr;
@@ -355,6 +403,12 @@ namespace LuaTool
             {
                 Guard(b.Left);
                 Guard(b.Right);
+            }
+            if (b != null && (b.Op == "==" || b.Op == "~="))
+            {
+                CallExpr tc = (b.Left as CallExpr) ?? (b.Right as CallExpr);
+                NameExpr tf = tc != null ? tc.Func as NameExpr : null;
+                if (tf != null && tf.Local == null && tf.Name == "type" && tc.Args.Count == 1) Guard(tc.Args[0]);
             }
             UnaryExpr u = cond as UnaryExpr;
             if (u != null && u.Op == "not") GuardCondition(u.Operand);
@@ -418,7 +472,10 @@ namespace LuaTool
                 if (b.Op == "and" || b.Op == "or" || b.Op == "==" || b.Op == "~=") GuardCondition(b);
                 if (b.Op == ".." && b.Left is StringExpr && !InLocalizer(b)) Concats.Add(b);
                 TypeInfo lt = Eval(b.Left);
+                bool aiTest = (b.Op == "and" || b.Op == "or") && Mentions(b.Left, "ai_bridge");
+                if (aiTest) aiGuard++;
                 TypeInfo rt = Eval(b.Right);
+                if (aiTest) aiGuard--;
                 if (b.Op == "and") return rt;
                 if (b.Op == "or") return rt.Kind != Kind.None ? rt : lt;
                 return TypeInfo.None;
@@ -474,6 +531,9 @@ namespace LuaTool
 
         TypeInfo EvalIndex(IndexExpr ix)
         {
+            NameExpr bridge = ix.Obj as NameExpr;
+            if (bridge != null && bridge.Local == null && bridge.Name == "ai_bridge" && aiGuard == 0 && AiBridgeUnguardedLine == 0 && !InLocalizer(ix))
+                AiBridgeUnguardedLine = ix.Line;
             TypeInfo obj = Eval(ix.Obj);
             StringExpr key = ix.Key as StringExpr;
             if (key == null)
@@ -566,6 +626,9 @@ namespace LuaTool
 
         TypeInfo EvalCall(CallExpr call)
         {
+            NameExpr callee = call.Func as NameExpr;
+            if (callee != null && callee.Local == null && !InLocalizer(callee) && !GlobalCalls.ContainsKey(callee.Name))
+                GlobalCalls[callee.Name] = callee.Line;
             TypeInfo f = Eval(call.Func);
             foreach (Expr a in call.Args) Eval(a);
             string target = call == pendingExpr ? pendingBase : null;
@@ -573,6 +636,7 @@ namespace LuaTool
             switch (f.Kind)
             {
                 case Kind.QLocNew:
+                    if (!InLocalizer(call) && !NewCalls.Contains(call)) NewCalls.Add(call);
                     if (DictCall == null && call.Args.Count > 0 && call.Args[0] is TableExpr && !InLocalizer(call))
                     {
                         DictCall = call;

@@ -38,6 +38,7 @@ jobs:
           $v = "${{ steps.build.outputs.version }}"
           $lines = @("## umbrella-lua $v", "")
           if (Test-Path skill/CHANGELOG.md) { $lines += @("### Что нового", "", (Get-Content skill/CHANGELOG.md -Raw -Encoding utf8).Trim(), "") }
+          if (Test-Path skill/CHANGELOG.en.md) { $lines += @("### What's new", "", (Get-Content skill/CHANGELOG.en.md -Raw -Encoding utf8).Trim(), "") }
           $lines += @(
             "Скачай ``umbrella-lua.zip``, распакуй и положи папку ``umbrella-lua`` в ``%USERPROFILE%\.claude\skills\`` (Claude Code) или ``%USERPROFILE%\.agents\skills\`` (Codex).",
             "",

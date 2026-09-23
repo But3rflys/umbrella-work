@@ -42,8 +42,14 @@ namespace LuaTool
                     ? "localizer is not embedded, the script needs a separate !_qLocalizer.lua: run luatool migrate on this file"
                     : "localizer is not embedded: run luatool migrate on this file");
             }
-            else if (a.DictCall == null) warn.Add("localizer is embedded but unused: add local localization = qLocalization.new({ en = {...}, ru = {...} })");
-            else if (!a.HasWrapLibrary) warn.Add("Menu is not wrapped: add local Menu = " + (a.LocVar ?? "localization") + ".WrapLibrary(Menu) under the dictionary");
+            else if (a.DictCall == null && a.NewCalls.Count == 0) warn.Add("localizer is embedded but unused: add local localization = qLocalization.new({ en = {...}, ru = {...} })");
+            else if (!a.HasWrapLibrary && a.NewCalls.Count <= 1) warn.Add("Menu is not wrapped: add local Menu = " + (a.LocVar ?? "localization") + ".WrapLibrary(Menu) under the dictionary");
+            bool dictKnown = a.NewCalls.Count <= 1 && (a.NewCalls.Count == 0 || a.DictCall != null);
+            if (a.NewCalls.Count > 1)
+                warn.Add(a.NewCalls.Count + " separate qLocalization dictionaries (lines " + string.Join(", ", a.NewCalls.Select(c => c.Line.ToString()).ToArray())
+                    + "): looks like several scripts in one file, so translation keys were not checked");
+            else if (a.NewCalls.Count == 1 && a.DictCall == null)
+                warn.Add("line " + a.NewCalls[0].Line + ": the dictionary is built by code, not written as a table, so translation keys were not checked");
 
             Dictionary<string, HashSet<string>> defined = new Dictionary<string, HashSet<string>>();
             bool nested = false;
@@ -63,6 +69,7 @@ namespace LuaTool
             int langCount = Math.Max(1, a.Languages.Count);
 
             HashSet<string> usedKeys = new HashSet<string>();
+            Dictionary<string, List<KeyValuePair<int, string>>> groups = new Dictionary<string, List<KeyValuePair<int, string>>>();
             foreach (Usage u in a.Usages)
             {
                 if (a.InLocalizer(u.Arg)) continue;
@@ -72,8 +79,8 @@ namespace LuaTool
                 {
                     string prefix = ((StringExpr)cat.Left).Value;
                     if (u.Kind != "tooltip" && u.Kind != "get" && prefix.IndexOf('.') >= 0)
-                        Add(warn, seen, "line " + cat.Line + ": menu name built as '" + prefix + "' .. value has a dot, settings will not be saved (use _)");
-                    if (defined.Count > 0 && !defined.Keys.Any(k => k.StartsWith(prefix, StringComparison.Ordinal)))
+                        Put(groups, seen, "dot", cat.Line, "line " + cat.Line + ": menu name built as '" + prefix + "' .. value has a dot, settings will not be saved (use _)");
+                    if (dictKnown && defined.Count > 0 && !defined.Keys.Any(k => k.StartsWith(prefix, StringComparison.Ordinal)))
                         Add(warn, seen, "line " + cat.Line + ": key built as '" + prefix + "' .. value, but no dictionary key starts with '" + prefix + "'");
                     continue;
                 }
@@ -82,10 +89,10 @@ namespace LuaTool
                 switch (u.Kind)
                 {
                     case "tab":
-                        if (v.IndexOf('.') >= 0) Add(warn, seen, "line " + lit.Line + ": menu path '" + v + "' has a dot, settings will not be saved");
+                        if (v.IndexOf('.') >= 0) Put(groups, seen, "dot", lit.Line, "line " + lit.Line + ": menu path '" + v + "' has a dot, settings will not be saved");
                         continue;
                     case "create":
-                        if (v.IndexOf('.') >= 0) Add(warn, seen, "line " + lit.Line + ": menu name '" + v + "' has a dot, settings will not be saved (use _)");
+                        if (v.IndexOf('.') >= 0) Put(groups, seen, "dot", lit.Line, "line " + lit.Line + ": menu name '" + v + "' has a dot, settings will not be saved (use _)");
                         if (defined.ContainsKey(v)) usedKeys.Add(v);
                         continue;
                     case "bindname":
@@ -93,7 +100,7 @@ namespace LuaTool
                         continue;
                 }
                 if (u.Kind == "name" && v.IndexOf('.') >= 0)
-                    Add(warn, seen, "line " + lit.Line + ": menu name '" + v + "' has a dot, settings will not be saved (use _)");
+                    Put(groups, seen, "dot", lit.Line, "line " + lit.Line + ": menu name '" + v + "' has a dot, settings will not be saved (use _)");
                 if (defined.ContainsKey(v))
                 {
                     usedKeys.Add(v);
@@ -103,22 +110,35 @@ namespace LuaTool
                         Add(warn, seen, "line " + lit.Line + ": '" + v + "' is created through the global Menu, it will not be translated: build it from the wrapped Menu");
                     continue;
                 }
+                if (!dictKnown) continue;
                 if (u.Kind == "item" && !Util.KeyPattern.IsMatch(v) && a.DictCall == null) continue;
                 if (Util.KeyPattern.IsMatch(v))
                 {
                     string close = defined.Count > 0 ? Api.Suggest(v, defined.Keys) : null;
-                    Add(warn, seen, "line " + lit.Line + ": key '" + v + "' has no translation" + (close != null ? " (did you mean '" + close + "'?)" : ""));
+                    Put(groups, seen, "key", lit.Line, "line " + lit.Line + ": key '" + v + "' has no translation" + (close != null ? " (did you mean '" + close + "'?)" : ""));
                     continue;
                 }
                 if (u.Kind == "get") continue;
                 if (v.IndexOf('.') >= 0 && Regex.IsMatch(v, @"^[a-z][a-z0-9_]*(\.[a-z0-9_]+)+$")) continue;
                 if (v.Length == 0) continue;
-                Add(warn, seen, "line " + lit.Line + ": '" + Util.Short(v) + "' is plain text, use a translation key");
+                Put(groups, seen, "plain", lit.Line, "line " + lit.Line + ": '" + Util.Short(v) + "' is plain text, use a translation key");
             }
-            foreach (string key in usedKeys.OrderBy(k => k, StringComparer.Ordinal))
+            Flush(warn, groups, "dot", "menu names have a dot, settings will not be saved: run luatool migrate to flatten them");
+            Flush(warn, groups, "key", "keys have no translation");
+            Flush(warn, groups, "plain", "menu texts are plain text instead of translation keys");
+            List<string> partial = usedKeys.Where(k => defined[k].Count < langCount).OrderBy(k => k, StringComparer.Ordinal).ToList();
+            if (partial.Count <= 5)
             {
-                int n = defined[key].Count;
-                if (n < langCount) warn.Add("key '" + key + "' is translated in " + n + " of " + langCount + " languages (missing " + string.Join(", ", a.Languages.Where(l => !defined[key].Contains(l)).ToArray()) + ")");
+                foreach (string key in partial)
+                    warn.Add("key '" + key + "' is translated in " + defined[key].Count + " of " + langCount + " languages (missing " + string.Join(", ", a.Languages.Where(l => !defined[key].Contains(l)).ToArray()) + ")");
+            }
+            else
+            {
+                foreach (string lang in a.Languages)
+                {
+                    List<string> keys = partial.Where(k => !defined[k].Contains(lang)).ToList();
+                    if (keys.Count > 0) warn.Add(keys.Count + " keys are not translated to " + lang + ": " + string.Join(", ", keys.ToArray()));
+                }
             }
 
             foreach (Finding f in a.ApiFindings.OrderBy(x => x.Line))
@@ -128,7 +148,16 @@ namespace LuaTool
             }
 
             if (a.DashLines.Count > 0) warn.Add("long dash on lines " + string.Join(", ", a.DashLines.OrderBy(x => x).Take(10).Select(x => x.ToString()).ToArray()) + ": use a comma or a period");
-            if (a.UsesAiBridge) warn.Add("line " + a.AiBridgeLine + ": logs go through ai_bridge (qMCP), they are silent without that MCP: use Log.Write behind a debug switch");
+            if (a.AiBridgeUnguardedLine > 0) warn.Add("line " + a.AiBridgeUnguardedLine + ": ai_bridge exists only with qMCP, without it this line throws an error: use Log.Write behind a debug switch");
+            else if (a.UsesAiBridge) warn.Add("line " + a.AiBridgeLine + ": logs go through ai_bridge (qMCP), they are silent without that MCP: use Log.Write behind a debug switch");
+            if (api.Loaded)
+            {
+                foreach (KeyValuePair<string, int> call in a.GlobalCalls.OrderBy(x => x.Value))
+                {
+                    if (a.GlobalDefs.Contains(call.Key) || a.Guarded.Contains(call.Key) || LuaGlobals.Contains(call.Key) || api.Globals.Contains(call.Key) || api.Modules.ContainsKey(call.Key)) continue;
+                    Add(warn, seen, "line " + call.Value + ": " + call.Key + "() is called, but nothing in this file defines it: the call throws an error");
+                }
+            }
 
             int comments = 0;
             int skipEnd = a.LocalizerStat != null ? a.LocalizerStat.End : -1;
@@ -157,9 +186,38 @@ namespace LuaTool
             return 0;
         }
 
+        static readonly HashSet<string> LuaGlobals = new HashSet<string>
+        {
+            "assert", "collectgarbage", "dofile", "error", "getmetatable", "ipairs", "load", "loadfile", "next", "pairs",
+            "pcall", "print", "rawequal", "rawget", "rawlen", "rawset", "require", "select", "setmetatable", "tonumber",
+            "tostring", "type", "xpcall", "unpack", "qLocalization", "ai_bridge"
+        };
+
         static void Add(List<string> list, HashSet<string> seen, string text)
         {
             if (seen.Add(text)) list.Add(text);
+        }
+
+        static void Put(Dictionary<string, List<KeyValuePair<int, string>>> groups, HashSet<string> seen, string group, int line, string text)
+        {
+            if (!seen.Add(text)) return;
+            List<KeyValuePair<int, string>> list;
+            if (!groups.TryGetValue(group, out list)) { list = new List<KeyValuePair<int, string>>(); groups[group] = list; }
+            list.Add(new KeyValuePair<int, string>(line, text));
+        }
+
+        static void Flush(List<string> warn, Dictionary<string, List<KeyValuePair<int, string>>> groups, string group, string summary)
+        {
+            List<KeyValuePair<int, string>> list;
+            if (!groups.TryGetValue(group, out list)) return;
+            if (list.Count <= 5)
+            {
+                foreach (KeyValuePair<int, string> item in list) warn.Add(item.Value);
+                return;
+            }
+            int[] lines = list.Select(x => x.Key).Distinct().OrderBy(x => x).ToArray();
+            string shown = string.Join(", ", lines.Take(12).Select(x => x.ToString()).ToArray()) + (lines.Length > 12 ? ", ..." : "");
+            warn.Add(list.Count + " " + summary + " (lines " + shown + ")");
         }
 
         public static int Log(string path)

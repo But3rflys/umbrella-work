@@ -106,7 +106,7 @@ def releases_block(script, mine):
 
 
 def changelog(script, lang):
-    folder = BASE / "scripts" / script["id"]
+    folder = BASE / script["folder"] if "folder" in script else BASE / "scripts" / script["id"]
     names = ["CHANGELOG.en.md", "CHANGELOG.md"] if lang == "en" else ["CHANGELOG.md"]
     for name in names:
         path = folder / name

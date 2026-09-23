@@ -57,6 +57,21 @@ namespace LuaTool
             Api api = Api.Load(apiDir);
             Analysis a = new Analysis(api);
             a.Run(root);
+            int shift = Util.CountLines(text) - Util.CountLines(original);
+            if (a.NewCalls.Count > 1)
+            {
+                Console.WriteLine("STOPPED: " + path + " has " + a.NewCalls.Count + " separate qLocalization dictionaries (lines "
+                    + string.Join(", ", a.NewCalls.Select(c => (c.Line - shift).ToString()).ToArray())
+                    + "), it looks like several scripts in one file. migrate works with one script per file: split it or change it by hand");
+                Console.WriteLine("Nothing was changed.");
+                return 1;
+            }
+            if (a.NewCalls.Count == 1 && a.DictCall == null)
+            {
+                Console.WriteLine("STOPPED: the dictionary on line " + (a.NewCalls[0].Line - shift) + " is built by code, not written as a table, so migrate cannot read its keys");
+                Console.WriteLine("Nothing was changed.");
+                return 1;
+            }
             string locVar = a.LocVar ?? "localization";
 
             List<string> ordered = new List<string>();
@@ -73,9 +88,10 @@ namespace LuaTool
             List<string> keyOrder = new List<string>();
             Dictionary<string, Dictionary<string, string>> dict = new Dictionary<string, Dictionary<string, string>>();
             bool renamed = false;
+            List<string> dynamicPrefixes = a.Concats.Select(c => ((StringExpr)c.Left).Value).Where(v => v.EndsWith(".", StringComparison.Ordinal)).Distinct().ToList();
             foreach (DictEntry e in a.Entries)
             {
-                string newKey = Flat(e.Path, prefix, rootSeg);
+                string newKey = Flat(e.Path, prefix, rootSeg, dynamicPrefixes);
                 if (newKey != e.Path) renamed = true;
                 pathMap[e.Path] = newKey;
                 if (!dict.ContainsKey(newKey))
@@ -185,10 +201,23 @@ namespace LuaTool
                 wrapCount++;
             }
 
+            List<StringExpr> outside = new List<StringExpr>();
             foreach (StringExpr s in a.Strings)
             {
                 if (covered.Contains(s) || a.InDictionary(s) || a.FindArgs.Contains(s)) continue;
-                if (Util.IsCyrillic(s.Value)) manual.Add("text outside the menu " + Util.Quote(Util.Short(s.Value)) + " (line " + LineOf(text, s.Start, a) + "): if players see it, move it to the dictionary and use " + locVar + ".Get");
+                if (Util.IsCyrillic(s.Value)) outside.Add(s);
+            }
+            if (outside.Count <= 5)
+            {
+                foreach (StringExpr s in outside)
+                    manual.Add("text outside the menu " + Util.Quote(Util.Short(s.Value)) + " (line " + LineOf(text, s.Start, a) + "): if players see it, move it to the dictionary and use " + locVar + ".Get");
+            }
+            else
+            {
+                List<StringExpr> firstOnLine = outside.GroupBy(s => s.Line).Select(g => g.First()).ToList();
+                string lines = string.Join(", ", firstOnLine.Take(15).Select(s => LineOf(text, s.Start, a)).ToArray()) + (firstOnLine.Count > 15 ? ", ..." : "");
+                string samples = string.Join(", ", outside.Take(3).Select(s => Util.Quote(Util.Short(s.Value))).ToArray());
+                manual.Add(outside.Count + " texts outside the menu are in Russian, for example " + samples + " (lines " + lines + "): if players see them, move them to the dictionary and use " + locVar + ".Get");
             }
 
             string indent = DetectIndent(text, a);
@@ -241,7 +270,8 @@ namespace LuaTool
                     manual.Add("Menu is used above the dictionary (line " + LineOf(text, raw.Start, a) + "): " + Util.Short(line) + ". Widgets made there skip the translation wrapper, move that code below the dictionary");
                 }
             }
-            if (a.UsesAiBridge) manual.Add("logs go through ai_bridge (qMCP), they are silent without that MCP: switch to Log.Write behind a debug switch");
+            if (a.AiBridgeUnguardedLine > 0) manual.Add("ai_bridge exists only with qMCP, without it line " + LineOf(text, LineStart(text, a.AiBridgeUnguardedLine), a) + " throws an error: switch to Log.Write behind a debug switch");
+            else if (a.UsesAiBridge) manual.Add("logs go through ai_bridge (qMCP), they are silent without that MCP: switch to Log.Write behind a debug switch");
 
             List<Edit> applied;
             string result = Apply(text, edits, manual, out applied);
@@ -283,12 +313,14 @@ namespace LuaTool
             return willWrap && t.GlobalRef && t.RefPos > insertPos;
         }
 
-        static string Flat(string path, string prefix, string rootSeg)
+        static string Flat(string path, string prefix, string rootSeg, List<string> dynamicPrefixes)
         {
             if (path.IndexOf('.') < 0) return path;
+            string dyn = dynamicPrefixes.Where(d => path.StartsWith(d, StringComparison.Ordinal) && path.Length > d.Length).OrderByDescending(d => d.Length).FirstOrDefault();
+            if (dyn != null) return FlatPrefix(dyn, prefix, rootSeg) + path.Substring(dyn.Length);
             string p = path;
             if (rootSeg != null && p.StartsWith(rootSeg, StringComparison.Ordinal)) p = p.Substring(rootSeg.Length);
-            string flat = Regex.Replace(p.ToLowerInvariant(), "[^a-z0-9]+", "_").Trim('_');
+            string flat = Util.Snake(p);
             return flat.Length == 0 ? prefix : prefix + "_" + flat;
         }
 
@@ -296,7 +328,7 @@ namespace LuaTool
         {
             string body = dotted;
             if (rootSeg != null && body.StartsWith(rootSeg, StringComparison.Ordinal)) body = body.Substring(rootSeg.Length);
-            body = Regex.Replace(body.ToLowerInvariant(), "[^a-z0-9]+", "_").Trim('_');
+            body = Util.Snake(body);
             return body.Length == 0 ? prefix + "_" : prefix + "_" + body + "_";
         }
 
@@ -365,6 +397,18 @@ namespace LuaTool
             }
             if (tabs == 0 && spaces == 0) return "\t";
             return tabs >= spaces ? "\t" : new string(' ', width);
+        }
+
+        static int LineStart(string text, int line)
+        {
+            int pos = 0;
+            for (int l = 1; l < line; l++)
+            {
+                pos = text.IndexOf('\n', pos);
+                if (pos < 0) return text.Length;
+                pos++;
+            }
+            return pos;
         }
 
         static string LineOf(string text, int offset, Analysis a)

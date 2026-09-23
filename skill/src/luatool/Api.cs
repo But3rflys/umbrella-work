@@ -19,6 +19,7 @@ namespace LuaTool
         public readonly Dictionary<string, HashSet<string>> Enums = new Dictionary<string, HashSet<string>>();
         public readonly HashSet<string> Callbacks = new HashSet<string>();
         public readonly HashSet<string> MenuMethods = new HashSet<string>();
+        public readonly HashSet<string> Globals = new HashSet<string>();
         public bool Loaded;
 
         static readonly Regex ModuleLine = new Regex(@"^([A-Za-z_]\w*)\.([A-Za-z_]\w*)\((.*)\)(?: -> .*)?$");
@@ -34,6 +35,7 @@ namespace LuaTool
             {
                 string name = Path.GetFileNameWithoutExtension(file);
                 if (name == "Guide") continue;
+                api.Globals.Add(name);
                 string[] lines = File.ReadAllLines(file, new UTF8Encoding(false));
                 if (name == "Enums") { api.LoadEnums(lines); continue; }
                 bool inCode = false;

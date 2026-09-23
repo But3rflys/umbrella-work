@@ -39,11 +39,23 @@ GitBook, `stats.py` — загрузки и график, `release_notes.py` —
 
 ## Скилл umbrella-lua
 
-Тег `umbrella-lua-v<версия>`. Версия должна совпадать с `skill/src/luatool/AssemblyInfo.cs` и со
-строкой `Версия **x.y.z**` в `skill/README.md`, иначе `skill.yml` остановится.
+Перед релизом:
 
-`skill.yml` собирает `luatool.exe` на Windows из `skill/src`, упаковывает папку `skill/umbrella-lua`
-в `umbrella-lua.zip`, создает релиз и запускает `readme.yml`. Текст «Что нового» берется из
-`skill/CHANGELOG.md`, если он есть. Загрузки скилла идут в общий график, но не в таблицу скриптов:
-скилл описан в `catalog.json` отдельно от `scripts`. Таблицу версий с загрузками `pages.py`
-переписывает в `skill/README.md` и на страницах GitBook `umbrella-lua.md` (раздел «Инструменты»).
+1. Номер версии в `skill/src/luatool/AssemblyInfo.cs` (`AssemblyVersion` и `AssemblyFileVersion`)
+   и в строке `Версия **x.y.z**` в `skill/README.md`.
+2. `skill/CHANGELOG.md` и `skill/CHANGELOG.en.md`: только эта версия, формат как у скриптов.
+3. Коммит, потом тег `umbrella-lua-v<версия>`:
+
+```bash
+git tag umbrella-lua-v1.0.2
+git push origin umbrella-lua-v1.0.2
+```
+
+`skill.yml` собирает `luatool.exe` на Windows из `skill/src` и останавливается, если версия в exe или
+в `skill/README.md` не совпадает с тегом. Потом упаковывает папку `skill/umbrella-lua` в
+`umbrella-lua.zip`, создает релиз с телом из обоих ченджлогов и запускает `readme.yml`.
+
+Загрузки скилла идут в общий график, но не в таблицу скриптов: скилл описан в `catalog.json` отдельно
+от `scripts`. `pages.py` сам переписывает блоки `<!-- releases:start -->` в `skill/README.md`,
+`<!-- versions:start -->` и `<!-- changelog:start -->` на страницах GitBook `umbrella-lua.md`
+(раздел «Инструменты»). Руками их не трогать.
