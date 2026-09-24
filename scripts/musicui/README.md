@@ -7,8 +7,8 @@
 
 | версия | дата | файл | загрузок |
 | --- | --- | --- | --- |
-| [`musicui-v1.0.8`](https://github.com/But3rflys/umbrella-work/releases/tag/musicui-v1.0.8) | 2026-09-23 | [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.8/MusicUI.rar) | 72 |
-| [`musicui-v1.0.7`](https://github.com/But3rflys/umbrella-work/releases/tag/musicui-v1.0.7) | 2026-09-20 | [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.7/MusicUI.rar) | 205 |
+| [`musicui-v1.0.8`](https://github.com/But3rflys/umbrella-work/releases/tag/musicui-v1.0.8) | 2026-09-23 | [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.8/MusicUI.rar) | 87 |
+| [`musicui-v1.0.7`](https://github.com/But3rflys/umbrella-work/releases/tag/musicui-v1.0.7) | 2026-09-20 | [MusicUI.rar](https://github.com/But3rflys/umbrella-work/releases/download/musicui-v1.0.7/MusicUI.rar) | 211 |
 
 [Все релизы](https://github.com/But3rflys/umbrella-work/releases?q=musicui&expanded=true)
 <!-- releases:end -->

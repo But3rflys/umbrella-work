@@ -15,7 +15,7 @@ Vacuum spot block for Dark Seer: the script draws the camps, the Vacuum radius a
 
 | Version | Date | File | Downloads |
 | --- | --- | --- | --- |
-| [`ds-spot-block-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/ds-spot-block-v1.0.1) | 2026-09-20 | [ds_spot_block.lua](https://github.com/But3rflys/umbrella-work/releases/download/ds-spot-block-v1.0.1/ds_spot_block.lua) | 17 |
+| [`ds-spot-block-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/ds-spot-block-v1.0.1) | 2026-09-20 | [ds_spot_block.lua](https://github.com/But3rflys/umbrella-work/releases/download/ds-spot-block-v1.0.1/ds_spot_block.lua) | 20 |
 
 </details>
 <!-- versions:end -->
