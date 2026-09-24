@@ -7,7 +7,7 @@ icon: code
 Скилл для Claude Code и Codex: агент пишет и правит Lua-скрипты Umbrella по общим правилам. Меню собирается по одному эталону, локализация en/ru встроена в каждый скрипт.
 
 <!-- versions:start -->
-**Скачать:** [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.1/umbrella-lua.zip) — `umbrella-lua-v1.0.1`, 2026-09-23
+**Скачать:** [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.2/umbrella-lua.zip) — `umbrella-lua-v1.0.2`, 2026-09-24
 
 <details>
 
@@ -15,7 +15,8 @@ icon: code
 
 | Версия | Дата | Файл | Загрузок |
 | --- | --- | --- | --- |
-| [`umbrella-lua-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.1) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.1/umbrella-lua.zip) | 0 |
+| [`umbrella-lua-v1.0.2`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.2) | 2026-09-24 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.2/umbrella-lua.zip) | 0 |
+| [`umbrella-lua-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.1) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.1/umbrella-lua.zip) | 21 |
 | [`umbrella-lua-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.0) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.0/umbrella-lua.zip) | 7 |
 
 </details>
@@ -52,11 +53,10 @@ icon: code
 <!-- changelog:start -->
 ## Что нового
 
-**update v1.0.1**
+**update v1.0.2**
 
-* **check.** новые проверки
-* **migrate.** аккуратнее
-* **вывод.** короче
-* **отрисовка.** глифы FontAwesome
-* **обновления.** агент ставит сам
+* **data.** данные игры: способности, предметы, герои
+* **check.** сверяет имена с данными игры и ловит необъявленные
+* **лог.** свои строки скрипта и ненайденные картинки
+* **migrate.** вкладки остаются текстом
 <!-- changelog:end -->

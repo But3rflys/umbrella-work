@@ -7,7 +7,7 @@ icon: code
 A Claude Code and Codex skill: the agent writes and fixes Lua scripts for Umbrella by one set of rules. Every script gets the same menu layout and built-in en/ru localization.
 
 <!-- versions:start -->
-**Download:** [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.1/umbrella-lua.zip) — `umbrella-lua-v1.0.1`, 2026-09-23
+**Download:** [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.2/umbrella-lua.zip) — `umbrella-lua-v1.0.2`, 2026-09-24
 
 <details>
 
@@ -15,7 +15,8 @@ A Claude Code and Codex skill: the agent writes and fixes Lua scripts for Umbrel
 
 | Version | Date | File | Downloads |
 | --- | --- | --- | --- |
-| [`umbrella-lua-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.1) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.1/umbrella-lua.zip) | 0 |
+| [`umbrella-lua-v1.0.2`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.2) | 2026-09-24 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.2/umbrella-lua.zip) | 0 |
+| [`umbrella-lua-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.1) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.1/umbrella-lua.zip) | 21 |
 | [`umbrella-lua-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.0) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.0/umbrella-lua.zip) | 7 |
 
 </details>
@@ -52,11 +53,10 @@ Once a day `luatool.exe` checks the releases on GitHub. When a new version is ou
 <!-- changelog:start -->
 ## Changelog
 
-**update v1.0.1**
+**update v1.0.2**
 
-* **check.** new checks
-* **migrate.** safer
-* **output.** shorter
-* **drawing.** FontAwesome glyphs
-* **updates.** the agent installs them
+* **data.** game data: abilities, items, heroes
+* **check.** checks names against the game data, catches undefined ones
+* **log.** the script's own lines and missing images
+* **migrate.** tabs stay plain text
 <!-- changelog:end -->

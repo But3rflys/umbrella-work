@@ -1,21 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 280" width="840" height="280" role="img" aria-label="Downloads: 784">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 280" width="840" height="280" role="img" aria-label="Downloads: 854">
 <rect width="840" height="280" fill="#ffffff"/>
 <text x="26" y="34" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#141412">Загрузки, всего</text>
 <line x1="56" y1="242.0" x2="814" y2="242.0" stroke="#ebeae6" stroke-width="1"/>
-<text x="46" y="246.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">390</text>
-<line x1="56" y1="197.2" x2="814" y2="197.2" stroke="#ebeae6" stroke-width="1"/>
-<text x="46" y="201.2" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">502</text>
+<text x="46" y="246.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">380</text>
+<line x1="56" y1="197.0" x2="814" y2="197.0" stroke="#ebeae6" stroke-width="1"/>
+<text x="46" y="201.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">515</text>
 <line x1="56" y1="152.0" x2="814" y2="152.0" stroke="#ebeae6" stroke-width="1"/>
-<text x="46" y="156.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">615</text>
-<line x1="56" y1="106.8" x2="814" y2="106.8" stroke="#ebeae6" stroke-width="1"/>
-<text x="46" y="110.8" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">728</text>
+<text x="46" y="156.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">650</text>
+<line x1="56" y1="107.0" x2="814" y2="107.0" stroke="#ebeae6" stroke-width="1"/>
+<text x="46" y="111.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">785</text>
 <line x1="56" y1="62.0" x2="814" y2="62.0" stroke="#ebeae6" stroke-width="1"/>
-<text x="46" y="66.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">840</text>
+<text x="46" y="66.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">920</text>
 <line x1="56" y1="242.0" x2="814" y2="242.0" stroke="#d7d6d1" stroke-width="1"/>
-<path d="M 56.0 242.0 L 56.0 219.2 L 308.7 182.8 L 561.3 175.6 L 814.0 84.4 L 814.0 242.0 Z" fill="#141412" fill-opacity="0.05"/>
-<polyline points="56.0,219.2 308.7,182.8 561.3,175.6 814.0,84.4" fill="none" stroke="#141412" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="814.0" cy="84.4" r="4.5" fill="#141412" stroke="#ffffff" stroke-width="2"/>
-<text x="814.0" y="70.4" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#141412">784</text>
+<path d="M 56.0 242.0 L 56.0 219.7 L 245.5 189.3 L 435.0 183.3 L 624.5 107.3 L 814.0 84.0 L 814.0 242.0 Z" fill="#141412" fill-opacity="0.05"/>
+<polyline points="56.0,219.7 245.5,189.3 435.0,183.3 624.5,107.3 814.0,84.0" fill="none" stroke="#141412" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="814.0" cy="84.0" r="4.5" fill="#141412" stroke="#ffffff" stroke-width="2"/>
+<text x="814.0" y="70.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#141412">854</text>
 <text x="56.0" y="266" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">09-20</text>
-<text x="814.0" y="266" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">09-23</text>
+<text x="245.5" y="266" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">09-21</text>
+<text x="435.0" y="266" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">09-22</text>
+<text x="624.5" y="266" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">09-23</text>
+<text x="814.0" y="266" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">09-24</text>
 </svg>
