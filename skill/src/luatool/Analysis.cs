@@ -112,6 +112,12 @@ namespace LuaTool
         public readonly HashSet<string> Guarded = new HashSet<string>();
         public readonly List<CallExpr> NewCalls = new List<CallExpr>();
         public readonly Dictionary<string, int> GlobalCalls = new Dictionary<string, int>();
+        public readonly Dictionary<string, int> GlobalReads = new Dictionary<string, int>();
+        public readonly Dictionary<string, List<int>> LocalDecls = new Dictionary<string, List<int>>();
+        public readonly Dictionary<string, int> GlobalReadPos = new Dictionary<string, int>();
+        public readonly List<KeyValuePair<string, StringExpr>> GameNames = new List<KeyValuePair<string, StringExpr>>();
+        public readonly List<KeyValuePair<string, LocalStat>> SelfInits = new List<KeyValuePair<string, LocalStat>>();
+        public readonly List<KeyValuePair<int, string>> MenuPlaces = new List<KeyValuePair<int, string>>();
         public readonly HashSet<string> GlobalDefs = new HashSet<string>();
         public int AiBridgeUnguardedLine;
         int aiGuard;
@@ -232,6 +238,13 @@ namespace LuaTool
             aiGuard = saved;
         }
 
+        void Declare(string name, int line)
+        {
+            List<int> lines;
+            if (!LocalDecls.TryGetValue(name, out lines)) { lines = new List<int>(); LocalDecls[name] = lines; }
+            lines.Add(line);
+        }
+
         static bool Mentions(Expr e, string name)
         {
             NameExpr n = e as NameExpr;
@@ -259,6 +272,11 @@ namespace LuaTool
             LocalStat ls = s as LocalStat;
             if (ls != null)
             {
+                foreach (LocalVar v in ls.Vars)
+                {
+                    Declare(v.Name, ls.Line);
+                    if (ls.Values.Count > 0) SelfInits.Add(new KeyValuePair<string, LocalStat>(v.Name, ls));
+                }
                 for (int i = 0; i < ls.Values.Count; i++)
                 {
                     TypeInfo t = EvalWithTarget(ls.Values[i], i < ls.Vars.Count ? ls.Vars[i].Name : null);
@@ -352,6 +370,7 @@ namespace LuaTool
             LocalFunctionStat lf = s as LocalFunctionStat;
             if (lf != null)
             {
+                Declare(lf.Var.Name, lf.Line);
                 if (IsGetWrapper(lf.Func)) locals[lf.Var] = new TypeInfo { Kind = Kind.LocGet };
                 VisitBlock(lf.Func.Body);
                 return;
@@ -446,6 +465,7 @@ namespace LuaTool
                     TypeInfo lt;
                     return locals.TryGetValue(n.Local, out lt) ? lt : TypeInfo.None;
                 }
+                if (!InLocalizer(n) && !GlobalReads.ContainsKey(n.Name)) { GlobalReads[n.Name] = n.Line; GlobalReadPos[n.Name] = n.Start; }
                 switch (n.Name)
                 {
                     case "Menu": return new TypeInfo { Kind = Kind.MenuLib, Wrapped = false, GlobalRef = true, RefPos = n.Start };
@@ -678,6 +698,8 @@ namespace LuaTool
                     {
                         if (!f.Wrapped && !InLocalizer(call)) RawMenuCalls.Add(call);
                         int count = call.Args.Count;
+                        if (!InLocalizer(call) && count > 0 && call.Args.Take(Math.Min(count, 4)).All(x => x is StringExpr))
+                            MenuPlaces.Add(new KeyValuePair<int, string>(call.Line, string.Join(" > ", call.Args.Take(Math.Min(count, 4)).Select(x => ((StringExpr)x).Value).ToArray())));
                         for (int i = 0; i < count; i++)
                         {
                             if (i == 4) AddUsage("name", call.Args[i], target != null ? GroupBase(target) : null, f.With(Kind.Tab3), i);
@@ -702,6 +724,14 @@ namespace LuaTool
                     return TypeInfo.None;
                 case Kind.ApiFn:
                     CheckArgCount(call, f.Module, f.Name, call.Args);
+                    if (call.Args.Count >= 2 && call.Args[1] is StringExpr && !InLocalizer(call))
+                    {
+                        string gameKind = null;
+                        if (f.Module == "NPC" && (f.Name == "GetItem" || f.Name == "HasItem")) gameKind = "item";
+                        else if (f.Module == "NPC" && (f.Name == "GetAbility" || f.Name == "HasAbility")) gameKind = "ability";
+                        else if (f.Module == "Ability" && f.Name == "GetLevelSpecialValueFor") gameKind = "special";
+                        if (gameKind != null) GameNames.Add(new KeyValuePair<string, StringExpr>(gameKind, (StringExpr)call.Args[1]));
+                    }
                     return TypeInfo.None;
             }
             return TypeInfo.None;

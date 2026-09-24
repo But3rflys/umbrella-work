@@ -13,7 +13,9 @@ namespace LuaTool
             "  luatool new <file.lua> [--title \"Menu Name\"] [--prefix xx]   create a script from the template\n" +
             "  luatool migrate <file.lua> [--prefix xx]                     bring an existing script to the skill rules\n" +
             "  luatool check <file.lua>                                     syntax (Lua 5.4), localization, menu and API checks\n" +
-            "  luatool check <file.lua> --log                               errors of this script from debug.log\n" +
+            "  luatool check <file.lua> --log                               this script's errors, own log lines and missing images from debug.log\n" +
+            "  luatool check <new.lua> --against <old.lua>                  also list menu names that are gone (their settings and binds reset)\n" +
+            "  luatool data ability|item|unit <name>, data find <text>      game data from %cheat_dir%/assets/data\n" +
             "  luatool syntax <file.lua>                                    syntax only\n" +
             "  luatool version                                              skill version";
 
@@ -114,6 +116,7 @@ namespace LuaTool
                 Console.WriteLine(Usage);
                 return 0;
             }
+            if (args[0] == "data") return Done(GameData.Run(args));
             if (args.Length < 2)
             {
                 Console.WriteLine(Usage);
@@ -121,7 +124,7 @@ namespace LuaTool
             }
             string mode = args[0];
             string file = args[1];
-            string title = null, prefix = null, api = null;
+            string title = null, prefix = null, api = null, against = null;
             bool log = false;
             for (int i = 2; i < args.Length; i++)
             {
@@ -131,6 +134,7 @@ namespace LuaTool
                     case "--prefix": prefix = i + 1 < args.Length ? args[++i] : null; break;
                     case "--api": api = i + 1 < args.Length ? args[++i] : null; break;
                     case "--log": log = true; break;
+                    case "--against": against = i + 1 < args.Length ? args[++i] : null; break;
                     default:
                         Console.WriteLine("unknown option " + args[i]);
                         Console.WriteLine(Usage);
@@ -141,7 +145,7 @@ namespace LuaTool
             {
                 case "new": return Done(Create(file, title, prefix));
                 case "migrate": return Done(Migrator.Run(file, prefix, ApiDir(api)));
-                case "check": return Done(log ? Checker.Log(file) : Checker.Run(file, ApiDir(api)));
+                case "check": return Done(log ? Checker.Log(file) : Checker.Run(file, ApiDir(api), against));
                 case "syntax":
                     Console.WriteLine(SyntaxLine(file));
                     return 0;

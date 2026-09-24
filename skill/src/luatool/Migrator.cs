@@ -109,13 +109,18 @@ namespace LuaTool
             List<string> dynamic = new List<string>();
             List<string> notes = new List<string>();
 
+            HashSet<StringExpr> tabNames = new HashSet<StringExpr>(a.Usages.Where(u => u.Kind == "tab").Select(u => u.Arg as StringExpr).Where(x => x != null));
+            List<string> tabs = new List<string>();
             foreach (StringExpr s in a.Strings)
             {
                 if (a.InDictionary(s)) continue;
                 string nk;
                 if (pathMap.TryGetValue(s.Value, out nk) && nk != s.Value)
                 {
-                    edits.Add(new Edit { Start = s.Start, End = s.End, Text = Util.Quote(nk) });
+                    string plain = tabNames.Contains(s) ? TabText(dict, nk) : null;
+                    edits.Add(new Edit { Start = s.Start, End = s.End, Text = plain ?? Util.Quote(nk) });
+                    if (plain != null) tabs.Add(s.Raw + " -> " + plain);
+                    else if (tabNames.Contains(s)) manual.Add("tab name " + s.Raw + " is a translation key without English text, but tabs are not translated: write the tab name in English by hand");
                     covered.Add(s);
                 }
             }
@@ -148,7 +153,14 @@ namespace LuaTool
                 string v = lit.Value;
                 if (u.Kind == "tab")
                 {
-                    if (Util.IsCyrillic(v)) manual.Add("tab name " + lit.Raw + " is not translatable, rename it to English by hand (this resets its saved settings)");
+                    string plain = dict.ContainsKey(v) ? TabText(dict, v) : null;
+                    if (plain != null)
+                    {
+                        edits.Add(new Edit { Start = lit.Start, End = lit.End, Text = plain });
+                        tabs.Add(lit.Raw + " -> " + plain);
+                    }
+                    else if (dict.ContainsKey(v)) manual.Add("tab name " + lit.Raw + " is a translation key without English text, but tabs are not translated: write the tab name in English by hand");
+                    else if (Util.IsCyrillic(v)) manual.Add("tab name " + lit.Raw + " is not translatable, rename it to English by hand (this resets its saved settings)");
                     covered.Add(lit);
                     continue;
                 }
@@ -292,6 +304,9 @@ namespace LuaTool
             }
             if (wrapCount > 0) Console.WriteLine("WRAP: removed " + wrapCount + " manual " + locVar + ".Wrap(...), the menu goes through WrapLibrary now");
             if (addedWrap) Console.WriteLine("WRAP: added " + wrapLine);
+            foreach (string t in tabs) Console.WriteLine("TAB: " + t + " (tab names are not translated, so they stay plain English text)");
+            if (changed && a.MenuPlaces.Count > 0)
+                Console.WriteLine("PLACE: the menu location is kept as it was: " + a.MenuPlaces[0].Value + (a.MenuPlaces.Count > 1 ? " (and " + (a.MenuPlaces.Count - 1) + " more Menu.Create calls, also untouched)" : ""));
             foreach (string d in dynamic) Console.WriteLine("DYNAMIC: " + d + " (key built in code, check that every result exists in the dictionary)");
             foreach (string lang in ordered)
             {
@@ -301,7 +316,7 @@ namespace LuaTool
             }
             foreach (string m in manual.Distinct()) Console.WriteLine("MANUAL: " + m);
             foreach (string n in notes) Console.WriteLine("NOTE: " + n);
-            if (changed && (renamed || fromText > 0)) Console.WriteLine("NOTE: menu item names changed, so their saved values reset once (dotted names were not saved anyway)");
+            if (changed && (renamed || fromText > 0 || tabs.Count > 0)) Console.WriteLine("NOTE: names of menu items, groups or tabs changed, so their saved values and key binds reset once (dotted names were not saved anyway): tell the players");
             Console.WriteLine("BODY starts at line " + Util.BodyLine(result) + ". Add the NEED translations, fix MANUAL items, then run check");
             return 0;
         }
@@ -409,6 +424,14 @@ namespace LuaTool
                 pos++;
             }
             return pos;
+        }
+
+        static string TabText(Dictionary<string, Dictionary<string, string>> dict, string key)
+        {
+            Dictionary<string, string> langs;
+            string raw;
+            if (dict.TryGetValue(key, out langs) && langs.TryGetValue("en", out raw) && !Util.IsCyrillic(raw)) return raw;
+            return null;
         }
 
         static string LineOf(string text, int offset, Analysis a)

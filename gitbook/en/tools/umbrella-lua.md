@@ -26,6 +26,7 @@ A Claude Code and Codex skill: the agent writes and fixes Lua scripts for Umbrel
 * writes new scripts with the standard menu and qLocalizer built in;
 * brings someone else's script to the rules: flat keys without dots, en and ru dictionaries, the menu wrapper;
 * checks syntax exactly like Lua 5.4 and matches calls against the Umbrella API reference;
+* takes ability names, cast times and their values from the game data, not from memory;
 * shows the script's errors from `debug.log` after a scripts reload.
 
 ## Install
