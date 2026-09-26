@@ -15,7 +15,7 @@ icon: image
 
 | Версия | Дата | Файл | Загрузок |
 | --- | --- | --- | --- |
-| [`custom-background-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/custom-background-v1.0.0) | 2026-09-20 | [custom_background.lua](https://github.com/But3rflys/umbrella-work/releases/download/custom-background-v1.0.0/custom_background.lua) | 10 |
+| [`custom-background-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/custom-background-v1.0.0) | 2026-09-20 | [custom_background.lua](https://github.com/But3rflys/umbrella-work/releases/download/custom-background-v1.0.0/custom_background.lua) | 12 |
 
 </details>
 <!-- versions:end -->
