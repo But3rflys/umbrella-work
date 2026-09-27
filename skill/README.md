@@ -5,10 +5,11 @@
 Версия **1.0.4**
 
 <!-- releases:start -->
-Скачать: [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.3/umbrella-lua.zip) — `umbrella-lua-v1.0.3`, 2026-09-24
+Скачать: [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.4/umbrella-lua.zip) — `umbrella-lua-v1.0.4`, 2026-09-27
 
 | версия | дата | файл | загрузок |
 | --- | --- | --- | --- |
+| [`umbrella-lua-v1.0.4`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.4) | 2026-09-27 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.4/umbrella-lua.zip) | 0 |
 | [`umbrella-lua-v1.0.3`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.3) | 2026-09-24 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.3/umbrella-lua.zip) | 64 |
 | [`umbrella-lua-v1.0.2`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.2) | 2026-09-24 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.2/umbrella-lua.zip) | 1 |
 | [`umbrella-lua-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.1) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.1/umbrella-lua.zip) | 22 |
