@@ -32,4 +32,4 @@ The stack fails if a hero or another unit stands in the camp, or if Torrent miss
 
 1. Download `auto_stack.lua` from the latest release.
 2. Put the file into the `scripts` folder next to your cheat.
-3. Open **Heroes → Kunkka** and turn on **Auto Stack**.
+3. Open **Heroes > Kunkka** and turn on **Auto Stack**.
