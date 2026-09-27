@@ -11,7 +11,7 @@ UI.Create("Scripts", "Scripts", "<Имя>")   CSecondTab: строка скри�
     page:Create("<p>_group_way",  Enum.GroupSide.Right)   CMenuGroup: правая колонка
 ```
 
-- Место по умолчанию `"Scripts", "Scripts", "<Имя>"`. Другое место (вкладку встроенных функций, например `"Creeps", "Main"`) бери, только если пользователь его назвал.
+- Место по умолчанию `"Scripts", "Scripts", "<Имя>"`. Скрипт для одного героя ставь в меню этого героя (раздел «Скрипт под героя» ниже). Другое место (вкладку встроенных функций, например `"Creeps", "Main"`) бери, только если пользователь его назвал.
 - Имена вкладок пишутся обычным текстом на английском, без перевода: у вкладок нет `ForceLocalization`, а путь из имен вкладок служит ключом настроек. Группы и все пункты задаются ключами.
 - Группы идут в две колонки: слева основное (включение, клавиша, выбор цели), справа поведение и тонкая настройка. Отладку и оформление убирай в шестеренку. Пустую группу не оставляй.
 
@@ -147,6 +147,54 @@ end
 ```
 
 `IsPressed` срабатывает один раз на нажатие, `IsDown` держится, пока клавиша зажата, `IsToggled` дает переключатель вкл/выкл. `Input.IsInputCaptured()` истинно, пока открыт чат или консоль, и тогда нажатие игнорируем. `Properties` задает имя в списке биндов, туда передаем уже переведенную строку.
+
+## Скрипт под героя, режимы и клавиша
+
+Скрипт для одного героя встает в меню этого героя и слушается его общего `Enable`. Если такого раздела нет, он создает свою вкладку в `Scripts`. Режим работы выбирается в шестеренке главного переключателя, а клавиша видна только в режимах, где она нужна.
+
+```lua
+do
+	local hero_tab = UI.Find("Heroes", "Hero List", "Kunkka")
+	local page = hero_tab and hero_tab:Find("Main Settings")
+	if not page then
+		local tab = UI.Create("Scripts", "Scripts", "Auto Stack")
+		tab:Icon("\u{f5fd}")
+		page = tab:Create("Settings")
+	end
+	local group = page:Create("as_group", Enum.GroupSide.Right)
+	ui.hero_enable = Menu.Find("Heroes", "Hero List", "Kunkka", "Main Settings", "Hero Settings", "Enable")
+
+	ui.enable = group:Switch("as_enable", false, "\u{f00c}")
+	ui.enable:ToolTip("as_enable_tip")
+	local g_main = ui.enable:Gear("as_gear_main")
+	ui.mode = g_main:Combo("as_mode", { "as_modes_auto", "as_modes_toggle", "as_modes_nearest", "as_modes_cursor" }, 0)
+	ui.mode:Icon("\u{f1de}")
+	ui.debug = g_main:Switch("as_debug", false, "\u{f188}")
+
+	ui.key = group:Bind("as_key", Enum.ButtonCode.KEY_NONE, "\u{e1c1}")
+	ui.key:ToolTip("as_key_tip")
+end
+
+local function active()
+	return ui.enable:Get() and (not ui.hero_enable or ui.hero_enable:Get())
+end
+
+local function refresh_disabled()
+	local on, mode = ui.enable:Get(), ui.mode:Get()
+	ui.mode:Disabled(not on)
+	ui.debug:Disabled(not on)
+	ui.key:Visible(mode ~= 0)
+	ui.key:Disabled(not on)
+	ui.key:Properties(localization.Get("as_bind_name"), nil, mode == 1)
+end
+
+ui.enable:SetCallback(refresh_disabled, true)
+ui.mode:SetCallback(refresh_disabled)
+```
+
+- `Menu.Find` к `Enable` героя идет мимо обертки перевода: это чужой пункт, его имя не переводим.
+- Режимы: «Сам» (клавиша скрыта), «Сам, клавиша вкл/выкл» (третий аргумент `Properties` помечает бинд как переключатель, состояние читаем `IsToggled()`), «Клавиша: ...» (одно действие на `IsPressed()`, повторное нажатие отменяет).
+- В начале `OnUpdate` и `OnDraw` проверяй героя: `NPC.GetUnitName(Heroes.GetLocal()) ~= "npc_dota_hero_..."`, тогда выходи и сбрасывай наведение. На другом герое скрипт ничего не рисует, не кастует и не глотает клики.
 
 ## MultiSelect
 
