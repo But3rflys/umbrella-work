@@ -339,6 +339,8 @@ local localization = qLocalization.new({
 		as_camps_idle = "Idle rings",
 		as_camps_idle_tip = "How visible the rings of camps\nthat aren't being stacked are",
 		as_camps_blur = "Blur behind",
+		as_camps_type = "Camp type",
+		as_camps_type_tip = "Shows on the pill which camp it is:\nsmall, medium, large or ancient",
 		as_st_fail = "No stack",
 		as_st_done = "Stacked",
 		as_st_blind = "Cast",
@@ -387,6 +389,8 @@ local localization = qLocalization.new({
 		as_camps_idle = "Кольца в покое",
 		as_camps_idle_tip = "Насколько заметны кольца кемпов,\nкоторые сейчас не стакаются",
 		as_camps_blur = "Размытие фона",
+		as_camps_type = "Тип кемпа",
+		as_camps_type_tip = "Пишет на плашке, какой это кемп:\nмалый, средний, большой или древний",
 		as_st_fail = "Не стакнулось",
 		as_st_done = "Стакнуто",
 		as_st_blind = "Кинул",
@@ -563,6 +567,8 @@ do
 	ui.camps_idle:Icon("\u{f043}")
 	ui.camps_idle:ToolTip("as_camps_idle_tip")
 	ui.camps_blur = g_camps:Switch("as_camps_blur", true, "\u{f042}")
+	ui.camps_type = g_camps:Switch("as_camps_type", true, "\u{f036}")
+	ui.camps_type:ToolTip("as_camps_type_tip")
 end
 
 local function active()
@@ -580,6 +586,7 @@ local function refresh_disabled()
 	ui.camps_scale:Disabled(not camps)
 	ui.camps_idle:Disabled(not camps)
 	ui.camps_blur:Disabled(not camps)
+	ui.camps_type:Disabled(not camps)
 	ui.debug:Disabled(not on)
 	ui.key:Properties(L("as_bind_name"), nil, mode == 1)
 end
@@ -1386,15 +1393,19 @@ do
 
 	local function build_items(c, e, st, hovered)
 		local items = {}
+		local name = camp_name(c.camp_type)
+		local show_type = ui.camps_type:Get()
 		if hovered then
-			items[1] = { kind = "bold", text = camp_name(c.camp_type), rgb = COLORS.text }
-			items[2] = { kind = "div" }
-			items[3] = { kind = "toggle", on = camp_enabled(e) }
+			if show_type then
+				items[1] = { kind = "bold", text = name, rgb = COLORS.text }
+				items[2] = { kind = "div" }
+			end
+			items[#items + 1] = { kind = "toggle", on = camp_enabled(e) }
 		elseif st then
 			items[1] = { kind = "bold", text = st.main, rgb = st.main_rgb or COLORS.text }
 			for i = 1, 4 do
 				local seg = st.segs and st.segs[i]
-				if seg then
+				if seg and (show_type or seg ~= name) then
 					items[#items + 1] = { kind = "div" }
 					items[#items + 1] = { kind = "text", text = seg }
 				end
