@@ -7,7 +7,17 @@ icon: layer-group
 Автостак за Kunkka: в нужную секунду каждой минуты скрипт сам кидает Torrent по кемпу, чтобы крипы были в воздухе в момент спавна.
 
 <!-- versions:start -->
-Релизов пока нет.
+**Скачать:** [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.0.0/auto_stack.lua) — `auto-stack-v1.0.0`, 2026-09-27
+
+<details>
+
+<summary>Все версии</summary>
+
+| Версия | Дата | Файл | Загрузок |
+| --- | --- | --- | --- |
+| [`auto-stack-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.0.0) | 2026-09-27 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.0.0/auto_stack.lua) | 0 |
+
+</details>
 <!-- versions:end -->
 
 ## Как работает

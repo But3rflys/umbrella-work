@@ -7,7 +7,17 @@ icon: layer-group
 Auto stacking for Kunkka: at the right second of every minute the script throws Torrent on a camp so the creeps are in the air when the camp spawns.
 
 <!-- versions:start -->
-No releases yet.
+**Download:** [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.0.0/auto_stack.lua) — `auto-stack-v1.0.0`, 2026-09-27
+
+<details>
+
+<summary>All versions</summary>
+
+| Version | Date | File | Downloads |
+| --- | --- | --- | --- |
+| [`auto-stack-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.0.0) | 2026-09-27 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.0.0/auto_stack.lua) | 0 |
+
+</details>
 <!-- versions:end -->
 
 ## How it works
