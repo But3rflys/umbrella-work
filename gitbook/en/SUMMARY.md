@@ -7,6 +7,7 @@
 * [Lane Pull](scripts/lane-pull.md)
 * [DS Spot Block](scripts/ds-spot-block.md)
 * [Custom Background](scripts/custom-background.md)
+* [Auto Stack](scripts/auto-stack.md)
 
 ## Apps
 
