@@ -482,6 +482,7 @@ local K = {
 	FONT = 12,
 	FONT_SMALL = 11,
 	WIDTH_SPEED = 26,
+	WIDTH_TIME = 0.15,
 	FADE_SPEED = 20,
 	COLOR_SPEED = 18,
 	PROG_SPEED = 30,
@@ -1480,15 +1481,31 @@ do
 		return clamp(p.x - w / 2, 4, screen.x - w - 4)
 	end
 
+	local function tween_width(an, target)
+		if an.w == nil then
+			an.w, an.w_to, an.w_t = target, target, 1
+		elseif an.w_to ~= target then
+			an.w_from, an.w_to, an.w_t = an.w, target, 0
+		end
+		if an.w_t < 1 then
+			an.w_t = math.min(1, an.w_t + an.dt / K.WIDTH_TIME)
+			local k = 1 - an.w_t
+			local e = 1 - k * k * k
+			an.w = an.w_from + (an.w_to - an.w_from) * e
+		else
+			an.w = an.w_to
+		end
+	end
+
 	local function draw_camp(c, e, p, st, hovered, an, scale, screen)
 		local alpha = an.a
 		local function a(v) return math.floor(v * alpha + 0.5) end
-		local h = math.floor(K.RING_H * scale + 0.5)
+		local h = 2 * math.floor(K.RING_H * scale / 2 + 0.5)
 		local r = h / 2
 		local items = build_items(c, e, st, hovered)
 		local cw = #items > 0 and measure(items, scale) or 0
-		local target_w = h + (cw > 0 and (K.ROW_LEAD * scale + cw + K.ROW_TAIL * scale) or 0)
-		an.w = an.w and approach(an.w, target_w, an.dt, K.WIDTH_SPEED) or target_w
+		local target_w = 2 * math.floor((h + (cw > 0 and (K.ROW_LEAD * scale + cw + K.ROW_TAIL * scale) or 0)) / 2 + 0.5)
+		tween_width(an, target_w)
 		an.open = approach(an.open or 0, #items > 0 and 1 or 0, an.dt, K.WIDTH_SPEED)
 		if an.open < 0.01 then an.open = 0 end
 		if #items > 0 then
@@ -1498,12 +1515,13 @@ do
 		else
 			an.items = nil
 		end
-		local w = math.floor(an.w + 0.5)
-		local ax = math.floor(pill_left(p, w, screen) + 0.5)
-		local pa, pb = Vec2(ax, p.y - r), Vec2(ax + w, p.y + r)
-		p = Vec2(ax + r, p.y)
+		local w = an.w
+		local py = math.floor(p.y + 0.5)
+		local ax = pill_left(Vec2(math.floor(p.x + 0.5), py), w, screen)
+		local pa, pb = Vec2(ax, py - r), Vec2(ax + w, py + r)
+		p = Vec2(ax + r, py)
 
-		local blur = an.open * alpha
+		local blur = alpha
 		if ui.camps_blur:Get() and blur > 0.02 then
 			Render.Blur(pa, pb, blur, 1.0, r, ROUND_ALL)
 		end
