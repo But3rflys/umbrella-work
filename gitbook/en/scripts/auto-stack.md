@@ -45,5 +45,5 @@ The stack fails if a hero or another unit stands in the camp, or if not every cr
 **update v1.1.0**
 
 * **invoker.** stacks camps with tornado, can invoke it right before the throw
-* **startup.** the script didn't start for some players, fixed
+* **startup.** the script didn't start for some users, fixed
 <!-- changelog:end -->

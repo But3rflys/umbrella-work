@@ -38,7 +38,7 @@
 **update v1.1.0**
 
 - **инвокер.** стак кемпов торнадо, по желанию сам создаёт торнадо перед броском
-- **запуск.** у некоторых игроков скрипт не запускался, исправлено
+- **запуск.** у некоторых пользователей скрипт не запускался, исправлено
 
 ---
 
@@ -69,5 +69,5 @@ The menu follows your cheat language; the script speaks Russian and English.
 **update v1.1.0**
 
 - **invoker.** stacks camps with tornado, can invoke it right before the throw
-- **startup.** the script didn't start for some players, fixed
+- **startup.** the script didn't start for some users, fixed
 
