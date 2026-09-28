@@ -15,8 +15,8 @@ One key and your dominated creep grabs the enemy wave and drags it right to you.
 
 | Version | Date | File | Downloads |
 | --- | --- | --- | --- |
-| [`lane-pull-v1.0.4`](https://github.com/But3rflys/umbrella-work/releases/tag/lane-pull-v1.0.4) | 2026-09-20 | [lane_pull.lua](https://github.com/But3rflys/umbrella-work/releases/download/lane-pull-v1.0.4/lane_pull.lua) | 122 |
-| [`lane-pull-v1.0.3`](https://github.com/But3rflys/umbrella-work/releases/tag/lane-pull-v1.0.3) | 2026-09-20 | [lane_pull.lua](https://github.com/But3rflys/umbrella-work/releases/download/lane-pull-v1.0.3/lane_pull.lua) | 8 |
+| [`lane-pull-v1.0.4`](https://github.com/But3rflys/umbrella-work/releases/tag/lane-pull-v1.0.4) | 2026-09-20 | [lane_pull.lua](https://github.com/But3rflys/umbrella-work/releases/download/lane-pull-v1.0.4/lane_pull.lua) | 124 |
+| [`lane-pull-v1.0.3`](https://github.com/But3rflys/umbrella-work/releases/tag/lane-pull-v1.0.3) | 2026-09-20 | [lane_pull.lua](https://github.com/But3rflys/umbrella-work/releases/download/lane-pull-v1.0.3/lane_pull.lua) | 9 |
 
 </details>
 <!-- versions:end -->

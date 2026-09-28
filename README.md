@@ -56,11 +56,11 @@ The menu follows your cheat language; the scripts speak Russian and English.
 <!-- stats:start -->
 | script | downloads | latest |
 | --- | --- | --- |
-| [Lane Pull](scripts/lane_pull) | 235 | `lane-pull-v1.0.4` |
-| [DS Spot Block](scripts/ds_spot_block) | 49 | `ds-spot-block-v1.0.1` |
-| [Custom Background](scripts/custom_background) | 14 | `custom-background-v1.0.0` |
-| [Auto Stack](scripts/auto_stack) | 12 | `auto-stack-v1.1.0` |
-| [MusicUI](scripts/musicui) | 822 | `musicui-v1.0.8` |
+| [Lane Pull](scripts/lane_pull) | 238 | `lane-pull-v1.0.4` |
+| [DS Spot Block](scripts/ds_spot_block) | 51 | `ds-spot-block-v1.0.1` |
+| [Custom Background](scripts/custom_background) | 16 | `custom-background-v1.0.0` |
+| [Auto Stack](scripts/auto_stack) | 27 | `auto-stack-v1.1.0` |
+| [MusicUI](scripts/musicui) | 831 | `musicui-v1.0.8` |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/stats/stats-dark.svg">
