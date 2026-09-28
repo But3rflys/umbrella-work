@@ -7,7 +7,7 @@ icon: layer-group
 Auto stacking for Kunkka and Invoker: at the right second of every minute the script throws Torrent or Tornado on a camp so the creeps are above the camp when it spawns.
 
 <!-- versions:start -->
-**Download:** [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.0.0/auto_stack.lua) — `auto-stack-v1.0.0`, 2026-09-27
+**Download:** [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.1.0/auto_stack.lua) — `auto-stack-v1.1.0`, 2026-09-28
 
 <details>
 
@@ -15,7 +15,8 @@ Auto stacking for Kunkka and Invoker: at the right second of every minute the sc
 
 | Version | Date | File | Downloads |
 | --- | --- | --- | --- |
-| [`auto-stack-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.0.0) | 2026-09-27 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.0.0/auto_stack.lua) | 2 |
+| [`auto-stack-v1.1.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.1.0) | 2026-09-28 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.1.0/auto_stack.lua) | 0 |
+| [`auto-stack-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.0.0) | 2026-09-27 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.0.0/auto_stack.lua) | 12 |
 
 </details>
 <!-- versions:end -->
@@ -39,4 +40,10 @@ The stack fails if a hero or another unit stands in the camp, or if not every cr
 3. Open **Heroes > Kunkka** or **Heroes > Invoker** and turn on **Auto Stack**.
 
 <!-- changelog:start -->
+## Changelog
+
+**update v1.1.0**
+
+* **invoker.** stacks camps with tornado, can invoke it right before the throw
+* **startup error.** the script no longer crashes when another script replaces Config
 <!-- changelog:end -->

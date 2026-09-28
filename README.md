@@ -6,7 +6,7 @@ Lua-скрипты для Umbrella и приложение MusicUI.
 - [Lane Pull](scripts/lane_pull) — выпул вражеской волны крипом с Доминатора
 - [DS Spot Block](scripts/ds_spot_block) — блок спота Вакуумом за Dark Seer
 - [Custom Background](scripts/custom_background) — свои картинки на фоне меню
-- [Auto Stack](scripts/auto_stack) — автостак кемпов торрентом Кунки
+- [Auto Stack](scripts/auto_stack) — автостак кемпов за Кунку и Инвокера
 - [MusicUI](scripts/musicui) — оверлей плеера: трек, обложка, эквалайзер, текст
 <!-- scripts:ru:end -->
 
@@ -33,7 +33,7 @@ Lua scripts for Umbrella and the MusicUI app.
 - [Lane Pull](scripts/lane_pull) — pull the enemy wave with your Dominator creep
 - [DS Spot Block](scripts/ds_spot_block) — Vacuum spot block for Dark Seer
 - [Custom Background](scripts/custom_background) — your own pictures behind the menu
-- [Auto Stack](scripts/auto_stack) — camp stacking with Kunkka's Torrent
+- [Auto Stack](scripts/auto_stack) — camp stacking for Kunkka and Invoker
 - [MusicUI](scripts/musicui) — player overlay: track, cover, equalizer, lyrics
 <!-- scripts:en:end -->
 
@@ -57,15 +57,15 @@ The menu follows your cheat language; the scripts speak Russian and English.
 | script | downloads | latest |
 | --- | --- | --- |
 | [Lane Pull](scripts/lane_pull) | 235 | `lane-pull-v1.0.4` |
-| [DS Spot Block](scripts/ds_spot_block) | 48 | `ds-spot-block-v1.0.1` |
+| [DS Spot Block](scripts/ds_spot_block) | 49 | `ds-spot-block-v1.0.1` |
 | [Custom Background](scripts/custom_background) | 14 | `custom-background-v1.0.0` |
-| [Auto Stack](scripts/auto_stack) | 2 | `auto-stack-v1.0.0` |
-| [MusicUI](scripts/musicui) | 816 | `musicui-v1.0.8` |
+| [Auto Stack](scripts/auto_stack) | 12 | `auto-stack-v1.1.0` |
+| [MusicUI](scripts/musicui) | 822 | `musicui-v1.0.8` |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/stats/stats-dark.svg">
   <img alt="Downloads over time" src=".github/stats/stats-light.svg" width="840">
 </picture>
 
-2026-09-27
+2026-09-28
 <!-- stats:end -->

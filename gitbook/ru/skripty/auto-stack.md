@@ -7,7 +7,7 @@ icon: layer-group
 Автостак за Kunkka и Invoker: в нужную секунду каждой минуты скрипт сам кидает Torrent или Tornado по кемпу, и крипы оказываются выше кемпа в момент спавна.
 
 <!-- versions:start -->
-**Скачать:** [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.0.0/auto_stack.lua) — `auto-stack-v1.0.0`, 2026-09-27
+**Скачать:** [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.1.0/auto_stack.lua) — `auto-stack-v1.1.0`, 2026-09-28
 
 <details>
 
@@ -15,7 +15,8 @@ icon: layer-group
 
 | Версия | Дата | Файл | Загрузок |
 | --- | --- | --- | --- |
-| [`auto-stack-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.0.0) | 2026-09-27 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.0.0/auto_stack.lua) | 2 |
+| [`auto-stack-v1.1.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.1.0) | 2026-09-28 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.1.0/auto_stack.lua) | 0 |
+| [`auto-stack-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.0.0) | 2026-09-27 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.0.0/auto_stack.lua) | 12 |
 
 </details>
 <!-- versions:end -->
@@ -39,4 +40,10 @@ icon: layer-group
 3. Открой **Heroes > Kunkka** или **Heroes > Invoker** и включи **Авто-стак**.
 
 <!-- changelog:start -->
+## Что нового
+
+**update v1.1.0**
+
+* **инвокер.** стак кемпов торнадо, по желанию сам создаёт торнадо перед броском
+* **ошибка при запуске.** скрипт больше не падает, если другой скрипт подменил Config
 <!-- changelog:end -->
