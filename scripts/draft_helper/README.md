@@ -3,10 +3,11 @@
 подсказки на драфте: контрпики, синергия и баны / draft helper: counters, synergy and bans
 
 <!-- releases:start -->
-Скачать: [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.1.0/draft_helper.lua) — `draft-helper-v1.1.0`, 2026-09-29
+Скачать: [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.1.1/draft_helper.lua) — `draft-helper-v1.1.1`, 2026-09-29
 
 | версия | дата | файл | загрузок |
 | --- | --- | --- | --- |
+| [`draft-helper-v1.1.1`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.1.1) | 2026-09-29 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.1.1/draft_helper.lua) | 0 |
 | [`draft-helper-v1.1.0`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.1.0) | 2026-09-29 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.1.0/draft_helper.lua) | 0 |
 
 [Все релизы](https://github.com/But3rflys/umbrella-work/releases?q=draft-helper&expanded=true)
@@ -32,16 +33,6 @@
 
 Язык меню берется из языка чита, скрипт понимает русский и английский.
 
-## Что нового
-
-**update v1.1.0**
-
-- **драфт.** окно по клавише: пики и баны обеих команд, советы кого пикнуть и кого забанить
-- **советы.** контрпики к врагам и синергия с союзниками, позиции от 1 до 5 с иконками из Dota
-- **режимы.** по очереди для Captains Mode, свободный для All Pick, Турбо и рейтинга: пики союзников, врагов и баны подтягиваются сами
-- **данные.** рейтинговые матчи нужного ранга или Captains Mode с OpenDota, кэш в одном файле
-- **обновления.** новая версия ставится кнопкой в заголовке окна
-
 ---
 
 # Draft Helper (English)
@@ -65,14 +56,4 @@ A draft window on a key. Picks and bans of both teams, who to pick and who to ba
 3. Open `Scripts` in the cheat menu and turn it on.
 
 The menu follows your cheat language; the script speaks Russian and English.
-
-## Changelog
-
-**update v1.1.0**
-
-- **draft.** window on a key: picks and bans of both teams, who to pick and who to ban
-- **advice.** counters to the enemies and synergy with allies, positions 1 to 5 with Dota icons
-- **modes.** in turns for Captains Mode, free for All Pick, Turbo and ranked: ally and enemy picks and bans fill in by themselves
-- **data.** ranked matches of your rank or Captains Mode from OpenDota, cache in a single file
-- **updates.** a new version installs with a button in the window header
 
