@@ -1,0 +1,16 @@
+{
+  "version": "1.1.0",
+  "url": "https://raw.githubusercontent.com/But3rflys/umbrella-work/draft-helper-v1.1.0/scripts/draft_helper/draft_helper.lua",
+  "notes": {
+    "ru": [
+      "Первый публичный выпуск",
+      "Советы по контрпикам и синергии",
+      "Обновление одной кнопкой"
+    ],
+    "en": [
+      "First public release",
+      "Advice from counters and synergy",
+      "One-button updates"
+    ]
+  }
+}
