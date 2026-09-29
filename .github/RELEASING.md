@@ -59,3 +59,11 @@ git push origin umbrella-lua-v1.0.2
 от `scripts`. `pages.py` сам переписывает блоки `<!-- releases:start -->` в `skill/README.md`,
 `<!-- versions:start -->` и `<!-- changelog:start -->` на страницах GitBook `umbrella-lua.md`
 (раздел «Инструменты»). Руками их не трогать.
+
+## Draft Helper
+
+Тег `draft-helper-v<версия>`. Отдельный `draft_helper.yml` сам вписывает номер из тега в `VERSION` внутри
+`scripts/draft_helper/draft_helper.lua`, коммитит его в `main`, собирает `version.json` (ссылка на файл по этому
+коммиту, строки «Что нового» из `CHANGELOG.md` и `CHANGELOG.en.md`, если они есть), создает релиз и запускает
+`readme.yml`. Скрипт в игре раз в 6 часов читает `version.json` из `main` и показывает кнопку обновления.
+Путь к `version.json` вшит в установленные копии, папку и ветку не переименовывать.

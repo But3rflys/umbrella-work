@@ -350,7 +350,7 @@ local localization = qLocalization.new({
 		cd_attr_int = "INTELLECT",
 		cd_attr_all = "UNIVERSAL",
 		cd_t_pick = "Who to pick",
-		cd_s_pick = "counters to enemies and synergy with ours",
+		cd_s_pick = "counters to the enemy draft, then synergy",
 		cd_t_ban = "Who to ban",
 		cd_s_ban = "best picks for the enemy against us",
 		cd_t_epick = "Enemy pick",
@@ -501,7 +501,7 @@ local localization = qLocalization.new({
 		cd_attr_int = "ИНТЕЛЛЕКТ",
 		cd_attr_all = "УНИВЕРСАЛ",
 		cd_t_pick = "Кого пикнуть",
-		cd_s_pick = "контрпики к врагам и синергия с нашими",
+		cd_s_pick = "контрпики к драфту врага, потом синергия",
 		cd_t_ban = "Кого забанить",
 		cd_s_ban = "лучшие пики для врага против нас",
 		cd_t_epick = "Пик врага",
@@ -650,7 +650,7 @@ ui.enable:SetCallback(function()
 end, true)
 
 local cfg = {}
-local CFG_DEFAULTS = { source = 0, rank = 2, volume = 1, scale = 100, bg = 88, blur = 1, tips = 1, auto = 1, debug = 0 }
+local CFG_DEFAULTS = { source = 0, rank = 2, volume = 1, zoom = 100, bg = 88, blur = 1, tips = 1, auto = 1, debug = 0 }
 for key, value in pairs(CFG_DEFAULTS) do
 	cfg[key] = Config.ReadInt("draft_helper", "set_" .. key, value)
 end
@@ -688,6 +688,8 @@ local K = {
 	TIP_GRACE = 0.3,
 	PAGE_TIME = 0.28,
 	PAGE_SLIDE = 10,
+	BASE_ZOOM = 1.1,
+	SLIDER_GAP = 18,
 	CM_NOTE_H = 44,
 	CM_MAX = 40000,
 	CM_DAYS = 60,
@@ -727,11 +729,14 @@ local K = {
 	CHUNK = 2500,
 
 	PRIOR_BASE = 200,
-	PRIOR_PAIR = 60,
+	PRIOR_PAIR = 1000,
 	PRIOR_POS = 12,
 	POS_FLOOR = 0.01,
-	ADV_W = 0.33,
-	SYN_W = 0.2,
+	ADV_W = 1.2,
+	RARE_W = 0.03,
+	COUNTER_EXTRA = 0.5,
+	COUNTERED_EXTRA = 0.5,
+	SYN_W = 0.5,
 	FIT_MIN = 0.1,
 	FIT_W = 0.025,
 	BASE_W = 0.25,
@@ -788,7 +793,8 @@ local K = {
 	FONTS = { "Inter", "Segoe UI" },
 	CONFIG = "draft_helper",
 	CACHE_FILE = "draft_helper.dat",
-	CACHE_MAGIC = "DHC1",
+	CACHE_MAGIC = "DHC2",
+	CACHE_KEYS = 6,
 
 	ROUND = Enum.DrawFlags.RoundCornersAll,
 	MOUSE1 = Enum.ButtonCode.KEY_MOUSE1,
@@ -1007,32 +1013,85 @@ do
 		return (ok and type(data) == "table") and data or nil
 	end
 
-	store = { data = { sets = {} }, blobs = { [0] = "", [1] = "" } }
+	store = { data = { sets = {} }, blobs = {} }
+
+	local function evict()
+		local keys = {}
+		for key in pairs(store.blobs) do
+			keys[#keys + 1] = key
+		end
+		if #keys <= K.CACHE_KEYS then
+			return
+		end
+		table.sort(keys, function(x, y)
+			local mx, my = store.data.sets[x] or {}, store.data.sets[y] or {}
+			return (tonumber(mx.used) or 0) > (tonumber(my.used) or 0)
+		end)
+		for i = K.CACHE_KEYS + 1, #keys do
+			store.blobs[keys[i]] = nil
+			store.data.sets[keys[i]] = nil
+		end
+	end
 
 	function store_save()
+		evict()
+		local keys = {}
+		for key, blob in pairs(store.blobs) do
+			if #blob > 0 then
+				keys[#keys + 1] = key
+			end
+		end
+		table.sort(keys)
+		store.data.blob_keys = keys
 		local ok, text = pcall(JSON.encode, JSON, store.data)
 		if not ok then
 			return
 		end
-		local b0, b1 = store.blobs[0], store.blobs[1]
-		write_path(cheat_path(K.CACHE_FILE), string.pack("<c4I4", K.CACHE_MAGIC, #text) .. text
-			.. string.pack("<I4", #b0) .. b0 .. string.pack("<I4", #b1) .. b1)
+		local parts = { string.pack("<c4I4", K.CACHE_MAGIC, #text), text }
+		for _, key in ipairs(keys) do
+			local blob = store.blobs[key]
+			parts[#parts + 1] = string.pack("<I4", #blob)
+			parts[#parts + 1] = blob
+		end
+		write_path(cheat_path(K.CACHE_FILE), table.concat(parts))
 	end
 
 	local function store_read(blob)
+		local magic = blob:sub(1, 4)
 		local n = string.unpack("<I4", blob, 5)
 		local data = decode(blob:sub(9, 8 + n))
-		local pos = 9 + n
-		local n0 = string.unpack("<I4", blob, pos)
-		local b0 = blob:sub(pos + 4, pos + 3 + n0)
-		pos = pos + 4 + n0
-		local n1 = string.unpack("<I4", blob, pos)
-		local b1 = blob:sub(pos + 4, pos + 3 + n1)
-		if not data or #b0 ~= n0 or #b1 ~= n1 then
+		if not data then
 			error("broken cache")
 		end
 		data.sets = type(data.sets) == "table" and data.sets or {}
-		return data, b0, b1
+		local pos = 9 + n
+		local blobs = {}
+		if magic == "DHC1" then
+			local old_sets = data.sets
+			data.sets = {}
+			for source = 0, 1 do
+				local len = string.unpack("<I4", blob, pos)
+				local part = blob:sub(pos + 4, pos + 3 + len)
+				pos = pos + 4 + len
+				local meta = old_sets[tostring(source)]
+				if meta and #part > 0 and meta.rank then
+					local key = source .. ":" .. math.floor(tonumber(meta.rank))
+					blobs[key] = part
+					data.sets[key] = meta
+				end
+			end
+		else
+			for _, key in ipairs(type(data.blob_keys) == "table" and data.blob_keys or {}) do
+				local len = string.unpack("<I4", blob, pos)
+				local part = blob:sub(pos + 4, pos + 3 + len)
+				if #part ~= len then
+					error("broken cache")
+				end
+				blobs[key] = part
+				pos = pos + 4 + len
+			end
+		end
+		return data, blobs
 	end
 
 	local function store_migrate()
@@ -1052,8 +1111,9 @@ do
 			local meta = decode(read_path(old(names[1])))
 			local recs = read_path(old(names[2]))
 			if meta and recs and #recs % K.REC == 0 then
-				store.data.sets[tostring(source)] = meta
-				store.blobs[source] = recs
+				local key = source .. ":" .. math.floor(tonumber(meta.rank) or 70)
+				store.data.sets[key] = meta
+				store.blobs[key] = recs
 				found = true
 			end
 		end
@@ -1073,10 +1133,14 @@ do
 			os.remove(cheat_path("cm_draft_" .. name))
 		end
 		local blob = read_path(cheat_path(K.CACHE_FILE))
-		if blob and #blob >= 8 and blob:sub(1, 4) == K.CACHE_MAGIC then
-			local ok, data, b0, b1 = pcall(store_read, blob)
+		local magic = blob and blob:sub(1, 4)
+		if blob and #blob >= 8 and (magic == K.CACHE_MAGIC or magic == "DHC1") then
+			local ok, data, blobs = pcall(store_read, blob)
 			if ok then
-				store.data, store.blobs[0], store.blobs[1] = data, b0, b1
+				store.data, store.blobs = data, blobs
+				if magic ~= K.CACHE_MAGIC then
+					store_save()
+				end
 				return
 			end
 			log("cache file broken, starting fresh")
@@ -1204,12 +1268,14 @@ local function source()
 	return cfg.source == 1 and 1 or 0
 end
 
-local function load_set(S)
+local function load_set(S, rank)
 	S.loaded = true
-	local meta = store.data.sets[tostring(S.source)]
-	local blob = store.blobs[S.source]
+	S.recs, S.stats, S.build, S.job = {}, nil, nil, nil
+	S.rank, S.updated, S.exhausted, S.oldest = rank, 0, false, nil
+	local key = S.source .. ":" .. rank
+	local meta = store.data.sets[key]
+	local blob = store.blobs[key]
 	if meta and blob and #blob % K.REC == 0 then
-		S.rank = tonumber(meta.rank)
 		S.updated = tonumber(meta.updated) or 0
 		S.exhausted = meta.exhausted == true
 		S.oldest = tonumber(meta.oldest)
@@ -1218,8 +1284,10 @@ local function load_set(S)
 			recs[#recs + 1] = blob:sub(i, i + K.REC - 1)
 		end
 		S.recs = recs
+		meta.used = os.time()
 	end
-	log("cache %s: %d matches, rank %s", S.file, #S.recs, tostring(S.rank))
+	draft.dirty = true
+	log("cache %s rank %d: %d matches", S.file, rank, #S.recs)
 end
 
 local function load_cache()
@@ -1241,12 +1309,16 @@ local function load_cache()
 			D.contest_at = tonumber(pro.contest_time) or 0
 		end
 	end
-	load_set(D.sets[0])
+	load_set(D.sets[0], K.RANKS[cfg.rank + 1] or 70)
 end
 
 local function save_matches(S)
-	store.blobs[S.source] = table.concat(S.recs)
-	store.data.sets[tostring(S.source)] = { rank = S.rank, updated = S.updated, exhausted = S.exhausted, oldest = S.oldest }
+	if not S.rank then
+		return
+	end
+	local key = S.source .. ":" .. S.rank
+	store.blobs[key] = table.concat(S.recs)
+	store.data.sets[key] = { updated = S.updated, exhausted = S.exhausted, oldest = S.oldest, used = os.time() }
 	store_save()
 end
 
@@ -1329,6 +1401,14 @@ local function step_build(S)
 	end
 	if done then
 		S.build = nil
+		local counts = {}
+		for _, g in pairs(b.st.bg) do
+			if g >= K.MIN_GAMES then
+				counts[#counts + 1] = g
+			end
+		end
+		table.sort(counts)
+		b.st.median = counts[math.max(1, math.floor(#counts / 2))] or 1
 		S.stats = b.st
 		draft.dirty = true
 		log("%s stats ready: %d matches", S.file, b.st.n)
@@ -1703,12 +1783,14 @@ local function plan_job(S)
 	if S.job then
 		return
 	end
-	if not S.loaded then
-		load_set(S)
-	end
 	local rank, target = want(S)
-	if S.rank ~= rank then
-		S.recs, S.stats, S.build, S.rank, S.updated, S.exhausted, S.oldest = {}, nil, nil, rank, 0, false, nil
+	if not S.loaded then
+		load_set(S, rank)
+	elseif S.rank ~= rank then
+		if #S.recs > 0 then
+			save_matches(S)
+		end
+		load_set(S, rank)
 	end
 	if #S.recs > target then
 		for i = #S.recs, target + 1, -1 do
@@ -1969,6 +2051,16 @@ do
 		return p
 	end
 
+	function M.rarity(h)
+		local st = ranked()
+		local g = st and st.bg[h] or 0
+		local med = st and st.median or 1
+		if g <= 0 or g >= med then
+			return 0
+		end
+		return K.RARE_W * math.log(g / med)
+	end
+
 	function M.games(h)
 		local st = ranked()
 		return st and st.bg[h] or 0
@@ -2192,7 +2284,7 @@ local function companions(hero, pos, lineup, enemies, used)
 						if math.exp(lp) >= K.POS_MIN then
 							local s = draft.vs_cache[h]
 							if not s then
-								s = hero_score(h, {}, enemies) + K.BASE_W * logit(M.base(h))
+								s = hero_score(h, {}, enemies) + K.BASE_W * logit(M.base(h)) + M.rarity(h)
 								draft.vs_cache[h] = s
 							end
 							for _, b in ipairs(members) do
@@ -2415,14 +2507,20 @@ local function recompute()
 			if ok then
 				local reasons = {}
 				local delta = hero_score(h, allies, enemies, reasons)
+				local counter = 0
+				for _, r in ipairs(reasons) do
+					if r.t == "vs" then
+						counter = counter + K.COUNTER_EXTRA * r.v + K.COUNTERED_EXTRA * math.min(0, r.v)
+					end
+				end
 				local contest = (source() == 1 and D.contest) and D.contest[h] or 0
 				rows[#rows + 1] = {
 					h = h,
 					delta = delta,
 					pos = pos,
 					share = pos and math.exp(lp[pos]) or nil,
-					rank = delta + K.BASE_W * logit(M.base(h)) + K.FIT_W * fit + (early and K.CONTEST_W * contest or 0)
-						+ order_bonus(pos),
+					rank = delta + counter + K.BASE_W * logit(M.base(h)) + K.FIT_W * fit + (early and K.CONTEST_W * contest or 0)
+						+ order_bonus(pos) + M.rarity(h),
 					reasons = reasons,
 					contest = contest,
 				}
@@ -2848,7 +2946,7 @@ local function click(right)
 	elseif kind == "set_vol" then
 		set_cfg("volume", arg)
 	elseif kind == "set_scale_up" or kind == "set_scale_down" then
-		set_cfg("scale", clamp(cfg.scale + (kind == "set_scale_up" and 10 or -10), 80, 140))
+		set_cfg("zoom", clamp(cfg.zoom + (kind == "set_scale_up" and 10 or -10), 70, 130))
 	elseif kind == "set_bg" then
 		W.slider = true
 	elseif kind == "set_toggle" then
@@ -3591,13 +3689,13 @@ do
 		local mw, mh = segment("mode", left, cy, { L("cd_mode_order"), L("cd_mode_free") }, draft.mode, "mode", a)
 		tip("mode", left, cy - mh / 2, left + mw, cy + mh / 2, L("cd_tip_mode_t"), L("cd_tip_mode"))
 		left = left + mw + px(10)
-		vline(left, cy, px(7), a)
-		left = left + px(10)
 		local left_end = left
 		local stage = load_stage()
 		local busy = stage and D.sets[0].stats and draft.result
 		local ba = approach("head_load", busy and 1 or 0, 10)
 		if ba > 0 then
+			vline(left, cy, px(7), a * ba)
+			left = left + px(10)
 			if stage == "error" then
 				glyph("\u{f071}", left + px(6), cy, px(10), fade(P.WARN, a * ba))
 			else
@@ -3615,23 +3713,6 @@ do
 				sx = sx + px(16) + text(W.fonts.regular, px(11), eta, sx + px(16), cy, fade(P.MUTED, a * ba))
 			end
 			left_end = math.max(left_end, sx)
-		end
-		if D.sets[0].stats and ba < 1 then
-			local ia = a * (1 - ba) * approach("head_info", 1, 8)
-			local parts = { L("cd_src_short" .. source()), L("cd_short_" .. cfg.rank) }
-			local S = D.sets[source()]
-			if S.stats then
-				parts[#parts + 1] = L("cd_matches"):format(fmt_games(S.stats.n))
-			end
-			local lx = left
-			for n, part in ipairs(parts) do
-				if n > 1 then
-					vline(lx, cy, px(7), ia)
-					lx = lx + px(10)
-				end
-				lx = lx + text(W.fonts.regular, px(11), part, lx, cy, fade(P.MUTED, ia)) + px(10)
-			end
-			left_end = math.max(left_end, lx)
 		end
 
 		local right = x + w - px(K.PAD)
@@ -3861,14 +3942,14 @@ do
 			text(W.fonts.medium, px(13), item[1], sx + (sb - gw) / 2, cy, fade(P.TEXT, a))
 			hit(sx, cy - sb / 2, sx + sb, cy + sb / 2, item[2])
 		end
-		local value = ("%d%%"):format(cfg.scale)
+		local value = ("%d%%"):format(cfg.zoom)
 		local tvw = tw(W.fonts.medium, px(11), value)
 		text(W.fonts.medium, px(11), value, right - sb - vw / 2 - tvw / 2, cy, fade(P.TEXT, a))
 
 		cy = row(L("cd_set_bg"), nil, "bg")
 		local val_txt = ("%d%%"):format(cfg.bg)
-		local val_w = px(34)
-		local tx1 = right - val_w
+		local val_w = tw(W.fonts.medium, px(11), "100%")
+		local tx1 = right - val_w - px(K.SLIDER_GAP)
 		local tx0 = tx1 - px(120)
 		local k = (cfg.bg - 50) / 50
 		rect(tx0, cy - px(2), tx1, cy + px(2), fade(Color(255, 255, 255, 30), a), px(2))
@@ -4414,7 +4495,7 @@ do
 			W.step_c, W.step_t = key, os.clock()
 		end
 		local menu_scale = Menu.Scale()
-		s = cfg.scale / 100 * ((menu_scale >= 50 and menu_scale <= 300) and menu_scale / 100 or 1)
+		s = cfg.zoom / 100 * K.BASE_ZOOM * ((menu_scale >= 50 and menu_scale <= 300) and menu_scale / 100 or 1)
 		local screen = Render.ScreenSize()
 		W.w = px(K.W)
 		W.h = px(K.HEAD_H) + px(K.MAIN_H)
@@ -4572,7 +4653,7 @@ function script.OnKeyEvent(data)
 		if now - W.scroll_at > 0.004 then
 			W.scroll_at = now
 			local cx, cy = Input.GetCursorPos()
-			local step = math.floor(K.SCROLL * cfg.scale / 100 + 0.5)
+			local step = math.floor(K.SCROLL * cfg.zoom / 100 * K.BASE_ZOOM + 0.5)
 			if W.settings and in_rect(W.set_rect, cx, cy) then
 				W.set_scroll = (W.set_scroll or 0) + scroll * step
 			elseif in_rect(W.grid_rect, cx, cy) then
