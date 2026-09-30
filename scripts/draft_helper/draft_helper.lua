@@ -438,6 +438,26 @@ local localization = qLocalization.new({
 		cd_set_provider = "Server",
 		cd_set_provider_tip = "GitHub: ready stats once a day, loads in seconds\nOpenDota: straight from the site, slower, needs a stable connection",
 		cd_ld_gh = "Loading stats",
+		cd_cnt_t = "Who counters %s",
+		cd_cnt_wins = "wins %s of games",
+		cd_p_later = "NEXT",
+		cd_p_sell = "Inventory full, sell",
+		cd_news_t = "What's new",
+		cd_news_sub = "update installed",
+		cd_news_ver = "version %s",
+		cd_news_ok = "Got it",
+		cd_nw1_t = "GitHub server.",
+		cd_nw1 = "stats and builds come as ready files\nin seconds, works without a VPN",
+		cd_nw2_t = "counter picker.",
+		cd_nw2 = "click an enemy hero\nto see who counters him",
+		cd_nw3_t = "what next.",
+		cd_nw3 = "after the main build the panel\nsuggests late items and what to sell",
+		cd_nw4_t = "loading.",
+		cd_nw4 = "shows what is loading and at which step",
+		cd_nw5_t = "bans.",
+		cd_nw5 = "ranked counts every banned hero",
+		cd_nw6_t = "build panel.",
+		cd_nw6 = "an upgrade never jumps ahead of its base,\nno more gold numbers and no Pill view",
 		cd_gh_manifest = "checking for updates",
 		cd_gh_heroes = "hero list",
 		cd_gh_pro = "pro matches",
@@ -529,13 +549,10 @@ local localization = qLocalization.new({
 		cd_set_pview = "Look",
 		cd_pview0 = "Strip",
 		cd_pview1 = "List",
-		cd_pview2 = "Pill",
 		cd_set_pshop = "Only while the shop is open",
 		cd_set_padapt = "Adapt to enemy items",
 		cd_set_phide = "Hide when the build is complete",
 		cd_p_title = "Build",
-		cd_p_more = "%d more",
-		cd_p_enough = "enough gold",
 		cd_p_instead = "instead of %s",
 		cd_p_preview = "preview",
 		cd_p_start = "Start",
@@ -663,6 +680,26 @@ local localization = qLocalization.new({
 		cd_set_provider = "Сервер",
 		cd_set_provider_tip = "GitHub: готовая статистика раз в сутки, грузится за секунды\nOpenDota: напрямую с сайта, дольше и нужен стабильный интернет",
 		cd_ld_gh = "Загружаю статистику",
+		cd_cnt_t = "Кто контрит %s",
+		cd_cnt_wins = "побеждает в %s игр",
+		cd_p_later = "ДАЛЬШЕ",
+		cd_p_sell = "Инвентарь полный, продай",
+		cd_news_t = "Что нового",
+		cd_news_sub = "обновление установлено",
+		cd_news_ver = "версия %s",
+		cd_news_ok = "Понятно",
+		cd_nw1_t = "сервер GitHub.",
+		cd_nw1 = "статистика и сборки качаются\nготовыми файлами за секунды, работает без VPN",
+		cd_nw2_t = "контрпикер.",
+		cd_nw2 = "клик по вражескому герою\nпоказывает, кто его контрит",
+		cd_nw3_t = "что дальше.",
+		cd_nw3 = "после основной сборки панель\nсоветует поздние предметы и что продать",
+		cd_nw4_t = "загрузка.",
+		cd_nw4 = "видно, что качается и на каком шаге",
+		cd_nw5_t = "баны.",
+		cd_nw5 = "в рейтинге учитываются все забаненные герои",
+		cd_nw6_t = "панель сборки.",
+		cd_nw6 = "апгрейд не лезет вперёд своей основы,\nубраны золото и «Плашка»",
 		cd_gh_manifest = "проверяю обновления",
 		cd_gh_heroes = "список героев",
 		cd_gh_pro = "про-матчи",
@@ -754,13 +791,10 @@ local localization = qLocalization.new({
 		cd_set_pview = "Вид",
 		cd_pview0 = "Полоса",
 		cd_pview1 = "Список",
-		cd_pview2 = "Плашка",
 		cd_set_pshop = "Только при открытом магазине",
 		cd_set_padapt = "Менять по предметам врагов",
 		cd_set_phide = "Прятать, когда всё собрано",
 		cd_p_title = "Сборка",
-		cd_p_more = "ещё %d",
-		cd_p_enough = "хватает",
 		cd_p_instead = "вместо %s",
 		cd_p_preview = "предпросмотр",
 		cd_p_start = "Старт",
@@ -805,6 +839,9 @@ do
 	for key, value in pairs(defaults) do
 		cfg[key] = Config.ReadInt("draft_helper", "set_" .. key, value)
 	end
+	if cfg.pview > 1 then
+		cfg.pview = 0
+	end
 end
 
 local function set_cfg(key, value)
@@ -819,7 +856,7 @@ local function log(fmt, ...)
 end
 
 local K = {
-	VERSION = "1.2.7",
+	VERSION = "1.2.8",
 	UPDATE_URL = "https://raw.githubusercontent.com/But3rflys/umbrella-work/main/scripts/draft_helper/version.json",
 	UPDATE_EVERY = 6 * 3600,
 	UPDATE_MIN_SIZE = 50000,
@@ -1200,7 +1237,6 @@ local K = {
 		.. "wisp escape .3 heal .8;witch_doctor heal .6",
 
 	PANEL_EVERY = 0.5,
-	PILL_QUEUE = 6,
 	QFLASH = 0.4,
 	STRIP_COLS = 8,
 	SUM_STEP_W = 56,
@@ -1213,6 +1249,26 @@ local K = {
 	SWAP_MARGIN = 0.12,
 	SWAPS_MAX = 2,
 	SIGNAL_MIN = 700,
+	SKIP_GAP = 420,
+	MORE_COST = 2000,
+	MORE_SHARE = 0.08,
+	MORE_GAP = 300,
+	MORE_MAX = 3,
+	BOOTS_UP = { "travel_boots", "guardian_greaves", "boots_of_bearing" },
+	SELL_MAX = 2000,
+	SELL_SKIP = {
+		aegis = true, cheese = true, gem = true, ward_dispenser = true, dust = true, smoke_of_deceit = true,
+		refresher_shard = true, tpscroll = true, boots = true,
+	},
+	CNT_MAX = 30,
+	NEWS = {
+		{ "n", "cd_nw1_t", "cd_nw1" },
+		{ "n", "cd_nw2_t", "cd_nw2" },
+		{ "n", "cd_nw3_t", "cd_nw3" },
+		{ "n", "cd_nw4_t", "cd_nw4" },
+		{ "f", "cd_nw5_t", "cd_nw5" },
+		{ "f", "cd_nw6_t", "cd_nw6" },
+	},
 	COVER = 0.8,
 	ENEMY_ITEMS = {
 		invis_sword = { invis = 1 },
@@ -1328,6 +1384,7 @@ local P = {
 	SHADE = Color(0, 0, 0, 150),
 	WARN = Color(236, 178, 82, 255),
 	TIP = Color(15, 17, 20, 255),
+	CARD = Color(24, 27, 30, 255),
 	WHITE = Color(255, 255, 255, 255),
 	BAN = Color(170, 170, 170, 255),
 	USED = Color(90, 90, 90, 255),
@@ -2702,6 +2759,25 @@ do
 	end
 end
 
+do
+	local a, b, c = K.VERSION:match("(%d+)%.(%d+)%.(%d+)")
+	K.VNUM = (tonumber(a) or 0) * 10000 + (tonumber(b) or 0) * 100 + (tonumber(c) or 0)
+	local seen = Config.ReadInt("draft_helper", "seen", 0)
+	if seen < K.VNUM then
+		local dir = Engine.GetCheatDirectory()
+		if not dir:match("[\\/]$") then
+			dir = dir .. "\\"
+		end
+		local f = io.open(dir .. "configs\\" .. K.CACHE_FILE, "rb")
+		if f then
+			f:close()
+			W.news = true
+		else
+			Config.WriteInt("draft_helper", "seen", K.VNUM)
+		end
+	end
+end
+
 local M = {}
 
 do
@@ -2794,6 +2870,30 @@ do
 
 	function M.syn(a, b)
 		return effect(a, b, false)
+	end
+
+	function M.counters(h, used)
+		local st = ranked()
+		local rows = {}
+		if not st then
+			return rows
+		end
+		for _, hero in ipairs(D.heroes or {}) do
+			local a = hero.id
+			if a ~= h and not used[a] and M.games(a) >= K.MIN_GAMES then
+				local e = expect(M.base(a), M.base(h), true)
+				local p = sigm(logit(e) + effect(a, h, true))
+				local _, g = pair(st, a, h, true)
+				rows[#rows + 1] = { h = a, p = p, d = p - e, g = g }
+			end
+		end
+		table.sort(rows, function(x, y)
+			if x.d ~= y.d then
+				return x.d > y.d
+			end
+			return x.h < y.h
+		end)
+		return rows
 	end
 end
 
@@ -4222,6 +4322,7 @@ local function reset_draft()
 	draft.known_pos, draft.me, draft.my_role, draft.filter_user, draft.sync_sig = {}, nil, nil, false, nil
 	draft.tentative, draft.build_h, draft.summary_sig = {}, nil, nil
 	draft.extra_bans, draft.extra_key = {}, nil
+	W.counter = nil
 	draft.store[draft.mode], draft.history[draft.mode], draft.target = draft.steps, {}, nil
 	draft.manual[draft.mode] = {}
 	W.list_scroll = 0
@@ -4529,8 +4630,8 @@ local G = {
 	seen = {},
 	owned = {},
 	ever = {},
+	main = {},
 	bpos = nil,
-	gold = 0,
 	time = 0,
 	plan = nil,
 	sig = nil,
@@ -4701,7 +4802,7 @@ do
 			if eligible(name, item) then
 				local placed = false
 				for _, s in ipairs(slots) do
-					if s.item == item then
+					if s.item == item or (s.after and s.after.item == item) then
 						placed = true
 					end
 					for _, part in ipairs(s.item.parts) do
@@ -4770,6 +4871,115 @@ do
 			slots[best.i] = new
 			swaps = swaps + 1
 		end
+	end
+
+	local function more_items(data, slots)
+		local cands = I.collect(data)
+		local last_t, taken = 0, {}
+		for _, sl in ipairs(slots) do
+			last_t = math.max(last_t, sl.t or 0, sl.after and sl.after.t or 0)
+			taken[#taken + 1] = sl.item
+			if sl.after then
+				taken[#taken + 1] = sl.after.item
+			end
+		end
+		for name in pairs(G.ever) do
+			local it = I.by_name[name]
+			if it and eligible(name, it) then
+				taken[#taken + 1] = it
+			end
+		end
+		local function fam(item)
+			local f, n = item.name:match("^(.-)_(%d)$")
+			if f and I.by_name[f] then
+				return f, tonumber(n)
+			end
+			return item.name, 1
+		end
+		local function free(item)
+			local fi, li = fam(item)
+			for _, t in ipairs(taken) do
+				local ft, lt = fam(t)
+				if t == item or (ft == fi and li <= lt) or I.related(t, item)
+					or (not K.BOOTS[t.name] and not K.BOOTS[item.name] and I.siblings(t, item)) then
+					return false
+				end
+			end
+			return not owns(item)
+		end
+		local list = {}
+		for _, cd in pairs(cands) do
+			if not cd.drop and cd.item.cost >= K.MORE_COST and cd.share >= K.MORE_SHARE
+				and cd.t >= last_t - K.MORE_GAP and free(cd.item) then
+				list[#list + 1] = { item = cd.item, t = cd.t, share = cd.share }
+			end
+		end
+		local boots
+		for name in pairs(G.owned) do
+			if K.BOOTS[name] then
+				boots = I.by_name[name]
+			end
+		end
+		if boots then
+			for _, name in ipairs(K.BOOTS_UP) do
+				local r, it = data.rows[name], I.by_name[name]
+				local fits = it and (name == "travel_boots" or I.related(boots, it))
+				if r and fits and name ~= boots.name and not owns(it) and I.share(data, r) >= K.MORE_SHARE then
+					list[#list + 1] = { item = it, t = r.t, share = I.share(data, r), instead = boots }
+				end
+			end
+		end
+		table.sort(list, function(a, b)
+			if a.share ~= b.share then
+				return a.share > b.share
+			end
+			return a.item.name < b.item.name
+		end)
+		local chosen = {}
+		for _, mo in ipairs(list) do
+			local ok = #chosen < K.MORE_MAX
+			for _, c in ipairs(chosen) do
+				if fam(c.item) == fam(mo.item) or I.related(c.item, mo.item) or I.siblings(c.item, mo.item)
+					or (K.BOOTS[c.item.name] and K.BOOTS[mo.item.name]) then
+					ok = false
+				end
+			end
+			if ok then
+				chosen[#chosen + 1] = mo
+			end
+		end
+		list = chosen
+		table.sort(list, function(a, b)
+			return a.t < b.t
+		end)
+		local out = {}
+		for i, mo in ipairs(list) do
+			local d = { name = mo.item.name, label = mo.item.label, cost = mo.item.cost, t = mo.t, more = true }
+			d.state = i == 1 and "next" or "later"
+			if mo.instead then
+				d.base, d.kind, d.from = { name = mo.instead.name, label = mo.instead.label }, "up", mo.instead.label
+				d.body = L("cd_tip_swap"):format(mo.instead.label)
+			else
+				d.body = ""
+			end
+			out[i] = d
+		end
+		return out
+	end
+
+	local function sell_item()
+		if #G.main < 6 then
+			return nil
+		end
+		local worst
+		for _, name in ipairs(G.main) do
+			local it = I.by_name[name]
+			if it and not K.BOOTS[name] and not K.SELL_SKIP[name] and not K.STACK[name]
+				and it.cost > 0 and it.cost < K.SELL_MAX and (not worst or it.cost < worst.cost) then
+				worst = it
+			end
+		end
+		return worst and { name = worst.name, label = worst.label }
 	end
 
 	function G.compute()
@@ -4859,21 +5069,23 @@ do
 			end
 			return st.s.bought or owns(st.item)
 		end
-		local last = 0
-		for i, st in ipairs(steps) do
+		local last_t
+		for _, st in ipairs(steps) do
 			if step_done(st) then
-				last = i
+				last_t = math.max(last_t or st.t, st.t)
 			end
 		end
-		local order, skipped = {}, {}
-		for i, st in ipairs(steps) do
+		local order, skipped, gone = {}, {}, {}
+		for _, st in ipairs(steps) do
 			local done = step_done(st)
-			st.have = done and 0 or progress(st.item, {}, 0)
-			st.signal = done and 0 or progress(st.item, {}, 0, K.SIGNAL_MIN, (st.base or st.via or {}).name)
-			if not done and i < last and st.signal == 0 then
+			local dep = st.base or st.via
+			st.signal = done and 0 or progress(st.item, {}, 0, K.SIGNAL_MIN, (dep or {}).name)
+			local behind = last_t and st.t + K.SKIP_GAP < last_t
+			if not done and st.signal == 0 and (behind or (dep and gone[dep.name])) then
 				if not st.early then
 					st.skipped = true
 					skipped[#skipped + 1] = st
+					gone[st.item.name] = true
 				end
 			else
 				order[#order + 1] = st
@@ -4923,7 +5135,7 @@ do
 			if step_done(st) then
 				d.state = "done"
 			elseif st == target then
-				d.state, d.have = "next", st.have
+				d.state = "next"
 				plan.next = d
 			else
 				d.state = "later"
@@ -4962,6 +5174,11 @@ do
 			plan.slots[i] = d
 		end
 		plan.complete = plan.next == nil
+		if plan.complete then
+			plan.more = more_items(data, slots)
+			plan.next = plan.more[1]
+			plan.sell = plan.next and sell_item() or nil
+		end
 		return plan
 	end
 
@@ -5030,14 +5247,21 @@ do
 				owned[name] = (owned[name] or 0) + 1
 			end
 		end
-		local okp, tp = pcall(Player.GetTeamPlayer, Players.GetLocal())
-		G.gold = (okp and type(tp) == "table") and (tonumber(tp.reliable_gold) or 0) + (tonumber(tp.unreliable_gold) or 0) or 0
 		if G.pos_for ~= info.id then
 			G.pos, G.pos_for = my_pos(info.id), info.id
 		end
 		for name in pairs(owned) do
 			G.ever[name] = true
 		end
+		local main = {}
+		for slot = 0, 5 do
+			local item = NPC.GetItemByIndex(hero, slot)
+			local name = item and item_name(item)
+			if name then
+				main[#main + 1] = name
+			end
+		end
+		G.main = main
 		G.hero, G.them, G.owned, G.live, I.want = info.id, them, owned, true, info.id
 		G.bpos = I.bpos[info.id] or G.pos
 		G.time = GameRules.GetDOTATime(true, true)
@@ -5051,6 +5275,7 @@ do
 		end
 		table.sort(names)
 		sig[#sig + 1] = table.concat(names, ",")
+		sig[#sig + 1] = "m" .. table.concat(main, ",")
 		for _, e in ipairs(them) do
 			local list = {}
 			for name in pairs(G.seen[e] or {}) do
@@ -5166,7 +5391,7 @@ local function click(right)
 	if not hit then
 		return
 	end
-	if kind == "pmbg" or kind == "stgbg" then
+	if kind == "pmbg" or kind == "stgbg" or kind == "newsbg" then
 		return
 	elseif kind == "settings" then
 		W.settings = not W.settings
@@ -5251,6 +5476,14 @@ local function click(right)
 		if not right then
 			W.drag, W.dx, W.dy = true, cx - W.x, cy - W.y
 		end
+	elseif kind == "news_ok" then
+		W.news = nil
+		Config.WriteInt("draft_helper", "seen", K.VNUM)
+	elseif kind == "counter_back" then
+		W.counter, W.list_scroll = nil, 0
+	elseif kind == "slot" and not right and draft.steps[arg] and STEPS()[arg].kind == "P" and step_team(arg) == 1 then
+		W.counter, W.list_scroll = draft.steps[arg], 0
+		draft.edit = nil
 	elseif kind == "slot" then
 		if right then
 			draft.steps[arg] = nil
@@ -5484,7 +5717,7 @@ do
 
 	local function hovered(x0, y0, x1, y1)
 		local cx, cy = Input.GetCursorPos()
-		if W.gear_block and in_rect(W.gear_block, cx, cy) then
+		if (W.gear_block and in_rect(W.gear_block, cx, cy)) or (W.news_block and in_rect(W.news_block, cx, cy)) then
 			return false
 		end
 		return cx >= x0 and cx <= x1 and cy >= y0 and cy <= y1 and not over_menu(cx, cy) and not W.drag
@@ -6406,7 +6639,7 @@ do
 			toggle(Q, "\u{f05a}", "tips", L("cd_set_tips"), "g_tips")
 		else
 			cy = row(Q, "\u{f009}", L("cd_set_pview"), "g_pview")
-			seg(Q, "st_pview", { L("cd_pview0"), L("cd_pview1"), L("cd_pview2") }, cfg.pview, "set_pview", cy)
+			seg(Q, "st_pview", { L("cd_pview0"), L("cd_pview1") }, cfg.pview, "set_pview", cy)
 			cy = row(Q, "\u{f065}", L("cd_set_scale"), "g_pzoom")
 			stepper(Q, cy, cfg.pzoom, "set_pzoom_up", "set_pzoom_down", "st_pz")
 			toggle(Q, "\u{f54e}", "pshop", L("cd_set_pshop"), "g_pshop")
@@ -7008,7 +7241,149 @@ do
 		SB.bar("list", x + w - px(1), top, bottom, scroll, W.sum_max, a)
 	end
 
+	function SM.counter_view(x, y, w, h, a)
+		local hero = D.by_id[W.counter]
+		local left = x + px(14)
+		local ty = y + px(20)
+		local ib = px(24)
+		local hv = approach("cnt_back", hovered(left, ty - ib / 2, left + ib, ty + ib / 2) and 1 or 0, 20)
+		if hv > 0 then
+			rect(left, ty - ib / 2, left + ib, ty + ib / 2, fade(P.HOVER, a * hv), px(7))
+		end
+		glyph("\u{f060}", left + ib / 2, ty, px(12), fade(mix(P.MUTED, P.TEXT, hv), a))
+		hit(left, ty - ib / 2, left + ib, ty + ib / 2, "counter_back")
+		local fx = left + ib + px(8)
+		local face = mini(W.counter)
+		if face then
+			Render.Image(face, Vec2(fx, ty - px(10)), Vec2(px(20), px(20)), fade(P.WHITE, a))
+			fx = fx + px(26)
+		end
+		text(W.fonts.bold, px(13), L("cd_cnt_t"):format(hero and hero.name or "?"), fx, ty, fade(P.TEXT, a), true)
+		local used = used_set()
+		local ids = {}
+		for id in pairs(used) do
+			ids[#ids + 1] = id
+		end
+		table.sort(ids)
+		local key = ("%d:%s:%s:%s"):format(W.counter, tostring(D.sets[0].stats), tostring(D.sets[1].stats), table.concat(ids, ","))
+		if not W.cnt_cache or W.cnt_cache.key ~= key then
+			W.cnt_cache = { key = key, rows = M.counters(W.counter, used) }
+		end
+		local rows = W.cnt_cache.rows
+		local lx0, ly0 = x + px(8), y + px(40)
+		local lx1, ly1 = x + w - px(8), y + h - px(8)
+		W.list_rect = { lx0, ly0, lx1, ly1 }
+		local row_h = px(K.ROW)
+		local n = math.min(#rows, K.CNT_MAX)
+		local lmax = math.max(0, n * row_h - (ly1 - ly0))
+		local scroll = SB.scroll("list", "list_scroll", lmax)
+		Render.PushClip(Vec2(lx0, ly0), Vec2(lx1, ly1), true)
+		local cxm, cym = Input.GetCursorPos()
+		local inside = in_rect(W.list_rect, cxm, cym) and not over_menu(cxm, cym) and not W.drag
+		local ry = ly0 - scroll
+		for i = 1, n do
+			local row = rows[i]
+			if ry + row_h >= ly0 and ry <= ly1 then
+				local hov = inside and cym >= ry and cym < ry + row_h
+				local rh = approach("ch" .. row.h, hov and 1 or 0, 20)
+				if rh > 0 then
+					rect(lx0, ry, lx1, ry + row_h, fade(P.HOVER, a * rh), px(8))
+				end
+				local cy = ry + row_h / 2
+				local ix, iw, ih = lx0 + px(8), px(46), px(26)
+				local img = portrait(row.h)
+				if img then
+					Render.Image(img, Vec2(ix, math.floor(cy - ih / 2)), Vec2(iw, ih), fade(P.WHITE, a), px(5), K.ROUND)
+				end
+				local nx = ix + iw + px(9)
+				local hr = D.by_id[row.h]
+				text(W.fonts.bold, px(12), hr and hr.name or "?", nx, cy - px(8), fade(P.TEXT, a), true)
+				text(W.fonts.regular, px(10), L("cd_cnt_wins"):format(("%.1f%%"):format(row.p * 100)), nx, cy + px(9), fade(P.MUTED, a), true)
+				local rx = lx1 - px(8)
+				local d = row.d * 100
+				local num = (d >= 0 and "+" or "") .. ("%.1f"):format(d)
+				local num_w = tw(W.fonts.bold, px(13), num)
+				local col = d >= 0.05 and P.GOOD or (d <= -0.05 and P.BAD or P.MUTED)
+				text(W.fonts.bold, px(13), num, rx - num_w, cy - px(7), fade(col, a), true)
+				local games = L("cd_matches"):format(fmt_games(row.g))
+				text(W.fonts.regular, px(10), games, rx - tw(W.fonts.regular, px(10), games), cy + px(9), fade(P.MUTED, a), true)
+				local vy0, vy1 = math.max(ry, ly0), math.min(ry + row_h, ly1)
+				if vy1 > vy0 then
+					hit(lx0, vy0, lx1, vy1, "row", row.h)
+				end
+			end
+			ry = ry + row_h
+		end
+		Render.PopClip()
+		SB.bar("list", x + w - px(1), ly0, ly1, scroll, lmax, a)
+	end
+
+	function SM.news(x, y, w, h, a)
+		local na = approach("news_a", W.news and 1 or 0, 12) * a
+		if na <= 0.01 then
+			return
+		end
+		rect(x, y, x + w, y + h, fade(Color(6, 7, 8, 150), na), px(K.RADIUS))
+		if W.news then
+			hit(x, y, x + w, y + h, "newsbg")
+		end
+		local line_h = px(17)
+		local body_h = 0
+		for _, note in ipairs(K.NEWS) do
+			local _, breaks = L(note[3]):gsub("\n", "")
+			body_h = body_h + (breaks + 1) * line_h + px(9)
+		end
+		local cw = px(430)
+		local ch = px(66) + body_h + px(50)
+		local cx0 = math.floor(x + (w - cw) / 2)
+		local cy0 = math.floor(y + (h - ch) / 2 + px(10))
+		rect(cx0, cy0, cx0 + cw, cy0 + ch, fade(P.CARD, na), px(12))
+		local hy = cy0 + px(28)
+		rect(cx0 + px(20), hy - px(13), cx0 + px(46), hy + px(13), fade(P.CHIP_ON, na), px(7))
+		glyph("\u{f005}", cx0 + px(33), hy, px(11), fade(P.GOOD, na))
+		text(W.fonts.bold, px(14), L("cd_news_t"), cx0 + px(56), hy, fade(P.TEXT, na))
+		local ver = L("cd_news_ver"):format(K.VERSION)
+		text(W.fonts.regular, px(11), ver, cx0 + cw - px(20) - tw(W.fonts.regular, px(11), ver), hy, fade(P.MUTED, na))
+		text(W.fonts.regular, px(11), L("cd_news_sub"), cx0 + px(56), hy + px(19), fade(P.DIM, na))
+		local ny = cy0 + px(74)
+		for _, note in ipairs(K.NEWS) do
+			local col = note[1] == "n" and P.GOOD or P.WARN
+			rect(cx0 + px(22), ny - px(3), cx0 + px(28), ny + px(3), fade(col, na), px(3))
+			local tx = cx0 + px(38)
+			local first = true
+			for line in (L(note[3]) .. "\n"):gmatch("(.-)\n") do
+				local lx = tx
+				if first then
+					lx = lx + text(W.fonts.semi, px(12), L(note[2]), lx, ny, fade(P.TEXT, na)) + px(5)
+					first = false
+				end
+				text(W.fonts.regular, px(12), line, lx, ny, fade(P.MUTED, na))
+				ny = ny + line_h
+			end
+			ny = ny + px(9)
+		end
+		local label = L("cd_news_ok")
+		local bw, bh = tw(W.fonts.semi, px(12), label) + px(32), px(28)
+		local bx1, by1 = cx0 + cw - px(20), cy0 + ch - px(16)
+		local bx0, by0 = bx1 - bw, by1 - bh
+		local cxm, cym = Input.GetCursorPos()
+		local over = W.news and cxm >= bx0 and cxm <= bx1 and cym >= by0 and cym <= by1
+		local bhv = approach("news_btn", over and 1 or 0, 20)
+		rect(bx0, by0, bx1, by1, fade(mix(P.CHIP_ON, Color(255, 255, 255, 60), bhv), na), px(7))
+		text(W.fonts.semi, px(12), label, bx0 + px(16), (by0 + by1) / 2, fade(P.TEXT, na))
+		if W.news then
+			hit(bx0, by0, bx1, by1, "news_ok")
+		end
+	end
+
 	local function draw_list_view(x, y, w, h, a)
+		if W.counter and not used_set()[W.counter] then
+			W.counter = nil
+		end
+		if W.counter then
+			SM.counter_view(x, y, w, h, a)
+			return
+		end
 		local left = x + px(14)
 		local res = draft.result
 		if not res and draft.summary then
@@ -7196,12 +7571,11 @@ do
 
 	PN.DEMO = {
 		hero = 48,
-		gold = 1300,
 		pos = 1,
 		slots = {
 			{ name = "power_treads", label = "Power Treads", state = "done", t = 346, cost = 1400 },
 			{ name = "mask_of_madness", label = "Mask of Madness", state = "done", t = 608, cost = 1900 },
-			{ name = "manta", label = "Manta Style", state = "next", t = 1028, cost = 4650, have = 2100 },
+			{ name = "manta", label = "Manta Style", state = "next", t = 1028, cost = 4650 },
 			{ name = "black_king_bar", label = "Black King Bar", state = "later", t = 1559, cost = 4050 },
 			{ name = "butterfly", label = "Butterfly", state = "later", t = 1598, cost = 5450 },
 			{ name = "monkey_king_bar", label = "Monkey King Bar", state = "later", t = 1880, cost = 5000,
@@ -7291,25 +7665,6 @@ do
 	function PN.qbuy(plan, id, name, x0, y0, x1, y1, a, r)
 		if plan ~= PN.DEMO and plan ~= PN.NONE then
 			SM.qbuy("p" .. id, name, x0, y0, x1, y1, a, r)
-		end
-	end
-
-	function PN.need(plan, d)
-		local gold = plan == PN.DEMO and PN.DEMO.gold or G.gold
-		local need = math.max(0, (d.cost or 0) - (d.have or 0))
-		local k = tween("pn_prog", (d.cost or 0) > 0 and ((d.have or 0) + math.min(gold, need)) / d.cost or 0, 0.4)
-		if gold >= need then
-			return L("cd_p_enough"), P.GOOD, k
-		end
-		return L("cd_p_more"):format(need - gold), P.MUTED, k
-	end
-
-	function PN.bar(x0, x1, cy, k, a)
-		local bh = math.max(2, px(3))
-		local y0 = math.floor(cy - bh / 2)
-		rect(x0, y0, x1, y0 + bh, fade(Color(255, 255, 255, 26), a), bh / 2)
-		if k > 0 then
-			rect(x0, y0, x0 + (x1 - x0) * clamp(k, 0, 1), y0 + bh, fade(P.GOOD, a), bh / 2)
 		end
 	end
 
@@ -7412,6 +7767,25 @@ do
 		PN.roles(plan, x + px(12), y + h - px(22), px(24), a)
 	end
 
+	function PN.later(x0, x1, cy, a)
+		local lw = text(W.fonts.semi, px(10), L("cd_p_later"), x0, cy, fade(P.DIM, a))
+		rect(x0 + lw + px(8), cy, x1, cy + math.max(1, px(1)), fade(P.LINE, a))
+	end
+
+	function PN.sell(sell, x, y, w, a)
+		local bh = px(28)
+		rect(x, y, x + w, y + bh, fade(P.CELL, a), px(7))
+		local iw, ih = px(30), px(22)
+		local img = PN.item_img(sell.name)
+		if img then
+			Render.Image(img, Vec2(x + px(4), y + (bh - ih) / 2), Vec2(iw, ih), fade(P.WHITE, a), px(3), K.ROUND)
+		end
+		local cy = y + bh / 2
+		local tx = x + px(4) + iw + px(8)
+		tx = tx + text(W.fonts.regular, px(11), L("cd_p_sell"), tx, cy, fade(P.MUTED, a)) + px(4)
+		text(W.fonts.semi, px(11), sell.label, tx, cy, fade(P.TEXT, a))
+	end
+
 	function PN.strip(plan, x, y, a, measure)
 		local pad, sw, gap = px(12), px(50), px(6)
 		local w = pad * 2 + 6 * sw + 5 * gap
@@ -7421,9 +7795,12 @@ do
 		local ih = math.floor(iw * 0.74 + 0.5)
 		local row_h = ih + px(10)
 		local sh = rows * row_h - px(10)
+		local more = plan.more or {}
+		local more_h = #more > 0 and px(26) + ih or 0
+		local sell_h = plan.sell and px(36) or 0
 		local has_start = plan.start ~= nil
 		local top = y + px(34) + (has_start and px(30) or 0)
-		local h = top - y + sh + px(26) + px(36)
+		local h = top - y + sh + more_h + px(26) + sell_h + px(36)
 		if measure then
 			return w, h
 		end
@@ -7440,26 +7817,66 @@ do
 			PN.qbuy(plan, "n" .. i, d.name, sx, iy, sx + iw, iy + ih, a)
 			tip("pn" .. i, sx, iy, sx + iw, iy + ih, d.label, d.body)
 		end
-		local ny = sy + sh + px(15)
+		local my = sy + sh
+		if #more > 0 then
+			PN.later(x + pad, x + w - pad, my + px(13), a)
+			local ry = my + px(26)
+			for i, d in ipairs(more) do
+				local sx = x + pad + (i - 1) * (iw + gap)
+				PN.slot(d, sx, ry, iw, ih, a)
+				PN.qbuy(plan, "m" .. i, d.name, sx, ry, sx + iw, ry + ih, a)
+				tip("pm" .. i, sx, ry, sx + iw, ry + ih, d.label, d.body or "")
+			end
+			my = my + more_h
+		end
+		local ny = my + px(15)
 		local d = plan.next
 		if d then
-			local lx = x + pad + text(W.fonts.medium, px(11), d.label, x + pad, ny, fade(P.TEXT, a)) + px(10)
-			local str, col, k = PN.need(plan, d)
-			local rw = tw(W.fonts.regular, px(11), str)
-			text(W.fonts.regular, px(11), str, x + w - pad - rw, ny, fade(col, a))
-			PN.bar(lx, x + w - pad - rw - px(10), ny, k, a)
+			text(W.fonts.medium, px(11), d.label, x + pad, ny, fade(P.TEXT, a))
 		else
 			text(W.fonts.medium, px(11), L("cd_p_all"), x + pad, ny, fade(P.MUTED, a))
 		end
+		if plan.sell then
+			PN.sell(plan.sell, x + pad, ny + px(14), w - pad * 2, a)
+		end
 		PN.roles(plan, x + pad, y + h - px(20), px(24), a)
+	end
+
+	function PN.row(plan, d, id, x, w, ry, row_h, a)
+		local rcy = ry + math.floor(row_h / 2)
+		if d.state == "next" then
+			rect(x + px(6), ry + px(1), x + w - px(6), ry + row_h - px(1), fade(Color(255, 255, 255, 14), a), px(7))
+		end
+		PN.qbuy(plan, id, d.name, x + px(6), ry + px(1), x + w - px(6), ry + row_h - px(1), a, px(7))
+		local iw, ih = px(40), px(29)
+		local ix = x + px(12)
+		PN.slot(d, ix, math.floor(rcy - ih / 2), iw, ih, a)
+		local tx = ix + iw + px(10)
+		text(W.fonts.semi, px(12), d.label, tx, rcy - px(7), fade(P.TEXT, a))
+		local sy = rcy + px(8)
+		if d.from then
+			local lx = tx + text(W.fonts.regular, px(11), L("cd_p_instead"):format(d.from), tx, sy, fade(P.MUTED, a)) + px(5)
+			local face = d.reason and mini(d.reason)
+			if face then
+				Render.Image(face, Vec2(lx, math.floor(sy - px(7))), Vec2(px(14), px(14)), fade(P.WHITE, a))
+			end
+		else
+			local sub = d.base and L(d.kind == "up" and "cd_p_up" or "cd_p_dis"):format(d.base.label)
+				or L("cd_p_cost"):format(d.cost or 0)
+			text(W.fonts.regular, px(11), sub, tx, sy, fade(P.MUTED, a))
+		end
+		tip("t" .. id, x, ry, x + w, ry + row_h, d.label, d.body or "")
 	end
 
 	function PN.list(plan, x, y, a, measure)
 		local w = px(286)
 		local row_h = px(38)
+		local more = plan.more or {}
+		local more_h = #more > 0 and px(24) + #more * row_h or 0
+		local sell_h = plan.sell and px(36) or 0
 		local has_start = plan.start ~= nil
 		local top = y + px(34) + (has_start and px(30) or 0)
-		local h = top - y + #plan.slots * row_h + px(40)
+		local h = top - y + #plan.slots * row_h + more_h + sell_h + px(40)
 		if measure then
 			return w, h
 		end
@@ -7468,117 +7885,22 @@ do
 		if has_start then
 			PN.start(plan, x + px(12), y + px(48), w - px(24), a)
 		end
-		local iw, ih = px(40), px(29)
 		for i, d in ipairs(plan.slots) do
-			local ry = top + (i - 1) * row_h
-			local rcy = ry + math.floor(row_h / 2)
-			if d.state == "next" then
-				rect(x + px(6), ry + px(1), x + w - px(6), ry + row_h - px(1), fade(Color(255, 255, 255, 14), a), px(7))
+			PN.row(plan, d, "l" .. i, x, w, top + (i - 1) * row_h, row_h, a)
+		end
+		local ry = top + #plan.slots * row_h
+		if #more > 0 then
+			PN.later(x + px(12), x + w - px(12), ry + px(12), a)
+			ry = ry + px(24)
+			for i, d in ipairs(more) do
+				PN.row(plan, d, "lm" .. i, x, w, ry, row_h, a)
+				ry = ry + row_h
 			end
-			PN.qbuy(plan, "l" .. i, d.name, x + px(6), ry + px(1), x + w - px(6), ry + row_h - px(1), a, px(7))
-			local ix = x + px(12)
-			PN.slot(d, ix, math.floor(rcy - ih / 2), iw, ih, a)
-			local tx = ix + iw + px(10)
-			local rx = x + w - px(14)
-			text(W.fonts.semi, px(12), d.label, tx, rcy - px(7), fade(P.TEXT, a))
-			local sy = rcy + px(8)
-			if d.state == "next" then
-				local str, col, k = PN.need(plan, d)
-				local rw = tw(W.fonts.semi, px(11), str)
-				text(W.fonts.semi, px(11), str, rx - rw, rcy, fade(col, a))
-				PN.bar(tx, rx - rw - px(10), sy + px(1), k, a)
-			elseif d.from then
-				local lx = tx + text(W.fonts.regular, px(11), L("cd_p_instead"):format(d.from), tx, sy, fade(P.MUTED, a)) + px(5)
-				local face = d.reason and mini(d.reason)
-				if face then
-					Render.Image(face, Vec2(lx, math.floor(sy - px(7))), Vec2(px(14), px(14)), fade(P.WHITE, a))
-				end
-			else
-				local sub = d.base and L(d.kind == "up" and "cd_p_up" or "cd_p_dis"):format(d.base.label)
-					or L("cd_p_cost"):format(d.cost or 0)
-				text(W.fonts.regular, px(11), sub, tx, sy, fade(P.MUTED, a))
-			end
-			tip("pl" .. i, x, ry, x + w, ry + row_h, d.label, d.body or "")
+		end
+		if plan.sell then
+			PN.sell(plan.sell, x + px(12), ry + px(4), w - px(24), a)
 		end
 		PN.roles(plan, x + px(12), y + h - px(20), px(24), a)
-	end
-
-	function PN.pill(plan, x, y, a, measure)
-		local iw, ih = px(38), px(28)
-		local d = plan.next
-		local queue = {}
-		for _, sl in ipairs(plan.slots) do
-			if sl.state == "later" and #queue < K.PILL_QUEUE then
-				queue[#queue + 1] = sl
-			end
-		end
-		local name = d and d.label or L("cd_p_all")
-		local str, col, k = "", P.MUTED, nil
-		if d then
-			str, col, k = PN.need(plan, d)
-		end
-		local nw = tw(W.fonts.bold, px(12), name)
-		local body_w = math.max(px(110), nw + px(8) + tw(W.fonts.regular, px(11), str))
-		local qw, qh, qg = px(31), px(23), px(8)
-		local queue_w = #queue > 0 and px(18) + #queue * (qw + qg) - qg or 0
-		local size = px(20)
-		local roles_w = PN.roles_w(size)
-		local start_n = plan.start and #plan.start.items or 0
-		local start_w = start_n > 0 and start_n * (px(22) + px(3)) - px(3) or 0
-		local row1 = px(6) + iw + px(9) + body_w + queue_w + px(12)
-		local row2 = px(12) + start_w + (start_w > 0 and px(16) or 0) + roles_w + px(12)
-		local w = math.max(row1, row2)
-		local h = px(40) + px(30)
-		if measure then
-			return w, h
-		end
-		PN.back(x, y, w, h, a)
-		hit(x, y, x + w, y + px(40), "pdrag")
-		local cy = y + px(20)
-		local ix = x + px(6)
-		if d then
-			PN.slot(d, ix, cy - math.floor(ih / 2), iw, ih, a)
-			PN.qbuy(plan, "pp", d.name, ix, cy - math.floor(ih / 2), ix + iw, cy - math.floor(ih / 2) + ih, a)
-			tip("pp", ix, cy - ih / 2, ix + iw, cy + ih / 2, d.label, d.body or "")
-		else
-			local face = mini(plan.hero)
-			if face then
-				Render.Image(face, Vec2(ix + (iw - ih) / 2, cy - ih / 2), Vec2(ih, ih), fade(P.WHITE, a))
-			end
-		end
-		local tx = ix + iw + px(9)
-		local ty = k and cy - px(5) or cy
-		text(W.fonts.bold, px(12), name, tx, ty, fade(d and P.TEXT or P.MUTED, a))
-		if str ~= "" then
-			text(W.fonts.regular, px(11), str, tx + nw + px(8), ty, fade(col, a))
-		end
-		if k then
-			PN.bar(tx, tx + body_w, cy + px(9), k, a)
-		end
-		if #queue > 0 then
-			local qx = tx + body_w + px(9)
-			vline(qx, cy, px(7), a)
-			qx = qx + px(9)
-			for i, sl in ipairs(queue) do
-				PN.slot(sl, qx, cy - math.floor(qh / 2), qw, qh, a)
-				PN.qbuy(plan, "pq" .. i, sl.name, qx, cy - math.floor(qh / 2), qx + qw, cy - math.floor(qh / 2) + qh, a)
-				tip("pq" .. i, qx, cy - qh / 2, qx + qw, cy + qh / 2, sl.label, sl.body or "")
-				qx = qx + qw + qg
-			end
-		end
-		rect(x + px(10), y + px(40), x + w - px(10), y + px(40) + math.max(1, px(1)), fade(P.LINE, a))
-		local cy2 = y + px(55)
-		local sx = x + px(12)
-		if start_n > 0 then
-			local sh = px(16)
-			for i, it in ipairs(plan.start.items) do
-				PN.slot(it, sx, cy2 - sh / 2, px(22), sh, a)
-				PN.qbuy(plan, "ps" .. i, it.name, sx, cy2 - sh / 2, sx + px(22), cy2 + sh / 2, a)
-				tip("pst" .. i, sx, cy2 - sh / 2, sx + px(22), cy2 + sh / 2, it.title or it.label, "")
-				sx = sx + px(25)
-			end
-		end
-		PN.roles(plan, x + w - px(12) - roles_w, cy2, size, a)
 	end
 
 	function draw_panel()
@@ -7607,7 +7929,7 @@ do
 		ensure_fonts()
 		local menu_scale = Menu.Scale()
 		s = cfg.pzoom / 100 * K.BASE_ZOOM * ((menu_scale >= 50 and menu_scale <= 300) and menu_scale / 100 or 1)
-		local draw = plan.none and PN.none or ({ PN.strip, PN.list, PN.pill })[cfg.pview + 1] or PN.strip
+		local draw = plan.none and PN.none or (cfg.pview == 1 and PN.list or PN.strip)
 		local w, h = draw(plan, 0, 0, pa, true)
 		local screen = Render.ScreenSize()
 		if not W.px then
@@ -7641,7 +7963,7 @@ do
 	end
 
 	function draw_window()
-		W.pm_rect, W.gear_block = nil, nil
+		W.pm_rect, W.gear_block, W.news_block = nil, nil, nil
 		if W.slider then
 			if Input.IsKeyDown(K.MOUSE1, true) and W.slider_rect then
 				local cx = Input.GetCursorPos()
@@ -7709,6 +8031,7 @@ do
 		local a = W.vis * W.vis * (3 - 2 * W.vis)
 		local slide = open and (1 - ease(W.vis)) or (1 - W.vis)
 		local x, y, w, h = math.floor(W.x), math.floor(W.y + slide * px(K.SLIDE)), W.w, W.h
+		W.news_block = W.news and { x, y, x + w, y + h } or nil
 		W.ox, W.oy = x, y
 		local r = px(K.RADIUS)
 		local p0, p1 = Vec2(x, y), Vec2(x + w, y + h)
@@ -7732,6 +8055,7 @@ do
 		rect(x + tl_w + grid_w, my, x + tl_w + grid_w + line, y + h, fade(P.LINE, a))
 		draw_list(x + tl_w + grid_w, my, w - tl_w - grid_w, main_h, a)
 		draw_pos_menu(a)
+		SM.news(x, y, w, h, a)
 		W.snap = false
 	end
 end
