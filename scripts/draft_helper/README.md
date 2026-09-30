@@ -3,10 +3,11 @@
 подсказки на драфте: контрпики, синергия и баны / draft helper: counters, synergy and bans
 
 <!-- releases:start -->
-Скачать: [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.1/draft_helper.lua) — `draft-helper-v1.2.1`, 2026-09-30
+Скачать: [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.2/draft_helper.lua) — `draft-helper-v1.2.2`, 2026-09-30
 
 | версия | дата | файл | загрузок |
 | --- | --- | --- | --- |
+| [`draft-helper-v1.2.2`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.2.2) | 2026-09-30 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.2/draft_helper.lua) | 0 |
 | [`draft-helper-v1.2.1`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.2.1) | 2026-09-30 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.1/draft_helper.lua) | 0 |
 | [`draft-helper-v1.2.0`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.2.0) | 2026-09-30 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.0/draft_helper.lua) | 1 |
 | [`draft-helper-v1.1.1`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.1.1) | 2026-09-29 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.1.1/draft_helper.lua) | 1 |

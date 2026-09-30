@@ -62,7 +62,7 @@ The menu follows your cheat language; the scripts speak Russian and English.
 | [DS Spot Block](scripts/ds_spot_block) | 52 | `ds-spot-block-v1.0.1` |
 | [Custom Background](scripts/custom_background) | 16 | `custom-background-v1.0.0` |
 | [Auto Stack](scripts/auto_stack) | 70 | `auto-stack-v1.1.0` |
-| [Draft Helper](scripts/draft_helper) | 2 | `draft-helper-v1.2.1` |
+| [Draft Helper](scripts/draft_helper) | 2 | `draft-helper-v1.2.2` |
 | [MusicUI](scripts/musicui) | 840 | `musicui-v1.0.8` |
 
 <picture>
