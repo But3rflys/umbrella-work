@@ -791,7 +791,7 @@ local function log(fmt, ...)
 end
 
 local K = {
-	VERSION = "1.2.6",
+	VERSION = "1.2.7",
 	UPDATE_URL = "https://raw.githubusercontent.com/But3rflys/umbrella-work/main/scripts/draft_helper/version.json",
 	UPDATE_EVERY = 6 * 3600,
 	UPDATE_MIN_SIZE = 50000,
