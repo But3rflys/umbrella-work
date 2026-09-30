@@ -456,8 +456,6 @@ local localization = qLocalization.new({
 		cd_nw2 = "right click on a picked hero\nshows who counters him",
 		cd_nw3_t = "what next.",
 		cd_nw3 = "after the main build the panel\nsuggests late items and what to sell",
-		cd_nw4_t = "loading.",
-		cd_nw4 = "shows what is loading and at which step",
 		cd_nw5_t = "bans.",
 		cd_nw5 = "ranked counts every banned hero",
 		cd_nw6_t = "build panel.",
@@ -702,8 +700,6 @@ local localization = qLocalization.new({
 		cd_nw2 = "правый клик по выбранному герою\nпоказывает, кто его контрит",
 		cd_nw3_t = "что дальше.",
 		cd_nw3 = "после основной сборки панель\nсоветует поздние предметы и что продать",
-		cd_nw4_t = "загрузка.",
-		cd_nw4 = "видно, что качается и на каком шаге",
 		cd_nw5_t = "баны.",
 		cd_nw5 = "в рейтинге учитываются все забаненные герои",
 		cd_nw6_t = "панель сборки.",
@@ -1273,7 +1269,6 @@ local K = {
 		{ "n", "cd_nw1_t", "cd_nw1" },
 		{ "n", "cd_nw2_t", "cd_nw2" },
 		{ "n", "cd_nw3_t", "cd_nw3" },
-		{ "n", "cd_nw4_t", "cd_nw4" },
 		{ "f", "cd_nw5_t", "cd_nw5" },
 		{ "f", "cd_nw6_t", "cd_nw6" },
 	},
@@ -4963,7 +4958,6 @@ do
 		local out = {}
 		for i, mo in ipairs(list) do
 			local d = { name = mo.item.name, label = mo.item.label, cost = mo.item.cost, t = mo.t, more = true }
-			d.state = i == 1 and "next" or "later"
 			if mo.instead then
 				d.base, d.kind, d.from = { name = mo.instead.name, label = mo.instead.label }, "up", mo.instead.label
 				d.body = L("cd_tip_swap"):format(mo.instead.label)
@@ -5182,11 +5176,14 @@ do
 			plan.slots[i] = d
 		end
 		plan.complete = plan.next == nil
-		if plan.complete then
-			plan.more = more_items(data, slots)
-			plan.next = plan.more[1]
-			plan.sell = plan.next and sell_item() or nil
+		plan.more = more_items(data, slots)
+		for i, d in ipairs(plan.more) do
+			d.state = "later"
+			if plan.complete and i == 1 then
+				d.state, plan.next = "next", d
+			end
 		end
+		plan.sell = plan.next and sell_item() or nil
 		return plan
 	end
 
@@ -7666,6 +7663,12 @@ do
 			{ name = "satanic", label = "Satanic", state = "later", t = 2084, cost = 5050,
 				base = { name = "mask_of_madness", label = "Mask of Madness" }, kind = "dis" },
 		},
+		more = {
+			{ name = "travel_boots", label = "Boots of Travel", state = "later", cost = 2500,
+				base = { name = "power_treads", label = "Power Treads" }, kind = "up", from = "Power Treads" },
+			{ name = "skadi", label = "Eye of Skadi", state = "later", cost = 5300 },
+			{ name = "greater_crit", label = "Daedalus", state = "later", cost = 5100 },
+		},
 		start = {
 			gold = 565,
 			items = {
@@ -7694,6 +7697,9 @@ do
 					lines[#lines + 1] = L(d.kind == "up" and "cd_tip_up_from" or "cd_tip_dis_from"):format(d.base.label)
 				end
 				d.body = table.concat(lines, "\n")
+			end
+			for _, d in ipairs(D0.more) do
+				d.body = d.from and L("cd_tip_swap"):format(d.from) or ""
 			end
 			for _, d in ipairs(D0.start.items) do
 				d.title = d.q > 1 and ("%s x%d"):format(d.label, d.q) or d.label
