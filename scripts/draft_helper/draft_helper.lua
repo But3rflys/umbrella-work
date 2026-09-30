@@ -439,6 +439,8 @@ local localization = qLocalization.new({
 		cd_set_provider_tip = "GitHub: ready stats once a day, loads in seconds\nOpenDota: straight from the site, slower, needs a stable connection",
 		cd_ld_gh = "Loading stats",
 		cd_cnt_t = "Who counters %s",
+		cd_sm_counter = "Who counters",
+		cd_sm_clear = "Remove",
 		cd_cnt_wins = "wins %s of games",
 		cd_p_later = "NEXT",
 		cd_p_sell = "Inventory full, sell",
@@ -449,7 +451,7 @@ local localization = qLocalization.new({
 		cd_nw1_t = "GitHub server.",
 		cd_nw1 = "stats and builds come as ready files\nin seconds, works without a VPN",
 		cd_nw2_t = "counter picker.",
-		cd_nw2 = "click an enemy hero\nto see who counters him",
+		cd_nw2 = "right click on a picked hero\nshows who counters him",
 		cd_nw3_t = "what next.",
 		cd_nw3 = "after the main build the panel\nsuggests late items and what to sell",
 		cd_nw4_t = "loading.",
@@ -681,6 +683,8 @@ local localization = qLocalization.new({
 		cd_set_provider_tip = "GitHub: готовая статистика раз в сутки, грузится за секунды\nOpenDota: напрямую с сайта, дольше и нужен стабильный интернет",
 		cd_ld_gh = "Загружаю статистику",
 		cd_cnt_t = "Кто контрит %s",
+		cd_sm_counter = "Кто контрит",
+		cd_sm_clear = "Убрать",
 		cd_cnt_wins = "побеждает в %s игр",
 		cd_p_later = "ДАЛЬШЕ",
 		cd_p_sell = "Инвентарь полный, продай",
@@ -691,7 +695,7 @@ local localization = qLocalization.new({
 		cd_nw1_t = "сервер GitHub.",
 		cd_nw1 = "статистика и сборки качаются\nготовыми файлами за секунды, работает без VPN",
 		cd_nw2_t = "контрпикер.",
-		cd_nw2 = "клик по вражескому герою\nпоказывает, кто его контрит",
+		cd_nw2 = "правый клик по выбранному герою\nпоказывает, кто его контрит",
 		cd_nw3_t = "что дальше.",
 		cd_nw3 = "после основной сборки панель\nсоветует поздние предметы и что продать",
 		cd_nw4_t = "загрузка.",
@@ -5385,13 +5389,16 @@ local function click(right)
 	if W.pos_menu and kind ~= "posset" and kind ~= "posbadge" and kind ~= "pmbg" then
 		W.pos_menu = nil
 	end
+	if W.slot_menu and kind ~= "smenu" and kind ~= "smbg" and not (kind == "slot" and right) then
+		W.slot_menu = nil
+	end
 	if W.set_gear and kind ~= "set_gear" and not in_rect(W.gear_pop, cx, cy) then
 		W.set_gear = nil
 	end
 	if not hit then
 		return
 	end
-	if kind == "pmbg" or kind == "stgbg" or kind == "newsbg" then
+	if kind == "pmbg" or kind == "stgbg" or kind == "newsbg" or kind == "smbg" then
 		return
 	elseif kind == "settings" then
 		W.settings = not W.settings
@@ -5481,8 +5488,25 @@ local function click(right)
 		Config.WriteInt("draft_helper", "seen", K.VNUM)
 	elseif kind == "counter_back" then
 		W.counter, W.list_scroll = nil, 0
-	elseif kind == "slot" and not right and draft.steps[arg] and STEPS()[arg].kind == "P" and step_team(arg) == 1 then
-		W.counter, W.list_scroll = draft.steps[arg], 0
+	elseif kind == "smenu" then
+		local i = W.slot_menu and W.slot_menu.slot
+		W.slot_menu = nil
+		if i and draft.steps[i] then
+			if arg == "counter" then
+				W.counter, W.list_scroll = draft.steps[i], 0
+			else
+				draft.steps[i] = nil
+				draft.manual[draft.mode][i] = nil
+				draft.edit = nil
+				if draft.mode == 1 then
+					draft.target = i
+				end
+				draft.dirty = true
+			end
+		end
+	elseif kind == "slot" and right and draft.steps[arg] and STEPS()[arg].kind == "P" then
+		local same = W.slot_menu and W.slot_menu.slot == arg
+		W.slot_menu = not same and { slot = arg, x = cx - W.ox, y = cy - W.oy } or nil
 		draft.edit = nil
 	elseif kind == "slot" then
 		if right then
@@ -7241,6 +7265,50 @@ do
 		SB.bar("list", x + w - px(1), top, bottom, scroll, W.sum_max, a)
 	end
 
+	function SM.slot_menu(a)
+		local menu = W.slot_menu
+		if menu and not draft.steps[menu.slot] then
+			W.slot_menu, menu = nil, nil
+		end
+		local ma = approach("sm_a", menu and 1 or 0, 22) * a
+		if menu then
+			W.sm_last = menu
+		end
+		menu = menu or W.sm_last
+		if ma <= 0.01 or not menu then
+			return
+		end
+		local items = { { "counter", "\u{f05b}", L("cd_sm_counter") }, { "clear", "\u{f1f8}", L("cd_sm_clear") } }
+		local row_h, pad = px(28), px(4)
+		local w = 0
+		for _, it in ipairs(items) do
+			w = math.max(w, tw(W.fonts.medium, px(12), it[3]))
+		end
+		w = w + px(40) + pad * 2
+		local h = pad * 2 + #items * row_h
+		local screen = Render.ScreenSize()
+		local x = math.floor(clamp(menu.x + W.ox + px(2), 4, screen.x - w - 4))
+		local y = math.floor(clamp(menu.y + W.oy + px(2), 4, screen.y - h - 4))
+		rect(x, y, x + w, y + h, fade(P.TIP, ma), px(8))
+		if W.slot_menu then
+			hit(x, y, x + w, y + h, "smbg")
+			W.pm_rect = { x, y, x + w, y + h }
+		end
+		for k, it in ipairs(items) do
+			local ry = y + pad + (k - 1) * row_h
+			local hv = approach("sm_h" .. k, (W.slot_menu and hovered(x + pad, ry, x + w - pad, ry + row_h)) and 1 or 0, 20)
+			if hv > 0 then
+				rect(x + pad, ry, x + w - pad, ry + row_h, fade(P.HOVER, ma * hv * 1.5), px(6))
+			end
+			local cy = ry + row_h / 2
+			glyph(it[2], x + pad + px(13), cy, px(11), fade(it[1] == "clear" and P.BAD or P.MUTED, ma))
+			text(W.fonts.medium, px(12), it[3], x + pad + px(28), cy, fade(P.TEXT, ma))
+			if W.slot_menu then
+				hit(x + pad, ry, x + w - pad, ry + row_h, "smenu", it[1])
+			end
+		end
+	end
+
 	function SM.counter_view(x, y, w, h, a)
 		local hero = D.by_id[W.counter]
 		local left = x + px(14)
@@ -8055,6 +8123,7 @@ do
 		rect(x + tl_w + grid_w, my, x + tl_w + grid_w + line, y + h, fade(P.LINE, a))
 		draw_list(x + tl_w + grid_w, my, w - tl_w - grid_w, main_h, a)
 		draw_pos_menu(a)
+		SM.slot_menu(a)
 		SM.news(x, y, w, h, a)
 		W.snap = false
 	end
