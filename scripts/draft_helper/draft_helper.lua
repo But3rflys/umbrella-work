@@ -411,7 +411,7 @@ local localization = qLocalization.new({
 		cd_ld_count = "%s of %s",
 		cd_ld_first = "The first time takes a couple of minutes, then it loads from cache",
 		cd_ld_error = "No connection to OpenDota",
-		cd_ld_slow = "OpenDota is slow to answer",
+		cd_ld_slow = "The server is slow to answer",
 		cd_tip_err_t = "Why",
 		cd_ld_retry = "retry in %d s",
 		cd_ld_short = "matches %d%%",
@@ -435,6 +435,9 @@ local localization = qLocalization.new({
 		cd_sec_data = "DATA",
 		cd_set_volume = "Volume",
 		cd_set_volume_tip = "more matches, steadier numbers",
+		cd_set_provider = "Server",
+		cd_set_provider_tip = "GitHub: ready stats once a day, loads in seconds\nOpenDota: straight from the site, slower, needs a stable connection",
+		cd_ld_gh = "Loading stats",
 		cd_set_bg = "Background",
 		cd_set_debug = "Debug log",
 		cd_set_refresh = "Update",
@@ -622,7 +625,7 @@ local localization = qLocalization.new({
 		cd_ld_count = "%s из %s",
 		cd_ld_first = "В первый раз это пара минут, дальше всё из кэша",
 		cd_ld_error = "Нет связи с OpenDota",
-		cd_ld_slow = "OpenDota долго отвечает",
+		cd_ld_slow = "Сервер долго отвечает",
 		cd_tip_err_t = "Причина",
 		cd_ld_retry = "повтор через %d с",
 		cd_ld_short = "матчи %d%%",
@@ -646,6 +649,9 @@ local localization = qLocalization.new({
 		cd_sec_data = "ДАННЫЕ",
 		cd_set_volume = "Объём",
 		cd_set_volume_tip = "больше матчей, точнее цифры",
+		cd_set_provider = "Сервер",
+		cd_set_provider_tip = "GitHub: готовая статистика раз в сутки, грузится за секунды\nOpenDota: напрямую с сайта, дольше и нужен стабильный интернет",
+		cd_ld_gh = "Загружаю статистику",
 		cd_set_bg = "Фон",
 		cd_set_debug = "Отладка в лог",
 		cd_set_refresh = "Обновить",
@@ -772,7 +778,7 @@ local cfg = {}
 do
 	local defaults = {
 		source = 0, rank = 2, volume = 1, zoom = 100, bg = 88, blur = 1, tips = 1, auto = 1, debug = 0,
-		panel = 1, pview = 0, pzoom = 100, pshop = 0, padapt = 1, phide = 0,
+		panel = 1, pview = 0, pzoom = 100, pshop = 0, padapt = 1, phide = 0, provider = 0,
 	}
 	for key, value in pairs(defaults) do
 		cfg[key] = Config.ReadInt("draft_helper", "set_" .. key, value)
@@ -800,10 +806,16 @@ local K = {
 
 	EXPLORER = "https://api.opendota.com/api/explorer?sql=",
 	HEROES_URL = "https://api.opendota.com/api/heroes",
+	DATA_URLS = {
+		"https://raw.githubusercontent.com/But3rflys/umbrella-work/draft-data/",
+		"https://cdn.jsdelivr.net/gh/But3rflys/umbrella-work@draft-data/",
+	},
+	DATA_CHECK = 3 * 3600,
 	HEADERS = { ["User-Agent"] = "Umbrella/draft_helper", ["Accept"] = "application/json" },
 	TIMEOUT = 40,
 	RETRY = 60,
 	RETRY_SHORT = 5,
+	STUCK = 25,
 	GAP = 1.1,
 	CONFIG = "draft_helper",
 	CACHE_FILE = "draft_helper.dat",
@@ -1345,6 +1357,8 @@ local draft = {
 	summary = nil,
 	summary_sig = nil,
 	build_h = nil,
+	extra_bans = {},
+	extra_key = nil,
 }
 
 draft.steps = draft.store[0]
@@ -1702,7 +1716,9 @@ local function load_cache()
 			D.contest_at = tonumber(pro.contest_time) or 0
 		end
 	end
-	load_set(D.sets[0], K.RANKS[cfg.rank + 1] or 70)
+	if cfg.provider ~= 0 then
+		load_set(D.sets[0], K.RANKS[cfg.rank + 1] or 70)
+	end
 end
 
 local function save_matches(S)
@@ -1877,7 +1893,13 @@ end
 
 local function request(url, param, on_done)
 	D.busy = true
+	D.req_n = (D.req_n or 0) + 1
+	local id = D.req_n
+	D.req_at, D.req_param = os.clock(), param
 	local sent = HTTP.Request("GET", url, { headers = K.HEADERS, timeout = K.TIMEOUT }, function(res)
+		if id ~= D.req_n then
+			return
+		end
 		D.busy = false
 		D.next_request = os.clock() + K.GAP
 		local ok, err = pcall(on_done, res)
@@ -2207,7 +2229,9 @@ local function plan_job(S)
 		S.job.p0 = clamp(#S.recs / target, 0, 1)
 		S.force = false
 		log("job %s: rank %d, have %d, want %d, top %s", S.file, rank, #S.recs, target, tostring(top))
-	elseif not S.stats and not S.build and #S.recs > 0 then
+	end
+	local enough = S.job and math.min(target, S.source == 1 and K.PARTIAL_CM or K.PARTIAL) or 1
+	if not S.stats and not S.build and #S.recs >= enough then
 		start_build(S)
 	end
 end
@@ -2227,7 +2251,23 @@ local function data_tick()
 	end
 	step_build(D.sets[0])
 	step_build(D.sets[1])
+	if D.busy and os.clock() - D.req_at > K.TIMEOUT + K.STUCK then
+		D.req_n, D.busy = D.req_n + 1, false
+		D.error, D.next_request = "no answer, timeout", os.clock() + K.RETRY_SHORT
+		local S = D.loading
+		if D.req_param == "cd_page" and S and S.page > K.PAGE_MIN then
+			S.page = math.max(K.PAGE_MIN, math.floor(S.page / 2))
+		end
+		Log.Write(("[Draft Helper] %s: no answer in %d s, retrying"):format(tostring(D.req_param), K.TIMEOUT + K.STUCK))
+	end
+	if cfg.provider == 0 then
+		D.gh.sync()
+	end
 	if D.busy or os.clock() < D.next_request then
+		return
+	end
+	if cfg.provider == 0 then
+		D.gh.tick()
 		return
 	end
 	local now = os.time()
@@ -2264,7 +2304,184 @@ local function refresh_data()
 		S.force = true
 	end
 	D.next_request, D.error = 0, nil
+	D.gh.check_at = 0
 	log("manual refresh")
+end
+
+D.gh = { manifest = nil, check_at = 0, base = 1 }
+
+do
+	local GH = D.gh
+
+	function GH.url(name)
+		return K.DATA_URLS[GH.base] .. name
+	end
+
+	function GH.flip()
+		GH.base = GH.base % #K.DATA_URLS + 1
+	end
+
+	function GH.key(S)
+		local rank, target = want(S)
+		return ("%d:%d:%d"):format(S.source, rank, target)
+	end
+
+	local function get(name, param, on_body)
+		request(GH.url(name), param, function(res)
+			if tostring(res.code) ~= "200" or type(res.response) ~= "string" or res.response == "" then
+				GH.flip()
+				error(("%s: http %s %s"):format(param, tostring(res.code), tostring(res.error_message or "")))
+			end
+			local ok, err = pcall(on_body, res.response)
+			if not ok then
+				GH.flip()
+				error(err, 0)
+			end
+			D.error = nil
+		end)
+	end
+
+	local function parse_stats(text)
+		local st = { bg = {}, bw = {}, vg = {}, vw = {}, sg = {}, sw = {}, n = tonumber(text:match("^n (%d+)")) }
+		if not st.n then
+			error("stats: bad file")
+		end
+		local games = { b = st.bg, v = st.vg, s = st.sg }
+		local wins = { b = st.bw, v = st.vw, s = st.sw }
+		for kind, key, g, w in text:gmatch("(%a) (%d+) (%d+) (%d+)") do
+			local gt = games[kind]
+			if gt then
+				key, w = tonumber(key), tonumber(w)
+				gt[key] = tonumber(g)
+				if w > 0 then
+					wins[kind][key] = w
+				end
+			end
+		end
+		local counts = {}
+		for _, g in pairs(st.bg) do
+			if g >= K.MIN_GAMES then
+				counts[#counts + 1] = g
+			end
+		end
+		table.sort(counts)
+		st.median = counts[math.max(1, math.floor(#counts / 2))] or 1
+		return st
+	end
+
+	local function apply(S, key, st, meta)
+		S.stats, S.build, S.job, S.gh_key = st, nil, nil, key
+		S.updated = tonumber(meta.time) or 0
+		S.oldest = tonumber(meta.oldest)
+		S.exhausted = true
+		draft.dirty = true
+	end
+
+	function GH.sync()
+		local sets = source() == 1 and { D.sets[0], D.sets[1] } or { D.sets[0] }
+		for _, S in ipairs(sets) do
+			local key = GH.key(S)
+			if S.gh_key ~= key then
+				S.stats, S.build, S.job, S.gh_key, S.updated, S.oldest = nil, nil, nil, key, 0, nil
+				S.recs = {}
+				local blob, meta = store.blobs["gh:" .. key], store.data.sets["gh:" .. key]
+				if blob and type(meta) == "table" then
+					local ok, st = pcall(parse_stats, blob)
+					if ok then
+						meta.used = os.time()
+						apply(S, key, st, meta)
+						log("github stats %s from cache: %d matches", key, st.n)
+					end
+				end
+				draft.dirty = true
+			end
+		end
+	end
+
+	function GH.tick()
+		local m = GH.manifest
+		if not m or os.clock() >= GH.check_at then
+			D.status = "cd_st_gh"
+			get("manifest.json", "cd_manifest", function(text)
+				local data = JSON:decode(text)
+				if type(data) ~= "table" or type(data.sets) ~= "table" then
+					error("manifest: bad file")
+				end
+				GH.manifest = data
+				GH.check_at = os.clock() + K.DATA_CHECK
+				log("github data from %s", os.date("%Y-%m-%d %H:%M", tonumber(data.time) or 0))
+			end)
+			return
+		end
+		local t = tonumber(m.heroes) or 0
+		if not D.heroes or (D.heroes_at or 0) < t then
+			D.status = "cd_st_heroes"
+			get("heroes.json", "cd_heroes", function(text)
+				local list = JSON:decode(text)
+				if type(list) ~= "table" or #list < 100 then
+					error("heroes: bad list")
+				end
+				set_heroes(list)
+				D.heroes_at = t
+				store.data.heroes = { time = t, list = list }
+				store_save()
+				log("heroes loaded from github: %d", #D.heroes)
+			end)
+			return
+		end
+		t = tonumber(m.pro) or 0
+		if not D.pos_count or not D.contest or (D.pos_at or 0) < t or (D.contest_at or 0) < t then
+			D.status = "cd_st_pro"
+			get("pro.json", "cd_pro", function(text)
+				local pro = JSON:decode(text)
+				if type(pro) ~= "table" or type(pro.pos) ~= "table" or type(pro.contest) ~= "table" then
+					error("pro: bad file")
+				end
+				set_pos(pro.pos)
+				set_contest(pro.contest)
+				D.pos_at, D.contest_at = t, t
+				save_pro(pro.pos, pro.contest)
+				log("pro data loaded from github")
+			end)
+			return
+		end
+		local sets = source() == 1 and { D.sets[0], D.sets[1] } or { D.sets[0] }
+		for _, S in ipairs(sets) do
+			local key = S.gh_key
+			local meta = key and m.sets[key]
+			if type(meta) == "table" and (not S.stats or S.updated < (tonumber(meta.time) or 0)) then
+				D.status = "cd_st_gh"
+				get(("stats/%s.txt"):format((key:gsub(":", "_"))), "cd_stats", function(text)
+					local st = parse_stats(text)
+					store.blobs["gh:" .. key] = text
+					store.data.sets["gh:" .. key] = { time = tonumber(meta.time) or 0, oldest = meta.oldest, used = os.time() }
+					store_save()
+					if S.gh_key == key then
+						apply(S, key, st, meta)
+					end
+					log("github stats %s: %d matches", key, st.n)
+				end)
+				return
+			end
+		end
+		D.status, D.loading = nil, nil
+	end
+
+	function GH.switch(v)
+		if cfg.provider == v then
+			return
+		end
+		set_cfg("provider", v)
+		D.req_n, D.busy = (D.req_n or 0) + 1, false
+		D.error, D.next_request, D.status, D.loading = nil, 0, nil, nil
+		GH.check_at = 0
+		for _, S in pairs(D.sets) do
+			S.stats, S.build, S.job, S.gh_key, S.loaded, S.force = nil, nil, nil, nil, false, false
+			S.recs, S.updated, S.oldest, S.exhausted = {}, 0, nil, false
+		end
+		draft.dirty = true
+		log("data server: %s", v == 0 and "github" or "opendota")
+	end
 end
 
 local U = {
@@ -2691,7 +2908,13 @@ do
 
 	local function fetch(url, param, on_done)
 		I.busy = true
+		I.req_n = (I.req_n or 0) + 1
+		local id = I.req_n
+		I.req_at, I.req_param = os.clock(), param
 		local sent = HTTP.Request("GET", url, { headers = K.HEADERS, timeout = K.TIMEOUT }, function(res)
+			if id ~= I.req_n then
+				return
+			end
 			I.busy = false
 			I.next_at = os.clock() + K.GAP
 			local ok, err = pcall(on_done, res)
@@ -2732,14 +2955,59 @@ do
 		I.dirty = true
 	end
 
+	local function buys_rows(list)
+		local rows = {}
+		for _, r in ipairs(list) do
+			rows[#rows + 1] = {
+				p = tonumber(r.p),
+				i = r.i,
+				n = tonumber(r.n) or 0,
+				w = tonumber(r.w) or 0,
+				t = tonumber(r.t) or 0,
+				s = tonumber(r.s) or 0,
+				m = tonumber(r.m) or 0,
+				g = tonumber(r.g) or 0,
+				gw = tonumber(r.gw) or 0,
+			}
+		end
+		return rows
+	end
+
+	local function gh_fetch(name, param, on_body)
+		fetch(D.gh.url(name), param, function(res)
+			if tostring(res.code) ~= "200" or type(res.response) ~= "string" or res.response == "" then
+				if tostring(res.code) ~= "404" then
+					D.gh.flip()
+				end
+				error(("%s: http %s %s"):format(param, tostring(res.code), tostring(res.error_message or "")))
+			end
+			on_body(res.response)
+		end)
+	end
+
 	local function request_items()
+		if cfg.provider == 0 then
+			local t = tonumber(D.gh.manifest.items) or os.time()
+			gh_fetch("items.json", "cd_items", function(text)
+				local list = JSON:decode(text)
+				if type(list) ~= "table" or #list < 100 then
+					error("items: bad list")
+				end
+				set_items(list)
+				I.items_at = t
+				store.data.items = { time = t, list = list }
+				I.dirty = true
+				log("items loaded from github: %d", #list)
+			end)
+			return
+		end
 		fetch(K.ITEMS_URL, "cd_items", function(res)
 			if tostring(res.code) ~= "200" or type(res.response) ~= "string" then
 				error(("items: http %s %s"):format(tostring(res.code), tostring(res.error_message or "")))
 			end
 			local list = parse_items(res.response)
 			if #list < 100 then
-				error("items: bad list")
+				error(("items: bad list, %d items in %d bytes"):format(#list, #res.response))
 			end
 			set_items(list)
 			I.items_at = os.time()
@@ -2750,6 +3018,23 @@ do
 	end
 
 	local function request_buys(h)
+		if cfg.provider == 0 then
+			local t = tonumber(D.gh.manifest.builds) or os.time()
+			I.skip[h] = os.clock() + K.ITEM_FAIL_SKIP
+			gh_fetch(("builds/%d.json"):format(h), "cd_buys", function(text)
+				local list = JSON:decode(text)
+				if type(list) ~= "table" then
+					error(("purchases %d: bad file"):format(h))
+				end
+				local rows = buys_rows(list)
+				I.skip[h] = nil
+				I.buys_at[h] = t
+				set_buys(h, rows)
+				keep_buys(h, rows)
+				log("purchases loaded from github for %d: %d rows", h, #rows)
+			end)
+			return
+		end
 		local url = K.EXPLORER .. url_encode(K.BUYS_SQL:format(h, K.BUYS_MATCHES, h))
 		fetch(url, "cd_buys", function(res)
 			if tostring(res.code) ~= "200" or type(res.response) ~= "string" then
@@ -2761,20 +3046,7 @@ do
 				I.skip[h] = os.clock() + K.ITEM_FAIL_SKIP
 				error(("purchases %d: %s"):format(h, tostring(type(data) == "table" and data.err or "bad answer")))
 			end
-			local rows = {}
-			for _, r in ipairs(data.rows) do
-				rows[#rows + 1] = {
-					p = tonumber(r.p),
-					i = r.i,
-					n = tonumber(r.n) or 0,
-					w = tonumber(r.w) or 0,
-					t = tonumber(r.t) or 0,
-					s = tonumber(r.s) or 0,
-					m = tonumber(r.m) or 0,
-					g = tonumber(r.g) or 0,
-					gw = tonumber(r.gw) or 0,
-				}
-			end
+			local rows = buys_rows(data.rows)
 			I.buys_at[h] = os.time()
 			set_buys(h, rows)
 			keep_buys(h, rows)
@@ -2816,12 +3088,23 @@ do
 			load()
 		end
 		local sm = draft.summary
+		if I.busy and os.clock() - I.req_at > K.TIMEOUT + K.STUCK then
+			I.req_n, I.busy = I.req_n + 1, false
+			I.error, I.next_at = "no answer, timeout", os.clock() + K.ITEM_RETRY
+			Log.Write(("[Draft Helper] %s: no answer in %d s, retrying"):format(tostring(I.req_param), K.TIMEOUT + K.STUCK))
+		end
 		if I.busy or os.clock() < I.next_at then
 			return
 		end
 		if sm or I.want then
 			local now = os.time()
-			if not I.items or now - I.items_at > K.ITEMS_TTL then
+			local gh = cfg.provider == 0
+			local m = D.gh.manifest
+			if gh and not m then
+				return
+			end
+			local items_old = gh and I.items_at < (tonumber(m.items) or 0) or (not gh and now - I.items_at > K.ITEMS_TTL)
+			if not I.items or items_old then
 				request_items()
 				return
 			end
@@ -2834,7 +3117,9 @@ do
 				end
 			end
 			for _, h in ipairs(want) do
-				local stale = not I.buys[h] or now - (I.buys_at[h] or 0) > K.BUYS_TTL
+				local stale = not I.buys[h]
+					or (gh and (I.buys_at[h] or 0) < (tonumber(m.builds) or 0))
+					or (not gh and now - (I.buys_at[h] or 0) > K.BUYS_TTL)
 				if stale and os.clock() >= (I.skip[h] or 0) then
 					request_buys(h)
 					return
@@ -3507,6 +3792,11 @@ local function used_set()
 			set[h] = true
 		end
 	end
+	if draft.mode == 1 then
+		for h in pairs(draft.extra_bans) do
+			set[h] = true
+		end
+	end
 	return set
 end
 
@@ -3858,6 +4148,7 @@ local function reset_draft()
 	draft.steps, draft.edit, draft.query, draft.filter, draft.dirty = {}, nil, "", 0, true
 	draft.known_pos, draft.me, draft.my_role, draft.filter_user, draft.sync_sig = {}, nil, nil, false, nil
 	draft.tentative, draft.build_h, draft.summary_sig = {}, nil, nil
+	draft.extra_bans, draft.extra_key = {}, nil
 	draft.store[draft.mode], draft.history[draft.mode], draft.target = draft.steps, {}, nil
 	draft.manual[draft.mode] = {}
 	W.list_scroll = 0
@@ -4129,11 +4420,20 @@ local function sync_free()
 				list[#list + 1] = id
 			end
 		end
+		local extra, keys = {}, {}
 		for j, id in ipairs(list) do
 			if j <= 10 then
 				set(10 + j, id)
+			else
+				extra[id] = true
+				keys[#keys + 1] = id
 			end
 			sig[#sig + 1] = "b" .. id
+		end
+		local key = table.concat(keys, ",")
+		if draft.extra_key ~= key then
+			draft.extra_bans, draft.extra_key = extra, key
+			changed = true
 		end
 	end
 	if changed then
@@ -4804,6 +5104,8 @@ local function click(right)
 		W.preview = not W.preview
 	elseif kind == "set_gear" then
 		W.set_gear = W.set_gear ~= arg and arg or nil
+	elseif kind == "set_provider" then
+		D.gh.switch(arg)
 	elseif kind == "set_src" then
 		set_cfg("source", arg)
 		draft.dirty = true
@@ -5171,6 +5473,7 @@ do
 		wait = "cd_ld_wait",
 		error = "cd_ld_error",
 		slow = "cd_ld_slow",
+		gh = "cd_ld_gh",
 	}
 
 	function load_stage()
@@ -5182,6 +5485,9 @@ do
 			if S.job then
 				return "matches"
 			end
+		end
+		if D.status == "cd_st_gh" then
+			return "gh"
 		end
 		if D.status == "cd_st_heroes" then
 			return "heroes"
@@ -5356,7 +5662,7 @@ do
 		if prog > 0 then
 			rect(cx - bw / 2, by, cx - bw / 2 + bw * prog, by + bh, fade(P.GOOD, a * 0.85), bh / 2)
 		end
-		if not D.sets[0].stats then
+		if not D.sets[0].stats and cfg.provider == 1 then
 			local hint = L("cd_ld_first")
 			text(W.fonts.regular, px(10), hint, cx - tw(W.fonts.regular, px(10), hint) / 2, by + px(22), fade(P.DIM, a))
 		end
@@ -5848,6 +6154,10 @@ do
 		end
 
 		section(C, "cd_sec_data")
+		local py = C.y
+		local pcy, _, pend = row(C, "\u{f233}", L("cd_set_provider"), "prov")
+		seg(C, "st_prov", { "GitHub", "OpenDota" }, cfg.provider, "set_provider", pcy)
+		tip("st_prov_tip", left, py, pend, py + row_h, L("cd_set_provider"), L("cd_set_provider_tip"))
 		local cy = row(C, "\u{f1c0}", L("cd_set_source"), "src")
 		seg(C, "st_src", { L("cd_src_short0"), L("cd_src_long1") }, source(), "set_src", cy)
 		local note_h = math.floor(tween("st_cm_note", source() == 1 and px(K.CM_NOTE_H) or 0, K.PAGE_TIME) + 0.5)
@@ -5855,7 +6165,7 @@ do
 			local na = a * clamp(note_h / px(K.CM_NOTE_H), 0, 1)
 			Render.PushClip(Vec2(x, C.y), Vec2(x + w, C.y + note_h), true)
 			local CM = D.sets[1]
-			local n = #CM.recs
+			local n = math.max(#CM.recs, CM.stats and CM.stats.n or 0)
 			local days = CM.oldest and math.max(1, math.floor((os.time() - CM.oldest) / 86400 + 0.5)) or nil
 			local rate = (days and n > 0) and n / days or nil
 			local l1 = C.y + px(12)
