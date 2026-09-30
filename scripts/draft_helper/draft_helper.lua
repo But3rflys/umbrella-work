@@ -4471,6 +4471,8 @@ do
 						lines[2] = L("cd_tip_swap_why"):format(hero and hero.name or "?", it and it.label or r.item)
 						d.reason = r.e
 					end
+				elseif s.must and s.vs then
+					d.reason = s.vs[1]
 				end
 				lines[#lines + 1] = I.body(s)
 			end
@@ -6655,7 +6657,7 @@ do
 			{ name = "black_king_bar", label = "Black King Bar", state = "later", t = 1559, cost = 4050 },
 			{ name = "butterfly", label = "Butterfly", state = "later", t = 1598, cost = 5450 },
 			{ name = "monkey_king_bar", label = "Monkey King Bar", state = "later", t = 1880, cost = 5000,
-				from = "Hurricane Pike", reason = 44 },
+				reason = 44, counter = { "Phantom Assassin", "evasion" } },
 			{ name = "satanic", label = "Satanic", state = "later", t = 2084, cost = 5050,
 				base = { name = "mask_of_madness", label = "Mask of Madness" }, kind = "dis" },
 		},
@@ -6679,9 +6681,9 @@ do
 			D0.ready = true
 			for _, d in ipairs(D0.slots) do
 				local lines = {}
-				if d.from then
-					lines[1] = L("cd_tip_swap"):format(d.from)
-					lines[2] = L("cd_tip_swap_why"):format("Phantom Assassin", "Butterfly")
+				if d.counter then
+					lines[1] = L("cd_tip_item_vs"):format(d.counter[1])
+					lines[2] = L("cd_th_" .. d.counter[2])
 				end
 				if d.base then
 					lines[#lines + 1] = L(d.kind == "up" and "cd_tip_up_from" or "cd_tip_dis_from"):format(d.base.label)
