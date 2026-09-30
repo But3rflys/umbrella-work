@@ -1163,6 +1163,7 @@ local K = {
 
 	PANEL_EVERY = 0.5,
 	PILL_QUEUE = 6,
+	QFLASH = 0.4,
 	STRIP_COLS = 8,
 	SUM_STEP_W = 56,
 	PANEL_STATES = {
@@ -4840,6 +4841,20 @@ local function click(right)
 		set_cfg("pzoom", clamp(cfg.pzoom + (kind == "set_pzoom_up" and 10 or -10), 60, 160))
 	elseif kind == "bpos" then
 		I.bpos[arg.h] = arg.p
+	elseif kind == "qbuy" then
+		if not right then
+			local item = I.by_name[arg.name]
+			local ok, info = pcall(Player.GetQuickBuyInfo, Players.GetLocal())
+			local has = false
+			for _, id in ipairs(ok and type(info) == "table" and type(info.m_quickBuyItems) == "table" and info.m_quickBuyItems or {}) do
+				if item and id == item.id then
+					has = true
+				end
+			end
+			if has or pcall(Engine.SetQuickBuy, arg.name, false) then
+				W.qflash = { id = arg.id, t = os.clock() }
+			end
+		end
 	elseif kind == "pdrag" then
 		if not right then
 			W.pdrag, W.pdx, W.pdy = true, cx - W.px, cy - W.py
@@ -6344,6 +6359,16 @@ do
 		return x
 	end
 
+	function SM.qbuy(id, name, x0, y0, x1, y1, a, r)
+		hit(x0, y0, x1, y1, "qbuy", { id = id, name = name })
+		local hv = approach("qb_" .. id, hovered(x0, y0, x1, y1) and 1 or 0, 20)
+		local fl = W.qflash and W.qflash.id == id and clamp(1 - (os.clock() - W.qflash.t) / K.QFLASH, 0, 1) or 0
+		local k = 0.08 * hv + 0.3 * fl
+		if k > 0.005 then
+			rect(x0, y0, x1, y1, fade(Color(255, 255, 255, math.floor(255 * k)), a), r or px(4))
+		end
+	end
+
 	function SM.build(sm, row, left, right, by, fade_in)
 		local hero = row and D.by_id[row.h]
 		local ba = fade_in(8)
@@ -6394,6 +6419,7 @@ do
 		local sx = left
 		for n, st in ipairs(build.start) do
 			SM.item(st.item.name, sx, by, iw, ih, st.q, sa)
+			SM.qbuy("sti" .. n, st.item.name, sx, by, sx + iw, by + ih, sa)
 			tip("sti" .. n, sx, by, sx + iw, by + ih, st.q > 1 and ("%s x%d"):format(st.item.label, st.q) or st.item.label, "")
 			sx = sx + iw + px(5)
 		end
@@ -6414,6 +6440,7 @@ do
 			local y0 = by + ((n - 1) // cols) * row_h
 			local ia = fade_in(10 + n * 0.5)
 			SM.item(slot.item.name, x0, y0, sw, sh, nil, ia)
+			SM.qbuy("sli" .. n, slot.item.name, x0, y0, x0 + sw, y0 + sh, ia)
 			local src_item = slot.base or (slot.pre and slot.pre.item)
 			if src_item then
 				local ring = math.max(2, px(2))
@@ -6449,6 +6476,7 @@ do
 			local pa = fade_in(14)
 			local siw, sih = px(36), px(26)
 			SM.item(sp.item.name, left, by, siw, sih, sp.q, pa)
+			SM.qbuy("spare", sp.item.name, left, by, left + siw, by + sih, pa)
 			local scy = by + sih / 2
 			local tx = left + siw + px(10)
 			tx = tx + text(W.fonts.regular, px(11), L("cd_build_spare"), tx, scy, fade(P.MUTED, pa)) + px(5)
@@ -6849,6 +6877,12 @@ do
 		end
 	end
 
+	function PN.qbuy(plan, id, name, x0, y0, x1, y1, a, r)
+		if plan ~= PN.DEMO and plan ~= PN.NONE then
+			SM.qbuy("p" .. id, name, x0, y0, x1, y1, a, r)
+		end
+	end
+
 	function PN.need(plan, d)
 		local gold = plan == PN.DEMO and PN.DEMO.gold or G.gold
 		local need = math.max(0, (d.cost or 0) - (d.have or 0))
@@ -6949,6 +6983,7 @@ do
 		for i, d in ipairs(st.items) do
 			local sx = ix0 + (i - 1) * (iw + px(3))
 			PN.slot(d, sx, math.floor(cy - ih / 2), iw, ih, a)
+			PN.qbuy(plan, "st" .. i, d.name, sx, math.floor(cy - ih / 2), sx + iw, math.floor(cy - ih / 2) + ih, a)
 			tip("pst" .. i, sx, cy - ih / 2, sx + iw, cy + ih / 2, d.title or d.label, "")
 		end
 	end
@@ -6991,6 +7026,7 @@ do
 			local sx = x + pad + ((i - 1) % cols) * (iw + gap)
 			local iy = sy + ((i - 1) // cols) * row_h
 			PN.slot(d, sx, iy, iw, ih, a)
+			PN.qbuy(plan, "n" .. i, d.name, sx, iy, sx + iw, iy + ih, a)
 			tip("pn" .. i, sx, iy, sx + iw, iy + ih, d.label, d.body)
 		end
 		local ny = sy + sh + px(15)
@@ -7028,6 +7064,7 @@ do
 			if d.state == "next" then
 				rect(x + px(6), ry + px(1), x + w - px(6), ry + row_h - px(1), fade(Color(255, 255, 255, 14), a), px(7))
 			end
+			PN.qbuy(plan, "l" .. i, d.name, x + px(6), ry + px(1), x + w - px(6), ry + row_h - px(1), a, px(7))
 			local ix = x + px(12)
 			PN.slot(d, ix, math.floor(rcy - ih / 2), iw, ih, a)
 			local tx = ix + iw + px(10)
@@ -7090,6 +7127,7 @@ do
 		local ix = x + px(6)
 		if d then
 			PN.slot(d, ix, cy - math.floor(ih / 2), iw, ih, a)
+			PN.qbuy(plan, "pp", d.name, ix, cy - math.floor(ih / 2), ix + iw, cy - math.floor(ih / 2) + ih, a)
 			tip("pp", ix, cy - ih / 2, ix + iw, cy + ih / 2, d.label, d.body or "")
 		else
 			local face = mini(plan.hero)
@@ -7112,6 +7150,7 @@ do
 			qx = qx + px(9)
 			for i, sl in ipairs(queue) do
 				PN.slot(sl, qx, cy - math.floor(qh / 2), qw, qh, a)
+				PN.qbuy(plan, "pq" .. i, sl.name, qx, cy - math.floor(qh / 2), qx + qw, cy - math.floor(qh / 2) + qh, a)
 				tip("pq" .. i, qx, cy - qh / 2, qx + qw, cy + qh / 2, sl.label, sl.body or "")
 				qx = qx + qw + qg
 			end
@@ -7123,6 +7162,7 @@ do
 			local sh = px(16)
 			for i, it in ipairs(plan.start.items) do
 				PN.slot(it, sx, cy2 - sh / 2, px(22), sh, a)
+				PN.qbuy(plan, "ps" .. i, it.name, sx, cy2 - sh / 2, sx + px(22), cy2 + sh / 2, a)
 				tip("pst" .. i, sx, cy2 - sh / 2, sx + px(22), cy2 + sh / 2, it.title or it.label, "")
 				sx = sx + px(25)
 			end
