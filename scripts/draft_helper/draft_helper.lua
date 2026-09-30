@@ -788,7 +788,7 @@ local function log(fmt, ...)
 end
 
 local K = {
-	VERSION = "1.2.3",
+	VERSION = "1.2.2",
 	UPDATE_URL = "https://raw.githubusercontent.com/But3rflys/umbrella-work/main/scripts/draft_helper/version.json",
 	UPDATE_EVERY = 6 * 3600,
 	UPDATE_MIN_SIZE = 50000,
@@ -5802,17 +5802,19 @@ do
 		local gs = gear(C, "panel", cy)
 		mini_switch("panel", C.r - gs - px(8), cy, a)
 		hit(C.x0, cy - row_h / 2, C.r - gs - px(4), cy + row_h / 2, "set_toggle", "panel")
-		cy = row(C, "\u{f06e}", L("cd_set_preview"), "preview")
-		local plabel = W.preview and L("cd_preview_hide") or L("cd_preview_show")
-		local pbw = tw(W.fonts.medium, px(11), plabel) + px(24)
-		local pbh = px(22)
-		local pon = W.preview == true
-		local pbx0 = C.r - pbw
-		local phv = approach("st_prev", (not covered and hovered(C.x0, cy - row_h / 2, C.x1, cy + row_h / 2)) and 1 or 0, 20)
-		rect(pbx0, cy - pbh / 2, C.r, cy + pbh / 2, fade(pon and P.CHIP_ON or mix(P.CELL, P.HOVER, phv), a), px(6))
-		text(W.fonts.medium, px(11), plabel, pbx0 + px(12), cy, fade(P.TEXT, a))
-		hit(C.x0, cy - row_h / 2, C.x1, cy + row_h / 2, "set_preview")
-		tip("st_prev", pbx0, cy - pbh / 2, C.r, cy + pbh / 2, L("cd_set_preview"), L("cd_tip_preview"))
+		if cfg.panel == 1 then
+			cy = row(C, "\u{f06e}", L("cd_set_preview"), "preview")
+			local plabel = W.preview and L("cd_preview_hide") or L("cd_preview_show")
+			local pbw = tw(W.fonts.medium, px(11), plabel) + px(24)
+			local pbh = px(22)
+			local pon = W.preview == true
+			local pbx0 = C.r - pbw
+			local phv = approach("st_prev", (not covered and hovered(C.x0, cy - row_h / 2, C.x1, cy + row_h / 2)) and 1 or 0, 20)
+			rect(pbx0, cy - pbh / 2, C.r, cy + pbh / 2, fade(pon and P.CHIP_ON or mix(P.CELL, P.HOVER, phv), a), px(6))
+			text(W.fonts.medium, px(11), plabel, pbx0 + px(12), cy, fade(P.TEXT, a))
+			hit(C.x0, cy - row_h / 2, C.x1, cy + row_h / 2, "set_preview")
+			tip("st_prev", pbx0, cy - pbh / 2, C.r, cy + pbh / 2, L("cd_set_preview"), L("cd_tip_preview"))
+		end
 		toggle(C, "\u{f52b}", "auto", L("cd_set_auto"), "auto")
 		toggle(C, "\u{f188}", "debug", L("cd_set_debug"), "debug")
 
@@ -7020,7 +7022,7 @@ do
 
 	function draw_panel()
 		W.panel_rect = nil
-		if not W.open then
+		if not W.open or cfg.panel ~= 1 then
 			W.preview = false
 		end
 		local preview = W.preview and W.open and W.vis > 0 and not G.live
