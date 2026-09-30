@@ -448,6 +448,8 @@ local localization = qLocalization.new({
 		cd_news_sub = "update installed",
 		cd_news_ver = "version %s",
 		cd_news_ok = "Got it",
+		cd_set_news = "What's new in %s",
+		cd_news_open = "Open",
 		cd_nw1_t = "GitHub server.",
 		cd_nw1 = "stats and builds come as ready files\nin seconds, works without a VPN",
 		cd_nw2_t = "counter picker.",
@@ -692,6 +694,8 @@ local localization = qLocalization.new({
 		cd_news_sub = "обновление установлено",
 		cd_news_ver = "версия %s",
 		cd_news_ok = "Понятно",
+		cd_set_news = "Что нового в %s",
+		cd_news_open = "Открыть",
 		cd_nw1_t = "сервер GitHub.",
 		cd_nw1 = "статистика и сборки качаются\nготовыми файлами за секунды, работает без VPN",
 		cd_nw2_t = "контрпикер.",
@@ -5483,6 +5487,8 @@ local function click(right)
 		if not right then
 			W.drag, W.dx, W.dy = true, cx - W.x, cy - W.y
 		end
+	elseif kind == "set_news" then
+		W.news = true
 	elseif kind == "news_ok" then
 		W.news = nil
 		Config.WriteInt("draft_helper", "seen", K.VNUM)
@@ -5864,7 +5870,7 @@ do
 	end
 
 	local function tip(id, x0, y0, x1, y1, title, body, pos)
-		if W.nohit or (W.pos_menu and id:sub(1, 2) ~= "pm") then
+		if W.nohit or W.slot_menu or (W.pos_menu and id:sub(1, 2) ~= "pm") then
 			return
 		end
 		if hovered(x0, y0, x1, y1) then
@@ -6602,6 +6608,15 @@ do
 		end
 		toggle(C, "\u{f52b}", "auto", L("cd_set_auto"), "auto")
 		toggle(C, "\u{f188}", "debug", L("cd_set_debug"), "debug")
+		cy = row(C, "\u{f005}", L("cd_set_news"):format(K.VERSION), "news")
+		local nlabel = L("cd_news_open")
+		local nbw = tw(W.fonts.medium, px(11), nlabel) + px(24)
+		local nbh = px(22)
+		local nbx0 = C.r - nbw
+		local nhv = approach("st_news", (not covered and hovered(C.x0, cy - row_h / 2, C.x1, cy + row_h / 2)) and 1 or 0, 20)
+		rect(nbx0, cy - nbh / 2, C.r, cy + nbh / 2, fade(mix(P.CELL, P.HOVER, nhv), a), px(6))
+		text(W.fonts.medium, px(11), nlabel, nbx0 + px(12), cy, fade(P.TEXT, a))
+		hit(C.x0, cy - row_h / 2, C.x1, cy + row_h / 2, "set_news")
 
 		Render.PopClip()
 		W.hit_clip = nil
