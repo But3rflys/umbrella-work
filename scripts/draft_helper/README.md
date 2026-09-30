@@ -3,11 +3,12 @@
 подсказки на драфте: контрпики, синергия и баны / draft helper: counters, synergy and bans
 
 <!-- releases:start -->
-Скачать: [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.1.1/draft_helper.lua) — `draft-helper-v1.1.1`, 2026-09-29
+Скачать: [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.0/draft_helper.lua) — `draft-helper-v1.2.0`, 2026-09-30
 
 | версия | дата | файл | загрузок |
 | --- | --- | --- | --- |
-| [`draft-helper-v1.1.1`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.1.1) | 2026-09-29 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.1.1/draft_helper.lua) | 0 |
+| [`draft-helper-v1.2.0`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.2.0) | 2026-09-30 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.0/draft_helper.lua) | 0 |
+| [`draft-helper-v1.1.1`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.1.1) | 2026-09-29 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.1.1/draft_helper.lua) | 1 |
 | [`draft-helper-v1.1.0`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.1.0) | 2026-09-29 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.1.0/draft_helper.lua) | 0 |
 
 [Все релизы](https://github.com/But3rflys/umbrella-work/releases?q=draft-helper&expanded=true)
@@ -23,6 +24,8 @@
 - в свободном режиме сам подтягивает пики союзников, врагов и баны
 - статистика рейтинговых матчей выбранного ранга или Captains Mode, кэш в одном файле
 - шанс победы по драфту
+- итог драфта: таблица «кто кого» и готовая сборка предметов против вражеского пика по про-матчам
+- панель сборки в игре: следующий предмет, апгрейды и замены по предметам врагов
 - настройки прямо в окне, обновление одной кнопкой
 
 ## Установка
@@ -47,6 +50,8 @@ A draft window on a key. Picks and bans of both teams, who to pick and who to ba
 - in free mode it fills in ally and enemy picks and bans by itself
 - stats from ranked matches of the chosen rank or Captains Mode, cache in a single file
 - draft win chance
+- draft summary: a matchup table and a ready item build against the enemy pick from pro matches
+- in-game build panel: next item, upgrades and swaps by enemy items
 - settings right in the window, one-button updates
 
 ## Install
