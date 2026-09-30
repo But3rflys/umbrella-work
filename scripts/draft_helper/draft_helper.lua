@@ -1041,10 +1041,29 @@ local K = {
 		disperser = { phys = 0.2 },
 	},
 	MUST = {
-		{ "evasion", 0.8, { [1] = true, [2] = true, [3] = true }, "Carry" },
+		{ "evasion", 0.8, { [1] = true, [2] = true, [3] = true }, true },
 		{ "heal", 0.8, { [4] = true } },
 	},
 	MUST_MAX = 2,
+	REACT_MAX = 2,
+	PHYS_MIN = 0.8,
+	REACT_RATE = 0.03,
+	RATE_MIN_GAMES = 60,
+	PHYS_ITEMS = {
+		bfury = true, manta = true, butterfly = true, greater_crit = true, lesser_crit = true, desolator = true,
+		monkey_king_bar = true, skadi = true, satanic = true, mjollnir = true, maelstrom = true, abyssal_blade = true,
+		basher = true, disperser = true, diffusal_blade = true, silver_edge = true, bloodthorn = true, echo_sabre = true,
+		harpoon = true, armlet = true, mask_of_madness = true, sange_and_yasha = true, nullifier = true, radiance = true,
+	},
+	REACT = {
+		{ items = { "butterfly" }, threat = "evasion", counters = { "monkey_king_bar", "bloodthorn" }, phys = true },
+		{ items = { "ghost", "ethereal_blade", "glimmer_cape", "cyclone", "wind_waker" }, threat = "saves",
+			counters = { "nullifier" }, rate = true },
+		{ items = { "satanic", "heart", "holy_locket", "bloodstone", "guardian_greaves" }, threat = "heal",
+			counters = { "spirit_vessel", "skadi", "shivas_guard" } },
+		{ items = { "sheepstick", "orchid", "bloodthorn", "abyssal_blade", "nullifier" }, threat = "targeted",
+			counters = { "sphere", "lotus_orb" } },
+	},
 	MUST_COVER = 0.5,
 	FIT = {
 		black_king_bar = { core = true },
@@ -1084,7 +1103,7 @@ local K = {
 		blade_mail = { core = { str = true } },
 		crimson_guard = { core = { str = true } },
 		aeon_disk = { core = true },
-		nullifier = { core = { str = true, agi = true, all = true } },
+		nullifier = { core = true },
 	},
 	ANTI = {
 		monkey_king_bar = { butterfly = 0.5, talisman_of_evasion = 0.3 },
@@ -1114,7 +1133,7 @@ local K = {
 		blood_grenade = 2, faerie_fire = 2,
 	},
 	COUNTERS = {
-		black_king_bar = { magic = 0.5, disable = 0.5, silence = 0.4, roots = 0.4 },
+		black_king_bar = { magic = 0.5, disable = 0.5, silence = 0.4, roots = 0.4, targeted = 0.5 },
 		pipe = { magic = 0.5 },
 		glimmer_cape = { magic = 0.4 },
 		mage_slayer = { magic = 0.35 },
@@ -1133,7 +1152,7 @@ local K = {
 		rod_of_atos = { escape = 0.5 },
 		gungir = { escape = 0.5, illusions = 0.7 },
 		diffusal_blade = { escape = 0.4 },
-		disperser = { escape = 0.4 },
+		disperser = { escape = 0.4, saves = 0.8 },
 		nullifier = { escape = 0.3, saves = 1 },
 		silver_edge = { passives = 1 },
 		monkey_king_bar = { evasion = 1 },
@@ -2982,10 +3001,7 @@ do
 			for _, e in ipairs(them) do
 				strongest = math.max(strongest, (per[e] or {})[threat] or 0)
 			end
-			local role_ok = rule[4] == nil
-			for _, role in ipairs(rule[4] and D.by_id[h] and D.by_id[h].roles or {}) do
-				role_ok = role_ok or role == rule[4]
-			end
+			local role_ok = not rule[4] or I.physical(h, pos)
 			if strongest >= rule[2] and rule[3][pos or 0] and role_ok and #added < K.MUST_MAX then
 				local covered = 0
 				for _, s in ipairs(slots) do
@@ -3033,6 +3049,105 @@ do
 						slots[idx] = new
 						added[#added + 1] = new
 					end
+				end
+			end
+		end
+		return added
+	end
+
+	function I.physical(h, pos)
+		local all = I.buys[h]
+		local data = all and pos and all.pos[pos]
+		if not data or data.g <= 0 then
+			return false
+		end
+		local sum = 0
+		for name in pairs(K.PHYS_ITEMS) do
+			local r = data.rows[name]
+			if r then
+				sum = sum + r.n / data.g
+			end
+		end
+		return sum >= K.PHYS_MIN
+	end
+
+	function I.rate(h, pos, name)
+		local all = I.buys[h]
+		if not all then
+			return 0
+		end
+		local d = pos and all.pos[pos]
+		if d and d.g >= K.RATE_MIN_GAMES then
+			local r = d.rows[name]
+			return r and r.n / d.g or 0
+		end
+		local n, g = 0, 0
+		for _, dd in pairs(all.pos) do
+			g = g + dd.g
+			local r = dd.rows[name]
+			if r then
+				n = n + r.n
+			end
+		end
+		return g > 0 and n / g or 0
+	end
+
+	function I.react(slots, cands, them, seen, h, pos, locked)
+		local added = {}
+		local phys = I.physical(h, pos)
+		for _, rule in ipairs(K.REACT) do
+			local source
+			for _, e in ipairs(them) do
+				for _, name in ipairs(rule.items) do
+					if not source and seen[e] and seen[e][name] then
+						source = { e = e, item = name }
+					end
+				end
+			end
+			local covered = false
+			for _, sl in ipairs(slots) do
+				if ((K.COUNTERS[sl.item.name] or {})[rule.threat] or 0) >= K.MUST_COVER then
+					covered = true
+				end
+			end
+			local pick
+			if source and not covered and (not rule.phys or phys) and #added < K.REACT_MAX then
+				for _, name in ipairs(rule.counters) do
+					if not pick and I.by_name[name] and fits_hero(name, h, pos)
+						and (not rule.rate or I.rate(h, pos, name) >= K.REACT_RATE) then
+						pick = name
+					end
+				end
+			end
+			if pick then
+				local item = I.by_name[pick]
+				local cd = cands[pick] or { item = item, count = 0, share = 0, t = est_time(item, cands), est = true }
+				local idx, low
+				for i, sl in ipairs(slots) do
+					if not locked(sl) and not sl.must and not K.BOOTS[sl.item.name] then
+						local ok = true
+						for j, o in ipairs(slots) do
+							if j ~= i and (o.item == item or related(o.item, item) or (not K.BOOTS[o.item.name] and siblings(o.item, item))) then
+								ok = false
+							end
+						end
+						local v = sl.score or sl.share or 0
+						if ok and (not idx or v < low) then
+							idx, low = i, v
+						end
+					end
+				end
+				if idx then
+					local new = {}
+					for k, v in pairs(cd) do
+						new[k] = v
+					end
+					new.why = { { threat = rule.threat, x = K.COUNTERS[pick] and K.COUNTERS[pick][rule.threat] or 1 } }
+					new.vs = { source.e }
+					new.must, new.replaced, new.reason = rule.threat, slots[idx].item, source
+					new.drop, new.core = nil, nil
+					slots[idx] = new
+					added[#added + 1] = new
 				end
 			end
 		end
@@ -4299,11 +4414,22 @@ do
 		local cands = I.collect(data)
 		if adapt then
 			swap_slots(slots, cands, T0, T1, from, anti, anti_from)
-			for _, new in ipairs(I.must(slots, cands, T1, per1, G.them, G.hero, G.pos, function(s)
-				return s.core or s.bought or owns(s.item) or progress(s.item, {}, 0, K.SIGNAL_MIN) > 0
-			end)) do
+			local function locked(sl)
+				return sl.core or sl.bought or owns(sl.item) or progress(sl.item, {}, 0, K.SIGNAL_MIN) > 0
+			end
+			for _, new in ipairs(I.must(slots, cands, T1, per1, G.them, G.hero, G.bpos, locked)) do
 				new.swapped, new.from = true, new.replaced
 				new.reason = reason_for(new, from)
+			end
+			for _, new in ipairs(I.react(slots, cands, G.them, G.seen, G.hero, G.bpos, locked)) do
+				new.swapped, new.from = true, new.replaced
+			end
+			for _, sl in ipairs(slots) do
+				if sl.swapped then
+					local hero = sl.reason and D.by_id[sl.reason.e]
+					log("panel swap: %s -> %s (%s %s)", sl.from and sl.from.name or "?", sl.item.name,
+						hero and hero.name or "-", sl.reason and sl.reason.item or "-")
+				end
 			end
 		end
 		table.sort(slots, function(a, b)
@@ -4460,15 +4586,24 @@ do
 					taken[ei.id] = true
 					them[#them + 1] = ei.id
 					if not Entity.IsDormant(e) then
-						local seen = G.seen[ei.id] or {}
-						G.seen[ei.id] = seen
+						local old = G.seen[ei.id] or {}
+						local now = {}
 						for slot = 0, K.ENEMY_INV_LAST do
 							local item = NPC.GetItemByIndex(e, slot)
 							local name = item and item_name(item)
 							if name then
-								seen[name] = true
+								now[name] = true
+								if not old[name] and (K.ENEMY_ITEMS[name] or K.ANTI[name]) then
+									log("panel: %s has %s", ei.name, name)
+								end
 							end
 						end
+						for name in pairs(old) do
+							if not now[name] and (K.ENEMY_ITEMS[name] or K.ANTI[name]) then
+								log("panel: %s no longer has %s", ei.name, name)
+							end
+						end
+						G.seen[ei.id] = now
 					end
 				end
 			end
