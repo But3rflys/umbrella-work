@@ -943,25 +943,27 @@ local K = {
 
 	ITEMS_URL = "https://api.opendota.com/api/constants/items",
 	ITEMS_TTL = 7 * 86400,
-	BUYS_SQL = "with p as (select match_id, player_slot<128 r, purchase_log, "
-		.. "array[item_0,item_1,item_2,item_3,item_4,item_5,backpack_0,backpack_1,backpack_2] fin "
-		.. "from player_matches where hero_id=%d and purchase_log is not null order by match_id desc limit %d), "
-		.. "tm as (select pm.match_id, pm.hero_id, coalesce(pm.lane_role,4) l, pm.gold_per_min gp from player_matches pm "
-		.. "join p on p.match_id=pm.match_id and (pm.player_slot<128)=p.r where pm.gold_per_min is not null), "
-		.. "c as (select *, row_number() over (partition by match_id, l order by gp desc) lr from tm), "
-		.. "d as (select *, case when l in (1,2,3) and lr=1 then l end core from c), "
-		.. "e as (select *, row_number() over (partition by match_id, (core is null) order by gp desc) sr from d), "
-		.. "q as (select match_id, coalesce(core, case when sr=1 then 4 else 5 end) pos from e where hero_id=%d), "
-		.. "x as (select p.match_id, q.pos, v->>'key' i, (v->>'time')::int t from p join q using(match_id), unnest(p.purchase_log) v), "
-		.. "f as (select match_id, pos, i, min(t) t, sum(case when t<=0 then 1 else 0 end) s from x group by 1,2,3), "
-		.. "k as (select distinct p.match_id, q.pos, unnest(p.fin) it from p join q using(match_id)), "
-		.. "g as (select pos, count(*) g from q group by pos) "
-		.. "select f.pos p, i, count(*) n, percentile_cont(0.5) within group (order by t)::int t, sum(s) s, "
-		.. "sum(case when s>0 then 1 else 0 end) m, max(g.g) g from f join g using(pos) group by f.pos, i "
-		.. "having count(*) >= greatest(2, max(g.g) * 0.03) "
-		.. "union all select k.pos, '#' || it, count(*), 0, 0, 0, max(g.g) from k join g using(pos) where it>0 "
-		.. "group by k.pos, it having count(*) >= greatest(2, max(g.g) * 0.03)",
-	BUYS_VER = 3,
+	BUYS_SQL = "with p as (select pm.match_id, pm.player_slot<128 r, pm.purchase_log, ((pm.player_slot<128) = m.radiant_win) "
+		.. "won, "
+		.. "array[pm.item_0,pm.item_1,pm.item_2,pm.item_3,pm.item_4,pm.item_5,pm.backpack_0,pm.backpack_1,pm.backpack_2] "
+		.. "fin from player_matches pm join matches m using(match_id) where pm.hero_id=%d and pm.purchase_log is not null "
+		.. "order by pm.match_id desc limit %d), tm as (select pm.match_id, pm.hero_id, coalesce(pm.lane_role,4) l, "
+		.. "pm.gold_per_min gp from player_matches pm join p on p.match_id=pm.match_id and (pm.player_slot<128)=p.r where "
+		.. "pm.gold_per_min is not null), c as (select *, row_number() over (partition by match_id, l order by gp desc) "
+		.. "lr from tm), d as (select *, case when l in (1,2,3) and lr=1 then l end core from c), e as (select *, "
+		.. "row_number() over (partition by match_id, (core is null) order by gp desc) sr from d), q as (select match_id, "
+		.. "coalesce(core, case when sr=1 then 4 else 5 end) pos from e where hero_id=%d), x as (select p.match_id, "
+		.. "q.pos, p.won, v->>'key' i, (v->>'time')::int t from p join q using(match_id), unnest(p.purchase_log) v), f as "
+		.. "(select match_id, pos, won, i, min(t) t, sum(case when t<=0 then 1 else 0 end) s from x group by 1,2,3,4), k "
+		.. "as (select distinct p.match_id, q.pos, unnest(p.fin) it from p join q using(match_id)), g as (select q.pos, "
+		.. "count(*) g, sum(case when p.won then 1 else 0 end) gw from q join p using(match_id) group by q.pos) select "
+		.. "f.pos p, i, count(*) n, sum(case when won then 1 else 0 end) w, percentile_cont(0.5) within group (order by "
+		.. "t)::int t, sum(s) s, sum(case when s>0 then 1 else 0 end) m, max(g.g) g, max(g.gw) gw from f join g "
+		.. "using(pos) group by f.pos, i having count(*) >= greatest(2, max(g.g) * 0.03) union all select k.pos, '#' || "
+		.. "it, count(*), 0, 0, 0, 0, max(g.g), max(g.gw) from k join g using(pos) where it>0 group by k.pos, it having "
+		.. "count(*) >= greatest(2, max(g.g) * 0.03)",
+	BUYS_VER = 4,
+	WIN_MIN = 20,
 	BUYS_MATCHES = 400,
 	BUYS_MIN = 30,
 	BUYS_TTL = 3 * 86400,
@@ -977,7 +979,12 @@ local K = {
 	SLOTS = 6,
 	SLOT_MIN_COST = 1000,
 	SLOT_EXTRA = { blink = true, ghost = true },
-	SLOT_SKIP = { ultimate_scepter_2 = true, ward_dispenser = true },
+	SLOT_SKIP = { ultimate_scepter_2 = true, ward_dispenser = true, rapier = true },
+	EARLY_EXTRA = { bottle = true },
+	EARLY_SHARE = 0.5,
+	EARLY_T = 900,
+	EARLY_MIN_COST = 300,
+	EARLY_MAX = 3,
 	BOOTS = {
 		power_treads = true, phase_boots = true, arcane_boots = true, tranquil_boots = true, travel_boots = true,
 		travel_boots_2 = true, guardian_greaves = true, boots_of_bearing = true,
@@ -989,6 +996,9 @@ local K = {
 	CORE_LOCK = 3,
 	SIBLING_COST = 800,
 	UPGRADE_MIN = 0.15,
+	PRE_SHARE = 0.3,
+	PRE_COST = 1500,
+	PRE_GAP = 180,
 	DISASSEMBLE = {
 		mask_of_madness = true, echo_sabre = true, pers = true, vanguard = true, vladmir = true, sange_and_yasha = true,
 		kaya_and_sange = true, yasha_and_kaya = true, radiance = true, angels_demise = true,
@@ -1152,6 +1162,9 @@ local K = {
 		.. "wisp escape .3 heal .8;witch_doctor heal .6",
 
 	PANEL_EVERY = 0.5,
+	PILL_QUEUE = 6,
+	STRIP_COLS = 8,
+	SUM_STEP_W = 56,
 	PANEL_STATES = {
 		[Enum.GameState.DOTA_GAMERULES_STATE_PRE_GAME] = true,
 		[Enum.GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS] = true,
@@ -2636,15 +2649,16 @@ do
 			if p and p >= 1 and p <= 5 and type(name) == "string" and n and n > 0 and g and g > 0 then
 				local d = by[p]
 				if not d then
-					d = { g = g, rows = {}, fin = {} }
+					d = { g = g, gw = 0, rows = {}, fin = {} }
 					by[p] = d
 				end
 				d.g = math.max(d.g, g)
+				d.gw = math.max(d.gw, tonumber(r.gw) or 0)
 				local id = math.tointeger(tonumber(name:match("^#(%d+)$")))
 				if id then
 					d.fin[id] = n
 				else
-					d.rows[name] = { n = n, t = tonumber(r.t) or 0, s = tonumber(r.s) or 0, m = tonumber(r.m) or 0 }
+					d.rows[name] = { n = n, w = tonumber(r.w) or 0, t = tonumber(r.t) or 0, s = tonumber(r.s) or 0, m = tonumber(r.m) or 0 }
 				end
 			end
 		end
@@ -2749,10 +2763,12 @@ do
 					p = tonumber(r.p),
 					i = r.i,
 					n = tonumber(r.n) or 0,
+					w = tonumber(r.w) or 0,
 					t = tonumber(r.t) or 0,
 					s = tonumber(r.s) or 0,
 					m = tonumber(r.m) or 0,
 					g = tonumber(r.g) or 0,
+					gw = tonumber(r.gw) or 0,
 				}
 			end
 			I.buys_at[h] = os.time()
@@ -3094,13 +3110,16 @@ do
 
 	local function item_body(cd)
 		local lines = {}
+		if cd.pre then
+			lines[1] = L("cd_tip_up_from"):format(cd.pre.item.label)
+		end
 		if cd.why then
 			local names = {}
 			for _, e in ipairs(cd.vs) do
 				names[#names + 1] = D.by_id[e] and D.by_id[e].name or "?"
 			end
 			if #names > 0 then
-				lines[1] = L("cd_tip_item_vs"):format(table.concat(names, ", "))
+				lines[#lines + 1] = L("cd_tip_item_vs"):format(table.concat(names, ", "))
 			end
 			local threats = {}
 			for n = 1, math.min(2, #cd.why) do
@@ -3116,14 +3135,21 @@ do
 
 	I.body, I.related, I.siblings = item_body, related, siblings
 
+	function I.share(data, r)
+		if data.gw >= K.WIN_MIN then
+			return r.w / data.gw
+		end
+		return r.n / data.g
+	end
+
 	function I.collect(data)
 		local cands, boots = {}, nil
 		for name, r in pairs(data.rows) do
 			local item = I.by_name[name]
 			if item then
-				local cd = { item = item, count = r.n, t = r.t, share = r.n / data.g }
+				local cd = { item = item, count = r.n, t = r.t, share = I.share(data, r) }
 				if K.BOOTS[name] then
-					if not boots or r.n > boots.count then
+					if not boots or cd.share > boots.share then
 						boots = cd
 					end
 				elseif not K.SLOT_SKIP[name] and (K.SLOT_EXTRA[name] or (item.created and item.cost >= K.SLOT_MIN_COST)) then
@@ -3140,6 +3166,20 @@ do
 			end
 		end
 		return cands, boots
+	end
+
+	function I.pre(cd, data)
+		local best
+		for _, part in ipairs(cd.item.parts) do
+			local r = data.rows[part]
+			local p = I.by_name[part]
+			if r and p and r.n / data.g >= K.PRE_SHARE and r.t < cd.t - K.PRE_GAP
+				and ((p.created and p.cost >= K.PRE_COST) or (part == "boots" and K.BOOTS[cd.item.name]))
+				and (not best or p.cost > best.item.cost) then
+				best = { item = p, t = r.t }
+			end
+		end
+		return best
 	end
 
 	function I.upgrade(cd, cands, taken)
@@ -3219,6 +3259,45 @@ do
 			end
 		end
 		return out, gold
+	end
+
+	function I.early(data, picked, start)
+		local skip = {}
+		for _, st in ipairs(start) do
+			skip[st.item.name] = true
+		end
+		for _, cd in ipairs(picked) do
+			skip[cd.item.name] = true
+		end
+		local list = {}
+		for name, r in pairs(data.rows) do
+			local item = I.by_name[name]
+			if item and not skip[name] and not K.BOOTS[name] and r.t > 0 and r.t <= K.EARLY_T
+				and r.n / data.g >= K.EARLY_SHARE
+				and (K.EARLY_EXTRA[name] or (item.created and item.cost >= K.EARLY_MIN_COST and item.cost < K.SLOT_MIN_COST)) then
+				list[#list + 1] = { item = item, t = r.t, share = r.n / data.g }
+			end
+		end
+		table.sort(list, function(a, b)
+			if a.share ~= b.share then
+				return a.share > b.share
+			end
+			return a.item.name < b.item.name
+		end)
+		for n = #list, K.EARLY_MAX + 1, -1 do
+			list[n] = nil
+		end
+		for _, e in ipairs(list) do
+			for _, cd in ipairs(picked) do
+				for _, part in ipairs(cd.item.parts) do
+					if not e.up and cd.t > e.t and part == e.item.name then
+						e.up = cd.item
+					end
+				end
+			end
+			e.body = e.up and L("cd_tip_upgrade"):format(e.up.label) or ""
+		end
+		return list
 	end
 
 	function I.build(h, pos, them)
@@ -3317,6 +3396,7 @@ do
 			return a.item.cost < b.item.cost
 		end)
 		for _, cd in ipairs(picked) do
+			cd.pre = I.pre(cd, data)
 			local up = I.upgrade(cd, cands, picked)
 			if up then
 				cd.after, cd.after_kind = up, "up"
@@ -3325,8 +3405,16 @@ do
 			end
 			cd.body = item_body(cd)
 		end
+		local start, gold = start_items(data)
+		local early = I.early(data, picked, start)
 		local steps = {}
+		for _, e in ipairs(early) do
+			steps[#steps + 1] = { item = e.item, t = e.t, body = e.body, early = true }
+		end
 		for _, cd in ipairs(picked) do
+			if cd.pre then
+				steps[#steps + 1] = { item = cd.pre.item, t = cd.pre.t, body = L("cd_tip_upgrade"):format(cd.item.label) }
+			end
 			steps[#steps + 1] = cd
 			if cd.after then
 				steps[#steps + 1] = {
@@ -3344,7 +3432,6 @@ do
 			end
 			return (a.base and 1 or 0) < (b.base and 1 or 0)
 		end)
-		local start, gold = start_items(data)
 		local spare
 		if (T.invis or 0) >= K.SPARE_MIN then
 			local item = I.by_name[(pos and pos >= 4) and "ward_sentry" or "dust"]
@@ -3352,7 +3439,7 @@ do
 				spare = { item = item, q = 2, vs = vs_heroes({ invis = 1 }, them, per) }
 			end
 		end
-		local build = { slots = picked, steps = steps, start = start, gold = gold, spare = spare }
+		local build = { slots = picked, steps = steps, start = start, gold = gold, spare = spare, early = early }
 		I.builds[key] = build
 		return build
 	end
@@ -4264,7 +4351,7 @@ do
 						slots[idx] = {
 							item = item,
 							count = r and r.n or 0,
-							share = r and r.n / data.g or 0,
+							share = r and I.share(data, r) or 0,
 							t = r and r.t or G.time,
 							bought = true,
 						}
@@ -4372,10 +4459,16 @@ do
 		end)
 		local steps = {}
 		for _, sl in ipairs(slots) do
-			steps[#steps + 1] = { s = sl, item = sl.item, t = sl.t }
+			if sl.pre then
+				steps[#steps + 1] = { s = sl, item = sl.pre.item, t = sl.pre.t, pre = true }
+			end
+			steps[#steps + 1] = { s = sl, item = sl.item, t = sl.t, via = sl.pre and sl.pre.item }
 			if sl.after then
 				steps[#steps + 1] = { s = sl, item = sl.after.item, t = sl.after.t, base = sl.item, kind = sl.after_kind }
 			end
+		end
+		for _, e in ipairs(base.early or {}) do
+			steps[#steps + 1] = { item = e.item, t = e.t, early = e }
 		end
 		table.sort(steps, function(a, b)
 			if a.t ~= b.t then
@@ -4384,7 +4477,7 @@ do
 			return (a.base and 1 or 0) < (b.base and 1 or 0)
 		end)
 		local function step_done(st)
-			if st.base then
+			if st.base or st.pre or st.early then
 				return owns(st.item)
 			end
 			return st.s.bought or owns(st.item)
@@ -4399,10 +4492,12 @@ do
 		for i, st in ipairs(steps) do
 			local done = step_done(st)
 			st.have = done and 0 or progress(st.item, {}, 0)
-			st.signal = done and 0 or progress(st.item, {}, 0, K.SIGNAL_MIN, st.base and st.base.name)
+			st.signal = done and 0 or progress(st.item, {}, 0, K.SIGNAL_MIN, (st.base or st.via or {}).name)
 			if not done and i < last and st.signal == 0 then
-				st.skipped = true
-				skipped[#skipped + 1] = st
+				if not st.early then
+					st.skipped = true
+					skipped[#skipped + 1] = st
+				end
 			else
 				order[#order + 1] = st
 			end
@@ -4440,7 +4535,7 @@ do
 			end
 			local d = { name = name, label = st.item.label, cost = st.item.cost, q = st.q, have = math.min(have, st.q) }
 			d.state = d.have >= st.q and "done" or "next"
-			d.body = st.q > 1 and ("%s x%d"):format(st.item.label, st.q) or st.item.label
+			d.title = st.q > 1 and ("%s x%d"):format(st.item.label, st.q) or st.item.label
 			start.done = start.done and d.state == "done"
 			start.items[#start.items + 1] = d
 		end
@@ -4457,7 +4552,11 @@ do
 				d.state = "later"
 			end
 			local lines = {}
-			if st.base then
+			if st.early then
+				lines[1] = st.early.up and L("cd_tip_upgrade"):format(st.early.up.label) or nil
+			elseif st.pre then
+				lines[1] = L("cd_tip_upgrade"):format(s.item.label)
+			elseif st.base then
 				d.base, d.kind = { name = st.base.name, label = st.base.label }, st.kind
 				lines[1] = L(st.kind == "up" and "cd_tip_up_from" or "cd_tip_dis_from"):format(st.base.label)
 			else
@@ -4473,6 +4572,9 @@ do
 					end
 				elseif s.must and s.vs then
 					d.reason = s.vs[1]
+				end
+				if st.via then
+					d.base, d.kind = { name = st.via.name, label = st.via.label }, "up"
 				end
 				lines[#lines + 1] = I.body(s)
 			end
@@ -6300,43 +6402,48 @@ do
 		by = by + px(11)
 		local gap = px(6)
 		local steps = build.steps
-		local count_n = math.max(K.SLOTS, #steps)
-		local sw = math.min(px(64), math.floor((right - left - gap * (count_n - 1)) / count_n))
+		local fit = math.max(K.SLOTS, math.floor((right - left + gap) / (px(K.SUM_STEP_W) + gap)))
+		local rows = math.max(1, math.ceil(#steps / fit))
+		local cols = math.max(K.SLOTS, math.ceil(#steps / rows))
+		local sw = math.min(px(64), math.floor((right - left - gap * (cols - 1)) / cols))
 		local sh = math.floor(sw * 0.72 + 0.5)
 		local icon = px(16)
+		local row_h = sh + px(6) + icon + px(12)
 		for n, slot in ipairs(steps) do
-			local x0 = left + (n - 1) * (sw + gap)
+			local x0 = left + ((n - 1) % cols) * (sw + gap)
+			local y0 = by + ((n - 1) // cols) * row_h
 			local ia = fade_in(10 + n * 0.5)
-			SM.item(slot.item.name, x0, by, sw, sh, nil, ia)
-			if slot.base then
+			SM.item(slot.item.name, x0, y0, sw, sh, nil, ia)
+			local src_item = slot.base or (slot.pre and slot.pre.item)
+			if src_item then
 				local ring = math.max(2, px(2))
 				local bs = math.max(px(18), math.floor(sw * 0.52 + 0.5))
 				local bh = math.floor(bs * 0.73 + 0.5)
-				local bx, byy = x0 + sw - bs + px(6), by - px(6)
+				local bx, byy = x0 + sw - bs + px(6), y0 - px(6)
 				rect(bx - ring, byy - ring, bx + bs + ring, byy + bh + ring, fade(P.BG, ia), px(5))
-				local img = image("panorama/images/items/" .. slot.base.name .. "_png.vtex_c")
+				local img = image("panorama/images/items/" .. src_item.name .. "_png.vtex_c")
 				if img then
 					Render.Image(img, Vec2(bx, byy), Vec2(bs, bh), fade(P.WHITE, ia), px(3), K.ROUND)
 				end
 			end
 			local num = tostring(n)
 			local nw = tw(W.fonts.bold, px(10), num) + px(8)
-			rect(x0 + px(3), by + px(3), x0 + px(3) + nw, by + px(17), fade(P.SHADE, ia), px(4))
-			text(W.fonts.bold, px(10), num, x0 + px(7), by + px(10), fade(P.TEXT, ia))
+			rect(x0 + px(3), y0 + px(3), x0 + px(3) + nw, y0 + px(17), fade(P.SHADE, ia), px(4))
+			text(W.fonts.bold, px(10), num, x0 + px(7), y0 + px(10), fade(P.TEXT, ia))
 			if slot.vs and #slot.vs > 0 then
 				local count = #slot.vs
 				local vx = x0 + math.floor((sw - (count * icon + (count - 1) * px(2))) / 2)
 				for _, e in ipairs(slot.vs) do
 					local img = mini(e)
 					if img then
-						Render.Image(img, Vec2(vx, by + sh + px(6)), Vec2(icon, icon), fade(P.WHITE, ia))
+						Render.Image(img, Vec2(vx, y0 + sh + px(6)), Vec2(icon, icon), fade(P.WHITE, ia))
 					end
 					vx = vx + icon + px(2)
 				end
 			end
-			tip("sli" .. n, x0, by, x0 + sw, by + sh + px(6) + icon, slot.item.label, slot.body)
+			tip("sli" .. n, x0, y0, x0 + sw, y0 + sh + px(6) + icon, slot.item.label, slot.body)
 		end
-		by = by + sh + px(6) + icon + px(12)
+		by = by + rows * row_h
 		local sp = build.spare
 		if sp then
 			local pa = fade_in(14)
@@ -6693,7 +6800,7 @@ do
 				d.body = table.concat(lines, "\n")
 			end
 			for _, d in ipairs(D0.start.items) do
-				d.body = d.q > 1 and ("%s x%d"):format(d.label, d.q) or d.label
+				d.title = d.q > 1 and ("%s x%d"):format(d.label, d.q) or d.label
 			end
 		end
 		local chosen = I.bpos[D0.hero]
@@ -6842,7 +6949,7 @@ do
 		for i, d in ipairs(st.items) do
 			local sx = ix0 + (i - 1) * (iw + px(3))
 			PN.slot(d, sx, math.floor(cy - ih / 2), iw, ih, a)
-			tip("pst" .. i, sx, cy - ih / 2, sx + iw, cy + ih / 2, d.label, d.body or "")
+			tip("pst" .. i, sx, cy - ih / 2, sx + iw, cy + ih / 2, d.title or d.label, "")
 		end
 	end
 
@@ -6860,8 +6967,14 @@ do
 	end
 
 	function PN.strip(plan, x, y, a, measure)
-		local pad, sw, sh, gap = px(12), px(50), px(37), px(6)
+		local pad, sw, gap = px(12), px(50), px(6)
 		local w = pad * 2 + 6 * sw + 5 * gap
+		local rows = math.max(1, math.ceil(#plan.slots / K.STRIP_COLS))
+		local cols = math.max(6, math.ceil(#plan.slots / rows))
+		local iw = math.min(sw, math.floor((w - pad * 2 - gap * (cols - 1)) / cols))
+		local ih = math.floor(iw * 0.74 + 0.5)
+		local row_h = ih + px(10)
+		local sh = rows * row_h - px(10)
 		local has_start = plan.start ~= nil
 		local top = y + px(34) + (has_start and px(30) or 0)
 		local h = top - y + sh + px(26) + px(36)
@@ -6874,12 +6987,9 @@ do
 			PN.start(plan, x + pad, y + px(48), w - pad * 2, a)
 		end
 		local sy = top + px(4)
-		local n = math.max(6, #plan.slots)
-		local iw = math.min(sw, math.floor((w - pad * 2 - gap * (n - 1)) / n))
-		local ih = math.floor(iw * 0.74 + 0.5)
-		local iy = sy + math.floor((sh - ih) / 2)
 		for i, d in ipairs(plan.slots) do
-			local sx = x + pad + (i - 1) * (iw + gap)
+			local sx = x + pad + ((i - 1) % cols) * (iw + gap)
+			local iy = sy + ((i - 1) // cols) * row_h
 			PN.slot(d, sx, iy, iw, ih, a)
 			tip("pn" .. i, sx, iy, sx + iw, iy + ih, d.label, d.body)
 		end
@@ -6950,7 +7060,7 @@ do
 		local d = plan.next
 		local queue = {}
 		for _, sl in ipairs(plan.slots) do
-			if sl.state == "later" then
+			if sl.state == "later" and #queue < K.PILL_QUEUE then
 				queue[#queue + 1] = sl
 			end
 		end
@@ -7013,7 +7123,7 @@ do
 			local sh = px(16)
 			for i, it in ipairs(plan.start.items) do
 				PN.slot(it, sx, cy2 - sh / 2, px(22), sh, a)
-				tip("pst" .. i, sx, cy2 - sh / 2, sx + px(22), cy2 + sh / 2, it.label, it.body or "")
+				tip("pst" .. i, sx, cy2 - sh / 2, sx + px(22), cy2 + sh / 2, it.title or it.label, "")
 				sx = sx + px(25)
 			end
 		end
