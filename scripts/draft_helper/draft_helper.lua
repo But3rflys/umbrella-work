@@ -435,11 +435,8 @@ local localization = qLocalization.new({
 		cd_s_none = "no picks yet, sorted by hero win rate",
 		cd_tip_wr_t = "Win rate %s",
 		cd_tip_wr = "%s matches at the chosen rank.\nCounters show up after the first picks",
-		cd_menu_hint = "Other settings are in the window, gear button",
 		cd_set_title = "Settings",
 		cd_sec_data = "DATA",
-		cd_sec_window = "WINDOW",
-		cd_sec_behavior = "BEHAVIOR",
 		cd_set_volume = "Volume",
 		cd_set_volume_tip = "more matches, steadier numbers",
 		cd_set_bg = "Background",
@@ -469,6 +466,75 @@ local localization = qLocalization.new({
 		cd_pill_down = "Downloading %s",
 		cd_pill_done = "Updated, restarting",
 		cd_upd_loading = "loading",
+		cd_sum_t = "Draft summary",
+		cd_sum_chance = "win chance",
+		cd_sum_vs = "MATCHUPS",
+		cd_sum_vs_sub = "% to the win chance, ours against theirs",
+		cd_sum_total = "total",
+		cd_sum_hint = "click one of our heroes to see the build",
+		cd_tip_cell_t = "%s against %s",
+		cd_tip_cell = "%s%% to the win chance\nfrom matches at the chosen rank",
+		cd_tip_sum_t = "%s against their draft",
+		cd_tip_sum = "Sum over all five enemies.\nClick shows the build for this hero",
+		cd_build_t = "%s BUILD",
+		cd_build_sub = "against their pick",
+		cd_build_start = "START",
+		cd_build_gold = "%d of %d gold",
+		cd_build_order = "IN BUY ORDER",
+		cd_build_spare = "keep on hand against",
+		cd_build_loading = "Loading items",
+		cd_build_none = "Not enough item data for this hero",
+		cd_tip_item_vs = "Against %s",
+		cd_th_magic = "magic",
+		cd_th_disable = "disables",
+		cd_th_targeted = "single-target",
+		cd_th_silence = "silences",
+		cd_th_roots = "roots and disarms",
+		cd_th_invis = "invisibility",
+		cd_th_evasion = "evasion",
+		cd_th_heal = "healing",
+		cd_th_illusions = "illusions",
+		cd_th_passives = "strong passives",
+		cd_th_phys = "right-click",
+		cd_th_burst = "right-click burst damage",
+		cd_th_pierce = "through BKB",
+		cd_th_escape = "escapes and dodges",
+		cd_th_saves = "enemy saves",
+		cd_tip_after = "Later disassemble into %s",
+		cd_tip_upgrade = "Later upgrade into %s",
+		cd_tip_up_from = "Upgrade of %s",
+		cd_tip_dis_from = "Disassemble %s and build this",
+		cd_p_up = "from %s",
+		cd_set_preview = "Panel preview",
+		cd_preview_show = "Show",
+		cd_preview_hide = "Hide",
+		cd_tip_preview = "Shows the panel with a sample build,\nyou can drag it with the mouse",
+		cd_p_dis = "disassemble %s",
+		cd_tip_swap = "Instead of %s",
+		cd_tip_swap_why = "%s has %s",
+		cd_p_all = "Build complete",
+		cd_tip_skipped = "Skipped for now, it stays at the end",
+		cd_set_panel = "In-game build panel",
+		cd_set_window = "Draft window",
+		cd_sec_view = "WINDOW AND PANEL",
+		cd_set_pview = "Look",
+		cd_pview0 = "Strip",
+		cd_pview1 = "List",
+		cd_pview2 = "Pill",
+		cd_set_pshop = "Only while the shop is open",
+		cd_set_padapt = "Adapt to enemy items",
+		cd_set_phide = "Hide when the build is complete",
+		cd_p_title = "Build",
+		cd_p_more = "%d more",
+		cd_p_enough = "enough gold",
+		cd_p_instead = "instead of %s",
+		cd_p_preview = "preview",
+		cd_p_start = "Start",
+		cd_p_cost = "%d gold",
+		cd_build_nopos = "No build for %s",
+		cd_build_nopos2 = "the hero is rarely played there, pick another position",
+		cd_tip_bpos = "Build from %d matches\nin this position",
+		cd_tip_bpos_none = "The hero is rarely played here,\nthere is no build",
 	},
 	ru = {
 		cd_group_main = "Основное",
@@ -586,11 +652,8 @@ local localization = qLocalization.new({
 		cd_s_none = "пиков ещё нет, порядок по винрейту героев",
 		cd_tip_wr_t = "Винрейт %s",
 		cd_tip_wr = "%s матчей на выбранном ранге.\nКонтрпики появятся после первых пиков",
-		cd_menu_hint = "Остальные настройки в окне, кнопка с шестерёнкой",
 		cd_set_title = "Настройки",
 		cd_sec_data = "ДАННЫЕ",
-		cd_sec_window = "ОКНО",
-		cd_sec_behavior = "ПОВЕДЕНИЕ",
 		cd_set_volume = "Объём",
 		cd_set_volume_tip = "больше матчей, точнее цифры",
 		cd_set_bg = "Фон",
@@ -620,6 +683,75 @@ local localization = qLocalization.new({
 		cd_pill_down = "Скачиваю %s",
 		cd_pill_done = "Обновлено, перезапуск",
 		cd_upd_loading = "загружается",
+		cd_sum_t = "Итог драфта",
+		cd_sum_chance = "шанс победы",
+		cd_sum_vs = "КТО КОГО",
+		cd_sum_vs_sub = "% к шансу победы, наши против их",
+		cd_sum_total = "итог",
+		cd_sum_hint = "клик по нашему герою открывает его сборку",
+		cd_tip_cell_t = "%s против %s",
+		cd_tip_cell = "%s%% к шансу победы\nпо матчам выбранного ранга",
+		cd_tip_sum_t = "%s против их драфта",
+		cd_tip_sum = "Сумма по всем пяти врагам.\nКлик покажет сборку этого героя",
+		cd_build_t = "СБОРКА %s",
+		cd_build_sub = "против их пика",
+		cd_build_start = "СТАРТ",
+		cd_build_gold = "%d из %d золота",
+		cd_build_order = "ПО ПОРЯДКУ ПОКУПКИ",
+		cd_build_spare = "в запасе против",
+		cd_build_loading = "Загружаю предметы",
+		cd_build_none = "Мало данных по предметам героя",
+		cd_tip_item_vs = "Против %s",
+		cd_th_magic = "магия",
+		cd_th_disable = "контроль",
+		cd_th_targeted = "в одну цель",
+		cd_th_silence = "сайленсы",
+		cd_th_roots = "руты и дизарм",
+		cd_th_invis = "инвиз",
+		cd_th_evasion = "уклонение",
+		cd_th_heal = "лечение",
+		cd_th_illusions = "иллюзии",
+		cd_th_passives = "сильные пассивки",
+		cd_th_phys = "урон с руки",
+		cd_th_burst = "берст урон с руки",
+		cd_th_pierce = "сквозь BKB",
+		cd_th_escape = "побег и доджи",
+		cd_th_saves = "сейвы у врага",
+		cd_tip_after = "Потом разобрать в %s",
+		cd_tip_upgrade = "Потом собрать в %s",
+		cd_tip_up_from = "Апгрейд %s",
+		cd_tip_dis_from = "Разобрать %s и собрать",
+		cd_p_up = "из %s",
+		cd_set_preview = "Предпросмотр панели",
+		cd_preview_show = "Показать",
+		cd_preview_hide = "Скрыть",
+		cd_tip_preview = "Показывает панель с примером сборки,\nеё можно передвинуть мышью",
+		cd_p_dis = "разобрать %s",
+		cd_tip_swap = "Вместо %s",
+		cd_tip_swap_why = "У %s: %s",
+		cd_p_all = "Сборка собрана",
+		cd_tip_skipped = "Пропущен, стоит в конце очереди",
+		cd_set_panel = "Панель сборки в игре",
+		cd_set_window = "Окно драфта",
+		cd_sec_view = "ОКНО И ПАНЕЛЬ",
+		cd_set_pview = "Вид",
+		cd_pview0 = "Полоса",
+		cd_pview1 = "Список",
+		cd_pview2 = "Плашка",
+		cd_set_pshop = "Только при открытом магазине",
+		cd_set_padapt = "Менять по предметам врагов",
+		cd_set_phide = "Прятать, когда всё собрано",
+		cd_p_title = "Сборка",
+		cd_p_more = "ещё %d",
+		cd_p_enough = "хватает",
+		cd_p_instead = "вместо %s",
+		cd_p_preview = "предпросмотр",
+		cd_p_start = "Старт",
+		cd_p_cost = "%d золота",
+		cd_build_nopos = "Сборки на %s нет",
+		cd_build_nopos2 = "на этой позиции героя почти не берут, выбери другую",
+		cd_tip_bpos = "Сборка по %d матчам\nна этой позиции",
+		cd_tip_bpos_none = "Здесь героя почти не берут,\nсборки нет",
 	},
 })
 
@@ -641,8 +773,6 @@ do
 	ui.key = g_main:Bind("cd_key", Enum.ButtonCode.KEY_NONE, "\u{f11c}")
 	ui.key:ToolTip("cd_key_tip")
 	ui.key:Properties(L("cd_bind_name"), nil, true)
-
-	g_main:Label("cd_menu_hint", "\u{f013}")
 end
 
 ui.enable:SetCallback(function()
@@ -650,7 +780,10 @@ ui.enable:SetCallback(function()
 end, true)
 
 local cfg = {}
-local CFG_DEFAULTS = { source = 0, rank = 2, volume = 1, zoom = 100, bg = 88, blur = 1, tips = 1, auto = 1, debug = 0 }
+local CFG_DEFAULTS = {
+	source = 0, rank = 2, volume = 1, zoom = 100, bg = 88, blur = 1, tips = 1, auto = 1, debug = 0,
+	panel = 1, pview = 0, pzoom = 100, pshop = 0, padapt = 1, phide = 0,
+}
 for key, value in pairs(CFG_DEFAULTS) do
 	cfg[key] = Config.ReadInt("draft_helper", "set_" .. key, value)
 end
@@ -688,6 +821,7 @@ local K = {
 	TIP_GRACE = 0.3,
 	PAGE_TIME = 0.28,
 	PAGE_SLIDE = 10,
+	FREE_PICKS = 10,
 	BASE_ZOOM = 1.1,
 	SLIDER_GAP = 18,
 	CM_NOTE_H = 44,
@@ -781,7 +915,7 @@ local K = {
 	COL_GAP = 6,
 	BTN = 27,
 	SET_W = 360,
-	SET_ROW = 32,
+	SET_ROW = 28,
 	ROW = 40,
 	ROW_COMP = 56,
 	RADIUS = 12,
@@ -795,6 +929,272 @@ local K = {
 	CACHE_FILE = "draft_helper.dat",
 	CACHE_MAGIC = "DHC2",
 	CACHE_KEYS = 6,
+	ITEMS_URL = "https://api.opendota.com/api/constants/items",
+	BUYS_SQL = "with p as (select match_id, player_slot<128 r, purchase_log, "
+		.. "array[item_0,item_1,item_2,item_3,item_4,item_5,backpack_0,backpack_1,backpack_2] fin "
+		.. "from player_matches where hero_id=%d and purchase_log is not null order by match_id desc limit %d), "
+		.. "tm as (select pm.match_id, pm.hero_id, coalesce(pm.lane_role,4) l, pm.gold_per_min gp from player_matches pm "
+		.. "join p on p.match_id=pm.match_id and (pm.player_slot<128)=p.r where pm.gold_per_min is not null), "
+		.. "c as (select *, row_number() over (partition by match_id, l order by gp desc) lr from tm), "
+		.. "d as (select *, case when l in (1,2,3) and lr=1 then l end core from c), "
+		.. "e as (select *, row_number() over (partition by match_id, (core is null) order by gp desc) sr from d), "
+		.. "q as (select match_id, coalesce(core, case when sr=1 then 4 else 5 end) pos from e where hero_id=%d), "
+		.. "x as (select p.match_id, q.pos, v->>'key' i, (v->>'time')::int t from p join q using(match_id), unnest(p.purchase_log) v), "
+		.. "f as (select match_id, pos, i, min(t) t, sum(case when t<=0 then 1 else 0 end) s from x group by 1,2,3), "
+		.. "k as (select distinct p.match_id, q.pos, unnest(p.fin) it from p join q using(match_id)), "
+		.. "g as (select pos, count(*) g from q group by pos) "
+		.. "select f.pos p, i, count(*) n, percentile_cont(0.5) within group (order by t)::int t, sum(s) s, "
+		.. "sum(case when s>0 then 1 else 0 end) m, max(g.g) g from f join g using(pos) group by f.pos, i "
+		.. "having count(*) >= greatest(2, max(g.g) * 0.03) "
+		.. "union all select k.pos, '#' || it, count(*), 0, 0, 0, max(g.g) from k join g using(pos) where it>0 "
+		.. "group by k.pos, it having count(*) >= greatest(2, max(g.g) * 0.03)",
+	BUYS_VER = 3,
+	BUYS_MATCHES = 400,
+	BUYS_MIN = 30,
+	BUYS_ROW_MIN = 0.03,
+	ITEMS_TTL = 7 * 86400,
+	BUYS_TTL = 3 * 86400,
+	BUYS_KEEP = 30,
+	ITEM_RETRY = 15,
+	ITEM_FAIL_SKIP = 60,
+	START_GOLD = 600,
+	START_MIN = 0.35,
+	SLOTS = 6,
+	SLOT_MIN_COST = 1000,
+	ITEM_SHARE = 0.15,
+	ITEM_SHARE_FULL = 0.25,
+	ITEM_COUNTER_W = 0.4,
+	ITEM_UPGRADE = 0.5,
+	CORE_LOCK = 3,
+	SIBLING_COST = 800,
+	DISASSEMBLE = {
+		mask_of_madness = true, echo_sabre = true, pers = true, vanguard = true, vladmir = true, sange_and_yasha = true,
+		kaya_and_sange = true, yasha_and_kaya = true, radiance = true, angels_demise = true,
+	},
+	KEEP_MAX = 0.75,
+	AFTER_SHARE = 0.2,
+	AFTER_GAP = 480,
+	SWAP_MARGIN = 0.12,
+	SWAPS_MAX = 2,
+	SIGNAL_MIN = 700,
+	UPGRADE_MIN = 0.15,
+	COVER = 0.8,
+	PANEL_EVERY = 0.5,
+	INV_LAST = 14,
+	ENEMY_INV_LAST = 8,
+	PANEL_STATES = {
+		[Enum.GameState.DOTA_GAMERULES_STATE_PRE_GAME] = true,
+		[Enum.GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS] = true,
+	},
+	ENEMY_ITEMS = {
+		invis_sword = { invis = 1 },
+		silver_edge = { invis = 1 },
+		shadow_amulet = { invis = 0.4 },
+		glimmer_cape = { invis = 0.3, saves = 0.5 },
+		butterfly = { evasion = 1, phys = 0.2 },
+		talisman_of_evasion = { evasion = 0.4 },
+		heavens_halberd = { evasion = 0.4, roots = 0.4 },
+		satanic = { heal = 0.7, phys = 0.2 },
+		heart = { heal = 0.6 },
+		holy_locket = { heal = 0.4 },
+		guardian_greaves = { heal = 0.4 },
+		bloodstone = { heal = 0.4 },
+		mekansm = { heal = 0.3 },
+		vladmir = { heal = 0.2 },
+		manta = { illusions = 0.4 },
+		helm_of_the_overlord = { illusions = 0.2 },
+		orchid = { silence = 0.6, targeted = 0.5 },
+		bloodthorn = { silence = 0.8, targeted = 0.6, phys = 0.3 },
+		sheepstick = { disable = 0.6, targeted = 0.8 },
+		rod_of_atos = { roots = 0.5 },
+		gungir = { roots = 0.5 },
+		nullifier = { targeted = 0.4 },
+		abyssal_blade = { phys = 0.4, targeted = 0.5 },
+		dagon = { magic = 0.4 },
+		dagon_2 = { magic = 0.4 },
+		dagon_3 = { magic = 0.4 },
+		dagon_4 = { magic = 0.4 },
+		dagon_5 = { magic = 0.4 },
+		ethereal_blade = { magic = 0.4, saves = 0.3 },
+		veil_of_discord = { magic = 0.2 },
+		revenants_brooch = { magic = 0.3 },
+		phylactery = { magic = 0.2 },
+		blink = { escape = 0.4 },
+		swift_blink = { escape = 0.4 },
+		arcane_blink = { escape = 0.4 },
+		overwhelming_blink = { escape = 0.4 },
+		ghost = { saves = 0.5 },
+		cyclone = { saves = 0.4 },
+		wind_waker = { saves = 0.6 },
+		force_staff = { saves = 0.3 },
+		hurricane_pike = { saves = 0.4 },
+		aeon_disk = { saves = 0.7 },
+		lotus_orb = { saves = 0.3 },
+		greater_crit = { phys = 0.6 },
+		lesser_crit = { phys = 0.3 },
+		desolator = { phys = 0.4 },
+		basher = { phys = 0.3 },
+		monkey_king_bar = { phys = 0.3 },
+		bfury = { phys = 0.3 },
+		mjollnir = { phys = 0.3 },
+		diffusal_blade = { phys = 0.2 },
+		disperser = { phys = 0.2 },
+	},
+	MUST = {
+		{ "evasion", 0.8, { [1] = true, [2] = true, [3] = true }, "Carry" },
+		{ "heal", 0.8, { [4] = true } },
+	},
+	MUST_MAX = 2,
+	MUST_COVER = 0.5,
+	FIT = {
+		black_king_bar = { core = true },
+		pipe = { support = true, core = { str = true } },
+		glimmer_cape = { support = true },
+		mage_slayer = { core = { agi = true, int = true } },
+		sange_and_yasha = { core = { str = true, agi = true, all = true } },
+		sphere = { core = true },
+		lotus_orb = { support = true, core = { str = true, int = true } },
+		manta = { core = { agi = true, all = true } },
+		cyclone = { support = true, core = { int = true } },
+		guardian_greaves = { support = true },
+		sheepstick = { core = { int = true } },
+		orchid = { core = { int = true, agi = true } },
+		bloodthorn = { core = { int = true, agi = true } },
+		abyssal_blade = { core = { str = true, agi = true, all = true } },
+		harpoon = { core = { str = true, agi = true, all = true } },
+		rod_of_atos = { support = true, core = { int = true } },
+		diffusal_blade = { core = { agi = true } },
+		silver_edge = { core = { str = true, agi = true, all = true } },
+		monkey_king_bar = { core = { str = true, agi = true, all = true } },
+		mjollnir = { core = { str = true, agi = true, all = true } },
+		gungir = { core = { int = true } },
+		bfury = { core = { str = true, agi = true, all = true }, melee = true },
+		radiance = { core = { str = true, agi = true, all = true } },
+		shivas_guard = { core = { str = true, int = true } },
+		skadi = { core = { agi = true, all = true } },
+		spirit_vessel = { support = true, core = { str = true } },
+		ghost = { support = true },
+		solar_crest = { support = true },
+		pavise = { support = true },
+		ethereal_blade = { core = { int = true } },
+		force_staff = { support = true, core = { int = true } },
+		assault = { core = { str = true, agi = true, all = true } },
+		butterfly = { core = { agi = true, all = true } },
+		heavens_halberd = { core = { str = true } },
+		blade_mail = { core = { str = true } },
+		crimson_guard = { core = { str = true } },
+		aeon_disk = { core = true },
+		nullifier = { core = { str = true, agi = true, all = true } },
+	},
+	ANTI = {
+		monkey_king_bar = { butterfly = 0.5, talisman_of_evasion = 0.3 },
+		bloodthorn = { butterfly = 0.3 },
+		nullifier = { ghost = 0.5, glimmer_cape = 0.5, cyclone = 0.2 },
+		spirit_vessel = { satanic = 0.25, heart = 0.3 },
+		skadi = { satanic = 0.2, heart = 0.2 },
+		shivas_guard = { satanic = 0.15 },
+	},
+
+	SPARE_MIN = 0.4,
+	VS_MIN = 0.2,
+	VS_MAX = 3,
+	SUM_MIN = 0.3,
+	ROLE_MAGIC = 0.4,
+	ROLE_DISABLE = 0.5,
+	ROLE_PHYS_AGI = 0.6,
+	ROLE_PHYS_STR = 0.35,
+	BOOTS = {
+		power_treads = true, phase_boots = true, arcane_boots = true, tranquil_boots = true, travel_boots = true,
+		travel_boots_2 = true, guardian_greaves = true, boots_of_bearing = true,
+	},
+	SLOT_EXTRA = { blink = true, ghost = true },
+	SLOT_SKIP = { ultimate_scepter_2 = true, ward_dispenser = true },
+	STACK = {
+		branches = 3, tango = 2, ward_sentry = 2, ward_observer = 2, flask = 2, clarity = 2, enchanted_mango = 2,
+		blood_grenade = 2, faerie_fire = 2,
+	},
+	COUNTERS = {
+		black_king_bar = { magic = 0.5, disable = 0.5, silence = 0.4, roots = 0.4 },
+		pipe = { magic = 0.5 },
+		glimmer_cape = { magic = 0.4 },
+		mage_slayer = { magic = 0.35 },
+		sange_and_yasha = { disable = 0.25, silence = 0.25, roots = 0.25 },
+		sphere = { targeted = 1 },
+		lotus_orb = { targeted = 0.7, silence = 0.5, roots = 0.5 },
+		manta = { silence = 0.8, roots = 0.7 },
+		cyclone = { silence = 0.6, roots = 0.5, pierce = 0.6, burst = 0.3 },
+		wind_waker = { silence = 0.6, roots = 0.5, pierce = 0.6, burst = 0.3 },
+		guardian_greaves = { silence = 0.5, roots = 0.4 },
+		sheepstick = { escape = 1 },
+		orchid = { escape = 0.7 },
+		bloodthorn = { escape = 0.7, evasion = 0.5 },
+		abyssal_blade = { escape = 0.8 },
+		harpoon = { escape = 0.6 },
+		rod_of_atos = { escape = 0.5 },
+		gungir = { escape = 0.5, illusions = 0.7 },
+		diffusal_blade = { escape = 0.4 },
+		disperser = { escape = 0.4 },
+		nullifier = { escape = 0.3, saves = 1 },
+		silver_edge = { passives = 1 },
+		monkey_king_bar = { evasion = 1 },
+		mjollnir = { illusions = 0.8 },
+		bfury = { illusions = 0.8 },
+		radiance = { illusions = 0.6 },
+		shivas_guard = { illusions = 0.5, heal = 0.6, phys = 0.6 },
+		skadi = { heal = 0.7, escape = 0.3 },
+		spirit_vessel = { heal = 1 },
+		ghost = { phys = 0.9, burst = 0.8 },
+		ethereal_blade = { phys = 0.5 },
+		solar_crest = { phys = 0.6 },
+		pavise = { phys = 0.5 },
+		force_staff = { phys = 0.3 },
+		hurricane_pike = { phys = 0.4 },
+		assault = { phys = 0.8 },
+		butterfly = { phys = 0.7 },
+		heavens_halberd = { phys = 0.8, burst = 0.6 },
+		blade_mail = { burst = 1, phys = 0.6, pierce = 0.5 },
+		crimson_guard = { phys = 0.5 },
+		aeon_disk = { pierce = 0.5, burst = 0.4 },
+	},
+	HERO_TAGS = "abaddon heal .5;alchemist heal 1;antimage escape .8 passives .3;"
+		.. "arc_warden evasion .5 illusions .5 silence .3;axe passives .4 pierce 1 targeted .5;"
+		.. "bane pierce .5 targeted 1;batrider escape .3 pierce .6 targeted .9;"
+		.. "beastmaster illusions .3 pierce .5 targeted .7;bloodseeker pierce .4 silence .4;"
+		.. "bounty_hunter invis .8;brewmaster evasion .5;bristleback passives 1;broodmother illusions .8;"
+		.. "chaos_knight illusions .8 passives .5 targeted .4;chen heal .6;clinkz burst .5 invis .8;"
+		.. "crystal_maiden roots .4;dark_seer illusions .3;dark_willow escape .5 roots .4;dawnbreaker heal .8;"
+		.. "dazzle heal .6;death_prophet silence .5;disruptor silence .6;doom_bringer pierce .7 targeted 1;"
+		.. "dragon_knight heal .3 passives .3 targeted .3;drow_ranger passives .6 silence .5;"
+		.. "earth_spirit escape .4 silence .3;ember_spirit burst .3 escape .7 roots .5;enchantress heal .6;"
+		.. "enigma illusions .4 pierce .7;faceless_void escape .6 passives .5 pierce .6;"
+		.. "furion escape .3 illusions .5;grimstroke targeted .4;hoodwink escape .4 evasion .4;"
+		.. "huskar burst .6 heal .6 passives .8;invoker illusions .3 invis .5;"
+		.. "juggernaut burst .9 heal .6 passives .4;kez escape .4 heal .4 silence .4;kunkka targeted .3;"
+		.. "legion_commander burst .7 heal .3 passives .3 pierce .6 targeted 1;lich targeted .4;"
+		.. "life_stealer heal .6;lina targeted .4;lion targeted .9;lone_druid illusions .5 roots .3;"
+		.. "luna passives .4;lycan burst .3 heal .4 illusions .5;magnataur escape .3 pierce .8;"
+		.. "marci burst .6 escape .3 silence .3;mars passives .6;medusa pierce .4;meepo illusions 1 roots .4;"
+		.. "mirana escape .5 evasion .3 invis .6;monkey_king escape .5 heal .4 passives .4;morphling escape .6;"
+		.. "muerta silence .4;naga_siren evasion .4 illusions 1 roots .5;"
+		.. "necrolyte heal .8 passives .4 targeted .6;night_stalker silence .5;nyx_assassin escape .4 invis .8;"
+		.. "obsidian_destroyer targeted .4;omniknight heal 1;oracle heal 1;pangolier escape .8;"
+		.. "phantom_assassin burst .5 escape .4 evasion 1 passives 1;"
+		.. "phantom_lancer escape .5 evasion .5 illusions 1 invis .3;phoenix heal .5;primal_beast pierce .5;"
+		.. "puck escape 1 silence .4;pudge pierce .4 targeted .7;pugna heal .4;queenofpain escape .7;"
+		.. "rattletrap pierce .3;razor targeted .4;riki burst .4 escape .3 invis 1 silence .5;"
+		.. "rubick targeted .4;sand_king escape .3 invis .5;shadow_demon targeted .8;"
+		.. "shadow_shaman illusions .4 targeted 1;shredder escape .5 passives .8;silencer silence 1;"
+		.. "skeleton_king heal .5 passives .4;skywrath_mage silence .6;slardar passives .4;"
+		.. "slark escape 1 passives .7;sniper passives .3;spectre illusions .3 passives .8;"
+		.. "spirit_breaker passives .4 pierce .3;storm_spirit escape 1;sven burst .5;techies invis .6;"
+		.. "templar_assassin invis .4 passives .3 silence .3;terrorblade burst .4 illusions .8;"
+		.. "tidehunter passives .6;tinker escape .4 targeted .3;treant heal 1 pierce .3 roots .4;"
+		.. "troll_warlord burst .6 heal .5 passives .5;tusk pierce .3;undying heal .5 illusions .3;"
+		.. "ursa burst .8 passives .7;vengefulspirit targeted .3;venomancer illusions .4;"
+		.. "viper passives .4 targeted .4;visage illusions .3 invis .5 passives .5;void_spirit escape .9;"
+		.. "warlock heal .4 illusions .3;weaver escape .9 invis .8 passives .4;"
+		.. "windrunner burst 1 escape .4 evasion .6;winter_wyvern heal .5 pierce .4 targeted .5;"
+		.. "wisp escape .3 heal .8;witch_doctor heal .6",
 
 	ROUND = Enum.DrawFlags.RoundCornersAll,
 	MOUSE1 = Enum.ButtonCode.KEY_MOUSE1,
@@ -1190,6 +1590,7 @@ local function set_heroes(list)
 				name = label,
 				attr = D.by_attr[h.primary_attr] and h.primary_attr or "all",
 				roles = type(h.roles) == "table" and h.roles or {},
+				melee = h.attack_type == "Melee",
 				key = norm(label),
 				short = norm(h.name:gsub("^npc_dota_hero_", "")),
 				initials = table.concat(initials),
@@ -2181,6 +2582,734 @@ function M.assign(team, blocked)
 	return best, best_map
 end
 
+local I = {
+	loaded = false,
+	items = nil,
+	by_name = {},
+	items_at = 0,
+	buys = {},
+	buys_at = {},
+	skip = {},
+	busy = false,
+	next_at = 0,
+	error = nil,
+	logged = nil,
+	dirty = false,
+	tags = nil,
+	threat_of = {},
+	builds = {},
+	bpos = {},
+}
+
+do
+	local function set_items(list)
+		local items, by_name = {}, {}
+		for _, it in ipairs(list) do
+			local id = math.tointeger(tonumber(it.id))
+			if id and type(it.n) == "string" then
+				local parts = {}
+				for part in tostring(it.p or ""):gmatch("[%w_]+") do
+					parts[#parts + 1] = part
+				end
+				local item = {
+					id = id,
+					name = it.n,
+					label = type(it.d) == "string" and it.d ~= "" and it.d or it.n,
+					cost = tonumber(it.c) or 0,
+					created = tonumber(it.m) == 1,
+					parts = parts,
+				}
+				items[id] = item
+				by_name[item.name] = item
+			end
+		end
+		I.items, I.by_name, I.builds = items, by_name, {}
+	end
+
+	local function parse_items(text)
+		local starts, pos = {}, 1
+		while true do
+			local s, e, key = text:find('"([%w_]+)":{', pos)
+			if not s then
+				break
+			end
+			starts[#starts + 1] = { s = s, e = e, key = key }
+			pos = e + 1
+		end
+		local list = {}
+		for i, st in ipairs(starts) do
+			if not st.key:find("^recipe") then
+				local seg = text:sub(st.e, starts[i + 1] and starts[i + 1].s - 1 or #text)
+				local id = tonumber(seg:match('"id":(%d+)'))
+				if id then
+					local parts = (seg:match('"components":%[([^%]]*)%]') or ""):gsub('"', "")
+					list[#list + 1] = {
+						id = id,
+						n = st.key,
+						d = seg:match('"dname":"([^"]*)"'),
+						c = tonumber(seg:match('"cost":(%d+)')) or 0,
+						m = seg:find('"created":true', 1, true) and 1 or 0,
+						p = parts,
+					}
+				end
+			end
+		end
+		return list
+	end
+
+	local function set_buys(h, list)
+		local by = {}
+		for _, r in ipairs(list) do
+			local p, name, n, g = math.tointeger(tonumber(r.p)), r.i, tonumber(r.n), tonumber(r.g)
+			if p and p >= 1 and p <= 5 and type(name) == "string" and n and n > 0 and g and g > 0 then
+				local d = by[p]
+				if not d then
+					d = { g = g, rows = {}, fin = {} }
+					by[p] = d
+				end
+				d.g = math.max(d.g, g)
+				local id = math.tointeger(tonumber(name:match("^#(%d+)$")))
+				if id then
+					d.fin[id] = n
+				else
+					d.rows[name] = { n = n, t = tonumber(r.t) or 0, s = tonumber(r.s) or 0, m = tonumber(r.m) or 0 }
+				end
+			end
+		end
+		I.buys[h] = { pos = by }
+		I.builds = {}
+	end
+
+	local function load()
+		I.loaded = true
+		local items = store.data.items
+		if type(items) == "table" and type(items.list) == "table" then
+			set_items(items.list)
+			I.items_at = tonumber(items.time) or 0
+		end
+		store.data.pop = nil
+		local buys = store.data.buys
+		if type(buys) == "table" then
+			for key, entry in pairs(buys) do
+				local h = math.tointeger(tonumber(key))
+				if h and type(entry) == "table" and type(entry.rows) == "table" and entry.v == K.BUYS_VER then
+					set_buys(h, entry.rows)
+					I.buys_at[h] = tonumber(entry.time) or 0
+				end
+			end
+		end
+	end
+
+	local function fetch(url, param, on_done)
+		I.busy = true
+		local sent = HTTP.Request("GET", url, { headers = K.HEADERS, timeout = K.TIMEOUT }, function(res)
+			I.busy = false
+			I.next_at = os.clock() + K.GAP
+			local ok, err = pcall(on_done, res)
+			if ok then
+				I.error = nil
+				return
+			end
+			I.error = tostring(err):gsub("^.-:%d+: ", "")
+			I.next_at = os.clock() + K.ITEM_RETRY
+			if I.error ~= I.logged then
+				I.logged = I.error
+				Log.Write("[Draft Helper] " .. param .. " failed: " .. I.error)
+			end
+		end, param)
+		if not sent then
+			I.busy = false
+			I.error = "request was not sent"
+			I.next_at = os.clock() + K.ITEM_RETRY
+		end
+	end
+
+	local function keep_buys(h, rows)
+		local buys = type(store.data.buys) == "table" and store.data.buys or {}
+		buys[tostring(h)] = { time = I.buys_at[h], rows = rows, v = K.BUYS_VER }
+		local keys = {}
+		for key in pairs(buys) do
+			keys[#keys + 1] = key
+		end
+		if #keys > K.BUYS_KEEP then
+			table.sort(keys, function(x, y)
+				return (tonumber(buys[x].time) or 0) > (tonumber(buys[y].time) or 0)
+			end)
+			for n = K.BUYS_KEEP + 1, #keys do
+				buys[keys[n]] = nil
+			end
+		end
+		store.data.buys = buys
+		I.dirty = true
+	end
+
+	local function request_items()
+		fetch(K.ITEMS_URL, "cd_items", function(res)
+			if tostring(res.code) ~= "200" or type(res.response) ~= "string" then
+				error(("items: http %s %s"):format(tostring(res.code), tostring(res.error_message or "")))
+			end
+			local list = parse_items(res.response)
+			if #list < 100 then
+				error("items: bad list")
+			end
+			set_items(list)
+			I.items_at = os.time()
+			store.data.items = { time = I.items_at, list = list }
+			I.dirty = true
+			log("items loaded: %d", #list)
+		end)
+	end
+
+	local function request_buys(h)
+		local url = K.EXPLORER .. url_encode(K.BUYS_SQL:format(h, K.BUYS_MATCHES, h))
+		fetch(url, "cd_buys", function(res)
+			if tostring(res.code) ~= "200" or type(res.response) ~= "string" then
+				I.skip[h] = os.clock() + K.ITEM_FAIL_SKIP
+				error(("purchases %d: http %s %s"):format(h, tostring(res.code), tostring(res.error_message or "")))
+			end
+			local data = JSON:decode(res.response)
+			if type(data) ~= "table" or data.err or type(data.rows) ~= "table" then
+				I.skip[h] = os.clock() + K.ITEM_FAIL_SKIP
+				error(("purchases %d: %s"):format(h, tostring(type(data) == "table" and data.err or "bad answer")))
+			end
+			local rows = {}
+			for _, r in ipairs(data.rows) do
+				rows[#rows + 1] = {
+					p = tonumber(r.p),
+					i = r.i,
+					n = tonumber(r.n) or 0,
+					t = tonumber(r.t) or 0,
+					s = tonumber(r.s) or 0,
+					m = tonumber(r.m) or 0,
+					g = tonumber(r.g) or 0,
+				}
+			end
+			I.buys_at[h] = os.time()
+			set_buys(h, rows)
+			keep_buys(h, rows)
+			log("purchases loaded for %d: %d rows", h, #rows)
+		end)
+	end
+
+	function I.positions(h)
+		local out = {}
+		local all = I.buys[h]
+		for p, d in pairs(all and all.pos or {}) do
+			if d.g >= K.BUYS_MIN then
+				out[p] = d.g
+			end
+		end
+		return out
+	end
+
+	function I.hero(sm)
+		for _, row in ipairs(sm.rows) do
+			if row.h == draft.build_h then
+				return row
+			end
+		end
+		local mine = draft.mode == 1 and draft.me and draft.steps[draft.me]
+		for _, row in ipairs(sm.rows) do
+			if row.h == mine then
+				return row
+			end
+		end
+		return sm.rows[1]
+	end
+
+	function I.tick()
+		if not D.loaded then
+			return
+		end
+		if not I.loaded then
+			load()
+		end
+		local sm = draft.summary
+		if I.busy or os.clock() < I.next_at then
+			return
+		end
+		if sm or I.want then
+			local now = os.time()
+			if not I.items or now - I.items_at > K.ITEMS_TTL then
+				request_items()
+				return
+			end
+			local want = { I.want }
+			if sm then
+				local first = I.hero(sm)
+				want[#want + 1] = first and first.h
+				for _, row in ipairs(sm.rows) do
+					want[#want + 1] = row.h
+				end
+			end
+			for _, h in ipairs(want) do
+				local stale = not I.buys[h] or now - (I.buys_at[h] or 0) > K.BUYS_TTL
+				if stale and os.clock() >= (I.skip[h] or 0) then
+					request_buys(h)
+					return
+				end
+			end
+		end
+		if I.dirty then
+			I.dirty = false
+			store_save()
+		end
+	end
+
+	local function parse_tags()
+		local tags = {}
+		for entry in K.HERO_TAGS:gmatch("[^;]+") do
+			local words = {}
+			for word in entry:gmatch("%S+") do
+				words[#words + 1] = word
+			end
+			local t = {}
+			for k = 2, #words - 1, 2 do
+				t[words[k]] = tonumber(words[k + 1])
+			end
+			tags["npc_dota_hero_" .. words[1]] = t
+		end
+		return tags
+	end
+
+	function I.threats(h)
+		local cached = I.threat_of[h]
+		if cached then
+			return cached
+		end
+		I.tags = I.tags or parse_tags()
+		local hero = D.by_id[h]
+		local t = {}
+		if hero then
+			for k, v in pairs(I.tags[hero.unit] or {}) do
+				t[k] = v
+			end
+			local roles = {}
+			for _, role in ipairs(hero.roles) do
+				roles[role] = true
+			end
+			if roles.Nuker then
+				t.magic = (t.magic or 0) + K.ROLE_MAGIC
+			end
+			if roles.Disabler then
+				t.disable = (t.disable or 0) + K.ROLE_DISABLE
+			end
+			if roles.Carry and not roles.Support and (hero.attr == "agi" or hero.attr == "str") then
+				t.phys = (t.phys or 0) + (hero.attr == "agi" and K.ROLE_PHYS_AGI or K.ROLE_PHYS_STR)
+			end
+			for k, v in pairs(t) do
+				t[k] = math.min(1, v)
+			end
+		end
+		I.threat_of[h] = t
+		return t
+	end
+
+	local function related(a, b)
+		for _, part in ipairs(a.parts) do
+			if part == b.name then
+				return true
+			end
+		end
+		for _, part in ipairs(b.parts) do
+			if part == a.name then
+				return true
+			end
+		end
+		return false
+	end
+
+	local function siblings(a, b)
+		for _, x in ipairs(a.parts) do
+			local part = I.by_name[x]
+			if part and part.created and part.cost >= K.SIBLING_COST then
+				for _, y in ipairs(b.parts) do
+					if x == y then
+						return true
+					end
+				end
+			end
+		end
+		return false
+	end
+
+	local function vs_heroes(vs, them, per)
+		local list = {}
+		for _, e in ipairs(them) do
+			local x = 0
+			for threat, w in pairs(vs) do
+				x = x + w * (per[e][threat] or 0)
+			end
+			if x >= K.VS_MIN then
+				list[#list + 1] = { h = e, x = x }
+			end
+		end
+		table.sort(list, function(a, b)
+			return a.x > b.x
+		end)
+		local out = {}
+		for n = 1, math.min(K.VS_MAX, #list) do
+			out[n] = list[n].h
+		end
+		return out
+	end
+
+	local function fits_hero(name, h, pos)
+		local fit, hero = K.FIT[name], D.by_id[h]
+		if not fit or not hero or (fit.melee and not hero.melee) then
+			return false
+		end
+		local rule = (not pos or pos <= 3) and fit.core or fit.support
+		return rule == true or (type(rule) == "table" and rule[hero.attr] == true)
+	end
+
+	local function est_time(item, cands)
+		local sum, n, last = 0, 0, 0
+		for _, cd in pairs(cands) do
+			last = math.max(last, cd.t)
+			if math.abs(cd.item.cost - item.cost) <= 1000 then
+				sum, n = sum + cd.t, n + 1
+			end
+		end
+		return n > 0 and sum / n or last + 120
+	end
+
+	function I.must(slots, cands, T, per, them, h, pos, locked)
+		local added = {}
+		for _, rule in ipairs(K.MUST) do
+			local threat = rule[1]
+			local strongest = 0
+			for _, e in ipairs(them) do
+				strongest = math.max(strongest, (per[e] or {})[threat] or 0)
+			end
+			local role_ok = rule[4] == nil
+			for _, role in ipairs(rule[4] and D.by_id[h] and D.by_id[h].roles or {}) do
+				role_ok = role_ok or role == rule[4]
+			end
+			if strongest >= rule[2] and rule[3][pos or 0] and role_ok and #added < K.MUST_MAX then
+				local covered = 0
+				for _, s in ipairs(slots) do
+					covered = math.max(covered, (K.COUNTERS[s.item.name] or {})[threat] or 0)
+				end
+				local best, best_v
+				if covered < K.MUST_COVER then
+					for name, vs in pairs(K.COUNTERS) do
+						local w = vs[threat]
+						if w and w >= K.MUST_COVER and I.by_name[name] and fits_hero(name, h, pos) then
+							local v = w + (cands[name] and cands[name].share or 0)
+							if not best or v > best_v or (v == best_v and name < best) then
+								best, best_v = name, v
+							end
+						end
+					end
+				end
+				if best then
+					local item = I.by_name[best]
+					local cd = cands[best] or { item = item, count = 0, share = 0, t = est_time(item, cands), est = true }
+					local idx, low
+					for i, s in ipairs(slots) do
+						if not locked(s) and not s.must and not K.BOOTS[s.item.name] then
+							local ok = true
+							for j, o in ipairs(slots) do
+								if j ~= i and (o.item == item or related(o.item, item) or (not K.BOOTS[o.item.name] and siblings(o.item, item))) then
+									ok = false
+								end
+							end
+							local v = s.score or s.share or 0
+							if ok and (not idx or v < low) then
+								idx, low = i, v
+							end
+						end
+					end
+					if idx then
+						local new = {}
+						for k, v in pairs(cd) do
+							new[k] = v
+						end
+						new.why = { { threat = threat, x = K.COUNTERS[best][threat] } }
+						new.vs = vs_heroes({ [threat] = 1 }, them, per)
+						new.must, new.replaced = threat, slots[idx].item
+						new.drop, new.core = nil, nil
+						slots[idx] = new
+						added[#added + 1] = new
+					end
+				end
+			end
+		end
+		return added
+	end
+
+	local function clock(sec)
+		sec = math.max(0, math.floor(sec + 0.5))
+		return ("%d:%02d"):format(sec // 60, sec % 60)
+	end
+
+	local function item_body(cd)
+		local lines = {}
+		if cd.why then
+			local names = {}
+			for _, e in ipairs(cd.vs) do
+				names[#names + 1] = D.by_id[e] and D.by_id[e].name or "?"
+			end
+			if #names > 0 then
+				lines[1] = L("cd_tip_item_vs"):format(table.concat(names, ", "))
+			end
+			local threats = {}
+			for n = 1, math.min(2, #cd.why) do
+				threats[n] = L("cd_th_" .. cd.why[n].threat)
+			end
+			lines[#lines + 1] = table.concat(threats, ", ")
+		end
+		if cd.after then
+			lines[#lines + 1] = L(cd.after_kind == "up" and "cd_tip_upgrade" or "cd_tip_after"):format(cd.after.item.label)
+		end
+		return table.concat(lines, "\n")
+	end
+
+	I.body, I.clock, I.related, I.siblings = item_body, clock, related, siblings
+
+	function I.collect(data)
+		local cands, boots = {}, nil
+		for name, r in pairs(data.rows) do
+			local item = I.by_name[name]
+			if item then
+				local cd = { item = item, count = r.n, t = r.t, share = r.n / data.g }
+				if K.BOOTS[name] then
+					if not boots or r.n > boots.count then
+						boots = cd
+					end
+				elseif not K.SLOT_SKIP[name] and (K.SLOT_EXTRA[name] or (item.created and item.cost >= K.SLOT_MIN_COST)) then
+					cands[name] = cd
+				end
+			end
+		end
+		for _, cd in pairs(cands) do
+			for _, part in ipairs(cd.item.parts) do
+				local p = cands[part]
+				if p and p ~= cd and cd.count >= K.ITEM_UPGRADE * p.count then
+					p.drop = true
+				end
+			end
+		end
+		return cands, boots
+	end
+
+	function I.upgrade(cd, cands, taken)
+		local best
+		for _, y in pairs(cands) do
+			local contains, used = false, false
+			for _, part in ipairs(y.item.parts) do
+				if part == cd.item.name then
+					contains = true
+				end
+			end
+			for _, p in ipairs(taken) do
+				if p.item == y.item then
+					used = true
+				end
+			end
+			if contains and not used and y.t > cd.t and y.count >= K.UPGRADE_MIN * cd.count
+				and (not best or y.count > best.count) then
+				best = y
+			end
+		end
+		return best
+	end
+
+	function I.after(cd, cands, taken, data)
+		local item = cd.item
+		if not K.DISASSEMBLE[item.name] or (data.fin[item.id] or 0) >= K.KEEP_MAX * cd.count then
+			return nil
+		end
+		local best
+		for _, y in pairs(cands) do
+			if y.share >= K.AFTER_SHARE and y.t >= cd.t + K.AFTER_GAP and not related(item, y.item) then
+				local shared, used = false, false
+				for _, a in ipairs(item.parts) do
+					for _, b in ipairs(y.item.parts) do
+						if a == b then
+							shared = true
+						end
+					end
+				end
+				for _, p in ipairs(taken) do
+					if p.item == y.item then
+						used = true
+					end
+				end
+				if shared and not used and (not best or y.share > best.share) then
+					best = y
+				end
+			end
+		end
+		return best
+	end
+
+	local function start_items(data)
+		local sorted = {}
+		for name, r in pairs(data.rows) do
+			local item = I.by_name[name]
+			if item and r.m > 0 and r.m >= K.START_MIN * data.g then
+				sorted[#sorted + 1] = { item = item, r = r }
+			end
+		end
+		table.sort(sorted, function(a, b)
+			if a.r.m ~= b.r.m then
+				return a.r.m > b.r.m
+			end
+			return a.item.name < b.item.name
+		end)
+		local out, gold = {}, 0
+		for _, st in ipairs(sorted) do
+			local q = clamp(math.floor(st.r.s / st.r.m + 0.5), 1, K.STACK[st.item.name] or 1)
+			while q > 0 and gold + q * st.item.cost > K.START_GOLD do
+				q = q - 1
+			end
+			if q > 0 then
+				out[#out + 1] = { item = st.item, q = q }
+				gold = gold + q * st.item.cost
+			end
+		end
+		return out, gold
+	end
+
+	function I.build(h, pos, them)
+		local all = I.buys[h]
+		if not all or not I.items then
+			return nil
+		end
+		local data = pos and all.pos[pos]
+		if not data or data.g < K.BUYS_MIN then
+			return { none = true, pos = pos, slots = {}, start = {}, gold = 0 }
+		end
+		local key = ("%d:%d:%s:%d:%d"):format(h, pos or 0, table.concat(them, ","), I.items_at, I.buys_at[h] or 0)
+		local cached = I.builds[key]
+		if cached then
+			return cached
+		end
+		local T, per = {}, {}
+		for _, e in ipairs(them) do
+			per[e] = I.threats(e)
+			for threat, v in pairs(per[e]) do
+				T[threat] = (T[threat] or 0) + v
+			end
+		end
+		local cands, boots = I.collect(data)
+		local list = {}
+		for name, cd in pairs(cands) do
+			if not cd.drop then
+				cd.score = cd.share
+				local vs = K.COUNTERS[name]
+				if vs and cd.share >= K.ITEM_SHARE then
+					local v, why = 0, {}
+					for threat, w in pairs(vs) do
+						local x = w * math.min(1, T[threat] or 0)
+						if x > 0 then
+							v = v + x
+							why[#why + 1] = { threat = threat, x = x }
+						end
+					end
+					if v > 0 then
+						table.sort(why, function(a, b)
+							return a.x > b.x
+						end)
+						cd.why = why
+						cd.score = cd.share + K.ITEM_COUNTER_W * math.min(1, v) * math.min(1, cd.share / K.ITEM_SHARE_FULL)
+						cd.vs = vs_heroes(vs, them, per)
+					end
+				end
+				list[#list + 1] = cd
+			end
+		end
+		local picked = { boots }
+		local function fits(cd)
+			for _, p in ipairs(picked) do
+				if related(p.item, cd.item) or (p ~= boots and siblings(p.item, cd.item)) then
+					return false
+				end
+			end
+			return true
+		end
+		local function by(field)
+			table.sort(list, function(a, b)
+				if a[field] ~= b[field] then
+					return a[field] > b[field]
+				end
+				return a.item.name < b.item.name
+			end)
+		end
+		by("share")
+		local core = 0
+		for _, cd in ipairs(list) do
+			if core >= K.CORE_LOCK or #picked >= K.SLOTS then
+				break
+			end
+			if fits(cd) then
+				cd.core = true
+				core = core + 1
+				picked[#picked + 1] = cd
+			end
+		end
+		by("score")
+		for _, cd in ipairs(list) do
+			if #picked >= K.SLOTS then
+				break
+			end
+			if not cd.core and fits(cd) then
+				picked[#picked + 1] = cd
+			end
+		end
+		I.must(picked, cands, T, per, them, h, pos, function(s)
+			return s.core
+		end)
+		table.sort(picked, function(a, b)
+			if math.abs(a.t - b.t) > 0.05 then
+				return a.t < b.t
+			end
+			return a.item.cost < b.item.cost
+		end)
+		for _, cd in ipairs(picked) do
+			local up = I.upgrade(cd, cands, picked)
+			if up then
+				cd.after, cd.after_kind = up, "up"
+			else
+				cd.after, cd.after_kind = I.after(cd, cands, picked, data), "dis"
+			end
+			cd.body = item_body(cd)
+		end
+		local steps = {}
+		for _, cd in ipairs(picked) do
+			steps[#steps + 1] = cd
+			if cd.after then
+				steps[#steps + 1] = {
+					item = cd.after.item,
+					t = cd.after.t,
+					base = cd.item,
+					kind = cd.after_kind,
+					body = L(cd.after_kind == "up" and "cd_tip_up_from" or "cd_tip_dis_from"):format(cd.item.label),
+				}
+			end
+		end
+		table.sort(steps, function(a, b)
+			if a.t ~= b.t then
+				return a.t < b.t
+			end
+			return (a.base and 1 or 0) < (b.base and 1 or 0)
+		end)
+		local start, gold = start_items(data)
+		local spare
+		if (T.invis or 0) >= K.SPARE_MIN then
+			local item = I.by_name[(pos and pos >= 4) and "ward_sentry" or "dust"]
+			if item then
+				spare = { item = item, q = 2, vs = vs_heroes({ invis = 1 }, them, per) }
+			end
+		end
+		local build = { slots = picked, steps = steps, start = start, gold = gold, spare = spare }
+		I.builds[key] = build
+		return build
+	end
+end
+
 local function STEPS()
 	return draft.mode == 1 and K.FREE or K.STEPS
 end
@@ -2211,7 +3340,8 @@ local function cur_step()
 			end
 		end
 	end
-	for i = 1, #list do
+	local last = draft.mode == 1 and K.FREE_PICKS or #list
+	for i = 1, last do
 		if not draft.steps[i] then
 			return i
 		end
@@ -2239,6 +3369,33 @@ local function used_set()
 		end
 	end
 	return set
+end
+
+function M.summary()
+	local rows, them = {}, picks(1)
+	for i, step in ipairs(STEPS()) do
+		local h = draft.steps[i]
+		if h and step.kind == "P" and step_team(i) == 0 then
+			rows[#rows + 1] = { h = h, pos = draft.slot_pos[i], slot = i }
+		end
+	end
+	table.sort(rows, function(a, b)
+		return (a.pos or 9) * 100 + a.slot < (b.pos or 9) * 100 + b.slot
+	end)
+	local sig = {}
+	for _, row in ipairs(rows) do
+		row.v, row.sum = {}, 0
+		for j, e in ipairs(them) do
+			local v = (sigm(K.ADV_W * M.adv(row.h, e)) - 0.5) * 100
+			row.v[j] = v
+			row.sum = row.sum + v
+		end
+		sig[#sig + 1] = row.h
+	end
+	for _, e in ipairs(them) do
+		sig[#sig + 1] = e
+	end
+	return { rows = rows, them = them, sig = table.concat(sig, ",") }
 end
 
 local function hero_score(h, allies, enemies, reasons)
@@ -2352,7 +3509,7 @@ local function recompute()
 	if draft.mode == 1 and c0 and c0 == draft.me and draft.my_role and draft.filter == 0 and not draft.filter_user then
 		draft.filter = draft.my_role
 	end
-	draft.result, draft.chance, draft.slot_pos, draft.vs_cache = nil, nil, {}, {}
+	draft.result, draft.chance, draft.slot_pos, draft.vs_cache, draft.summary = nil, nil, {}, {}, nil
 	local ours, ours_idx = {}, {}
 	for i, step in ipairs(STEPS()) do
 		if draft.steps[i] and step.kind == "P" and step_team(i) == 0 then
@@ -2417,6 +3574,14 @@ local function recompute()
 	end
 	local c = cur_step()
 	if not c then
+		if #us == 5 and #them == 5 then
+			local sm = M.summary()
+			if sm.sig ~= draft.summary_sig then
+				draft.summary_sig = sm.sig
+				W.list_t0, W.list_scroll = os.clock(), 0
+			end
+			draft.summary = sm
+		end
 		return
 	end
 	local acting, kind = step_team(c), STEPS()[c].kind
@@ -2553,7 +3718,7 @@ end
 local function reset_draft()
 	draft.steps, draft.edit, draft.query, draft.filter, draft.dirty = {}, nil, "", 0, true
 	draft.known_pos, draft.me, draft.my_role, draft.filter_user, draft.sync_sig = {}, nil, nil, false, nil
-	draft.tentative = {}
+	draft.tentative, draft.build_h, draft.summary_sig = {}, nil, nil
 	draft.store[draft.mode], draft.history[draft.mode], draft.target = draft.steps, {}, nil
 	draft.manual[draft.mode] = {}
 	W.list_scroll = 0
@@ -2584,6 +3749,9 @@ local function put(h)
 	end
 	if draft.mode == 1 then
 		draft.tentative[c] = nil
+		if c > K.FREE_PICKS then
+			draft.target = nil
+		end
 	end
 	draft.steps[c] = h
 	local hist = draft.history[draft.mode]
@@ -2839,6 +4007,523 @@ local function sync_free()
 	end
 end
 
+local G = {
+	live = false,
+	match = nil,
+	hero = nil,
+	pos = nil,
+	pos_for = nil,
+	them = {},
+	seen = {},
+	owned = {},
+	ever = {},
+	bpos = nil,
+	gold = 0,
+	time = 0,
+	plan = nil,
+	sig = nil,
+	next_at = 0,
+}
+
+do
+	local function item_name(item)
+		local ok, name = pcall(Ability.GetName, item)
+		if ok and type(name) == "string" and name ~= "" then
+			return (name:gsub("^item_", ""))
+		end
+		return nil
+	end
+
+	local function my_pos(h)
+		for i, step in ipairs(STEPS()) do
+			if draft.steps[i] == h and step.kind == "P" and step_team(i) == 0 and draft.slot_pos[i] then
+				return draft.slot_pos[i]
+			end
+		end
+		local ok, td = pcall(Player.GetTeamData, Players.GetLocal())
+		local role = ok and type(td) == "table" and K.LANE_BITS[math.tointeger(tonumber(td.lane_selection_flags) or 0) or 0]
+		if role then
+			return role
+		end
+		local best, best_p = -math.huge, 1
+		for p, lp in ipairs(M.pos(h)) do
+			if lp > best then
+				best, best_p = lp, p
+			end
+		end
+		return best_p
+	end
+
+	local function copy(cd)
+		local out = {}
+		for k, v in pairs(cd) do
+			out[k] = v
+		end
+		return out
+	end
+
+	local function counter_v(name, T, cover)
+		local v = 0
+		for threat, w in pairs(K.COUNTERS[name] or {}) do
+			v = v + w * math.min(1, (T[threat] or 0) * (cover[threat] or 1))
+		end
+		return math.min(1, v)
+	end
+
+	local function value(cd, T, cover, anti)
+		local v = cd.share >= K.ITEM_SHARE and counter_v(cd.item.name, T, cover) or 0
+		return cd.share + K.ITEM_COUNTER_W * v * math.min(1, cd.share / K.ITEM_SHARE_FULL) - (anti[cd.item.name] or 0)
+	end
+
+	local function coverage(slots, skip)
+		local left = {}
+		for _, s in ipairs(slots) do
+			if s ~= skip then
+				for threat, w in pairs(K.COUNTERS[s.item.name] or {}) do
+					left[threat] = (left[threat] or 1) * (1 - K.COVER * w)
+				end
+			end
+		end
+		return left
+	end
+
+	local function owns(item)
+		if (G.owned[item.name] or 0) > 0 or G.ever[item.name] then
+			return true
+		end
+		for name in pairs(G.ever) do
+			local o = I.by_name[name]
+			if o then
+				for _, part in ipairs(o.parts) do
+					if part == item.name then
+						return true
+					end
+				end
+			end
+		end
+		return false
+	end
+
+	local function progress(item, used, depth, min_cost, skip)
+		local have = 0
+		for _, part in ipairs(item.parts) do
+			local p = I.by_name[part]
+			if p and part ~= skip then
+				if (G.owned[part] or 0) > (used[part] or 0) and p.cost >= (min_cost or 0) then
+					used[part] = (used[part] or 0) + 1
+					have = have + p.cost
+				elseif depth < 3 and p.created then
+					have = have + progress(p, used, depth + 1, min_cost, skip)
+				end
+			end
+		end
+		return have
+	end
+
+	local function eligible(name, item)
+		return item and not K.SLOT_SKIP[name]
+			and (K.BOOTS[name] or K.SLOT_EXTRA[name] or (item.created and item.cost >= K.SLOT_MIN_COST))
+	end
+
+	local function clash(slots, skip, cd)
+		for _, s in ipairs(slots) do
+			if s ~= skip and (s.item == cd.item or I.related(s.item, cd.item)
+				or (not K.BOOTS[s.item.name] and I.siblings(s.item, cd.item))) then
+				return true
+			end
+		end
+		return false
+	end
+
+	local function add_threats(e, T, from, with_items)
+		local t = {}
+		for k, v in pairs(I.threats(e)) do
+			t[k] = v
+		end
+		if with_items then
+			for name in pairs(G.seen[e] or {}) do
+				for threat, w in pairs(K.ENEMY_ITEMS[name] or {}) do
+					t[threat] = (t[threat] or 0) + w
+					from[#from + 1] = { e = e, item = name, threat = threat, w = w }
+				end
+			end
+		end
+		for k, v in pairs(t) do
+			t[k] = math.min(1, v)
+			T[k] = (T[k] or 0) + t[k]
+		end
+		return t
+	end
+
+	local function reason_for(cd, from)
+		local vs, best = K.COUNTERS[cd.item.name] or {}, nil
+		for _, f in ipairs(from) do
+			local w = vs[f.threat]
+			if w and (not best or w * f.w > best.x) then
+				best = { e = f.e, item = f.item, x = w * f.w }
+			end
+		end
+		return best
+	end
+
+	local function place_owned(slots, data, T1, anti)
+		local function lowest(filter)
+			local worst, worst_v
+			for i, s in ipairs(slots) do
+				if filter(s) then
+					local v = value(s, T1, coverage(slots, s), anti)
+					if not worst or v < worst_v then
+						worst, worst_v = i, v
+					end
+				end
+			end
+			return worst
+		end
+		local names = {}
+		for name in pairs(G.owned) do
+			names[#names + 1] = name
+		end
+		table.sort(names)
+		for _, name in ipairs(names) do
+			local item = I.by_name[name]
+			if eligible(name, item) then
+				local placed = false
+				for _, s in ipairs(slots) do
+					if s.item == item then
+						placed = true
+					end
+					for _, part in ipairs(s.item.parts) do
+						if part == name then
+							placed = true
+						end
+					end
+				end
+				if not placed then
+					local idx
+					for i, s in ipairs(slots) do
+						if not idx and not owns(s.item) and ((K.BOOTS[name] and K.BOOTS[s.item.name])
+							or (s.after and s.after.item == item) or I.related(s.item, item) or I.siblings(s.item, item)) then
+							idx = i
+						end
+					end
+					idx = idx or lowest(function(s)
+						return not owns(s.item) and not s.core
+					end) or lowest(function(s)
+						return not owns(s.item)
+					end)
+					if idx then
+						local r = data.rows[name]
+						slots[idx] = {
+							item = item,
+							count = r and r.n or 0,
+							share = r and r.n / data.g or 0,
+							t = r and r.t or G.time,
+							bought = true,
+						}
+					end
+				end
+			end
+		end
+	end
+
+	local function swap_slots(slots, cands, T0, T1, from, anti, anti_from)
+		local swaps = 0
+		while swaps < K.SWAPS_MAX do
+			local best
+			for i, s in ipairs(slots) do
+				if not s.core and not s.bought and not s.swapped and not K.BOOTS[s.item.name] and not owns(s.item)
+					and progress(s.item, {}, 0, K.SIGNAL_MIN) == 0 then
+					local cover = coverage(slots, s)
+					local cur = value(s, T1, cover, anti)
+					local hurt = (anti[s.item.name] or 0) > 0
+					for _, cd in pairs(cands) do
+						if not cd.drop and not clash(slots, s, cd) then
+							local v1 = value(cd, T1, cover, anti)
+							local fresh = hurt or v1 > value(cd, T0, cover, anti) + 0.02
+							local gain = v1 - cur
+							if fresh and gain >= K.SWAP_MARGIN and (not best or gain > best.gain) then
+								best = { i = i, cd = cd, gain = gain, hurt = hurt }
+							end
+						end
+					end
+				end
+			end
+			if not best then
+				return
+			end
+			local old = slots[best.i]
+			local new = copy(best.cd)
+			new.swapped, new.from = true, old.item
+			new.reason = best.hurt and anti_from[old.item.name] or reason_for(new, from)
+			slots[best.i] = new
+			swaps = swaps + 1
+		end
+	end
+
+	function G.compute()
+		local base = I.build(G.hero, G.bpos, G.them)
+		if not base then
+			return nil
+		end
+		local auto = I.bpos[G.hero] == nil
+		if base.none then
+			return { none = true, hero = G.hero, pos = G.bpos, auto = auto, slots = {} }
+		end
+		local data = I.buys[G.hero].pos[G.bpos]
+		if #base.slots == 0 then
+			return nil
+		end
+		local adapt = cfg.padapt == 1
+		local T0, T1, from, per1 = {}, {}, {}, {}
+		for _, e in ipairs(G.them) do
+			add_threats(e, T0, {}, false)
+			per1[e] = add_threats(e, T1, from, adapt)
+		end
+		local anti, anti_from = {}, {}
+		if adapt then
+			for _, e in ipairs(G.them) do
+				for name in pairs(G.seen[e] or {}) do
+					for target, w in pairs(K.ANTI[name] or {}) do
+						if w > (anti[target] or 0) then
+							anti[target], anti_from[target] = w, { e = e, item = name }
+						end
+					end
+				end
+			end
+		end
+		local slots = {}
+		for i, cd in ipairs(base.slots) do
+			slots[i] = copy(cd)
+		end
+		place_owned(slots, data, T1, anti)
+		local cands = I.collect(data)
+		if adapt then
+			swap_slots(slots, cands, T0, T1, from, anti, anti_from)
+			for _, new in ipairs(I.must(slots, cands, T1, per1, G.them, G.hero, G.pos, function(s)
+				return s.core or s.bought or owns(s.item) or progress(s.item, {}, 0, K.SIGNAL_MIN) > 0
+			end)) do
+				new.swapped, new.from = true, new.replaced
+				new.reason = reason_for(new, from)
+			end
+		end
+		table.sort(slots, function(a, b)
+			if a.t ~= b.t then
+				return a.t < b.t
+			end
+			return a.item.cost < b.item.cost
+		end)
+		local steps = {}
+		for _, sl in ipairs(slots) do
+			steps[#steps + 1] = { s = sl, item = sl.item, t = sl.t }
+			if sl.after then
+				steps[#steps + 1] = { s = sl, item = sl.after.item, t = sl.after.t, base = sl.item, kind = sl.after_kind }
+			end
+		end
+		table.sort(steps, function(a, b)
+			if a.t ~= b.t then
+				return a.t < b.t
+			end
+			return (a.base and 1 or 0) < (b.base and 1 or 0)
+		end)
+		local function step_done(st)
+			if st.base then
+				return owns(st.item)
+			end
+			return st.s.bought or owns(st.item)
+		end
+		local last = 0
+		for i, st in ipairs(steps) do
+			if step_done(st) then
+				last = i
+			end
+		end
+		local order, skipped = {}, {}
+		for i, st in ipairs(steps) do
+			local done = step_done(st)
+			st.have = done and 0 or progress(st.item, {}, 0)
+			st.signal = done and 0 or progress(st.item, {}, 0, K.SIGNAL_MIN, st.base and st.base.name)
+			if not done and i < last and st.signal == 0 then
+				st.skipped = true
+				skipped[#skipped + 1] = st
+			else
+				order[#order + 1] = st
+			end
+		end
+		for _, st in ipairs(skipped) do
+			order[#order + 1] = st
+		end
+		steps = order
+		local target, target_k
+		for _, st in ipairs(steps) do
+			if not step_done(st) and st.signal > 0 then
+				local k = st.signal / math.max(1, st.item.cost)
+				if not target or k > target_k then
+					target, target_k = st, k
+				end
+			end
+		end
+		if not target then
+			for _, st in ipairs(steps) do
+				if not target and not step_done(st) then
+					target = st
+				end
+			end
+		end
+		local plan = { hero = G.hero, slots = {}, pos = G.bpos, auto = auto }
+		local start = { items = {}, gold = base.gold, done = true }
+		for _, st in ipairs(base.start) do
+			local name = st.item.name
+			local have = G.owned[name] or 0
+			if name == "ward_observer" or name == "ward_sentry" then
+				have = have + (G.owned.ward_dispenser or 0)
+			end
+			if have < st.q and G.ever[name] and G.time > 0 then
+				have = st.q
+			end
+			local d = { name = name, label = st.item.label, cost = st.item.cost, q = st.q, have = math.min(have, st.q) }
+			d.state = d.have >= st.q and "done" or "next"
+			d.body = st.q > 1 and ("%s x%d"):format(st.item.label, st.q) or st.item.label
+			start.done = start.done and d.state == "done"
+			start.items[#start.items + 1] = d
+		end
+		plan.start = #start.items > 0 and start or nil
+		for i, st in ipairs(steps) do
+			local s = st.s
+			local d = { name = st.item.name, label = st.item.label, cost = st.item.cost, t = st.t }
+			if step_done(st) then
+				d.state = "done"
+			elseif st == target then
+				d.state, d.have = "next", st.have
+				plan.next = d
+			else
+				d.state = "later"
+			end
+			local lines = {}
+			if st.base then
+				d.base, d.kind = { name = st.base.name, label = st.base.label }, st.kind
+				lines[1] = L(st.kind == "up" and "cd_tip_up_from" or "cd_tip_dis_from"):format(st.base.label)
+			else
+				if s.swapped then
+					d.from = s.from.label
+					lines[1] = L("cd_tip_swap"):format(s.from.label)
+					local r = s.reason
+					if r then
+						local hero = D.by_id[r.e]
+						local it = I.by_name[r.item]
+						lines[2] = L("cd_tip_swap_why"):format(hero and hero.name or "?", it and it.label or r.item)
+						d.reason = r.e
+					end
+				end
+				lines[#lines + 1] = I.body(s)
+			end
+			if st.skipped then
+				lines[#lines + 1] = L("cd_tip_skipped")
+			end
+			d.body = table.concat(lines, "\n")
+			plan.slots[i] = d
+		end
+		plan.complete = plan.next == nil
+		return plan
+	end
+
+	local function stop()
+		G.live, I.want = false, nil
+	end
+
+	function G.tick()
+		if cfg.panel ~= 1 then
+			stop()
+			return
+		end
+		local now = os.clock()
+		if now < G.next_at then
+			return
+		end
+		G.next_at = now + K.PANEL_EVERY
+		local okg, gs = pcall(GameRules.GetGameState)
+		local hero = okg and K.PANEL_STATES[gs] and Heroes.GetLocal()
+		local info = hero and D.by_unit[NPC.GetUnitName(hero)]
+		if not info then
+			stop()
+			return
+		end
+		local match = tostring(GameRules.GetMatchID())
+		if G.match ~= match then
+			G.match, G.seen, G.plan, G.sig, G.pos_for, G.ever = match, {}, nil, nil, nil, {}
+		end
+		local team = Entity.GetTeamNum(hero)
+		local them, taken = {}, {}
+		for _, e in ipairs(Heroes.GetAll()) do
+			if Entity.GetTeamNum(e) ~= team and not NPC.IsIllusion(e) then
+				local ei = D.by_unit[NPC.GetUnitName(e)]
+				if ei and not taken[ei.id] and #them < 5 then
+					taken[ei.id] = true
+					them[#them + 1] = ei.id
+					if not Entity.IsDormant(e) then
+						local seen = G.seen[ei.id] or {}
+						G.seen[ei.id] = seen
+						for slot = 0, K.ENEMY_INV_LAST do
+							local item = NPC.GetItemByIndex(e, slot)
+							local name = item and item_name(item)
+							if name then
+								seen[name] = true
+							end
+						end
+					end
+				end
+			end
+		end
+		table.sort(them)
+		local owned = {}
+		for slot = 0, K.INV_LAST do
+			local item = NPC.GetItemByIndex(hero, slot)
+			local name = item and item_name(item)
+			if name then
+				owned[name] = (owned[name] or 0) + 1
+			end
+		end
+		local okp, tp = pcall(Player.GetTeamPlayer, Players.GetLocal())
+		G.gold = (okp and type(tp) == "table") and (tonumber(tp.reliable_gold) or 0) + (tonumber(tp.unreliable_gold) or 0) or 0
+		if G.pos_for ~= info.id then
+			G.pos, G.pos_for = my_pos(info.id), info.id
+		end
+		for name in pairs(owned) do
+			G.ever[name] = true
+		end
+		G.hero, G.them, G.owned, G.live, I.want = info.id, them, owned, true, info.id
+		G.bpos = I.bpos[info.id] or G.pos
+		G.time = GameRules.GetDOTATime(true, true)
+		local sig = { info.id, G.bpos, table.concat(them, ","), I.items_at, I.buys_at[info.id] or 0, cfg.padapt }
+		local names = {}
+		for name, n in pairs(owned) do
+			names[#names + 1] = name .. n
+		end
+		for name in pairs(G.ever) do
+			names[#names + 1] = "~" .. name
+		end
+		table.sort(names)
+		sig[#sig + 1] = table.concat(names, ",")
+		for _, e in ipairs(them) do
+			local list = {}
+			for name in pairs(G.seen[e] or {}) do
+				if K.ENEMY_ITEMS[name] or K.ANTI[name] then
+					list[#list + 1] = name
+				end
+			end
+			table.sort(list)
+			sig[#sig + 1] = e .. ":" .. table.concat(list, ",")
+		end
+		sig = table.concat(sig, "|")
+		if sig ~= G.sig then
+			G.plan = G.compute()
+			G.sig = G.plan and sig or nil
+			if G.plan then
+				log("panel plan for %d: %d slots", info.id, #G.plan.slots)
+			end
+		end
+	end
+end
+
 local function match_score(hero, q)
 	if q == "" then
 		return 1
@@ -2894,10 +4579,13 @@ local function in_rect(r, cx, cy)
 end
 
 local function cursor_in_window()
+	local cx, cy = Input.GetCursorPos()
+	if W.panel_rect and in_rect(W.panel_rect, cx, cy) and not over_menu(cx, cy) then
+		return true
+	end
 	if not W.open or W.vis <= 0 or W.w == 0 or not W.x then
 		return false
 	end
-	local cx, cy = Input.GetCursorPos()
 	if over_menu(cx, cy) then
 		return false
 	end
@@ -2927,16 +4615,23 @@ local function click(right)
 	if W.pos_menu and kind ~= "posset" and kind ~= "posbadge" and kind ~= "pmbg" then
 		W.pos_menu = nil
 	end
+	if W.set_gear and kind ~= "set_gear" and not in_rect(W.gear_rect, cx, cy) then
+		W.set_gear = nil
+	end
 	if not hit then
 		return
 	end
-	if kind == "pmbg" or kind == "stbg" then
+	if kind == "pmbg" or kind == "stbg" or kind == "stgbg" then
 		return
 	elseif kind == "settings" then
 		W.settings = not W.settings
-		W.pos_menu = nil
+		W.pos_menu, W.set_gear = nil, nil
 	elseif kind == "set_back" then
-		W.settings = false
+		W.settings, W.set_gear = false, nil
+	elseif kind == "set_preview" then
+		W.preview = not W.preview
+	elseif kind == "set_gear" then
+		W.set_gear = W.set_gear ~= arg and arg or nil
 	elseif kind == "set_src" then
 		set_cfg("source", arg)
 		draft.dirty = true
@@ -2971,6 +4666,24 @@ local function click(right)
 			set_manual(W.pos_menu.slot, arg > 0 and arg or nil)
 		end
 		W.pos_menu = nil
+	elseif kind == "set_pview" then
+		set_cfg("pview", arg)
+	elseif kind == "set_pzoom_up" or kind == "set_pzoom_down" then
+		set_cfg("pzoom", clamp(cfg.pzoom + (kind == "set_pzoom_up" and 10 or -10), 60, 160))
+	elseif kind == "bpos" then
+		I.bpos[arg.h] = arg.p
+	elseif kind == "pdrag" then
+		if not right then
+			W.pdrag, W.pdx, W.pdy = true, cx - W.px, cy - W.py
+		end
+	elseif kind == "sbar" then
+		if not right then
+			local grab = cy - arg.ty
+			if grab < 0 or grab > arg.th then
+				grab = arg.th / 2
+			end
+			W.sdrag = { id = arg.id, grab = grab }
+		end
 	elseif kind == "search" then
 		W.focus = true
 	elseif kind == "head" then
@@ -2997,6 +4710,8 @@ local function click(right)
 		draft.dirty = true
 	elseif kind == "mode" then
 		set_mode(arg)
+	elseif kind == "sumrow" then
+		draft.build_h = arg
 	elseif kind == "hero" or kind == "row" then
 		if not right then
 			put(arg)
@@ -3056,7 +4771,7 @@ local function open_window()
 	W.open, W.focus = true, true
 end
 
-local draw_window
+local draw_window, draw_panel, draw_tips
 local load_stage, spinner, STAGE_TEXT
 
 do
@@ -3116,6 +4831,18 @@ do
 			end
 		end
 		return Render.LoadFont(K.FONTS[#K.FONTS], flags, weight)
+	end
+
+	local function ensure_fonts()
+		if not W.fonts then
+			W.fonts = {
+				bold = load_font(Enum.FontWeight.BOLD),
+				semi = load_font(Enum.FontWeight.SEMIBOLD),
+				medium = load_font(Enum.FontWeight.MEDIUM),
+				regular = load_font(Enum.FontWeight.NORMAL),
+				icon = Render.LoadFont("FontAwesomeEx", Enum.FontCreate.FONTFLAG_ANTIALIAS, 400),
+			}
+		end
 	end
 
 	local function image(path)
@@ -3196,6 +4923,9 @@ do
 
 	local function hovered(x0, y0, x1, y1)
 		local cx, cy = Input.GetCursorPos()
+		if W.gear_block and in_rect(W.gear_block, cx, cy) then
+			return false
+		end
 		return cx >= x0 and cx <= x1 and cy >= y0 and cy <= y1 and not over_menu(cx, cy) and not W.drag
 	end
 
@@ -3316,7 +5046,7 @@ do
 			return
 		end
 		if hovered(x0, y0, x1, y1) then
-			W.tip_cand = { id = id, x0 = x0, y0 = y0, x1 = x1, y1 = y1, title = title, body = body, pos = pos }
+			W.tip_cand = { id = id, x0 = x0, y0 = y0, x1 = x1, y1 = y1, title = title, body = body, pos = pos, s = s }
 		end
 	end
 
@@ -3363,6 +5093,7 @@ do
 		if ta <= 0.01 or not t then
 			return
 		end
+		s = t.s or s
 		local lines = {}
 		for line in (t.body or ""):gmatch("[^\n]+") do
 			lines[#lines + 1] = line
@@ -3618,6 +5349,46 @@ do
 		return total
 	end
 
+	local SB = { field = { grid = "grid_scroll", list = "list_scroll", set = "set_scroll" } }
+
+	function SB.scroll(id, key, max)
+		local field = SB.field[id]
+		local geo = W.sb_geo and W.sb_geo[id]
+		local drag = W.sdrag and W.sdrag.id == id
+		if drag and geo then
+			if Input.IsKeyDown(K.MOUSE1, true) then
+				local _, cy = Input.GetCursorPos()
+				W[field] = clamp((cy - W.sdrag.grab - geo.y0) / math.max(1, geo.track - geo.th), 0, 1) * max
+			else
+				W.sdrag, drag = nil, false
+			end
+		end
+		W[field] = clamp(W[field] or 0, 0, max)
+		if drag then
+			A[key] = { v = W[field], from = W[field], to = W[field], k = 1 }
+		end
+		return math.floor(tween(key, W[field], K.MOVE) + 0.5)
+	end
+
+	function SB.bar(id, x1, y0, y1, shown, max, a)
+		W.sb_geo = W.sb_geo or {}
+		if not max or max <= 0 then
+			W.sb_geo[id] = nil
+			return
+		end
+		local track = y1 - y0
+		local th = math.max(px(24), math.floor(track * track / (track + max)))
+		local ty = y0 + (track - th) * clamp(shown / max, 0, 1)
+		local drag = W.sdrag and W.sdrag.id == id
+		local hv = approach("sb_h" .. id, (drag or hovered(x1 - px(12), y0, x1, y1)) and 1 or 0, 18)
+		local bw = px(4) + px(3) * hv
+		local x0 = x1 - px(3) - bw
+		rect(x0, y0, x0 + bw, y1, fade(Color(255, 255, 255, math.floor(10 + 10 * hv)), a), bw / 2)
+		rect(x0, ty, x0 + bw, ty + th, fade(Color(255, 255, 255, math.floor(60 + 60 * hv)), a), bw / 2)
+		W.sb_geo[id] = { y0 = y0, track = track, th = th }
+		hit(x1 - px(12), y0, x1, y1, "sbar", { id = id, ty = ty, th = th })
+	end
+
 	local function draw_update_pill(right, cy, a)
 		local st = U.status
 		local show = st == "available" or st == "downloading" or st == "done" or (st == "error" and U.remote ~= nil)
@@ -3650,7 +5421,7 @@ do
 		local ea = a * pa
 		if bg then
 			local hb = Color(bg.r, bg.g, bg.b, math.min(255, bg.a + math.floor(28 * hv)))
-			rect(x0, cy - ph / 2, right, cy + ph / 2, fade(hb, ea), ph / 2)
+			rect(x0, cy - ph / 2, right, cy + ph / 2, fade(hb, ea), px(7))
 		end
 		Render.PushClip(Vec2(x0, cy - ph / 2), Vec2(right, cy + ph / 2), true)
 		local tx = x0 + pad
@@ -3659,13 +5430,17 @@ do
 			tx = tx + iw
 		end
 		text(W.fonts.semi, px(11), label, tx, cy, fade(fg, ea))
-		if st == "downloading" then
-			local seg = pw * 0.4
-			local phase = (os.clock() % 1.1) / 1.1
-			local sx = x0 + (pw + seg) * phase - seg
-			rect(sx, cy + ph / 2 - px(2), sx + seg, cy + ph / 2, fade(P.GOOD, ea), px(1))
-		end
 		Render.PopClip()
+		if st == "downloading" then
+			local bx0, bx1 = x0 + px(7), right - px(7)
+			local by = cy + ph / 2 - px(4)
+			local seg = (bx1 - bx0) * 0.4
+			local phase = (os.clock() % 1.1) / 1.1
+			local sx = bx0 + (bx1 - bx0 + seg) * phase - seg
+			Render.PushClip(Vec2(bx0, by - px(1)), Vec2(bx1, by + px(3)), true)
+			rect(sx, by, sx + seg, by + px(2), fade(P.GOOD, ea), px(1))
+			Render.PopClip()
+		end
 		if clickable and show then
 			hit(x0, cy - ph / 2, right, cy + ph / 2, "upd_install")
 			if st == "error" and U.error then
@@ -3828,58 +5603,89 @@ do
 
 		local row_h = px(K.SET_ROW)
 		local top = y + px(36)
-		W.set_scroll = clamp(W.set_scroll or 0, 0, W.set_max or 0)
-		local scroll = math.floor(tween("set_scroll", W.set_scroll, K.MOVE) + 0.5)
-		local ry = top + px(4) - scroll
+		local scroll = SB.scroll("set", "set_scroll", W.set_max or 0)
 		W.set_rect = { x, top, x + w, y + h }
 		W.hit_clip = { top, y + h }
+		W.gear_anchor = W.gear_anchor or {}
 		Render.PushClip(Vec2(x, top), Vec2(x + w, y + h), true)
 		local cx0, cy0 = Input.GetCursorPos()
-		local function section(key)
-			ry = ry + px(8)
-			text(W.fonts.semi, px(10), L(key), left, ry + px(6), fade(P.DIM, a))
-			ry = ry + px(14)
+		local covered = W.gear_rect and in_rect(W.gear_rect, cx0, cy0)
+		W.gear_block = W.gear_rect
+		local C = { l = left, r = right, x0 = x + px(4), x1 = x + w - px(4), y = top + px(2) - scroll, a = a }
+
+		local function section(c, key)
+			c.y = c.y + px(6)
+			text(W.fonts.semi, px(10), L(key), c.l, c.y + px(6), fade(P.DIM, c.a))
+			c.y = c.y + px(14)
 		end
-		local function row(label, hint, id)
-			local cy = ry + row_h / 2
-			local rh = approach("st_row" .. id, (cx0 >= x + px(4) and cx0 <= x + w - px(4) and cy0 >= ry and cy0 < ry + row_h
-				and not W.drag) and 1 or 0, 20)
+		local function row(c, icon, label, id)
+			local cy = c.y + row_h / 2
+			local inside = cx0 >= c.x0 and cx0 <= c.x1 and cy0 >= c.y and cy0 < c.y + row_h
+			local rh = approach("st_row" .. id, (inside and not W.drag and (c.popup or not covered)) and 1 or 0, 20)
 			if rh > 0 then
-				rect(x + px(4), ry, x + w - px(4), ry + row_h, fade(Color(255, 255, 255, 8), a * rh), px(8))
+				rect(c.x0, c.y, c.x1, c.y + row_h, fade(Color(255, 255, 255, c.popup and 12 or 8), c.a * rh), px(7))
 			end
-			if hint then
-				text(W.fonts.regular, px(12), label, left, cy - px(6), fade(P.TEXT, a))
-				text(W.fonts.regular, px(10), hint, left, cy + px(8), fade(P.DIM, a))
-			else
-				text(W.fonts.regular, px(12), label, left, cy, fade(P.TEXT, a))
+			local tx = c.l
+			if icon then
+				glyph(icon, c.l + px(7), cy, px(11), fade(P.MUTED, c.a))
+				tx = c.l + px(22)
 			end
-			ry = ry + row_h
+			local lw = label and text(W.fonts.regular, px(12), label, tx, cy, fade(P.TEXT, c.a)) or 0
+			c.y = c.y + row_h
+			return cy, tx, tx + lw
+		end
+		local function seg(c, id, labels, value, kind, cy)
+			segment(id, c.r - segment_width(labels), cy, labels, value, kind, c.a)
+		end
+		local function toggle(c, icon, key, label, id)
+			local cy = row(c, icon, label, id)
+			mini_switch(key, c.r, cy, c.a)
+			hit(c.x0, cy - row_h / 2, c.x1, cy + row_h / 2, "set_toggle", key)
 			return cy
 		end
-		local function seg(id, labels, value, kind, cy)
-			segment(id, right - segment_width(labels), cy, labels, value, kind, a)
+		local function stepper(c, cy, value, up, down, id)
+			local sb = px(20)
+			local vw = px(42)
+			for n, item in ipairs({ { "+", up, c.r - sb }, { "-", down, c.r - sb * 2 - vw } }) do
+				local sx = item[3]
+				local h2 = approach(id .. n, hovered(sx, cy - sb / 2, sx + sb, cy + sb / 2) and 1 or 0, 20)
+				rect(sx, cy - sb / 2, sx + sb, cy + sb / 2, fade(mix(P.CELL, P.HOVER, h2), c.a), px(6))
+				local gw = tw(W.fonts.medium, px(12), item[1])
+				text(W.fonts.medium, px(12), item[1], sx + (sb - gw) / 2, cy, fade(P.TEXT, c.a))
+				hit(sx, cy - sb / 2, sx + sb, cy + sb / 2, item[2])
+			end
+			local label = ("%d%%"):format(value)
+			local tvw = tw(W.fonts.medium, px(11), label)
+			text(W.fonts.medium, px(11), label, c.r - sb - vw / 2 - tvw / 2, cy, fade(P.TEXT, c.a))
 		end
-		local function toggle(key, label, id)
-			local cy = row(label, nil, id)
-			mini_switch(key, right, cy, a)
-			hit(x + px(4), cy - row_h / 2, x + w - px(4), cy + row_h / 2, "set_toggle", key)
+		local function gear(c, key, cy)
+			local size = px(20)
+			local on = W.set_gear == key
+			local gh = approach("st_g" .. key, (on or (not covered and hovered(c.r - size, cy - size / 2, c.r, cy + size / 2))) and 1 or 0, 20)
+			if gh > 0 then
+				rect(c.r - size, cy - size / 2, c.r, cy + size / 2, fade(on and P.CHIP_ON or P.HOVER, c.a * gh), px(6))
+			end
+			glyph("\u{f013}", c.r - size / 2, cy, px(10), fade(mix(P.MUTED, P.TEXT, gh), c.a))
+			hit(c.r - size, cy - size / 2, c.r, cy + size / 2, "set_gear", key)
+			W.gear_anchor[key] = { cy - size / 2, cy + size / 2 }
+			return size
 		end
 
-		section("cd_sec_data")
-		local cy = row(L("cd_set_source"), nil, "src")
-		seg("st_src", { L("cd_src_short0"), L("cd_src_long1") }, source(), "set_src", cy)
+		section(C, "cd_sec_data")
+		local cy = row(C, "\u{f1c0}", L("cd_set_source"), "src")
+		seg(C, "st_src", { L("cd_src_short0"), L("cd_src_long1") }, source(), "set_src", cy)
 		local note_h = math.floor(tween("st_cm_note", source() == 1 and px(K.CM_NOTE_H) or 0, K.PAGE_TIME) + 0.5)
 		if note_h > 0.5 then
 			local na = a * clamp(note_h / px(K.CM_NOTE_H), 0, 1)
-			Render.PushClip(Vec2(x, ry), Vec2(x + w, ry + note_h), true)
+			Render.PushClip(Vec2(x, C.y), Vec2(x + w, C.y + note_h), true)
 			local CM = D.sets[1]
 			local n = #CM.recs
 			local days = CM.oldest and math.max(1, math.floor((os.time() - CM.oldest) / 86400 + 0.5)) or nil
 			local rate = (days and n > 0) and n / days or nil
-			local l1 = ry + px(12)
-			local l2 = ry + px(29)
-			glyph("\u{f05a}", left + px(5), l1, px(10), fade(P.MUTED, na))
-			local tx = left + px(16)
+			local l1 = C.y + px(12)
+			local l2 = C.y + px(29)
+			glyph("\u{f05a}", left + px(7), l1, px(10), fade(P.MUTED, na))
+			local tx = left + px(22)
 			if n == 0 or not days then
 				text(W.fonts.regular, px(11), L("cd_cm_wait"), tx, l1, fade(P.MUTED, na))
 			elseif CM.exhausted then
@@ -3894,21 +5700,24 @@ do
 			local why = rate and L("cd_cm_why"):format(math.floor(rate + 0.5)) or L("cd_cm_why0")
 			text(W.fonts.regular, px(10), why, tx, l2, fade(P.DIM, na))
 			Render.PopClip()
-			ry = ry + note_h
+			C.y = C.y + note_h
 		end
-		cy = row(L("cd_set_rank"), nil, "rank")
-		seg("st_rank", { L("cd_rk0"), L("cd_rk1"), L("cd_rk2"), L("cd_rk3") }, cfg.rank, "set_rank", cy)
-		cy = row(L("cd_set_volume"), L("cd_set_volume_tip"), "vol")
-		seg("st_vol", { "50k", "100k", "200k" }, cfg.volume, "set_vol", cy)
+		cy = row(C, "\u{f091}", L("cd_set_rank"), "rank")
+		seg(C, "st_rank", { L("cd_rk0"), L("cd_rk1"), L("cd_rk2"), L("cd_rk3") }, cfg.rank, "set_rank", cy)
+		local vy = C.y
+		local vcy, _, label_end = row(C, "\u{f5fd}", L("cd_set_volume"), "vol")
+		seg(C, "st_vol", { "50k", "100k", "200k" }, cfg.volume, "set_vol", vcy)
+		tip("st_vol_tip", left, vy, label_end, vy + row_h, L("cd_set_volume"), L("cd_set_volume_tip"))
 
-		cy = ry + row_h / 2
+		local tx
+		cy, tx = row(C, "\u{f1da}", nil, "info")
 		local S = D.sets[source()]
 		local parts = {}
 		if S.stats then
 			parts[#parts + 1] = L("cd_matches"):format(fmt_games(S.stats.n))
 		end
 		parts[#parts + 1] = S.job and L("cd_upd_loading") or fmt_updated(S.updated)
-		local lx = left
+		local lx = tx
 		for n, part in ipairs(parts) do
 			if n > 1 then
 				vline(lx, cy, px(6), a)
@@ -3917,58 +5726,108 @@ do
 			lx = lx + text(W.fonts.regular, px(11), part, lx, cy, fade(P.MUTED, a)) + px(8)
 		end
 		local label = L("cd_set_refresh")
-		local bw = tw(W.fonts.medium, px(11), label) + px(34)
-		local bh = px(24)
+		local bw = tw(W.fonts.medium, px(11), label) + px(32)
+		local bh = px(22)
 		local busy = any_busy()
-		local rb = approach("st_refresh", (not busy and hovered(right - bw, cy - bh / 2, right, cy + bh / 2)) and 1 or 0, 20)
+		local rb = approach("st_refresh", (not busy and not covered and hovered(right - bw, cy - bh / 2, right, cy + bh / 2)) and 1 or 0, 20)
 		local ba = a * (busy and 0.45 or 1)
-		rect(right - bw, cy - bh / 2, right, cy + bh / 2, fade(mix(P.CELL, P.HOVER, rb), ba), px(7))
-		glyph("\u{f021}", right - bw + px(14), cy, px(10), fade(P.MUTED, ba))
-		text(W.fonts.medium, px(11), label, right - bw + px(24), cy, fade(P.TEXT, ba))
+		rect(right - bw, cy - bh / 2, right, cy + bh / 2, fade(mix(P.CELL, P.HOVER, rb), ba), px(6))
+		glyph("\u{f021}", right - bw + px(13), cy, px(10), fade(P.MUTED, ba))
+		text(W.fonts.medium, px(11), label, right - bw + px(23), cy, fade(P.TEXT, ba))
 		if not busy then
 			hit(right - bw, cy - bh / 2, right, cy + bh / 2, "set_refresh")
 		end
-		ry = ry + row_h
 
-		section("cd_sec_window")
-		cy = row(L("cd_set_scale"), nil, "scale")
-		local sb = px(22)
-		local vw = px(44)
-		for n, item in ipairs({ { "+", "set_scale_up", right - sb }, { "-", "set_scale_down", right - sb * 2 - vw } }) do
-			local sx = item[3]
-			local h2 = approach("st_b" .. n, hovered(sx, cy - sb / 2, sx + sb, cy + sb / 2) and 1 or 0, 20)
-			rect(sx, cy - sb / 2, sx + sb, cy + sb / 2, fade(mix(P.CELL, P.HOVER, h2), a), px(6))
-			local gw = tw(W.fonts.medium, px(13), item[1])
-			text(W.fonts.medium, px(13), item[1], sx + (sb - gw) / 2, cy, fade(P.TEXT, a))
-			hit(sx, cy - sb / 2, sx + sb, cy + sb / 2, item[2])
-		end
-		local value = ("%d%%"):format(cfg.zoom)
-		local tvw = tw(W.fonts.medium, px(11), value)
-		text(W.fonts.medium, px(11), value, right - sb - vw / 2 - tvw / 2, cy, fade(P.TEXT, a))
-
-		cy = row(L("cd_set_bg"), nil, "bg")
-		local val_txt = ("%d%%"):format(cfg.bg)
-		local val_w = tw(W.fonts.medium, px(11), "100%")
-		local tx1 = right - val_w - px(K.SLIDER_GAP)
-		local tx0 = tx1 - px(120)
-		local k = (cfg.bg - 50) / 50
-		rect(tx0, cy - px(2), tx1, cy + px(2), fade(Color(255, 255, 255, 30), a), px(2))
-		rect(tx0, cy - px(2), tx0 + (tx1 - tx0) * k, cy + px(2), fade(Color(255, 255, 255, 140), a), px(2))
-		Render.FilledCircle(Vec2(tx0 + (tx1 - tx0) * k, cy), px(6), fade(P.WHITE, a))
-		text(W.fonts.medium, px(11), val_txt, right - tw(W.fonts.medium, px(11), val_txt), cy, fade(P.TEXT, a))
-		W.slider_rect = { tx0, tx1 }
-		hit(tx0 - px(8), cy - px(10), tx1 + px(4), cy + px(10), "set_bg")
-
-		toggle("blur", L("cd_set_blur"), "blur")
-		toggle("tips", L("cd_set_tips"), "tips")
-
-		section("cd_sec_behavior")
-		toggle("auto", L("cd_set_auto"), "auto")
-		toggle("debug", L("cd_set_debug"), "debug")
+		section(C, "cd_sec_view")
+		cy = row(C, "\u{f2d0}", L("cd_set_window"), "win")
+		gear(C, "window", cy)
+		hit(C.x0, cy - row_h / 2, C.r - px(24), cy + row_h / 2, "set_gear", "window")
+		cy = row(C, "\u{f290}", L("cd_set_panel"), "panel")
+		local gs = gear(C, "panel", cy)
+		mini_switch("panel", C.r - gs - px(8), cy, a)
+		hit(C.x0, cy - row_h / 2, C.r - gs - px(4), cy + row_h / 2, "set_toggle", "panel")
+		cy = row(C, "\u{f06e}", L("cd_set_preview"), "preview")
+		local plabel = W.preview and L("cd_preview_hide") or L("cd_preview_show")
+		local pbw = tw(W.fonts.medium, px(11), plabel) + px(24)
+		local pbh = px(22)
+		local pon = W.preview == true
+		local pbx0 = C.r - pbw
+		local phv = approach("st_prev", (not covered and hovered(C.x0, cy - row_h / 2, C.x1, cy + row_h / 2)) and 1 or 0, 20)
+		rect(pbx0, cy - pbh / 2, C.r, cy + pbh / 2, fade(pon and P.CHIP_ON or mix(P.CELL, P.HOVER, phv), a), px(6))
+		text(W.fonts.medium, px(11), plabel, pbx0 + px(12), cy, fade(P.TEXT, a))
+		hit(C.x0, cy - row_h / 2, C.x1, cy + row_h / 2, "set_preview")
+		tip("st_prev", pbx0, cy - pbh / 2, C.r, cy + pbh / 2, L("cd_set_preview"), L("cd_tip_preview"))
+		toggle(C, "\u{f52b}", "auto", L("cd_set_auto"), "auto")
+		toggle(C, "\u{f188}", "debug", L("cd_set_debug"), "debug")
 
 		Render.PopClip()
 		W.hit_clip = nil
-		W.set_max = math.max(0, ry + scroll - top + px(8) - (y + h - top))
+		W.set_max = math.max(0, C.y + scroll - top + px(8) - (y + h - top))
+		SB.bar("set", x + w - px(1), top, y + h, scroll, W.set_max, a)
+
+		local g = W.set_gear
+		local ga = approach("st_gear_a", g and 1 or 0, 22) * a
+		if g then
+			W.gear_last = g
+		end
+		g = g or W.gear_last
+		W.gear_rect = nil
+		local anchor = g and W.gear_anchor[g]
+		if ga <= 0.01 or not anchor then
+			return
+		end
+		local rows = g == "window" and 4 or 5
+		local pw = px(280)
+		local ph = px(40) + rows * row_h + px(6)
+		local px1 = x + w - px(8)
+		local px0 = px1 - pw
+		local py = math.floor(anchor[2] + px(4))
+		if py + ph > y + h - px(4) then
+			py = math.floor(anchor[1] - px(4) - ph)
+		end
+		local nohit = W.nohit
+		W.nohit = nohit or not W.set_gear
+		W.gear_block = nil
+		rect(x + px(4), top, x + w - px(4), y + h - px(4), fade(Color(0, 0, 0, 110), ga), px(8))
+		rect(px0, py, px1, py + ph, fade(Color(31, 34, 39, 255), ga), px(10))
+		hit(px0, py, px1, py + ph, "stgbg")
+		if W.set_gear then
+			W.gear_rect = { px0, py, px1, py + ph }
+		end
+		local title_icon = g == "window" and "\u{f2d0}" or "\u{f290}"
+		glyph(title_icon, px0 + px(19), py + px(17), px(11), fade(P.MUTED, ga))
+		text(W.fonts.semi, px(11), g == "window" and L("cd_set_window") or L("cd_set_panel"), px0 + px(34), py + px(17), fade(P.MUTED, ga))
+		rect(px0 + px(12), py + px(31), px1 - px(12), py + px(31) + math.max(1, px(1)), fade(Color(255, 255, 255, 22), ga))
+		local Q = { l = px0 + px(12), r = px1 - px(12), x0 = px0 + px(4), x1 = px1 - px(4), y = py + px(36), a = ga, popup = true }
+		if g == "window" then
+			cy = row(Q, "\u{f065}", L("cd_set_scale"), "g_scale")
+			stepper(Q, cy, cfg.zoom, "set_scale_up", "set_scale_down", "st_b")
+			cy = row(Q, "\u{f043}", L("cd_set_bg"), "g_bg")
+			local val_txt = ("%d%%"):format(cfg.bg)
+			local val_w = tw(W.fonts.medium, px(11), "100%")
+			local tx1 = Q.r - val_w - px(K.SLIDER_GAP)
+			local tx0 = tx1 - px(100)
+			local k = (cfg.bg - 50) / 50
+			rect(tx0, cy - px(2), tx1, cy + px(2), fade(Color(255, 255, 255, 30), ga), px(2))
+			rect(tx0, cy - px(2), tx0 + (tx1 - tx0) * k, cy + px(2), fade(Color(255, 255, 255, 140), ga), px(2))
+			Render.FilledCircle(Vec2(tx0 + (tx1 - tx0) * k, cy), px(6), fade(P.WHITE, ga))
+			text(W.fonts.medium, px(11), val_txt, Q.r - tw(W.fonts.medium, px(11), val_txt), cy, fade(P.TEXT, ga))
+			if W.set_gear then
+				W.slider_rect = { tx0, tx1 }
+			end
+			hit(tx0 - px(8), cy - px(10), tx1 + px(4), cy + px(10), "set_bg")
+			toggle(Q, "\u{f042}", "blur", L("cd_set_blur"), "g_blur")
+			toggle(Q, "\u{f05a}", "tips", L("cd_set_tips"), "g_tips")
+		else
+			cy = row(Q, "\u{f009}", L("cd_set_pview"), "g_pview")
+			seg(Q, "st_pview", { L("cd_pview0"), L("cd_pview1"), L("cd_pview2") }, cfg.pview, "set_pview", cy)
+			cy = row(Q, "\u{f065}", L("cd_set_scale"), "g_pzoom")
+			stepper(Q, cy, cfg.pzoom, "set_pzoom_up", "set_pzoom_down", "st_pz")
+			toggle(Q, "\u{f54e}", "pshop", L("cd_set_pshop"), "g_pshop")
+			toggle(Q, "\u{f3ed}", "padapt", L("cd_set_padapt"), "g_padapt")
+			toggle(Q, "\u{f070}", "phide", L("cd_set_phide"), "g_phide")
+		end
+		W.nohit = nohit
 	end
 
 	local function draw_timeline(x, y, w, h, a)
@@ -4056,8 +5915,8 @@ do
 		for _, group in pairs(D.by_attr) do
 			content = math.max(content, head_h + math.ceil(#group / 2) * (cell_h + cell_gap))
 		end
-		W.grid_scroll = clamp(W.grid_scroll, 0, math.max(0, content - (gy1 - gy0)))
-		local scroll = math.floor(tween("grid_scroll", W.grid_scroll, K.MOVE) + 0.5)
+		local gmax = math.max(0, content - (gy1 - gy0))
+		local scroll = SB.scroll("grid", "grid_scroll", gmax)
 		Render.PushClip(Vec2(gx0, gy0), Vec2(gx1, gy1), true)
 		local oy = gy0 - scroll
 		local cx, cy = Input.GetCursorPos()
@@ -4102,6 +5961,7 @@ do
 			end
 		end
 		Render.PopClip()
+		SB.bar("grid", x + w - px(1), gy0, gy1, scroll, gmax, a)
 	end
 
 	local function draw_reasons(row, x, cy, max_x, a)
@@ -4266,9 +6126,291 @@ do
 		end
 	end
 
+	local SM = {}
+
+	function SM.signed(v)
+		if math.abs(v) < 0.05 then
+			return "0.0"
+		end
+		return (v > 0 and "+" or "") .. ("%.1f"):format(v)
+	end
+
+	function SM.tone(v)
+		return v >= K.SUM_MIN and P.GOOD or (v <= -K.SUM_MIN and P.BAD or P.MUTED)
+	end
+
+	function SM.item(name, x, y, w, h, q, a)
+		local img = image("panorama/images/items/" .. name .. "_png.vtex_c")
+		if img then
+			Render.Image(img, Vec2(x, y), Vec2(w, h), fade(P.WHITE, a), px(5), K.ROUND)
+		else
+			rect(x, y, x + w, y + h, fade(P.FIELD, a), px(5))
+		end
+		if q and q > 1 then
+			local label = tostring(q)
+			local lw = tw(W.fonts.bold, px(9), label) + px(6)
+			local bx1, by1 = x + w - px(2), y + h - px(2)
+			rect(bx1 - lw, by1 - px(11), bx1, by1, fade(P.SHADE, a), px(3))
+			text(W.fonts.bold, px(9), label, bx1 - lw + px(3), by1 - px(11) / 2, fade(P.TEXT, a))
+		end
+	end
+
+	function SM.caption(label, sub, x, cy, a)
+		local lx = x + text(W.fonts.semi, px(10), label, x, cy, fade(P.DIM, a))
+		if sub then
+			lx = lx + px(8)
+			vline(lx, cy, px(6), a)
+			text(W.fonts.regular, px(10), sub, lx + px(8), cy, fade(P.MUTED, a))
+		end
+	end
+
+	function SM.posbar(h, auto_pos, right, cy, a)
+		local size, gap = px(22), px(3)
+		local have = I.positions(h)
+		local loaded = I.buys[h] ~= nil
+		local pos = I.bpos[h] or auto_pos
+		local x = right - 5 * size - 4 * gap
+		for k = 1, 5 do
+			local bx = x + (k - 1) * (size + gap)
+			local on = pos == k
+			local avail = not loaded or have[k] ~= nil
+			local hv = approach("sbp" .. k, hovered(bx, cy - size / 2, bx + size, cy + size / 2) and 1 or 0, 20)
+			rect(bx, cy - size / 2, bx + size, cy + size / 2, fade(on and P.CHIP_ON or mix(P.CELL, P.HOVER, hv), a), px(6))
+			draw_pos(k, bx + (size - px(14)) / 2, cy, px(14), a * ((avail or on) and 1 or 0.35))
+			hit(bx, cy - size / 2, bx + size, cy + size / 2, "bpos", { h = h, p = k })
+			local body = have[k] and L("cd_tip_bpos"):format(have[k]) or (avail and "" or L("cd_tip_bpos_none"))
+			tip("sbpt" .. k, bx, cy - size / 2, bx + size, cy + size / 2, L("cd_posT" .. k), body, k)
+		end
+		return x
+	end
+
+	function SM.build(sm, row, left, right, by, fade_in)
+		local hero = row and D.by_id[row.h]
+		local ba = fade_in(8)
+		local pos = row and (I.bpos[row.h] or row.pos)
+		local bar_x = row and SM.posbar(row.h, row.pos, right, by, ba) or right
+		local title = L("cd_build_t"):format(hero and hero.name:upper() or "?")
+		local sub = L("cd_build_sub")
+		if left + tw(W.fonts.semi, px(10), title) + px(16) + tw(W.fonts.regular, px(10), sub) > bar_x - px(10) then
+			sub = nil
+		end
+		SM.caption(title, sub, left, by, ba)
+		by = by + px(20)
+		local build = row and I.build(row.h, pos, sm.them)
+		if build and build.none then
+			by = by + px(8)
+			text(W.fonts.medium, px(12), L("cd_build_nopos"):format(pos and L("cd_acc" .. pos) or "?"), left, by, fade(P.TEXT, ba))
+			text(W.fonts.regular, px(10), L("cd_build_nopos2"), left, by + px(17), fade(P.DIM, ba))
+			return by + px(36)
+		end
+		if not build or #build.slots == 0 then
+			local msg, warn
+			if build then
+				msg = L("cd_build_none")
+			elseif I.error and not I.busy then
+				msg, warn = L("cd_ld_error"), true
+			else
+				msg = L("cd_build_loading")
+			end
+			by = by + px(8)
+			local tx = left
+			if warn then
+				glyph("\u{f071}", left + px(6), by, px(10), fade(P.WARN, ba))
+				tx = left + px(18)
+			elseif not build then
+				spinner(left + px(6), by, px(5), ba, P.MUTED, math.max(1, px(1.5)))
+				tx = left + px(18)
+			end
+			local mw = text(W.fonts.regular, px(11), msg, tx, by, fade(P.MUTED, ba))
+			if warn then
+				tip("item_err", left, by - px(10), tx + mw, by + px(10), L("cd_tip_err_t"), I.error:sub(1, 80))
+			end
+			return by + px(20)
+		end
+		local sa = fade_in(9)
+		SM.caption(L("cd_build_start"), L("cd_build_gold"):format(build.gold, K.START_GOLD), left, by, sa)
+		by = by + px(11)
+		local iw, ih = px(40), px(29)
+		local sx = left
+		for n, st in ipairs(build.start) do
+			SM.item(st.item.name, sx, by, iw, ih, st.q, sa)
+			tip("sti" .. n, sx, by, sx + iw, by + ih, st.q > 1 and ("%s x%d"):format(st.item.label, st.q) or st.item.label, "")
+			sx = sx + iw + px(5)
+		end
+		by = by + ih + px(16)
+		SM.caption(L("cd_build_order"), nil, left, by, fade_in(10))
+		by = by + px(11)
+		local gap = px(6)
+		local steps = build.steps or build.slots
+		local count_n = math.max(K.SLOTS, #steps)
+		local sw = math.min(px(64), math.floor((right - left - gap * (count_n - 1)) / count_n))
+		local sh = math.floor(sw * 0.72 + 0.5)
+		local icon = px(16)
+		for n, slot in ipairs(steps) do
+			local x0 = left + (n - 1) * (sw + gap)
+			local ia = fade_in(10 + n * 0.5)
+			SM.item(slot.item.name, x0, by, sw, sh, nil, ia)
+			if slot.base then
+				local ring = math.max(2, px(2))
+				local bs = math.max(px(18), math.floor(sw * 0.52 + 0.5))
+				local bh = math.floor(bs * 0.73 + 0.5)
+				local bx, byy = x0 + sw - bs + px(6), by - px(6)
+				rect(bx - ring, byy - ring, bx + bs + ring, byy + bh + ring, fade(P.BG, ia), px(5))
+				local img = image("panorama/images/items/" .. slot.base.name .. "_png.vtex_c")
+				if img then
+					Render.Image(img, Vec2(bx, byy), Vec2(bs, bh), fade(P.WHITE, ia), px(3), K.ROUND)
+				end
+			end
+			local num = tostring(n)
+			local nw = tw(W.fonts.bold, px(10), num) + px(8)
+			rect(x0 + px(3), by + px(3), x0 + px(3) + nw, by + px(17), fade(P.SHADE, ia), px(4))
+			text(W.fonts.bold, px(10), num, x0 + px(7), by + px(10), fade(P.TEXT, ia))
+			if slot.vs and #slot.vs > 0 then
+				local count = #slot.vs
+				local vx = x0 + math.floor((sw - (count * icon + (count - 1) * px(2))) / 2)
+				for _, e in ipairs(slot.vs) do
+					local img = mini(e)
+					if img then
+						Render.Image(img, Vec2(vx, by + sh + px(6)), Vec2(icon, icon), fade(P.WHITE, ia))
+					end
+					vx = vx + icon + px(2)
+				end
+			end
+			tip("sli" .. n, x0, by, x0 + sw, by + sh + px(6) + icon, slot.item.label, slot.body)
+		end
+		by = by + sh + px(6) + icon + px(12)
+		local sp = build.spare
+		if sp then
+			local pa = fade_in(14)
+			local siw, sih = px(36), px(26)
+			SM.item(sp.item.name, left, by, siw, sih, sp.q, pa)
+			local scy = by + sih / 2
+			local tx = left + siw + px(10)
+			tx = tx + text(W.fonts.regular, px(11), L("cd_build_spare"), tx, scy, fade(P.MUTED, pa)) + px(5)
+			for _, e in ipairs(sp.vs) do
+				local img = mini(e)
+				if img then
+					Render.Image(img, Vec2(tx, math.floor(scy - px(9))), Vec2(px(18), px(18)), fade(P.WHITE, pa))
+				end
+				tx = tx + px(20)
+			end
+			vline(tx + px(4), scy, px(6), pa)
+			text(W.fonts.regular, px(11), L("cd_th_invis"), tx + px(12), scy, fade(P.MUTED, pa))
+			by = by + sih + px(8)
+		end
+		return by
+	end
+
+	function SM.draw(sm, x, y, w, h, a)
+		local left, right = x + px(14), x + w - px(14)
+		local ty = y + px(20)
+		local ta = a * ease((os.clock() - W.step_t) / 0.25)
+		local lx = left + text(W.fonts.bold, px(13), L("cd_sum_t"), left, ty, fade(P.TEXT, ta)) + px(8)
+		if draft.chance then
+			vline(lx, ty, px(7), ta)
+			lx = lx + px(8)
+			lx = lx + text(W.fonts.regular, px(11), L("cd_sum_chance"), lx, ty, fade(P.MUTED, ta)) + px(6)
+			text(W.fonts.bold, px(12), ("%d%%"):format(math.floor(draft.chance * 100 + 0.5)), lx, ty,
+				fade(draft.chance >= 0.5 and P.GOOD or P.BAD, ta))
+		end
+
+		local top, bottom = y + px(34), y + h - px(8)
+		W.list_rect = { x + px(8), top, x + w - px(8), bottom }
+		local scroll = SB.scroll("list", "list_scroll", W.sum_max or 0)
+		Render.PushClip(Vec2(x, top), Vec2(x + w, bottom), true)
+		W.hit_clip = { top, bottom }
+		local now = os.clock()
+		local function fade_in(k)
+			return a * ease((now - W.list_t0 - k * K.STAGGER) / K.ROW_IN)
+		end
+		local cxm, cym = Input.GetCursorPos()
+		local inside = in_rect(W.list_rect, cxm, cym) and not over_menu(cxm, cym) and not W.drag
+
+		local cy = top + px(12) - scroll
+		SM.caption(L("cd_sum_vs"), L("cd_sum_vs_sub"), left, cy, fade_in(0))
+		local gap = px(3)
+		local head_w, sum_w = px(50), px(44)
+		local cell_w = math.floor((right - left - head_w - sum_w - gap * 6) / 5)
+		local pw, ph = px(44), px(25)
+		local col_x = {}
+		for j = 1, 5 do
+			col_x[j] = left + head_w + gap + (j - 1) * (cell_w + gap)
+		end
+		local sum_x = col_x[5] + cell_w + gap
+		local hy = cy + px(11)
+		local ha = fade_in(1)
+		for j, e in ipairs(sm.them) do
+			local img = portrait(e)
+			if img then
+				Render.Image(img, Vec2(col_x[j] + math.floor((cell_w - pw) / 2), hy), Vec2(pw, ph), fade(P.WHITE, ha), px(4), K.ROUND)
+			end
+		end
+		local total = L("cd_sum_total")
+		text(W.fonts.regular, px(10), total, sum_x + (sum_w - tw(W.fonts.regular, px(10), total)) / 2, hy + ph / 2,
+			fade(P.MUTED, ha))
+
+		local sel = I.hero(sm)
+		local row_h = px(26)
+		local ry = hy + ph + px(5)
+		for k, row in ipairs(sm.rows) do
+			local ra = fade_in(k + 1)
+			local y0 = ry + (k - 1) * (row_h + gap)
+			local y1 = y0 + row_h
+			local rcy = y0 + row_h / 2
+			local hov = inside and cym >= y0 - px(1) and cym < y1 + px(2)
+			local hv = approach("sm_h" .. row.h, hov and 1 or 0, 20)
+			local on = approach("sm_s" .. row.h, (sel and sel.h == row.h) and 1 or 0, 16)
+			local bg = math.max(on, hv * 0.6)
+			if bg > 0 then
+				rect(left - px(6), y0 - px(2), right + px(6), y1 + px(2), fade(P.HOVER, ra * bg * 1.4), px(7))
+			end
+			local iy = y0 + math.floor((row_h - ph) / 2)
+			local img = portrait(row.h)
+			if img then
+				Render.Image(img, Vec2(left, iy), Vec2(pw, ph), fade(P.WHITE, ra), px(4), K.ROUND)
+			else
+				rect(left, iy, left + pw, iy + ph, fade(P.FIELD, ra), px(4))
+			end
+			if row.pos then
+				local size = px(11)
+				rect(left + px(1), iy + ph - size - px(3), left + size + px(5), iy + ph - px(1), fade(P.SHADE, ra * 0.9), px(3))
+				draw_pos(row.pos, left + px(3), iy + ph - px(2) - size / 2, size, ra)
+			end
+			local hero = D.by_id[row.h]
+			local name = hero and hero.name or "?"
+			for j, v in ipairs(row.v) do
+				local c0 = col_x[j]
+				local base = v >= 0 and P.GOOD or P.BAD
+				local mag = math.min(1, math.abs(v) / 4)
+				local cell = mag >= 0.0125 and Color(base.r, base.g, base.b, math.floor(56 * mag + 0.5)) or P.CELL
+				rect(c0, y0, c0 + cell_w, y1, fade(cell, ra), px(5))
+				local str = SM.signed(v)
+				text(W.fonts.semi, px(12), str, c0 + (cell_w - tw(W.fonts.semi, px(12), str)) / 2, rcy, fade(SM.tone(v), ra))
+				local enemy = D.by_id[sm.them[j]]
+				tip("smc" .. row.h .. ":" .. j, c0, y0, c0 + cell_w, y1,
+					L("cd_tip_cell_t"):format(name, enemy and enemy.name or "?"), L("cd_tip_cell"):format(str))
+			end
+			local str = SM.signed(row.sum)
+			text(W.fonts.bold, px(12), str, sum_x + (sum_w - tw(W.fonts.bold, px(12), str)) / 2, rcy, fade(SM.tone(row.sum), ra))
+			tip("sms" .. row.h, sum_x, y0, sum_x + sum_w, y1, L("cd_tip_sum_t"):format(name), L("cd_tip_sum"))
+			hit(left - px(6), y0 - px(1), right + px(6), y1 + px(1), "sumrow", row.h)
+		end
+		local by = ry + #sm.rows * (row_h + gap) + px(8)
+		text(W.fonts.regular, px(10), L("cd_sum_hint"), left, by, fade(P.DIM, fade_in(7)))
+		by = SM.build(sm, sel, left, right, by + px(24), fade_in)
+		Render.PopClip()
+		W.hit_clip = nil
+		W.sum_max = math.max(0, by + scroll - bottom)
+		SB.bar("list", x + w - px(1), top, bottom, scroll, W.sum_max, a)
+	end
+
 	local function draw_list_view(x, y, w, h, a)
 		local left = x + px(14)
 		local res = draft.result
+		if not res and draft.summary then
+			SM.draw(draft.summary, x, y, w, h, a)
+			return
+		end
 		local ty = y + px(20)
 		local hk = ease((os.clock() - W.step_t) / 0.25)
 		local list_top = y + px(40)
@@ -4325,8 +6467,8 @@ do
 			for _, row in ipairs(rows) do
 				content = content + (row.comp and px(K.ROW_COMP) or px(K.ROW))
 			end
-			W.list_scroll = clamp(W.list_scroll, 0, math.max(0, content - (ly1 - ly0)))
-			local scroll = math.floor(tween("list_scroll", W.list_scroll, K.MOVE) + 0.5)
+			local lmax = math.max(0, content - (ly1 - ly0))
+			local scroll = SB.scroll("list", "list_scroll", lmax)
 			Render.PushClip(Vec2(lx0, ly0), Vec2(lx1, ly1), true)
 			local cxm, cym = Input.GetCursorPos()
 			local inside = in_rect(W.list_rect, cxm, cym) and not over_menu(cxm, cym) and not W.drag
@@ -4409,6 +6551,7 @@ do
 				ry = ry + row_h
 			end
 			Render.PopClip()
+			SB.bar("list", x + w - px(1), ly0, ly1, scroll, lmax, a)
 		end
 
 	end
@@ -4445,8 +6588,441 @@ do
 		Render.PopClip()
 	end
 
+	local PN = {}
+
+	PN.DEMO = {
+		hero = 48,
+		gold = 1300,
+		pos = 1,
+		slots = {
+			{ name = "power_treads", label = "Power Treads", state = "done", t = 346, cost = 1400 },
+			{ name = "mask_of_madness", label = "Mask of Madness", state = "done", t = 608, cost = 1900 },
+			{ name = "manta", label = "Manta Style", state = "next", t = 1028, cost = 4650, have = 2100 },
+			{ name = "black_king_bar", label = "Black King Bar", state = "later", t = 1559, cost = 4050 },
+			{ name = "butterfly", label = "Butterfly", state = "later", t = 1598, cost = 5450 },
+			{ name = "monkey_king_bar", label = "Monkey King Bar", state = "later", t = 1880, cost = 5000,
+				from = "Hurricane Pike", reason = 44 },
+			{ name = "satanic", label = "Satanic", state = "later", t = 2084, cost = 5050,
+				base = { name = "mask_of_madness", label = "Mask of Madness" }, kind = "dis" },
+		},
+		start = {
+			gold = 565,
+			items = {
+				{ name = "branches", label = "Iron Branch", cost = 55, q = 2, state = "done" },
+				{ name = "quelling_blade", label = "Quelling Blade", cost = 100, q = 1, state = "done" },
+				{ name = "magic_stick", label = "Magic Stick", cost = 200, q = 1, state = "done" },
+				{ name = "tango", label = "Tango", cost = 90, q = 1, state = "done" },
+				{ name = "faerie_fire", label = "Faerie Fire", cost = 65, q = 1, state = "done" },
+			},
+		},
+	}
+	PN.DEMO.next = PN.DEMO.slots[3]
+	PN.NONE = { hero = 48, pos = 3, none = true, slots = {} }
+
+	function PN.demo()
+		local D0 = PN.DEMO
+		if not D0.ready then
+			D0.ready = true
+			for _, d in ipairs(D0.slots) do
+				local lines = {}
+				if d.from then
+					lines[1] = L("cd_tip_swap"):format(d.from)
+					lines[2] = L("cd_tip_swap_why"):format("Phantom Assassin", "Butterfly")
+				end
+				if d.base then
+					lines[#lines + 1] = L(d.kind == "up" and "cd_tip_up_from" or "cd_tip_dis_from"):format(d.base.label)
+				end
+				d.body = table.concat(lines, "\n")
+			end
+			for _, d in ipairs(D0.start.items) do
+				d.body = d.q > 1 and ("%s x%d"):format(d.label, d.q) or d.label
+			end
+		end
+		local chosen = I.bpos[D0.hero]
+		if chosen and chosen ~= 1 then
+			PN.NONE.pos = chosen
+			return PN.NONE
+		end
+		return D0
+	end
+
+	function PN.item_img(name)
+		return image("panorama/images/items/" .. name .. "_png.vtex_c")
+	end
+
+	function PN.slot(d, x, y, w, h, a)
+		local img = PN.item_img(d.name)
+		if img then
+			Render.Image(img, Vec2(x, y), Vec2(w, h), fade(P.WHITE, a), px(4), K.ROUND)
+		else
+			rect(x, y, x + w, y + h, fade(P.FIELD, a), px(4))
+		end
+		if d.q and d.q > 1 then
+			local label = tostring(d.q)
+			local lw = tw(W.fonts.bold, px(9), label) + px(6)
+			rect(x + px(1), y + h - px(12), x + px(1) + lw, y + h - px(1), fade(P.SHADE, a), px(3))
+			text(W.fonts.bold, px(9), label, x + px(4), y + h - px(6.5), fade(P.TEXT, a))
+		end
+		local ring = math.max(2, px(2))
+		if d.reason then
+			local bs = math.max(px(15), math.floor(h * 0.62 + 0.5))
+			local bx, by = x + w - bs + px(6), y - px(6)
+			rect(bx - ring, by - ring, bx + bs + ring, by + bs + ring, fade(P.BG, a), px(5))
+			local face = mini(d.reason)
+			if face then
+				Render.Image(face, Vec2(bx, by), Vec2(bs, bs), fade(P.WHITE, a))
+			end
+		elseif d.base then
+			local bw = math.max(px(16), math.floor(w * 0.56 + 0.5))
+			local bh = math.floor(bw * 0.73 + 0.5)
+			local bx, by = x + w - bw + px(6), y - px(6)
+			rect(bx - ring, by - ring, bx + bw + ring, by + bh + ring, fade(P.BG, a), px(5))
+			local src = PN.item_img(d.base.name)
+			if src then
+				Render.Image(src, Vec2(bx, by), Vec2(bw, bh), fade(P.WHITE, a), px(3), K.ROUND)
+			end
+		end
+	end
+
+	function PN.need(plan, d)
+		local gold = plan == PN.DEMO and PN.DEMO.gold or G.gold
+		local need = math.max(0, (d.cost or 0) - (d.have or 0))
+		local k = tween("pn_prog", (d.cost or 0) > 0 and ((d.have or 0) + math.min(gold, need)) / d.cost or 0, 0.4)
+		if gold >= need then
+			return L("cd_p_enough"), P.GOOD, k
+		end
+		return L("cd_p_more"):format(need - gold), P.MUTED, k
+	end
+
+	function PN.bar(x0, x1, cy, k, a)
+		local bh = math.max(2, px(3))
+		local y0 = math.floor(cy - bh / 2)
+		rect(x0, y0, x1, y0 + bh, fade(Color(255, 255, 255, 26), a), bh / 2)
+		if k > 0 then
+			rect(x0, y0, x0 + (x1 - x0) * clamp(k, 0, 1), y0 + bh, fade(P.GOOD, a), bh / 2)
+		end
+	end
+
+	function PN.back(x, y, w, h, a)
+		if cfg.blur == 1 then
+			local strength = clamp((a - 0.5) / 0.5, 0, 1)
+			if strength > 0.01 then
+				Render.Blur(Vec2(x, y), Vec2(x + w, y + h), strength, 1.0, px(10), K.ROUND)
+			end
+		end
+		rect(x, y, x + w, y + h, fade(Color(P.BG.r, P.BG.g, P.BG.b, math.floor(255 * cfg.bg / 100 + 0.5)), a), px(10))
+	end
+
+	function PN.head(plan, x, y, w, a)
+		local hy = y + px(20)
+		local lx = x + px(12)
+		local face = mini(plan.hero)
+		if face then
+			Render.Image(face, Vec2(lx, hy - px(10)), Vec2(px(20), px(20)), fade(P.WHITE, a))
+			lx = lx + px(26)
+		end
+		lx = lx + text(W.fonts.bold, px(12), L("cd_p_title"), lx, hy, fade(P.TEXT, a)) + px(8)
+		local hero = D.by_id[plan.hero]
+		if hero then
+			vline(lx, hy, px(6), a)
+			text(W.fonts.regular, px(11), hero.name, lx + px(8), hy, fade(P.MUTED, a))
+		end
+		if plan == PN.DEMO or plan == PN.NONE then
+			local tag = L("cd_p_preview")
+			text(W.fonts.regular, px(10), tag, x + w - px(12) - tw(W.fonts.regular, px(10), tag), hy, fade(P.DIM, a))
+		end
+		hit(x, y, x + w, y + px(34), "pdrag")
+	end
+
+	function PN.roles_w(size)
+		return 5 * size + 4 * px(4)
+	end
+
+	function PN.roles(plan, x, cy, size, a)
+		local gap = px(4)
+		local hero = plan.hero
+		local demo = plan == PN.DEMO or plan == PN.NONE
+		local have = demo and not I.buys[hero] and { [1] = 400 } or I.positions(hero)
+		local loaded = demo or I.buys[hero] ~= nil
+		for p = 1, 5 do
+			local bx = x + (p - 1) * (size + gap)
+			local on = plan.pos == p
+			local avail = not loaded or have[p] ~= nil
+			local hv = approach("pr" .. p, hovered(bx, cy - size / 2, bx + size, cy + size / 2) and 1 or 0, 20)
+			rect(bx, cy - size / 2, bx + size, cy + size / 2, fade(on and P.CHIP_ON or mix(P.CELL, P.HOVER, hv), a), px(6))
+			local icon = math.floor(size * 0.64 + 0.5)
+			draw_pos(p, bx + (size - icon) / 2, cy, icon, a * ((avail or on) and 1 or 0.35))
+			hit(bx, cy - size / 2, bx + size, cy + size / 2, "bpos", { h = hero, p = p })
+			local body = have[p] and L("cd_tip_bpos"):format(have[p]) or (avail and "" or L("cd_tip_bpos_none"))
+			tip("pr" .. p, bx, cy - size / 2, bx + size, cy + size / 2, L("cd_posT" .. p), body, p)
+		end
+		return PN.roles_w(size)
+	end
+
+	function PN.start_fit(plan, avail, max_w)
+		local n = plan.start and #plan.start.items or 0
+		if n == 0 then
+			return 0, 0
+		end
+		local gap = px(3)
+		local iw = math.min(max_w, math.floor((avail - gap * (n - 1)) / n))
+		return iw, math.floor(iw * 0.72 + 0.5)
+	end
+
+	function PN.start(plan, x, cy, w, a)
+		local st = plan.start
+		if not st then
+			return
+		end
+		local label = L("cd_p_start")
+		local lw = text(W.fonts.medium, px(11), label, x, cy, fade(P.MUTED, a))
+		local gold = ("%d / %d"):format(st.gold, K.START_GOLD)
+		local gw = tw(W.fonts.regular, px(11), gold)
+		text(W.fonts.regular, px(11), gold, x + w - gw, cy, fade(P.DIM, a))
+		local ix0 = x + lw + px(10)
+		local iw, ih = PN.start_fit(plan, w - lw - gw - px(20), px(30))
+		for i, d in ipairs(st.items) do
+			local sx = ix0 + (i - 1) * (iw + px(3))
+			PN.slot(d, sx, math.floor(cy - ih / 2), iw, ih, a)
+			tip("pst" .. i, sx, cy - ih / 2, sx + iw, cy + ih / 2, d.label, d.body or "")
+		end
+	end
+
+	function PN.none(plan, x, y, a, measure)
+		local w, h = px(300), px(118)
+		if measure then
+			return w, h
+		end
+		PN.back(x, y, w, h, a)
+		PN.head(plan, x, y, w, a)
+		local pl = plan.pos and L("cd_acc" .. plan.pos) or "?"
+		text(W.fonts.medium, px(12), L("cd_build_nopos"):format(pl), x + px(12), y + px(46), fade(P.TEXT, a))
+		text(W.fonts.regular, px(10), L("cd_build_nopos2"), x + px(12), y + px(64), fade(P.DIM, a))
+		PN.roles(plan, x + px(12), y + h - px(22), px(24), a)
+	end
+
+	function PN.strip(plan, x, y, a, measure)
+		local pad, sw, sh, gap = px(12), px(50), px(37), px(6)
+		local w = pad * 2 + 6 * sw + 5 * gap
+		local has_start = plan.start ~= nil
+		local top = y + px(34) + (has_start and px(30) or 0)
+		local h = top - y + sh + px(26) + px(36)
+		if measure then
+			return w, h
+		end
+		PN.back(x, y, w, h, a)
+		PN.head(plan, x, y, w, a)
+		if has_start then
+			PN.start(plan, x + pad, y + px(48), w - pad * 2, a)
+		end
+		local sy = top + px(4)
+		local n = math.max(6, #plan.slots)
+		local iw = math.min(sw, math.floor((w - pad * 2 - gap * (n - 1)) / n))
+		local ih = math.floor(iw * 0.74 + 0.5)
+		local iy = sy + math.floor((sh - ih) / 2)
+		for i, d in ipairs(plan.slots) do
+			local sx = x + pad + (i - 1) * (iw + gap)
+			PN.slot(d, sx, iy, iw, ih, a)
+			tip("pn" .. i, sx, iy, sx + iw, iy + ih, d.label, d.body)
+		end
+		local ny = sy + sh + px(15)
+		local d = plan.next
+		if d then
+			local lx = x + pad + text(W.fonts.medium, px(11), d.label, x + pad, ny, fade(P.TEXT, a)) + px(10)
+			local str, col, k = PN.need(plan, d)
+			local rw = tw(W.fonts.regular, px(11), str)
+			text(W.fonts.regular, px(11), str, x + w - pad - rw, ny, fade(col, a))
+			PN.bar(lx, x + w - pad - rw - px(10), ny, k, a)
+		else
+			text(W.fonts.medium, px(11), L("cd_p_all"), x + pad, ny, fade(P.MUTED, a))
+		end
+		PN.roles(plan, x + pad, y + h - px(20), px(24), a)
+	end
+
+	function PN.list(plan, x, y, a, measure)
+		local w = px(286)
+		local row_h = px(38)
+		local has_start = plan.start ~= nil
+		local top = y + px(34) + (has_start and px(30) or 0)
+		local h = top - y + #plan.slots * row_h + px(40)
+		if measure then
+			return w, h
+		end
+		PN.back(x, y, w, h, a)
+		PN.head(plan, x, y, w, a)
+		if has_start then
+			PN.start(plan, x + px(12), y + px(48), w - px(24), a)
+		end
+		local iw, ih = px(40), px(29)
+		for i, d in ipairs(plan.slots) do
+			local ry = top + (i - 1) * row_h
+			local rcy = ry + math.floor(row_h / 2)
+			if d.state == "next" then
+				rect(x + px(6), ry + px(1), x + w - px(6), ry + row_h - px(1), fade(Color(255, 255, 255, 14), a), px(7))
+			end
+			local ix = x + px(12)
+			PN.slot(d, ix, math.floor(rcy - ih / 2), iw, ih, a)
+			local tx = ix + iw + px(10)
+			local rx = x + w - px(14)
+			text(W.fonts.semi, px(12), d.label, tx, rcy - px(7), fade(P.TEXT, a))
+			local sy = rcy + px(8)
+			if d.state == "next" then
+				local str, col, k = PN.need(plan, d)
+				local rw = tw(W.fonts.semi, px(11), str)
+				text(W.fonts.semi, px(11), str, rx - rw, rcy, fade(col, a))
+				PN.bar(tx, rx - rw - px(10), sy + px(1), k, a)
+			elseif d.from then
+				local lx = tx + text(W.fonts.regular, px(11), L("cd_p_instead"):format(d.from), tx, sy, fade(P.MUTED, a)) + px(5)
+				local face = d.reason and mini(d.reason)
+				if face then
+					Render.Image(face, Vec2(lx, math.floor(sy - px(7))), Vec2(px(14), px(14)), fade(P.WHITE, a))
+				end
+			else
+				local sub = d.base and L(d.kind == "up" and "cd_p_up" or "cd_p_dis"):format(d.base.label)
+					or L("cd_p_cost"):format(d.cost or 0)
+				text(W.fonts.regular, px(11), sub, tx, sy, fade(P.MUTED, a))
+			end
+			tip("pl" .. i, x, ry, x + w, ry + row_h, d.label, d.body or "")
+		end
+		PN.roles(plan, x + px(12), y + h - px(20), px(24), a)
+	end
+
+	function PN.pill(plan, x, y, a, measure)
+		local iw, ih = px(38), px(28)
+		local d = plan.next
+		local queue = {}
+		for _, sl in ipairs(plan.slots) do
+			if sl.state == "later" then
+				queue[#queue + 1] = sl
+			end
+		end
+		local name = d and d.label or L("cd_p_all")
+		local str, col, k = "", P.MUTED, nil
+		if d then
+			str, col, k = PN.need(plan, d)
+		end
+		local nw = tw(W.fonts.bold, px(12), name)
+		local body_w = math.max(px(110), nw + px(8) + tw(W.fonts.regular, px(11), str))
+		local qw, qh, qg = px(31), px(23), px(8)
+		local queue_w = #queue > 0 and px(18) + #queue * (qw + qg) - qg or 0
+		local size = px(20)
+		local roles_w = PN.roles_w(size)
+		local start_n = plan.start and #plan.start.items or 0
+		local start_w = start_n > 0 and start_n * (px(22) + px(3)) - px(3) or 0
+		local row1 = px(6) + iw + px(9) + body_w + queue_w + px(12)
+		local row2 = px(12) + start_w + (start_w > 0 and px(16) or 0) + roles_w + px(12)
+		local w = math.max(row1, row2)
+		local h = px(40) + px(30)
+		if measure then
+			return w, h
+		end
+		PN.back(x, y, w, h, a)
+		hit(x, y, x + w, y + px(40), "pdrag")
+		local cy = y + px(20)
+		local ix = x + px(6)
+		if d then
+			PN.slot(d, ix, cy - math.floor(ih / 2), iw, ih, a)
+			tip("pp", ix, cy - ih / 2, ix + iw, cy + ih / 2, d.label, d.body or "")
+		else
+			local face = mini(plan.hero)
+			if face then
+				Render.Image(face, Vec2(ix + (iw - ih) / 2, cy - ih / 2), Vec2(ih, ih), fade(P.WHITE, a))
+			end
+		end
+		local tx = ix + iw + px(9)
+		local ty = k and cy - px(5) or cy
+		text(W.fonts.bold, px(12), name, tx, ty, fade(d and P.TEXT or P.MUTED, a))
+		if str ~= "" then
+			text(W.fonts.regular, px(11), str, tx + nw + px(8), ty, fade(col, a))
+		end
+		if k then
+			PN.bar(tx, tx + body_w, cy + px(9), k, a)
+		end
+		if #queue > 0 then
+			local qx = tx + body_w + px(9)
+			vline(qx, cy, px(7), a)
+			qx = qx + px(9)
+			for i, sl in ipairs(queue) do
+				PN.slot(sl, qx, cy - math.floor(qh / 2), qw, qh, a)
+				tip("pq" .. i, qx, cy - qh / 2, qx + qw, cy + qh / 2, sl.label, sl.body or "")
+				qx = qx + qw + qg
+			end
+		end
+		rect(x + px(10), y + px(40), x + w - px(10), y + px(40) + math.max(1, px(1)), fade(P.LINE, a))
+		local cy2 = y + px(55)
+		local sx = x + px(12)
+		if start_n > 0 then
+			local sh = px(16)
+			for i, it in ipairs(plan.start.items) do
+				PN.slot(it, sx, cy2 - sh / 2, px(22), sh, a)
+				tip("pst" .. i, sx, cy2 - sh / 2, sx + px(22), cy2 + sh / 2, it.label, it.body or "")
+				sx = sx + px(25)
+			end
+		end
+		PN.roles(plan, x + w - px(12) - roles_w, cy2, size, a)
+	end
+
+	function draw_panel()
+		W.panel_rect = nil
+		if not W.open then
+			W.preview = false
+		end
+		local preview = W.preview and W.open and W.vis > 0 and not G.live
+		local plan = preview and PN.demo() or G.plan
+		local shop = true
+		if not preview and cfg.pshop == 1 then
+			local ok, open = pcall(Engine.IsShopOpen)
+			shop = ok and open == true
+		end
+		local show = cfg.panel == 1 and plan ~= nil
+			and (preview or (G.live and shop and not (cfg.phide == 1 and plan.complete)))
+		local pa = approach("panel_a", show and 1 or 0, 12)
+		if show then
+			W.pplan = plan
+		end
+		plan = W.pplan
+		if pa <= 0.01 or not plan then
+			W.pdrag = false
+			return
+		end
+		ensure_fonts()
+		local menu_scale = Menu.Scale()
+		s = cfg.pzoom / 100 * K.BASE_ZOOM * ((menu_scale >= 50 and menu_scale <= 300) and menu_scale / 100 or 1)
+		local draw = plan.none and PN.none or ({ PN.strip, PN.list, PN.pill })[cfg.pview + 1] or PN.strip
+		local w, h = draw(plan, 0, 0, pa, true)
+		local screen = Render.ScreenSize()
+		if not W.px then
+			W.px = Config.ReadInt(K.CONFIG, "px", -1)
+			W.py = Config.ReadInt(K.CONFIG, "py", -1)
+			if W.px < 0 or W.py < 0 then
+				W.px, W.py = screen.x - w - px(24), math.floor(screen.y * 0.45)
+			end
+		end
+		if W.pdrag then
+			if Input.IsKeyDown(K.MOUSE1, true) then
+				local cx, cy = Input.GetCursorPos()
+				W.px, W.py = cx - W.pdx, cy - W.pdy
+			else
+				W.pdrag = false
+				Config.WriteInt(K.CONFIG, "px", math.floor(W.px))
+				Config.WriteInt(K.CONFIG, "py", math.floor(W.py))
+			end
+		end
+		W.px = clamp(W.px, 0, math.max(0, screen.x - w))
+		W.py = clamp(W.py, 0, math.max(0, screen.y - h))
+		local x, y = math.floor(W.px), math.floor(W.py)
+		if show then
+			W.panel_rect = { x, y, x + w, y + h }
+		end
+		draw(plan, x, y, pa, false)
+	end
+
+	function draw_tips()
+		draw_tip(1)
+	end
+
 	function draw_window()
-		W.pm_rect, W.st_rect = nil, nil
+		W.pm_rect, W.st_rect, W.gear_block = nil, nil, nil
 		if W.slider then
 			if Input.IsKeyDown(K.MOUSE1, true) and W.slider_rect then
 				local cx = Input.GetCursorPos()
@@ -4477,15 +7053,7 @@ do
 		if W.snap then
 			W.list_t0, W.step_t = os.clock() + 0.05, os.clock()
 		end
-		if not W.fonts then
-			W.fonts = {
-				bold = load_font(Enum.FontWeight.BOLD),
-				semi = load_font(Enum.FontWeight.SEMIBOLD),
-				medium = load_font(Enum.FontWeight.MEDIUM),
-				regular = load_font(Enum.FontWeight.NORMAL),
-				icon = Render.LoadFont("FontAwesomeEx", Enum.FontCreate.FONTFLAG_ANTIALIAS, 400),
-			}
-		end
+		ensure_fonts()
 		if draft.dirty then
 			recompute()
 		end
@@ -4545,7 +7113,6 @@ do
 		rect(x + tl_w + grid_w, my, x + tl_w + grid_w + line, y + h, fade(P.LINE, a))
 		draw_list(x + tl_w + grid_w, my, w - tl_w - grid_w, main_h, a)
 		draw_pos_menu(a)
-		draw_tip(a)
 		W.snap = false
 	end
 end
@@ -4561,6 +7128,7 @@ local function check_match()
 			draft.match = id
 			set_mode(GameRules.GetGameMode() == K.MODE_CM and 0 or 1)
 			reset_draft()
+			I.bpos = {}
 			log("new draft %s", id)
 			if cfg.auto == 1 then
 				open_window()
@@ -4614,6 +7182,16 @@ function script.OnUpdateEx()
 		W.upd_error = tostring(err)
 		Log.Write("[Draft Helper] updater: " .. W.upd_error)
 	end
+	ok, err = pcall(I.tick)
+	if not ok and tostring(err) ~= I.tick_error then
+		I.tick_error = tostring(err)
+		Log.Write("[Draft Helper] items: " .. I.tick_error)
+	end
+	ok, err = pcall(G.tick)
+	if not ok and tostring(err) ~= G.tick_error then
+		G.tick_error = tostring(err)
+		Log.Write("[Draft Helper] panel: " .. G.tick_error)
+	end
 	ok, err = pcall(sync_free)
 	if not ok and tostring(err) ~= D.sync_error then
 		D.sync_error = tostring(err)
@@ -4632,10 +7210,24 @@ function script.OnFrame()
 		W.draw_error = tostring(err)
 		Log.Write("[Draft Helper] draw: " .. W.draw_error)
 	end
+	ok, err = pcall(draw_panel)
+	if not ok and tostring(err) ~= W.panel_error then
+		W.panel_error = tostring(err)
+		Log.Write("[Draft Helper] panel draw: " .. W.panel_error)
+	end
+	ok, err = pcall(draw_tips)
+	if not ok and tostring(err) ~= W.tip_error then
+		W.tip_error = tostring(err)
+		Log.Write("[Draft Helper] tips: " .. W.tip_error)
+	end
 end
 
 function script.OnKeyEvent(data)
-	if not data or W.vis <= 0 or not W.open then
+	if not data then
+		return true
+	end
+	local window_on = W.vis > 0 and W.open
+	if not window_on and not W.panel_rect then
 		return true
 	end
 	local key, ev = data.key, data.event
@@ -4690,7 +7282,7 @@ function script.OnKeyEvent(data)
 		end
 		return true
 	end
-	if not W.focus or key == ui.key:Get() then
+	if not window_on or not W.focus or key == ui.key:Get() then
 		return true
 	end
 	if K.CHARS[key] or key == K.BACKSPACE or key == K.ENTER or key == K.PAD_ENTER or key == K.ESCAPE then
