@@ -22,7 +22,7 @@ PAGE_MIN = 100
 CM_WINDOW = 4000000
 CM_DAYS = 60
 CM_MAX = 40000
-CM_WINDOWS_MAX = 3 if QUICK else 90
+CM_WINDOWS_MAX = 3 if QUICK else 200
 BUYS_MATCHES = 400
 PRO_MATCHES = 6000
 CONTEST_MATCHES = 2000
@@ -208,7 +208,7 @@ def update_ranked(rank, recs):
 def update_cm(recs, newest_id, floor_id):
     cutoff = int(time.time()) - CM_DAYS * 86400
     top = rec_id(recs[0]) if recs else None
-    found, hi, width, windows = [], newest_id + 1, CM_WINDOW, 0
+    found, hi, width, windows, reached = [], newest_id + 1, CM_WINDOW, 0, None
     while windows < CM_WINDOWS_MAX:
         lo = hi - width
         stop = False
@@ -227,12 +227,22 @@ def update_cm(recs, newest_id, floor_id):
                     break
                 cursor = min(ids)
         except RuntimeError as e:
-            if "timeout" in str(e).lower() and width > 250000:
+            if "timeout" not in str(e).lower():
+                if top is not None:
+                    raise
+                log("  cm stopped early: %s", e)
+                break
+            if width > 250000:
                 width //= 2
                 log("  cm timeout, window %d", width)
                 continue
-            raise
+            log("  cm window below %d skipped after timeouts", hi)
         windows += 1
+        if oldest:
+            reached = min(reached or oldest, oldest)
+        if windows % 10 == 0:
+            log("  cm: %d windows, %d found, back to %s", windows, len(found),
+                time.strftime("%Y-%m-%d", time.gmtime(reached)) if reached else "?")
         if stop or (oldest and oldest < cutoff) or lo <= floor_id:
             break
         hi = lo + 1
