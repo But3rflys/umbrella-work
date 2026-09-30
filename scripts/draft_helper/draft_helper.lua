@@ -316,6 +316,7 @@ local qLocalization = (function()
 	return lib
 end)()
 
+local Config = Config
 local JSON = require("assets.JSON")
 
 local localization = qLocalization.new({
@@ -768,12 +769,14 @@ ui.enable:SetCallback(function()
 end, true)
 
 local cfg = {}
-local CFG_DEFAULTS = {
-	source = 0, rank = 2, volume = 1, zoom = 100, bg = 88, blur = 1, tips = 1, auto = 1, debug = 0,
-	panel = 1, pview = 0, pzoom = 100, pshop = 0, padapt = 1, phide = 0,
-}
-for key, value in pairs(CFG_DEFAULTS) do
-	cfg[key] = Config.ReadInt("draft_helper", "set_" .. key, value)
+do
+	local defaults = {
+		source = 0, rank = 2, volume = 1, zoom = 100, bg = 88, blur = 1, tips = 1, auto = 1, debug = 0,
+		panel = 1, pview = 0, pzoom = 100, pshop = 0, padapt = 1, phide = 0,
+	}
+	for key, value in pairs(defaults) do
+		cfg[key] = Config.ReadInt("draft_helper", "set_" .. key, value)
+	end
 end
 
 local function set_cfg(key, value)
