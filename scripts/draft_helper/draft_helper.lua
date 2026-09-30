@@ -402,10 +402,6 @@ local localization = qLocalization.new({
 		cd_tip_num = "How counters and synergy change the win chance.\nHero win rate %s over %s matches",
 		cd_matches = "%s matches",
 		cd_empty = "No fitting heroes",
-		cd_short_0 = "All ranks",
-		cd_short_1 = "Ancient+",
-		cd_short_2 = "Divine+",
-		cd_short_3 = "Divine 5+",
 		cd_ld_heroes = "Loading heroes",
 		cd_ld_pro = "Loading pro matches",
 		cd_ld_matches = "Loading matches",
@@ -419,7 +415,6 @@ local localization = qLocalization.new({
 		cd_ld_retry = "retry in %d s",
 		cd_ld_short = "matches %d%%",
 		cd_src_short0 = "Ranked",
-		cd_src_short1 = "CM",
 		cd_rk0 = "All",
 		cd_rk1 = "Ancient+",
 		cd_rk2 = "Divine+",
@@ -461,7 +456,6 @@ local localization = qLocalization.new({
 		cd_cm_why0 = "Few CM games, hero pairs lean on ranked matches",
 		cd_lang = "en",
 		cd_upd_failed = "Update failed",
-		cd_upd_notes = "What's new in %s",
 		cd_pill_get = "Update to %s",
 		cd_pill_down = "Downloading %s",
 		cd_pill_done = "Updated, restarting",
@@ -619,10 +613,6 @@ local localization = qLocalization.new({
 		cd_tip_num = "Так контрпики и синергия меняют шанс победы.\nВинрейт героя %s за %s матчей",
 		cd_matches = "%s матчей",
 		cd_empty = "Нет подходящих героев",
-		cd_short_0 = "Все ранги",
-		cd_short_1 = "Властелин+",
-		cd_short_2 = "Божество+",
-		cd_short_3 = "Божество 5+",
 		cd_ld_heroes = "Загружаю героев",
 		cd_ld_pro = "Загружаю про-матчи",
 		cd_ld_matches = "Загружаю матчи",
@@ -636,7 +626,6 @@ local localization = qLocalization.new({
 		cd_ld_retry = "повтор через %d с",
 		cd_ld_short = "матчи %d%%",
 		cd_src_short0 = "Рейтинг",
-		cd_src_short1 = "CM",
 		cd_rk0 = "Все",
 		cd_rk1 = "Властелин+",
 		cd_rk2 = "Божество+",
@@ -678,7 +667,6 @@ local localization = qLocalization.new({
 		cd_cm_why0 = "В CM мало игр, пары героев дополняются рейтинговыми",
 		cd_lang = "ru",
 		cd_upd_failed = "Не удалось обновить",
-		cd_upd_notes = "Что нового в %s",
 		cd_pill_get = "Обновить до %s",
 		cd_pill_down = "Скачиваю %s",
 		cd_pill_done = "Обновлено, перезапуск",
@@ -806,39 +794,73 @@ local K = {
 	UPDATE_MIN_SIZE = 50000,
 	UPDATE_RELOAD_DELAY = 1.2,
 	SCRIPT_NAME = "draft_helper.lua",
+
 	EXPLORER = "https://api.opendota.com/api/explorer?sql=",
 	HEROES_URL = "https://api.opendota.com/api/heroes",
 	HEADERS = { ["User-Agent"] = "Umbrella/draft_helper", ["Accept"] = "application/json" },
+	TIMEOUT = 40,
+	RETRY = 60,
+	RETRY_SHORT = 5,
+	GAP = 1.1,
+	CONFIG = "draft_helper",
+	CACHE_FILE = "draft_helper.dat",
+	CACHE_MAGIC = "DHC2",
+	CACHE_KEYS = 6,
+	HEROES_TTL = 7 * 86400,
+	PRO_TTL = 3 * 86400,
+	MATCHES_TTL = 6 * 3600,
+	PRO_MATCHES = 6000,
+	CONTEST_MATCHES = 2000,
+
 	PAGE = 2000,
 	PAGE_CM = 500,
 	PAGE_MIN = 100,
 	CM_WINDOW = 4000000,
-	RETRY_SHORT = 5,
-	ETA_WARMUP = 4,
-	TIP_DELAY = 0.3,
-	TIP_FADE = 0.1,
-	TIP_HOLD = 0.08,
-	TIP_GRACE = 0.3,
-	PAGE_TIME = 0.28,
-	PAGE_SLIDE = 10,
-	FREE_PICKS = 10,
-	BASE_ZOOM = 1.1,
-	SLIDER_GAP = 18,
-	CM_NOTE_H = 44,
 	CM_MAX = 40000,
 	CM_DAYS = 60,
+	PARTIAL = 20000,
 	PARTIAL_CM = 3000,
+	SAVE_EVERY = 10,
+	RANKS = { 0, 60, 70, 75 },
+	VOLUMES = { 50000, 100000, 200000 },
+	REC = 20,
+	PACK = "<I8" .. ("B"):rep(12),
+	CHUNK = 2500,
+	ETA_WARMUP = 4,
+
+	PRIOR_BASE = 200,
+	PRIOR_PAIR = 1000,
+	PRIOR_POS = 12,
 	PRIOR_CM = 300,
 	PRIOR_CM_PAIR = 60,
-	TIMEOUT = 40,
-	RETRY = 60,
-	GAP = 1.1,
-	HEROES_TTL = 7 * 86400,
-	PRO_TTL = 3 * 86400,
-	MATCHES_TTL = 6 * 3600,
-	PARTIAL = 20000,
-	SAVE_EVERY = 10,
-	PRO_MATCHES = 6000,
+	POS_FLOOR = 0.01,
+	ADV_W = 1.2,
+	RARE_W = 0.03,
+	COUNTER_EXTRA = 0.5,
+	COUNTERED_EXTRA = 0.5,
+	SYN_W = 0.5,
+	FIT_MIN = 0.1,
+	FIT_W = 0.025,
+	BASE_W = 0.25,
+	CONTEST_W = 0.05,
+	MIN_GAMES = 150,
+	LIST_MAX = 40,
+	REASONS = 2,
+	REASON_MIN = 0.3,
+	ORDER_W = 0.05,
+	PICK_ORDER = {
+		{ 0.13, 0.20, 0.14, 0.26, 0.27 },
+		{ 0.07, 0.10, 0.14, 0.33, 0.35 },
+		{ 0.13, 0.12, 0.27, 0.24, 0.23 },
+		{ 0.27, 0.28, 0.22, 0.12, 0.11 },
+		{ 0.40, 0.29, 0.21, 0.05, 0.05 },
+	},
+	POS_MIN = 0.2,
+	COMP_ROWS = 6,
+	SUM_MIN = 0.3,
+
+	ORDER = "BF BF BS BS BF BS BS PF PS BF BF BS PS PF PF PS PS PF BF BS BF BS PF PS",
+	FREE_PICKS = 10,
 	SYNC_EVERY = 0.5,
 	SYNC_MODES = {
 		[Enum.GameMode.DOTA_GAMEMODE_AP] = true,
@@ -855,45 +877,10 @@ local K = {
 		[Enum.GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS] = true,
 	},
 	LANE_BITS = { [1] = 1, [2] = 3, [4] = 2, [8] = 4, [16] = 5 },
-	CONTEST_MATCHES = 2000,
-	RANKS = { 0, 60, 70, 75 },
-	VOLUMES = { 50000, 100000, 200000 },
-	REC = 20,
-	PACK = "<I8" .. ("B"):rep(12),
-	CHUNK = 2500,
-
-	PRIOR_BASE = 200,
-	PRIOR_PAIR = 1000,
-	PRIOR_POS = 12,
-	POS_FLOOR = 0.01,
-	ADV_W = 1.2,
-	RARE_W = 0.03,
-	COUNTER_EXTRA = 0.5,
-	COUNTERED_EXTRA = 0.5,
-	SYN_W = 0.5,
-	FIT_MIN = 0.1,
-	FIT_W = 0.025,
-	BASE_W = 0.25,
-	CONTEST_W = 0.05,
-	MIN_GAMES = 150,
-	LIST_MAX = 40,
-	REASONS = 2,
-	REASON_MIN = 0.3,
 	TENTATIVE = 0.45,
-	ORDER_W = 0.05,
-	PICK_ORDER = {
-		{ 0.13, 0.20, 0.14, 0.26, 0.27 },
-		{ 0.07, 0.10, 0.14, 0.33, 0.35 },
-		{ 0.13, 0.12, 0.27, 0.24, 0.23 },
-		{ 0.27, 0.28, 0.22, 0.12, 0.11 },
-		{ 0.40, 0.29, 0.21, 0.05, 0.05 },
-	},
-	POS_MIN = 0.2,
-	COMP_ROWS = 6,
-	POS_ICON = { "safelane", "midlane", "offlane", "softsupport", "hardsupport" },
-	POS_COLOR = { Color(240, 177, 74), Color(98, 168, 255), Color(239, 111, 94), Color(95, 208, 138), Color(181, 140, 255) },
-
-	ORDER = "BF BF BS BS BF BS BS PF PS BF BF BS PS PF PF PS PS PF BF BS BF BS PF PS",
+	HERO_SELECTION = Enum.GameState.DOTA_GAMERULES_STATE_HERO_SELECTION,
+	MODE_CM = Enum.GameMode.DOTA_GAMEMODE_CM,
+	STRATEGY = Enum.GameState.DOTA_GAMERULES_STATE_STRATEGY_TIME,
 
 	W = 960,
 	PAD = 16,
@@ -914,7 +901,6 @@ local K = {
 	CELL_GAP = 3,
 	COL_GAP = 6,
 	BTN = 27,
-	SET_W = 360,
 	SET_ROW = 28,
 	ROW = 40,
 	ROW_COMP = 56,
@@ -922,14 +908,41 @@ local K = {
 	SCROLL = 44,
 	FADE = 0.15,
 	CLICK_GUARD = 0.3,
-	UV0 = Vec2(0.219, 0),
-	UV1 = Vec2(0.781, 1),
 	FONTS = { "Inter", "Segoe UI" },
-	CONFIG = "draft_helper",
-	CACHE_FILE = "draft_helper.dat",
-	CACHE_MAGIC = "DHC2",
-	CACHE_KEYS = 6,
+	BASE_ZOOM = 1.1,
+	SLIDER_GAP = 18,
+	CM_NOTE_H = 44,
+	POS_ICON = { "safelane", "midlane", "offlane", "softsupport", "hardsupport" },
+	POS_COLOR = { Color(240, 177, 74), Color(98, 168, 255), Color(239, 111, 94), Color(95, 208, 138), Color(181, 140, 255) },
+	TIP_DELAY = 0.3,
+	TIP_FADE = 0.1,
+	TIP_HOLD = 0.08,
+	TIP_GRACE = 0.3,
+	PAGE_TIME = 0.28,
+	PAGE_SLIDE = 10,
+	POP = 0.22,
+	MOVE = 0.18,
+	STAGGER = 0.022,
+	ROW_IN = 0.2,
+	SLIDE = 12,
+	TYPE_GAP = 0.15,
+	ROUND = Enum.DrawFlags.RoundCornersAll,
+
+	MOUSE1 = Enum.ButtonCode.KEY_MOUSE1,
+	MOUSE2 = Enum.ButtonCode.KEY_MOUSE2,
+	WHEEL_UP = Enum.ButtonCode.KEY_MWHEELUP,
+	WHEEL_DOWN = Enum.ButtonCode.KEY_MWHEELDOWN,
+	BACKSPACE = Enum.ButtonCode.KEY_BACKSPACE,
+	ENTER = Enum.ButtonCode.KEY_ENTER,
+	PAD_ENTER = Enum.ButtonCode.KEY_PAD_ENTER,
+	ESCAPE = Enum.ButtonCode.KEY_ESCAPE,
+	KEY_DOWN = Enum.EKeyEvent.EKeyEvent_KEY_DOWN,
+	KEY_UP = Enum.EKeyEvent.EKeyEvent_KEY_UP,
+	SCROLL_UP = Enum.EKeyEvent.EKeyEvent_SCROLL_UP,
+	SCROLL_DOWN = Enum.EKeyEvent.EKeyEvent_SCROLL_DOWN,
+
 	ITEMS_URL = "https://api.opendota.com/api/constants/items",
+	ITEMS_TTL = 7 * 86400,
 	BUYS_SQL = "with p as (select match_id, player_slot<128 r, purchase_log, "
 		.. "array[item_0,item_1,item_2,item_3,item_4,item_5,backpack_0,backpack_1,backpack_2] fin "
 		.. "from player_matches where hero_id=%d and purchase_log is not null order by match_id desc limit %d), "
@@ -951,22 +964,31 @@ local K = {
 	BUYS_VER = 3,
 	BUYS_MATCHES = 400,
 	BUYS_MIN = 30,
-	BUYS_ROW_MIN = 0.03,
-	ITEMS_TTL = 7 * 86400,
 	BUYS_TTL = 3 * 86400,
 	BUYS_KEEP = 30,
 	ITEM_RETRY = 15,
 	ITEM_FAIL_SKIP = 60,
 	START_GOLD = 600,
 	START_MIN = 0.35,
+	STACK = {
+		branches = 3, tango = 2, ward_sentry = 2, ward_observer = 2, flask = 2, clarity = 2, enchanted_mango = 2,
+		blood_grenade = 2, faerie_fire = 2,
+	},
 	SLOTS = 6,
 	SLOT_MIN_COST = 1000,
+	SLOT_EXTRA = { blink = true, ghost = true },
+	SLOT_SKIP = { ultimate_scepter_2 = true, ward_dispenser = true },
+	BOOTS = {
+		power_treads = true, phase_boots = true, arcane_boots = true, tranquil_boots = true, travel_boots = true,
+		travel_boots_2 = true, guardian_greaves = true, boots_of_bearing = true,
+	},
 	ITEM_SHARE = 0.15,
 	ITEM_SHARE_FULL = 0.25,
 	ITEM_COUNTER_W = 0.4,
 	ITEM_UPGRADE = 0.5,
 	CORE_LOCK = 3,
 	SIBLING_COST = 800,
+	UPGRADE_MIN = 0.15,
 	DISASSEMBLE = {
 		mask_of_madness = true, echo_sabre = true, pers = true, vanguard = true, vladmir = true, sange_and_yasha = true,
 		kaya_and_sange = true, yasha_and_kaya = true, radiance = true, angels_demise = true,
@@ -974,18 +996,172 @@ local K = {
 	KEEP_MAX = 0.75,
 	AFTER_SHARE = 0.2,
 	AFTER_GAP = 480,
-	SWAP_MARGIN = 0.12,
-	SWAPS_MAX = 2,
-	SIGNAL_MIN = 700,
-	UPGRADE_MIN = 0.15,
-	COVER = 0.8,
+	SPARE_MIN = 0.4,
+	VS_MIN = 0.2,
+	VS_MAX = 3,
+	ROLE_MAGIC = 0.4,
+	ROLE_DISABLE = 0.5,
+	ROLE_PHYS_AGI = 0.6,
+	ROLE_PHYS_STR = 0.35,
+	COUNTERS = {
+		black_king_bar = { magic = 0.5, disable = 0.5, silence = 0.4, roots = 0.4, targeted = 0.5 },
+		pipe = { magic = 0.5 },
+		glimmer_cape = { magic = 0.4 },
+		mage_slayer = { magic = 0.35 },
+		sange_and_yasha = { disable = 0.25, silence = 0.25, roots = 0.25 },
+		sphere = { targeted = 1 },
+		lotus_orb = { targeted = 0.7, silence = 0.5, roots = 0.5 },
+		manta = { silence = 0.8, roots = 0.7 },
+		cyclone = { silence = 0.6, roots = 0.5, pierce = 0.6, burst = 0.3 },
+		wind_waker = { silence = 0.6, roots = 0.5, pierce = 0.6, burst = 0.3 },
+		guardian_greaves = { silence = 0.5, roots = 0.4 },
+		sheepstick = { escape = 1 },
+		orchid = { escape = 0.7 },
+		bloodthorn = { escape = 0.7, evasion = 0.5 },
+		abyssal_blade = { escape = 0.8 },
+		harpoon = { escape = 0.6 },
+		rod_of_atos = { escape = 0.5 },
+		gungir = { escape = 0.5, illusions = 0.7 },
+		diffusal_blade = { escape = 0.4 },
+		disperser = { escape = 0.4, saves = 0.8 },
+		nullifier = { escape = 0.3, saves = 1 },
+		silver_edge = { passives = 1 },
+		monkey_king_bar = { evasion = 1 },
+		mjollnir = { illusions = 0.8 },
+		bfury = { illusions = 0.8 },
+		radiance = { illusions = 0.6 },
+		shivas_guard = { illusions = 0.5, heal = 0.6, phys = 0.6 },
+		skadi = { heal = 0.7, escape = 0.3 },
+		spirit_vessel = { heal = 1 },
+		ghost = { phys = 0.9, burst = 0.8 },
+		ethereal_blade = { phys = 0.5 },
+		solar_crest = { phys = 0.6 },
+		pavise = { phys = 0.5 },
+		force_staff = { phys = 0.3 },
+		hurricane_pike = { phys = 0.4 },
+		assault = { phys = 0.8 },
+		butterfly = { phys = 0.7 },
+		heavens_halberd = { phys = 0.8, burst = 0.6 },
+		blade_mail = { burst = 1, phys = 0.6, pierce = 0.5 },
+		crimson_guard = { phys = 0.5 },
+		aeon_disk = { pierce = 0.5, burst = 0.4 },
+	},
+	FIT = {
+		black_king_bar = { core = true },
+		pipe = { support = true, core = { str = true } },
+		glimmer_cape = { support = true },
+		mage_slayer = { core = { agi = true, int = true } },
+		sange_and_yasha = { core = { str = true, agi = true, all = true } },
+		sphere = { core = true },
+		lotus_orb = { support = true, core = { str = true, int = true } },
+		manta = { core = { agi = true, all = true } },
+		cyclone = { support = true, core = { int = true } },
+		guardian_greaves = { support = true },
+		sheepstick = { core = { int = true } },
+		orchid = { core = { int = true, agi = true } },
+		bloodthorn = { core = { int = true, agi = true } },
+		abyssal_blade = { core = { str = true, agi = true, all = true } },
+		harpoon = { core = { str = true, agi = true, all = true } },
+		rod_of_atos = { support = true, core = { int = true } },
+		diffusal_blade = { core = { agi = true } },
+		silver_edge = { core = { str = true, agi = true, all = true } },
+		monkey_king_bar = { core = { str = true, agi = true, all = true } },
+		mjollnir = { core = { str = true, agi = true, all = true } },
+		gungir = { core = { int = true } },
+		bfury = { core = { str = true, agi = true, all = true }, melee = true },
+		radiance = { core = { str = true, agi = true, all = true } },
+		shivas_guard = { core = { str = true, int = true } },
+		skadi = { core = { agi = true, all = true } },
+		spirit_vessel = { support = true, core = { str = true } },
+		ghost = { support = true },
+		solar_crest = { support = true },
+		pavise = { support = true },
+		ethereal_blade = { core = { int = true } },
+		force_staff = { support = true, core = { int = true } },
+		assault = { core = { str = true, agi = true, all = true } },
+		butterfly = { core = { agi = true, all = true } },
+		heavens_halberd = { core = { str = true } },
+		blade_mail = { core = { str = true } },
+		crimson_guard = { core = { str = true } },
+		aeon_disk = { core = true },
+		nullifier = { core = true },
+	},
+	MUST = {
+		{ "evasion", 0.8, { [1] = true, [2] = true, [3] = true }, true },
+		{ "heal", 0.8, { [4] = true } },
+	},
+	MUST_MAX = 2,
+	MUST_COVER = 0.5,
+	PHYS_MIN = 0.8,
+	PHYS_ITEMS = {
+		bfury = true, manta = true, butterfly = true, greater_crit = true, lesser_crit = true, desolator = true,
+		monkey_king_bar = true, skadi = true, satanic = true, mjollnir = true, maelstrom = true, abyssal_blade = true,
+		basher = true, disperser = true, diffusal_blade = true, silver_edge = true, bloodthorn = true, echo_sabre = true,
+		harpoon = true, armlet = true, mask_of_madness = true, sange_and_yasha = true, nullifier = true, radiance = true,
+	},
+	REACT = {
+		{ items = { "butterfly" }, threat = "evasion", counters = { "monkey_king_bar", "bloodthorn" }, phys = true },
+		{ items = { "ghost", "ethereal_blade", "glimmer_cape", "cyclone", "wind_waker" }, threat = "saves",
+			counters = { "nullifier" }, rate = true },
+		{ items = { "satanic", "heart", "holy_locket", "bloodstone", "guardian_greaves" }, threat = "heal",
+			counters = { "spirit_vessel", "skadi", "shivas_guard" } },
+		{ items = { "sheepstick", "orchid", "bloodthorn", "abyssal_blade", "nullifier" }, threat = "targeted",
+			counters = { "sphere", "lotus_orb" } },
+	},
+	REACT_MAX = 2,
+	REACT_RATE = 0.03,
+	RATE_MIN_GAMES = 60,
+	HERO_TAGS = "abaddon heal .5;alchemist heal 1;antimage escape .8 passives .3;"
+		.. "arc_warden evasion .5 illusions .5 silence .3;axe passives .4 pierce 1 targeted .5;"
+		.. "bane pierce .5 targeted 1;batrider escape .3 pierce .6 targeted .9;"
+		.. "beastmaster illusions .3 pierce .5 targeted .7;bloodseeker pierce .4 silence .4;"
+		.. "bounty_hunter invis .8;brewmaster evasion .5;bristleback passives 1;broodmother illusions .8;"
+		.. "chaos_knight illusions .8 passives .5 targeted .4;chen heal .6;clinkz burst .5 invis .8;"
+		.. "crystal_maiden roots .4;dark_seer illusions .3;dark_willow escape .5 roots .4;dawnbreaker heal .8;"
+		.. "dazzle heal .6;death_prophet silence .5;disruptor silence .6;doom_bringer pierce .7 targeted 1;"
+		.. "dragon_knight heal .3 passives .3 targeted .3;drow_ranger passives .6 silence .5;"
+		.. "earth_spirit escape .4 silence .3;ember_spirit burst .3 escape .7 roots .5;enchantress heal .6;"
+		.. "enigma illusions .4 pierce .7;faceless_void escape .6 passives .5 pierce .6;"
+		.. "furion escape .3 illusions .5;grimstroke targeted .4;hoodwink escape .4 evasion .4;"
+		.. "huskar burst .6 heal .6 passives .8;invoker illusions .3 invis .5;"
+		.. "juggernaut burst .9 heal .6 passives .4;kez escape .4 heal .4 silence .4;kunkka targeted .3;"
+		.. "legion_commander burst .7 heal .3 passives .3 pierce .6 targeted 1;lich targeted .4;"
+		.. "life_stealer heal .6;lina targeted .4;lion targeted .9;lone_druid illusions .5 roots .3;"
+		.. "luna passives .4;lycan burst .3 heal .4 illusions .5;magnataur escape .3 pierce .8;"
+		.. "marci burst .6 escape .3 silence .3;mars passives .6;medusa pierce .4;meepo illusions 1 roots .4;"
+		.. "mirana escape .5 evasion .3 invis .6;monkey_king escape .5 heal .4 passives .4;morphling escape .6;"
+		.. "muerta silence .4;naga_siren evasion .4 illusions 1 roots .5;"
+		.. "necrolyte heal .8 passives .4 targeted .6;night_stalker silence .5;nyx_assassin escape .4 invis .8;"
+		.. "obsidian_destroyer targeted .4;omniknight heal 1;oracle heal 1;pangolier escape .8;"
+		.. "phantom_assassin burst .5 escape .4 evasion 1 passives 1;"
+		.. "phantom_lancer escape .5 evasion .5 illusions 1 invis .3;phoenix heal .5;primal_beast pierce .5;"
+		.. "puck escape 1 silence .4;pudge pierce .4 targeted .7;pugna heal .4;queenofpain escape .7;"
+		.. "rattletrap pierce .3;razor targeted .4;riki burst .4 escape .3 invis 1 silence .5;"
+		.. "rubick targeted .4;sand_king escape .3 invis .5;shadow_demon targeted .8;"
+		.. "shadow_shaman illusions .4 targeted 1;shredder escape .5 passives .8;silencer silence 1;"
+		.. "skeleton_king heal .5 passives .4;skywrath_mage silence .6;slardar passives .4;"
+		.. "slark escape 1 passives .7;sniper passives .3;spectre illusions .3 passives .8;"
+		.. "spirit_breaker passives .4 pierce .3;storm_spirit escape 1;sven burst .5;techies invis .6;"
+		.. "templar_assassin invis .4 passives .3 silence .3;terrorblade burst .4 illusions .8;"
+		.. "tidehunter passives .6;tinker escape .4 targeted .3;treant heal 1 pierce .3 roots .4;"
+		.. "troll_warlord burst .6 heal .5 passives .5;tusk pierce .3;undying heal .5 illusions .3;"
+		.. "ursa burst .8 passives .7;vengefulspirit targeted .3;venomancer illusions .4;"
+		.. "viper passives .4 targeted .4;visage illusions .3 invis .5 passives .5;void_spirit escape .9;"
+		.. "warlock heal .4 illusions .3;weaver escape .9 invis .8 passives .4;"
+		.. "windrunner burst 1 escape .4 evasion .6;winter_wyvern heal .5 pierce .4 targeted .5;"
+		.. "wisp escape .3 heal .8;witch_doctor heal .6",
+
 	PANEL_EVERY = 0.5,
-	INV_LAST = 14,
-	ENEMY_INV_LAST = 8,
 	PANEL_STATES = {
 		[Enum.GameState.DOTA_GAMERULES_STATE_PRE_GAME] = true,
 		[Enum.GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS] = true,
 	},
+	INV_LAST = 14,
+	ENEMY_INV_LAST = 8,
+	SWAP_MARGIN = 0.12,
+	SWAPS_MAX = 2,
+	SIGNAL_MIN = 700,
+	COVER = 0.8,
 	ENEMY_ITEMS = {
 		invis_sword = { invis = 1 },
 		silver_edge = { invis = 1 },
@@ -1040,71 +1216,6 @@ local K = {
 		diffusal_blade = { phys = 0.2 },
 		disperser = { phys = 0.2 },
 	},
-	MUST = {
-		{ "evasion", 0.8, { [1] = true, [2] = true, [3] = true }, true },
-		{ "heal", 0.8, { [4] = true } },
-	},
-	MUST_MAX = 2,
-	REACT_MAX = 2,
-	PHYS_MIN = 0.8,
-	REACT_RATE = 0.03,
-	RATE_MIN_GAMES = 60,
-	PHYS_ITEMS = {
-		bfury = true, manta = true, butterfly = true, greater_crit = true, lesser_crit = true, desolator = true,
-		monkey_king_bar = true, skadi = true, satanic = true, mjollnir = true, maelstrom = true, abyssal_blade = true,
-		basher = true, disperser = true, diffusal_blade = true, silver_edge = true, bloodthorn = true, echo_sabre = true,
-		harpoon = true, armlet = true, mask_of_madness = true, sange_and_yasha = true, nullifier = true, radiance = true,
-	},
-	REACT = {
-		{ items = { "butterfly" }, threat = "evasion", counters = { "monkey_king_bar", "bloodthorn" }, phys = true },
-		{ items = { "ghost", "ethereal_blade", "glimmer_cape", "cyclone", "wind_waker" }, threat = "saves",
-			counters = { "nullifier" }, rate = true },
-		{ items = { "satanic", "heart", "holy_locket", "bloodstone", "guardian_greaves" }, threat = "heal",
-			counters = { "spirit_vessel", "skadi", "shivas_guard" } },
-		{ items = { "sheepstick", "orchid", "bloodthorn", "abyssal_blade", "nullifier" }, threat = "targeted",
-			counters = { "sphere", "lotus_orb" } },
-	},
-	MUST_COVER = 0.5,
-	FIT = {
-		black_king_bar = { core = true },
-		pipe = { support = true, core = { str = true } },
-		glimmer_cape = { support = true },
-		mage_slayer = { core = { agi = true, int = true } },
-		sange_and_yasha = { core = { str = true, agi = true, all = true } },
-		sphere = { core = true },
-		lotus_orb = { support = true, core = { str = true, int = true } },
-		manta = { core = { agi = true, all = true } },
-		cyclone = { support = true, core = { int = true } },
-		guardian_greaves = { support = true },
-		sheepstick = { core = { int = true } },
-		orchid = { core = { int = true, agi = true } },
-		bloodthorn = { core = { int = true, agi = true } },
-		abyssal_blade = { core = { str = true, agi = true, all = true } },
-		harpoon = { core = { str = true, agi = true, all = true } },
-		rod_of_atos = { support = true, core = { int = true } },
-		diffusal_blade = { core = { agi = true } },
-		silver_edge = { core = { str = true, agi = true, all = true } },
-		monkey_king_bar = { core = { str = true, agi = true, all = true } },
-		mjollnir = { core = { str = true, agi = true, all = true } },
-		gungir = { core = { int = true } },
-		bfury = { core = { str = true, agi = true, all = true }, melee = true },
-		radiance = { core = { str = true, agi = true, all = true } },
-		shivas_guard = { core = { str = true, int = true } },
-		skadi = { core = { agi = true, all = true } },
-		spirit_vessel = { support = true, core = { str = true } },
-		ghost = { support = true },
-		solar_crest = { support = true },
-		pavise = { support = true },
-		ethereal_blade = { core = { int = true } },
-		force_staff = { support = true, core = { int = true } },
-		assault = { core = { str = true, agi = true, all = true } },
-		butterfly = { core = { agi = true, all = true } },
-		heavens_halberd = { core = { str = true } },
-		blade_mail = { core = { str = true } },
-		crimson_guard = { core = { str = true } },
-		aeon_disk = { core = true },
-		nullifier = { core = true },
-	},
 	ANTI = {
 		monkey_king_bar = { butterfly = 0.5, talisman_of_evasion = 0.3 },
 		bloodthorn = { butterfly = 0.3 },
@@ -1113,130 +1224,6 @@ local K = {
 		skadi = { satanic = 0.2, heart = 0.2 },
 		shivas_guard = { satanic = 0.15 },
 	},
-
-	SPARE_MIN = 0.4,
-	VS_MIN = 0.2,
-	VS_MAX = 3,
-	SUM_MIN = 0.3,
-	ROLE_MAGIC = 0.4,
-	ROLE_DISABLE = 0.5,
-	ROLE_PHYS_AGI = 0.6,
-	ROLE_PHYS_STR = 0.35,
-	BOOTS = {
-		power_treads = true, phase_boots = true, arcane_boots = true, tranquil_boots = true, travel_boots = true,
-		travel_boots_2 = true, guardian_greaves = true, boots_of_bearing = true,
-	},
-	SLOT_EXTRA = { blink = true, ghost = true },
-	SLOT_SKIP = { ultimate_scepter_2 = true, ward_dispenser = true },
-	STACK = {
-		branches = 3, tango = 2, ward_sentry = 2, ward_observer = 2, flask = 2, clarity = 2, enchanted_mango = 2,
-		blood_grenade = 2, faerie_fire = 2,
-	},
-	COUNTERS = {
-		black_king_bar = { magic = 0.5, disable = 0.5, silence = 0.4, roots = 0.4, targeted = 0.5 },
-		pipe = { magic = 0.5 },
-		glimmer_cape = { magic = 0.4 },
-		mage_slayer = { magic = 0.35 },
-		sange_and_yasha = { disable = 0.25, silence = 0.25, roots = 0.25 },
-		sphere = { targeted = 1 },
-		lotus_orb = { targeted = 0.7, silence = 0.5, roots = 0.5 },
-		manta = { silence = 0.8, roots = 0.7 },
-		cyclone = { silence = 0.6, roots = 0.5, pierce = 0.6, burst = 0.3 },
-		wind_waker = { silence = 0.6, roots = 0.5, pierce = 0.6, burst = 0.3 },
-		guardian_greaves = { silence = 0.5, roots = 0.4 },
-		sheepstick = { escape = 1 },
-		orchid = { escape = 0.7 },
-		bloodthorn = { escape = 0.7, evasion = 0.5 },
-		abyssal_blade = { escape = 0.8 },
-		harpoon = { escape = 0.6 },
-		rod_of_atos = { escape = 0.5 },
-		gungir = { escape = 0.5, illusions = 0.7 },
-		diffusal_blade = { escape = 0.4 },
-		disperser = { escape = 0.4, saves = 0.8 },
-		nullifier = { escape = 0.3, saves = 1 },
-		silver_edge = { passives = 1 },
-		monkey_king_bar = { evasion = 1 },
-		mjollnir = { illusions = 0.8 },
-		bfury = { illusions = 0.8 },
-		radiance = { illusions = 0.6 },
-		shivas_guard = { illusions = 0.5, heal = 0.6, phys = 0.6 },
-		skadi = { heal = 0.7, escape = 0.3 },
-		spirit_vessel = { heal = 1 },
-		ghost = { phys = 0.9, burst = 0.8 },
-		ethereal_blade = { phys = 0.5 },
-		solar_crest = { phys = 0.6 },
-		pavise = { phys = 0.5 },
-		force_staff = { phys = 0.3 },
-		hurricane_pike = { phys = 0.4 },
-		assault = { phys = 0.8 },
-		butterfly = { phys = 0.7 },
-		heavens_halberd = { phys = 0.8, burst = 0.6 },
-		blade_mail = { burst = 1, phys = 0.6, pierce = 0.5 },
-		crimson_guard = { phys = 0.5 },
-		aeon_disk = { pierce = 0.5, burst = 0.4 },
-	},
-	HERO_TAGS = "abaddon heal .5;alchemist heal 1;antimage escape .8 passives .3;"
-		.. "arc_warden evasion .5 illusions .5 silence .3;axe passives .4 pierce 1 targeted .5;"
-		.. "bane pierce .5 targeted 1;batrider escape .3 pierce .6 targeted .9;"
-		.. "beastmaster illusions .3 pierce .5 targeted .7;bloodseeker pierce .4 silence .4;"
-		.. "bounty_hunter invis .8;brewmaster evasion .5;bristleback passives 1;broodmother illusions .8;"
-		.. "chaos_knight illusions .8 passives .5 targeted .4;chen heal .6;clinkz burst .5 invis .8;"
-		.. "crystal_maiden roots .4;dark_seer illusions .3;dark_willow escape .5 roots .4;dawnbreaker heal .8;"
-		.. "dazzle heal .6;death_prophet silence .5;disruptor silence .6;doom_bringer pierce .7 targeted 1;"
-		.. "dragon_knight heal .3 passives .3 targeted .3;drow_ranger passives .6 silence .5;"
-		.. "earth_spirit escape .4 silence .3;ember_spirit burst .3 escape .7 roots .5;enchantress heal .6;"
-		.. "enigma illusions .4 pierce .7;faceless_void escape .6 passives .5 pierce .6;"
-		.. "furion escape .3 illusions .5;grimstroke targeted .4;hoodwink escape .4 evasion .4;"
-		.. "huskar burst .6 heal .6 passives .8;invoker illusions .3 invis .5;"
-		.. "juggernaut burst .9 heal .6 passives .4;kez escape .4 heal .4 silence .4;kunkka targeted .3;"
-		.. "legion_commander burst .7 heal .3 passives .3 pierce .6 targeted 1;lich targeted .4;"
-		.. "life_stealer heal .6;lina targeted .4;lion targeted .9;lone_druid illusions .5 roots .3;"
-		.. "luna passives .4;lycan burst .3 heal .4 illusions .5;magnataur escape .3 pierce .8;"
-		.. "marci burst .6 escape .3 silence .3;mars passives .6;medusa pierce .4;meepo illusions 1 roots .4;"
-		.. "mirana escape .5 evasion .3 invis .6;monkey_king escape .5 heal .4 passives .4;morphling escape .6;"
-		.. "muerta silence .4;naga_siren evasion .4 illusions 1 roots .5;"
-		.. "necrolyte heal .8 passives .4 targeted .6;night_stalker silence .5;nyx_assassin escape .4 invis .8;"
-		.. "obsidian_destroyer targeted .4;omniknight heal 1;oracle heal 1;pangolier escape .8;"
-		.. "phantom_assassin burst .5 escape .4 evasion 1 passives 1;"
-		.. "phantom_lancer escape .5 evasion .5 illusions 1 invis .3;phoenix heal .5;primal_beast pierce .5;"
-		.. "puck escape 1 silence .4;pudge pierce .4 targeted .7;pugna heal .4;queenofpain escape .7;"
-		.. "rattletrap pierce .3;razor targeted .4;riki burst .4 escape .3 invis 1 silence .5;"
-		.. "rubick targeted .4;sand_king escape .3 invis .5;shadow_demon targeted .8;"
-		.. "shadow_shaman illusions .4 targeted 1;shredder escape .5 passives .8;silencer silence 1;"
-		.. "skeleton_king heal .5 passives .4;skywrath_mage silence .6;slardar passives .4;"
-		.. "slark escape 1 passives .7;sniper passives .3;spectre illusions .3 passives .8;"
-		.. "spirit_breaker passives .4 pierce .3;storm_spirit escape 1;sven burst .5;techies invis .6;"
-		.. "templar_assassin invis .4 passives .3 silence .3;terrorblade burst .4 illusions .8;"
-		.. "tidehunter passives .6;tinker escape .4 targeted .3;treant heal 1 pierce .3 roots .4;"
-		.. "troll_warlord burst .6 heal .5 passives .5;tusk pierce .3;undying heal .5 illusions .3;"
-		.. "ursa burst .8 passives .7;vengefulspirit targeted .3;venomancer illusions .4;"
-		.. "viper passives .4 targeted .4;visage illusions .3 invis .5 passives .5;void_spirit escape .9;"
-		.. "warlock heal .4 illusions .3;weaver escape .9 invis .8 passives .4;"
-		.. "windrunner burst 1 escape .4 evasion .6;winter_wyvern heal .5 pierce .4 targeted .5;"
-		.. "wisp escape .3 heal .8;witch_doctor heal .6",
-
-	ROUND = Enum.DrawFlags.RoundCornersAll,
-	MOUSE1 = Enum.ButtonCode.KEY_MOUSE1,
-	MOUSE2 = Enum.ButtonCode.KEY_MOUSE2,
-	WHEEL_UP = Enum.ButtonCode.KEY_MWHEELUP,
-	WHEEL_DOWN = Enum.ButtonCode.KEY_MWHEELDOWN,
-	BACKSPACE = Enum.ButtonCode.KEY_BACKSPACE,
-	ENTER = Enum.ButtonCode.KEY_ENTER,
-	PAD_ENTER = Enum.ButtonCode.KEY_PAD_ENTER,
-	ESCAPE = Enum.ButtonCode.KEY_ESCAPE,
-	KEY_DOWN = Enum.EKeyEvent.EKeyEvent_KEY_DOWN,
-	KEY_UP = Enum.EKeyEvent.EKeyEvent_KEY_UP,
-	SCROLL_UP = Enum.EKeyEvent.EKeyEvent_SCROLL_UP,
-	SCROLL_DOWN = Enum.EKeyEvent.EKeyEvent_SCROLL_DOWN,
-	POP = 0.22,
-	MOVE = 0.18,
-	STAGGER = 0.022,
-	ROW_IN = 0.2,
-	SLIDE = 12,
-	TYPE_GAP = 0.15,
-	HERO_SELECTION = Enum.GameState.DOTA_GAMERULES_STATE_HERO_SELECTION,
-	MODE_CM = Enum.GameMode.DOTA_GAMEMODE_CM,
-	STRATEGY = Enum.GameState.DOTA_GAMERULES_STATE_STRATEGY_TIME,
 }
 
 K.FREE = {}
@@ -1337,6 +1324,10 @@ local draft = {
 	result = nil,
 	slot_pos = {},
 	chance = nil,
+	vs_cache = {},
+	summary = nil,
+	summary_sig = nil,
+	build_h = nil,
 }
 
 draft.steps = draft.store[0]
@@ -1368,8 +1359,11 @@ local W = {
 	typed = {},
 	held = {},
 	settings = false,
-	gear_rect = nil,
-	st_rect = nil,
+	set_gear = nil,
+	gear_pop = nil,
+	gear_block = nil,
+	gear_anchor = {},
+	preview = false,
 	pos_menu = nil,
 	pm_last = nil,
 	badge_rect = {},
@@ -1513,44 +1507,7 @@ do
 		return data, blobs
 	end
 
-	local function store_migrate()
-		local function old(name)
-			return cheat_path("draft_helper_" .. name)
-		end
-		local found = false
-		local heroes = decode(read_path(old("heroes.json")))
-		if heroes then
-			store.data.heroes, found = heroes, true
-		end
-		local pro = decode(read_path(old("pro.json")))
-		if pro then
-			store.data.pro, found = pro, true
-		end
-		for source, names in pairs({ [0] = { "meta.json", "matches.bin" }, [1] = { "meta_cm.json", "matches_cm.bin" } }) do
-			local meta = decode(read_path(old(names[1])))
-			local recs = read_path(old(names[2]))
-			if meta and recs and #recs % K.REC == 0 then
-				local key = source .. ":" .. math.floor(tonumber(meta.rank) or 70)
-				store.data.sets[key] = meta
-				store.blobs[key] = recs
-				found = true
-			end
-		end
-		if not found then
-			return
-		end
-		store_save()
-		for _, name in ipairs({ "heroes.json", "pro.json", "meta.json", "matches.bin", "meta_cm.json", "matches_cm.bin" }) do
-			os.remove(old(name))
-			os.remove(old(name) .. ".tmp")
-		end
-		log("old cache files moved into %s", K.CACHE_FILE)
-	end
-
 	function store_load()
-		for _, name in ipairs({ "heroes.json", "pro.json", "meta.json", "matches.bin" }) do
-			os.remove(cheat_path("cm_draft_" .. name))
-		end
 		local blob = read_path(cheat_path(K.CACHE_FILE))
 		local magic = blob and blob:sub(1, 4)
 		if blob and #blob >= 8 and (magic == K.CACHE_MAGIC or magic == "DHC1") then
@@ -1564,7 +1521,6 @@ do
 			end
 			log("cache file broken, starting fresh")
 		end
-		store_migrate()
 	end
 end
 
@@ -2297,7 +2253,6 @@ end
 local U = {
 	status = "idle",
 	remote = nil,
-	notes = nil,
 	url = nil,
 	checked = 0,
 	error = nil,
@@ -2345,8 +2300,8 @@ do
 		Log.Write("[Draft Helper] update: " .. msg)
 	end
 
-	function U.check(force)
-		if U.busy or (not force and cfg.updates ~= 1) then
+	function U.check()
+		if U.busy then
 			return
 		end
 		U.busy, U.status, U.error = true, "checking", nil
@@ -2363,8 +2318,6 @@ do
 				return
 			end
 			U.remote, U.url = data.version, data.url
-			local lang = L("cd_lang")
-			U.notes = type(data.notes) == "table" and (data.notes[lang] or data.notes.en) or nil
 			U.status = newer(data.version, K.VERSION) and "available" or "latest"
 			log("update check: local %s, remote %s -> %s", K.VERSION, data.version, U.status)
 		end, "cd_update")
@@ -2437,7 +2390,7 @@ do
 			return
 		end
 		if not U.busy and os.time() - U.checked > K.UPDATE_EVERY then
-			U.check(true)
+			U.check()
 		end
 	end
 end
@@ -2706,7 +2659,6 @@ do
 			set_items(items.list)
 			I.items_at = tonumber(items.time) or 0
 		end
-		store.data.pop = nil
 		local buys = store.data.buys
 		if type(buys) == "table" then
 			for key, entry in pairs(buys) do
@@ -2993,6 +2945,40 @@ do
 		return n > 0 and sum / n or last + 120
 	end
 
+	local function counter_cd(name, cands)
+		local item = I.by_name[name]
+		return cands[name] or { item = item, count = 0, share = 0, t = est_time(item, cands) }
+	end
+
+	local function place(slots, cd, locked)
+		local item = cd.item
+		local idx, low
+		for i, sl in ipairs(slots) do
+			if not locked(sl) and not sl.must and not K.BOOTS[sl.item.name] then
+				local ok = true
+				for j, o in ipairs(slots) do
+					if j ~= i and (o.item == item or related(o.item, item) or (not K.BOOTS[o.item.name] and siblings(o.item, item))) then
+						ok = false
+					end
+				end
+				local v = sl.score or sl.share or 0
+				if ok and (not idx or v < low) then
+					idx, low = i, v
+				end
+			end
+		end
+		if not idx then
+			return nil
+		end
+		local new = {}
+		for k, v in pairs(cd) do
+			new[k] = v
+		end
+		new.replaced, new.drop, new.core = slots[idx].item, nil, nil
+		slots[idx] = new
+		return new
+	end
+
 	function I.must(slots, cands, T, per, them, h, pos, locked)
 		local added = {}
 		for _, rule in ipairs(K.MUST) do
@@ -3019,36 +3005,12 @@ do
 						end
 					end
 				end
-				if best then
-					local item = I.by_name[best]
-					local cd = cands[best] or { item = item, count = 0, share = 0, t = est_time(item, cands), est = true }
-					local idx, low
-					for i, s in ipairs(slots) do
-						if not locked(s) and not s.must and not K.BOOTS[s.item.name] then
-							local ok = true
-							for j, o in ipairs(slots) do
-								if j ~= i and (o.item == item or related(o.item, item) or (not K.BOOTS[o.item.name] and siblings(o.item, item))) then
-									ok = false
-								end
-							end
-							local v = s.score or s.share or 0
-							if ok and (not idx or v < low) then
-								idx, low = i, v
-							end
-						end
-					end
-					if idx then
-						local new = {}
-						for k, v in pairs(cd) do
-							new[k] = v
-						end
-						new.why = { { threat = threat, x = K.COUNTERS[best][threat] } }
-						new.vs = vs_heroes({ [threat] = 1 }, them, per)
-						new.must, new.replaced = threat, slots[idx].item
-						new.drop, new.core = nil, nil
-						slots[idx] = new
-						added[#added + 1] = new
-					end
+				local new = best and place(slots, counter_cd(best, cands), locked)
+				if new then
+					new.why = { { threat = threat, x = K.COUNTERS[best][threat] } }
+					new.vs = vs_heroes({ [threat] = 1 }, them, per)
+					new.must = threat
+					added[#added + 1] = new
 				end
 			end
 		end
@@ -3119,44 +3081,15 @@ do
 					end
 				end
 			end
-			if pick then
-				local item = I.by_name[pick]
-				local cd = cands[pick] or { item = item, count = 0, share = 0, t = est_time(item, cands), est = true }
-				local idx, low
-				for i, sl in ipairs(slots) do
-					if not locked(sl) and not sl.must and not K.BOOTS[sl.item.name] then
-						local ok = true
-						for j, o in ipairs(slots) do
-							if j ~= i and (o.item == item or related(o.item, item) or (not K.BOOTS[o.item.name] and siblings(o.item, item))) then
-								ok = false
-							end
-						end
-						local v = sl.score or sl.share or 0
-						if ok and (not idx or v < low) then
-							idx, low = i, v
-						end
-					end
-				end
-				if idx then
-					local new = {}
-					for k, v in pairs(cd) do
-						new[k] = v
-					end
-					new.why = { { threat = rule.threat, x = K.COUNTERS[pick] and K.COUNTERS[pick][rule.threat] or 1 } }
-					new.vs = { source.e }
-					new.must, new.replaced, new.reason = rule.threat, slots[idx].item, source
-					new.drop, new.core = nil, nil
-					slots[idx] = new
-					added[#added + 1] = new
-				end
+			local new = pick and place(slots, counter_cd(pick, cands), locked)
+			if new then
+				new.why = { { threat = rule.threat, x = K.COUNTERS[pick] and K.COUNTERS[pick][rule.threat] or 1 } }
+				new.vs = { source.e }
+				new.must, new.reason = rule.threat, source
+				added[#added + 1] = new
 			end
 		end
 		return added
-	end
-
-	local function clock(sec)
-		sec = math.max(0, math.floor(sec + 0.5))
-		return ("%d:%02d"):format(sec // 60, sec % 60)
 	end
 
 	local function item_body(cd)
@@ -3181,7 +3114,7 @@ do
 		return table.concat(lines, "\n")
 	end
 
-	I.body, I.clock, I.related, I.siblings = item_body, clock, related, siblings
+	I.body, I.related, I.siblings = item_body, related, siblings
 
 	function I.collect(data)
 		local cands, boots = {}, nil
@@ -4380,9 +4313,8 @@ do
 		if not base then
 			return nil
 		end
-		local auto = I.bpos[G.hero] == nil
 		if base.none then
-			return { none = true, hero = G.hero, pos = G.bpos, auto = auto, slots = {} }
+			return { none = true, hero = G.hero, pos = G.bpos, slots = {} }
 		end
 		local data = I.buys[G.hero].pos[G.bpos]
 		if #base.slots == 0 then
@@ -4495,7 +4427,7 @@ do
 				end
 			end
 		end
-		local plan = { hero = G.hero, slots = {}, pos = G.bpos, auto = auto }
+		local plan = { hero = G.hero, slots = {}, pos = G.bpos }
 		local start = { items = {}, gold = base.gold, done = true }
 		for _, st in ipairs(base.start) do
 			local name = st.item.name
@@ -4727,9 +4659,6 @@ local function cursor_in_window()
 	if W.pm_rect and in_rect(W.pm_rect, cx, cy) then
 		return true
 	end
-	if W.st_rect and in_rect(W.st_rect, cx, cy) then
-		return true
-	end
 	return cx >= W.x and cx <= W.x + W.w and cy >= W.y and cy <= W.y + W.h
 end
 
@@ -4750,13 +4679,13 @@ local function click(right)
 	if W.pos_menu and kind ~= "posset" and kind ~= "posbadge" and kind ~= "pmbg" then
 		W.pos_menu = nil
 	end
-	if W.set_gear and kind ~= "set_gear" and not in_rect(W.gear_rect, cx, cy) then
+	if W.set_gear and kind ~= "set_gear" and not in_rect(W.gear_pop, cx, cy) then
 		W.set_gear = nil
 	end
 	if not hit then
 		return
 	end
-	if kind == "pmbg" or kind == "stbg" or kind == "stgbg" then
+	if kind == "pmbg" or kind == "stgbg" then
 		return
 	elseif kind == "settings" then
 		W.settings = not W.settings
@@ -5580,12 +5509,6 @@ do
 			hit(x0, cy - ph / 2, right, cy + ph / 2, "upd_install")
 			if st == "error" and U.error then
 				tip("pill", x0, cy - ph / 2, right, cy + ph / 2, L("cd_tip_err_t"), U.error:sub(1, 80))
-			elseif type(U.notes) == "table" and #U.notes > 0 then
-				local body = {}
-				for n = 1, math.min(#U.notes, 4) do
-					body[n] = tostring(U.notes[n])
-				end
-				tip("pill", x0, cy - ph / 2, right, cy + ph / 2, L("cd_upd_notes"):format(U.remote or ""), table.concat(body, "\n"))
 			end
 		end
 		return x0 - px(8) * pa
@@ -5636,9 +5559,6 @@ do
 			end
 			glyph(item[1], x0 + ib / 2, cy, px(12), fade(mix(P.MUTED, P.TEXT, hv), a))
 			hit(x0, cy - ib / 2, right, cy + ib / 2, item[2])
-			if item[2] == "settings" then
-				W.gear_rect = { x0 - W.ox, cy - ib / 2 - W.oy, right - W.ox, cy + ib / 2 - W.oy }
-			end
 			tip(item[2], x0, cy - ib / 2, right, cy + ib / 2, L("cd_tip_" .. item[2] .. "_t"), L("cd_tip_" .. item[2]))
 			right = x0 - px(4)
 		end
@@ -5741,11 +5661,10 @@ do
 		local scroll = SB.scroll("set", "set_scroll", W.set_max or 0)
 		W.set_rect = { x, top, x + w, y + h }
 		W.hit_clip = { top, y + h }
-		W.gear_anchor = W.gear_anchor or {}
 		Render.PushClip(Vec2(x, top), Vec2(x + w, y + h), true)
 		local cx0, cy0 = Input.GetCursorPos()
-		local covered = W.gear_rect and in_rect(W.gear_rect, cx0, cy0)
-		W.gear_block = W.gear_rect
+		local covered = W.gear_pop and in_rect(W.gear_pop, cx0, cy0)
+		W.gear_block = W.gear_pop
 		local C = { l = left, r = right, x0 = x + px(4), x1 = x + w - px(4), y = top + px(2) - scroll, a = a }
 
 		local function section(c, key)
@@ -5906,7 +5825,7 @@ do
 			W.gear_last = g
 		end
 		g = g or W.gear_last
-		W.gear_rect = nil
+		W.gear_pop = nil
 		local anchor = g and W.gear_anchor[g]
 		if ga <= 0.01 or not anchor then
 			return
@@ -5927,7 +5846,7 @@ do
 		rect(px0, py, px1, py + ph, fade(Color(31, 34, 39, 255), ga), px(10))
 		hit(px0, py, px1, py + ph, "stgbg")
 		if W.set_gear then
-			W.gear_rect = { px0, py, px1, py + ph }
+			W.gear_pop = { px0, py, px1, py + ph }
 		end
 		local title_icon = g == "window" and "\u{f2d0}" or "\u{f290}"
 		glyph(title_icon, px0 + px(19), py + px(17), px(11), fade(P.MUTED, ga))
@@ -6376,7 +6295,7 @@ do
 		SM.caption(L("cd_build_order"), nil, left, by, fade_in(10))
 		by = by + px(11)
 		local gap = px(6)
-		local steps = build.steps or build.slots
+		local steps = build.steps
 		local count_n = math.max(K.SLOTS, #steps)
 		local sw = math.min(px(64), math.floor((right - left - gap * (count_n - 1)) / count_n))
 		local sh = math.floor(sw * 0.72 + 0.5)
@@ -7157,7 +7076,7 @@ do
 	end
 
 	function draw_window()
-		W.pm_rect, W.st_rect, W.gear_block = nil, nil, nil
+		W.pm_rect, W.gear_block = nil, nil
 		if W.slider then
 			if Input.IsKeyDown(K.MOUSE1, true) and W.slider_rect then
 				local cx = Input.GetCursorPos()
