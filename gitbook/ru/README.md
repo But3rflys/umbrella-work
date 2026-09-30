@@ -12,7 +12,7 @@ icon: umbrella
 
 ## Что есть
 
-<table><thead><tr><th width="220">Скрипт</th><th>Что делает</th></tr></thead><tbody><tr><td><a href="skripty/lane-pull.md">Lane Pull</a></td><td>выпул вражеской волны крипом с Доминатора</td></tr><tr><td><a href="skripty/ds-spot-block.md">DS Spot Block</a></td><td>блок спота Вакуумом за Dark Seer</td></tr><tr><td><a href="skripty/custom-background.md">Custom Background</a></td><td>свои картинки на фоне меню</td></tr><tr><td><a href="prilozheniya/musicui.md">MusicUI</a></td><td>оверлей плеера: трек, обложка, эквалайзер, текст песни</td></tr><tr><td><a href="instrumenty/umbrella-lua.md">umbrella-lua</a></td><td>скилл для Claude Code и Codex: пишет и правит скрипты Umbrella</td></tr></tbody></table>
+<table><thead><tr><th width="220">Скрипт</th><th>Что делает</th></tr></thead><tbody><tr><td><a href="skripty/lane-pull.md">Lane Pull</a></td><td>выпул вражеской волны крипом с Доминатора</td></tr><tr><td><a href="skripty/ds-spot-block.md">DS Spot Block</a></td><td>блок спота Вакуумом за Dark Seer</td></tr><tr><td><a href="skripty/custom-background.md">Custom Background</a></td><td>свои картинки на фоне меню</td></tr><tr><td><a href="skripty/draft-helper.md">Draft Helper</a></td><td>подсказки на драфте: контрпики, синергия и баны</td></tr><tr><td><a href="prilozheniya/musicui.md">MusicUI</a></td><td>оверлей плеера: трек, обложка, эквалайзер, текст песни</td></tr><tr><td><a href="instrumenty/umbrella-lua.md">umbrella-lua</a></td><td>скилл для Claude Code и Codex: пишет и правит скрипты Umbrella</td></tr></tbody></table>
 
 ## Установка
 
