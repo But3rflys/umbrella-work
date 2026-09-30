@@ -438,6 +438,17 @@ local localization = qLocalization.new({
 		cd_set_provider = "Server",
 		cd_set_provider_tip = "GitHub: ready stats once a day, loads in seconds\nOpenDota: straight from the site, slower, needs a stable connection",
 		cd_ld_gh = "Loading stats",
+		cd_gh_manifest = "checking for updates",
+		cd_gh_heroes = "hero list",
+		cd_gh_pro = "pro matches",
+		cd_gh_ranked = "ranked, %s matches",
+		cd_gh_cm = "Captains Mode, %s matches",
+		cd_ld_step = "%s, step %d of %d",
+		cd_gh_wait = ", waiting %d s",
+		cd_gh_next = "new at %s",
+		cd_gh_same = "no new data yet",
+		cd_gh_new = "data updated",
+		cd_tip_gh_refresh = "GitHub data updates once a day,\nthe button only checks whether a new set is out",
 		cd_set_bg = "Background",
 		cd_set_debug = "Debug log",
 		cd_set_refresh = "Update",
@@ -652,6 +663,17 @@ local localization = qLocalization.new({
 		cd_set_provider = "Сервер",
 		cd_set_provider_tip = "GitHub: готовая статистика раз в сутки, грузится за секунды\nOpenDota: напрямую с сайта, дольше и нужен стабильный интернет",
 		cd_ld_gh = "Загружаю статистику",
+		cd_gh_manifest = "проверяю обновления",
+		cd_gh_heroes = "список героев",
+		cd_gh_pro = "про-матчи",
+		cd_gh_ranked = "рейтинг, %s матчей",
+		cd_gh_cm = "Captains Mode, %s матчей",
+		cd_ld_step = "%s, шаг %d из %d",
+		cd_gh_wait = ", жду %d с",
+		cd_gh_next = "новые в %s",
+		cd_gh_same = "новых данных пока нет",
+		cd_gh_new = "данные обновлены",
+		cd_tip_gh_refresh = "Данные на GitHub обновляются раз в сутки,\nкнопка только проверит, не вышли ли новые",
 		cd_set_bg = "Фон",
 		cd_set_debug = "Отладка в лог",
 		cd_set_refresh = "Обновить",
@@ -811,6 +833,7 @@ local K = {
 		"https://cdn.jsdelivr.net/gh/But3rflys/umbrella-work@draft-data/",
 	},
 	DATA_CHECK = 3 * 3600,
+	DATA_AT = 3 * 3600 + 10 * 60,
 	HEADERS = { ["User-Agent"] = "Umbrella/draft_helper", ["Accept"] = "application/json" },
 	TIMEOUT = 40,
 	RETRY = 60,
@@ -1905,7 +1928,9 @@ local function request(url, param, on_done)
 		local ok, err = pcall(on_done, res)
 		if not ok then
 			D.error = tostring(err):gsub("^.-:%d+: ", "")
-			D.next_request = os.clock() + (D.error:lower():find("timeout", 1, true) and K.RETRY_SHORT or K.RETRY)
+			local short = D.fast or D.error:lower():find("timeout", 1, true)
+			D.fast = nil
+			D.next_request = os.clock() + (short and K.RETRY_SHORT or K.RETRY)
 			if D.error ~= D.logged_error then
 				D.logged_error = D.error
 				Log.Write("[Draft Helper] " .. param .. " failed: " .. D.error)
@@ -2299,6 +2324,12 @@ local function data_tick()
 end
 
 local function refresh_data()
+	if cfg.provider == 0 then
+		D.gh.check_at, D.gh.manual = 0, true
+		D.next_request, D.error = 0, nil
+		log("manual refresh")
+		return
+	end
 	D.heroes_at, D.pos_at, D.contest_at = 0, 0, 0
 	for _, S in pairs(D.sets) do
 		S.force = true
@@ -2308,7 +2339,7 @@ local function refresh_data()
 	log("manual refresh")
 end
 
-D.gh = { manifest = nil, check_at = 0, base = 1 }
+D.gh = { manifest = nil, check_at = 0, base = 1, done = 0 }
 
 do
 	local GH = D.gh
@@ -2326,17 +2357,33 @@ do
 		return ("%d:%d:%d"):format(S.source, rank, target)
 	end
 
+	function GH.next_at()
+		local now = os.time()
+		local t = now - now % 86400 + K.DATA_AT
+		if t <= now then
+			t = t + 86400
+		end
+		return t
+	end
+
+	local function sets()
+		return source() == 1 and { D.sets[0], D.sets[1] } or { D.sets[0] }
+	end
+
 	local function get(name, param, on_body)
 		request(GH.url(name), param, function(res)
 			if tostring(res.code) ~= "200" or type(res.response) ~= "string" or res.response == "" then
 				GH.flip()
+				D.fast = true
 				error(("%s: http %s %s"):format(param, tostring(res.code), tostring(res.error_message or "")))
 			end
 			local ok, err = pcall(on_body, res.response)
 			if not ok then
 				GH.flip()
+				D.fast = true
 				error(err, 0)
 			end
+			GH.done = GH.done + 1
 			D.error = nil
 		end)
 	end
@@ -2378,8 +2425,7 @@ do
 	end
 
 	function GH.sync()
-		local sets = source() == 1 and { D.sets[0], D.sets[1] } or { D.sets[0] }
-		for _, S in ipairs(sets) do
+		for _, S in ipairs(sets()) do
 			local key = GH.key(S)
 			if S.gh_key ~= key then
 				S.stats, S.build, S.job, S.gh_key, S.updated, S.oldest = nil, nil, nil, key, 0, nil
@@ -2398,10 +2444,53 @@ do
 		end
 	end
 
-	function GH.tick()
+	function GH.pending()
+		local list = {}
 		local m = GH.manifest
 		if not m or os.clock() >= GH.check_at then
-			D.status = "cd_st_gh"
+			list[1] = { kind = "manifest" }
+			return list
+		end
+		local t = tonumber(m.heroes) or 0
+		if not D.heroes or (D.heroes_at or 0) < t then
+			list[#list + 1] = { kind = "heroes", t = t }
+		end
+		t = tonumber(m.pro) or 0
+		if not D.pos_count or not D.contest or (D.pos_at or 0) < t or (D.contest_at or 0) < t then
+			list[#list + 1] = { kind = "pro", t = t }
+		end
+		for _, S in ipairs(sets()) do
+			local key = S.gh_key
+			local meta = key and m.sets[key]
+			if type(meta) == "table" and (not S.stats or S.updated < (tonumber(meta.time) or 0)) then
+				list[#list + 1] = { kind = "stats", S = S, key = key, meta = meta }
+			end
+		end
+		return list
+	end
+
+	function GH.progress()
+		local list = GH.pending()
+		return GH.done, GH.done + #list, list[1]
+	end
+
+	function GH.tick()
+		local job = GH.pending()[1]
+		if not job then
+			if GH.dirty then
+				GH.dirty = false
+				store_save()
+			end
+			if GH.manual then
+				GH.manual = false
+				GH.note, GH.note_at = GH.done > 1 and "cd_gh_new" or "cd_gh_same", os.clock()
+			end
+			GH.done = 0
+			D.status, D.loading = nil, nil
+			return
+		end
+		D.status = "cd_st_gh"
+		if job.kind == "manifest" then
 			get("manifest.json", "cd_manifest", function(text)
 				local data = JSON:decode(text)
 				if type(data) ~= "table" or type(data.sets) ~= "table" then
@@ -2411,27 +2500,19 @@ do
 				GH.check_at = os.clock() + K.DATA_CHECK
 				log("github data from %s", os.date("%Y-%m-%d %H:%M", tonumber(data.time) or 0))
 			end)
-			return
-		end
-		local t = tonumber(m.heroes) or 0
-		if not D.heroes or (D.heroes_at or 0) < t then
-			D.status = "cd_st_heroes"
+		elseif job.kind == "heroes" then
 			get("heroes.json", "cd_heroes", function(text)
 				local list = JSON:decode(text)
 				if type(list) ~= "table" or #list < 100 then
 					error("heroes: bad list")
 				end
 				set_heroes(list)
-				D.heroes_at = t
-				store.data.heroes = { time = t, list = list }
-				store_save()
+				D.heroes_at = job.t
+				store.data.heroes = { time = job.t, list = list }
+				GH.dirty = true
 				log("heroes loaded from github: %d", #D.heroes)
 			end)
-			return
-		end
-		t = tonumber(m.pro) or 0
-		if not D.pos_count or not D.contest or (D.pos_at or 0) < t or (D.contest_at or 0) < t then
-			D.status = "cd_st_pro"
+		elseif job.kind == "pro" then
 			get("pro.json", "cd_pro", function(text)
 				local pro = JSON:decode(text)
 				if type(pro) ~= "table" or type(pro.pos) ~= "table" or type(pro.contest) ~= "table" then
@@ -2439,32 +2520,24 @@ do
 				end
 				set_pos(pro.pos)
 				set_contest(pro.contest)
-				D.pos_at, D.contest_at = t, t
-				save_pro(pro.pos, pro.contest)
+				D.pos_at, D.contest_at = job.t, job.t
+				store.data.pro = { pos = pro.pos, pos_time = job.t, contest = pro.contest, contest_time = job.t }
+				GH.dirty = true
 				log("pro data loaded from github")
 			end)
-			return
+		else
+			local key, meta, S = job.key, job.meta, job.S
+			get(("stats/%s.txt"):format((key:gsub(":", "_"))), "cd_stats", function(text)
+				local st = parse_stats(text)
+				store.blobs["gh:" .. key] = text
+				store.data.sets["gh:" .. key] = { time = tonumber(meta.time) or 0, oldest = meta.oldest, used = os.time() }
+				GH.dirty = true
+				if S.gh_key == key then
+					apply(S, key, st, meta)
+				end
+				log("github stats %s: %d matches", key, st.n)
+			end)
 		end
-		local sets = source() == 1 and { D.sets[0], D.sets[1] } or { D.sets[0] }
-		for _, S in ipairs(sets) do
-			local key = S.gh_key
-			local meta = key and m.sets[key]
-			if type(meta) == "table" and (not S.stats or S.updated < (tonumber(meta.time) or 0)) then
-				D.status = "cd_st_gh"
-				get(("stats/%s.txt"):format((key:gsub(":", "_"))), "cd_stats", function(text)
-					local st = parse_stats(text)
-					store.blobs["gh:" .. key] = text
-					store.data.sets["gh:" .. key] = { time = tonumber(meta.time) or 0, oldest = meta.oldest, used = os.time() }
-					store_save()
-					if S.gh_key == key then
-						apply(S, key, st, meta)
-					end
-					log("github stats %s: %d matches", key, st.n)
-				end)
-				return
-			end
-		end
-		D.status, D.loading = nil, nil
 	end
 
 	function GH.switch(v)
@@ -2474,7 +2547,7 @@ do
 		set_cfg("provider", v)
 		D.req_n, D.busy = (D.req_n or 0) + 1, false
 		D.error, D.next_request, D.status, D.loading = nil, 0, nil, nil
-		GH.check_at = 0
+		GH.check_at, GH.done, GH.manual = 0, 0, false
 		for _, S in pairs(D.sets) do
 			S.stats, S.build, S.job, S.gh_key, S.loaded, S.force = nil, nil, nil, nil, false, false
 			S.recs, S.updated, S.oldest, S.exhausted = {}, 0, nil, false
@@ -5632,6 +5705,18 @@ do
 		local sub, eta
 		if err or stage == "slow" then
 			sub = L("cd_ld_retry"):format(math.max(1, math.ceil(D.next_request - os.clock())))
+		elseif stage == "gh" then
+			local done, total, job = D.gh.progress()
+			if job then
+				local what = job.kind == "stats"
+					and L(job.S.source == 1 and "cd_gh_cm" or "cd_gh_ranked"):format(kilo(tonumber(job.meta.n) or 0))
+					or L("cd_gh_" .. job.kind)
+				sub = L("cd_ld_step"):format(what, math.min(done + 1, total), total)
+				local wait = D.busy and os.clock() - (D.req_at or 0) or 0
+				if wait >= 3 then
+					sub = sub .. L("cd_gh_wait"):format(math.floor(wait))
+				end
+			end
 		elseif stage == "matches" then
 			local have, target = job_counts()
 			local days = job_days()
@@ -5657,7 +5742,12 @@ do
 		end
 		local bw, bh = px(180), math.max(2, px(3))
 		local by = cy + px(38)
-		local prog = tween("loader_p", stage == "matches" and job_progress() or (stage == "build" and 1 or 0), 0.4)
+		local gp = 0
+		if stage == "gh" then
+			local done, total = D.gh.progress()
+			gp = done / math.max(1, total)
+		end
+		local prog = tween("loader_p", stage == "matches" and job_progress() or (stage == "build" and 1 or gp), 0.4)
 		rect(cx - bw / 2, by, cx + bw / 2, by + bh, fade(P.CELL, a * 1.6), bh / 2)
 		if prog > 0 then
 			rect(cx - bw / 2, by, cx - bw / 2 + bw * prog, by + bh, fade(P.GOOD, a * 0.85), bh / 2)
@@ -6202,7 +6292,12 @@ do
 		if S.stats then
 			parts[#parts + 1] = L("cd_matches"):format(fmt_games(S.stats.n))
 		end
-		parts[#parts + 1] = S.job and L("cd_upd_loading") or fmt_updated(S.updated)
+		local gh = cfg.provider == 0
+		local note = gh and D.gh.note and os.clock() - D.gh.note_at < 5 and L(D.gh.note)
+		parts[#parts + 1] = note or ((S.job or D.status == "cd_st_gh") and L("cd_upd_loading") or fmt_updated(S.updated))
+		if gh and not note then
+			parts[#parts + 1] = L("cd_gh_next"):format(os.date("%H:%M", D.gh.next_at()))
+		end
 		local lx = tx
 		for n, part in ipairs(parts) do
 			if n > 1 then
@@ -6222,6 +6317,9 @@ do
 		text(W.fonts.medium, px(11), label, right - bw + px(23), cy, fade(P.TEXT, ba))
 		if not busy then
 			hit(right - bw, cy - bh / 2, right, cy + bh / 2, "set_refresh")
+		end
+		if gh then
+			tip("st_refresh_tip", right - bw, cy - bh / 2, right, cy + bh / 2, L("cd_set_refresh"), L("cd_tip_gh_refresh"))
 		end
 
 		section(C, "cd_sec_view")
