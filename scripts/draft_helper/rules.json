@@ -309,9 +309,9 @@
 	},
 	"instead": {
 		"butterfly": ["skadi", "satanic", "greater_crit", "disperser", "abyssal_blade"],
-		"ghost": ["force_staff", "aeon_disk", "lotus_orb"],
-		"glimmer_cape": ["force_staff", "lotus_orb", "aeon_disk"],
-		"crellas_crozier": ["force_staff", "aeon_disk", "lotus_orb"]
+		"ghost": ["lotus_orb"],
+		"glimmer_cape": ["lotus_orb"],
+		"crellas_crozier": ["lotus_orb"]
 	},
 	"anti": {
 		"monkey_king_bar": {"butterfly": 0.5, "talisman_of_evasion": 0.3},
