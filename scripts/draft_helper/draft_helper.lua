@@ -444,10 +444,18 @@ local localization = qLocalization.new({
 		cd_news_ok = "Got it",
 		cd_set_news = "What's new in %s",
 		cd_news_open = "Open",
-		cd_nw0_t = "Single Draft and bans",
-		cd_nw0 = "Suggests only the heroes you were given. Skips banned heroes.",
-		cd_nw7_t = "Upgrades",
-		cd_nw7 = "Next shows what your items upgrade into.",
+		cd_nw1_t = "Pick from the list",
+		cd_nw1 = "Right click a suggested hero to pick it.\nThe script asks for confirmation first.",
+		cd_nw2_t = "Buying from the build panel",
+		cd_nw2 = "Right click an item to buy it. Low on gold, it buys a part.\nShift + left click leaves only this item in quick buy.",
+		cd_nw3_t = "Enemy positions",
+		cd_nw3 = "You can set enemy positions by hand. Your lane opponent\nweighs more in advice, enemy support items weigh less.",
+		cd_nw4_t = "Single Draft and bans",
+		cd_nw4 = "Suggests only the heroes you were given. Skips banned heroes.",
+		cd_nw5_t = "Upgrades",
+		cd_nw5 = "Next shows what your items upgrade into.",
+		cd_nw6_t = "Item advice",
+		cd_nw6 = "No longer suggests selling Pike for Aghanim's or buying Butterfly\nagainst MKB. Tells you when to disassemble Radiance.",
 		cd_gh_manifest = "checking for updates",
 		cd_gh_heroes = "hero list",
 		cd_gh_pro = "pro matches",
@@ -546,14 +554,6 @@ local localization = qLocalization.new({
 		cd_set_pick_ask = "Confirm hero pick",
 		cd_set_lanes = "Enemy positions and lanes",
 		cd_tip_lanes = "Position badges on enemy heroes, counters on your lane\nweigh more, items of enemy supports weigh less",
-		cd_nw8_t = "Pick from the list",
-		cd_nw8 = "Right click a suggested hero to pick it.\nThe script asks for confirmation first.",
-		cd_nw9_t = "Buying from the build panel",
-		cd_nw9 = "Right click an item to buy it. Low on gold, it buys a part.\nShift + left click leaves only this item in quick buy.",
-		cd_nw10_t = "Item advice",
-		cd_nw10 = "No longer suggests selling Pike for Aghanim's or buying Butterfly\nagainst MKB. Tells you when to disassemble Radiance.",
-		cd_nw11_t = "Enemy positions",
-		cd_nw11 = "You can set enemy positions by hand. Your lane opponent\nweighs more in advice, enemy support items weigh less.",
 		cd_set_window = "Draft window",
 		cd_sec_panel = "BUILD PANEL IN MATCH",
 		cd_sec_window = "GENERAL",
@@ -701,10 +701,18 @@ local localization = qLocalization.new({
 		cd_news_ok = "Понятно",
 		cd_set_news = "Что нового в %s",
 		cd_news_open = "Открыть",
-		cd_nw0_t = "Single Draft и баны",
-		cd_nw0 = "Советует только выданных героев. Забаненных не предлагает.",
-		cd_nw7_t = "Апгрейды",
-		cd_nw7 = "В «Дальше» видно, во что улучшить твои предметы.",
+		cd_nw1_t = "Пик из списка",
+		cd_nw1 = "ПКМ по герою в рекомендациях выбирает его.\nПеред этим скрипт спрашивает подтверждение.",
+		cd_nw2_t = "Покупка с панели сборки",
+		cd_nw2 = "ПКМ по предмету покупает его. Если золота мало, покупает часть.\nShift + ЛКМ ставит в быструю покупку только этот предмет.",
+		cd_nw3_t = "Позиции врагов",
+		cd_nw3 = "Позицию врага можно выбрать вручную. Контрпик соперника по линии\nвлияет на совет сильнее, предметы вражеских саппортов слабее.",
+		cd_nw4_t = "Single Draft и баны",
+		cd_nw4 = "Советует только выданных героев. Забаненных не предлагает.",
+		cd_nw5_t = "Апгрейды",
+		cd_nw5 = "В «Дальше» видно, во что улучшить твои предметы.",
+		cd_nw6_t = "Советы по предметам",
+		cd_nw6 = "Больше не предлагает продать пику ради аганима и брать бабочку\nпротив мкб. Подсказывает, когда разобрать радик.",
 		cd_gh_manifest = "проверяю обновления",
 		cd_gh_heroes = "список героев",
 		cd_gh_pro = "про-матчи",
@@ -803,14 +811,6 @@ local localization = qLocalization.new({
 		cd_set_pick_ask = "Подтверждать выбор героя",
 		cd_set_lanes = "Позиции врагов и линии",
 		cd_tip_lanes = "Значки позиций у врагов, контрпики по своей линии\nвесят больше, предметы вражеских саппортов меньше",
-		cd_nw8_t = "Пик из списка",
-		cd_nw8 = "ПКМ по герою в рекомендациях выбирает его.\nПеред этим скрипт спрашивает подтверждение.",
-		cd_nw9_t = "Покупка с панели сборки",
-		cd_nw9 = "ПКМ по предмету покупает его. Если золота мало, покупает часть.\nShift + ЛКМ ставит в быструю покупку только этот предмет.",
-		cd_nw10_t = "Советы по предметам",
-		cd_nw10 = "Больше не предлагает продать пику ради аганима и брать бабочку\nпротив мкб. Подсказывает, когда разобрать радик.",
-		cd_nw11_t = "Позиции врагов",
-		cd_nw11 = "Позицию врага можно выбрать вручную. Контрпик соперника по линии\nвлияет на совет сильнее, предметы вражеских саппортов слабее.",
 		cd_set_window = "Окно драфта",
 		cd_sec_panel = "ПАНЕЛЬ СБОРКИ В МАТЧЕ",
 		cd_sec_window = "ОБЩЕЕ",
@@ -958,7 +958,7 @@ local K = {
 	},
 	MODE_SD = Enum.GameMode.DOTA_GAMEMODE_SD,
 	GRID = "HeroGrid",
-	GRID_ANCHORS = { "RadiantTeamPlayers", "DireTeamPlayers" },
+	TEAM_PANELS = { "RadiantTeamPlayers", "DireTeamPlayers" },
 	GRID_CARD = "HeroCard",
 	GRID_OFF = "Unavailable",
 	GRID_CARD_UP = 3,
@@ -1161,12 +1161,12 @@ local K = {
 	},
 	CNT_MAX = 30,
 	NEWS = {
-		{ "n", "\u{f245}", "cd_nw8_t", "cd_nw8" },
-		{ "n", "\u{f07a}", "cd_nw9_t", "cd_nw9" },
-		{ "n", "\u{f0e8}", "cd_nw11_t", "cd_nw11" },
-		{ "n", "\u{f005}", "cd_nw0_t", "cd_nw0" },
-		{ "n", "\u{f062}", "cd_nw7_t", "cd_nw7" },
-		{ "f", "\u{f0e7}", "cd_nw10_t", "cd_nw10" },
+		{ "n", "\u{f245}", "cd_nw1_t", "cd_nw1" },
+		{ "n", "\u{f07a}", "cd_nw2_t", "cd_nw2" },
+		{ "n", "\u{f0e8}", "cd_nw3_t", "cd_nw3" },
+		{ "n", "\u{f005}", "cd_nw4_t", "cd_nw4" },
+		{ "n", "\u{f062}", "cd_nw5_t", "cd_nw5" },
+		{ "f", "\u{f0e7}", "cd_nw6_t", "cd_nw6" },
 	},
 	COVER = 0.8,
 	ENEMY_ITEMS = {},
@@ -1337,7 +1337,6 @@ end
 local store, store_save, store_load
 
 do
-
 	local function read_path(path)
 		local f = io.open(path, "rb")
 		if not f then
@@ -3447,7 +3446,7 @@ local function recompute()
 	if old then
 		used[old] = nil
 	end
-	local offer = nil
+	local offer
 	if our_pick and (c == draft.me or not draft.me) then
 		offer = draft.offer
 	end
@@ -3527,7 +3526,7 @@ local function recompute()
 			end
 		end
 	end
-	draft.result = { acting = acting, kind = kind, persp = persp, taken = taken, rows = rows, positional = acting == 0,
+	draft.result = { acting = acting, kind = kind, taken = taken, rows = rows, positional = acting == 0,
 		context = #allies + #enemies > 0 }
 	W.list_t0 = os.clock()
 end
@@ -3680,7 +3679,7 @@ local function walk_portraits(panel, max_depth, on_unit, depth)
 end
 
 local function enemy_panel_heroes(my_team)
-	local id = my_team == K.TEAM_DIRE and "RadiantTeamPlayers" or "DireTeamPlayers"
+	local id = K.TEAM_PANELS[my_team == K.TEAM_DIRE and 1 or 2]
 	local ok, root = pcall(Panorama.GetPanelByName, id, false)
 	local out, seen = {}, {}
 	if ok and root then
@@ -3716,7 +3715,7 @@ local function card_open(portrait)
 end
 
 local function pick_grid()
-	for _, id in ipairs(K.GRID_ANCHORS) do
+	for _, id in ipairs(K.TEAM_PANELS) do
 		local ok, anchor = pcall(Panorama.GetPanelByName, id, false)
 		if ok and anchor then
 			local okr, root = pcall(anchor.GetRootParent, anchor)
@@ -3933,14 +3932,14 @@ local function sync_free()
 	local grid = read_grid()
 	if grid and gm ~= K.MODE_SD then
 		local off = grid_unavailable(grid)
-		local key = off and hero_names(off)
-		if key and key ~= draft.unavail_key then
+		local key = hero_names(off)
+		if key ~= draft.unavail_key then
 			draft.unavail, draft.unavail_key = off, key
 			changed = true
 			log("unavailable: %s", key)
 		end
 	end
-	local offer, detail = nil, nil
+	local offer, detail
 	if grid and gm == K.MODE_SD and not draft.steps[draft.me or 0] then
 		offer, detail = sd_offer(grid, used_set())
 	end
@@ -3984,9 +3983,24 @@ local G = {
 	anti = {},
 	pack = 0,
 	pack_free = 0,
-	dis = nil,
 	ew = {},
 }
+
+local function progress(item, used, depth, min_cost, skip)
+	local have = 0
+	for _, part in ipairs(item.parts) do
+		local p = I.by_name[part]
+		if p and part ~= skip then
+			if (G.owned[part] or 0) > (used[part] or 0) and p.cost >= (min_cost or 0) then
+				used[part] = (used[part] or 0) + 1
+				have = have + p.cost
+			elseif depth < 3 and p.created then
+				have = have + progress(p, used, depth + 1, min_cost, skip)
+			end
+		end
+	end
+	return have
+end
 
 do
 	local function item_name(item)
@@ -4059,22 +4073,6 @@ do
 		return false
 	end
 
-	local function progress(item, used, depth, min_cost, skip)
-		local have = 0
-		for _, part in ipairs(item.parts) do
-			local p = I.by_name[part]
-			if p and part ~= skip then
-				if (G.owned[part] or 0) > (used[part] or 0) and p.cost >= (min_cost or 0) then
-					used[part] = (used[part] or 0) + 1
-					have = have + p.cost
-				elseif depth < 3 and p.created then
-					have = have + progress(p, used, depth + 1, min_cost, skip)
-				end
-			end
-		end
-		return have
-	end
-
 	local function eligible(name, item)
 		return item and not K.SLOT_SKIP[name]
 			and (K.BOOTS[name] or K.SLOT_EXTRA[name] or (item.created and item.cost >= K.SLOT_MIN_COST))
@@ -4095,13 +4093,9 @@ do
 		if cfg.lanes ~= 1 then
 			return ew
 		end
-		local rest = {}
+		local known, rest = draft.enemy_pos or {}, {}
 		for _, e in ipairs(them) do
-			for i, step in ipairs(STEPS()) do
-				if draft.steps[i] == e and step.kind == "P" and step_team(i) == 1 and draft.slot_pos[i] then
-					pos[e] = draft.slot_pos[i]
-				end
-			end
+			pos[e] = known[e]
 			if not pos[e] then
 				rest[#rest + 1] = e
 			end
@@ -4133,10 +4127,7 @@ do
 	end
 
 	local function add_threats(e, T, from, counts)
-		local t = {}
-		for k, v in pairs(I.threats(e)) do
-			t[k] = v
-		end
+		local t = copy(I.threats(e))
 		if counts then
 			for name in pairs(G.seen[e] or {}) do
 				for threat, w in pairs(K.ENEMY_ITEMS[name] or {}) do
@@ -4329,7 +4320,7 @@ do
 				if it and in_bag[name] and not K.SELL_SKIP[name] and not K.STACK[name] and it.cost > 0
 					and (boots and K.SELL_BOOTS[name] or not K.BOOTS[name])
 					and it.cost <= K.SELL_MAX and it.cost <= item.cost * K.SELL_RATIO and not needed(slots, it)
-					and counter_v(name, G.T1 or {}, {}) < K.SELL_COUNTER then
+					and counter_v(name, G.T1, {}) < K.SELL_COUNTER then
 					local k = keep_rate(data, it) or 0
 					if not worst or k < worst_k or (k == worst_k and it.cost < worst.cost) then
 						worst, worst_k = it, k
@@ -4439,7 +4430,7 @@ do
 		end
 		for _, x in ipairs(have) do
 			local it = I.by_name[x]
-			if it and K.DISASSEMBLE[x] and counter_v(x, G.T1 or {}, {}) < K.DIS_KEEP then
+			if it and K.DISASSEMBLE[x] and counter_v(x, G.T1, {}) < K.DIS_KEEP then
 				local best, part
 				for _, cd in pairs(cands) do
 					if free(cd) and cd.item ~= it and not I.related(cd.item, it) then
@@ -5194,30 +5185,19 @@ local function hit_at(cx, cy)
 	return nil
 end
 
-local function owned_value(item, used, depth, whole)
-	local have = (G.owned[item.name] or 0) - (used[item.name] or 0)
-	if have > 0 and not whole then
-		used[item.name] = (used[item.name] or 0) + 1
-		return item.cost
-	end
-	local v = 0
-	if depth < 3 then
-		for _, part in ipairs(item.parts) do
-			local p = I.by_name[part]
-			if p then
-				v = v + owned_value(p, used, depth + 1)
-			end
-		end
-	end
-	return v
-end
-
 local function take_owned(item, used)
 	if (G.owned[item.name] or 0) - (used[item.name] or 0) > 0 then
 		used[item.name] = (used[item.name] or 0) + 1
 		return true
 	end
 	return false
+end
+
+local function owned_value(item, used, depth, whole)
+	if not whole and take_owned(item, used) then
+		return item.cost
+	end
+	return depth < 3 and progress(item, used, depth + 1) or 0
 end
 
 local function full_buy(item, used, out, top)
@@ -5244,10 +5224,7 @@ local function full_buy(item, used, out, top)
 end
 
 local function buy_list(item, gold, used, out, depth)
-	local probe = {}
-	for k, v in pairs(used) do
-		probe[k] = v
-	end
+	local probe = copy(used)
 	local whole = depth == 0
 	local need = item.cost - owned_value(item, probe, depth, whole)
 	if need <= 0 and not whole then
@@ -5343,13 +5320,17 @@ local function toast(key)
 	W.toast = { key = key, t = os.clock() }
 end
 
+local function my_hero_id()
+	local ok, td = pcall(Player.GetTeamData, Players.GetLocal())
+	return ok and type(td) == "table" and (math.tointeger(tonumber(td.selected_hero_id) or 0) or 0) or 0
+end
+
 local function pick_block(h)
 	local ok, gs = pcall(GameRules.GetGameState)
 	if not ok or gs ~= K.HERO_SELECTION then
 		return "cd_pk_stage"
 	end
-	local okd, td = pcall(Player.GetTeamData, Players.GetLocal())
-	if okd and type(td) == "table" and (math.tointeger(tonumber(td.selected_hero_id) or 0) or 0) > 0 then
+	if my_hero_id() > 0 then
 		return "cd_pk_have"
 	end
 	for i, x in pairs(draft.steps) do
@@ -5382,8 +5363,7 @@ local function order_tick()
 		return
 	end
 	W.pick_check = nil
-	local okd, td = pcall(Player.GetTeamData, Players.GetLocal())
-	local hid = okd and type(td) == "table" and (math.tointeger(tonumber(td.selected_hero_id) or 0) or 0) or 0
+	local hid = my_hero_id()
 	if hid ~= c.h then
 		toast("cd_pk_fail")
 		log("pick failed: selected %d", hid)
@@ -5574,7 +5554,7 @@ local function click(right)
 		if not right then
 			put(arg)
 		elseif kind == "row" then
-			local why = pick_block(arg)
+			local why = cfg.pick_ask == 1 and pick_block(arg)
 			if why then
 				toast(why)
 			elseif cfg.pick_ask == 1 then
@@ -6386,7 +6366,7 @@ do
 		end
 	end
 
-	local function draw_free(x, y, w, h, a)
+	local function draw_free(x, y, w, a)
 		local ty = y + px(K.TL_HEAD) / 2
 		local left, right = x + px(K.PAD), x + w - px(K.PAD)
 		text(W.fonts.bold, px(12), L("cd_us"), left, ty, fade(P.GOOD, a))
@@ -6698,9 +6678,9 @@ do
 		W.nohit = nohit
 	end
 
-	local function draw_timeline(x, y, w, h, a)
+	local function draw_timeline(x, y, w, a)
 		if draft.mode == 1 then
-			draw_free(x, y, w, h, a)
+			draw_free(x, y, w, a)
 			return
 		end
 		local mid = x + w / 2
@@ -8237,7 +8217,7 @@ do
 		local line = math.max(1, px(1))
 		rect(x, my, x + w, my + line, fade(P.LINE, a))
 		local tl_w, grid_w, main_h = px(K.TL_W), px(K.GRID_W), px(K.MAIN_H)
-		draw_timeline(x, my, tl_w, main_h, a)
+		draw_timeline(x, my, tl_w, a)
 		rect(x + tl_w, my, x + tl_w + line, y + h, fade(P.LINE, a))
 		draw_grid(x + tl_w, my, grid_w, main_h, a)
 		rect(x + tl_w + grid_w, my, x + tl_w + grid_w + line, y + h, fade(P.LINE, a))
