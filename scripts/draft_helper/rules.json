@@ -58,7 +58,7 @@
 		"morphling": {"escape": 0.6},
 		"muerta": {"silence": 0.4},
 		"naga_siren": {"evasion": 0.4, "illusions": 1, "roots": 0.5},
-		"necrolyte": {"heal": 0.8, "passives": 0.4, "targeted": 0.6},
+		"necrolyte": {"heal": 0.8, "passives": 0.4, "saves": 0.8, "targeted": 0.6},
 		"night_stalker": {"silence": 0.5},
 		"nyx_assassin": {"escape": 0.4, "invis": 0.8},
 		"obsidian_destroyer": {"targeted": 0.4},
@@ -200,7 +200,8 @@
 	},
 	"must": [
 		{"threat": "evasion", "min": 0.8, "pos": [1, 2, 3], "phys": true},
-		{"threat": "heal", "min": 0.8, "pos": [4]}
+		{"threat": "heal", "min": 0.8, "pos": [4]},
+		{"threat": "saves", "min": 0.7, "pos": [1, 2, 3]}
 	],
 	"phys_items": {
 		"bfury": true,
