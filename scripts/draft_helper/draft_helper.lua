@@ -4548,7 +4548,28 @@ do
 		return false
 	end
 
+	local function boots_up(up, part)
+		if not K.BOOTS[up.name] or owns(up) then
+			return false
+		end
+		local has_part, has_boots = false, false
+		for _, p in ipairs(up.parts) do
+			if p == part then
+				has_part = true
+			elseif K.BOOTS[p] and (G.owned[p] or 0) > 0 then
+				has_boots = true
+			end
+		end
+		return has_part and has_boots
+	end
+
 	local function needed(slots, it)
+		for _, name in ipairs(K.BOOTS_UP) do
+			local up = I.by_name[name]
+			if up and boots_up(up, it.name) then
+				return true
+			end
+		end
 		for _, sl in ipairs(slots) do
 			local items = { sl.item }
 			if sl.after then
@@ -4768,6 +4789,18 @@ do
 				list[#list + 1] = { item = cd.item, t = cd.t, share = cd.share }
 			end
 		end
+		local in_bag = {}
+		for _, name in ipairs(bag) do
+			in_bag[name] = true
+		end
+		local function merges(up, base)
+			for _, p in ipairs(up.parts) do
+				if p ~= base.name and in_bag[p] then
+					return true
+				end
+			end
+			return false
+		end
 		local boots
 		for name in pairs(G.owned) do
 			if K.BOOTS[name] then
@@ -4779,7 +4812,8 @@ do
 				local r, it = data.rows[name], I.by_name[name]
 				local fits = it and (name == "travel_boots" or I.related(boots, it))
 				if r and fits and name ~= boots.name and not owns(it) and I.share(data, r) >= K.MORE_SHARE then
-					list[#list + 1] = { item = it, t = r.t, share = I.share(data, r), instead = boots, swap = true }
+					list[#list + 1] = { item = it, t = r.t, share = I.share(data, r), instead = boots, swap = true,
+						merge = in_bag[boots.name] and merges(it, boots) }
 				end
 			end
 		end
@@ -4793,12 +4827,13 @@ do
 			if base and eligible(name, base) and br and br.n > 0 and not K.BOOTS[name] then
 				for _, up in pairs(I.items) do
 					local r = data.rows[up.name]
-					if r and r.n >= K.MORE_UP * br.n and not offered[up] and not in_plan[up] and not K.MORE_SKIP[up.name]
-						and not owns(up) and (G.anti[up.name] or 0) < K.ANTI_HARD then
+					if (boots_up(up, base.name) or (r and r.n >= K.MORE_UP * br.n)) and not offered[up] and not in_plan[up]
+						and not K.MORE_SKIP[up.name] and not owns(up) and (G.anti[up.name] or 0) < K.ANTI_HARD then
 						for _, part in ipairs(up.parts) do
 							if part == base.name then
 								offered[up] = true
-								list[#list + 1] = { item = up, t = r.t, share = I.share(data, r), instead = base }
+								list[#list + 1] = { item = up, t = r and r.t or G.time, share = r and I.share(data, r) or 0, instead = base,
+									merge = merges(up, base) }
 							end
 						end
 					end
@@ -4826,16 +4861,15 @@ do
 			if (a.instead ~= nil) ~= (b.instead ~= nil) then
 				return a.instead ~= nil
 			end
+			if (a.merge or false) ~= (b.merge or false) then
+				return a.merge == true
+			end
 			if a.share ~= b.share then
 				return a.share > b.share
 			end
 			return a.item.name < b.item.name
 		end)
 		local room_left = room
-		local in_bag = {}
-		for _, name in ipairs(bag) do
-			in_bag[name] = true
-		end
 		local chosen = {}
 		for _, mo in ipairs(list) do
 			local ok = #chosen < K.MORE_MAX
@@ -4859,15 +4893,18 @@ do
 			end
 			if ok then
 				chosen[#chosen + 1] = mo
-				if mo.frees then
+				if mo.frees or mo.merge then
 					room_left = room_left + 1
 				end
 			end
 		end
 		list = chosen
+		local function rank(mo)
+			return mo.merge and 2 or (mo.frees and 1 or 0)
+		end
 		table.sort(list, function(a, b)
-			if (a.frees or false) ~= (b.frees or false) then
-				return a.frees == true
+			if rank(a) ~= rank(b) then
+				return rank(a) > rank(b)
 			end
 			return a.t < b.t
 		end)
