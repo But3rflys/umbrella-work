@@ -363,13 +363,18 @@ def main():
 
     def do_items():
         data = json.loads(get(API + "constants/items"))
+        recipes = {name[7:]: int(it["id"]) for name, it in data.items()
+                   if name.startswith("recipe_") and isinstance(it, dict) and it.get("id") is not None}
         items = []
         for name, it in data.items():
             if name.startswith("recipe") or not isinstance(it, dict) or it.get("id") is None:
                 continue
             parts = [p for p in (it.get("components") or []) if isinstance(p, str)]
-            items.append({"id": int(it["id"]), "n": name, "d": it.get("dname") or name, "c": int(it.get("cost") or 0),
-                          "m": 1 if it.get("created") else 0, "p": ",".join(parts)})
+            item = {"id": int(it["id"]), "n": name, "d": it.get("dname") or name, "c": int(it.get("cost") or 0),
+                    "m": 1 if it.get("created") else 0, "p": ",".join(parts)}
+            if name in recipes:
+                item["r"] = recipes[name]
+            items.append(item)
         if len(items) < 100:
             raise RuntimeError("bad items list")
         items.sort(key=lambda x: x["id"])
