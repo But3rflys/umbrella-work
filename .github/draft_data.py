@@ -49,7 +49,8 @@ REC = struct.Struct("<QI10sBB")
 
 BUYS_SQL = (
     "with p as (select pm.match_id, pm.player_slot<128 r, pm.purchase_log, ((pm.player_slot<128) = m.radiant_win) won, "
-    "array[pm.item_0,pm.item_1,pm.item_2,pm.item_3,pm.item_4,pm.item_5,pm.backpack_0,pm.backpack_1,pm.backpack_2] fin "
+    "array[pm.item_0,pm.item_1,pm.item_2,pm.item_3,pm.item_4,pm.item_5,pm.backpack_0,pm.backpack_1,pm.backpack_2] fin, "
+    "pm.additional_units au "
     "from player_matches pm join matches m using(match_id) where pm.hero_id=%d and pm.purchase_log is not null "
     "order by pm.match_id desc limit %d), "
     "tm as (select pm.match_id, pm.hero_id, coalesce(pm.lane_role,4) l, pm.gold_per_min gp from player_matches pm "
@@ -62,13 +63,18 @@ BUYS_SQL = (
     "unnest(p.purchase_log) v), "
     "f as (select match_id, pos, won, i, min(t) t, sum(case when t<=0 then 1 else 0 end) s from x group by 1,2,3,4), "
     "k as (select distinct p.match_id, q.pos, unnest(p.fin) it from p join q using(match_id)), "
+    "ku as (select distinct p.match_id, q.pos, (u->>x)::int it from p join q using(match_id), unnest(p.au) u, "
+    "unnest(array['item_0','item_1','item_2','item_3','item_4','item_5','backpack_0','backpack_1','backpack_2']) x "
+    "where p.au is not null), "
     "g as (select q.pos, count(*) g, sum(case when p.won then 1 else 0 end) gw from q join p using(match_id) group by q.pos) "
     "select f.pos p, i, count(*) n, sum(case when won then 1 else 0 end) w, "
     "percentile_cont(0.5) within group (order by t)::int t, sum(s) s, sum(case when s>0 then 1 else 0 end) m, "
     "max(g.g) g, max(g.gw) gw from f join g using(pos) group by f.pos, i "
     "having count(*) >= greatest(2, max(g.g) * 0.03) "
     "union all select k.pos, '#' || it, count(*), 0, 0, 0, 0, max(g.g), max(g.gw) from k join g using(pos) where it>0 "
-    "group by k.pos, it having count(*) >= greatest(2, max(g.g) * 0.03)"
+    "group by k.pos, it having count(*) >= greatest(2, max(g.g) * 0.03) "
+    "union all select ku.pos, '&' || it, count(*), 0, 0, 0, 0, max(g.g), max(g.gw) from ku join g using(pos) where it>0 "
+    "group by ku.pos, it having count(*) >= greatest(2, max(g.g) * 0.03)"
 )
 
 POS_SQL = (
