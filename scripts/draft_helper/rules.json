@@ -289,6 +289,9 @@
 		"diffusal_blade": {"phys": 0.2},
 		"disperser": {"phys": 0.2}
 	},
+	"instead": {
+		"butterfly": ["skadi", "satanic", "greater_crit", "disperser", "abyssal_blade"]
+	},
 	"anti": {
 		"monkey_king_bar": {"butterfly": 0.5, "talisman_of_evasion": 0.3},
 		"bloodthorn": {"butterfly": 0.3},
