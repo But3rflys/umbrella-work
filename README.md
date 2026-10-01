@@ -58,11 +58,11 @@ The menu follows your cheat language; the scripts speak Russian and English.
 <!-- stats:start -->
 | script | downloads | latest |
 | --- | --- | --- |
-| [Lane Pull](scripts/lane_pull) | 287 | `lane-pull-v1.0.4` |
+| [Lane Pull](scripts/lane_pull) | 288 | `lane-pull-v1.0.4` |
 | [DS Spot Block](scripts/ds_spot_block) | 57 | `ds-spot-block-v1.0.1` |
 | [Custom Background](scripts/custom_background) | 20 | `custom-background-v1.0.0` |
 | [Auto Stack](scripts/auto_stack) | 80 | `auto-stack-v1.1.0` |
-| [Draft Helper](scripts/draft_helper) | 195 | `draft-helper-v1.2.8` |
+| [Draft Helper](scripts/draft_helper) | 202 | `draft-helper-v1.4.0` |
 | [MusicUI](scripts/musicui) | 866 | `musicui-v1.0.8` |
 
 <picture>
