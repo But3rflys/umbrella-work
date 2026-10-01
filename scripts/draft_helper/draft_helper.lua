@@ -438,24 +438,14 @@ local localization = qLocalization.new({
 		cd_p_later = "NEXT",
 		cd_p_sell = "Inventory full, sell",
 		cd_news_t = "What's new",
-		cd_news_date = "October 1",
+		cd_news_date = "October 2",
 		cd_news_new = "NEW",
 		cd_news_fix = "FIXED",
 		cd_news_ok = "Got it",
 		cd_set_news = "What's new in %s",
 		cd_news_open = "Open",
-		cd_nw1_t = "Pick from the list",
-		cd_nw1 = "Right click a suggested hero to pick it.\nThe script asks for confirmation first.",
-		cd_nw2_t = "Buying from the build panel",
-		cd_nw2 = "Right click an item to buy it. Low on gold, it buys a part.\nShift + left click leaves only this item in quick buy.",
-		cd_nw3_t = "Enemy positions",
-		cd_nw3 = "You can set enemy positions by hand. Your lane opponent\nweighs more in advice, enemy support items weigh less.",
-		cd_nw4_t = "Single Draft and bans",
-		cd_nw4 = "Suggests only the heroes you were given. Skips banned heroes.",
-		cd_nw5_t = "Upgrades",
-		cd_nw5 = "Next shows what your items upgrade into.",
-		cd_nw6_t = "Item advice",
-		cd_nw6 = "No longer suggests selling Pike for Aghanim's or buying Butterfly\nagainst MKB. Tells you when to disassemble Radiance.",
+		cd_nw1_t = "Item picks",
+		cd_nw1 = "Item picks in builds are improved.",
 		cd_gh_manifest = "checking for updates",
 		cd_gh_heroes = "hero list",
 		cd_gh_pro = "pro matches",
@@ -515,7 +505,7 @@ local localization = qLocalization.new({
 		cd_th_invis = "invisibility",
 		cd_th_evasion = "evasion",
 		cd_th_heal = "healing",
-		cd_th_illusions = "illusions",
+		cd_th_illusions = "illusions and summons",
 		cd_th_passives = "strong passives",
 		cd_th_phys = "right-click",
 		cd_th_burst = "right-click burst damage",
@@ -526,6 +516,13 @@ local localization = qLocalization.new({
 		cd_tip_upgrade = "Later upgrade into %s",
 		cd_tip_up_from = "Upgrade of %s",
 		cd_tip_bless = "Consumes Aghanim's Scepter\nand frees an inventory slot",
+		cd_tip_vsd = "Against %s it is bought %d%% more often",
+		cd_tip_pass = "Usually sold later for %s",
+		cd_tip_pass0 = "Usually sold later",
+		cd_tip_on_unit = "Give it to the bear",
+		cd_p_unit = "BEAR",
+		cd_p_self = "DRUID",
+		cd_tip_on_hero = "Keep it on Lone Druid",
 		cd_tip_dis_from = "Disassemble %s and build this",
 		cd_p_up = "from %s",
 		cd_set_preview = "What it looks like",
@@ -695,24 +692,14 @@ local localization = qLocalization.new({
 		cd_p_later = "ДАЛЬШЕ",
 		cd_p_sell = "Инвентарь полный, продай",
 		cd_news_t = "Что нового",
-		cd_news_date = "1 октября",
+		cd_news_date = "2 октября",
 		cd_news_new = "НОВОЕ",
 		cd_news_fix = "ИСПРАВЛЕНО",
 		cd_news_ok = "Понятно",
 		cd_set_news = "Что нового в %s",
 		cd_news_open = "Открыть",
-		cd_nw1_t = "Пик из списка",
-		cd_nw1 = "ПКМ по герою в рекомендациях выбирает его.\nПеред этим скрипт спрашивает подтверждение.",
-		cd_nw2_t = "Покупка с панели сборки",
-		cd_nw2 = "ПКМ по предмету покупает его. Если золота мало, покупает часть.\nShift + ЛКМ ставит в быструю покупку только этот предмет.",
-		cd_nw3_t = "Позиции врагов",
-		cd_nw3 = "Позицию врага можно выбрать вручную. Контрпик соперника по линии\nвлияет на совет сильнее, предметы вражеских саппортов слабее.",
-		cd_nw4_t = "Single Draft и баны",
-		cd_nw4 = "Советует только выданных героев. Забаненных не предлагает.",
-		cd_nw5_t = "Апгрейды",
-		cd_nw5 = "В «Дальше» видно, во что улучшить твои предметы.",
-		cd_nw6_t = "Советы по предметам",
-		cd_nw6 = "Больше не предлагает продать пику ради аганима и брать бабочку\nпротив мкб. Подсказывает, когда разобрать радик.",
+		cd_nw1_t = "Подбор предметов",
+		cd_nw1 = "Улучшен подбор предметов в сборках.",
 		cd_gh_manifest = "проверяю обновления",
 		cd_gh_heroes = "список героев",
 		cd_gh_pro = "про-матчи",
@@ -772,7 +759,7 @@ local localization = qLocalization.new({
 		cd_th_invis = "инвиз",
 		cd_th_evasion = "уклонение",
 		cd_th_heal = "лечение",
-		cd_th_illusions = "иллюзии",
+		cd_th_illusions = "иллюзии и призывы",
 		cd_th_passives = "сильные пассивки",
 		cd_th_phys = "урон с руки",
 		cd_th_burst = "берст урон с руки",
@@ -783,6 +770,13 @@ local localization = qLocalization.new({
 		cd_tip_upgrade = "Потом собрать в %s",
 		cd_tip_up_from = "Апгрейд %s",
 		cd_tip_bless = "Съедает Aghanim's Scepter\nи освобождает слот в инвентаре",
+		cd_tip_vsd = "Против %s его берут на %d%% чаще",
+		cd_tip_pass = "Потом его продают ради %s",
+		cd_tip_pass0 = "Потом его обычно продают",
+		cd_tip_on_unit = "Отдать медведю",
+		cd_p_unit = "МЕДВЕДЬ",
+		cd_p_self = "ДРУИД",
+		cd_tip_on_hero = "Оставить на Друиде",
 		cd_tip_dis_from = "Разобрать %s и собрать",
 		cd_p_up = "из %s",
 		cd_set_preview = "Как выглядит",
@@ -886,7 +880,7 @@ local function log(fmt, ...)
 end
 
 local K = {
-	VERSION = "1.4.0",
+	VERSION = "1.4.1",
 	UPDATE_URL = "https://raw.githubusercontent.com/But3rflys/umbrella-work/main/scripts/draft_helper/version.json",
 	UPDATE_EVERY = 6 * 3600,
 	UPDATE_MIN_SIZE = 50000,
@@ -1096,6 +1090,23 @@ local K = {
 	FIT = {},
 	MUST = {},
 	MUST_MAX = 2,
+	VSD_HARD = 1.8,
+	VSD_SOFT = 1.4,
+	VSD_RATE = 0.03,
+	VSD_MAX = 2,
+	FORCE_MAX = 2,
+	PASS_KEEP = 0.4,
+	PASS_SHARE = 0.3,
+	PASS_MAX = 2,
+	BUY_W = 0.5,
+	END_W = 0.5,
+	FILL_MIN = 0.1,
+	BOOTS_END = { "guardian_greaves", "boots_of_bearing", "travel_boots", "travel_boots_2" },
+	BOOTS_UP_SHARE = 0.2,
+	BOOTS_UP_CONV = 0.5,
+	UNIT_ITEMS = { npc_dota_hero_lone_druid = "npc_dota_lone_druid_bear" },
+	UNIT_EXTRA = 3,
+	UNIT_FACE = { npc_dota_hero_lone_druid = "panorama/images/heroes/npc_dota_lone_druid_bear_png.vtex_c" },
 	MUST_COVER = 0.5,
 	PHYS_MIN = 0.8,
 	PHYS_ITEMS = {},
@@ -1137,8 +1148,6 @@ local K = {
 	},
 	SUPPORT_ITEM_W = 0.67,
 	SELL_HARD = 4,
-	SELL_BOOTS = { power_treads = true, phase_boots = true, arcane_boots = true, tranquil_boots = true },
-	SELL_BOOTS_FOR = 3500,
 	SELL_COUNTER = 0.3,
 	BACKPACK = 3,
 	SHARD = "aghanims_shard",
@@ -1149,7 +1158,6 @@ local K = {
 	ANTI_KEEP = 0.5,
 	INSTEAD = {},
 	INSTEAD_SHARE = 0.05,
-	INSTEAD_COST = 0.6,
 	DIS_SHARE = 0.1,
 	DIS_KEEP = 0.4,
 	PICK_CHECK = 1.5,
@@ -1161,12 +1169,7 @@ local K = {
 	},
 	CNT_MAX = 30,
 	NEWS = {
-		{ "n", "\u{f245}", "cd_nw1_t", "cd_nw1" },
-		{ "n", "\u{f07a}", "cd_nw2_t", "cd_nw2" },
-		{ "n", "\u{f0e8}", "cd_nw3_t", "cd_nw3" },
-		{ "n", "\u{f005}", "cd_nw4_t", "cd_nw4" },
-		{ "n", "\u{f062}", "cd_nw5_t", "cd_nw5" },
-		{ "f", "\u{f0e7}", "cd_nw6_t", "cd_nw6" },
+		{ "n", "\u{f290}", "cd_nw1_t", "cd_nw1" },
 	},
 	COVER = 0.8,
 	ENEMY_ITEMS = {},
@@ -1723,16 +1726,23 @@ do
 		K.COUNTERS, K.FIT, K.ANTI = table_of(r.counters), table_of(r.fit), table_of(r.anti)
 		K.ENEMY_ITEMS, K.REACT, K.PHYS_ITEMS = table_of(r.enemy_items), table_of(r.react), table_of(r.phys_items)
 		K.INSTEAD = table_of(r.instead)
+		D.vs = table_of(r.vs)
 		local must = {}
 		for _, mu in ipairs(table_of(r.must)) do
 			local pos = {}
 			for _, p in ipairs(table_of(mu.pos)) do
 				pos[math.tointeger(p) or p] = true
 			end
-			must[#must + 1] = { mu.threat, tonumber(mu.min) or 1, pos, mu.phys == true }
+			must[#must + 1] = { mu.threat, tonumber(mu.min) or 1, pos, mu.phys == true, tonumber(mu.sum), mu.early == true }
 		end
 		K.MUST = must
 		D.tags = table_of(r.heroes)
+		D.role_threats = true
+		for _, tags in pairs(D.tags) do
+			if type(tags) == "table" and (tags.disable or tags.magic) then
+				D.role_threats = false
+			end
+		end
 		D.rules_ok, D.rules_rev = true, (D.rules_rev or 0) + 1
 		draft.dirty = true
 		return true
@@ -2273,14 +2283,17 @@ do
 			if p and p >= 1 and p <= 5 and type(name) == "string" and n and n > 0 and g and g > 0 then
 				local d = by[p]
 				if not d then
-					d = { g = g, gw = 0, rows = {}, fin = {} }
+					d = { g = g, gw = 0, rows = {}, fin = {}, ufin = {} }
 					by[p] = d
 				end
 				d.g = math.max(d.g, g)
 				d.gw = math.max(d.gw, tonumber(r.gw) or 0)
 				local id = math.tointeger(tonumber(name:match("^#(%d+)$")))
+				local uid = math.tointeger(tonumber(name:match("^&(%d+)$")))
 				if id then
 					d.fin[id] = n
+				elseif uid then
+					d.ufin[uid] = n
 				else
 					d.rows[name] = { n = n, w = tonumber(r.w) or 0, t = tonumber(r.t) or 0, s = tonumber(r.s) or 0, m = tonumber(r.m) or 0 }
 				end
@@ -2507,10 +2520,10 @@ do
 			for _, role in ipairs(hero.roles) do
 				roles[role] = true
 			end
-			if roles.Nuker then
+			if roles.Nuker and D.role_threats ~= false then
 				t.magic = (t.magic or 0) + K.ROLE_MAGIC
 			end
-			if roles.Disabler then
+			if roles.Disabler and D.role_threats ~= false then
 				t.disable = (t.disable or 0) + K.ROLE_DISABLE
 			end
 			if roles.Carry and not roles.Support and (hero.attr == "agi" or hero.attr == "str") then
@@ -2578,7 +2591,10 @@ do
 		if not fit or not hero or (fit.melee and not hero.melee) then
 			return false
 		end
-		local rule = (not pos or pos <= 3) and fit.core or fit.support
+		local rule = fit.support
+		if not pos or pos <= 3 then
+			rule = fit.core
+		end
 		return rule == true or (type(rule) == "table" and rule[hero.attr] == true)
 	end
 
@@ -2624,25 +2640,64 @@ do
 		return new
 	end
 
-	function I.must(slots, cands, per, them, h, pos, locked)
+	local function hurry(slots, sl, threat, them, per)
+		local first, core
+		for _, s in ipairs(slots) do
+			if s ~= sl and not K.BOOTS[s.item.name] then
+				if not first or s.t < first then
+					first = s.t
+				end
+				if s.core and (not core or s.t > core) then
+					core = s.t
+				end
+			end
+		end
+		first = core or first
+		for i, s in ipairs(slots) do
+			if s == sl and first and (sl.t or 0) > first + 1 then
+				local new = copy(sl)
+				new.t = first + 1
+				if not new.must then
+					new.why = { { threat = threat, x = K.COUNTERS[sl.item.name][threat] } }
+					new.vs = vs_heroes({ [threat] = 1 }, them, per)
+					new.must = threat
+				end
+				slots[i] = new
+				return new
+			end
+		end
+		return sl
+	end
+
+	function I.must(slots, cands, per, them, h, pos, locked, limit)
 		local added = {}
 		for _, rule in ipairs(K.MUST) do
 			local threat = rule[1]
-			local strongest = 0
+			local strongest, total = 0, 0
 			for _, e in ipairs(them) do
-				strongest = math.max(strongest, (per[e] or {})[threat] or 0)
+				local v = (per[e] or {})[threat] or 0
+				strongest = math.max(strongest, v)
+				total = total + v
 			end
 			local role_ok = not rule[4] or I.physical(h, pos)
-			if strongest >= rule[2] and rule[3][pos or 0] and role_ok and #added < K.MUST_MAX then
-				local covered = 0
+			local hit = strongest >= rule[2] or (rule[5] ~= nil and total >= rule[5])
+			if hit and rule[3][pos or 0] and role_ok and #added < math.min(K.MUST_MAX, limit or K.MUST_MAX) then
+				local covered, cover = 0, nil
 				for _, s in ipairs(slots) do
-					covered = math.max(covered, (K.COUNTERS[s.item.name] or {})[threat] or 0)
+					local v = (K.COUNTERS[s.item.name] or {})[threat] or 0
+					if v > covered then
+						covered, cover = v, s
+					end
+				end
+				if rule[6] and cover and covered >= K.MUST_COVER then
+					hurry(slots, cover, threat, them, per)
 				end
 				local best, best_v
 				if covered < K.MUST_COVER then
 					for name, vs in pairs(K.COUNTERS) do
 						local w = vs[threat]
-						if w and w >= K.MUST_COVER and I.by_name[name] and fits_hero(name, h, pos) then
+						if w and w >= K.MUST_COVER and I.by_name[name] and fits_hero(name, h, pos)
+							and I.rate(h, pos, name) >= K.VSD_RATE then
 							local v = w + (cands[name] and cands[name].share or 0)
 							if not best or v > best_v or (v == best_v and name < best) then
 								best, best_v = name, v
@@ -2655,6 +2710,58 @@ do
 					new.why = { { threat = threat, x = K.COUNTERS[best][threat] } }
 					new.vs = vs_heroes({ [threat] = 1 }, them, per)
 					new.must = threat
+					if rule[6] then
+						new = hurry(slots, new, threat, them, per)
+					end
+					added[#added + 1] = new
+				end
+			end
+		end
+		return added
+	end
+
+	function I.vs(slots, cands, them, h, pos, locked, limit)
+		local cls = (not pos or pos <= 3) and "c" or "s"
+		local list = {}
+		for _, e in ipairs(them) do
+			local by = (D.vs or {})[tostring(e)]
+			local best
+			for name, lift in pairs(type(by) == "table" and type(by[cls]) == "table" and by[cls] or {}) do
+				lift = tonumber(lift) or 0
+				if I.by_name[name] and (lift >= K.VSD_HARD or (lift >= K.VSD_SOFT and K.COUNTERS[name]))
+					and I.rate(h, pos, name) >= K.VSD_RATE
+					and (not best or lift > best.lift or (lift == best.lift and name < best.name)) then
+					best = { name = name, lift = lift, e = e }
+				end
+			end
+			if best then
+				list[#list + 1] = best
+			end
+		end
+		table.sort(list, function(a, b)
+			if a.lift ~= b.lift then
+				return a.lift > b.lift
+			end
+			return a.name < b.name
+		end)
+		local added = {}
+		for _, v in ipairs(list) do
+			local item, have = I.by_name[v.name], false
+			for i, s in ipairs(slots) do
+				if s.item == item then
+					have = true
+					if not s.vsd then
+						slots[i] = copy(s)
+						slots[i].vsd = v
+					end
+				elseif related(s.item, item) or related(item, s.item) then
+					have = true
+				end
+			end
+			if not have and #added < math.min(K.VSD_MAX, limit or K.VSD_MAX) then
+				local new = place(slots, counter_cd(v.name, cands), locked)
+				if new then
+					new.vsd = v
 					added[#added + 1] = new
 				end
 			end
@@ -2746,7 +2853,7 @@ do
 		if cd.pre then
 			lines[1] = L("cd_tip_up_from"):format(cd.pre.item.label)
 		end
-		if cd.why then
+		if cd.why and (not cd.core or cd.must) then
 			local names = {}
 			for _, e in ipairs(cd.vs) do
 				names[#names + 1] = D.by_id[e] and D.by_id[e].name or "?"
@@ -2760,8 +2867,15 @@ do
 			end
 			lines[#lines + 1] = table.concat(threats, ", ")
 		end
+		if cd.vsd then
+			local hero = D.by_id[cd.vsd.e]
+			lines[#lines + 1] = L("cd_tip_vsd"):format(hero and hero.name or "?", math.floor((cd.vsd.lift - 1) * 100 + 0.5))
+		end
 		if cd.after then
 			lines[#lines + 1] = L(cd.after_kind == "up" and "cd_tip_upgrade" or "cd_tip_after"):format(cd.after.item.label)
+		end
+		if cd.on then
+			lines[#lines + 1] = L(cd.on)
 		end
 		return table.concat(lines, "\n")
 	end
@@ -2782,7 +2896,7 @@ do
 			if item then
 				local cd = { item = item, count = r.n, t = r.t, share = I.share(data, r) }
 				if K.BOOTS[name] then
-					if not boots or cd.share > boots.share then
+					if not boots or cd.share > boots.share or (cd.share == boots.share and name < boots.item.name) then
 						boots = cd
 					end
 				elseif not K.SLOT_SKIP[name] and (K.SLOT_EXTRA[name] or (item.created and item.cost >= K.SLOT_MIN_COST)) then
@@ -2794,6 +2908,13 @@ do
 			for _, part in ipairs(cd.item.parts) do
 				local p = cands[part]
 				if p and p ~= cd and cd.count >= K.ITEM_UPGRADE * p.count then
+					p.drop = true
+				end
+			end
+			local base, level = cd.item.name:match("^(.-)_(%d)$")
+			for n = 1, (tonumber(level) or 1) - 1 do
+				local p = cands[n == 1 and base or (base .. "_" .. n)]
+				if p and cd.count >= K.ITEM_UPGRADE * p.count then
 					p.drop = true
 				end
 			end
@@ -2933,6 +3054,112 @@ do
 		return list
 	end
 
+	function I.boots_plan(boots, picked, data)
+		local extra = {}
+		if not boots then
+			return extra
+		end
+		local best
+		for _, name in ipairs(K.BOOTS_END) do
+			local it, r = I.by_name[name], data.rows[name]
+			if it and r and it ~= boots.item then
+				local has, comp = false, 0
+				for _, part in ipairs(it.parts) do
+					if part == boots.item.name then
+						has = true
+					elseif data.rows[part] then
+						comp = math.max(comp, data.rows[part].n)
+					end
+				end
+				local buy = r.n / data.g
+				if has and buy >= K.BOOTS_UP_SHARE and r.n >= K.BOOTS_UP_CONV * comp and (not best or buy > best.buy) then
+					best = { item = it, t = r.t, buy = buy }
+				end
+			end
+		end
+		if not best then
+			return extra
+		end
+		boots.after, boots.after_kind = { item = best.item, t = math.max(best.t, boots.t + 1) }, "up"
+		for i = #picked, 1, -1 do
+			local cd, part_of = picked[i], false
+			for _, part in ipairs(best.item.parts) do
+				if cd ~= boots and part == cd.item.name then
+					part_of = true
+				end
+			end
+			if part_of then
+				table.remove(picked, i)
+				extra[#extra + 1] = { item = cd.item, t = cd.t, share = cd.share, up = best.item,
+					body = L("cd_tip_upgrade"):format(best.item.label) }
+			end
+		end
+		for _, part in ipairs(best.item.parts) do
+			local it, r = I.by_name[part], data.rows[part]
+			local have = false
+			for _, e in ipairs(extra) do
+				if e.item == it then
+					have = true
+				end
+			end
+			if it and r and part ~= boots.item.name and not have and it.created then
+				extra[#extra + 1] = { item = it, t = r.t, share = r.n / data.g, up = best.item,
+					body = L("cd_tip_upgrade"):format(best.item.label) }
+			end
+		end
+		boots.body = item_body(boots)
+		return extra
+	end
+
+	function I.pass_plan(pass, picked, boots)
+		table.sort(pass, function(a, b)
+			if a.t ~= b.t then
+				return a.t < b.t
+			end
+			return a.item.name < b.item.name
+		end)
+		local out, events = {}, {}
+		for _, cd in ipairs(picked) do
+			events[#events + 1] = { t = cd.t, cd = cd }
+		end
+		for _, cd in ipairs(pass) do
+			local part = boots and boots.after and related(boots.after.item, cd.item) or false
+			for _, p in ipairs(picked) do
+				if related(p.item, cd.item) or related(cd.item, p.item) then
+					part = true
+				end
+			end
+			if not part and #out < K.PASS_MAX then
+				local e = { item = cd.item, t = cd.t, share = cd.share }
+				out[#out + 1] = e
+				events[#events + 1] = { t = cd.t, pass = e }
+			end
+		end
+		table.sort(events, function(a, b)
+			return a.t < b.t
+		end)
+		local held, n, last = {}, 0, nil
+		for _, ev in ipairs(events) do
+			n = n + 1
+			if ev.pass then
+				held[#held + 1] = ev.pass
+			else
+				last = ev.cd
+				if n > K.SLOTS and #held > 0 then
+					table.remove(held, 1).sell = ev.cd.item
+					n = n - 1
+				end
+			end
+		end
+		for _, e in ipairs(out) do
+			if not e.sell and last and last.t > e.t then
+				e.sell = last.item
+			end
+			e.body = e.sell and L("cd_tip_pass"):format(e.sell.label) or L("cd_tip_pass0")
+		end
+		return out
+	end
+
 	function I.build(h, pos, them)
 		local all = I.buys[h]
 		if not all or not I.items then
@@ -2955,10 +3182,14 @@ do
 			end
 		end
 		local cands, boots = I.collect(data)
-		local list = {}
+		local list, pass = {}, {}
 		for name, cd in pairs(cands) do
 			if not cd.drop then
-				cd.score = cd.share
+				local fin = (data.fin[cd.item.id] or 0) + (data.ufin[cd.item.id] or 0)
+				cd.endv = fin / data.g
+				cd.pass = not K.UNIT_ITEMS[D.by_id[h].unit] and name ~= "ultimate_scepter" and fin < K.PASS_KEEP * cd.count
+					and not I.upgrade(cd, cands, {}) and not I.after(cd, cands, {}, data)
+				cd.score = cd.share * K.BUY_W + cd.endv * K.END_W
 				local vs = K.COUNTERS[name]
 				if vs and cd.share >= K.ITEM_SHARE then
 					local v, why = 0, {}
@@ -2974,21 +3205,39 @@ do
 							return a.x > b.x
 						end)
 						cd.why = why
-						cd.score = cd.share + K.ITEM_COUNTER_W * math.min(1, v) * math.min(1, cd.share / K.ITEM_SHARE_FULL)
+						cd.score = cd.score + K.ITEM_COUNTER_W * math.min(1, v) * math.min(1, cd.share / K.ITEM_SHARE_FULL)
 						cd.vs = vs_heroes(vs, them, per)
 					end
 				end
-				list[#list + 1] = cd
+				if cd.pass then
+					if cd.count >= K.PASS_SHARE * data.g then
+						pass[#pass + 1] = cd
+					end
+				else
+					list[#list + 1] = cd
+				end
 			end
 		end
+		if boots and boots.count < K.FILL_MIN * data.g then
+			boots = nil
+		end
 		local picked = { boots }
+		local unit_hero = K.UNIT_ITEMS[D.by_id[h].unit] ~= nil
+		local slots_max = unit_hero and K.SLOTS + K.UNIT_EXTRA or K.SLOTS
+		local function side(cd)
+			return unit_hero and (data.ufin[cd.item.id] or 0) > (data.fin[cd.item.id] or 0)
+		end
 		local function fits(cd)
+			local n = 0
 			for _, p in ipairs(picked) do
 				if related(p.item, cd.item) or (p ~= boots and siblings(p.item, cd.item)) then
 					return false
 				end
+				if side(p) == side(cd) then
+					n = n + 1
+				end
 			end
-			return true
+			return n < K.SLOTS
 		end
 		local function by(field)
 			table.sort(list, function(a, b)
@@ -3001,7 +3250,7 @@ do
 		by("share")
 		local core = 0
 		for _, cd in ipairs(list) do
-			if core >= K.CORE_LOCK or #picked >= K.SLOTS then
+			if core >= K.CORE_LOCK or #picked >= slots_max then
 				break
 			end
 			if fits(cd) then
@@ -3012,23 +3261,29 @@ do
 		end
 		by("score")
 		for _, cd in ipairs(list) do
-			if #picked >= K.SLOTS then
+			if #picked >= slots_max then
 				break
 			end
-			if not cd.core and fits(cd) then
+			if not cd.core and fits(cd) and math.max(cd.share, cd.endv) >= K.FILL_MIN then
 				picked[#picked + 1] = cd
 			end
 		end
-		I.must(picked, cands, per, them, h, pos, function(s)
+		local function core_only(s)
 			return s.core
-		end)
+		end
+		local forced = I.must(picked, cands, per, them, h, pos, core_only, K.FORCE_MAX)
+		I.vs(picked, cands, them, h, pos, core_only, K.FORCE_MAX - #forced)
 		table.sort(picked, function(a, b)
 			if math.abs(a.t - b.t) > 0.05 then
 				return a.t < b.t
 			end
 			return a.item.cost < b.item.cost
 		end)
+		local on_unit = K.UNIT_ITEMS[D.by_id[h].unit] and next(data.ufin) ~= nil
 		for _, cd in ipairs(picked) do
+			if on_unit then
+				cd.on = (data.ufin[cd.item.id] or 0) > (data.fin[cd.item.id] or 0) and "cd_tip_on_unit" or "cd_tip_on_hero"
+			end
 			cd.pre = I.pre(cd, data)
 			local up = I.upgrade(cd, cands, picked)
 			if up then
@@ -3038,10 +3293,18 @@ do
 			end
 			cd.body = item_body(cd)
 		end
+		local early_up = I.boots_plan(boots, picked, data)
 		local start, gold = start_items(data)
 		local early = I.early(data, picked, start)
+		for _, e in ipairs(early_up) do
+			early[#early + 1] = e
+		end
+		local trans = I.pass_plan(pass, picked, boots)
 		local steps = {}
 		for _, e in ipairs(early) do
+			steps[#steps + 1] = { item = e.item, t = e.t, body = e.body, early = true }
+		end
+		for _, e in ipairs(trans) do
 			steps[#steps + 1] = { item = e.item, t = e.t, body = e.body, early = true }
 		end
 		local shard
@@ -3078,7 +3341,8 @@ do
 				spare = { item = item, q = 2, vs = vs_heroes({ invis = 1 }, them, per) }
 			end
 		end
-		local build = { slots = picked, steps = steps, start = start, gold = gold, spare = spare, early = early, shard = shard }
+		local build = { slots = picked, steps = steps, start = start, gold = gold, spare = spare, early = early, shard = shard,
+			trans = trans }
 		I.builds[key] = build
 		return build
 	end
@@ -4314,24 +4578,22 @@ do
 			in_bag[name] = true
 		end
 		local worst, worst_k
-		local function pick(boots)
+		local late = G.pass or {}
+		local function pick()
 			for _, name in ipairs(G.main) do
 				local it = I.by_name[name]
 				if it and in_bag[name] and not K.SELL_SKIP[name] and not K.STACK[name] and it.cost > 0
-					and (boots and K.SELL_BOOTS[name] or not K.BOOTS[name])
-					and it.cost <= K.SELL_MAX and it.cost <= item.cost * K.SELL_RATIO and not needed(slots, it)
+					and not K.BOOTS[name]
+					and (it.cost <= K.SELL_MAX or late[name]) and it.cost <= item.cost * K.SELL_RATIO and not needed(slots, it)
 					and counter_v(name, G.T1, {}) < K.SELL_COUNTER then
-					local k = keep_rate(data, it) or 0
+					local k = late[name] and -1 or keep_rate(data, it) or 0
 					if not worst or k < worst_k or (k == worst_k and it.cost < worst.cost) then
 						worst, worst_k = it, k
 					end
 				end
 			end
 		end
-		pick(false)
-		if not worst and #bag >= K.SLOTS and item.cost >= K.SELL_BOOTS_FOR then
-			pick(true)
-		end
+		pick()
 		if not worst then
 			return nil
 		end
@@ -4342,26 +4604,16 @@ do
 		return d
 	end
 
-	local function replacement(slots, sl, cands, anti)
+	local function replacement(slots, sl, cands, anti, src)
 		local old = sl.item
-		local function ok(cd)
-			return cd and not cd.drop and cd.item ~= old and not owns(cd.item) and not clash(slots, sl, cd)
-				and (anti[cd.item.name] or 0) < K.ANTI_HARD
-		end
 		for _, name in ipairs(K.INSTEAD[old.name] or {}) do
 			local cd = cands[name]
-			if ok(cd) and cd.share >= K.INSTEAD_SHARE then
+			if cd and not cd.drop and cd.item ~= old and name ~= src and not owns(cd.item) and not clash(slots, sl, cd)
+				and (anti[name] or 0) < K.ANTI_HARD and cd.share >= K.INSTEAD_SHARE then
 				return copy(cd)
 			end
 		end
-		local best
-		for name, cd in pairs(cands) do
-			if ok(cd) and cd.item.cost >= old.cost * K.INSTEAD_COST and (not K.PHYS_ITEMS[old.name] or K.PHYS_ITEMS[name])
-				and (not best or cd.share > best.share) then
-				best = cd
-			end
-		end
-		return best and copy(best)
+		return nil
 	end
 
 	local function drop_anti(slots, cands, anti, anti_from)
@@ -4369,7 +4621,7 @@ do
 			local w = anti[sl.item.name] or 0
 			if w >= K.ANTI_HARD and not sl.bought and not owns(sl.item)
 				and progress(sl.item, {}, 0, K.SIGNAL_MIN) < sl.item.cost * K.ANTI_KEEP then
-				local new = replacement(slots, sl, cands, anti)
+				local new = replacement(slots, sl, cands, anti, anti_from[sl.item.name] and anti_from[sl.item.name].item)
 				if new then
 					new.swapped, new.from, new.reason = true, sl.item, anti_from[sl.item.name]
 					new.after, new.after_kind = sl.after, sl.after_kind
@@ -4413,10 +4665,7 @@ do
 			if sl.after and sl.after_kind == "dis" then
 				return nil
 			end
-			if not seen[sl.item.name] then
-				seen[sl.item.name] = true
-				have[#have + 1] = sl.item.name
-			end
+			seen[sl.item.name] = true
 		end
 		for _, name in ipairs(G.main) do
 			if not seen[name] then
@@ -4433,7 +4682,7 @@ do
 			if it and K.DISASSEMBLE[x] and counter_v(x, G.T1, {}) < K.DIS_KEEP then
 				local best, part
 				for _, cd in pairs(cands) do
-					if free(cd) and cd.item ~= it and not I.related(cd.item, it) then
+					if free(cd) and cd.item ~= it and not I.related(cd.item, it) and not I.siblings(cd.item, it) then
 						for _, p in ipairs(cd.item.parts) do
 							for _, q in ipairs(it.parts) do
 								if p == q and I.by_name[q] and (not best or cd.share > best.share) then
@@ -4505,7 +4754,7 @@ do
 			local fi, li = fam(item)
 			for _, t in ipairs(taken) do
 				local ft, lt = fam(t)
-				if t == item or (ft == fi and li <= lt) or I.related(t, item)
+				if t == item or (ft == fi and li <= lt) or I.related(t, item) or I.related(item, t)
 					or (not K.BOOTS[t.name] and not K.BOOTS[item.name] and I.siblings(t, item)) then
 					return false
 				end
@@ -4683,9 +4932,19 @@ do
 			local function locked(sl)
 				return sl.core or sl.bought or owns(sl.item) or progress(sl.item, {}, 0, K.SIGNAL_MIN) > 0
 			end
-			for _, new in ipairs(I.must(slots, cands, per1, G.them, G.hero, G.bpos, locked)) do
+			local forced = 0
+			for _, sl in ipairs(slots) do
+				if (sl.must or sl.vsd) and sl.replaced then
+					forced = forced + 1
+				end
+			end
+			local added = I.must(slots, cands, per1, G.them, G.hero, G.bpos, locked, K.FORCE_MAX - forced)
+			for _, new in ipairs(added) do
 				new.swapped, new.from = true, new.replaced
 				new.reason = reason_for(new, from)
+			end
+			for _, new in ipairs(I.vs(slots, cands, G.them, G.hero, G.bpos, locked, K.FORCE_MAX - forced - #added)) do
+				new.swapped, new.from = true, new.replaced
 			end
 			for _, new in ipairs(I.react(slots, cands, G.them, G.seen, G.hero, G.bpos, locked, G.ew)) do
 				new.swapped, new.from = true, new.replaced
@@ -4722,6 +4981,11 @@ do
 		end
 		for _, e in ipairs(base.early or {}) do
 			steps[#steps + 1] = { item = e.item, t = e.t, early = e }
+		end
+		G.pass = {}
+		for _, e in ipairs(base.trans or {}) do
+			steps[#steps + 1] = { item = e.item, t = e.t, early = e }
+			G.pass[e.item.name] = true
 		end
 		if base.shard then
 			steps[#steps + 1] = { item = base.shard.item, t = base.shard.t, consume = true }
@@ -4857,6 +5121,15 @@ do
 			end
 		end
 		local plan = { hero = G.hero, slots = {}, pos = G.bpos }
+		plan.split = K.UNIT_ITEMS[D.by_id[G.hero].unit] ~= nil and next(data.ufin) ~= nil
+		local function owner(name, fallback)
+			local it = I.by_name[name]
+			local u, f = it and data.ufin[it.id] or 0, it and data.fin[it.id] or 0
+			if u ~= f then
+				return u > f and "unit" or "hero"
+			end
+			return fallback or "hero"
+		end
 		local start = { items = {}, gold = base.gold, done = true }
 		for _, st in ipairs(base.start) do
 			local name = st.item.name
@@ -4868,6 +5141,7 @@ do
 				have = st.q
 			end
 			local d = { name = name, label = st.item.label, cost = st.item.cost, q = st.q, have = math.min(have, st.q) }
+			d.on = plan.split and owner(name) or nil
 			d.state = d.have >= st.q and "done" or "next"
 			d.title = st.q > 1 and ("%s x%d"):format(st.item.label, st.q) or st.item.label
 			start.done = start.done and d.state == "done"
@@ -4877,6 +5151,13 @@ do
 		for i, st in ipairs(steps) do
 			local s = st.s
 			local d = { name = st.item.name, label = st.item.label, cost = st.item.cost, t = st.t }
+			if plan.split then
+				local up = st.s and st.s.item or (st.early and st.early.up)
+				d.on = owner(st.item.name, up and owner(up.name))
+				if st.s and (st.pre or st.base) then
+					d.on = owner(st.s.item.name)
+				end
+			end
 			if step_done(st) then
 				d.state = "done"
 			elseif st == target then
@@ -4887,7 +5168,7 @@ do
 			end
 			local lines = {}
 			if st.early then
-				lines[1] = st.early.up and L("cd_tip_upgrade"):format(st.early.up.label) or nil
+				lines[1] = st.early.body ~= "" and st.early.body or nil
 			elseif st.pre then
 				lines[1] = L("cd_tip_upgrade"):format(s.item.label)
 			elseif st.consume then
@@ -4943,6 +5224,7 @@ do
 		end
 		for i, d in ipairs(plan.more) do
 			d.state = "later"
+			d.on = plan.split and owner(d.name, d.base and owner(d.base.name)) or nil
 			if plan.complete and i == 1 then
 				d.state, plan.next = "next", d
 			end
@@ -5021,11 +5303,27 @@ do
 		end
 		table.sort(them)
 		local owned = {}
-		for slot = 0, K.INV_LAST do
-			local item = NPC.GetItemByIndex(hero, slot)
-			local name = item and item_name(item)
-			if name then
-				owned[name] = (owned[name] or 0) + 1
+		local holders = { hero }
+		local unit_prefix = K.UNIT_ITEMS[NPC.GetUnitName(hero)]
+		if unit_prefix then
+			local hi = Entity.GetIndex(hero)
+			local okn, list = pcall(NPCs.GetAll)
+			for _, npc in ipairs(okn and type(list) == "table" and list or {}) do
+				local okname, uname = pcall(NPC.GetUnitName, npc)
+				local oko, owner = pcall(Entity.GetOwner, npc)
+				if okname and type(uname) == "string" and uname:find(unit_prefix, 1, true) == 1
+					and oko and owner and Entity.GetIndex(owner) == hi then
+					holders[#holders + 1] = npc
+				end
+			end
+		end
+		for _, holder in ipairs(holders) do
+			for slot = 0, K.INV_LAST do
+				local item = NPC.GetItemByIndex(holder, slot)
+				local name = item and item_name(item)
+				if name then
+					owned[name] = (owned[name] or 0) + 1
+				end
 			end
 		end
 		if next(owned) == nil then
@@ -7821,7 +8119,15 @@ do
 		return D0
 	end
 
-	function PN.slot(d, x, y, w, h, a)
+	function PN.face(plan, who)
+		local unit = D.by_id[plan.hero] and D.by_id[plan.hero].unit
+		if not unit then
+			return nil
+		end
+		return image(who == "unit" and K.UNIT_FACE[unit] or ("panorama/images/heroes/" .. unit .. "_png.vtex_c"))
+	end
+
+	function PN.slot(d, x, y, w, h, a, face)
 		local img = item_img(d.name)
 		if img then
 			Render.Image(img, Vec2(x, y), Vec2(w, h), fade(P.WHITE, a), px(4), K.ROUND)
@@ -7852,6 +8158,13 @@ do
 			if src then
 				Render.Image(src, Vec2(bx, by), Vec2(bw, bh), fade(P.WHITE, a), px(3), K.ROUND)
 			end
+		end
+		if face then
+			local fw = math.max(px(18), math.floor(w * 0.5 + 0.5))
+			local fh = math.floor(fw * 0.5625 + 0.5)
+			local fx, fy = x + w - fw + px(5), y + h - fh + px(5)
+			rect(fx - ring, fy - ring, fx + fw + ring, fy + fh + ring, fade(P.BG, a), px(4))
+			Render.Image(face, Vec2(fx, fy), Vec2(fw, fh), fade(P.WHITE, a), px(2), K.ROUND)
 		end
 	end
 
@@ -7899,8 +8212,7 @@ do
 		pos_picker("pr", hero, plan.pos, x, cy, size, px(4), a, have, demo or I.buys[hero] ~= nil)
 	end
 
-	function PN.start_fit(plan, avail, max_w)
-		local n = plan.start and #plan.start.items or 0
+	function PN.start_fit(n, avail, max_w)
 		if n == 0 then
 			return 0, 0
 		end
@@ -7909,24 +8221,70 @@ do
 		return iw, math.floor(iw * 0.72 + 0.5)
 	end
 
-	function PN.start(plan, x, cy, w, a)
-		local st = plan.start
-		if not st then
-			return
-		end
+	function PN.start(plan, g, x, cy, w, a)
 		local label = L("cd_p_start")
 		local lw = text(W.fonts.medium, px(11), label, x, cy, fade(P.MUTED, a))
-		local gold = ("%d / %d"):format(st.gold, K.START_GOLD)
-		local gw = tw(W.fonts.regular, px(11), gold)
-		text(W.fonts.regular, px(11), gold, x + w - gw, cy, fade(P.DIM, a))
-		local ix0 = x + lw + px(10)
-		local iw, ih = PN.start_fit(plan, w - lw - gw - px(20), px(30))
-		for i, d in ipairs(st.items) do
-			local sx = ix0 + (i - 1) * (iw + px(3))
-			PN.slot(d, sx, math.floor(cy - ih / 2), iw, ih, a)
-			PN.qbuy(plan, "st" .. i, d.name, sx, math.floor(cy - ih / 2), sx + iw, math.floor(cy - ih / 2) + ih, a)
-			tip("pst" .. i, sx, cy - ih / 2, sx + iw, cy + ih / 2, d.title or d.label, "")
+		local gw = 0
+		if g.gold then
+			local gold = ("%d / %d"):format(plan.start.gold, K.START_GOLD)
+			gw = tw(W.fonts.regular, px(11), gold)
+			text(W.fonts.regular, px(11), gold, x + w - gw, cy, fade(P.DIM, a))
 		end
+		local ix0 = x + lw + px(10)
+		local iw, ih = PN.start_fit(#g.start, w - lw - gw - px(20), px(30))
+		for i, d in ipairs(g.start) do
+			local sx = ix0 + (i - 1) * (iw + px(3))
+			local id = g.id .. i
+			PN.slot(d, sx, math.floor(cy - ih / 2), iw, ih, a)
+			PN.qbuy(plan, "st" .. id, d.name, sx, math.floor(cy - ih / 2), sx + iw, math.floor(cy - ih / 2) + ih, a)
+			tip("pst" .. id, sx, cy - ih / 2, sx + iw, cy + ih / 2, d.title or d.label, "")
+		end
+	end
+
+	function PN.groups(plan)
+		local st = plan.start and plan.start.items
+		if not plan.split then
+			return { { id = "", slots = plan.slots, start = st, gold = true } }
+		end
+		local out = {}
+		for _, who in ipairs({ "unit", "hero" }) do
+			local g = { id = who, who = who, slots = {}, start = {} }
+			for _, d in ipairs(plan.slots) do
+				if d.on == who then
+					g.slots[#g.slots + 1] = d
+				end
+			end
+			for _, d in ipairs(st or {}) do
+				if d.on == who then
+					g.start[#g.start + 1] = d
+				end
+			end
+			if #g.start == 0 then
+				g.start = nil
+			end
+			if #g.slots > 0 or g.start then
+				out[#out + 1] = g
+			end
+		end
+		for _, g in ipairs(out) do
+			if g.start then
+				g.gold = true
+				break
+			end
+		end
+		return out
+	end
+
+	function PN.owner(plan, who, x0, x1, cy, a)
+		local face = PN.face(plan, who)
+		local fw, fh = px(36), px(20)
+		local lx = x0
+		if face then
+			Render.Image(face, Vec2(x0, math.floor(cy - fh / 2)), Vec2(fw, fh), fade(P.WHITE, a), px(3), K.ROUND)
+			lx = x0 + fw + px(8)
+		end
+		local lw = text(W.fonts.semi, px(10), L(who == "unit" and "cd_p_unit" or "cd_p_self"), lx, cy, fade(P.MUTED, a))
+		rect(lx + lw + px(8), cy, x1, cy + math.max(1, px(1)), fade(P.LINE, a))
 	end
 
 	function PN.none(plan, x, y, a, measure)
@@ -7965,41 +8323,66 @@ do
 	function PN.strip(plan, x, y, a, measure)
 		local pad, sw, gap = px(12), px(50), px(6)
 		local w = pad * 2 + 6 * sw + 5 * gap
-		local rows = math.max(1, math.ceil(#plan.slots / K.STRIP_COLS))
-		local cols = math.max(6, math.ceil(#plan.slots / rows))
+		local groups = PN.groups(plan)
+		local n = 0
+		for _, g in ipairs(groups) do
+			n = math.max(n, #g.slots)
+		end
+		local rows = math.max(1, math.ceil(n / K.STRIP_COLS))
+		local cols = math.max(6, math.ceil(n / rows))
 		local iw = math.min(sw, math.floor((w - pad * 2 - gap * (cols - 1)) / cols))
 		local ih = math.floor(iw * 0.74 + 0.5)
 		local row_h = ih + px(10)
-		local sh = rows * row_h - px(10)
+		local head_h = plan.split and px(32) or 0
+		local body = 0
+		for gi, g in ipairs(groups) do
+			g.rows = plan.split and math.ceil(#g.slots / cols) or rows
+			body = body + head_h + (g.start and px(30) or 0) + math.max(0, g.rows * row_h - px(10))
+			if gi > 1 then
+				body = body + px(14)
+			end
+		end
 		local more = plan.more or {}
 		local more_h = #more > 0 and px(26) + ih or 0
 		local sell_h = plan.sell and px(36) or 0
-		local has_start = plan.start ~= nil
-		local top = y + px(34) + (has_start and px(30) or 0)
-		local h = top - y + sh + more_h + px(26) + sell_h + px(36)
+		local top = y + px(34)
+		local h = top - y + body + more_h + px(26) + sell_h + px(36)
 		if measure then
 			return w, h
 		end
 		backdrop(x, y, w, h, a, px(10))
 		PN.head(plan, x, y, w, a)
-		if has_start then
-			PN.start(plan, x + pad, y + px(48), w - pad * 2, a)
+		local cur, k = top, 0
+		for gi, g in ipairs(groups) do
+			if gi > 1 then
+				cur = cur + px(14)
+			end
+			if plan.split then
+				PN.owner(plan, g.who, x + pad, x + w - pad, cur + head_h / 2, a)
+				cur = cur + head_h
+			end
+			if g.start then
+				PN.start(plan, g, x + pad, cur + px(14), w - pad * 2, a)
+				cur = cur + px(30)
+			end
+			local sy = cur + px(4)
+			for i, d in ipairs(g.slots) do
+				k = k + 1
+				local sx = x + pad + ((i - 1) % cols) * (iw + gap)
+				local iy = sy + ((i - 1) // cols) * row_h
+				PN.slot(d, sx, iy, iw, ih, a)
+				PN.qbuy(plan, "n" .. k, d.name, sx, iy, sx + iw, iy + ih, a)
+				tip("pn" .. k, sx, iy, sx + iw, iy + ih, d.label, d.body)
+			end
+			cur = cur + math.max(0, g.rows * row_h - px(10))
 		end
-		local sy = top + px(4)
-		for i, d in ipairs(plan.slots) do
-			local sx = x + pad + ((i - 1) % cols) * (iw + gap)
-			local iy = sy + ((i - 1) // cols) * row_h
-			PN.slot(d, sx, iy, iw, ih, a)
-			PN.qbuy(plan, "n" .. i, d.name, sx, iy, sx + iw, iy + ih, a)
-			tip("pn" .. i, sx, iy, sx + iw, iy + ih, d.label, d.body)
-		end
-		local my = sy + sh
+		local my = cur + px(4)
 		if #more > 0 then
 			PN.later(x + pad, x + w - pad, my + px(13), a)
 			local ry = my + px(26)
 			for i, d in ipairs(more) do
 				local sx = x + pad + (i - 1) * (iw + gap)
-				PN.slot(d, sx, ry, iw, ih, a)
+				PN.slot(d, sx, ry, iw, ih, a, plan.split and PN.face(plan, d.on) or nil)
 				PN.qbuy(plan, "m" .. i, d.name, sx, ry, sx + iw, ry + ih, a)
 				tip("pm" .. i, sx, ry, sx + iw, ry + ih, d.label, d.body or "")
 			end
@@ -8018,7 +8401,7 @@ do
 		PN.roles(plan, x + pad, y + h - px(20), px(24), a)
 	end
 
-	function PN.row(plan, d, id, x, w, ry, row_h, a)
+	function PN.row(plan, d, id, x, w, ry, row_h, a, face)
 		local rcy = ry + math.floor(row_h / 2)
 		if d.state == "next" then
 			rect(x + px(6), ry + px(1), x + w - px(6), ry + row_h - px(1), fade(Color(255, 255, 255, 14), a), px(7))
@@ -8026,7 +8409,7 @@ do
 		PN.qbuy(plan, id, d.name, x + px(6), ry + px(1), x + w - px(6), ry + row_h - px(1), a, px(7))
 		local iw, ih = px(40), px(29)
 		local ix = x + px(12)
-		PN.slot(d, ix, math.floor(rcy - ih / 2), iw, ih, a)
+		PN.slot(d, ix, math.floor(rcy - ih / 2), iw, ih, a, face)
 		local tx = ix + iw + px(10)
 		text(W.fonts.semi, px(12), d.label, tx, rcy - px(7), fade(P.TEXT, a))
 		local sy = rcy + px(8)
@@ -8047,29 +8430,46 @@ do
 	function PN.list(plan, x, y, a, measure)
 		local w = px(286)
 		local row_h = px(38)
+		local groups = PN.groups(plan)
+		local head_h = plan.split and px(32) or 0
+		local body = 0
+		for gi, g in ipairs(groups) do
+			body = body + head_h + (g.start and px(30) or 0) + #g.slots * row_h + (gi > 1 and px(8) or 0)
+		end
 		local more = plan.more or {}
 		local more_h = #more > 0 and px(24) + #more * row_h or 0
 		local sell_h = plan.sell and px(36) or 0
-		local has_start = plan.start ~= nil
-		local top = y + px(34) + (has_start and px(30) or 0)
-		local h = top - y + #plan.slots * row_h + more_h + sell_h + px(40)
+		local top = y + px(34)
+		local h = top - y + body + more_h + sell_h + px(40)
 		if measure then
 			return w, h
 		end
 		backdrop(x, y, w, h, a, px(10))
 		PN.head(plan, x, y, w, a)
-		if has_start then
-			PN.start(plan, x + px(12), y + px(48), w - px(24), a)
+		local ry, k = top, 0
+		for gi, g in ipairs(groups) do
+			if gi > 1 then
+				ry = ry + px(8)
+			end
+			if plan.split then
+				PN.owner(plan, g.who, x + px(12), x + w - px(12), ry + head_h / 2, a)
+				ry = ry + head_h
+			end
+			if g.start then
+				PN.start(plan, g, x + px(12), ry + px(14), w - px(24), a)
+				ry = ry + px(30)
+			end
+			for _, d in ipairs(g.slots) do
+				k = k + 1
+				PN.row(plan, d, "l" .. k, x, w, ry, row_h, a)
+				ry = ry + row_h
+			end
 		end
-		for i, d in ipairs(plan.slots) do
-			PN.row(plan, d, "l" .. i, x, w, top + (i - 1) * row_h, row_h, a)
-		end
-		local ry = top + #plan.slots * row_h
 		if #more > 0 then
 			PN.later(x + px(12), x + w - px(12), ry + px(12), a)
 			ry = ry + px(24)
 			for i, d in ipairs(more) do
-				PN.row(plan, d, "lm" .. i, x, w, ry, row_h, a)
+				PN.row(plan, d, "lm" .. i, x, w, ry, row_h, a, plan.split and PN.face(plan, d.on) or nil)
 				ry = ry + row_h
 			end
 		end
