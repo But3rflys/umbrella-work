@@ -26,6 +26,21 @@ CM_DAYS = 60
 CM_MAX = 40000
 CM_WINDOWS_MAX = 3 if QUICK else 200
 BUYS_MATCHES = 400
+VS_PAGE = 800
+VS_PAGES = 2 if QUICK else 10
+VS_PRIOR = 10
+VS_EXP_MIN = 6
+VS_OBS_MIN = 12
+VS_LIFT_MIN = 1.4
+VS_KEEP = 8
+VS_COST = 1000
+VS_SQL = (
+    "with m as (select match_id from matches where match_id < %d and match_id in (select match_id from player_matches "
+    "where purchase_log is not null) order by match_id desc limit %d) "
+    "select pm.match_id m, (pm.player_slot<128)::int r, pm.hero_id h, coalesce(pm.gold_per_min,0) g, "
+    "(select string_agg(distinct v->>'key', '.') from unnest(pm.purchase_log) v where v->>'key' in (%s)) i "
+    "from player_matches pm join m using(match_id)"
+)
 PRO_MATCHES = 6000
 CONTEST_MATCHES = 2000
 GAP = 1.2
@@ -319,17 +334,80 @@ def step(manifest, key, fn):
         log("%s: failed, kept old: %s", key, e)
 
 
+def vs_rows(names):
+    inlist = ",".join("'%s'" % n for n in names)
+    top = int(explorer("select max(match_id) m from matches")[0]["m"]) + 1
+    rows = []
+    for _ in range(VS_PAGES):
+        part = explorer(VS_SQL % (top, VS_PAGE, inlist))
+        if not part:
+            break
+        rows += part
+        top = min(int(r["m"]) for r in part)
+    return rows
+
+
+def vs_compute(rows):
+    matches = {}
+    for r in rows:
+        matches.setdefault(r["m"], []).append(r)
+    players = []
+    for ps in matches.values():
+        if len(ps) != 10:
+            continue
+        for side in (0, 1):
+            team = sorted([p for p in ps if p["r"] == side], key=lambda p: -(p["g"] or 0))
+            foes = [p["h"] for p in ps if p["r"] != side]
+            for k, p in enumerate(team):
+                its = set((p["i"] or "").split(".")) - {""}
+                players.append((p["h"], "c" if k < 3 else "s", its, foes))
+    games, buys = {}, {}
+    for h, c, its, _ in players:
+        games[(h, c)] = games.get((h, c), 0) + 1
+        for i in its:
+            buys[(h, c, i)] = buys.get((h, c, i), 0) + 1
+    rates = {}
+    for (h, c, i), n in buys.items():
+        rates.setdefault((h, c), {})[i] = n / games[(h, c)]
+    obs, exp = {}, {}
+    for h, c, its, foes in players:
+        rate = rates.get((h, c), {})
+        for e in foes:
+            for i, rt in rate.items():
+                exp[(e, c, i)] = exp.get((e, c, i), 0) + rt
+            for i in its:
+                obs[(e, c, i)] = obs.get((e, c, i), 0) + 1
+    found = {}
+    for (e, c, i), x in exp.items():
+        o = obs.get((e, c, i), 0)
+        lift = (o + VS_PRIOR) / (x + VS_PRIOR)
+        if x >= VS_EXP_MIN and o >= VS_OBS_MIN and lift >= VS_LIFT_MIN:
+            found.setdefault(e, {}).setdefault(c, []).append((lift, i))
+    out = {}
+    for e, by in found.items():
+        out[str(e)] = {c: {i: round(l, 2) for l, i in sorted(lst, reverse=True)[:VS_KEEP]} for c, lst in by.items()}
+    return out, len(matches)
+
+
 def copy_rules(manifest):
     if not RULES.exists():
         log("rules: no file")
         return
     try:
         text = RULES.read_text(encoding="utf-8")
-        if json.loads(text).get("v") != 1:
+        rules = json.loads(text)
+        if rules.get("v") != 1:
             raise RuntimeError("bad version")
     except Exception as e:
         log("rules: broken, kept old: %s", e)
         return
+    vs_path = OUT / "vs.json"
+    if vs_path.exists():
+        try:
+            rules["vs"] = json.loads(vs_path.read_text(encoding="utf-8"))
+            text = json.dumps(rules, ensure_ascii=False, separators=(",", ":"))
+        except Exception as e:
+            log("rules: vs skipped: %s", e)
     dst = OUT / "rules.json"
     if dst.exists() and dst.read_text(encoding="utf-8") == text and "rules" in manifest:
         log("rules: unchanged")
@@ -406,6 +484,18 @@ def main():
     step(manifest, "items", do_items)
     step(manifest, "pro", do_pro)
     step(manifest, "builds", do_builds)
+
+    def do_vs():
+        items = json.loads((OUT / "items.json").read_text(encoding="utf-8"))
+        names = sorted(i["n"] for i in items if i.get("m") == 1 and int(i.get("c") or 0) >= VS_COST)
+        out, n = vs_compute(vs_rows(names))
+        if n < (VS_PAGE if QUICK else VS_PAGE * 5):
+            raise RuntimeError("too few matches: %d" % n)
+        write("vs.json", json.dumps(out, separators=(",", ":"), sort_keys=True))
+        log("  vs: %d matches, %d heroes", n, len(out))
+
+    step(manifest, "vs", do_vs)
+    copy_rules(manifest)
 
     newest = None
     rate = None
