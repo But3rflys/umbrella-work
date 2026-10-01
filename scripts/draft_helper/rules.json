@@ -140,7 +140,7 @@
 		"mjollnir": {"illusions": 0.8},
 		"bfury": {"illusions": 0.8},
 		"radiance": {"illusions": 0.6},
-		"shivas_guard": {"illusions": 0.5, "heal": 0.6, "phys": 0.6},
+		"shivas_guard": {"illusions": 0.5, "phys": 0.6},
 		"skadi": {"heal": 0.7, "escape": 0.3},
 		"spirit_vessel": {"heal": 1},
 		"ghost": {"phys": 0.9, "burst": 0.8},
@@ -231,7 +231,7 @@
 	"react": [
 		{"items": ["butterfly"], "threat": "evasion", "counters": ["monkey_king_bar", "bloodthorn"], "phys": true},
 		{"items": ["ghost", "crellas_crozier", "ethereal_blade", "glimmer_cape", "cyclone", "wind_waker"], "threat": "saves", "counters": ["nullifier"], "rate": true},
-		{"items": ["satanic", "heart", "holy_locket", "bloodstone", "guardian_greaves"], "threat": "heal", "counters": ["spirit_vessel", "skadi", "shivas_guard"]},
+		{"items": ["satanic", "heart", "holy_locket", "bloodstone", "guardian_greaves"], "threat": "heal", "counters": ["spirit_vessel", "skadi"]},
 		{"items": ["sheepstick", "orchid", "bloodthorn", "abyssal_blade", "nullifier"], "threat": "targeted", "counters": ["sphere", "lotus_orb"]}
 	],
 	"enemy_items": {
@@ -295,7 +295,6 @@
 		"nullifier": {"ghost": 0.5, "crellas_crozier": 0.5, "glimmer_cape": 0.5, "cyclone": 0.2},
 		"crellas_crozier": {"satanic": 0.2, "heart": 0.2},
 		"spirit_vessel": {"satanic": 0.25, "heart": 0.3},
-		"skadi": {"satanic": 0.2, "heart": 0.2},
-		"shivas_guard": {"satanic": 0.15}
+		"skadi": {"satanic": 0.2, "heart": 0.2}
 	}
 }
