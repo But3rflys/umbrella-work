@@ -3,6 +3,9 @@ name: draft data
 on:
   schedule:
     - cron: "40 2 * * *"
+  push:
+    branches: [main]
+    paths: ["scripts/draft_helper/rules.json"]
   workflow_dispatch:
 
 permissions:
@@ -29,6 +32,8 @@ jobs:
           rm -rf data/.git
 
       - name: build
+        env:
+          DRAFT_DATA_RULES_ONLY: ${{ github.event_name == 'push' && '1' || '' }}
         run: python .github/draft_data.py data
 
       - name: publish

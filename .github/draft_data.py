@@ -11,6 +11,8 @@ from pathlib import Path
 
 OUT = Path(sys.argv[1] if len(sys.argv) > 1 else "data")
 QUICK = os.environ.get("DRAFT_DATA_QUICK") == "1"
+RULES_ONLY = os.environ.get("DRAFT_DATA_RULES_ONLY") == "1"
+RULES = Path(__file__).resolve().parents[1] / "scripts" / "draft_helper" / "rules.json"
 API = "https://api.opendota.com/api/"
 HEADERS = {"User-Agent": "umbrella-work/draft-data", "Accept": "application/json"}
 
@@ -317,12 +319,37 @@ def step(manifest, key, fn):
         log("%s: failed, kept old: %s", key, e)
 
 
+def copy_rules(manifest):
+    if not RULES.exists():
+        log("rules: no file")
+        return
+    try:
+        text = RULES.read_text(encoding="utf-8")
+        if json.loads(text).get("v") != 1:
+            raise RuntimeError("bad version")
+    except Exception as e:
+        log("rules: broken, kept old: %s", e)
+        return
+    dst = OUT / "rules.json"
+    if dst.exists() and dst.read_text(encoding="utf-8") == text and "rules" in manifest:
+        log("rules: unchanged")
+        return
+    write("rules.json", text)
+    manifest["rules"] = int(time.time())
+    log("rules: updated")
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     mpath = OUT / "manifest.json"
     manifest = json.loads(mpath.read_text(encoding="utf-8")) if mpath.exists() else {}
     manifest.setdefault("sets", {})
     manifest["v"] = 1
+    copy_rules(manifest)
+    if RULES_ONLY:
+        mpath.write_text(json.dumps(manifest, separators=(",", ":"), sort_keys=True), encoding="utf-8", newline="\n")
+        log("rules only, done")
+        return
 
     heroes = []
 

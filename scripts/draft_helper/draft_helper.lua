@@ -405,16 +405,11 @@ local localization = qLocalization.new({
 		cd_empty = "No fitting heroes",
 		cd_ld_heroes = "Loading heroes",
 		cd_ld_pro = "Loading pro matches",
-		cd_ld_matches = "Loading matches",
-		cd_ld_build = "Counting stats",
 		cd_ld_wait = "Preparing data",
-		cd_ld_count = "%s of %s",
-		cd_ld_first = "The first time takes a couple of minutes, then it loads from cache",
 		cd_ld_error = "No connection to OpenDota",
 		cd_ld_slow = "The server is slow to answer",
 		cd_tip_err_t = "Why",
 		cd_ld_retry = "retry in %d s",
-		cd_ld_short = "matches %d%%",
 		cd_src_short0 = "Ranked",
 		cd_rk0 = "All",
 		cd_rk1 = "Ancient+",
@@ -435,8 +430,6 @@ local localization = qLocalization.new({
 		cd_sec_data = "DATA",
 		cd_set_volume = "Volume",
 		cd_set_volume_tip = "more matches, steadier numbers",
-		cd_set_provider = "Server",
-		cd_set_provider_tip = "GitHub: ready stats once a day, loads in seconds\nOpenDota: straight from the site, slower, needs a stable connection",
 		cd_ld_gh = "Loading stats",
 		cd_cnt_t = "Who counters %s",
 		cd_sm_counter = "Who counters",
@@ -450,19 +443,22 @@ local localization = qLocalization.new({
 		cd_news_ok = "Got it",
 		cd_set_news = "What's new in %s",
 		cd_news_open = "Open",
-		cd_nw1_t = "GitHub server.",
-		cd_nw1 = "stats and builds come as ready files\nin seconds, works without a VPN",
-		cd_nw2_t = "counter picker.",
-		cd_nw2 = "right click on a picked hero\nshows who counters him",
-		cd_nw3_t = "what next.",
-		cd_nw3 = "after the main build the panel\nsuggests late items and what to sell",
-		cd_nw5_t = "bans.",
-		cd_nw5 = "ranked counts every banned hero",
-		cd_nw6_t = "build panel.",
-		cd_nw6 = "an upgrade never jumps ahead of its base,\nno more gold numbers and no Pill view",
+		cd_nw1_t = "all through GitHub.",
+		cd_nw1 = "the OpenDota mode is gone, data always\ncomes as ready files in seconds",
+		cd_nw2_t = "hide the panel.",
+		cd_nw2 = "the cross in the build panel corner\nhides it until the end of the match",
+		cd_nw3_t = "Crella's Crozier.",
+		cd_nw3 = "counted as a save and anti heal,\nNullifier is suggested against it",
+		cd_nw4_t = "counter rules.",
+		cd_nw4 = "now update from GitHub by themselves,\nno new script version needed",
+		cd_nw5_t = "cache.",
+		cd_nw5 = "five times smaller, no more\nfreezes when it is saved",
 		cd_gh_manifest = "checking for updates",
 		cd_gh_heroes = "hero list",
 		cd_gh_pro = "pro matches",
+		cd_gh_rules = "counter rules",
+		cd_p_hide_t = "Hide",
+		cd_p_hide = "Until the end of the match. Turn it off for good:\nwindow settings, In-game build panel",
 		cd_gh_ranked = "ranked, %s matches",
 		cd_gh_cm = "Captains Mode, %s matches",
 		cd_ld_step = "%s, step %d of %d",
@@ -480,14 +476,7 @@ local localization = qLocalization.new({
 		cd_upd_hour = "updated %d h ago",
 		cd_upd_day = "updated %d d ago",
 		cd_upd_never = "not loaded yet",
-		cd_eta_s = "about %d s left",
-		cd_eta_m = "about %d min left",
-		cd_eta_short_s = "about %d s",
-		cd_eta_short_m = "about %d min",
-		cd_ld_days = "%s over %d of %d days",
-		cd_cm_now = "Now %s over %d of %d days",
 		cd_cm_done = "Loaded %s over %d days",
-		cd_cm_total = "about %s in the end",
 		cd_cm_wait = "Loading, this takes a few minutes",
 		cd_cm_why = "Few CM games, about %d a day, hero pairs lean on ranked",
 		cd_cm_why0 = "Few CM games, hero pairs lean on ranked matches",
@@ -649,16 +638,11 @@ local localization = qLocalization.new({
 		cd_empty = "Нет подходящих героев",
 		cd_ld_heroes = "Загружаю героев",
 		cd_ld_pro = "Загружаю про-матчи",
-		cd_ld_matches = "Загружаю матчи",
-		cd_ld_build = "Считаю статистику",
 		cd_ld_wait = "Готовлю данные",
-		cd_ld_count = "%s из %s",
-		cd_ld_first = "В первый раз это пара минут, дальше всё из кэша",
 		cd_ld_error = "Нет связи с OpenDota",
 		cd_ld_slow = "Сервер долго отвечает",
 		cd_tip_err_t = "Причина",
 		cd_ld_retry = "повтор через %d с",
-		cd_ld_short = "матчи %d%%",
 		cd_src_short0 = "Рейтинг",
 		cd_rk0 = "Все",
 		cd_rk1 = "Властелин+",
@@ -679,8 +663,6 @@ local localization = qLocalization.new({
 		cd_sec_data = "ДАННЫЕ",
 		cd_set_volume = "Объём",
 		cd_set_volume_tip = "больше матчей, точнее цифры",
-		cd_set_provider = "Сервер",
-		cd_set_provider_tip = "GitHub: готовая статистика раз в сутки, грузится за секунды\nOpenDota: напрямую с сайта, дольше и нужен стабильный интернет",
 		cd_ld_gh = "Загружаю статистику",
 		cd_cnt_t = "Кто контрит %s",
 		cd_sm_counter = "Кто контрит",
@@ -694,19 +676,22 @@ local localization = qLocalization.new({
 		cd_news_ok = "Понятно",
 		cd_set_news = "Что нового в %s",
 		cd_news_open = "Открыть",
-		cd_nw1_t = "сервер GitHub.",
-		cd_nw1 = "статистика и сборки качаются\nготовыми файлами за секунды, работает без VPN",
-		cd_nw2_t = "контрпикер.",
-		cd_nw2 = "правый клик по выбранному герою\nпоказывает, кто его контрит",
-		cd_nw3_t = "что дальше.",
-		cd_nw3 = "после основной сборки панель\nсоветует поздние предметы и что продать",
-		cd_nw5_t = "баны.",
-		cd_nw5 = "в рейтинге учитываются все забаненные герои",
-		cd_nw6_t = "панель сборки.",
-		cd_nw6 = "апгрейд не лезет вперёд своей основы,\nубраны золото и «Плашка»",
+		cd_nw1_t = "всё через GitHub.",
+		cd_nw1 = "режим OpenDota убран, данные всегда\nгрузятся готовыми файлами за секунды",
+		cd_nw2_t = "скрыть панель.",
+		cd_nw2 = "крестик в углу панели сборки\nпрячет её до конца матча",
+		cd_nw3_t = "Crella's Crozier.",
+		cd_nw3 = "учитывается как сейв и анти-хил,\nпротив него советует Нулифаер",
+		cd_nw4_t = "правила контр.",
+		cd_nw4 = "обновляются с GitHub сами,\nбез новой версии скрипта",
+		cd_nw5_t = "кэш.",
+		cd_nw5 = "стал в 5 раз меньше,\nпропали подвисания при сохранении",
 		cd_gh_manifest = "проверяю обновления",
 		cd_gh_heroes = "список героев",
 		cd_gh_pro = "про-матчи",
+		cd_gh_rules = "правила контр",
+		cd_p_hide_t = "Скрыть",
+		cd_p_hide = "До конца матча. Выключить совсем:\nнастройки окна, Панель сборки в игре",
 		cd_gh_ranked = "рейтинг, %s матчей",
 		cd_gh_cm = "Captains Mode, %s матчей",
 		cd_ld_step = "%s, шаг %d из %d",
@@ -724,14 +709,7 @@ local localization = qLocalization.new({
 		cd_upd_hour = "обновлено %d ч назад",
 		cd_upd_day = "обновлено %d дн назад",
 		cd_upd_never = "ещё не загружено",
-		cd_eta_s = "осталось около %d с",
-		cd_eta_m = "осталось около %d мин",
-		cd_eta_short_s = "около %d с",
-		cd_eta_short_m = "около %d мин",
-		cd_ld_days = "%s за %d из %d дней",
-		cd_cm_now = "Сейчас %s за %d из %d дней",
 		cd_cm_done = "Загружено %s за %d дней",
-		cd_cm_total = "в итоге около %s",
 		cd_cm_wait = "Загружаю, это займёт несколько минут",
 		cd_cm_why = "В CM мало игр, около %d в день, пары героев дополняются рейтинговыми",
 		cd_cm_why0 = "В CM мало игр, пары героев дополняются рейтинговыми",
@@ -838,7 +816,7 @@ local cfg = {}
 do
 	local defaults = {
 		source = 0, rank = 2, volume = 1, zoom = 100, bg = 88, blur = 1, tips = 1, auto = 1, debug = 0,
-		panel = 1, pview = 0, pzoom = 100, pshop = 0, padapt = 1, phide = 0, provider = 0,
+		panel = 1, pview = 0, pzoom = 100, pshop = 0, padapt = 1, phide = 0,
 	}
 	for key, value in pairs(defaults) do
 		cfg[key] = Config.ReadInt("draft_helper", "set_" .. key, value)
@@ -860,15 +838,13 @@ local function log(fmt, ...)
 end
 
 local K = {
-	VERSION = "1.2.8",
+	VERSION = "1.3.0",
 	UPDATE_URL = "https://raw.githubusercontent.com/But3rflys/umbrella-work/main/scripts/draft_helper/version.json",
 	UPDATE_EVERY = 6 * 3600,
 	UPDATE_MIN_SIZE = 50000,
 	UPDATE_RELOAD_DELAY = 1.2,
 	SCRIPT_NAME = "draft_helper.lua",
 
-	EXPLORER = "https://api.opendota.com/api/explorer?sql=",
-	HEROES_URL = "https://api.opendota.com/api/heroes",
 	DATA_URLS = {
 		"https://raw.githubusercontent.com/But3rflys/umbrella-work/draft-data/",
 		"https://cdn.jsdelivr.net/gh/But3rflys/umbrella-work@draft-data/",
@@ -883,29 +859,13 @@ local K = {
 	GAP = 1.1,
 	CONFIG = "draft_helper",
 	CACHE_FILE = "draft_helper.dat",
-	CACHE_MAGIC = "DHC2",
+	CACHE_MAGIC = "DHC3",
 	CACHE_KEYS = 6,
-	HEROES_TTL = 7 * 86400,
-	PRO_TTL = 3 * 86400,
-	MATCHES_TTL = 6 * 3600,
-	PRO_MATCHES = 6000,
-	CONTEST_MATCHES = 2000,
 
-	PAGE = 2000,
-	PAGE_CM = 500,
-	PAGE_MIN = 100,
-	CM_WINDOW = 4000000,
 	CM_MAX = 40000,
 	CM_DAYS = 60,
-	PARTIAL = 20000,
-	PARTIAL_CM = 3000,
-	SAVE_EVERY = 10,
 	RANKS = { 0, 60, 70, 75 },
 	VOLUMES = { 50000, 100000, 200000 },
-	REC = 20,
-	PACK = "<I8" .. ("B"):rep(12),
-	CHUNK = 2500,
-	ETA_WARMUP = 4,
 
 	PRIOR_BASE = 200,
 	PRIOR_PAIR = 1000,
@@ -1020,32 +980,8 @@ local K = {
 	SCROLL_UP = Enum.EKeyEvent.EKeyEvent_SCROLL_UP,
 	SCROLL_DOWN = Enum.EKeyEvent.EKeyEvent_SCROLL_DOWN,
 
-	ITEMS_URL = "https://api.opendota.com/api/constants/items",
-	ITEMS_TTL = 7 * 86400,
-	BUYS_SQL = "with p as (select pm.match_id, pm.player_slot<128 r, pm.purchase_log, ((pm.player_slot<128) = m.radiant_win) "
-		.. "won, "
-		.. "array[pm.item_0,pm.item_1,pm.item_2,pm.item_3,pm.item_4,pm.item_5,pm.backpack_0,pm.backpack_1,pm.backpack_2] "
-		.. "fin from player_matches pm join matches m using(match_id) where pm.hero_id=%d and pm.purchase_log is not null "
-		.. "order by pm.match_id desc limit %d), tm as (select pm.match_id, pm.hero_id, coalesce(pm.lane_role,4) l, "
-		.. "pm.gold_per_min gp from player_matches pm join p on p.match_id=pm.match_id and (pm.player_slot<128)=p.r where "
-		.. "pm.gold_per_min is not null), c as (select *, row_number() over (partition by match_id, l order by gp desc) "
-		.. "lr from tm), d as (select *, case when l in (1,2,3) and lr=1 then l end core from c), e as (select *, "
-		.. "row_number() over (partition by match_id, (core is null) order by gp desc) sr from d), q as (select match_id, "
-		.. "coalesce(core, case when sr=1 then 4 else 5 end) pos from e where hero_id=%d), x as (select p.match_id, "
-		.. "q.pos, p.won, v->>'key' i, (v->>'time')::int t from p join q using(match_id), unnest(p.purchase_log) v), f as "
-		.. "(select match_id, pos, won, i, min(t) t, sum(case when t<=0 then 1 else 0 end) s from x group by 1,2,3,4), k "
-		.. "as (select distinct p.match_id, q.pos, unnest(p.fin) it from p join q using(match_id)), g as (select q.pos, "
-		.. "count(*) g, sum(case when p.won then 1 else 0 end) gw from q join p using(match_id) group by q.pos) select "
-		.. "f.pos p, i, count(*) n, sum(case when won then 1 else 0 end) w, percentile_cont(0.5) within group (order by "
-		.. "t)::int t, sum(s) s, sum(case when s>0 then 1 else 0 end) m, max(g.g) g, max(g.gw) gw from f join g "
-		.. "using(pos) group by f.pos, i having count(*) >= greatest(2, max(g.g) * 0.03) union all select k.pos, '#' || "
-		.. "it, count(*), 0, 0, 0, 0, max(g.g), max(g.gw) from k join g using(pos) where it>0 group by k.pos, it having "
-		.. "count(*) >= greatest(2, max(g.g) * 0.03)",
-	BUYS_VER = 4,
 	WIN_MIN = 20,
-	BUYS_MATCHES = 400,
 	BUYS_MIN = 30,
-	BUYS_TTL = 3 * 86400,
 	BUYS_KEEP = 30,
 	ITEM_RETRY = 15,
 	ITEM_FAIL_SKIP = 60,
@@ -1092,156 +1028,17 @@ local K = {
 	ROLE_DISABLE = 0.5,
 	ROLE_PHYS_AGI = 0.6,
 	ROLE_PHYS_STR = 0.35,
-	COUNTERS = {
-		black_king_bar = { magic = 0.5, disable = 0.5, silence = 0.4, roots = 0.4, targeted = 0.5 },
-		pipe = { magic = 0.5 },
-		glimmer_cape = { magic = 0.4 },
-		mage_slayer = { magic = 0.35 },
-		sange_and_yasha = { disable = 0.25, silence = 0.25, roots = 0.25 },
-		sphere = { targeted = 1 },
-		lotus_orb = { targeted = 0.7, silence = 0.5, roots = 0.5 },
-		manta = { silence = 0.8, roots = 0.7 },
-		cyclone = { silence = 0.6, roots = 0.5, pierce = 0.6, burst = 0.3 },
-		wind_waker = { silence = 0.6, roots = 0.5, pierce = 0.6, burst = 0.3 },
-		guardian_greaves = { silence = 0.5, roots = 0.4 },
-		sheepstick = { escape = 1 },
-		orchid = { escape = 0.7 },
-		bloodthorn = { escape = 0.7, evasion = 0.5 },
-		abyssal_blade = { escape = 0.8 },
-		harpoon = { escape = 0.6 },
-		rod_of_atos = { escape = 0.5 },
-		gungir = { escape = 0.5, illusions = 0.7 },
-		diffusal_blade = { escape = 0.4 },
-		disperser = { escape = 0.4, saves = 0.8 },
-		nullifier = { escape = 0.3, saves = 1 },
-		silver_edge = { passives = 1 },
-		monkey_king_bar = { evasion = 1 },
-		mjollnir = { illusions = 0.8 },
-		bfury = { illusions = 0.8 },
-		radiance = { illusions = 0.6 },
-		shivas_guard = { illusions = 0.5, heal = 0.6, phys = 0.6 },
-		skadi = { heal = 0.7, escape = 0.3 },
-		spirit_vessel = { heal = 1 },
-		ghost = { phys = 0.9, burst = 0.8 },
-		crellas_crozier = { phys = 0.9, burst = 0.6, heal = 0.6 },
-		ethereal_blade = { phys = 0.5 },
-		solar_crest = { phys = 0.6 },
-		pavise = { phys = 0.5 },
-		force_staff = { phys = 0.3 },
-		hurricane_pike = { phys = 0.4 },
-		assault = { phys = 0.8 },
-		butterfly = { phys = 0.7 },
-		heavens_halberd = { phys = 0.8, burst = 0.6 },
-		blade_mail = { burst = 1, phys = 0.6, pierce = 0.5 },
-		crimson_guard = { phys = 0.5 },
-		aeon_disk = { pierce = 0.5, burst = 0.4 },
-	},
-	FIT = {
-		black_king_bar = { core = true },
-		pipe = { support = true, core = { str = true } },
-		glimmer_cape = { support = true },
-		mage_slayer = { core = { agi = true, int = true } },
-		sange_and_yasha = { core = { str = true, agi = true, all = true } },
-		sphere = { core = true },
-		lotus_orb = { support = true, core = { str = true, int = true } },
-		manta = { core = { agi = true, all = true } },
-		cyclone = { support = true, core = { int = true } },
-		guardian_greaves = { support = true },
-		sheepstick = { core = { int = true } },
-		orchid = { core = { int = true, agi = true } },
-		bloodthorn = { core = { int = true, agi = true } },
-		abyssal_blade = { core = { str = true, agi = true, all = true } },
-		harpoon = { core = { str = true, agi = true, all = true } },
-		rod_of_atos = { support = true, core = { int = true } },
-		diffusal_blade = { core = { agi = true } },
-		silver_edge = { core = { str = true, agi = true, all = true } },
-		monkey_king_bar = { core = { str = true, agi = true, all = true } },
-		mjollnir = { core = { str = true, agi = true, all = true } },
-		gungir = { core = { int = true } },
-		bfury = { core = { str = true, agi = true, all = true }, melee = true },
-		radiance = { core = { str = true, agi = true, all = true } },
-		shivas_guard = { core = { str = true, int = true } },
-		skadi = { core = { agi = true, all = true } },
-		spirit_vessel = { support = true, core = { str = true } },
-		ghost = { support = true },
-		crellas_crozier = { support = true, core = { int = true } },
-		solar_crest = { support = true },
-		pavise = { support = true },
-		ethereal_blade = { core = { int = true } },
-		force_staff = { support = true, core = { int = true } },
-		assault = { core = { str = true, agi = true, all = true } },
-		butterfly = { core = { agi = true, all = true } },
-		heavens_halberd = { core = { str = true } },
-		blade_mail = { core = { str = true } },
-		crimson_guard = { core = { str = true } },
-		aeon_disk = { core = true },
-		nullifier = { core = true },
-	},
-	MUST = {
-		{ "evasion", 0.8, { [1] = true, [2] = true, [3] = true }, true },
-		{ "heal", 0.8, { [4] = true } },
-	},
+	COUNTERS = {},
+	FIT = {},
+	MUST = {},
 	MUST_MAX = 2,
 	MUST_COVER = 0.5,
 	PHYS_MIN = 0.8,
-	PHYS_ITEMS = {
-		bfury = true, manta = true, butterfly = true, greater_crit = true, lesser_crit = true, desolator = true,
-		monkey_king_bar = true, skadi = true, satanic = true, mjollnir = true, maelstrom = true, abyssal_blade = true,
-		basher = true, disperser = true, diffusal_blade = true, silver_edge = true, bloodthorn = true, echo_sabre = true,
-		harpoon = true, armlet = true, mask_of_madness = true, sange_and_yasha = true, nullifier = true, radiance = true,
-	},
-	REACT = {
-		{ items = { "butterfly" }, threat = "evasion", counters = { "monkey_king_bar", "bloodthorn" }, phys = true },
-		{ items = { "ghost", "crellas_crozier", "ethereal_blade", "glimmer_cape", "cyclone", "wind_waker" }, threat = "saves",
-			counters = { "nullifier" }, rate = true },
-		{ items = { "satanic", "heart", "holy_locket", "bloodstone", "guardian_greaves" }, threat = "heal",
-			counters = { "spirit_vessel", "skadi", "shivas_guard" } },
-		{ items = { "sheepstick", "orchid", "bloodthorn", "abyssal_blade", "nullifier" }, threat = "targeted",
-			counters = { "sphere", "lotus_orb" } },
-	},
+	PHYS_ITEMS = {},
+	REACT = {},
 	REACT_MAX = 2,
 	REACT_RATE = 0.03,
 	RATE_MIN_GAMES = 60,
-	HERO_TAGS = "abaddon heal .5;alchemist heal 1;antimage escape .8 passives .3;"
-		.. "arc_warden evasion .5 illusions .5 silence .3;axe passives .4 pierce 1 targeted .5;"
-		.. "bane pierce .5 targeted 1;batrider escape .3 pierce .6 targeted .9;"
-		.. "beastmaster illusions .3 pierce .5 targeted .7;bloodseeker pierce .4 silence .4;"
-		.. "bounty_hunter invis .8;brewmaster evasion .5;bristleback passives 1;broodmother illusions .8;"
-		.. "chaos_knight illusions .8 passives .5 targeted .4;chen heal .6;clinkz burst .5 invis .8;"
-		.. "crystal_maiden roots .4;dark_seer illusions .3;dark_willow escape .5 roots .4;dawnbreaker heal .8;"
-		.. "dazzle heal .6;death_prophet silence .5;disruptor silence .6;doom_bringer pierce .7 targeted 1;"
-		.. "dragon_knight heal .3 passives .3 targeted .3;drow_ranger passives .6 silence .5;"
-		.. "earth_spirit escape .4 silence .3;ember_spirit burst .3 escape .7 roots .5;enchantress heal .6;"
-		.. "enigma illusions .4 pierce .7;faceless_void escape .6 passives .5 pierce .6;"
-		.. "furion escape .3 illusions .5;grimstroke targeted .4;hoodwink escape .4 evasion .4;"
-		.. "huskar burst .6 heal .6 passives .8;invoker illusions .3 invis .5;"
-		.. "juggernaut burst .9 heal .6 passives .4;kez escape .4 heal .4 silence .4;kunkka targeted .3;"
-		.. "legion_commander burst .7 heal .3 passives .3 pierce .6 targeted 1;lich targeted .4;"
-		.. "life_stealer heal .6;lina targeted .4;lion targeted .9;lone_druid illusions .5 roots .3;"
-		.. "luna passives .4;lycan burst .3 heal .4 illusions .5;magnataur escape .3 pierce .8;"
-		.. "marci burst .6 escape .3 silence .3;mars passives .6;medusa pierce .4;meepo illusions 1 roots .4;"
-		.. "mirana escape .5 evasion .3 invis .6;monkey_king escape .5 heal .4 passives .4;morphling escape .6;"
-		.. "muerta silence .4;naga_siren evasion .4 illusions 1 roots .5;"
-		.. "necrolyte heal .8 passives .4 targeted .6;night_stalker silence .5;nyx_assassin escape .4 invis .8;"
-		.. "obsidian_destroyer targeted .4;omniknight heal 1;oracle heal 1;pangolier escape .8;"
-		.. "phantom_assassin burst .5 escape .4 evasion 1 passives 1;"
-		.. "phantom_lancer escape .5 evasion .5 illusions 1 invis .3;phoenix heal .5;primal_beast pierce .5;"
-		.. "puck escape 1 silence .4;pudge pierce .4 targeted .7;pugna heal .4;queenofpain escape .7;"
-		.. "rattletrap pierce .3;razor targeted .4;riki burst .4 escape .3 invis 1 silence .5;"
-		.. "rubick targeted .4;sand_king escape .3 invis .5;shadow_demon targeted .8;"
-		.. "shadow_shaman illusions .4 targeted 1;shredder escape .5 passives .8;silencer silence 1;"
-		.. "skeleton_king heal .5 passives .4;skywrath_mage silence .6;slardar passives .4;"
-		.. "slark escape 1 passives .7;sniper passives .3;spectre illusions .3 passives .8;"
-		.. "spirit_breaker passives .4 pierce .3;storm_spirit escape 1;sven burst .5;techies invis .6;"
-		.. "templar_assassin invis .4 passives .3 silence .3;terrorblade burst .4 illusions .8;"
-		.. "tidehunter passives .6;tinker escape .4 targeted .3;treant heal 1 pierce .3 roots .4;"
-		.. "troll_warlord burst .6 heal .5 passives .5;tusk pierce .3;undying heal .5 illusions .3;"
-		.. "ursa burst .8 passives .7;vengefulspirit targeted .3;venomancer illusions .4;"
-		.. "viper passives .4 targeted .4;visage illusions .3 invis .5 passives .5;void_spirit escape .9;"
-		.. "warlock heal .4 illusions .3;weaver escape .9 invis .8 passives .4;"
-		.. "windrunner burst 1 escape .4 evasion .6;winter_wyvern heal .5 pierce .4 targeted .5;"
-		.. "wisp escape .3 heal .8;witch_doctor heal .6",
-
 	PANEL_EVERY = 0.5,
 	QFLASH = 0.4,
 	STRIP_COLS = 8,
@@ -1271,74 +1068,12 @@ local K = {
 		{ "n", "cd_nw1_t", "cd_nw1" },
 		{ "n", "cd_nw2_t", "cd_nw2" },
 		{ "n", "cd_nw3_t", "cd_nw3" },
+		{ "n", "cd_nw4_t", "cd_nw4" },
 		{ "f", "cd_nw5_t", "cd_nw5" },
-		{ "f", "cd_nw6_t", "cd_nw6" },
 	},
 	COVER = 0.8,
-	ENEMY_ITEMS = {
-		invis_sword = { invis = 1 },
-		silver_edge = { invis = 1 },
-		shadow_amulet = { invis = 0.4 },
-		glimmer_cape = { invis = 0.3, saves = 0.5 },
-		butterfly = { evasion = 1, phys = 0.2 },
-		talisman_of_evasion = { evasion = 0.4 },
-		heavens_halberd = { evasion = 0.4, roots = 0.4 },
-		satanic = { heal = 0.7, phys = 0.2 },
-		heart = { heal = 0.6 },
-		holy_locket = { heal = 0.4 },
-		guardian_greaves = { heal = 0.4 },
-		bloodstone = { heal = 0.4 },
-		mekansm = { heal = 0.3 },
-		vladmir = { heal = 0.2 },
-		manta = { illusions = 0.4 },
-		helm_of_the_overlord = { illusions = 0.2 },
-		orchid = { silence = 0.6, targeted = 0.5 },
-		bloodthorn = { silence = 0.8, targeted = 0.6, phys = 0.3 },
-		sheepstick = { disable = 0.6, targeted = 0.8 },
-		rod_of_atos = { roots = 0.5 },
-		gungir = { roots = 0.5 },
-		nullifier = { targeted = 0.4 },
-		abyssal_blade = { phys = 0.4, targeted = 0.5 },
-		dagon = { magic = 0.4 },
-		dagon_2 = { magic = 0.4 },
-		dagon_3 = { magic = 0.4 },
-		dagon_4 = { magic = 0.4 },
-		dagon_5 = { magic = 0.4 },
-		ethereal_blade = { magic = 0.4, saves = 0.3 },
-		veil_of_discord = { magic = 0.2 },
-		revenants_brooch = { magic = 0.3 },
-		phylactery = { magic = 0.2 },
-		blink = { escape = 0.4 },
-		swift_blink = { escape = 0.4 },
-		arcane_blink = { escape = 0.4 },
-		overwhelming_blink = { escape = 0.4 },
-		ghost = { saves = 0.5 },
-		crellas_crozier = { saves = 0.5 },
-		cyclone = { saves = 0.4 },
-		wind_waker = { saves = 0.6 },
-		force_staff = { saves = 0.3 },
-		hurricane_pike = { saves = 0.4 },
-		aeon_disk = { saves = 0.7 },
-		lotus_orb = { saves = 0.3 },
-		greater_crit = { phys = 0.6 },
-		lesser_crit = { phys = 0.3 },
-		desolator = { phys = 0.4 },
-		basher = { phys = 0.3 },
-		monkey_king_bar = { phys = 0.3 },
-		bfury = { phys = 0.3 },
-		mjollnir = { phys = 0.3 },
-		diffusal_blade = { phys = 0.2 },
-		disperser = { phys = 0.2 },
-	},
-	ANTI = {
-		monkey_king_bar = { butterfly = 0.5, talisman_of_evasion = 0.3 },
-		bloodthorn = { butterfly = 0.3 },
-		nullifier = { ghost = 0.5, crellas_crozier = 0.5, glimmer_cape = 0.5, cyclone = 0.2 },
-		crellas_crozier = { satanic = 0.2, heart = 0.2 },
-		spirit_vessel = { satanic = 0.25, heart = 0.3 },
-		skadi = { satanic = 0.2, heart = 0.2 },
-		shivas_guard = { satanic = 0.15 },
-	},
+	ENEMY_ITEMS = {},
+	ANTI = {},
 }
 
 K.FREE = {}
@@ -1407,10 +1142,8 @@ local D = {
 	pos_count = nil,
 	pos_at = 0,
 	contest = nil,
-	contest_at = 0,
 	pos_prob = {},
 	sets = nil,
-	loading = nil,
 	busy = false,
 	next_request = 0,
 	error = nil,
@@ -1544,12 +1277,14 @@ do
 		return (ok and type(data) == "table") and data or nil
 	end
 
-	store = { data = { sets = {} }, blobs = {} }
+	store = { data = { sets = {}, files = {}, buys = {} }, blobs = {} }
 
 	local function evict()
 		local keys = {}
 		for key in pairs(store.blobs) do
-			keys[#keys + 1] = key
+			if key:sub(1, 2) == "s:" then
+				keys[#keys + 1] = key
+			end
 		end
 		if #keys <= K.CACHE_KEYS then
 			return
@@ -1588,64 +1323,39 @@ do
 	end
 
 	local function store_read(blob)
-		local magic = blob:sub(1, 4)
 		local n = string.unpack("<I4", blob, 5)
 		local data = decode(blob:sub(9, 8 + n))
 		if not data then
 			error("broken cache")
 		end
-		data.sets = type(data.sets) == "table" and data.sets or {}
+		for _, key in ipairs({ "sets", "files", "buys" }) do
+			data[key] = type(data[key]) == "table" and data[key] or {}
+		end
 		local pos = 9 + n
 		local blobs = {}
-		if magic == "DHC1" then
-			local old_sets = data.sets
-			data.sets = {}
-			for source = 0, 1 do
-				local len = string.unpack("<I4", blob, pos)
-				local part = blob:sub(pos + 4, pos + 3 + len)
-				pos = pos + 4 + len
-				local meta = old_sets[tostring(source)]
-				if meta and #part > 0 and meta.rank then
-					local key = source .. ":" .. math.floor(tonumber(meta.rank))
-					blobs[key] = part
-					data.sets[key] = meta
-				end
+		for _, key in ipairs(type(data.blob_keys) == "table" and data.blob_keys or {}) do
+			local len = string.unpack("<I4", blob, pos)
+			local part = blob:sub(pos + 4, pos + 3 + len)
+			if #part ~= len then
+				error("broken cache")
 			end
-		else
-			for _, key in ipairs(type(data.blob_keys) == "table" and data.blob_keys or {}) do
-				local len = string.unpack("<I4", blob, pos)
-				local part = blob:sub(pos + 4, pos + 3 + len)
-				if #part ~= len then
-					error("broken cache")
-				end
-				blobs[key] = part
-				pos = pos + 4 + len
-			end
+			blobs[key] = part
+			pos = pos + 4 + len
 		end
 		return data, blobs
 	end
 
 	function store_load()
 		local blob = read_path(cheat_path(K.CACHE_FILE))
-		local magic = blob and blob:sub(1, 4)
-		if blob and #blob >= 8 and (magic == K.CACHE_MAGIC or magic == "DHC1") then
+		if blob and #blob >= 8 and blob:sub(1, 4) == K.CACHE_MAGIC then
 			local ok, data, blobs = pcall(store_read, blob)
 			if ok then
 				store.data, store.blobs = data, blobs
-				if magic ~= K.CACHE_MAGIC then
-					store_save()
-				end
 				return
 			end
 			log("cache file broken, starting fresh")
 		end
 	end
-end
-
-local function url_encode(s)
-	return (s:gsub("[^%w%-_%.~]", function(c)
-		return ("%%%02X"):format(c:byte())
-	end))
 end
 
 local function logit(p)
@@ -1734,240 +1444,14 @@ local function set_contest(rows)
 	draft.dirty = true
 end
 
-local function pack_record(id, ids, win, tier)
-	return string.pack(K.PACK, id, ids[1], ids[2], ids[3], ids[4], ids[5], ids[6], ids[7], ids[8], ids[9], ids[10],
-		win, tier)
-end
-
 local function new_set(source)
-	return {
-		source = source,
-		file = source == 1 and "cm" or "ranked",
-		page = source == 1 and K.PAGE_CM or K.PAGE,
-		recs = {},
-		rank = nil,
-		updated = 0,
-		job = nil,
-		build = nil,
-		stats = nil,
-		loaded = false,
-		force = false,
-		exhausted = false,
-	}
+	return { source = source, stats = nil, updated = 0, oldest = nil, exhausted = false, gh_key = nil }
 end
 
 D.sets = { [0] = new_set(0), [1] = new_set(1) }
 
 local function source()
 	return cfg.source == 1 and 1 or 0
-end
-
-local function load_set(S, rank)
-	S.loaded = true
-	S.recs, S.stats, S.build, S.job = {}, nil, nil, nil
-	S.rank, S.updated, S.exhausted, S.oldest = rank, 0, false, nil
-	local key = S.source .. ":" .. rank
-	local meta = store.data.sets[key]
-	local blob = store.blobs[key]
-	if meta and blob and #blob % K.REC == 0 then
-		S.updated = tonumber(meta.updated) or 0
-		S.exhausted = meta.exhausted == true
-		S.oldest = tonumber(meta.oldest)
-		local recs = {}
-		for i = 1, #blob, K.REC do
-			recs[#recs + 1] = blob:sub(i, i + K.REC - 1)
-		end
-		S.recs = recs
-		meta.used = os.time()
-	end
-	draft.dirty = true
-	log("cache %s rank %d: %d matches", S.file, rank, #S.recs)
-end
-
-local function load_cache()
-	D.loaded = true
-	store_load()
-	local heroes = store.data.heroes
-	if heroes and type(heroes.list) == "table" then
-		set_heroes(heroes.list)
-		D.heroes_at = tonumber(heroes.time) or 0
-	end
-	local pro = store.data.pro
-	if type(pro) == "table" then
-		if type(pro.pos) == "table" then
-			set_pos(pro.pos)
-			D.pos_at = tonumber(pro.pos_time) or 0
-		end
-		if type(pro.contest) == "table" then
-			set_contest(pro.contest)
-			D.contest_at = tonumber(pro.contest_time) or 0
-		end
-	end
-	if cfg.provider ~= 0 then
-		load_set(D.sets[0], K.RANKS[cfg.rank + 1] or 70)
-	end
-end
-
-local function save_matches(S)
-	if not S.rank then
-		return
-	end
-	local key = S.source .. ":" .. S.rank
-	store.blobs[key] = table.concat(S.recs)
-	store.data.sets[key] = { updated = S.updated, exhausted = S.exhausted, oldest = S.oldest, used = os.time() }
-	store_save()
-end
-
-local function record_id(rec)
-	return (string.unpack("<I8", rec))
-end
-
-local function build_chunk(b)
-	local st, recs = b.st, b.recs
-	local bg, bw, vg, vw, sg, sw = st.bg, st.bw, st.vg, st.vw, st.sg, st.sw
-	local h = b.h
-	local last = math.min(st.n, b.i + K.CHUNK)
-	for i = b.i + 1, last do
-		local rec = recs[i]
-		h[1], h[2], h[3], h[4], h[5], h[6], h[7], h[8], h[9], h[10] = rec:byte(9, 18)
-		local rad = rec:byte(19) == 1
-		for j = 1, 10 do
-			local a = h[j]
-			bg[a] = (bg[a] or 0) + 1
-			if (j <= 5) == rad then
-				bw[a] = (bw[a] or 0) + 1
-			end
-		end
-		for j = 1, 5 do
-			local a = h[j]
-			for l = 6, 10 do
-				local c = h[l]
-				local key, won
-				if a < c then
-					key, won = a * 256 + c, rad
-				else
-					key, won = c * 256 + a, not rad
-				end
-				vg[key] = (vg[key] or 0) + 1
-				if won then
-					vw[key] = (vw[key] or 0) + 1
-				end
-			end
-		end
-		for t = 0, 5, 5 do
-			local won = (t == 0) == rad
-			for j = 1, 4 do
-				local a = h[t + j]
-				for l = j + 1, 5 do
-					local c = h[t + l]
-					local key = a < c and a * 256 + c or c * 256 + a
-					sg[key] = (sg[key] or 0) + 1
-					if won then
-						sw[key] = (sw[key] or 0) + 1
-					end
-				end
-			end
-		end
-	end
-	b.i = last
-	return last >= st.n
-end
-
-local function start_build(S, recs)
-	recs = recs or S.recs
-	S.build = {
-		recs = recs,
-		i = 0,
-		h = {},
-		st = { bg = {}, bw = {}, vg = {}, vw = {}, sg = {}, sw = {}, n = #recs },
-	}
-	log("building %s stats from %d matches", S.file, #recs)
-end
-
-local function step_build(S)
-	local b = S.build
-	if not b then
-		return
-	end
-	local ok, done = pcall(build_chunk, b)
-	if not ok then
-		Log.Write("[Draft Helper] build: " .. tostring(done))
-		S.build = nil
-		return
-	end
-	if done then
-		S.build = nil
-		local counts = {}
-		for _, g in pairs(b.st.bg) do
-			if g >= K.MIN_GAMES then
-				counts[#counts + 1] = g
-			end
-		end
-		table.sort(counts)
-		b.st.median = counts[math.max(1, math.floor(#counts / 2))] or 1
-		S.stats = b.st
-		draft.dirty = true
-		log("%s stats ready: %d matches", S.file, b.st.n)
-	end
-end
-
-local function matches_sql(S, rank, above, below)
-	local where = { S.source == 1 and "game_mode=2" or "lobby_type=7" }
-	if rank > 0 then
-		where[#where + 1] = "avg_rank_tier>=" .. rank
-	end
-	if above then
-		where[#where + 1] = ("match_id>%d"):format(above)
-	end
-	if below then
-		where[#where + 1] = ("match_id<%d"):format(below)
-	end
-	return ("select match_id m, radiant_team r, dire_team d, radiant_win w, avg_rank_tier t, start_time s from public_matches where %s order by match_id desc limit %d")
-		:format(table.concat(where, " and "), S.page)
-end
-
-local function parse_matches(text)
-	if type(text) ~= "string" then
-		return nil, "empty response"
-	end
-	local err = text:match('"err":"([^"]*)"')
-	if err then
-		return nil, err
-	end
-	local count = tonumber(text:match('"rowCount":(%d+)'))
-	if not count then
-		return nil, "no rows"
-	end
-	local out, low, oldest, high, newest = {}, nil, nil, nil, nil
-	for obj in text:gmatch('{"m":[^{}]-}') do
-		local id = math.tointeger(tonumber(obj:match('"m":(%d+)')))
-		local r, d = obj:match('"r":%[([%d,]*)%]'), obj:match('"d":%[([%d,]*)%]')
-		local w = obj:match('"w":(%a+)')
-		local t = tonumber(obj:match('"t":(%d+)')) or 0
-		local s = tonumber(obj:match('"s":(%d+)'))
-		if id then
-			low = low and math.min(low, id) or id
-			high = high and math.max(high, id) or id
-			if s then
-				oldest = oldest and math.min(oldest, s) or s
-				newest = newest and math.max(newest, s) or s
-			end
-			if r and d and (w == "true" or w == "false") then
-				local ids, ok = {}, true
-				for hero in (r .. "," .. d):gmatch("%d+") do
-					local v = tonumber(hero)
-					if not v or v < 1 or v > 255 then
-						ok = false
-					end
-					ids[#ids + 1] = v
-				end
-				if ok and #ids == 10 then
-					out[#out + 1] = pack_record(id, ids, w == "true" and 1 or 0, clamp(t, 0, 255))
-				end
-			end
-		end
-	end
-	return out, count, low, oldest, high, newest
 end
 
 local function want(S)
@@ -2008,398 +1492,27 @@ local function request(url, param, on_done)
 	end
 end
 
-local function fail(what, res)
-	local body = type(res.response) == "string" and res.response:match('"err":"([^"]*)"') or ""
-	error(("%s: http %s %s %s"):format(what, tostring(res.code), tostring(res.error_message or ""), body))
-end
-
-local function request_heroes()
-	D.status = "cd_st_heroes"
-	request(K.HEROES_URL, "cd_heroes", function(res)
-		if tostring(res.code) ~= "200" then
-			fail("heroes", res)
-		end
-		local list = JSON:decode(res.response)
-		if type(list) ~= "table" or #list < 100 then
-			error("heroes: bad list")
-		end
-		set_heroes(list)
-		D.heroes_at = os.time()
-		D.error = nil
-		store.data.heroes = { time = D.heroes_at, list = list }
-		store_save()
-		log("heroes loaded: %d", #D.heroes)
-	end)
-end
-
-local function explorer(sql, param, on_rows)
-	request(K.EXPLORER .. url_encode(sql), param, function(res)
-		if tostring(res.code) ~= "200" then
-			fail(param, res)
-		end
-		local data = JSON:decode(res.response)
-		if type(data) ~= "table" or data.err or type(data.rows) ~= "table" then
-			error(param .. ": " .. tostring(type(data) == "table" and data.err or "no rows"))
-		end
-		on_rows(data.rows)
-		D.error = nil
-	end)
-end
-
-local function save_pro(rows_pos, rows_contest)
-	local pro = type(store.data.pro) == "table" and store.data.pro or {}
-	if rows_pos then
-		pro.pos, pro.pos_time = rows_pos, D.pos_at
-	end
-	if rows_contest then
-		pro.contest, pro.contest_time = rows_contest, D.contest_at
-	end
-	store.data.pro = pro
-	store_save()
-end
-
-local function request_pos()
-	D.status = "cd_st_pro"
-	local sql = ("with m as (select match_id from matches order by match_id desc limit %d), "
-		.. "p as (select pm.match_id, pm.hero_id h, pm.player_slot<128 t, coalesce(pm.lane_role,4) l, pm.gold_per_min g "
-		.. "from player_matches pm join m using(match_id) where pm.gold_per_min is not null), "
-		.. "c as (select *, row_number() over (partition by match_id, t, l order by g desc) lr from p), "
-		.. "d as (select *, case when l in (1,2,3) and lr=1 then l end core from c), "
-		.. "e as (select *, row_number() over (partition by match_id, t, (core is null) order by g desc) sr from d) "
-		.. "select h, coalesce(core, case when sr=1 then 4 else 5 end) pos, count(*) n from e group by 1,2")
-		:format(K.PRO_MATCHES)
-	explorer(sql, "cd_pos", function(rows)
-		set_pos(rows)
-		D.pos_at = os.time()
-		save_pro(rows, nil)
-		log("positions loaded: %d rows", #rows)
-	end)
-end
-
-local function request_contest()
-	D.status = "cd_st_pro"
-	local sql = ("with m as (select match_id from matches where game_mode=2 order by match_id desc limit %d) "
-		.. "select hero_id h, count(*) c, (select count(*) from m) n from picks_bans join m using(match_id) group by 1")
-		:format(K.CONTEST_MATCHES)
-	explorer(sql, "cd_contest", function(rows)
-		set_contest(rows)
-		D.contest_at = os.time()
-		save_pro(nil, rows)
-		log("pro contest loaded: %d heroes", #rows)
-	end)
-end
-
-local function finish_job(S)
-	local job = S.job
-	S.job = nil
-	S.updated = os.time()
-	save_matches(S)
-	start_build(S)
-	log("%s ready: %d (rank %d, %d new)", S.file, #S.recs, S.rank, job.added or 0)
-end
-
-local function next_window(job)
-	job.cursor = job.lo + 1
-	job.lo = job.cursor - K.CM_WINDOW
-end
-
-local function request_page(S)
-	local job = S.job
-	local rank, target = want(S)
-	if rank ~= S.rank then
-		S.job = nil
-		return
-	end
-	local windowed = S.source == 1 and job.phase == "tail" and job.lo ~= nil
-	local sql
-	if job.phase == "head" then
-		sql = matches_sql(S, rank, job.top, job.cursor)
-	elseif windowed then
-		sql = matches_sql(S, rank, job.lo, job.cursor)
-	else
-		sql = matches_sql(S, rank, nil, job.cursor)
-	end
-	D.status = "cd_st_matches"
-	D.loading = S
-	local cutoff = S.source == 1 and os.time() - K.CM_DAYS * 86400 or nil
-	request(K.EXPLORER .. url_encode(sql), "cd_page", function(res)
-		if S.job ~= job then
-			return
-		end
-		local recs, count, low, oldest, high, newest
-		if tostring(res.code) == "200" then
-			recs, count, low, oldest, high, newest = parse_matches(res.response)
-		else
-			count = type(res.response) == "string" and res.response:match('"err":"([^"]*)"')
-				or ("http " .. tostring(res.code) .. " " .. tostring(res.error_message or ""))
-		end
-		if not recs then
-			local timeout = tostring(count):lower():find("timeout", 1, true)
-			if timeout then
-				if S.page > K.PAGE_MIN then
-					S.page = math.max(K.PAGE_MIN, math.floor(S.page / 2))
-				elseif windowed then
-					job.fails = (job.fails or 0) + 1
-					if job.fails >= 2 then
-						job.fails = 0
-						next_window(job)
-						log("%s: window skipped after timeouts", S.file)
-					end
-				end
-			end
-			error("page: " .. tostring(count))
-		end
-		D.error = nil
-		job.fails = 0
-		job.pages = job.pages + 1
-		job.added = (job.added or 0) + #recs
-		if oldest then
-			job.oldest = job.oldest and math.min(job.oldest, oldest) or oldest
-			S.oldest = S.oldest and math.min(S.oldest, oldest) or oldest
-		end
-		if S.source == 1 and not job.floor and high and low and newest and oldest and newest > oldest then
-			local rate = (high - low) / (newest - oldest)
-			job.floor = math.floor(high - rate * K.CM_DAYS * 86400)
-		end
-		local too_old = (cutoff and oldest and oldest < cutoff) or (job.floor and job.cursor and job.cursor < job.floor)
-		if job.phase == "head" then
-			for _, rec in ipairs(recs) do
-				job.newer[#job.newer + 1] = rec
-			end
-			job.cursor = low
-			if count < S.page or not low or #job.newer >= target or too_old then
-				local merged = job.newer
-				if #merged < target then
-					for _, rec in ipairs(S.recs) do
-						merged[#merged + 1] = rec
-						if #merged >= target then
-							break
-						end
-					end
-				end
-				S.recs = merged
-				job.newer = nil
-				if #S.recs < target and #S.recs > 0 and not too_old and not S.exhausted then
-					job.phase, job.cursor = "tail", record_id(S.recs[#S.recs])
-					if S.source == 1 then
-						job.lo = job.cursor - K.CM_WINDOW
-					end
-				else
-					if too_old then
-						S.exhausted = true
-					end
-					finish_job(S)
-					return
-				end
-			end
-		else
-			for _, rec in ipairs(recs) do
-				if #S.recs >= target then
-					break
-				end
-				S.recs[#S.recs + 1] = rec
-			end
-			if S.source == 1 then
-				if not job.lo then
-					job.cursor = low
-					job.lo = low and low - K.CM_WINDOW or nil
-				elseif count < S.page or not low then
-					next_window(job)
-				else
-					job.cursor = low
-				end
-				local done = too_old or #S.recs >= target or not job.cursor
-				if done then
-					if #S.recs < target then
-						S.exhausted = true
-					end
-					finish_job(S)
-					return
-				end
-			else
-				job.cursor = low
-				if count < S.page or not low or #S.recs >= target or too_old then
-					if #S.recs < target then
-						S.exhausted = true
-					end
-					finish_job(S)
-					return
-				end
-			end
-			if job.pages % K.SAVE_EVERY == 0 then
-				save_matches(S)
-			end
-		end
-		if not S.stats and not S.build then
-			local pool = (S.job and S.job.newer and #S.recs == 0) and S.job.newer or S.recs
-			if #pool >= (S.source == 1 and K.PARTIAL_CM or K.PARTIAL) then
-				start_build(S, pool)
-			end
-		end
-	end)
-end
-
-local function job_counts()
-	local S = D.loading or D.sets[source()]
-	local _, target = want(S)
-	local job = S.job
-	local have = #S.recs
-	if job and job.newer then
-		have = math.min(target, #job.newer + #S.recs)
-	end
-	return have, target
-end
-
-local function job_progress()
-	local have, target = job_counts()
-	local p = clamp(have / target, 0, 1)
-	local S = D.loading
-	if S and S.source == 1 and S.job and S.job.oldest and S.job.phase == "tail" then
-		p = math.max(p, clamp((os.time() - S.job.oldest) / (K.CM_DAYS * 86400), 0, 1))
-	end
-	return p
-end
-
-local function job_days()
-	local S = D.loading
-	if S and S.source == 1 and S.job and S.job.oldest then
-		return math.floor((os.time() - S.job.oldest) / 86400)
-	end
-	return nil
-end
-
-local function job_eta()
-	local S = D.loading
-	local job = S and S.job
-	if not job or not job.t0 then
-		return nil
-	end
-	local p = job_progress()
-	job.p0 = job.p0 or p
-	local elapsed = os.clock() - job.t0
-	if elapsed < K.ETA_WARMUP or p <= job.p0 + 0.005 then
-		return nil
-	end
-	return elapsed * (1 - p) / (p - job.p0)
-end
-
-local function plan_job(S)
-	if S.job then
-		return
-	end
-	local rank, target = want(S)
-	if not S.loaded then
-		load_set(S, rank)
-	elseif S.rank ~= rank then
-		if #S.recs > 0 then
-			save_matches(S)
-		end
-		load_set(S, rank)
-	end
-	if #S.recs > target then
-		for i = #S.recs, target + 1, -1 do
-			S.recs[i] = nil
-		end
-		save_matches(S)
-		start_build(S)
-	end
-	local stale = os.time() - S.updated > K.MATCHES_TTL
-	if S.force then
-		S.exhausted = false
-	end
-	if S.force or stale or (#S.recs < target and not S.exhausted) then
-		local top = #S.recs > 0 and record_id(S.recs[1]) or nil
-		if top then
-			S.job = { phase = "head", top = top, cursor = nil, newer = {}, pages = 0 }
-		else
-			S.job = { phase = "tail", cursor = nil, pages = 0 }
-		end
-		S.job.t0 = os.clock()
-		S.job.p0 = clamp(#S.recs / target, 0, 1)
-		S.force = false
-		log("job %s: rank %d, have %d, want %d, top %s", S.file, rank, #S.recs, target, tostring(top))
-	end
-	local enough = S.job and math.min(target, S.source == 1 and K.PARTIAL_CM or K.PARTIAL) or 1
-	if not S.stats and not S.build and #S.recs >= enough then
-		start_build(S)
-	end
-end
-
-local function any_busy()
-	for _, S in pairs(D.sets) do
-		if S.job or S.build then
-			return true
-		end
-	end
-	return false
-end
-
 local function data_tick()
 	if not D.loaded then
-		load_cache()
+		D.loaded = true
+		store_load()
+		D.gh.restore()
 	end
-	step_build(D.sets[0])
-	step_build(D.sets[1])
 	if D.busy and os.clock() - D.req_at > K.TIMEOUT + K.STUCK then
 		D.req_n, D.busy = D.req_n + 1, false
 		D.error, D.next_request = "no answer, timeout", os.clock() + K.RETRY_SHORT
-		local S = D.loading
-		if D.req_param == "cd_page" and S and S.page > K.PAGE_MIN then
-			S.page = math.max(K.PAGE_MIN, math.floor(S.page / 2))
-		end
 		Log.Write(("[Draft Helper] %s: no answer in %d s, retrying"):format(tostring(D.req_param), K.TIMEOUT + K.STUCK))
 	end
-	if cfg.provider == 0 then
-		D.gh.sync()
-	end
+	D.gh.sync()
 	if D.busy or os.clock() < D.next_request then
 		return
 	end
-	if cfg.provider == 0 then
-		D.gh.tick()
-		return
-	end
-	local now = os.time()
-	if not D.heroes or now - D.heroes_at > K.HEROES_TTL then
-		request_heroes()
-		return
-	end
-	if not D.pos_count or now - D.pos_at > K.PRO_TTL then
-		request_pos()
-		return
-	end
-	if not D.contest or now - D.contest_at > K.PRO_TTL then
-		request_contest()
-		return
-	end
-	local order = { D.sets[0] }
-	if source() == 1 then
-		order = (D.sets[0].stats or D.sets[0].build) and { D.sets[1], D.sets[0] } or { D.sets[0], D.sets[1] }
-	end
-	for _, S in ipairs(order) do
-		plan_job(S)
-		if S.job then
-			request_page(S)
-			return
-		end
-	end
-	D.loading = nil
-	D.status = any_busy() and "cd_st_build" or nil
+	D.gh.tick()
 end
 
 local function refresh_data()
-	if cfg.provider == 0 then
-		D.gh.check_at, D.gh.manual = 0, true
-		D.next_request, D.error = 0, nil
-		log("manual refresh")
-		return
-	end
-	D.heroes_at, D.pos_at, D.contest_at = 0, 0, 0
-	for _, S in pairs(D.sets) do
-		S.force = true
-	end
+	D.gh.check_at, D.gh.manual = 0, true
 	D.next_request, D.error = 0, nil
-	D.gh.check_at = 0
 	log("manual refresh")
 end
 
@@ -2452,6 +1565,21 @@ do
 		end)
 	end
 
+	local function file(name)
+		local blob = store.blobs["d:" .. name]
+		if not blob then
+			return nil
+		end
+		local ok, data = pcall(JSON.decode, JSON, blob)
+		return ok and type(data) == "table" and data or nil
+	end
+
+	local function keep(name, text, t)
+		store.blobs["d:" .. name] = text
+		store.data.files[name] = t
+		GH.dirty = true
+	end
+
 	local function parse_stats(text)
 		local st = { bg = {}, bw = {}, vg = {}, vw = {}, sg = {}, sw = {}, n = tonumber(text:match("^n (%d+)")) }
 		if not st.n then
@@ -2481,20 +1609,62 @@ do
 	end
 
 	local function apply(S, key, st, meta)
-		S.stats, S.build, S.job, S.gh_key = st, nil, nil, key
+		S.stats, S.gh_key = st, key
 		S.updated = tonumber(meta.time) or 0
 		S.oldest = tonumber(meta.oldest)
 		S.exhausted = true
 		draft.dirty = true
 	end
 
+	local function table_of(v)
+		return type(v) == "table" and v or {}
+	end
+
+	function GH.rules(r)
+		if type(r) ~= "table" or r.v ~= 1 then
+			return false
+		end
+		K.COUNTERS, K.FIT, K.ANTI = table_of(r.counters), table_of(r.fit), table_of(r.anti)
+		K.ENEMY_ITEMS, K.REACT, K.PHYS_ITEMS = table_of(r.enemy_items), table_of(r.react), table_of(r.phys_items)
+		local must = {}
+		for _, mu in ipairs(table_of(r.must)) do
+			local pos = {}
+			for _, p in ipairs(table_of(mu.pos)) do
+				pos[math.tointeger(p) or p] = true
+			end
+			must[#must + 1] = { mu.threat, tonumber(mu.min) or 1, pos, mu.phys == true }
+		end
+		K.MUST = must
+		D.tags = table_of(r.heroes)
+		D.rules_ok, D.rules_rev = true, (D.rules_rev or 0) + 1
+		draft.dirty = true
+		return true
+	end
+
+	function GH.restore()
+		local files = store.data.files
+		local heroes = file("heroes")
+		if heroes and #heroes >= 100 then
+			set_heroes(heroes)
+			D.heroes_at = tonumber(files.heroes) or 0
+		end
+		local pro = file("pro")
+		if pro and type(pro.pos) == "table" and type(pro.contest) == "table" then
+			set_pos(pro.pos)
+			set_contest(pro.contest)
+			D.pos_at = tonumber(files.pro) or 0
+		end
+		if GH.rules(file("rules")) then
+			D.rules_at = tonumber(files.rules) or 0
+		end
+	end
+
 	function GH.sync()
 		for _, S in ipairs(sets()) do
 			local key = GH.key(S)
 			if S.gh_key ~= key then
-				S.stats, S.build, S.job, S.gh_key, S.updated, S.oldest = nil, nil, nil, key, 0, nil
-				S.recs = {}
-				local blob, meta = store.blobs["gh:" .. key], store.data.sets["gh:" .. key]
+				S.stats, S.gh_key, S.updated, S.oldest = nil, key, 0, nil
+				local blob, meta = store.blobs["s:" .. key], store.data.sets["s:" .. key]
 				if blob and type(meta) == "table" then
 					local ok, st = pcall(parse_stats, blob)
 					if ok then
@@ -2520,8 +1690,12 @@ do
 			list[#list + 1] = { kind = "heroes", t = t }
 		end
 		t = tonumber(m.pro) or 0
-		if not D.pos_count or not D.contest or (D.pos_at or 0) < t or (D.contest_at or 0) < t then
+		if not D.pos_count or not D.contest or (D.pos_at or 0) < t then
 			list[#list + 1] = { kind = "pro", t = t }
+		end
+		t = tonumber(m.rules) or 0
+		if t > 0 and (not D.rules_ok or (D.rules_at or 0) < t) then
+			list[#list + 1] = { kind = "rules", t = t }
 		end
 		for _, S in ipairs(sets()) do
 			local key = S.gh_key
@@ -2550,7 +1724,7 @@ do
 				GH.note, GH.note_at = GH.done > 1 and "cd_gh_new" or "cd_gh_same", os.clock()
 			end
 			GH.done = 0
-			D.status, D.loading = nil, nil
+			D.status = nil
 			return
 		end
 		D.status = "cd_st_gh"
@@ -2572,9 +1746,8 @@ do
 				end
 				set_heroes(list)
 				D.heroes_at = job.t
-				store.data.heroes = { time = job.t, list = list }
-				GH.dirty = true
-				log("heroes loaded from github: %d", #D.heroes)
+				keep("heroes", text, job.t)
+				log("heroes loaded: %d", #D.heroes)
 			end)
 		elseif job.kind == "pro" then
 			get("pro.json", "cd_pro", function(text)
@@ -2584,40 +1757,32 @@ do
 				end
 				set_pos(pro.pos)
 				set_contest(pro.contest)
-				D.pos_at, D.contest_at = job.t, job.t
-				store.data.pro = { pos = pro.pos, pos_time = job.t, contest = pro.contest, contest_time = job.t }
-				GH.dirty = true
-				log("pro data loaded from github")
+				D.pos_at = job.t
+				keep("pro", text, job.t)
+				log("pro data loaded")
+			end)
+		elseif job.kind == "rules" then
+			get("rules.json", "cd_rules", function(text)
+				if not GH.rules(JSON:decode(text)) then
+					error("rules: bad file")
+				end
+				D.rules_at = job.t
+				keep("rules", text, job.t)
+				log("counter rules loaded")
 			end)
 		else
 			local key, meta, S = job.key, job.meta, job.S
 			get(("stats/%s.txt"):format((key:gsub(":", "_"))), "cd_stats", function(text)
 				local st = parse_stats(text)
-				store.blobs["gh:" .. key] = text
-				store.data.sets["gh:" .. key] = { time = tonumber(meta.time) or 0, oldest = meta.oldest, used = os.time() }
+				store.blobs["s:" .. key] = text
+				store.data.sets["s:" .. key] = { time = tonumber(meta.time) or 0, oldest = meta.oldest, used = os.time() }
 				GH.dirty = true
 				if S.gh_key == key then
 					apply(S, key, st, meta)
 				end
-				log("github stats %s: %d matches", key, st.n)
+				log("stats %s: %d matches", key, st.n)
 			end)
 		end
-	end
-
-	function GH.switch(v)
-		if cfg.provider == v then
-			return
-		end
-		set_cfg("provider", v)
-		D.req_n, D.busy = (D.req_n or 0) + 1, false
-		D.error, D.next_request, D.status, D.loading = nil, 0, nil, nil
-		GH.check_at, GH.done, GH.manual = 0, 0, false
-		for _, S in pairs(D.sets) do
-			S.stats, S.build, S.job, S.gh_key, S.loaded, S.force = nil, nil, nil, nil, false, false
-			S.recs, S.updated, S.oldest, S.exhausted = {}, 0, nil, false
-		end
-		draft.dirty = true
-		log("data server: %s", v == 0 and "github" or "opendota")
 	end
 end
 
@@ -2981,7 +2146,6 @@ local I = {
 	error = nil,
 	logged = nil,
 	dirty = false,
-	tags = nil,
 	threat_of = {},
 	builds = {},
 	bpos = {},
@@ -3012,35 +2176,22 @@ do
 		I.items, I.by_name, I.builds = items, by_name, {}
 	end
 
-	local function parse_items(text)
-		local starts, pos = {}, 1
-		while true do
-			local s, e, key = text:find('"([%w_]+)":{', pos)
-			if not s then
-				break
-			end
-			starts[#starts + 1] = { s = s, e = e, key = key }
-			pos = e + 1
+	local function buys_rows(list)
+		local rows = {}
+		for _, r in ipairs(list) do
+			rows[#rows + 1] = {
+				p = tonumber(r.p),
+				i = r.i,
+				n = tonumber(r.n) or 0,
+				w = tonumber(r.w) or 0,
+				t = tonumber(r.t) or 0,
+				s = tonumber(r.s) or 0,
+				m = tonumber(r.m) or 0,
+				g = tonumber(r.g) or 0,
+				gw = tonumber(r.gw) or 0,
+			}
 		end
-		local list = {}
-		for i, st in ipairs(starts) do
-			if not st.key:find("^recipe") then
-				local seg = text:sub(st.e, starts[i + 1] and starts[i + 1].s - 1 or #text)
-				local id = tonumber(seg:match('"id":(%d+)'))
-				if id then
-					local parts = (seg:match('"components":%[([^%]]*)%]') or ""):gsub('"', "")
-					list[#list + 1] = {
-						id = id,
-						n = st.key,
-						d = seg:match('"dname":"([^"]*)"'),
-						c = tonumber(seg:match('"cost":(%d+)')) or 0,
-						m = seg:find('"created":true', 1, true) and 1 or 0,
-						p = parts,
-					}
-				end
-			end
-		end
-		return list
+		return rows
 	end
 
 	local function set_buys(h, list)
@@ -3067,21 +2218,32 @@ do
 		I.builds = {}
 	end
 
+	setmetatable(I.buys, {
+		__index = function(_, h)
+			local key = tostring(h)
+			local text, meta = store.blobs["b:" .. key], store.data.buys[key]
+			if not text or type(meta) ~= "table" then
+				return nil
+			end
+			local ok, list = pcall(JSON.decode, JSON, text)
+			if not ok or type(list) ~= "table" then
+				store.blobs["b:" .. key] = nil
+				return nil
+			end
+			set_buys(h, buys_rows(list))
+			I.buys_at[h] = tonumber(meta.time) or 0
+			return rawget(I.buys, h)
+		end,
+	})
+
 	local function load()
 		I.loaded = true
-		local items = store.data.items
-		if type(items) == "table" and type(items.list) == "table" then
-			set_items(items.list)
-			I.items_at = tonumber(items.time) or 0
-		end
-		local buys = store.data.buys
-		if type(buys) == "table" then
-			for key, entry in pairs(buys) do
-				local h = math.tointeger(tonumber(key))
-				if h and type(entry) == "table" and type(entry.rows) == "table" and entry.v == K.BUYS_VER then
-					set_buys(h, entry.rows)
-					I.buys_at[h] = tonumber(entry.time) or 0
-				end
+		local blob = store.blobs["d:items"]
+		if blob then
+			local ok, list = pcall(JSON.decode, JSON, blob)
+			if ok and type(list) == "table" and #list >= 100 then
+				set_items(list)
+				I.items_at = tonumber(store.data.files.items) or 0
 			end
 		end
 	end
@@ -3116,12 +2278,14 @@ do
 		end
 	end
 
-	local function keep_buys(h, rows)
-		local buys = type(store.data.buys) == "table" and store.data.buys or {}
-		buys[tostring(h)] = { time = I.buys_at[h], rows = rows, v = K.BUYS_VER }
+	local function keep_buys(h, text)
+		local buys = store.data.buys
+		local key = tostring(h)
+		buys[key] = { time = I.buys_at[h] }
+		store.blobs["b:" .. key] = text
 		local keys = {}
-		for key in pairs(buys) do
-			keys[#keys + 1] = key
+		for k in pairs(buys) do
+			keys[#keys + 1] = k
 		end
 		if #keys > K.BUYS_KEEP then
 			table.sort(keys, function(x, y)
@@ -3129,28 +2293,10 @@ do
 			end)
 			for n = K.BUYS_KEEP + 1, #keys do
 				buys[keys[n]] = nil
+				store.blobs["b:" .. keys[n]] = nil
 			end
 		end
-		store.data.buys = buys
 		I.dirty = true
-	end
-
-	local function buys_rows(list)
-		local rows = {}
-		for _, r in ipairs(list) do
-			rows[#rows + 1] = {
-				p = tonumber(r.p),
-				i = r.i,
-				n = tonumber(r.n) or 0,
-				w = tonumber(r.w) or 0,
-				t = tonumber(r.t) or 0,
-				s = tonumber(r.s) or 0,
-				m = tonumber(r.m) or 0,
-				g = tonumber(r.g) or 0,
-				gw = tonumber(r.gw) or 0,
-			}
-		end
-		return rows
 	end
 
 	local function gh_fetch(name, param, on_body)
@@ -3166,70 +2312,34 @@ do
 	end
 
 	local function request_items()
-		if cfg.provider == 0 then
-			local t = tonumber(D.gh.manifest.items) or os.time()
-			gh_fetch("items.json", "cd_items", function(text)
-				local list = JSON:decode(text)
-				if type(list) ~= "table" or #list < 100 then
-					error("items: bad list")
-				end
-				set_items(list)
-				I.items_at = t
-				store.data.items = { time = t, list = list }
-				I.dirty = true
-				log("items loaded from github: %d", #list)
-			end)
-			return
-		end
-		fetch(K.ITEMS_URL, "cd_items", function(res)
-			if tostring(res.code) ~= "200" or type(res.response) ~= "string" then
-				error(("items: http %s %s"):format(tostring(res.code), tostring(res.error_message or "")))
-			end
-			local list = parse_items(res.response)
-			if #list < 100 then
-				error(("items: bad list, %d items in %d bytes"):format(#list, #res.response))
+		local t = tonumber(D.gh.manifest.items) or os.time()
+		gh_fetch("items.json", "cd_items", function(text)
+			local list = JSON:decode(text)
+			if type(list) ~= "table" or #list < 100 then
+				error("items: bad list")
 			end
 			set_items(list)
-			I.items_at = os.time()
-			store.data.items = { time = I.items_at, list = list }
+			I.items_at = t
+			store.blobs["d:items"] = text
+			store.data.files.items = t
 			I.dirty = true
 			log("items loaded: %d", #list)
 		end)
 	end
 
 	local function request_buys(h)
-		if cfg.provider == 0 then
-			local t = tonumber(D.gh.manifest.builds) or os.time()
-			I.skip[h] = os.clock() + K.ITEM_FAIL_SKIP
-			gh_fetch(("builds/%d.json"):format(h), "cd_buys", function(text)
-				local list = JSON:decode(text)
-				if type(list) ~= "table" then
-					error(("purchases %d: bad file"):format(h))
-				end
-				local rows = buys_rows(list)
-				I.skip[h] = nil
-				I.buys_at[h] = t
-				set_buys(h, rows)
-				keep_buys(h, rows)
-				log("purchases loaded from github for %d: %d rows", h, #rows)
-			end)
-			return
-		end
-		local url = K.EXPLORER .. url_encode(K.BUYS_SQL:format(h, K.BUYS_MATCHES, h))
-		fetch(url, "cd_buys", function(res)
-			if tostring(res.code) ~= "200" or type(res.response) ~= "string" then
-				I.skip[h] = os.clock() + K.ITEM_FAIL_SKIP
-				error(("purchases %d: http %s %s"):format(h, tostring(res.code), tostring(res.error_message or "")))
+		local t = tonumber(D.gh.manifest.builds) or os.time()
+		I.skip[h] = os.clock() + K.ITEM_FAIL_SKIP
+		gh_fetch(("builds/%d.json"):format(h), "cd_buys", function(text)
+			local list = JSON:decode(text)
+			if type(list) ~= "table" then
+				error(("purchases %d: bad file"):format(h))
 			end
-			local data = JSON:decode(res.response)
-			if type(data) ~= "table" or data.err or type(data.rows) ~= "table" then
-				I.skip[h] = os.clock() + K.ITEM_FAIL_SKIP
-				error(("purchases %d: %s"):format(h, tostring(type(data) == "table" and data.err or "bad answer")))
-			end
-			local rows = buys_rows(data.rows)
-			I.buys_at[h] = os.time()
+			local rows = buys_rows(list)
+			I.skip[h] = nil
+			I.buys_at[h] = t
 			set_buys(h, rows)
-			keep_buys(h, rows)
+			keep_buys(h, text)
 			log("purchases loaded for %d: %d rows", h, #rows)
 		end)
 	end
@@ -3277,14 +2387,11 @@ do
 			return
 		end
 		if sm or I.want then
-			local now = os.time()
-			local gh = cfg.provider == 0
 			local m = D.gh.manifest
-			if gh and not m then
+			if not m then
 				return
 			end
-			local items_old = gh and I.items_at < (tonumber(m.items) or 0) or (not gh and now - I.items_at > K.ITEMS_TTL)
-			if not I.items or items_old then
+			if not I.items or I.items_at < (tonumber(m.items) or 0) then
 				request_items()
 				return
 			end
@@ -3297,9 +2404,7 @@ do
 				end
 			end
 			for _, h in ipairs(want) do
-				local stale = not I.buys[h]
-					or (gh and (I.buys_at[h] or 0) < (tonumber(m.builds) or 0))
-					or (not gh and now - (I.buys_at[h] or 0) > K.BUYS_TTL)
+				local stale = not I.buys[h] or (I.buys_at[h] or 0) < (tonumber(m.builds) or 0)
 				if stale and os.clock() >= (I.skip[h] or 0) then
 					request_buys(h)
 					return
@@ -3312,32 +2417,19 @@ do
 		end
 	end
 
-	local function parse_tags()
-		local tags = {}
-		for entry in K.HERO_TAGS:gmatch("[^;]+") do
-			local words = {}
-			for word in entry:gmatch("%S+") do
-				words[#words + 1] = word
-			end
-			local t = {}
-			for k = 2, #words - 1, 2 do
-				t[words[k]] = tonumber(words[k + 1])
-			end
-			tags["npc_dota_hero_" .. words[1]] = t
-		end
-		return tags
-	end
-
 	function I.threats(h)
+		if I.rules_rev ~= D.rules_rev then
+			I.threat_of, I.builds, I.rules_rev = {}, {}, D.rules_rev
+		end
 		local cached = I.threat_of[h]
 		if cached then
 			return cached
 		end
-		I.tags = I.tags or parse_tags()
 		local hero = D.by_id[h]
 		local t = {}
 		if hero then
-			for k, v in pairs(I.tags[hero.unit] or {}) do
+			local short = hero.unit:gsub("^npc_dota_hero_", "")
+			for k, v in pairs((D.tags or {})[short] or {}) do
 				t[k] = v
 			end
 			local roles = {}
@@ -3778,7 +2870,7 @@ do
 		if not data or data.g < K.BUYS_MIN then
 			return { none = true, pos = pos, slots = {}, start = {}, gold = 0 }
 		end
-		local key = ("%d:%d:%s:%d:%d"):format(h, pos or 0, table.concat(them, ","), I.items_at, I.buys_at[h] or 0)
+		local key = ("%d:%d:%s:%d:%d:%d"):format(h, pos or 0, table.concat(them, ","), I.items_at, I.buys_at[h] or 0, D.rules_rev or 0)
 		local cached = I.builds[key]
 		if cached then
 			return cached
@@ -5274,7 +4366,7 @@ do
 		G.hero, G.them, G.owned, G.live, I.want = info.id, them, owned, true, info.id
 		G.bpos = I.bpos[info.id] or G.pos
 		G.time = GameRules.GetDOTATime(true, true)
-		local sig = { info.id, G.bpos, table.concat(them, ","), I.items_at, I.buys_at[info.id] or 0, cfg.padapt }
+		local sig = { info.id, G.bpos, table.concat(them, ","), I.items_at, I.buys_at[info.id] or 0, cfg.padapt, D.rules_rev or 0 }
 		local names = {}
 		for name, n in pairs(owned) do
 			names[#names + 1] = name .. n
@@ -5414,8 +4506,6 @@ local function click(right)
 		W.preview = not W.preview
 	elseif kind == "set_gear" then
 		W.set_gear = W.set_gear ~= arg and arg or nil
-	elseif kind == "set_provider" then
-		D.gh.switch(arg)
 	elseif kind == "set_src" then
 		set_cfg("source", arg)
 		draft.dirty = true
@@ -5469,6 +4559,12 @@ local function click(right)
 			if has or pcall(Engine.SetQuickBuy, arg.name, false) then
 				W.qflash = { id = arg.id, t = os.clock() }
 			end
+		end
+	elseif kind == "phide" then
+		if W.preview then
+			W.preview = false
+		else
+			W.phidden = G.match
 		end
 	elseif kind == "pdrag" then
 		if not right then
@@ -5776,17 +4872,6 @@ do
 		return (sigm(v) - 0.5) * 100
 	end
 
-	local function fmt_eta(sec, short)
-		if not sec then
-			return nil
-		end
-		local key = short and "cd_eta_short_" or "cd_eta_"
-		if sec < 60 then
-			return L(key .. "s"):format(math.max(5, math.floor(sec / 5 + 0.5) * 5))
-		end
-		return L(key .. "m"):format(math.floor(sec / 60 + 0.5))
-	end
-
 	local function fmt_updated(ts)
 		if not ts or ts <= 0 then
 			return L("cd_upd_never")
@@ -5805,8 +4890,6 @@ do
 	STAGE_TEXT = {
 		heroes = "cd_ld_heroes",
 		pro = "cd_ld_pro",
-		matches = "cd_ld_matches",
-		build = "cd_ld_build",
 		wait = "cd_ld_wait",
 		error = "cd_ld_error",
 		slow = "cd_ld_slow",
@@ -5817,25 +4900,8 @@ do
 		if D.error and os.clock() < D.next_request then
 			return D.error:lower():find("timeout", 1, true) and "slow" or "error"
 		end
-		local sets = source() == 1 and { D.sets[0], D.sets[1] } or { D.sets[0] }
-		for _, S in ipairs(sets) do
-			if S.job then
-				return "matches"
-			end
-		end
 		if D.status == "cd_st_gh" then
 			return "gh"
-		end
-		if D.status == "cd_st_heroes" then
-			return "heroes"
-		end
-		if D.status == "cd_st_pro" then
-			return "pro"
-		end
-		for _, S in ipairs(sets) do
-			if S.build then
-				return "build"
-			end
 		end
 		if not D.heroes or not D.sets[0].stats then
 			return "wait"
@@ -5966,7 +5032,7 @@ do
 		end
 		local title = L(STAGE_TEXT[stage] or "cd_ld_wait")
 		text(W.fonts.bold, px(13), title, cx - tw(W.fonts.bold, px(13), title) / 2, cy, fade(P.TEXT, a))
-		local sub, eta
+		local sub
 		if err or stage == "slow" then
 			sub = L("cd_ld_retry"):format(math.max(1, math.ceil(D.next_request - os.clock())))
 		elseif stage == "gh" then
@@ -5981,25 +5047,9 @@ do
 					sub = sub .. L("cd_gh_wait"):format(math.floor(wait))
 				end
 			end
-		elseif stage == "matches" then
-			local have, target = job_counts()
-			local days = job_days()
-			if days then
-				sub = L("cd_ld_days"):format(kilo(have), days, K.CM_DAYS)
-			else
-				sub = L("cd_ld_count"):format(kilo(have), kilo(target))
-			end
-			eta = fmt_eta(job_eta(), false)
 		end
 		if sub then
-			local sw = tw(W.fonts.regular, px(11), sub)
-			local ew = eta and tw(W.fonts.regular, px(11), eta) + px(16) or 0
-			local sx = cx - (sw + ew) / 2
-			text(W.fonts.regular, px(11), sub, sx, cy + px(20), fade(P.MUTED, a))
-			if eta then
-				vline(sx + sw + px(8), cy + px(20), px(6), a)
-				text(W.fonts.regular, px(11), eta, sx + sw + px(16), cy + px(20), fade(P.MUTED, a))
-			end
+			text(W.fonts.regular, px(11), sub, cx - tw(W.fonts.regular, px(11), sub) / 2, cy + px(20), fade(P.MUTED, a))
 		end
 		if err then
 			return
@@ -6011,14 +5061,10 @@ do
 			local done, total = D.gh.progress()
 			gp = done / math.max(1, total)
 		end
-		local prog = tween("loader_p", stage == "matches" and job_progress() or (stage == "build" and 1 or gp), 0.4)
+		local prog = tween("loader_p", gp, 0.4)
 		rect(cx - bw / 2, by, cx + bw / 2, by + bh, fade(P.CELL, a * 1.6), bh / 2)
 		if prog > 0 then
 			rect(cx - bw / 2, by, cx - bw / 2 + bw * prog, by + bh, fade(P.GOOD, a * 0.85), bh / 2)
-		end
-		if not D.sets[0].stats and cfg.provider == 1 then
-			local hint = L("cd_ld_first")
-			text(W.fonts.regular, px(10), hint, cx - tw(W.fonts.regular, px(10), hint) / 2, by + px(22), fade(P.DIM, a))
 		end
 	end
 
@@ -6316,16 +5362,10 @@ do
 			else
 				spinner(left + px(6), cy, px(5), a * ba, P.MUTED, math.max(1, px(1.5)))
 			end
-			local str = stage == "matches" and L("cd_ld_short"):format(math.floor(job_progress() * 100))
-				or L(STAGE_TEXT[stage] or "cd_ld_wait")
+			local str = L(STAGE_TEXT[stage] or "cd_ld_wait")
 			local sx = left + px(18) + text(W.fonts.regular, px(11), str, left + px(18), cy, fade(P.MUTED, a * ba))
 			if (stage == "error" or stage == "slow") and D.error then
 				tip("err", left, cy - px(10), sx, cy + px(10), L("cd_tip_err_t"), D.error:sub(1, 80))
-			end
-			local eta = stage == "matches" and fmt_eta(job_eta(), true)
-			if eta then
-				vline(sx + px(8), cy, px(6), a * ba)
-				sx = sx + px(16) + text(W.fonts.regular, px(11), eta, sx + px(16), cy, fade(P.MUTED, a * ba))
 			end
 			left_end = math.max(left_end, sx)
 		end
@@ -6508,10 +5548,6 @@ do
 		end
 
 		section(C, "cd_sec_data")
-		local py = C.y
-		local pcy, _, pend = row(C, "\u{f233}", L("cd_set_provider"), "prov")
-		seg(C, "st_prov", { "GitHub", "OpenDota" }, cfg.provider, "set_provider", pcy)
-		tip("st_prov_tip", left, py, pend, py + row_h, L("cd_set_provider"), L("cd_set_provider_tip"))
 		local cy = row(C, "\u{f1c0}", L("cd_set_source"), "src")
 		seg(C, "st_src", { L("cd_src_short0"), L("cd_src_long1") }, source(), "set_src", cy)
 		local note_h = math.floor(tween("st_cm_note", source() == 1 and px(K.CM_NOTE_H) or 0, K.PAGE_TIME) + 0.5)
@@ -6519,7 +5555,7 @@ do
 			local na = a * clamp(note_h / px(K.CM_NOTE_H), 0, 1)
 			Render.PushClip(Vec2(x, C.y), Vec2(x + w, C.y + note_h), true)
 			local CM = D.sets[1]
-			local n = math.max(#CM.recs, CM.stats and CM.stats.n or 0)
+			local n = CM.stats and CM.stats.n or 0
 			local days = CM.oldest and math.max(1, math.floor((os.time() - CM.oldest) / 86400 + 0.5)) or nil
 			local rate = (days and n > 0) and n / days or nil
 			local l1 = C.y + px(12)
@@ -6528,14 +5564,8 @@ do
 			local tx = left + px(22)
 			if n == 0 or not days then
 				text(W.fonts.regular, px(11), L("cd_cm_wait"), tx, l1, fade(P.MUTED, na))
-			elseif CM.exhausted then
-				text(W.fonts.regular, px(11), L("cd_cm_done"):format(fmt_games(n), math.min(days, K.CM_DAYS)), tx, l1, fade(P.MUTED, na))
 			else
-				local lx = tx + text(W.fonts.regular, px(11), L("cd_cm_now"):format(fmt_games(n), math.min(days, K.CM_DAYS), K.CM_DAYS), tx, l1, fade(P.MUTED, na)) + px(8)
-				if rate and days < K.CM_DAYS then
-					vline(lx, l1, px(6), na)
-					text(W.fonts.regular, px(11), L("cd_cm_total"):format(fmt_games(math.min(K.CM_MAX, math.floor(rate * K.CM_DAYS)))), lx + px(8), l1, fade(P.MUTED, na))
-				end
+				text(W.fonts.regular, px(11), L("cd_cm_done"):format(fmt_games(n), math.min(days, K.CM_DAYS)), tx, l1, fade(P.MUTED, na))
 			end
 			local why = rate and L("cd_cm_why"):format(math.floor(rate + 0.5)) or L("cd_cm_why0")
 			text(W.fonts.regular, px(10), why, tx, l2, fade(P.DIM, na))
@@ -6556,10 +5586,9 @@ do
 		if S.stats then
 			parts[#parts + 1] = L("cd_matches"):format(fmt_games(S.stats.n))
 		end
-		local gh = cfg.provider == 0
-		local note = gh and D.gh.note and os.clock() - D.gh.note_at < 5 and L(D.gh.note)
-		parts[#parts + 1] = note or ((S.job or D.status == "cd_st_gh") and L("cd_upd_loading") or fmt_updated(S.updated))
-		if gh and not note then
+		local note = D.gh.note and os.clock() - D.gh.note_at < 5 and L(D.gh.note)
+		parts[#parts + 1] = note or (D.status == "cd_st_gh" and L("cd_upd_loading") or fmt_updated(S.updated))
+		if not note then
 			parts[#parts + 1] = L("cd_gh_next"):format(os.date("%H:%M", D.gh.next_at()))
 		end
 		local lx = tx
@@ -6573,18 +5602,12 @@ do
 		local label = L("cd_set_refresh")
 		local bw = tw(W.fonts.medium, px(11), label) + px(32)
 		local bh = px(22)
-		local busy = any_busy()
-		local rb = approach("st_refresh", (not busy and not covered and hovered(right - bw, cy - bh / 2, right, cy + bh / 2)) and 1 or 0, 20)
-		local ba = a * (busy and 0.45 or 1)
-		rect(right - bw, cy - bh / 2, right, cy + bh / 2, fade(mix(P.CELL, P.HOVER, rb), ba), px(6))
-		glyph("\u{f021}", right - bw + px(13), cy, px(10), fade(P.MUTED, ba))
-		text(W.fonts.medium, px(11), label, right - bw + px(23), cy, fade(P.TEXT, ba))
-		if not busy then
-			hit(right - bw, cy - bh / 2, right, cy + bh / 2, "set_refresh")
-		end
-		if gh then
-			tip("st_refresh_tip", right - bw, cy - bh / 2, right, cy + bh / 2, L("cd_set_refresh"), L("cd_tip_gh_refresh"))
-		end
+		local rb = approach("st_refresh", (not covered and hovered(right - bw, cy - bh / 2, right, cy + bh / 2)) and 1 or 0, 20)
+		rect(right - bw, cy - bh / 2, right, cy + bh / 2, fade(mix(P.CELL, P.HOVER, rb), a), px(6))
+		glyph("\u{f021}", right - bw + px(13), cy, px(10), fade(P.MUTED, a))
+		text(W.fonts.medium, px(11), label, right - bw + px(23), cy, fade(P.TEXT, a))
+		hit(right - bw, cy - bh / 2, right, cy + bh / 2, "set_refresh")
+		tip("st_refresh_tip", right - bw, cy - bh / 2, right, cy + bh / 2, L("cd_set_refresh"), L("cd_tip_gh_refresh"))
 
 		section(C, "cd_sec_view")
 		cy = row(C, "\u{f2d0}", L("cd_set_window"), "win")
@@ -7785,11 +6808,21 @@ do
 			vline(lx, hy, px(6), a)
 			text(W.fonts.regular, px(11), hero.name, lx + px(8), hy, fade(P.MUTED, a))
 		end
+		local size = px(20)
+		local bx1 = x + w - px(8)
+		local bx0 = bx1 - size
 		if plan == PN.DEMO or plan == PN.NONE then
 			local tag = L("cd_p_preview")
-			text(W.fonts.regular, px(10), tag, x + w - px(12) - tw(W.fonts.regular, px(10), tag), hy, fade(P.DIM, a))
+			text(W.fonts.regular, px(10), tag, bx0 - px(6) - tw(W.fonts.regular, px(10), tag), hy, fade(P.DIM, a))
 		end
 		hit(x, y, x + w, y + px(34), "pdrag")
+		local hv = approach("phide_h", hovered(bx0, hy - size / 2, bx1, hy + size / 2) and 1 or 0, 20)
+		if hv > 0 then
+			rect(bx0, hy - size / 2, bx1, hy + size / 2, fade(P.HOVER, a * hv * 1.5), px(6))
+		end
+		glyph("\u{f00d}", bx0 + size / 2, hy, px(10), fade(mix(P.MUTED, P.TEXT, hv), a))
+		hit(bx0, hy - size / 2, bx1, hy + size / 2, "phide")
+		tip("phide", bx0, hy - size / 2, bx1, hy + size / 2, L("cd_p_hide_t"), L("cd_p_hide"))
 	end
 
 	function PN.roles_w(size)
@@ -8009,7 +7042,7 @@ do
 			shop = ok and open == true
 		end
 		local show = cfg.panel == 1 and plan ~= nil
-			and (preview or (G.live and shop and not (cfg.phide == 1 and plan.complete)))
+			and (preview or (G.live and shop and W.phidden ~= G.match and not (cfg.phide == 1 and plan.complete)))
 		local pa = approach("panel_a", show and 1 or 0, 12)
 		if show then
 			W.pplan = plan
