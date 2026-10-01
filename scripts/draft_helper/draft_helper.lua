@@ -406,7 +406,7 @@ local localization = qLocalization.new({
 		cd_ld_heroes = "Loading heroes",
 		cd_ld_pro = "Loading pro matches",
 		cd_ld_wait = "Preparing data",
-		cd_ld_error = "No connection to OpenDota",
+		cd_ld_error = "No connection to GitHub",
 		cd_ld_slow = "The server is slow to answer",
 		cd_tip_err_t = "Why",
 		cd_ld_retry = "retry in %d s",
@@ -438,32 +438,27 @@ local localization = qLocalization.new({
 		cd_p_later = "NEXT",
 		cd_p_sell = "Inventory full, sell",
 		cd_news_t = "What's new",
-		cd_news_sub = "update installed",
-		cd_news_ver = "version %s",
+		cd_news_date = "October 1",
+		cd_news_new = "NEW",
+		cd_news_fix = "FIXED",
 		cd_news_ok = "Got it",
 		cd_set_news = "What's new in %s",
 		cd_news_open = "Open",
-		cd_nw1_t = "all through GitHub.",
-		cd_nw1 = "the OpenDota mode is gone, data always\ncomes as ready files in seconds",
-		cd_nw2_t = "hide the panel.",
-		cd_nw2 = "the cross in the build panel corner\nhides it until the end of the match",
-		cd_nw3_t = "Crella's Crozier.",
-		cd_nw3 = "counted as a save and anti heal,\nNullifier is suggested against it",
-		cd_nw4_t = "counter rules.",
-		cd_nw4 = "now update from GitHub by themselves,\nno new script version needed",
-		cd_nw5_t = "cache.",
-		cd_nw5 = "five times smaller, no more\nfreezes when it is saved",
+		cd_nw0_t = "Single Draft and bans",
+		cd_nw0 = "Suggests only the heroes you were given. Skips banned heroes.",
+		cd_nw7_t = "Upgrades",
+		cd_nw7 = "Next shows what your items upgrade into.",
 		cd_gh_manifest = "checking for updates",
 		cd_gh_heroes = "hero list",
 		cd_gh_pro = "pro matches",
 		cd_gh_rules = "counter rules",
 		cd_p_hide_t = "Hide",
-		cd_p_hide = "Until the end of the match. Turn it off for good:\nwindow settings, In-game build panel",
+		cd_p_hide = "Until the end of the match. Turn it off for good:\nsettings, Build panel, Show: Never",
 		cd_gh_ranked = "ranked, %s matches",
 		cd_gh_cm = "Captains Mode, %s matches",
 		cd_ld_step = "%s, step %d of %d",
 		cd_gh_wait = ", waiting %d s",
-		cd_gh_next = "new at %s",
+		cd_gh_sched = "New data daily around %d:%02d Moscow time (%02d:%02d UTC)",
 		cd_gh_same = "no new data yet",
 		cd_gh_new = "data updated",
 		cd_tip_gh_refresh = "GitHub data updates once a day,\nthe button only checks whether a new set is out",
@@ -480,7 +475,6 @@ local localization = qLocalization.new({
 		cd_cm_wait = "Loading, this takes a few minutes",
 		cd_cm_why = "Few CM games, about %d a day, hero pairs lean on ranked",
 		cd_cm_why0 = "Few CM games, hero pairs lean on ranked matches",
-		cd_lang = "en",
 		cd_upd_failed = "Update failed",
 		cd_pill_get = "Update to %s",
 		cd_pill_down = "Downloading %s",
@@ -523,9 +517,10 @@ local localization = qLocalization.new({
 		cd_tip_after = "Later disassemble into %s",
 		cd_tip_upgrade = "Later upgrade into %s",
 		cd_tip_up_from = "Upgrade of %s",
+		cd_tip_bless = "Consumes Aghanim's Scepter\nand frees an inventory slot",
 		cd_tip_dis_from = "Disassemble %s and build this",
 		cd_p_up = "from %s",
-		cd_set_preview = "Panel preview",
+		cd_set_preview = "What it looks like",
 		cd_preview_show = "Show",
 		cd_preview_hide = "Hide",
 		cd_tip_preview = "Shows the panel with a sample build,\nyou can drag it with the mouse",
@@ -534,15 +529,44 @@ local localization = qLocalization.new({
 		cd_tip_swap_why = "%s has %s",
 		cd_p_all = "Build complete",
 		cd_tip_skipped = "Skipped for now, it stays at the end",
-		cd_set_panel = "In-game build panel",
+		cd_tip_noslot = "Consumed right away, takes no slot",
+		cd_p_stash = "Inventory full, to backpack",
+		cd_p_sell_left = "After disassembling sell",
+		cd_tip_dis_left = "%s stays, build %s from it",
+		cd_tip_dis_sell = "%s stays, sell it",
+		cd_pk_t = "Pick this hero?",
+		cd_pk_ok = "Pick",
+		cd_pk_no = "Cancel",
+		cd_pk_dont = "Don't ask again",
+		cd_pk_dont2 = "turn it back on in settings",
+		cd_pk_stage = "Picking works only during hero selection",
+		cd_pk_have = "You already have a hero",
+		cd_pk_taken = "This hero can't be picked",
+		cd_pk_fail = "Couldn't pick, not your turn?",
+		cd_set_pick_ask = "Confirm hero pick",
+		cd_set_lanes = "Enemy positions and lanes",
+		cd_tip_lanes = "Position badges on enemy heroes, counters on your lane\nweigh more, items of enemy supports weigh less",
+		cd_nw8_t = "Pick from the list",
+		cd_nw8 = "Right click a suggested hero to pick it.\nThe script asks for confirmation first.",
+		cd_nw9_t = "Buying from the build panel",
+		cd_nw9 = "Right click an item to buy it. Low on gold, it buys a part.\nShift + left click leaves only this item in quick buy.",
+		cd_nw10_t = "Item advice",
+		cd_nw10 = "No longer suggests selling Pike for Aghanim's or buying Butterfly\nagainst MKB. Tells you when to disassemble Radiance.",
+		cd_nw11_t = "Enemy positions",
+		cd_nw11 = "You can set enemy positions by hand. Your lane opponent\nweighs more in advice, enemy support items weigh less.",
 		cd_set_window = "Draft window",
-		cd_sec_view = "WINDOW AND PANEL",
+		cd_sec_panel = "BUILD PANEL IN MATCH",
+		cd_sec_window = "GENERAL",
+		cd_set_pmode = "Show",
+		cd_pm0 = "Always",
+		cd_pm1 = "In shop",
+		cd_pm2 = "Never",
+		cd_set_pmode_t = "Build panel",
+		cd_pm_note = "Item window during a match.\nIts cross hides it until the match ends",
 		cd_set_pview = "Look",
 		cd_pview0 = "Strip",
 		cd_pview1 = "List",
-		cd_set_pshop = "Only while the shop is open",
 		cd_set_padapt = "Adapt to enemy items",
-		cd_set_phide = "Hide when the build is complete",
 		cd_p_title = "Build",
 		cd_p_instead = "instead of %s",
 		cd_p_preview = "preview",
@@ -639,7 +663,7 @@ local localization = qLocalization.new({
 		cd_ld_heroes = "Загружаю героев",
 		cd_ld_pro = "Загружаю про-матчи",
 		cd_ld_wait = "Готовлю данные",
-		cd_ld_error = "Нет связи с OpenDota",
+		cd_ld_error = "Нет связи с GitHub",
 		cd_ld_slow = "Сервер долго отвечает",
 		cd_tip_err_t = "Причина",
 		cd_ld_retry = "повтор через %d с",
@@ -671,32 +695,27 @@ local localization = qLocalization.new({
 		cd_p_later = "ДАЛЬШЕ",
 		cd_p_sell = "Инвентарь полный, продай",
 		cd_news_t = "Что нового",
-		cd_news_sub = "обновление установлено",
-		cd_news_ver = "версия %s",
+		cd_news_date = "1 октября",
+		cd_news_new = "НОВОЕ",
+		cd_news_fix = "ИСПРАВЛЕНО",
 		cd_news_ok = "Понятно",
 		cd_set_news = "Что нового в %s",
 		cd_news_open = "Открыть",
-		cd_nw1_t = "всё через GitHub.",
-		cd_nw1 = "режим OpenDota убран, данные всегда\nгрузятся готовыми файлами за секунды",
-		cd_nw2_t = "скрыть панель.",
-		cd_nw2 = "крестик в углу панели сборки\nпрячет её до конца матча",
-		cd_nw3_t = "Crella's Crozier.",
-		cd_nw3 = "учитывается как сейв и анти-хил,\nпротив него советует Нулифаер",
-		cd_nw4_t = "правила контр.",
-		cd_nw4 = "обновляются с GitHub сами,\nбез новой версии скрипта",
-		cd_nw5_t = "кэш.",
-		cd_nw5 = "стал в 5 раз меньше,\nпропали подвисания при сохранении",
+		cd_nw0_t = "Single Draft и баны",
+		cd_nw0 = "Советует только выданных героев. Забаненных не предлагает.",
+		cd_nw7_t = "Апгрейды",
+		cd_nw7 = "В «Дальше» видно, во что улучшить твои предметы.",
 		cd_gh_manifest = "проверяю обновления",
 		cd_gh_heroes = "список героев",
 		cd_gh_pro = "про-матчи",
 		cd_gh_rules = "правила контр",
 		cd_p_hide_t = "Скрыть",
-		cd_p_hide = "До конца матча. Выключить совсем:\nнастройки окна, Панель сборки в игре",
+		cd_p_hide = "До конца матча. Выключить совсем:\nнастройки, Панель сборки, Показывать: Нет",
 		cd_gh_ranked = "рейтинг, %s матчей",
 		cd_gh_cm = "Captains Mode, %s матчей",
 		cd_ld_step = "%s, шаг %d из %d",
 		cd_gh_wait = ", жду %d с",
-		cd_gh_next = "новые в %s",
+		cd_gh_sched = "Новые данные каждый день около %d:%02d по МСК",
 		cd_gh_same = "новых данных пока нет",
 		cd_gh_new = "данные обновлены",
 		cd_tip_gh_refresh = "Данные на GitHub обновляются раз в сутки,\nкнопка только проверит, не вышли ли новые",
@@ -713,7 +732,6 @@ local localization = qLocalization.new({
 		cd_cm_wait = "Загружаю, это займёт несколько минут",
 		cd_cm_why = "В CM мало игр, около %d в день, пары героев дополняются рейтинговыми",
 		cd_cm_why0 = "В CM мало игр, пары героев дополняются рейтинговыми",
-		cd_lang = "ru",
 		cd_upd_failed = "Не удалось обновить",
 		cd_pill_get = "Обновить до %s",
 		cd_pill_down = "Скачиваю %s",
@@ -756,9 +774,10 @@ local localization = qLocalization.new({
 		cd_tip_after = "Потом разобрать в %s",
 		cd_tip_upgrade = "Потом собрать в %s",
 		cd_tip_up_from = "Апгрейд %s",
+		cd_tip_bless = "Съедает Aghanim's Scepter\nи освобождает слот в инвентаре",
 		cd_tip_dis_from = "Разобрать %s и собрать",
 		cd_p_up = "из %s",
-		cd_set_preview = "Предпросмотр панели",
+		cd_set_preview = "Как выглядит",
 		cd_preview_show = "Показать",
 		cd_preview_hide = "Скрыть",
 		cd_tip_preview = "Показывает панель с примером сборки,\nеё можно передвинуть мышью",
@@ -767,15 +786,44 @@ local localization = qLocalization.new({
 		cd_tip_swap_why = "У %s: %s",
 		cd_p_all = "Сборка собрана",
 		cd_tip_skipped = "Пропущен, стоит в конце очереди",
-		cd_set_panel = "Панель сборки в игре",
+		cd_tip_noslot = "Съедается сразу, слот не занимает",
+		cd_p_stash = "Инвентарь полный, в рюкзак",
+		cd_p_sell_left = "После разборки продай",
+		cd_tip_dis_left = "Останется %s, собери из него %s",
+		cd_tip_dis_sell = "Останется %s, его продай",
+		cd_pk_t = "Выбрать этого героя?",
+		cd_pk_ok = "Выбрать",
+		cd_pk_no = "Отмена",
+		cd_pk_dont = "Больше не спрашивать",
+		cd_pk_dont2 = "включить обратно можно в настройках",
+		cd_pk_stage = "Выбрать можно только на стадии пиков",
+		cd_pk_have = "Герой уже выбран",
+		cd_pk_taken = "Этого героя сейчас нельзя взять",
+		cd_pk_fail = "Не получилось выбрать, не твой ход?",
+		cd_set_pick_ask = "Подтверждать выбор героя",
+		cd_set_lanes = "Позиции врагов и линии",
+		cd_tip_lanes = "Значки позиций у врагов, контрпики по своей линии\nвесят больше, предметы вражеских саппортов меньше",
+		cd_nw8_t = "Пик из списка",
+		cd_nw8 = "ПКМ по герою в рекомендациях выбирает его.\nПеред этим скрипт спрашивает подтверждение.",
+		cd_nw9_t = "Покупка с панели сборки",
+		cd_nw9 = "ПКМ по предмету покупает его. Если золота мало, покупает часть.\nShift + ЛКМ ставит в быструю покупку только этот предмет.",
+		cd_nw10_t = "Советы по предметам",
+		cd_nw10 = "Больше не предлагает продать пику ради аганима и брать бабочку\nпротив мкб. Подсказывает, когда разобрать радик.",
+		cd_nw11_t = "Позиции врагов",
+		cd_nw11 = "Позицию врага можно выбрать вручную. Контрпик соперника по линии\nвлияет на совет сильнее, предметы вражеских саппортов слабее.",
 		cd_set_window = "Окно драфта",
-		cd_sec_view = "ОКНО И ПАНЕЛЬ",
+		cd_sec_panel = "ПАНЕЛЬ СБОРКИ В МАТЧЕ",
+		cd_sec_window = "ОБЩЕЕ",
+		cd_set_pmode = "Показывать",
+		cd_pm0 = "Всегда",
+		cd_pm1 = "В магазине",
+		cd_pm2 = "Нет",
+		cd_set_pmode_t = "Панель сборки",
+		cd_pm_note = "Окошко с предметами в матче.\nКрестик на нём прячет его до конца игры",
 		cd_set_pview = "Вид",
 		cd_pview0 = "Полоса",
 		cd_pview1 = "Список",
-		cd_set_pshop = "Только при открытом магазине",
-		cd_set_padapt = "Менять по предметам врагов",
-		cd_set_phide = "Прятать, когда всё собрано",
+		cd_set_padapt = "Подстраивать под предметы врагов",
 		cd_p_title = "Сборка",
 		cd_p_instead = "вместо %s",
 		cd_p_preview = "предпросмотр",
@@ -816,7 +864,7 @@ local cfg = {}
 do
 	local defaults = {
 		source = 0, rank = 2, volume = 1, zoom = 100, bg = 88, blur = 1, tips = 1, auto = 1, debug = 0,
-		panel = 1, pview = 0, pzoom = 100, pshop = 0, padapt = 1, phide = 0,
+		panel = 1, pview = 0, pzoom = 100, pshop = 0, padapt = 1, pick_ask = 1, lanes = 1,
 	}
 	for key, value in pairs(defaults) do
 		cfg[key] = Config.ReadInt("draft_helper", "set_" .. key, value)
@@ -838,7 +886,7 @@ local function log(fmt, ...)
 end
 
 local K = {
-	VERSION = "1.3.0",
+	VERSION = "1.4.0",
 	UPDATE_URL = "https://raw.githubusercontent.com/But3rflys/umbrella-work/main/scripts/draft_helper/version.json",
 	UPDATE_EVERY = 6 * 3600,
 	UPDATE_MIN_SIZE = 50000,
@@ -851,6 +899,7 @@ local K = {
 	},
 	DATA_CHECK = 3 * 3600,
 	DATA_AT = 3 * 3600 + 10 * 60,
+	MSK_SHIFT = 3 * 3600,
 	HEADERS = { ["User-Agent"] = "Umbrella/draft_helper", ["Accept"] = "application/json" },
 	TIMEOUT = 40,
 	RETRY = 60,
@@ -858,7 +907,7 @@ local K = {
 	STUCK = 25,
 	GAP = 1.1,
 	CONFIG = "draft_helper",
-	CACHE_FILE = "draft_helper.dat",
+	CACHE_FILE = "configs\\draft_helper.dat",
 	CACHE_MAGIC = "DHC3",
 	CACHE_KEYS = 6,
 
@@ -905,7 +954,17 @@ local K = {
 		[Enum.GameMode.DOTA_GAMEMODE_AP] = true,
 		[Enum.GameMode.DOTA_GAMEMODE_TURBO] = true,
 		[Enum.GameMode.DOTA_GAMEMODE_ALL_DRAFT] = true,
+		[Enum.GameMode.DOTA_GAMEMODE_SD] = true,
 	},
+	MODE_SD = Enum.GameMode.DOTA_GAMEMODE_SD,
+	GRID = "HeroGrid",
+	GRID_ANCHORS = { "RadiantTeamPlayers", "DireTeamPlayers" },
+	GRID_CARD = "HeroCard",
+	GRID_OFF = "Unavailable",
+	GRID_CARD_UP = 3,
+	GRID_DEPTH = 20,
+	GRID_MIN = 60,
+	SD_OFFER_MAX = 4,
 	PANEL_DEPTH = 14,
 	TEAM_DIRE = Enum.TeamNum.TEAM_DIRE,
 	MATCH_STATES = {
@@ -958,6 +1017,9 @@ local K = {
 	TIP_HOLD = 0.08,
 	TIP_GRACE = 0.3,
 	PAGE_TIME = 0.28,
+	NEWS_IN = 0.26,
+	NEWS_OUT = 0.16,
+	NEWS_SLIDE = 14,
 	PAGE_SLIDE = 10,
 	POP = 0.22,
 	MOVE = 0.18,
@@ -969,6 +1031,8 @@ local K = {
 
 	MOUSE1 = Enum.ButtonCode.KEY_MOUSE1,
 	MOUSE2 = Enum.ButtonCode.KEY_MOUSE2,
+	LSHIFT = Enum.ButtonCode.KEY_LSHIFT,
+	RSHIFT = Enum.ButtonCode.KEY_RSHIFT,
 	WHEEL_UP = Enum.ButtonCode.KEY_MWHEELUP,
 	WHEEL_DOWN = Enum.ButtonCode.KEY_MWHEELDOWN,
 	BACKSPACE = Enum.ButtonCode.KEY_BACKSPACE,
@@ -1056,20 +1120,53 @@ local K = {
 	MORE_COST = 2000,
 	MORE_SHARE = 0.08,
 	MORE_GAP = 300,
+	MORE_POP = 0.2,
 	MORE_MAX = 3,
+	MORE_UP = 0.1,
+	KEEP_MIN = 10,
+	ITEM_THREAT_MIN = 2,
+	MORE_SKIP = { rapier = true, ward_dispenser = true },
+	BLESSING = "ultimate_scepter_2",
 	BOOTS_UP = { "travel_boots", "guardian_greaves", "boots_of_bearing" },
 	SELL_MAX = 2000,
+	SELL_RATIO = 0.5,
+	LANE_W = 0.5,
+	LANE_OPP = {
+		{ [3] = true, [4] = true }, { [2] = true }, { [1] = true, [5] = true },
+		{ [1] = true, [5] = true }, { [3] = true, [4] = true },
+	},
+	SUPPORT_ITEM_W = 0.67,
+	SELL_HARD = 4,
+	SELL_BOOTS = { power_treads = true, phase_boots = true, arcane_boots = true, tranquil_boots = true },
+	SELL_BOOTS_FOR = 3500,
+	SELL_COUNTER = 0.3,
+	BACKPACK = 3,
+	SHARD = "aghanims_shard",
+	SHARD_MOD = "modifier_item_aghanims_shard",
+	CONSUME_SHARE = 0.25,
+	NO_SLOT = { aghanims_shard = true, ultimate_scepter_2 = true },
+	ANTI_HARD = 0.5,
+	ANTI_KEEP = 0.5,
+	INSTEAD = {},
+	INSTEAD_SHARE = 0.05,
+	INSTEAD_COST = 0.6,
+	DIS_SHARE = 0.1,
+	DIS_KEEP = 0.4,
+	PICK_CHECK = 1.5,
+	BUY_GAP = 0.15,
+	TOAST = 2.5,
 	SELL_SKIP = {
 		aegis = true, cheese = true, gem = true, ward_dispenser = true, dust = true, smoke_of_deceit = true,
 		refresher_shard = true, tpscroll = true, boots = true,
 	},
 	CNT_MAX = 30,
 	NEWS = {
-		{ "n", "cd_nw1_t", "cd_nw1" },
-		{ "n", "cd_nw2_t", "cd_nw2" },
-		{ "n", "cd_nw3_t", "cd_nw3" },
-		{ "n", "cd_nw4_t", "cd_nw4" },
-		{ "f", "cd_nw5_t", "cd_nw5" },
+		{ "n", "\u{f245}", "cd_nw8_t", "cd_nw8" },
+		{ "n", "\u{f07a}", "cd_nw9_t", "cd_nw9" },
+		{ "n", "\u{f0e8}", "cd_nw11_t", "cd_nw11" },
+		{ "n", "\u{f005}", "cd_nw0_t", "cd_nw0" },
+		{ "n", "\u{f062}", "cd_nw7_t", "cd_nw7" },
+		{ "f", "\u{f0e7}", "cd_nw10_t", "cd_nw10" },
 	},
 	COVER = 0.8,
 	ENEMY_ITEMS = {},
@@ -1126,6 +1223,7 @@ local P = {
 	SHADE = Color(0, 0, 0, 150),
 	WARN = Color(236, 178, 82, 255),
 	TIP = Color(15, 17, 20, 255),
+	TIP_EDGE = Color(255, 255, 255, 46),
 	CARD = Color(24, 27, 30, 255),
 	WHITE = Color(255, 255, 255, 255),
 	BAN = Color(170, 170, 170, 255),
@@ -1228,16 +1326,17 @@ local W = {
 	snap = false,
 }
 
+local function cheat_path(sub)
+	local dir = Engine.GetCheatDirectory()
+	if not dir:match("[\\/]$") then
+		dir = dir .. "\\"
+	end
+	return dir .. sub
+end
+
 local store, store_save, store_load
 
 do
-	local function cheat_path(name)
-		local dir = Engine.GetCheatDirectory()
-		if not dir:match("[\\/]$") then
-			dir = dir .. "\\"
-		end
-		return dir .. "configs\\" .. name
-	end
 
 	local function read_path(path)
 		local f = io.open(path, "rb")
@@ -1374,6 +1473,14 @@ local function norm(s)
 	return (s:lower():gsub("[^%w]", ""))
 end
 
+local function copy(t)
+	local out = {}
+	for k, v in pairs(t) do
+		out[k] = v
+	end
+	return out
+end
+
 local function set_heroes(list)
 	local heroes = {}
 	D.by_id = {}
@@ -1445,7 +1552,7 @@ local function set_contest(rows)
 end
 
 local function new_set(source)
-	return { source = source, stats = nil, updated = 0, oldest = nil, exhausted = false, gh_key = nil }
+	return { source = source, stats = nil, updated = 0, oldest = nil, gh_key = nil }
 end
 
 D.sets = { [0] = new_set(0), [1] = new_set(1) }
@@ -1534,15 +1641,6 @@ do
 		return ("%d:%d:%d"):format(S.source, rank, target)
 	end
 
-	function GH.next_at()
-		local now = os.time()
-		local t = now - now % 86400 + K.DATA_AT
-		if t <= now then
-			t = t + 86400
-		end
-		return t
-	end
-
 	local function sets()
 		return source() == 1 and { D.sets[0], D.sets[1] } or { D.sets[0] }
 	end
@@ -1612,7 +1710,6 @@ do
 		S.stats, S.gh_key = st, key
 		S.updated = tonumber(meta.time) or 0
 		S.oldest = tonumber(meta.oldest)
-		S.exhausted = true
 		draft.dirty = true
 	end
 
@@ -1626,6 +1723,7 @@ do
 		end
 		K.COUNTERS, K.FIT, K.ANTI = table_of(r.counters), table_of(r.fit), table_of(r.anti)
 		K.ENEMY_ITEMS, K.REACT, K.PHYS_ITEMS = table_of(r.enemy_items), table_of(r.react), table_of(r.phys_items)
+		K.INSTEAD = table_of(r.instead)
 		local must = {}
 		for _, mu in ipairs(table_of(r.must)) do
 			local pos = {}
@@ -1824,11 +1922,7 @@ do
 		if type(src) == "string" and src:sub(1, 1) == "@" and src:lower():find("%.lua$") then
 			return src:sub(2)
 		end
-		local dir = Engine.GetCheatDirectory()
-		if not dir:match("[\\/]$") then
-			dir = dir .. "\\"
-		end
-		return dir .. "scripts\\" .. K.SCRIPT_NAME
+		return cheat_path("scripts\\" .. K.SCRIPT_NAME)
 	end
 
 	local function fail(msg)
@@ -1936,11 +2030,7 @@ do
 	K.VNUM = (tonumber(a) or 0) * 10000 + (tonumber(b) or 0) * 100 + (tonumber(c) or 0)
 	local seen = Config.ReadInt("draft_helper", "seen", 0)
 	if seen < K.VNUM then
-		local dir = Engine.GetCheatDirectory()
-		if not dir:match("[\\/]$") then
-			dir = dir .. "\\"
-		end
-		local f = io.open(dir .. "configs\\" .. K.CACHE_FILE, "rb")
+		local f = io.open(cheat_path(K.CACHE_FILE), "rb")
 		if f then
 			f:close()
 			W.news = true
@@ -2115,7 +2205,7 @@ function M.assign(team, blocked)
 		if i > n then
 			if acc > best then
 				best = acc
-				best_map = { (table.unpack or unpack)(map, 1, n) }
+				best_map = { table.unpack(map, 1, n) }
 			end
 			return
 		end
@@ -2168,30 +2258,13 @@ do
 					cost = tonumber(it.c) or 0,
 					created = tonumber(it.m) == 1,
 					parts = parts,
+					recipe = math.tointeger(tonumber(it.r)),
 				}
 				items[id] = item
 				by_name[item.name] = item
 			end
 		end
 		I.items, I.by_name, I.builds = items, by_name, {}
-	end
-
-	local function buys_rows(list)
-		local rows = {}
-		for _, r in ipairs(list) do
-			rows[#rows + 1] = {
-				p = tonumber(r.p),
-				i = r.i,
-				n = tonumber(r.n) or 0,
-				w = tonumber(r.w) or 0,
-				t = tonumber(r.t) or 0,
-				s = tonumber(r.s) or 0,
-				m = tonumber(r.m) or 0,
-				g = tonumber(r.g) or 0,
-				gw = tonumber(r.gw) or 0,
-			}
-		end
-		return rows
 	end
 
 	local function set_buys(h, list)
@@ -2230,9 +2303,9 @@ do
 				store.blobs["b:" .. key] = nil
 				return nil
 			end
-			set_buys(h, buys_rows(list))
+			set_buys(h, list)
 			I.buys_at[h] = tonumber(meta.time) or 0
-			return rawget(I.buys, h)
+			return I.buys[h]
 		end,
 	})
 
@@ -2335,12 +2408,11 @@ do
 			if type(list) ~= "table" then
 				error(("purchases %d: bad file"):format(h))
 			end
-			local rows = buys_rows(list)
 			I.skip[h] = nil
 			I.buys_at[h] = t
-			set_buys(h, rows)
+			set_buys(h, list)
 			keep_buys(h, text)
-			log("purchases loaded for %d: %d rows", h, #rows)
+			log("purchases loaded for %d: %d rows", h, #list)
 		end)
 	end
 
@@ -2531,7 +2603,7 @@ do
 		local item = cd.item
 		local idx, low
 		for i, sl in ipairs(slots) do
-			if not locked(sl) and not sl.must and not K.BOOTS[sl.item.name] then
+			if not locked(sl) and not sl.must and not sl.pre and not K.BOOTS[sl.item.name] then
 				local ok = true
 				for j, o in ipairs(slots) do
 					if j ~= i and (o.item == item or related(o.item, item) or (not K.BOOTS[o.item.name] and siblings(o.item, item))) then
@@ -2547,16 +2619,13 @@ do
 		if not idx then
 			return nil
 		end
-		local new = {}
-		for k, v in pairs(cd) do
-			new[k] = v
-		end
+		local new = copy(cd)
 		new.replaced, new.drop, new.core = slots[idx].item, nil, nil
 		slots[idx] = new
 		return new
 	end
 
-	function I.must(slots, cands, T, per, them, h, pos, locked)
+	function I.must(slots, cands, per, them, h, pos, locked)
 		local added = {}
 		for _, rule in ipairs(K.MUST) do
 			local threat = rule[1]
@@ -2631,17 +2700,21 @@ do
 		return g > 0 and n / g or 0
 	end
 
-	function I.react(slots, cands, them, seen, h, pos, locked)
+	function I.react(slots, cands, them, seen, h, pos, locked, ew)
 		local added = {}
 		local phys = I.physical(h, pos)
 		for _, rule in ipairs(K.REACT) do
-			local source
+			local source, hits = nil, 0
 			for _, e in ipairs(them) do
 				for _, name in ipairs(rule.items) do
-					if not source and seen[e] and seen[e][name] then
-						source = { e = e, item = name }
+					if seen[e] and seen[e][name] then
+						hits = hits + (ew and ew[e] or 1)
+						source = source or { e = e, item = name }
 					end
 				end
+			end
+			if hits < K.ITEM_THREAT_MIN then
+				source = nil
 			end
 			local covered = false
 			for _, sl in ipairs(slots) do
@@ -2947,7 +3020,7 @@ do
 				picked[#picked + 1] = cd
 			end
 		end
-		I.must(picked, cands, T, per, them, h, pos, function(s)
+		I.must(picked, cands, per, them, h, pos, function(s)
 			return s.core
 		end)
 		table.sort(picked, function(a, b)
@@ -2971,6 +3044,12 @@ do
 		local steps = {}
 		for _, e in ipairs(early) do
 			steps[#steps + 1] = { item = e.item, t = e.t, body = e.body, early = true }
+		end
+		local shard
+		local sr = data.rows[K.SHARD]
+		if sr and I.by_name[K.SHARD] and sr.n / data.g >= K.CONSUME_SHARE then
+			shard = { item = I.by_name[K.SHARD], t = sr.t }
+			steps[#steps + 1] = { item = shard.item, t = shard.t, body = L("cd_tip_noslot") }
 		end
 		for _, cd in ipairs(picked) do
 			if cd.pre then
@@ -3000,7 +3079,7 @@ do
 				spare = { item = item, q = 2, vs = vs_heroes({ invis = 1 }, them, per) }
 			end
 		end
-		local build = { slots = picked, steps = steps, start = start, gold = gold, spare = spare, early = early }
+		local build = { slots = picked, steps = steps, start = start, gold = gold, spare = spare, early = early, shard = shard }
 		I.builds[key] = build
 		return build
 	end
@@ -3068,6 +3147,9 @@ local function used_set()
 		for h in pairs(draft.extra_bans) do
 			set[h] = true
 		end
+		for h in pairs(draft.unavail or {}) do
+			set[h] = true
+		end
 	end
 	return set
 end
@@ -3099,10 +3181,15 @@ function M.summary()
 	return { rows = rows, them = them, sig = table.concat(sig, ",") }
 end
 
-local function hero_score(h, allies, enemies, reasons)
+local function hero_score(h, allies, enemies, reasons, pos)
 	local delta = 0
+	local lane = pos and cfg.lanes == 1 and K.LANE_OPP[pos]
 	for _, e in ipairs(enemies) do
 		local v = M.adv(h, e) * K.ADV_W
+		local ep = lane and (draft.enemy_pos or {})[e]
+		if ep and lane[ep] then
+			v = v * (1 + K.LANE_W)
+		end
 		delta = delta + v
 		if reasons then
 			reasons[#reasons + 1] = { h = e, v = v, t = "vs" }
@@ -3195,7 +3282,7 @@ local function set_manual(i, p)
 	local manual = draft.manual[draft.mode]
 	if p then
 		for j, q in pairs(manual) do
-			if q == p then
+			if q == p and STEPS()[j] and step_team(j) == step_team(i) then
 				manual[j] = nil
 			end
 		end
@@ -3206,8 +3293,8 @@ end
 
 local function recompute()
 	draft.dirty = false
-	local c0 = cur_step()
-	if draft.mode == 1 and c0 and c0 == draft.me and draft.my_role and draft.filter == 0 and not draft.filter_user then
+	local cs = cur_step()
+	if draft.mode == 1 and cs and cs == draft.me and draft.my_role and draft.filter == 0 and not draft.filter_user then
 		draft.filter = draft.my_role
 	end
 	draft.result, draft.chance, draft.slot_pos, draft.vs_cache, draft.summary = nil, nil, {}, {}, nil
@@ -3220,7 +3307,6 @@ local function recompute()
 	end
 	local known_block, unknown, unknown_idx = {}, {}, {}
 	local claim = 0
-	local cs = cur_step()
 	if cs and draft.filter > 0 and STEPS()[cs].kind == "P" and step_team(cs) == 0 then
 		claim = draft.filter
 	end
@@ -3247,6 +3333,27 @@ local function recompute()
 	local _, our_map = M.assign(unknown, claim_block)
 	for j, i in ipairs(unknown_idx) do
 		draft.slot_pos[i] = our_map[j]
+	end
+	draft.enemy_pos = {}
+	if cfg.lanes == 1 then
+		local eblock, eunknown, eunknown_idx = {}, {}, {}
+		for i, step in ipairs(STEPS()) do
+			local h = draft.steps[i]
+			if h and step.kind == "P" and step_team(i) == 1 then
+				local kp = draft.manual[draft.mode][i]
+				if kp and not eblock[kp] then
+					draft.slot_pos[i], draft.enemy_pos[h] = kp, kp
+					eblock[kp] = true
+				else
+					eunknown[#eunknown + 1] = h
+					eunknown_idx[#eunknown_idx + 1] = i
+				end
+			end
+		end
+		local _, emap = M.assign(eunknown, eblock)
+		for j, i in ipairs(eunknown_idx) do
+			draft.slot_pos[i], draft.enemy_pos[eunknown[j]] = emap[j], emap[j]
+		end
 	end
 	if not D.sets[0].stats or not D.heroes then
 		return
@@ -3300,7 +3407,7 @@ local function recompute()
 	end
 	local our_pick = acting == 0 and kind == "P"
 	local our_ban = acting == 0 and kind == "B"
-	local base_fit, base_map = 0, {}
+	local base_fit = 0
 	local lineup, taken, block, rest = {}, {}, {}, allies
 	if draft.filter ~= 0 and acting ~= 0 then
 		draft.filter = 0
@@ -3324,6 +3431,7 @@ local function recompute()
 		if sel > 0 then
 			assign_block[sel] = true
 		end
+		local base_map
 		base_fit, base_map = M.assign(rest, assign_block)
 		for j, p in ipairs(base_map) do
 			lineup[p] = rest[j]
@@ -3339,6 +3447,10 @@ local function recompute()
 	if old then
 		used[old] = nil
 	end
+	local offer = nil
+	if our_pick and (c == draft.me or not draft.me) then
+		offer = draft.offer
+	end
 	local early = #allies + #enemies < 4
 	local pick_no = math.min(5, #allies + 1)
 	local function order_bonus(pos)
@@ -3348,11 +3460,12 @@ local function recompute()
 		return K.ORDER_W * math.log(K.PICK_ORDER[pick_no][pos] / 0.2)
 	end
 	local rows = {}
-	local team = { (table.unpack or unpack)(rest) }
+	local team = { table.unpack(rest) }
 	local slot = #team + 1
 	for _, hero in ipairs(D.heroes) do
 		local h = hero.id
-		if not used[h] and M.games(h) >= K.MIN_GAMES and not (our_pick and #allies >= 5) then
+		local offered = offer and offer[h] and M.games(h) > 0
+		if not used[h] and (offered or not offer and M.games(h) >= K.MIN_GAMES) and not (our_pick and #allies >= 5) then
 			local lp = M.pos(h)
 			local pos, fit, ok = nil, 0, true
 			if our_pick then
@@ -3370,9 +3483,12 @@ local function recompute()
 				pos, fit = sel, lp[sel]
 				ok = math.exp(fit) >= K.POS_MIN
 			end
+			if offered then
+				ok = true
+			end
 			if ok then
 				local reasons = {}
-				local delta = hero_score(h, allies, enemies, reasons)
+				local delta = hero_score(h, allies, enemies, reasons, our_pick and pos or nil)
 				local counter = 0
 				for _, r in ipairs(reasons) do
 					if r.t == "vs" then
@@ -3421,6 +3537,8 @@ local function reset_draft()
 	draft.known_pos, draft.me, draft.my_role, draft.filter_user, draft.sync_sig = {}, nil, nil, false, nil
 	draft.tentative, draft.build_h, draft.summary_sig = {}, nil, nil
 	draft.extra_bans, draft.extra_key = {}, nil
+	draft.offer, draft.offer_key = nil, nil
+	draft.unavail, draft.unavail_key = nil, nil
 	W.counter = nil
 	draft.store[draft.mode], draft.history[draft.mode], draft.target = draft.steps, {}, nil
 	draft.manual[draft.mode] = {}
@@ -3495,8 +3613,6 @@ local function undo()
 	end
 end
 
-local enemy_panel_heroes
-
 local function in_match()
 	local ok, gs = pcall(GameRules.GetGameState)
 	if not ok or not gs or not K.MATCH_STATES[gs] then
@@ -3537,8 +3653,9 @@ local function panel_unit(panel)
 	return D.by_unit[found] and found or nil
 end
 
-local function collect_units(panel, out, seen, depth)
-	if depth > K.PANEL_DEPTH then
+local function walk_portraits(panel, max_depth, on_unit, depth)
+	depth = depth or 0
+	if depth > max_depth then
 		return
 	end
 	local okv, visible = pcall(panel.IsVisible, panel)
@@ -3546,9 +3663,9 @@ local function collect_units(panel, out, seen, depth)
 		return
 	end
 	local unit = panel_unit(panel)
-	if unit and not seen[unit] then
-		seen[unit] = true
-		out[#out + 1] = unit
+	if unit then
+		on_unit(unit, panel)
+		return
 	end
 	local okc, count = pcall(panel.GetChildCount, panel)
 	if not okc or not count then
@@ -3557,23 +3674,127 @@ local function collect_units(panel, out, seen, depth)
 	for i = 0, count - 1 do
 		local okg, child = pcall(panel.GetChild, panel, i)
 		if okg and child then
-			collect_units(child, out, seen, depth + 1)
+			walk_portraits(child, max_depth, on_unit, depth + 1)
 		end
 	end
 end
 
-function enemy_panel_heroes(my_team)
+local function enemy_panel_heroes(my_team)
 	local id = my_team == K.TEAM_DIRE and "RadiantTeamPlayers" or "DireTeamPlayers"
 	local ok, root = pcall(Panorama.GetPanelByName, id, false)
-	local out = {}
+	local out, seen = {}, {}
 	if ok and root then
-		collect_units(root, out, {}, 0)
+		walk_portraits(root, K.PANEL_DEPTH, function(unit)
+			if not seen[unit] then
+				seen[unit] = true
+				out[#out + 1] = unit
+			end
+		end)
 	end
 	if draft.panel_log ~= (ok and root and "found" or "missing") .. #out then
 		draft.panel_log = (ok and root and "found" or "missing") .. #out
 		log("panel %s: %s, heroes: %s", id, (ok and root) and "found" or "missing", table.concat(out, " "))
 	end
 	return out
+end
+
+local function card_open(portrait)
+	local p = portrait
+	for _ = 1, K.GRID_CARD_UP do
+		local ok, parent = pcall(p.GetParent, p)
+		if not ok or not parent then
+			return false
+		end
+		p = parent
+		local okc, is_card = pcall(p.HasClass, p, K.GRID_CARD)
+		if okc and is_card then
+			local oko, off = pcall(p.HasClass, p, K.GRID_OFF)
+			return oko and not off
+		end
+	end
+	return false
+end
+
+local function pick_grid()
+	for _, id in ipairs(K.GRID_ANCHORS) do
+		local ok, anchor = pcall(Panorama.GetPanelByName, id, false)
+		if ok and anchor then
+			local okr, root = pcall(anchor.GetRootParent, anchor)
+			local okf, grid = false, nil
+			if okr and root then
+				okf, grid = pcall(root.FindChildTraverse, root, K.GRID)
+			end
+			if draft.grid_log ~= id .. tostring(okf and grid ~= nil) then
+				draft.grid_log = id .. tostring(okf and grid ~= nil)
+				log("hero grid via %s: %s", id, (okf and grid) and "found" or "missing")
+			end
+			return okf and grid or nil
+		end
+	end
+	local ok, grid = pcall(Panorama.GetPanelByName, K.GRID, false)
+	return ok and grid or nil
+end
+
+local function read_grid()
+	local grid = pick_grid()
+	if not grid then
+		return nil
+	end
+	local out, seen = {}, {}
+	walk_portraits(grid, K.GRID_DEPTH, function(unit, panel)
+		local info = D.by_unit[unit]
+		if info and not seen[info.id] then
+			seen[info.id] = true
+			out[#out + 1] = { h = info.id, open = card_open(panel) }
+		end
+	end)
+	if #out < K.GRID_MIN then
+		return nil
+	end
+	return out
+end
+
+local function hero_names(set)
+	local names = {}
+	for h in pairs(set) do
+		names[#names + 1] = D.by_id[h].name
+	end
+	table.sort(names)
+	return #names > 0 and table.concat(names, ", ") or "none"
+end
+
+local function sd_offer(grid, used)
+	local set, n, off = {}, 0, 0
+	for _, card in ipairs(grid) do
+		if not card.open then
+			off = off + 1
+		elseif not used[card.h] then
+			set[card.h] = true
+			n = n + 1
+		end
+	end
+	if off == 0 then
+		return nil, nil
+	end
+	local detail = ("%d heroes, open: %s"):format(#grid, hero_names(set))
+	if n == 0 or n > K.SD_OFFER_MAX then
+		return nil, detail
+	end
+	return set, detail
+end
+
+local function grid_unavailable(grid)
+	local picked = {}
+	for _, h in pairs(draft.steps) do
+		picked[h] = true
+	end
+	local set = {}
+	for _, card in ipairs(grid) do
+		if not card.open and not picked[card.h] then
+			set[card.h] = true
+		end
+	end
+	return set
 end
 
 local function sync_free()
@@ -3709,6 +3930,30 @@ local function sync_free()
 			changed = true
 		end
 	end
+	local grid = read_grid()
+	if grid and gm ~= K.MODE_SD then
+		local off = grid_unavailable(grid)
+		local key = off and hero_names(off)
+		if key and key ~= draft.unavail_key then
+			draft.unavail, draft.unavail_key = off, key
+			changed = true
+			log("unavailable: %s", key)
+		end
+	end
+	local offer, detail = nil, nil
+	if grid and gm == K.MODE_SD and not draft.steps[draft.me or 0] then
+		offer, detail = sd_offer(grid, used_set())
+	end
+	if not detail and gm == K.MODE_SD and not draft.steps[draft.me or 0] then
+		offer, detail = draft.offer, draft.offer_key
+	end
+	if detail ~= draft.offer_key then
+		draft.offer, draft.offer_key = offer, detail
+		changed = true
+		if detail then
+			log("single draft: %s%s", detail, offer and "" or " (not applied)")
+		end
+	end
 	if changed then
 		draft.dirty = true
 	end
@@ -3735,6 +3980,12 @@ local G = {
 	plan = nil,
 	sig = nil,
 	next_at = 0,
+	T1 = {},
+	anti = {},
+	pack = 0,
+	pack_free = 0,
+	dis = nil,
+	ew = {},
 }
 
 do
@@ -3764,14 +4015,6 @@ do
 			end
 		end
 		return best_p
-	end
-
-	local function copy(cd)
-		local out = {}
-		for k, v in pairs(cd) do
-			out[k] = v
-		end
-		return out
 	end
 
 	local function counter_v(name, T, cover)
@@ -3847,16 +4090,61 @@ do
 		return false
 	end
 
-	local function add_threats(e, T, from, with_items)
+	local function enemy_weights(them)
+		local ew, pos = {}, {}
+		if cfg.lanes ~= 1 then
+			return ew
+		end
+		local rest = {}
+		for _, e in ipairs(them) do
+			for i, step in ipairs(STEPS()) do
+				if draft.steps[i] == e and step.kind == "P" and step_team(i) == 1 and draft.slot_pos[i] then
+					pos[e] = draft.slot_pos[i]
+				end
+			end
+			if not pos[e] then
+				rest[#rest + 1] = e
+			end
+		end
+		local block = {}
+		for _, p in pairs(pos) do
+			block[p] = true
+		end
+		local _, map = M.assign(rest, block)
+		for j, e in ipairs(rest) do
+			pos[e] = map[j]
+		end
+		for _, e in ipairs(them) do
+			ew[e] = (pos[e] or 1) >= 4 and K.SUPPORT_ITEM_W or 1
+		end
+		return ew
+	end
+
+	local function item_threat_counts()
+		local counts = {}
+		for _, e in ipairs(G.them) do
+			for name in pairs(G.seen[e] or {}) do
+				for threat in pairs(K.ENEMY_ITEMS[name] or {}) do
+					counts[threat] = (counts[threat] or 0) + (G.ew[e] or 1)
+				end
+			end
+		end
+		return counts
+	end
+
+	local function add_threats(e, T, from, counts)
 		local t = {}
 		for k, v in pairs(I.threats(e)) do
 			t[k] = v
 		end
-		if with_items then
+		if counts then
 			for name in pairs(G.seen[e] or {}) do
 				for threat, w in pairs(K.ENEMY_ITEMS[name] or {}) do
-					t[threat] = (t[threat] or 0) + w
-					from[#from + 1] = { e = e, item = name, threat = threat, w = w }
+					if (counts[threat] or 0) >= K.ITEM_THREAT_MIN then
+						w = w * (G.ew[e] or 1)
+						t[threat] = (t[threat] or 0) + w
+						from[#from + 1] = { e = e, item = name, threat = threat, w = w }
+					end
 				end
 			end
 		end
@@ -3972,9 +4260,236 @@ do
 		end
 	end
 
-	local function more_items(data, slots)
+	local function contains(item, name, depth)
+		for _, part in ipairs(item.parts) do
+			if part == name then
+				return true
+			end
+			local p = I.by_name[part]
+			if p and depth < 3 and contains(p, name, depth + 1) then
+				return true
+			end
+		end
+		return false
+	end
+
+	local function keep_rate(data, item)
+		local r = data.rows[item.name]
+		if not r or r.n < K.KEEP_MIN then
+			return nil
+		end
+		return (data.fin[item.id] or 0) / r.n
+	end
+
+	local function scepter_in_full_bag()
+		if #G.main < 6 then
+			return false
+		end
+		for _, name in ipairs(G.main) do
+			if name == "ultimate_scepter" then
+				return true
+			end
+		end
+		return false
+	end
+
+	local function needed(slots, it)
+		for _, sl in ipairs(slots) do
+			local items = { sl.item }
+			if sl.after then
+				items[#items + 1] = sl.after.item
+			end
+			for _, p in ipairs(items) do
+				if not owns(p) and contains(p, it.name, 0) then
+					return true
+				end
+			end
+		end
+		return false
+	end
+
+	local function take(bag, name)
+		for j = #bag, 1, -1 do
+			if bag[j] == name then
+				table.remove(bag, j)
+				return
+			end
+		end
+	end
+
+	local function sell_for(slots, bag, item, data)
+		local in_bag = {}
+		for _, name in ipairs(bag) do
+			in_bag[name] = true
+		end
+		local worst, worst_k
+		local function pick(boots)
+			for _, name in ipairs(G.main) do
+				local it = I.by_name[name]
+				if it and in_bag[name] and not K.SELL_SKIP[name] and not K.STACK[name] and it.cost > 0
+					and (boots and K.SELL_BOOTS[name] or not K.BOOTS[name])
+					and it.cost <= K.SELL_MAX and it.cost <= item.cost * K.SELL_RATIO and not needed(slots, it)
+					and counter_v(name, G.T1 or {}, {}) < K.SELL_COUNTER then
+					local k = keep_rate(data, it) or 0
+					if not worst or k < worst_k or (k == worst_k and it.cost < worst.cost) then
+						worst, worst_k = it, k
+					end
+				end
+			end
+		end
+		pick(false)
+		if not worst and #bag >= K.SLOTS and item.cost >= K.SELL_BOOTS_FOR then
+			pick(true)
+		end
+		if not worst then
+			return nil
+		end
+		local d = { name = worst.name, label = worst.label }
+		if G.pack > 0 then
+			G.pack, d.stash = G.pack - 1, true
+		end
+		return d
+	end
+
+	local function replacement(slots, sl, cands, anti)
+		local old = sl.item
+		local function ok(cd)
+			return cd and not cd.drop and cd.item ~= old and not owns(cd.item) and not clash(slots, sl, cd)
+				and (anti[cd.item.name] or 0) < K.ANTI_HARD
+		end
+		for _, name in ipairs(K.INSTEAD[old.name] or {}) do
+			local cd = cands[name]
+			if ok(cd) and cd.share >= K.INSTEAD_SHARE then
+				return copy(cd)
+			end
+		end
+		local best
+		for name, cd in pairs(cands) do
+			if ok(cd) and cd.item.cost >= old.cost * K.INSTEAD_COST and (not K.PHYS_ITEMS[old.name] or K.PHYS_ITEMS[name])
+				and (not best or cd.share > best.share) then
+				best = cd
+			end
+		end
+		return best and copy(best)
+	end
+
+	local function drop_anti(slots, cands, anti, anti_from)
+		for i, sl in ipairs(slots) do
+			local w = anti[sl.item.name] or 0
+			if w >= K.ANTI_HARD and not sl.bought and not owns(sl.item)
+				and progress(sl.item, {}, 0, K.SIGNAL_MIN) < sl.item.cost * K.ANTI_KEEP then
+				local new = replacement(slots, sl, cands, anti)
+				if new then
+					new.swapped, new.from, new.reason = true, sl.item, anti_from[sl.item.name]
+					new.after, new.after_kind = sl.after, sl.after_kind
+					slots[i] = new
+					sl = new
+				end
+			end
+			if sl.after and (anti[sl.after.item.name] or 0) >= K.ANTI_HARD and not owns(sl.after.item) then
+				sl.after = nil
+			end
+		end
+	end
+
+	local function dis_planned(slots, item)
+		for _, sl in ipairs(slots) do
+			if sl.item == item then
+				return sl
+			end
+		end
+		return nil
+	end
+
+	local function disassemble(slots, cands, anti)
+		local kept = G.dis
+		if kept then
+			local from, cd = I.by_name[kept.from], cands[kept.to]
+			local in_main = false
+			for _, name in ipairs(G.main) do
+				if name == kept.from then
+					in_main = true
+				end
+			end
+			if not in_main and from and cd and ((G.owned[kept.part] or 0) > 0 or owns(cd.item)) then
+				local rest = kept.rest and { item = I.by_name[kept.rest], into = kept.into and cands[kept.into] }
+				return { from = from, cd = cd, planned = dis_planned(slots, cd.item), rest = rest and rest.item and rest }
+			end
+		end
+		G.dis = nil
+		local have, seen = {}, {}
+		for _, sl in ipairs(slots) do
+			if sl.after and sl.after_kind == "dis" then
+				return nil
+			end
+			if not seen[sl.item.name] then
+				seen[sl.item.name] = true
+				have[#have + 1] = sl.item.name
+			end
+		end
+		for _, name in ipairs(G.main) do
+			if not seen[name] then
+				seen[name] = true
+				have[#have + 1] = name
+			end
+		end
+		local function free(cd)
+			return cd and not cd.drop and not owns(cd.item) and (anti[cd.item.name] or 0) < K.ANTI_HARD
+				and cd.share >= K.DIS_SHARE
+		end
+		for _, x in ipairs(have) do
+			local it = I.by_name[x]
+			if it and K.DISASSEMBLE[x] and counter_v(x, G.T1 or {}, {}) < K.DIS_KEEP then
+				local best, part
+				for _, cd in pairs(cands) do
+					if free(cd) and cd.item ~= it and not I.related(cd.item, it) then
+						for _, p in ipairs(cd.item.parts) do
+							for _, q in ipairs(it.parts) do
+								if p == q and I.by_name[q] and (not best or cd.share > best.share) then
+									best, part = cd, q
+								end
+							end
+						end
+					end
+				end
+				if best then
+					local rest
+					for _, q in ipairs(it.parts) do
+						local qi = I.by_name[q]
+						if q ~= part and qi and not q:find("^recipe_") and qi.cost >= K.SLOT_MIN_COST then
+							rest = { item = qi }
+							for _, cd in pairs(cands) do
+								if free(cd) and cd ~= best and cd.item ~= it and not I.related(cd.item, it)
+									and cd.share >= K.MORE_SHARE and not I.related(cd.item, best.item) then
+									for _, p in ipairs(cd.item.parts) do
+										if p == q and (not rest.into or cd.share > rest.into.share) then
+											rest.into = cd
+										end
+									end
+								end
+							end
+						end
+					end
+					G.dis = {
+						from = it.name, to = best.item.name, part = part,
+						rest = rest and rest.item.name, into = rest and rest.into and rest.into.item.name,
+					}
+					return { from = it, cd = best, planned = dis_planned(slots, best.item), rest = rest }
+				end
+			end
+		end
+		return nil
+	end
+
+	local function more_items(data, slots, room, bag, dis)
 		local cands = I.collect(data)
 		local last_t, taken = 0, {}
+		if dis then
+			taken[#taken + 1] = dis.cd.item
+			if dis.rest and dis.rest.into then
+				taken[#taken + 1] = dis.rest.into.item
+			end
+		end
 		for _, sl in ipairs(slots) do
 			last_t = math.max(last_t, sl.t or 0, sl.after and sl.after.t or 0)
 			taken[#taken + 1] = sl.item
@@ -4009,7 +4524,7 @@ do
 		local list = {}
 		for _, cd in pairs(cands) do
 			if not cd.drop and cd.item.cost >= K.MORE_COST and cd.share >= K.MORE_SHARE
-				and cd.t >= last_t - K.MORE_GAP and free(cd.item) then
+				and (cd.t >= last_t - K.MORE_GAP or cd.share >= K.MORE_POP) and free(cd.item) and (G.anti[cd.item.name] or 0) < K.ANTI_HARD then
 				list[#list + 1] = { item = cd.item, t = cd.t, share = cd.share }
 			end
 		end
@@ -4024,16 +4539,63 @@ do
 				local r, it = data.rows[name], I.by_name[name]
 				local fits = it and (name == "travel_boots" or I.related(boots, it))
 				if r and fits and name ~= boots.name and not owns(it) and I.share(data, r) >= K.MORE_SHARE then
-					list[#list + 1] = { item = it, t = r.t, share = I.share(data, r), instead = boots }
+					list[#list + 1] = { item = it, t = r.t, share = I.share(data, r), instead = boots, swap = true }
 				end
 			end
 		end
+		local in_plan, offered = {}, {}
+		for _, t in ipairs(taken) do
+			in_plan[t] = true
+		end
+		for _, name in ipairs(bag) do
+			local base = I.by_name[name]
+			local br = data.rows[name]
+			if base and eligible(name, base) and br and br.n > 0 and not K.BOOTS[name] then
+				for _, up in pairs(I.items) do
+					local r = data.rows[up.name]
+					if r and r.n >= K.MORE_UP * br.n and not offered[up] and not in_plan[up] and not K.MORE_SKIP[up.name]
+						and not owns(up) and (G.anti[up.name] or 0) < K.ANTI_HARD then
+						for _, part in ipairs(up.parts) do
+							if part == base.name then
+								offered[up] = true
+								list[#list + 1] = { item = up, t = r.t, share = I.share(data, r), instead = base }
+							end
+						end
+					end
+				end
+			end
+		end
+		local bless = I.by_name[K.BLESSING]
+		if bless and not owns(bless) then
+			local entry
+			for _, mo in ipairs(list) do
+				if mo.item == bless then
+					entry = mo
+				end
+			end
+			if not entry and scepter_in_full_bag() then
+				local r = data.rows[K.BLESSING]
+				entry = { item = bless, t = r and r.t or G.time, instead = I.by_name.ultimate_scepter }
+				list[#list + 1] = entry
+			end
+			if entry then
+				entry.share, entry.frees = 1, true
+			end
+		end
 		table.sort(list, function(a, b)
+			if (a.instead ~= nil) ~= (b.instead ~= nil) then
+				return a.instead ~= nil
+			end
 			if a.share ~= b.share then
 				return a.share > b.share
 			end
 			return a.item.name < b.item.name
 		end)
+		local room_left = room
+		local in_bag = {}
+		for _, name in ipairs(bag) do
+			in_bag[name] = true
+		end
 		local chosen = {}
 		for _, mo in ipairs(list) do
 			local ok = #chosen < K.MORE_MAX
@@ -4043,41 +4605,48 @@ do
 					ok = false
 				end
 			end
+			if ok and (not mo.instead or not (mo.swap or in_bag[mo.instead.name])) then
+				if room_left > 0 then
+					room_left = room_left - 1
+				else
+					mo.sell = sell_for(slots, bag, mo.item, data)
+					if mo.sell then
+						take(bag, mo.sell.name)
+					else
+						ok = false
+					end
+				end
+			end
 			if ok then
 				chosen[#chosen + 1] = mo
+				if mo.frees then
+					room_left = room_left + 1
+				end
 			end
 		end
 		list = chosen
 		table.sort(list, function(a, b)
+			if (a.frees or false) ~= (b.frees or false) then
+				return a.frees == true
+			end
 			return a.t < b.t
 		end)
 		local out = {}
 		for i, mo in ipairs(list) do
 			local d = { name = mo.item.name, label = mo.item.label, cost = mo.item.cost, t = mo.t, more = true }
-			if mo.instead then
+			if mo.swap then
 				d.base, d.kind, d.from = { name = mo.instead.name, label = mo.instead.label }, "up", mo.instead.label
 				d.body = L("cd_tip_swap"):format(mo.instead.label)
+			elseif mo.instead then
+				d.base, d.kind = { name = mo.instead.name, label = mo.instead.label }, "up"
+				d.body = mo.frees and L("cd_tip_bless") or L("cd_tip_up_from"):format(mo.instead.label)
 			else
 				d.body = ""
 			end
+			d.sell = mo.sell
 			out[i] = d
 		end
 		return out
-	end
-
-	local function sell_item()
-		if #G.main < 6 then
-			return nil
-		end
-		local worst
-		for _, name in ipairs(G.main) do
-			local it = I.by_name[name]
-			if it and not K.BOOTS[name] and not K.SELL_SKIP[name] and not K.STACK[name]
-				and it.cost > 0 and it.cost < K.SELL_MAX and (not worst or it.cost < worst.cost) then
-				worst = it
-			end
-		end
-		return worst and { name = worst.name, label = worst.label }
 	end
 
 	function G.compute()
@@ -4094,9 +4663,10 @@ do
 		end
 		local adapt = cfg.padapt == 1
 		local T0, T1, from, per1 = {}, {}, {}, {}
+		local counts = adapt and item_threat_counts() or nil
 		for _, e in ipairs(G.them) do
-			add_threats(e, T0, {}, false)
-			per1[e] = add_threats(e, T1, from, adapt)
+			add_threats(e, T0, {}, nil)
+			per1[e] = add_threats(e, T1, from, counts)
 		end
 		local anti, anti_from = {}, {}
 		if adapt then
@@ -4110,6 +4680,7 @@ do
 				end
 			end
 		end
+		G.T1, G.anti = T1, anti
 		local slots = {}
 		for i, cd in ipairs(base.slots) do
 			slots[i] = copy(cd)
@@ -4121,13 +4692,14 @@ do
 			local function locked(sl)
 				return sl.core or sl.bought or owns(sl.item) or progress(sl.item, {}, 0, K.SIGNAL_MIN) > 0
 			end
-			for _, new in ipairs(I.must(slots, cands, T1, per1, G.them, G.hero, G.bpos, locked)) do
+			for _, new in ipairs(I.must(slots, cands, per1, G.them, G.hero, G.bpos, locked)) do
 				new.swapped, new.from = true, new.replaced
 				new.reason = reason_for(new, from)
 			end
-			for _, new in ipairs(I.react(slots, cands, G.them, G.seen, G.hero, G.bpos, locked)) do
+			for _, new in ipairs(I.react(slots, cands, G.them, G.seen, G.hero, G.bpos, locked, G.ew)) do
 				new.swapped, new.from = true, new.replaced
 			end
+			drop_anti(slots, cands, anti, anti_from)
 			for _, sl in ipairs(slots) do
 				if sl.swapped then
 					local hero = sl.reason and D.by_id[sl.reason.e]
@@ -4142,18 +4714,33 @@ do
 			end
 			return a.item.cost < b.item.cost
 		end)
+		local dis = disassemble(slots, cands, anti)
 		local steps = {}
 		for _, sl in ipairs(slots) do
 			if sl.pre then
 				steps[#steps + 1] = { s = sl, item = sl.pre.item, t = sl.pre.t, pre = true }
 			end
-			steps[#steps + 1] = { s = sl, item = sl.item, t = sl.t, via = sl.pre and sl.pre.item }
+			if dis and dis.planned == sl and not owns(sl.item) then
+				steps[#steps + 1] = { s = sl, item = sl.item, t = sl.t, base = dis.from, kind = "dis", dis = dis }
+			else
+				steps[#steps + 1] = { s = sl, item = sl.item, t = sl.t, via = sl.pre and sl.pre.item }
+			end
 			if sl.after then
 				steps[#steps + 1] = { s = sl, item = sl.after.item, t = sl.after.t, base = sl.item, kind = sl.after_kind }
 			end
 		end
 		for _, e in ipairs(base.early or {}) do
 			steps[#steps + 1] = { item = e.item, t = e.t, early = e }
+		end
+		if base.shard then
+			steps[#steps + 1] = { item = base.shard.item, t = base.shard.t, consume = true }
+		end
+		if dis and not dis.planned then
+			steps[#steps + 1] = { item = dis.cd.item, t = math.max(G.time, dis.cd.t), base = dis.from, kind = "dis", dis = dis }
+		end
+		if dis and dis.rest and dis.rest.into and not dis_planned(slots, dis.rest.into.item) then
+			local into = dis.rest.into
+			steps[#steps + 1] = { item = into.item, t = math.max(G.time, dis.cd.t, into.t) + 1, base = dis.rest.item, kind = "up" }
 		end
 		table.sort(steps, function(a, b)
 			if a.t ~= b.t then
@@ -4162,7 +4749,7 @@ do
 			return (a.base and 1 or 0) < (b.base and 1 or 0)
 		end)
 		local function step_done(st)
-			if st.base or st.pre or st.early then
+			if st.base or st.pre or st.early or st.consume then
 				return owns(st.item)
 			end
 			return st.s.bought or owns(st.item)
@@ -4179,7 +4766,7 @@ do
 			local dep = st.base or st.via
 			st.signal = done and 0 or progress(st.item, {}, 0, K.SIGNAL_MIN, (dep or {}).name)
 			local behind = last_t and st.t + K.SKIP_GAP < last_t
-			if not done and st.signal == 0 and (behind or (dep and gone[dep.name])) then
+			if not done and not st.consume and st.signal == 0 and (behind or (dep and gone[dep.name])) then
 				if not st.early then
 					st.skipped = true
 					skipped[#skipped + 1] = st
@@ -4193,9 +4780,78 @@ do
 			order[#order + 1] = st
 		end
 		steps = order
+		local bag = {}
+		for _, name in ipairs(G.main) do
+			bag[#bag + 1] = name
+		end
+		local room = K.SLOTS - #G.main
+		local bless = I.by_name[K.BLESSING]
+		G.pack = G.pack_free or 0
+		local hard = 0
+		for _, name in ipairs(G.main) do
+			local it = I.by_name[name]
+			if it and (K.BOOTS[name] or it.cost >= K.SLOT_MIN_COST) then
+				hard = hard + 1
+			end
+		end
+		for _, st in ipairs(steps) do
+			if not step_done(st) and not K.NO_SLOT[st.item.name] then
+				local parts = 0
+				if st.dis then
+					parts = 1
+					local had = false
+					for j = #bag, 1, -1 do
+						if not had and bag[j] == st.dis.from.name then
+							table.remove(bag, j)
+							had = true
+						end
+					end
+					local rest = st.dis.rest
+					if rest and rest.into then
+						if had then
+							bag[#bag + 1] = rest.item.name
+						end
+					elseif rest and (had or (G.owned[rest.item.name] or 0) > 0) then
+						st.left = { name = rest.item.name, label = rest.item.label, left = true }
+					end
+				end
+				for j = #bag, 1, -1 do
+					if contains(st.item, bag[j], 0) then
+						table.remove(bag, j)
+						parts = parts + 1
+					end
+				end
+				if parts == 0 then
+					if room > 0 then
+						room = room - 1
+					else
+						st.sell = sell_for(slots, bag, st.item, data)
+						if st.sell then
+							take(bag, st.sell.name)
+						elseif hard < K.SELL_HARD then
+							for j = #bag, 1, -1 do
+								local it = I.by_name[bag[j]]
+								if it and not K.BOOTS[bag[j]] and it.cost < K.SLOT_MIN_COST then
+									table.remove(bag, j)
+									break
+								end
+							end
+						elseif st.item.name == "ultimate_scepter" and bless and not owns(bless) then
+							st.item, st.bless = bless, true
+						else
+							st.no_room = true
+							log("no room for %s: main [%s], bag [%s]", st.item.name, table.concat(G.main, ","), table.concat(bag, ","))
+						end
+					end
+				end
+				if not st.no_room and not st.bless then
+					bag[#bag + 1] = st.item.name
+				end
+			end
+		end
 		local target, target_k
 		for _, st in ipairs(steps) do
-			if not step_done(st) and st.signal > 0 then
+			if not step_done(st) and not st.no_room and st.signal > 0 then
 				local k = st.signal / math.max(1, st.item.cost)
 				if not target or k > target_k then
 					target, target_k = st, k
@@ -4204,7 +4860,7 @@ do
 		end
 		if not target then
 			for _, st in ipairs(steps) do
-				if not target and not step_done(st) then
+				if not target and not step_done(st) and not st.no_room then
 					target = st
 				end
 			end
@@ -4243,9 +4899,17 @@ do
 				lines[1] = st.early.up and L("cd_tip_upgrade"):format(st.early.up.label) or nil
 			elseif st.pre then
 				lines[1] = L("cd_tip_upgrade"):format(s.item.label)
+			elseif st.consume then
+				lines[1] = L("cd_tip_noslot")
 			elseif st.base then
 				d.base, d.kind = { name = st.base.name, label = st.base.label }, st.kind
 				lines[1] = L(st.kind == "up" and "cd_tip_up_from" or "cd_tip_dis_from"):format(st.base.label)
+				local rest = st.dis and st.dis.rest
+				if rest and rest.into then
+					lines[2] = L("cd_tip_dis_left"):format(rest.item.label, rest.into.item.label)
+				elseif rest then
+					lines[2] = L("cd_tip_dis_sell"):format(rest.item.label)
+				end
 			else
 				if s.swapped then
 					d.from = s.from.label
@@ -4263,7 +4927,10 @@ do
 				if st.via then
 					d.base, d.kind = { name = st.via.name, label = st.via.label }, "up"
 				end
-				lines[#lines + 1] = I.body(s)
+				local body = I.body(s)
+				if body ~= "" then
+					lines[#lines + 1] = body
+				end
 			end
 			if st.skipped then
 				lines[#lines + 1] = L("cd_tip_skipped")
@@ -4272,14 +4939,36 @@ do
 			plan.slots[i] = d
 		end
 		plan.complete = plan.next == nil
-		plan.more = more_items(data, slots)
+		plan.more = more_items(data, slots, room, bag, dis)
+		for _, m in ipairs(plan.more) do
+			if m.base and not m.from then
+				for _, d in ipairs(plan.slots) do
+					if d.name == m.base.name then
+						local line = L("cd_tip_upgrade"):format(m.label)
+						d.body = d.body ~= "" and d.body .. "\n" .. line or line
+					end
+				end
+			end
+		end
 		for i, d in ipairs(plan.more) do
 			d.state = "later"
 			if plan.complete and i == 1 then
 				d.state, plan.next = "next", d
 			end
 		end
-		plan.sell = plan.next and sell_item() or nil
+		if target then
+			plan.sell = target.sell or target.left
+		elseif plan.next then
+			plan.sell = plan.next.sell
+		end
+		if hard < K.SELL_HARD then
+			if plan.sell and not plan.sell.left then
+				plan.sell = nil
+			end
+			for _, d in ipairs(plan.more) do
+				d.sell = nil
+			end
+		end
 		return plan
 	end
 
@@ -4306,7 +4995,7 @@ do
 		end
 		local match = tostring(GameRules.GetMatchID())
 		if G.match ~= match then
-			G.match, G.seen, G.plan, G.sig, G.pos_for, G.ever = match, {}, nil, nil, nil, {}
+			G.match, G.seen, G.plan, G.sig, G.pos_for, G.ever, G.dis = match, {}, nil, nil, nil, {}, nil
 		end
 		local team = Entity.GetTeamNum(hero)
 		local them, taken = {}, {}
@@ -4318,23 +5007,23 @@ do
 					them[#them + 1] = ei.id
 					if not Entity.IsDormant(e) then
 						local old = G.seen[ei.id] or {}
-						local now = {}
+						local items = {}
 						for slot = 0, K.ENEMY_INV_LAST do
 							local item = NPC.GetItemByIndex(e, slot)
 							local name = item and item_name(item)
 							if name then
-								now[name] = true
+								items[name] = true
 								if not old[name] and (K.ENEMY_ITEMS[name] or K.ANTI[name]) then
 									log("panel: %s has %s", ei.name, name)
 								end
 							end
 						end
 						for name in pairs(old) do
-							if not now[name] and (K.ENEMY_ITEMS[name] or K.ANTI[name]) then
+							if not items[name] and (K.ENEMY_ITEMS[name] or K.ANTI[name]) then
 								log("panel: %s no longer has %s", ei.name, name)
 							end
 						end
-						G.seen[ei.id] = now
+						G.seen[ei.id] = items
 					end
 				end
 			end
@@ -4347,6 +5036,17 @@ do
 			if name then
 				owned[name] = (owned[name] or 0) + 1
 			end
+		end
+		if next(owned) == nil then
+			G.ever = {}
+		end
+		local oks, scepter = pcall(NPC.HasScepter, hero)
+		if oks and scepter and not owned.ultimate_scepter then
+			owned[K.BLESSING] = 1
+		end
+		local okm, shard = pcall(NPC.HasModifier, hero, K.SHARD_MOD)
+		if okm and shard then
+			owned[K.SHARD] = 1
 		end
 		if G.pos_for ~= info.id then
 			G.pos, G.pos_for = my_pos(info.id), info.id
@@ -4363,6 +5063,13 @@ do
 			end
 		end
 		G.main = main
+		local pack = K.BACKPACK
+		for slot = 6, 5 + K.BACKPACK do
+			if NPC.GetItemByIndex(hero, slot) then
+				pack = pack - 1
+			end
+		end
+		G.pack_free = pack
 		G.hero, G.them, G.owned, G.live, I.want = info.id, them, owned, true, info.id
 		G.bpos = I.bpos[info.id] or G.pos
 		G.time = GameRules.GetDOTATime(true, true)
@@ -4377,6 +5084,13 @@ do
 		table.sort(names)
 		sig[#sig + 1] = table.concat(names, ",")
 		sig[#sig + 1] = "m" .. table.concat(main, ",")
+		sig[#sig + 1] = "p" .. pack .. ":" .. math.floor(G.time / 60)
+		G.ew = enemy_weights(them)
+		local ews = {}
+		for _, e in ipairs(them) do
+			ews[#ews + 1] = e .. "=" .. (G.ew[e] or 1)
+		end
+		sig[#sig + 1] = "w" .. table.concat(ews, ",")
 		for _, e in ipairs(them) do
 			local list = {}
 			for name in pairs(G.seen[e] or {}) do
@@ -4392,7 +5106,8 @@ do
 			G.plan = G.compute()
 			G.sig = G.plan and sig or nil
 			if G.plan then
-				log("panel plan for %d: %d slots", info.id, #G.plan.slots)
+				log("panel plan for %d: %d slots, main [%s], next %s, sell %s", info.id, #G.plan.slots, table.concat(main, ","),
+					G.plan.next and G.plan.next.name or "-", G.plan.sell and G.plan.sell.name or "-")
 			end
 		end
 	end
@@ -4479,6 +5194,202 @@ local function hit_at(cx, cy)
 	return nil
 end
 
+local function owned_value(item, used, depth, whole)
+	local have = (G.owned[item.name] or 0) - (used[item.name] or 0)
+	if have > 0 and not whole then
+		used[item.name] = (used[item.name] or 0) + 1
+		return item.cost
+	end
+	local v = 0
+	if depth < 3 then
+		for _, part in ipairs(item.parts) do
+			local p = I.by_name[part]
+			if p then
+				v = v + owned_value(p, used, depth + 1)
+			end
+		end
+	end
+	return v
+end
+
+local function take_owned(item, used)
+	if (G.owned[item.name] or 0) - (used[item.name] or 0) > 0 then
+		used[item.name] = (used[item.name] or 0) + 1
+		return true
+	end
+	return false
+end
+
+local function full_buy(item, used, out, top)
+	if not top and take_owned(item, used) then
+		return
+	end
+	local parts = {}
+	for _, part in ipairs(item.parts) do
+		local p = I.by_name[part]
+		if p then
+			parts[#parts + 1] = p
+		end
+	end
+	if #parts == 0 then
+		out[#out + 1] = { id = item.id, name = item.name }
+		return
+	end
+	for _, p in ipairs(parts) do
+		full_buy(p, used, out, false)
+	end
+	if item.recipe then
+		out[#out + 1] = { id = item.recipe, name = "recipe_" .. item.name }
+	end
+end
+
+local function buy_list(item, gold, used, out, depth)
+	local probe = {}
+	for k, v in pairs(used) do
+		probe[k] = v
+	end
+	local whole = depth == 0
+	local need = item.cost - owned_value(item, probe, depth, whole)
+	if need <= 0 and not whole then
+		owned_value(item, used, depth)
+		return 0
+	end
+	if need <= gold then
+		full_buy(item, used, out, whole)
+		return math.max(0, need)
+	end
+	if depth >= 3 then
+		return 0
+	end
+	local parts = {}
+	for _, part in ipairs(item.parts) do
+		local p = I.by_name[part]
+		if p then
+			parts[#parts + 1] = p
+		end
+	end
+	table.sort(parts, function(a, b)
+		return a.cost > b.cost
+	end)
+	local spent = 0
+	for _, p in ipairs(parts) do
+		spent = spent + buy_list(p, gold - spent, used, out, depth + 1)
+	end
+	return spent
+end
+
+local function purchase(item)
+	local hero = Heroes.GetLocal()
+	if not hero then
+		return false
+	end
+	local ok, err = pcall(Player.PrepareUnitOrders, Players.GetLocal(), Enum.UnitOrder.DOTA_UNIT_ORDER_PURCHASE_ITEM, nil,
+		Vector(0, 0, 0), item.id, Enum.PlayerOrderIssuer.DOTA_ORDER_ISSUER_HERO_ONLY, hero, false, false, false, true)
+	log("purchase %s (%d): %s", item.name, item.id, ok and "sent" or tostring(err))
+	return ok
+end
+
+local function buy(name)
+	local item = I.by_name and I.by_name[name]
+	if not item then
+		return false
+	end
+	local okg, gold = pcall(Player.GetTotalGold, Players.GetLocal())
+	gold = okg and tonumber(gold) or 0
+	local list = {}
+	buy_list(item, gold, {}, list, 0)
+	if #list == 0 then
+		log("buy %s: nothing to buy, gold %d, cost %d", name, gold, item.cost)
+		return false
+	end
+	local names = {}
+	for _, it in ipairs(list) do
+		names[#names + 1] = it.name
+	end
+	log("buy %s: %s (gold %d, recipe %s)", name, table.concat(names, ", "), gold, tostring(item.recipe))
+	W.buyq, W.buy_at = list, 0
+	return true
+end
+
+local function buy_tick()
+	local q = W.buyq
+	if not q or os.clock() < W.buy_at then
+		return
+	end
+	local it = table.remove(q, 1)
+	if it then
+		purchase(it)
+		W.buy_at = os.clock() + K.BUY_GAP
+	end
+	if #q == 0 then
+		W.buyq = nil
+	end
+end
+
+local function pin(name, only)
+	if not only then
+		local item = I.by_name[name]
+		local ok, info = pcall(Player.GetQuickBuyInfo, Players.GetLocal())
+		for _, id in ipairs(ok and type(info) == "table" and type(info.m_quickBuyItems) == "table" and info.m_quickBuyItems or {}) do
+			if item and id == item.id then
+				return true
+			end
+		end
+	end
+	return pcall(Engine.SetQuickBuy, name, only == true)
+end
+
+local function toast(key)
+	W.toast = { key = key, t = os.clock() }
+end
+
+local function pick_block(h)
+	local ok, gs = pcall(GameRules.GetGameState)
+	if not ok or gs ~= K.HERO_SELECTION then
+		return "cd_pk_stage"
+	end
+	local okd, td = pcall(Player.GetTeamData, Players.GetLocal())
+	if okd and type(td) == "table" and (math.tointeger(tonumber(td.selected_hero_id) or 0) or 0) > 0 then
+		return "cd_pk_have"
+	end
+	for i, x in pairs(draft.steps) do
+		if x == h and not draft.tentative[i] then
+			return "cd_pk_taken"
+		end
+	end
+	if (draft.extra_bans or {})[h] or (draft.unavail or {})[h] or (draft.offer and not draft.offer[h]) then
+		return "cd_pk_taken"
+	end
+	return nil
+end
+
+local function pick(h)
+	local hero = D.by_id[h]
+	local why = hero and pick_block(h)
+	if not hero or why then
+		toast(why or "cd_pk_taken")
+		return
+	end
+	Engine.ExecuteCommand("dota_select_hero " .. hero.unit)
+	W.pick_check = { h = h, at = os.clock() + K.PICK_CHECK }
+	log("pick %s", hero.unit)
+end
+
+local function order_tick()
+	buy_tick()
+	local c = W.pick_check
+	if not c or os.clock() < c.at then
+		return
+	end
+	W.pick_check = nil
+	local okd, td = pcall(Player.GetTeamData, Players.GetLocal())
+	local hid = okd and type(td) == "table" and (math.tointeger(tonumber(td.selected_hero_id) or 0) or 0) or 0
+	if hid ~= c.h then
+		toast("cd_pk_fail")
+		log("pick failed: selected %d", hid)
+	end
+end
+
 local function click(right)
 	local cx, cy = Input.GetCursorPos()
 	local hit = hit_at(cx, cy)
@@ -4492,11 +5403,28 @@ local function click(right)
 	if W.set_gear and kind ~= "set_gear" and not in_rect(W.gear_pop, cx, cy) then
 		W.set_gear = nil
 	end
+	if W.pick and kind ~= "pick_ok" and kind ~= "pick_dont" and kind ~= "pickcard" then
+		W.pick = nil
+		return
+	end
 	if not hit then
 		return
 	end
-	if kind == "pmbg" or kind == "stgbg" or kind == "newsbg" or kind == "smbg" then
+	if kind == "pmbg" or kind == "stgbg" or kind == "newsbg" or kind == "smbg" or kind == "pickcard" then
 		return
+	elseif kind == "pick_ok" then
+		if not right then
+			local p = W.pick
+			W.pick = nil
+			if p.dont then
+				set_cfg("pick_ask", 0)
+			end
+			pick(p.h)
+		end
+	elseif kind == "pick_dont" then
+		if not right then
+			W.pick.dont = not W.pick.dont
+		end
 	elseif kind == "settings" then
 		W.settings = not W.settings
 		W.pos_menu, W.set_gear = nil, nil
@@ -4520,6 +5448,9 @@ local function click(right)
 		W.slider = true
 	elseif kind == "set_toggle" then
 		set_cfg(arg, cfg[arg] == 1 and 0 or 1)
+		if arg == "lanes" then
+			draft.dirty, G.sig = true, nil
+		end
 	elseif kind == "set_refresh" then
 		refresh_data()
 	elseif kind == "upd_install" then
@@ -4540,6 +5471,15 @@ local function click(right)
 			set_manual(W.pos_menu.slot, arg > 0 and arg or nil)
 		end
 		W.pos_menu = nil
+	elseif kind == "set_pmode" then
+		set_cfg("panel", arg == 2 and 0 or 1)
+		if arg == 2 and W.set_gear == "panel" then
+			W.set_gear = nil
+		end
+		if arg < 2 then
+			set_cfg("pshop", arg)
+			W.phidden = nil
+		end
 	elseif kind == "set_pview" then
 		set_cfg("pview", arg)
 	elseif kind == "set_pzoom_up" or kind == "set_pzoom_down" then
@@ -4547,18 +5487,15 @@ local function click(right)
 	elseif kind == "bpos" then
 		I.bpos[arg.h] = arg.p
 	elseif kind == "qbuy" then
-		if not right then
-			local item = I.by_name[arg.name]
-			local ok, info = pcall(Player.GetQuickBuyInfo, Players.GetLocal())
-			local has = false
-			for _, id in ipairs(ok and type(info) == "table" and type(info.m_quickBuyItems) == "table" and info.m_quickBuyItems or {}) do
-				if item and id == item.id then
-					has = true
-				end
-			end
-			if has or pcall(Engine.SetQuickBuy, arg.name, false) then
-				W.qflash = { id = arg.id, t = os.clock() }
-			end
+		local shift = Input.IsKeyDown(K.LSHIFT) or Input.IsKeyDown(K.RSHIFT)
+		local ok
+		if right then
+			ok = buy(arg.name)
+		else
+			ok = pin(arg.name, shift)
+		end
+		if ok then
+			W.qflash = { id = arg.id, t = os.clock() }
 		end
 	elseif kind == "phide" then
 		if W.preview then
@@ -4636,6 +5573,15 @@ local function click(right)
 	elseif kind == "hero" or kind == "row" then
 		if not right then
 			put(arg)
+		elseif kind == "row" then
+			local why = pick_block(arg)
+			if why then
+				toast(why)
+			elseif cfg.pick_ask == 1 then
+				W.pick = { h = arg, dont = false }
+			else
+				pick(arg)
+			end
 		end
 	elseif kind == "pos" then
 		draft.filter = arg
@@ -4678,7 +5624,9 @@ local function type_key(key)
 			put(hero.id)
 		end
 	elseif key == K.ESCAPE then
-		if W.settings then
+		if W.pick then
+			W.pick = nil
+		elseif W.settings then
 			W.settings = false
 		elseif #draft.query > 0 then
 			draft.query = ""
@@ -4786,6 +5734,10 @@ do
 		return hero and image("panorama/images/heroes/icons/" .. hero.unit .. "_png.vtex_c")
 	end
 
+	local function item_img(name)
+		return image("panorama/images/items/" .. name .. "_png.vtex_c")
+	end
+
 	local function px(v)
 		return math.floor(v * s + 0.5)
 	end
@@ -4826,6 +5778,26 @@ do
 
 	local function rect(x0, y0, x1, y1, color, r)
 		Render.FilledRect(Vec2(x0, y0), Vec2(x1, y1), color, r or 0, K.ROUND)
+	end
+
+	local function outline(x0, y0, x1, y1, a, r)
+		rect(x0, y0, x1, y1, fade(P.TIP, a), r)
+		Render.Rect(Vec2(x0, y0), Vec2(x1, y1), fade(P.TIP_EDGE, a), r, K.ROUND, math.max(1, px(1)))
+	end
+
+	local function backdrop(x, y, w, h, a, r)
+		if cfg.blur == 1 then
+			local strength = clamp((a - 0.5) / 0.5, 0, 1)
+			if strength > 0.01 then
+				Render.Blur(Vec2(x, y), Vec2(x + w, y + h), strength, 1.0, r, K.ROUND)
+			end
+		end
+		rect(x, y, x + w, y + h, fade(Color(P.BG.r, P.BG.g, P.BG.b, math.floor(255 * cfg.bg / 100 + 0.5)), a), r)
+	end
+
+	local function set_scale(zoom)
+		local menu_scale = Menu.Scale()
+		s = zoom / 100 * K.BASE_ZOOM * ((menu_scale >= 50 and menu_scale <= 300) and menu_scale / 100 or 1)
 	end
 
 	local function hit(x0, y0, x1, y1, kind, arg)
@@ -4920,10 +5892,6 @@ do
 		Render.Circle(p, r, fade(color, a), thick, (t * 320) % 360, 0.22 + 0.1 * math.sin(t * 2.4), true, 48)
 	end
 
-	local function kilo(n)
-		return ("%dk"):format(math.floor(n / 1000 + 0.5))
-	end
-
 	local function pos_icon(p)
 		return image("panorama/images/rank_tier_icons/handicap/" .. K.POS_ICON[p] .. "icon_psd.vtex_c")
 	end
@@ -5007,7 +5975,7 @@ do
 		if y + h > screen.y - 4 then
 			y = math.floor(t.y0 - px(6) - h)
 		end
-		rect(x, y, x + w, y + h, fade(P.TIP, ta), px(8))
+		outline(x, y, x + w, y + h, ta, px(8))
 		local cy = y + pad_y + px(8)
 		local tx = x + pad_x
 		if t.pos then
@@ -5039,7 +6007,7 @@ do
 			local done, total, job = D.gh.progress()
 			if job then
 				local what = job.kind == "stats"
-					and L(job.S.source == 1 and "cd_gh_cm" or "cd_gh_ranked"):format(kilo(tonumber(job.meta.n) or 0))
+					and L(job.S.source == 1 and "cd_gh_cm" or "cd_gh_ranked"):format(fmt_games(tonumber(job.meta.n) or 0))
 					or L("cd_gh_" .. job.kind)
 				sub = L("cd_ld_step"):format(what, math.min(done + 1, total), total)
 				local wait = D.busy and os.clock() - (D.req_at or 0) or 0
@@ -5102,13 +6070,11 @@ do
 					local pa = a * approach("sp" .. i .. ":" .. pos, 1, 14) * e
 					local size = px(12)
 					local manual = draft.manual[draft.mode][i] ~= nil
-					local bh = approach("bh" .. i, (step_team(i) == 0 and hovered(x, y + h - size - px(5), x + size + px(8), y + h)) and 1 or 0, 20)
+					local bh = approach("bh" .. i, hovered(x, y + h - size - px(5), x + size + px(8), y + h) and 1 or 0, 20)
 					local bg = mix(P.SHADE, P.TIP, math.max(bh, manual and 0.6 or 0))
 					rect(x + px(1), y + h - size - px(3), x + size + px(5), y + h - px(1), fade(bg, pa * 0.9), px(3))
 					draw_pos(pos, x + px(3), y + h - px(2) - size / 2, size, pa)
-					if step_team(i) == 0 then
-						badge = { x, y + h - size - px(5), x + size + px(8), y + h }
-					end
+					badge = { x, y + h - size - px(5), x + size + px(8), y + h }
 				end
 			else
 				if img then
@@ -5165,7 +6131,7 @@ do
 		if y + h > screen.y - 4 then
 			y = math.floor(anchor[2] + W.oy - px(4) - h)
 		end
-		rect(x, y, x + w, y + h, fade(P.TIP, ma), px(8))
+		outline(x, y, x + w, y + h, ma, px(8))
 		if W.pos_menu then
 			hit(x, y, x + w, y + h, "pmbg")
 			W.pm_rect = { x, y, x + w, y + h }
@@ -5534,6 +6500,25 @@ do
 			local tvw = tw(W.fonts.medium, px(11), label)
 			text(W.fonts.medium, px(11), label, c.r - sb - vw / 2 - tvw / 2, cy, fade(P.TEXT, c.a))
 		end
+		local function button(c, cy, id, label, kind, whole_row, icon, on)
+			local bw = tw(W.fonts.medium, px(11), label) + px(24) + (icon and px(8) or 0)
+			local bh = px(22)
+			local x0 = c.r - bw
+			local hx0, hy0, hx1, hy1 = x0, cy - bh / 2, c.r, cy + bh / 2
+			if whole_row then
+				hx0, hy0, hx1, hy1 = c.x0, cy - row_h / 2, c.x1, cy + row_h / 2
+			end
+			local hv = approach(id, ((c.popup or not covered) and hovered(hx0, hy0, hx1, hy1)) and 1 or 0, 20)
+			rect(x0, cy - bh / 2, c.r, cy + bh / 2, fade(on and P.CHIP_ON or mix(P.CELL, P.HOVER, hv), c.a), px(6))
+			local tx = x0 + px(12)
+			if icon then
+				glyph(icon, x0 + px(13), cy, px(10), fade(P.MUTED, c.a))
+				tx = x0 + px(23)
+			end
+			text(W.fonts.medium, px(11), label, tx, cy, fade(P.TEXT, c.a))
+			hit(hx0, hy0, hx1, hy1, kind)
+			return x0, bh
+		end
 		local function gear(c, key, cy)
 			local size = px(20)
 			local on = W.set_gear == key
@@ -5579,8 +6564,13 @@ do
 		seg(C, "st_vol", { "50k", "100k", "200k" }, cfg.volume, "set_vol", vcy)
 		tip("st_vol_tip", left, vy, label_end, vy + row_h, L("cd_set_volume"), L("cd_set_volume_tip"))
 
-		local tx
-		cy, tx = row(C, "\u{f1da}", nil, "info")
+		local iy = C.y
+		local ih = row_h + px(12)
+		C.y = iy + ih
+		cy = iy + ih / 2
+		local l1, l2 = iy + px(13), iy + px(29)
+		local tx = left + px(22)
+		glyph("\u{f1da}", left + px(7), l1, px(11), fade(P.MUTED, a))
 		local S = D.sets[source()]
 		local parts = {}
 		if S.stats then
@@ -5588,59 +6578,43 @@ do
 		end
 		local note = D.gh.note and os.clock() - D.gh.note_at < 5 and L(D.gh.note)
 		parts[#parts + 1] = note or (D.status == "cd_st_gh" and L("cd_upd_loading") or fmt_updated(S.updated))
-		if not note then
-			parts[#parts + 1] = L("cd_gh_next"):format(os.date("%H:%M", D.gh.next_at()))
-		end
 		local lx = tx
 		for n, part in ipairs(parts) do
 			if n > 1 then
-				vline(lx, cy, px(6), a)
+				vline(lx, l1, px(6), a)
 				lx = lx + px(8)
 			end
-			lx = lx + text(W.fonts.regular, px(11), part, lx, cy, fade(P.MUTED, a)) + px(8)
+			lx = lx + text(W.fonts.regular, px(11), part, lx, l1, fade(P.MUTED, a)) + px(8)
 		end
-		local label = L("cd_set_refresh")
-		local bw = tw(W.fonts.medium, px(11), label) + px(32)
-		local bh = px(22)
-		local rb = approach("st_refresh", (not covered and hovered(right - bw, cy - bh / 2, right, cy + bh / 2)) and 1 or 0, 20)
-		rect(right - bw, cy - bh / 2, right, cy + bh / 2, fade(mix(P.CELL, P.HOVER, rb), a), px(6))
-		glyph("\u{f021}", right - bw + px(13), cy, px(10), fade(P.MUTED, a))
-		text(W.fonts.medium, px(11), label, right - bw + px(23), cy, fade(P.TEXT, a))
-		hit(right - bw, cy - bh / 2, right, cy + bh / 2, "set_refresh")
-		tip("st_refresh_tip", right - bw, cy - bh / 2, right, cy + bh / 2, L("cd_set_refresh"), L("cd_tip_gh_refresh"))
+		local msk = (K.DATA_AT + K.MSK_SHIFT) % 86400
+		local utc = K.DATA_AT % 86400
+		text(W.fonts.regular, px(10), L("cd_gh_sched"):format(msk // 3600, msk % 3600 // 60, utc // 3600, utc % 3600 // 60), tx, l2, fade(P.DIM, a))
+		local rbx, rbh = button(C, cy, "st_refresh", L("cd_set_refresh"), "set_refresh", false, "\u{f021}")
+		tip("st_refresh_tip", rbx, cy - rbh / 2, right, cy + rbh / 2, L("cd_set_refresh"), L("cd_tip_gh_refresh"))
 
-		section(C, "cd_sec_view")
+		section(C, "cd_sec_panel")
+		local pm_y = C.y
+		local pcy, _, pm_end = row(C, "\u{f06e}", L("cd_set_pmode"), "pmode")
+		local pm_labels = { L("cd_pm0"), L("cd_pm1"), L("cd_pm2") }
+		local pm_r = C.r
+		if cfg.panel == 1 then
+			pm_r = C.r - gear(C, "panel", pcy) - px(8)
+		end
+		segment("st_pmode", pm_r - segment_width(pm_labels), pcy, pm_labels, cfg.panel ~= 1 and 2 or cfg.pshop, "set_pmode", a)
+		tip("st_pmode_tip", left, pm_y, pm_end, pm_y + row_h, L("cd_set_pmode_t"), L("cd_pm_note"))
+
+		section(C, "cd_sec_window")
 		cy = row(C, "\u{f2d0}", L("cd_set_window"), "win")
 		gear(C, "window", cy)
 		hit(C.x0, cy - row_h / 2, C.r - px(24), cy + row_h / 2, "set_gear", "window")
-		cy = row(C, "\u{f290}", L("cd_set_panel"), "panel")
-		local gs = gear(C, "panel", cy)
-		mini_switch("panel", C.r - gs - px(8), cy, a)
-		hit(C.x0, cy - row_h / 2, C.r - gs - px(4), cy + row_h / 2, "set_toggle", "panel")
-		if cfg.panel == 1 then
-			cy = row(C, "\u{f06e}", L("cd_set_preview"), "preview")
-			local plabel = W.preview and L("cd_preview_hide") or L("cd_preview_show")
-			local pbw = tw(W.fonts.medium, px(11), plabel) + px(24)
-			local pbh = px(22)
-			local pon = W.preview == true
-			local pbx0 = C.r - pbw
-			local phv = approach("st_prev", (not covered and hovered(C.x0, cy - row_h / 2, C.x1, cy + row_h / 2)) and 1 or 0, 20)
-			rect(pbx0, cy - pbh / 2, C.r, cy + pbh / 2, fade(pon and P.CHIP_ON or mix(P.CELL, P.HOVER, phv), a), px(6))
-			text(W.fonts.medium, px(11), plabel, pbx0 + px(12), cy, fade(P.TEXT, a))
-			hit(C.x0, cy - row_h / 2, C.x1, cy + row_h / 2, "set_preview")
-			tip("st_prev", pbx0, cy - pbh / 2, C.r, cy + pbh / 2, L("cd_set_preview"), L("cd_tip_preview"))
-		end
 		toggle(C, "\u{f52b}", "auto", L("cd_set_auto"), "auto")
+		toggle(C, "\u{f058}", "pick_ask", L("cd_set_pick_ask"), "pick_ask")
+		local lane_y = C.y
+		toggle(C, "\u{f0e8}", "lanes", L("cd_set_lanes"), "lanes")
+		tip("st_lanes", left, lane_y, right, lane_y + row_h, L("cd_set_lanes"), L("cd_tip_lanes"))
 		toggle(C, "\u{f188}", "debug", L("cd_set_debug"), "debug")
 		cy = row(C, "\u{f005}", L("cd_set_news"):format(K.VERSION), "news")
-		local nlabel = L("cd_news_open")
-		local nbw = tw(W.fonts.medium, px(11), nlabel) + px(24)
-		local nbh = px(22)
-		local nbx0 = C.r - nbw
-		local nhv = approach("st_news", (not covered and hovered(C.x0, cy - row_h / 2, C.x1, cy + row_h / 2)) and 1 or 0, 20)
-		rect(nbx0, cy - nbh / 2, C.r, cy + nbh / 2, fade(mix(P.CELL, P.HOVER, nhv), a), px(6))
-		text(W.fonts.medium, px(11), nlabel, nbx0 + px(12), cy, fade(P.TEXT, a))
-		hit(C.x0, cy - row_h / 2, C.x1, cy + row_h / 2, "set_news")
+		button(C, cy, "st_news", L("cd_news_open"), "set_news", true)
 
 		Render.PopClip()
 		W.hit_clip = nil
@@ -5658,9 +6632,20 @@ do
 		if ga <= 0.01 or not anchor then
 			return
 		end
-		local rows = g == "window" and 4 or 5
+		local sw = px(24)
+		local fit = g == "window" and {
+			{ "cd_set_scale", px(82) }, { "cd_set_bg", px(100) + px(K.SLIDER_GAP) + tw(W.fonts.medium, px(11), "100%") },
+			{ "cd_set_blur", sw }, { "cd_set_tips", sw },
+		} or {
+			{ "cd_set_pview", segment_width({ L("cd_pview0"), L("cd_pview1") }) }, { "cd_set_scale", px(82) },
+			{ "cd_set_padapt", sw }, { "cd_set_preview", tw(W.fonts.medium, px(11), L("cd_preview_hide")) + px(24) },
+		}
 		local pw = px(280)
-		local ph = px(40) + rows * row_h + px(6)
+		for _, f in ipairs(fit) do
+			pw = math.max(pw, px(34) + tw(W.fonts.regular, px(12), L(f[1])) + px(16) + f[2] + px(12))
+		end
+		pw = math.min(pw, w - px(16))
+		local ph = px(40) + 4 * row_h + px(6)
 		local px1 = x + w - px(8)
 		local px0 = px1 - pw
 		local py = math.floor(anchor[2] + px(4))
@@ -5676,9 +6661,8 @@ do
 		if W.set_gear then
 			W.gear_pop = { px0, py, px1, py + ph }
 		end
-		local title_icon = g == "window" and "\u{f2d0}" or "\u{f290}"
-		glyph(title_icon, px0 + px(19), py + px(17), px(11), fade(P.MUTED, ga))
-		text(W.fonts.semi, px(11), g == "window" and L("cd_set_window") or L("cd_set_panel"), px0 + px(34), py + px(17), fade(P.MUTED, ga))
+		glyph(g == "window" and "\u{f2d0}" or "\u{f290}", px0 + px(19), py + px(17), px(11), fade(P.MUTED, ga))
+		text(W.fonts.semi, px(11), L(g == "window" and "cd_set_window" or "cd_set_pmode_t"), px0 + px(34), py + px(17), fade(P.MUTED, ga))
 		rect(px0 + px(12), py + px(31), px1 - px(12), py + px(31) + math.max(1, px(1)), fade(Color(255, 255, 255, 22), ga))
 		local Q = { l = px0 + px(12), r = px1 - px(12), x0 = px0 + px(4), x1 = px1 - px(4), y = py + px(36), a = ga, popup = true }
 		if g == "window" then
@@ -5705,9 +6689,11 @@ do
 			seg(Q, "st_pview", { L("cd_pview0"), L("cd_pview1") }, cfg.pview, "set_pview", cy)
 			cy = row(Q, "\u{f065}", L("cd_set_scale"), "g_pzoom")
 			stepper(Q, cy, cfg.pzoom, "set_pzoom_up", "set_pzoom_down", "st_pz")
-			toggle(Q, "\u{f54e}", "pshop", L("cd_set_pshop"), "g_pshop")
 			toggle(Q, "\u{f3ed}", "padapt", L("cd_set_padapt"), "g_padapt")
-			toggle(Q, "\u{f070}", "phide", L("cd_set_phide"), "g_phide")
+			cy = row(Q, "\u{f04b}", L("cd_set_preview"), "g_preview")
+			local plabel = W.preview and L("cd_preview_hide") or L("cd_preview_show")
+			local pbx, pbh = button(Q, cy, "st_prev", plabel, "set_preview", true, nil, W.preview)
+			tip("st_prev", pbx, cy - pbh / 2, Q.r, cy + pbh / 2, L("cd_set_preview"), L("cd_tip_preview"))
 		end
 		W.nohit = nohit
 	end
@@ -6008,6 +6994,21 @@ do
 		end
 	end
 
+	local function pos_picker(id, h, pos, x, cy, size, gap, a, have, loaded)
+		local icon = math.floor(size * 0.64 + 0.5)
+		for p = 1, 5 do
+			local bx = x + (p - 1) * (size + gap)
+			local on = pos == p
+			local avail = not loaded or have[p] ~= nil
+			local hv = approach(id .. p, hovered(bx, cy - size / 2, bx + size, cy + size / 2) and 1 or 0, 20)
+			rect(bx, cy - size / 2, bx + size, cy + size / 2, fade(on and P.CHIP_ON or mix(P.CELL, P.HOVER, hv), a), px(6))
+			draw_pos(p, bx + (size - icon) / 2, cy, icon, a * ((avail or on) and 1 or 0.35))
+			hit(bx, cy - size / 2, bx + size, cy + size / 2, "bpos", { h = h, p = p })
+			local body = have[p] and L("cd_tip_bpos"):format(have[p]) or (avail and "" or L("cd_tip_bpos_none"))
+			tip(id .. "t" .. p, bx, cy - size / 2, bx + size, cy + size / 2, L("cd_posT" .. p), body, p)
+		end
+	end
+
 	local SM = {}
 
 	function SM.signed(v)
@@ -6022,7 +7023,7 @@ do
 	end
 
 	function SM.item(name, x, y, w, h, q, a)
-		local img = image("panorama/images/items/" .. name .. "_png.vtex_c")
+		local img = item_img(name)
 		if img then
 			Render.Image(img, Vec2(x, y), Vec2(w, h), fade(P.WHITE, a), px(5), K.ROUND)
 		else
@@ -6048,21 +7049,8 @@ do
 
 	function SM.posbar(h, auto_pos, right, cy, a)
 		local size, gap = px(22), px(3)
-		local have = I.positions(h)
-		local loaded = I.buys[h] ~= nil
-		local pos = I.bpos[h] or auto_pos
 		local x = right - 5 * size - 4 * gap
-		for k = 1, 5 do
-			local bx = x + (k - 1) * (size + gap)
-			local on = pos == k
-			local avail = not loaded or have[k] ~= nil
-			local hv = approach("sbp" .. k, hovered(bx, cy - size / 2, bx + size, cy + size / 2) and 1 or 0, 20)
-			rect(bx, cy - size / 2, bx + size, cy + size / 2, fade(on and P.CHIP_ON or mix(P.CELL, P.HOVER, hv), a), px(6))
-			draw_pos(k, bx + (size - px(14)) / 2, cy, px(14), a * ((avail or on) and 1 or 0.35))
-			hit(bx, cy - size / 2, bx + size, cy + size / 2, "bpos", { h = h, p = k })
-			local body = have[k] and L("cd_tip_bpos"):format(have[k]) or (avail and "" or L("cd_tip_bpos_none"))
-			tip("sbpt" .. k, bx, cy - size / 2, bx + size, cy + size / 2, L("cd_posT" .. k), body, k)
-		end
+		pos_picker("sbp", h, I.bpos[h] or auto_pos, x, cy, size, gap, a, I.positions(h), I.buys[h] ~= nil)
 		return x
 	end
 
@@ -6115,7 +7103,7 @@ do
 			end
 			local mw = text(W.fonts.regular, px(11), msg, tx, by, fade(P.MUTED, ba))
 			if warn then
-				tip("item_err", left, by - px(10), tx + mw, by + px(10), L("cd_tip_err_t"), I.error:sub(1, 80))
+				tip("buys_err", left, by - px(10), tx + mw, by + px(10), L("cd_tip_err_t"), I.error:sub(1, 80))
 			end
 			return by + px(20)
 		end
@@ -6155,7 +7143,7 @@ do
 				local bh = math.floor(bs * 0.73 + 0.5)
 				local bx, byy = x0 + sw - bs + px(6), y0 - px(6)
 				rect(bx - ring, byy - ring, bx + bs + ring, byy + bh + ring, fade(P.BG, ia), px(5))
-				local img = image("panorama/images/items/" .. src_item.name .. "_png.vtex_c")
+				local img = item_img(src_item.name)
 				if img then
 					Render.Image(img, Vec2(bx, byy), Vec2(bs, bh), fade(P.WHITE, ia), px(3), K.ROUND)
 				end
@@ -6328,7 +7316,7 @@ do
 		local screen = Render.ScreenSize()
 		local x = math.floor(clamp(menu.x + W.ox + px(2), 4, screen.x - w - 4))
 		local y = math.floor(clamp(menu.y + W.oy + px(2), 4, screen.y - h - 4))
-		rect(x, y, x + w, y + h, fade(P.TIP, ma), px(8))
+		outline(x, y, x + w, y + h, ma, px(8))
 		if W.slot_menu then
 			hit(x, y, x + w, y + h, "smbg")
 			W.pm_rect = { x, y, x + w, y + h }
@@ -6425,50 +7413,165 @@ do
 		SB.bar("list", x + w - px(1), ly0, ly1, scroll, lmax, a)
 	end
 
+	function SM.pick(x, y, w, h, a)
+		local p = W.pick
+		local k = approach("pick_k", p and 1 or 0, 18)
+		if p then
+			W.pick_last = p
+		end
+		p = p or W.pick_last
+		local pa = k * a
+		if pa <= 0.01 or not p then
+			return
+		end
+		rect(x, y, x + w, y + h, fade(Color(6, 7, 8, 150), pa), px(K.RADIUS))
+		if W.pick then
+			hit(x, y, x + w, y + h, "pickbg")
+		end
+		local cw, ch, pad = px(340), px(168), px(20)
+		local cx0 = math.floor(x + (w - cw) / 2)
+		local cy0 = math.floor(y + (h - ch) / 2 + (1 - k) * px(K.NEWS_SLIDE))
+		rect(cx0, cy0, cx0 + cw, cy0 + ch, fade(P.CARD, pa), px(12))
+		if W.pick then
+			hit(cx0, cy0, cx0 + cw, cy0 + ch, "pickcard")
+		end
+		local iw, ih = px(88), px(50)
+		local img = portrait(p.h)
+		if img then
+			Render.Image(img, Vec2(cx0 + pad, cy0 + pad), Vec2(iw, ih), fade(P.WHITE, pa), px(6), K.ROUND)
+		end
+		local hero = D.by_id[p.h]
+		local tx = cx0 + pad + iw + px(14)
+		text(W.fonts.medium, px(12), L("cd_pk_t"), tx, cy0 + pad + px(13), fade(P.MUTED, pa))
+		text(W.fonts.bold, px(16), hero and hero.name or "?", tx, cy0 + pad + px(35), fade(P.TEXT, pa))
+		local cxm, cym = Input.GetCursorPos()
+		local function over(x0, y0, x1, y1)
+			return W.pick and cxm >= x0 and cxm <= x1 and cym >= y0 and cym <= y1
+		end
+		local by = cy0 + px(92)
+		local box = px(14)
+		local lw = tw(W.fonts.regular, px(12), L("cd_pk_dont"))
+		local dx1 = cx0 + pad + box + px(8) + lw
+		local dhv = approach("pick_dh", over(cx0 + pad - px(4), by - px(10), dx1 + px(4), by + px(10)) and 1 or 0, 20)
+		rect(cx0 + pad, by - box / 2, cx0 + pad + box, by + box / 2,
+			fade(p.dont and P.CHIP_ON or mix(P.CELL, P.HOVER, dhv), pa), px(4))
+		if p.dont then
+			glyph("\u{f00c}", cx0 + pad + box / 2, by, px(9), fade(P.TEXT, pa))
+		end
+		text(W.fonts.regular, px(12), L("cd_pk_dont"), cx0 + pad + box + px(8), by, fade(mix(P.MUTED, P.TEXT, dhv), pa))
+		if W.pick then
+			hit(cx0 + pad - px(4), by - px(10), dx1 + px(4), by + px(10), "pick_dont")
+		end
+		if p.dont then
+			text(W.fonts.regular, px(10), L("cd_pk_dont2"), cx0 + pad + box + px(8), by + px(16), fade(P.DIM, pa))
+		end
+		local bh = px(28)
+		local by1 = cy0 + ch - px(16)
+		local bx1 = cx0 + cw - pad
+		for n, b in ipairs({ { "pick_ok", L("cd_pk_ok"), true }, { "pick_no", L("cd_pk_no"), false } }) do
+			local bw = tw(W.fonts.semi, px(12), b[2]) + px(32)
+			local bx0 = bx1 - bw
+			local bhv = approach("pick_b" .. n, over(bx0, by1 - bh, bx1, by1) and 1 or 0, 20)
+			local base = b[3] and P.CHIP_ON or P.CELL
+			rect(bx0, by1 - bh, bx1, by1, fade(mix(base, Color(255, 255, 255, 60), bhv), pa), px(7))
+			text(W.fonts.semi, px(12), b[2], bx0 + px(16), by1 - bh / 2, fade(P.TEXT, pa))
+			if W.pick then
+				hit(bx0, by1 - bh, bx1, by1, b[1])
+			end
+			bx1 = bx0 - px(8)
+		end
+	end
+
+	function SM.toast(x, y, w, h, a)
+		local t = W.toast
+		if not t then
+			return
+		end
+		local age = os.clock() - t.t
+		if age > K.TOAST then
+			W.toast = nil
+			return
+		end
+		local ta = a * clamp(math.min(age / 0.15, (K.TOAST - age) / 0.3), 0, 1)
+		local label = L(t.key)
+		local bw, bh = tw(W.fonts.medium, px(12), label) + px(44), px(32)
+		local bx0 = math.floor(x + (w - bw) / 2)
+		local by0 = y + h - bh - px(18)
+		outline(bx0, by0, bx0 + bw, by0 + bh, ta, px(8))
+		glyph("\u{f05a}", bx0 + px(16), by0 + bh / 2, px(11), fade(P.WARN, ta))
+		text(W.fonts.medium, px(12), label, bx0 + px(28), by0 + bh / 2, fade(P.TEXT, ta))
+	end
+
 	function SM.news(x, y, w, h, a)
-		local na = approach("news_a", W.news and 1 or 0, 12) * a
+		local k = W.news_k or 0
+		if W.news then
+			k = math.min(1, k + dt / K.NEWS_IN)
+		else
+			k = math.max(0, k - dt / K.NEWS_OUT)
+		end
+		W.news_k = k
+		local na = k * k * (3 - 2 * k) * a
 		if na <= 0.01 then
 			return
 		end
+		local slide = math.floor((1 - ease(k)) * px(K.NEWS_SLIDE) + 0.5)
 		rect(x, y, x + w, y + h, fade(Color(6, 7, 8, 150), na), px(K.RADIUS))
 		if W.news then
 			hit(x, y, x + w, y + h, "newsbg")
 		end
-		local line_h = px(17)
-		local body_h = 0
-		for _, note in ipairs(K.NEWS) do
-			local _, breaks = L(note[3]):gsub("\n", "")
-			body_h = body_h + (breaks + 1) * line_h + px(9)
+		local cw = px(480)
+		local pad = px(20)
+		local tile = px(28)
+		local function walk(cx0, y0, draw)
+			local ny, kind = y0, nil
+			for _, note in ipairs(K.NEWS) do
+				local col = note[1] == "n" and P.GOOD or P.WARN
+				if note[1] ~= kind then
+					kind = note[1]
+					ny = ny + px(10)
+					if draw then
+						local sw = text(W.fonts.semi, px(10), L(kind == "n" and "cd_news_new" or "cd_news_fix"), cx0 + pad, ny, fade(col, na))
+						rect(cx0 + pad + sw + px(8), ny, cx0 + cw - pad, ny + math.max(1, px(1)), fade(P.LINE, na))
+					end
+					ny = ny + px(14)
+				elseif draw then
+					rect(cx0 + pad + tile + px(12), ny, cx0 + cw - pad, ny + math.max(1, px(1)), fade(P.LINE, na))
+				end
+				local lines = {}
+				if note[4] then
+					for line in (L(note[4]) .. "\n"):gmatch("(.-)\n") do
+						lines[#lines + 1] = line
+					end
+				end
+				local iy = ny + px(8)
+				local ih = #lines > 0 and px(21) + #lines * px(15) or tile
+				if draw then
+					rect(cx0 + pad, iy, cx0 + pad + tile, iy + tile, fade(Color(col.r, col.g, col.b, 34), na), px(7))
+					glyph(note[2], cx0 + pad + tile / 2, iy + tile / 2, px(12), fade(col, na))
+					local tx = cx0 + pad + tile + px(12)
+					text(W.fonts.semi, px(12), L(note[3]), tx, #lines > 0 and iy + px(7) or iy + tile / 2, fade(P.TEXT, na))
+					for n, line in ipairs(lines) do
+						text(W.fonts.regular, px(11), line, tx, iy + px(14) + n * px(15), fade(P.MUTED, na))
+					end
+				end
+				ny = iy + math.max(ih, tile) + px(8)
+			end
+			return ny - y0
 		end
-		local cw = px(430)
-		local ch = px(66) + body_h + px(50)
+		local ch = px(48) + walk(0, 0, false) + px(58)
 		local cx0 = math.floor(x + (w - cw) / 2)
-		local cy0 = math.floor(y + (h - ch) / 2 + px(10))
+		local cy0 = math.floor(y + (h - ch) / 2 + px(10)) + slide
 		rect(cx0, cy0, cx0 + cw, cy0 + ch, fade(P.CARD, na), px(12))
 		local hy = cy0 + px(28)
-		rect(cx0 + px(20), hy - px(13), cx0 + px(46), hy + px(13), fade(P.CHIP_ON, na), px(7))
-		glyph("\u{f005}", cx0 + px(33), hy, px(11), fade(P.GOOD, na))
-		text(W.fonts.bold, px(14), L("cd_news_t"), cx0 + px(56), hy, fade(P.TEXT, na))
-		local ver = L("cd_news_ver"):format(K.VERSION)
-		text(W.fonts.regular, px(11), ver, cx0 + cw - px(20) - tw(W.fonts.regular, px(11), ver), hy, fade(P.MUTED, na))
-		text(W.fonts.regular, px(11), L("cd_news_sub"), cx0 + px(56), hy + px(19), fade(P.DIM, na))
-		local ny = cy0 + px(74)
-		for _, note in ipairs(K.NEWS) do
-			local col = note[1] == "n" and P.GOOD or P.WARN
-			rect(cx0 + px(22), ny - px(3), cx0 + px(28), ny + px(3), fade(col, na), px(3))
-			local tx = cx0 + px(38)
-			local first = true
-			for line in (L(note[3]) .. "\n"):gmatch("(.-)\n") do
-				local lx = tx
-				if first then
-					lx = lx + text(W.fonts.semi, px(12), L(note[2]), lx, ny, fade(P.TEXT, na)) + px(5)
-					first = false
-				end
-				text(W.fonts.regular, px(12), line, lx, ny, fade(P.MUTED, na))
-				ny = ny + line_h
-			end
-			ny = ny + px(9)
-		end
+		local tw0 = text(W.fonts.bold, px(15), L("cd_news_t"), cx0 + pad, hy, fade(P.TEXT, na))
+		local ver = K.VERSION
+		local vx = cx0 + pad + tw0 + px(10)
+		local vw = tw(W.fonts.semi, px(11), ver) + px(14)
+		rect(vx, hy - px(10), vx + vw, hy + px(10), fade(Color(P.GOOD.r, P.GOOD.g, P.GOOD.b, 34), na), px(6))
+		text(W.fonts.semi, px(11), ver, vx + px(7), hy, fade(P.GOOD, na))
+		local date = L("cd_news_date")
+		text(W.fonts.regular, px(11), date, cx0 + cw - pad - tw(W.fonts.regular, px(11), date), hy, fade(P.DIM, na))
+		walk(cx0, cy0 + px(48), true)
 		local label = L("cd_news_ok")
 		local bw, bh = tw(W.fonts.semi, px(12), label) + px(32), px(28)
 		local bx1, by1 = cx0 + cw - px(20), cy0 + ch - px(16)
@@ -6629,7 +7732,6 @@ do
 						draw_comp(row, nx, top_cy + px(27), max_x, ra)
 					end
 					Render.PopClip()
-					local vy0, vy1 = math.max(ry, ly0), math.min(ry + row_h, ly1)
 					if vy1 > vy0 then
 						hit(lx0, vy0, lx1, vy1, "row", row.h)
 					end
@@ -6639,7 +7741,6 @@ do
 			Render.PopClip()
 			SB.bar("list", x + w - px(1), ly0, ly1, scroll, lmax, a)
 		end
-
 	end
 
 	local function draw_list(x, y, w, h, a)
@@ -6740,12 +7841,8 @@ do
 		return D0
 	end
 
-	function PN.item_img(name)
-		return image("panorama/images/items/" .. name .. "_png.vtex_c")
-	end
-
 	function PN.slot(d, x, y, w, h, a)
-		local img = PN.item_img(d.name)
+		local img = item_img(d.name)
 		if img then
 			Render.Image(img, Vec2(x, y), Vec2(w, h), fade(P.WHITE, a), px(4), K.ROUND)
 		else
@@ -6771,7 +7868,7 @@ do
 			local bh = math.floor(bw * 0.73 + 0.5)
 			local bx, by = x + w - bw + px(6), y - px(6)
 			rect(bx - ring, by - ring, bx + bw + ring, by + bh + ring, fade(P.BG, a), px(5))
-			local src = PN.item_img(d.base.name)
+			local src = item_img(d.base.name)
 			if src then
 				Render.Image(src, Vec2(bx, by), Vec2(bw, bh), fade(P.WHITE, a), px(3), K.ROUND)
 			end
@@ -6782,16 +7879,6 @@ do
 		if plan ~= PN.DEMO and plan ~= PN.NONE then
 			SM.qbuy("p" .. id, name, x0, y0, x1, y1, a, r)
 		end
-	end
-
-	function PN.back(x, y, w, h, a)
-		if cfg.blur == 1 then
-			local strength = clamp((a - 0.5) / 0.5, 0, 1)
-			if strength > 0.01 then
-				Render.Blur(Vec2(x, y), Vec2(x + w, y + h), strength, 1.0, px(10), K.ROUND)
-			end
-		end
-		rect(x, y, x + w, y + h, fade(Color(P.BG.r, P.BG.g, P.BG.b, math.floor(255 * cfg.bg / 100 + 0.5)), a), px(10))
 	end
 
 	function PN.head(plan, x, y, w, a)
@@ -6825,29 +7912,11 @@ do
 		tip("phide", bx0, hy - size / 2, bx1, hy + size / 2, L("cd_p_hide_t"), L("cd_p_hide"))
 	end
 
-	function PN.roles_w(size)
-		return 5 * size + 4 * px(4)
-	end
-
 	function PN.roles(plan, x, cy, size, a)
-		local gap = px(4)
 		local hero = plan.hero
 		local demo = plan == PN.DEMO or plan == PN.NONE
 		local have = demo and not I.buys[hero] and { [1] = 400 } or I.positions(hero)
-		local loaded = demo or I.buys[hero] ~= nil
-		for p = 1, 5 do
-			local bx = x + (p - 1) * (size + gap)
-			local on = plan.pos == p
-			local avail = not loaded or have[p] ~= nil
-			local hv = approach("pr" .. p, hovered(bx, cy - size / 2, bx + size, cy + size / 2) and 1 or 0, 20)
-			rect(bx, cy - size / 2, bx + size, cy + size / 2, fade(on and P.CHIP_ON or mix(P.CELL, P.HOVER, hv), a), px(6))
-			local icon = math.floor(size * 0.64 + 0.5)
-			draw_pos(p, bx + (size - icon) / 2, cy, icon, a * ((avail or on) and 1 or 0.35))
-			hit(bx, cy - size / 2, bx + size, cy + size / 2, "bpos", { h = hero, p = p })
-			local body = have[p] and L("cd_tip_bpos"):format(have[p]) or (avail and "" or L("cd_tip_bpos_none"))
-			tip("pr" .. p, bx, cy - size / 2, bx + size, cy + size / 2, L("cd_posT" .. p), body, p)
-		end
-		return PN.roles_w(size)
+		pos_picker("pr", hero, plan.pos, x, cy, size, px(4), a, have, demo or I.buys[hero] ~= nil)
 	end
 
 	function PN.start_fit(plan, avail, max_w)
@@ -6885,7 +7954,7 @@ do
 		if measure then
 			return w, h
 		end
-		PN.back(x, y, w, h, a)
+		backdrop(x, y, w, h, a, px(10))
 		PN.head(plan, x, y, w, a)
 		local pl = plan.pos and L("cd_acc" .. plan.pos) or "?"
 		text(W.fonts.medium, px(12), L("cd_build_nopos"):format(pl), x + px(12), y + px(46), fade(P.TEXT, a))
@@ -6902,13 +7971,14 @@ do
 		local bh = px(28)
 		rect(x, y, x + w, y + bh, fade(P.CELL, a), px(7))
 		local iw, ih = px(30), px(22)
-		local img = PN.item_img(sell.name)
+		local img = item_img(sell.name)
 		if img then
 			Render.Image(img, Vec2(x + px(4), y + (bh - ih) / 2), Vec2(iw, ih), fade(P.WHITE, a), px(3), K.ROUND)
 		end
 		local cy = y + bh / 2
 		local tx = x + px(4) + iw + px(8)
-		tx = tx + text(W.fonts.regular, px(11), L("cd_p_sell"), tx, cy, fade(P.MUTED, a)) + px(4)
+		local label = L(sell.stash and "cd_p_stash" or (sell.left and "cd_p_sell_left" or "cd_p_sell"))
+		tx = tx + text(W.fonts.regular, px(11), label, tx, cy, fade(P.MUTED, a)) + px(4)
 		text(W.fonts.semi, px(11), sell.label, tx, cy, fade(P.TEXT, a))
 	end
 
@@ -6930,7 +8000,7 @@ do
 		if measure then
 			return w, h
 		end
-		PN.back(x, y, w, h, a)
+		backdrop(x, y, w, h, a, px(10))
 		PN.head(plan, x, y, w, a)
 		if has_start then
 			PN.start(plan, x + pad, y + px(48), w - pad * 2, a)
@@ -7006,7 +8076,7 @@ do
 		if measure then
 			return w, h
 		end
-		PN.back(x, y, w, h, a)
+		backdrop(x, y, w, h, a, px(10))
 		PN.head(plan, x, y, w, a)
 		if has_start then
 			PN.start(plan, x + px(12), y + px(48), w - px(24), a)
@@ -7042,7 +8112,7 @@ do
 			shop = ok and open == true
 		end
 		local show = cfg.panel == 1 and plan ~= nil
-			and (preview or (G.live and shop and W.phidden ~= G.match and not (cfg.phide == 1 and plan.complete)))
+			and (preview or (G.live and shop and W.phidden ~= G.match))
 		local pa = approach("panel_a", show and 1 or 0, 12)
 		if show then
 			W.pplan = plan
@@ -7053,8 +8123,7 @@ do
 			return
 		end
 		ensure_fonts()
-		local menu_scale = Menu.Scale()
-		s = cfg.pzoom / 100 * K.BASE_ZOOM * ((menu_scale >= 50 and menu_scale <= 300) and menu_scale / 100 or 1)
+		set_scale(cfg.pzoom)
 		local draw = plan.none and PN.none or (cfg.pview == 1 and PN.list or PN.strip)
 		local w, h = draw(plan, 0, 0, pa, true)
 		local screen = Render.ScreenSize()
@@ -7114,6 +8183,9 @@ do
 		end
 		if W.vis <= 0 then
 			W.drag = false
+			if not open then
+				W.pick = nil
+			end
 			return
 		end
 		W.snap = was <= 0
@@ -7129,8 +8201,7 @@ do
 		if key ~= W.step_c then
 			W.step_c, W.step_t = key, os.clock()
 		end
-		local menu_scale = Menu.Scale()
-		s = cfg.zoom / 100 * K.BASE_ZOOM * ((menu_scale >= 50 and menu_scale <= 300) and menu_scale / 100 or 1)
+		set_scale(cfg.zoom)
 		local screen = Render.ScreenSize()
 		W.w = px(K.W)
 		W.h = px(K.HEAD_H) + px(K.MAIN_H)
@@ -7157,18 +8228,9 @@ do
 		local a = W.vis * W.vis * (3 - 2 * W.vis)
 		local slide = open and (1 - ease(W.vis)) or (1 - W.vis)
 		local x, y, w, h = math.floor(W.x), math.floor(W.y + slide * px(K.SLIDE)), W.w, W.h
-		W.news_block = W.news and { x, y, x + w, y + h } or nil
+		W.news_block = (W.news or W.pick) and { x, y, x + w, y + h } or nil
 		W.ox, W.oy = x, y
-		local r = px(K.RADIUS)
-		local p0, p1 = Vec2(x, y), Vec2(x + w, y + h)
-		if cfg.blur == 1 then
-			local strength = clamp((a - 0.5) / 0.5, 0, 1)
-			if strength > 0.01 then
-				Render.Blur(p0, p1, strength, 1.0, r, K.ROUND)
-			end
-		end
-		local bg = Color(P.BG.r, P.BG.g, P.BG.b, math.floor(255 * cfg.bg / 100 + 0.5))
-		Render.FilledRect(p0, p1, fade(bg, a), r, K.ROUND)
+		backdrop(x, y, w, h, a, px(K.RADIUS))
 
 		draw_header(x, y, w, a)
 		local my = y + px(K.HEAD_H)
@@ -7183,6 +8245,8 @@ do
 		draw_pos_menu(a)
 		SM.slot_menu(a)
 		SM.news(x, y, w, h, a)
+		SM.pick(x, y, w, h, a)
+		SM.toast(x, y, w, h, a)
 		W.snap = false
 	end
 end
@@ -7223,6 +8287,15 @@ local function poll_keys()
 end
 
 local script = {}
+local errors = {}
+
+local function guarded(label, fn)
+	local ok, err = pcall(fn)
+	if not ok and tostring(err) ~= errors[label] then
+		errors[label] = tostring(err)
+		Log.Write("[Draft Helper] " .. label .. ": " .. errors[label])
+	end
+end
 
 function script.OnUpdateEx()
 	if not ui.enable:Get() then
@@ -7237,59 +8310,20 @@ function script.OnUpdateEx()
 		end
 		W.auto = false
 	end
-	local ok, err = pcall(poll_keys)
-	if not ok and tostring(err) ~= W.poll_error then
-		W.poll_error = tostring(err)
-		Log.Write("[Draft Helper] keys: " .. W.poll_error)
-	end
-	ok, err = pcall(data_tick)
-	if not ok and tostring(err) ~= D.tick_error then
-		D.tick_error = tostring(err)
-		Log.Write("[Draft Helper] data: " .. D.tick_error)
-	end
-	ok, err = pcall(U.tick)
-	if not ok and tostring(err) ~= W.upd_error then
-		W.upd_error = tostring(err)
-		Log.Write("[Draft Helper] updater: " .. W.upd_error)
-	end
-	ok, err = pcall(I.tick)
-	if not ok and tostring(err) ~= I.tick_error then
-		I.tick_error = tostring(err)
-		Log.Write("[Draft Helper] items: " .. I.tick_error)
-	end
-	ok, err = pcall(G.tick)
-	if not ok and tostring(err) ~= G.tick_error then
-		G.tick_error = tostring(err)
-		Log.Write("[Draft Helper] panel: " .. G.tick_error)
-	end
-	ok, err = pcall(sync_free)
-	if not ok and tostring(err) ~= D.sync_error then
-		D.sync_error = tostring(err)
-		Log.Write("[Draft Helper] sync: " .. D.sync_error)
-	end
-	ok, err = pcall(check_match)
-	if not ok and tostring(err) ~= D.match_error then
-		D.match_error = tostring(err)
-		Log.Write("[Draft Helper] match: " .. D.match_error)
-	end
+	guarded("keys", poll_keys)
+	guarded("data", data_tick)
+	guarded("updater", U.tick)
+	guarded("items", I.tick)
+	guarded("panel", G.tick)
+	guarded("sync", sync_free)
+	guarded("match", check_match)
+	guarded("pick", order_tick)
 end
 
 function script.OnFrame()
-	local ok, err = pcall(draw_window)
-	if not ok and tostring(err) ~= W.draw_error then
-		W.draw_error = tostring(err)
-		Log.Write("[Draft Helper] draw: " .. W.draw_error)
-	end
-	ok, err = pcall(draw_panel)
-	if not ok and tostring(err) ~= W.panel_error then
-		W.panel_error = tostring(err)
-		Log.Write("[Draft Helper] panel draw: " .. W.panel_error)
-	end
-	ok, err = pcall(draw_tips)
-	if not ok and tostring(err) ~= W.tip_error then
-		W.tip_error = tostring(err)
-		Log.Write("[Draft Helper] tips: " .. W.tip_error)
-	end
+	guarded("draw", draw_window)
+	guarded("panel draw", draw_panel)
+	guarded("tips", draw_tips)
 end
 
 function script.OnKeyEvent(data)
@@ -7364,7 +8398,10 @@ function script.OnKeyEvent(data)
 	return true
 end
 
-function script.OnPrepareUnitOrders()
+function script.OnPrepareUnitOrders(data)
+	if data and data.order == Enum.UnitOrder.DOTA_UNIT_ORDER_PURCHASE_ITEM then
+		return true
+	end
 	if os.clock() - W.click_at < K.CLICK_GUARD and cursor_in_window() then
 		return false
 	end
