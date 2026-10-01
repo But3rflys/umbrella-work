@@ -7,7 +7,7 @@
 
 | версия | дата | файл | загрузок |
 | --- | --- | --- | --- |
-| [`auto-stack-v1.1.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.1.0) | 2026-09-28 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.1.0/auto_stack.lua) | 62 |
+| [`auto-stack-v1.1.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.1.0) | 2026-09-28 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.1.0/auto_stack.lua) | 66 |
 | [`auto-stack-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.0.0) | 2026-09-27 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.0.0/auto_stack.lua) | 14 |
 
 [Все релизы](https://github.com/But3rflys/umbrella-work/releases?q=auto-stack&expanded=true)

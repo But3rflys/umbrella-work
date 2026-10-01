@@ -15,8 +15,8 @@ icon: chess
 
 | Версия | Дата | Файл | Загрузок |
 | --- | --- | --- | --- |
-| [`draft-helper-v1.2.8`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.2.8) | 2026-09-30 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.8/draft_helper.lua) | 0 |
-| [`draft-helper-v1.2.7`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.2.7) | 2026-09-30 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.7/draft_helper.lua) | 55 |
+| [`draft-helper-v1.2.8`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.2.8) | 2026-09-30 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.8/draft_helper.lua) | 101 |
+| [`draft-helper-v1.2.7`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.2.7) | 2026-09-30 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.7/draft_helper.lua) | 57 |
 | [`draft-helper-v1.2.6`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.2.6) | 2026-09-30 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.6/draft_helper.lua) | 24 |
 | [`draft-helper-v1.2.5`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.2.5) | 2026-09-30 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.5/draft_helper.lua) | 1 |
 | [`draft-helper-v1.2.4`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.2.4) | 2026-09-30 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.4/draft_helper.lua) | 1 |
