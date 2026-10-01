@@ -1039,6 +1039,14 @@ local K = {
 	SCROLL_DOWN = Enum.EKeyEvent.EKeyEvent_SCROLL_DOWN,
 
 	WIN_MIN = 20,
+	LIFT_PRIOR = 30,
+	LIFT_FIT_MIN = 15,
+	LIFT_K = 4,
+	LIFT_LO = 0.6,
+	LIFT_HI = 1.4,
+	LATE_GAMES_MIN = 15,
+	SUB_KEPT = 0.6,
+	FATE_SKIP = { aghanims_shard = true, ultimate_scepter_2 = true },
 	BUYS_MIN = 30,
 	BUYS_KEEP = 30,
 	ITEM_RETRY = 15,
@@ -2283,19 +2291,67 @@ do
 			if p and p >= 1 and p <= 5 and type(name) == "string" and n and n > 0 and g and g > 0 then
 				local d = by[p]
 				if not d then
-					d = { g = g, gw = 0, rows = {}, fin = {}, ufin = {} }
+					d = { g = g, gw = 0, rows = {}, fin = {}, ufin = {}, late = {}, bm = {}, subs = {}, g40 = 0, gw40 = 0 }
 					by[p] = d
 				end
-				d.g = math.max(d.g, g)
-				d.gw = math.max(d.gw, tonumber(r.gw) or 0)
+				local late = math.tointeger(tonumber(name:match("^%%(%d+)$")))
+				if late then
+					d.late[late] = n
+					d.g40, d.gw40 = g, tonumber(r.gw) or 0
+				else
+					d.g = math.max(d.g, g)
+					d.gw = math.max(d.gw, tonumber(r.gw) or 0)
+				end
 				local id = math.tointeger(tonumber(name:match("^#(%d+)$")))
 				local uid = math.tointeger(tonumber(name:match("^&(%d+)$")))
-				if id then
+				local bmin = math.tointeger(tonumber(name:match("^!(%d+)$")))
+				local sa, sb = name:match("^=(%d+)%.(%d+)$")
+				local patch = name:match("^@(.+)$")
+				if late then
+				elseif id then
 					d.fin[id] = n
 				elseif uid then
 					d.ufin[uid] = n
+				elseif bmin then
+					d.bm[bmin] = { n = n, w = tonumber(r.w) or 0 }
+				elseif sa then
+					sa, sb = math.tointeger(tonumber(sa)), math.tointeger(tonumber(sb))
+					if sa and sb then
+						d.subs[sa] = d.subs[sa] or {}
+						d.subs[sb] = d.subs[sb] or {}
+						d.subs[sa][sb], d.subs[sb][sa] = true, true
+					end
+				elseif patch then
+					d.since, d.kmax = patch, n
+				elseif name:find("^%a") then
+					d.rows[name] = {
+						n = n, w = tonumber(r.w) or 0, t = tonumber(r.t) or 0, s = tonumber(r.s) or 0, m = tonumber(r.m) or 0,
+						ne = tonumber(r.ne), we = tonumber(r.we), nb = tonumber(r.nb), wb = tonumber(r.wb), x = tonumber(r.x),
+					}
+				end
+			end
+		end
+		for _, d in pairs(by) do
+			local sw, st, sy, stt, sty, xn, xs = 0, 0, 0, 0, 0, 0, 0
+			for _, r in pairs(d.rows) do
+				if r.t > 0 and r.n >= K.LIFT_FIT_MIN then
+					local t, y = r.t / 60, r.w / r.n
+					sw, st, sy, stt, sty = sw + r.n, st + r.n * t, sy + r.n * y, stt + r.n * t * t, sty + r.n * t * y
+					if r.x then
+						xn, xs = xn + r.n, xs + r.w - r.x
+					end
+				end
+			end
+			d.xoff = xn > 0 and xs / xn or nil
+			d.icpt, d.slope = d.g > 0 and d.gw / d.g or 0.5, 0
+			if sw > 0 then
+				local mt, my = st / sw, sy / sw
+				local var = stt / sw - mt * mt
+				if var > 1 then
+					d.slope = (sty / sw - mt * my) / var
+					d.icpt = my - d.slope * mt
 				else
-					d.rows[name] = { n = n, w = tonumber(r.w) or 0, t = tonumber(r.t) or 0, s = tonumber(r.s) or 0, m = tonumber(r.m) or 0 }
+					d.icpt = my
 				end
 			end
 		end
@@ -2306,13 +2362,13 @@ do
 	setmetatable(I.buys, {
 		__index = function(_, h)
 			local key = tostring(h)
-			local text, meta = store.blobs["b:" .. key], store.data.buys[key]
+			local text, meta = store.blobs["c:" .. key], store.data.buys[key]
 			if not text or type(meta) ~= "table" then
 				return nil
 			end
 			local ok, list = pcall(JSON.decode, JSON, text)
 			if not ok or type(list) ~= "table" then
-				store.blobs["b:" .. key] = nil
+				store.blobs["c:" .. key] = nil
 				return nil
 			end
 			set_buys(h, list)
@@ -2367,7 +2423,8 @@ do
 		local buys = store.data.buys
 		local key = tostring(h)
 		buys[key] = { time = I.buys_at[h] }
-		store.blobs["b:" .. key] = text
+		store.blobs["c:" .. key] = text
+		store.blobs["b:" .. key] = nil
 		local keys = {}
 		for k in pairs(buys) do
 			keys[#keys + 1] = k
@@ -2378,6 +2435,7 @@ do
 			end)
 			for n = K.BUYS_KEEP + 1, #keys do
 				buys[keys[n]] = nil
+				store.blobs["c:" .. keys[n]] = nil
 				store.blobs["b:" .. keys[n]] = nil
 			end
 		end
@@ -2415,7 +2473,8 @@ do
 	local function request_buys(h)
 		local t = tonumber(D.gh.manifest.builds) or os.time()
 		I.skip[h] = os.clock() + K.ITEM_FAIL_SKIP
-		gh_fetch(("builds/%d.json"):format(h), "cd_buys", function(text)
+		local dir = D.gh.manifest.builds2 and "builds2" or "builds"
+		gh_fetch(("%s/%d.json"):format(dir, h), "cd_buys", function(text)
 			local list = JSON:decode(text)
 			if type(list) ~= "table" then
 				error(("purchases %d: bad file"):format(h))
@@ -2889,12 +2948,77 @@ do
 		return r.n / data.g
 	end
 
+	function I.lift(data, r)
+		if data.gw < K.WIN_MIN or not data.icpt or r.n <= 0 then
+			return 0
+		end
+		if r.x and data.xoff then
+			return (r.w - r.x - r.n * data.xoff) / (r.n + K.LIFT_PRIOR)
+		end
+		local expect = r.t > 0 and data.icpt + data.slope * r.t / 60 or data.gw / data.g
+		return (r.w / r.n - expect) * r.n / (r.n + K.LIFT_PRIOR)
+	end
+
+	function I.rank(data, r)
+		local pop = r.n / data.g
+		if data.gw < K.WIN_MIN then
+			return pop
+		end
+		return pop * clamp(1 + K.LIFT_K * I.lift(data, r), K.LIFT_LO, K.LIFT_HI)
+	end
+
+	function I.fates(data)
+		if data.fate and data.fate_at == I.items_at then
+			return data.fate
+		end
+		local out = {}
+		for name, r in pairs(data.rows) do
+			local item = I.by_name[name]
+			if item and r.n > 0 and not K.FATE_SKIP[name] then
+				local fin = data.fin[item.id] or 0
+				local up = 0
+				if name == "ultimate_scepter" then
+					up = data.rows.ultimate_scepter_2 and data.rows.ultimate_scepter_2.n or 0
+				else
+					for yname, y in pairs(data.rows) do
+						local yi = I.by_name[yname]
+						if yi and yi ~= item and y.t > r.t then
+							for _, part in ipairs(yi.parts) do
+								if part == name then
+									up = up + y.n
+								end
+							end
+						end
+					end
+				end
+				local f = { kept = math.min(1, fin / r.n), up = math.min(1, up / r.n) }
+				f.sold = math.max(0, 1 - f.kept - f.up)
+				if (data.g40 or 0) >= K.LATE_GAMES_MIN and fin > 0 then
+					f.late_drop = clamp(1 - ((data.late[item.id] or 0) / data.g40) / (fin / data.g), 0, 1)
+				end
+				out[name] = f
+			end
+		end
+		data.fate, data.fate_at = out, I.items_at
+		return out
+	end
+
+	function I.subst(data, a, b)
+		local s = data.subs and data.subs[a.id]
+		if not s or not s[b.id] then
+			return false
+		end
+		local fates = I.fates(data)
+		local fa, fb = fates[a.name], fates[b.name]
+		return fa ~= nil and fb ~= nil and fa.kept >= K.SUB_KEPT and fb.kept >= K.SUB_KEPT
+	end
+
 	function I.collect(data)
 		local cands, boots = {}, nil
 		for name, r in pairs(data.rows) do
 			local item = I.by_name[name]
 			if item then
-				local cd = { item = item, count = r.n, t = r.t, share = I.share(data, r) }
+				local cd = { item = item, count = r.n, t = r.t, share = I.share(data, r), rank = I.rank(data, r) }
 				if K.BOOTS[name] then
 					if not boots or cd.share > boots.share or (cd.share == boots.share and name < boots.item.name) then
 						boots = cd
@@ -3189,7 +3313,7 @@ do
 				cd.endv = fin / data.g
 				cd.pass = not K.UNIT_ITEMS[D.by_id[h].unit] and name ~= "ultimate_scepter" and fin < K.PASS_KEEP * cd.count
 					and not I.upgrade(cd, cands, {}) and not I.after(cd, cands, {}, data)
-				cd.score = cd.share * K.BUY_W + cd.endv * K.END_W
+				cd.score = cd.rank * K.BUY_W + cd.endv * K.END_W
 				local vs = K.COUNTERS[name]
 				if vs and cd.share >= K.ITEM_SHARE then
 					local v, why = 0, {}
@@ -3230,7 +3354,7 @@ do
 		local function fits(cd)
 			local n = 0
 			for _, p in ipairs(picked) do
-				if related(p.item, cd.item) or (p ~= boots and siblings(p.item, cd.item)) then
+				if related(p.item, cd.item) or (p ~= boots and siblings(p.item, cd.item)) or I.subst(data, p.item, cd.item) then
 					return false
 				end
 				if side(p) == side(cd) then
@@ -3247,7 +3371,7 @@ do
 				return a.item.name < b.item.name
 			end)
 		end
-		by("share")
+		by("rank")
 		local core = 0
 		for _, cd in ipairs(list) do
 			if core >= K.CORE_LOCK or #picked >= slots_max then
@@ -4305,7 +4429,7 @@ do
 
 	local function value(cd, T, cover, anti)
 		local v = cd.share >= K.ITEM_SHARE and counter_v(cd.item.name, T, cover) or 0
-		return cd.share + K.ITEM_COUNTER_W * v * math.min(1, cd.share / K.ITEM_SHARE_FULL) - (anti[cd.item.name] or 0)
+		return (cd.rank or cd.share) + K.ITEM_COUNTER_W * v * math.min(1, cd.share / K.ITEM_SHARE_FULL) - (anti[cd.item.name] or 0)
 	end
 
 	local function coverage(slots, skip)
@@ -4530,10 +4654,11 @@ do
 
 	local function keep_rate(data, item)
 		local r = data.rows[item.name]
-		if not r or r.n < K.KEEP_MIN then
+		local f = I.fates(data)[item.name]
+		if not r or r.n < K.KEEP_MIN or not f then
 			return nil
 		end
-		return (data.fin[item.id] or 0) / r.n
+		return 1 - f.sold - (f.late_drop or 0)
 	end
 
 	local function scepter_in_full_bag()

@@ -25,7 +25,11 @@ CM_WINDOW = 4000000
 CM_DAYS = 60
 CM_MAX = 40000
 CM_WINDOWS_MAX = 3 if QUICK else 200
-BUYS_MATCHES = 400
+BUYS_MATCHES = [6000, 3000, 1500]
+BUYS_PATCHES = 3
+BUYS_WANT = 40
+BUYS_CAP = 1500
+BUYS_OLD = ("p", "i", "n", "w", "t", "s", "m", "g", "gw")
 VS_PAGE = 800
 VS_PAGES = 2 if QUICK else 10
 VS_PRIOR = 10
@@ -48,33 +52,68 @@ CALLS_MAX = 1800
 REC = struct.Struct("<QI10sBB")
 
 BUYS_SQL = (
-    "with p as (select pm.match_id, pm.player_slot<128 r, pm.purchase_log, ((pm.player_slot<128) = m.radiant_win) won, "
-    "array[pm.item_0,pm.item_1,pm.item_2,pm.item_3,pm.item_4,pm.item_5,pm.backpack_0,pm.backpack_1,pm.backpack_2] fin, "
-    "pm.additional_units au "
-    "from player_matches pm join matches m using(match_id) where pm.hero_id=%d and pm.purchase_log is not null "
-    "order by pm.match_id desc limit %d), "
-    "tm as (select pm.match_id, pm.hero_id, coalesce(pm.lane_role,4) l, pm.gold_per_min gp from player_matches pm "
-    "join p on p.match_id=pm.match_id and (pm.player_slot<128)=p.r where pm.gold_per_min is not null), "
-    "c as (select *, row_number() over (partition by match_id, l order by gp desc) lr from tm), "
-    "d as (select *, case when l in (1,2,3) and lr=1 then l end core from c), "
-    "e as (select *, row_number() over (partition by match_id, (core is null) order by gp desc) sr from d), "
-    "q as (select match_id, coalesce(core, case when sr=1 then 4 else 5 end) pos from e where hero_id=%d), "
-    "x as (select p.match_id, q.pos, p.won, v->>'key' i, (v->>'time')::int t from p join q using(match_id), "
-    "unnest(p.purchase_log) v), "
-    "f as (select match_id, pos, won, i, min(t) t, sum(case when t<=0 then 1 else 0 end) s from x group by 1,2,3,4), "
-    "k as (select distinct p.match_id, q.pos, unnest(p.fin) it from p join q using(match_id)), "
-    "ku as (select distinct p.match_id, q.pos, (u->>x)::int it from p join q using(match_id), unnest(p.au) u, "
-    "unnest(array['item_0','item_1','item_2','item_3','item_4','item_5','backpack_0','backpack_1','backpack_2']) x "
-    "where p.au is not null), "
-    "g as (select q.pos, count(*) g, sum(case when p.won then 1 else 0 end) gw from q join p using(match_id) group by q.pos) "
-    "select f.pos p, i, count(*) n, sum(case when won then 1 else 0 end) w, "
-    "percentile_cont(0.5) within group (order by t)::int t, sum(s) s, sum(case when s>0 then 1 else 0 end) m, "
-    "max(g.g) g, max(g.gw) gw from f join g using(pos) group by f.pos, i "
-    "having count(*) >= greatest(2, max(g.g) * 0.03) "
-    "union all select k.pos, '#' || it, count(*), 0, 0, 0, 0, max(g.g), max(g.gw) from k join g using(pos) where it>0 "
-    "group by k.pos, it having count(*) >= greatest(2, max(g.g) * 0.03) "
-    "union all select ku.pos, '&' || it, count(*), 0, 0, 0, 0, max(g.g), max(g.gw) from ku join g using(pos) where it>0 "
-    "group by ku.pos, it having count(*) >= greatest(2, max(g.g) * 0.03)"
+    "with prk as (select patch, row_number() over (order by min(match_id) desc) k from match_patch group by "
+    "patch), p0 as (select pm.match_id, pm.player_slot<128 r, pm.purchase_log, ((pm.player_slot<128) = "
+    "m.radiant_win) won, m.duration dur, m.radiant_gold_adv adv, m.leagueid lg, pm.additional_units au, "
+    "array[pm.item_0,pm.item_1,pm.item_2,pm.item_3,pm.item_4,pm.item_5,pm.backpack_0,pm.backpack_1,pm.backpack_2] "
+    "fin from player_matches pm join matches m using(match_id) where pm.hero_id=%d and pm.purchase_log is not "
+    "null and pm.leaver_status = 0 and m.duration >= 900 order by pm.match_id desc limit %d), p1 as (select p0.*, "
+    "prk.k, case lt.tier when 'premium' then 3 when 'professional' then 2 else 1 end w0 from p0 join match_patch "
+    "mp using(match_id) join prk using(patch) left join leagues lt on lt.leagueid = p0.lg where prk.k <= %d), tm "
+    "as (select pm.match_id, pm.hero_id, coalesce(pm.lane_role,4) l, pm.gold_per_min gp from player_matches pm "
+    "join p1 on p1.match_id=pm.match_id and (pm.player_slot<128)=p1.r where pm.gold_per_min is not null), c as "
+    "(select *, row_number() over (partition by match_id, l order by gp desc) lr from tm), d as (select *, case "
+    "when l in (1,2,3) and lr=1 then l end core from c), e as (select *, row_number() over (partition by "
+    "match_id, (core is null) order by gp desc) sr from d), q0 as (select e.match_id, coalesce(core, case when "
+    "sr=1 then 4 else 5 end) pos, p1.k from e join p1 using(match_id) where hero_id=%d), cum as (select pos, k, "
+    "sum(count(*)) over (partition by pos order by k) cg from q0 group by pos, k), lim as (select pos, "
+    "coalesce(min(k) filter (where cg >= %d), max(k)) kmax from cum group by pos), q1 as (select q0.match_id, "
+    "q0.pos, row_number() over (partition by q0.pos order by q0.match_id desc) rn from q0 join lim using(pos) "
+    "where q0.k <= lim.kmax), q as (select q1.match_id, q1.pos, p1.w0::float8 * count(*) over (partition by "
+    "q1.pos) / sum(p1.w0) over (partition by q1.pos) wt from q1 join p1 using(match_id) where q1.rn <= %d), p as "
+    "(select p1.* from p1 join q using(match_id)), x as (select p.match_id, q.pos, q.wt, p.won, v->>'key' i, "
+    "(v->>'time')::int t, coalesce((case when p.r then 1 else -1 end) * p.adv[least(coalesce(array_length(p.adv, "
+    "1), 1), greatest(1, (v->>'time')::int / 60 + 1))], 0) ga from p join q using(match_id), "
+    "unnest(p.purchase_log) v), f as (select match_id, pos, wt, won, i, min(t) t, sum(case when t<=0 then 1 else "
+    "0 end) s, (array_agg(ga order by t))[1] ga from x group by 1,2,3,4,5), kk as (select distinct p.match_id, "
+    "q.pos, q.wt, p.dur, unnest(p.fin) it from p join q using(match_id)), ku as (select distinct p.match_id, "
+    "q.pos, q.wt, (u->>x)::int it from p join q using(match_id), unnest(p.au) u, "
+    "unnest(array['item_0','item_1','item_2','item_3','item_4','item_5','backpack_0','backpack_1','backpack_2']) "
+    "x where p.au is not null), g as (select q.pos, sum(q.wt) g, sum(case when p.won then q.wt else 0 end) gw, "
+    "sum(case when p.dur >= 2400 then q.wt else 0 end) g40, sum(case when p.dur >= 2400 and p.won then q.wt else "
+    "0 end) gw40 from q join p using(match_id) group by q.pos), bm as (select q.pos, mm.m, sum(case when (case "
+    "when p.r then 1 else -1 end) * p.adv[mm.m + 1] <= -2000 then q.wt else 0 end) nb, sum(case when (case when "
+    "p.r then 1 else -1 end) * p.adv[mm.m + 1] <= -2000 and p.won then q.wt else 0 end) wb from q join p "
+    "using(match_id) cross join unnest(array[5,10,15,20,25,30,35,40,45,50]) mm(m) where array_length(p.adv, 1) > "
+    "mm.m group by q.pos, mm.m), a as (select f.pos p, i, sum(f.wt) n, sum(case when won then f.wt else 0 end) w, "
+    "percentile_cont(0.5) within group (order by t)::int t, sum(s * f.wt) s, sum(case when s>0 then f.wt else 0 "
+    "end) m, sum(f.wt / (1 + "
+    "exp(-(array[0.6,0.59,0.384,0.294,0.277,0.264,0.233,0.193,0.173,0.147,0.119,0.105,0.088])[least(13, "
+    "greatest(1, round(f.t / 300.0)::int + 1))] * f.ga / 1000.0))) x from f join g using(pos) group by f.pos, i "
+    "having sum(f.wt) >= greatest(2, max(g.g) * 0.03)), b as (select a.p, a.i, sum(f.wt) filter (where f.t <= "
+    "a.t) ne, sum(f.wt) filter (where f.t <= a.t and f.won) we, sum(f.wt) filter (where f.ga <= -2000) nb, "
+    "sum(f.wt) filter (where f.ga <= -2000 and f.won) wb from a join f on f.pos = a.p and f.i = a.i group by 1, "
+    "2), fk as (select kk.pos, kk.it, sum(kk.wt) n from kk join items on items.id = kk.it where items.cost >= "
+    "2000 and items.recipe = 0 group by 1, 2), fp as (select fk.* from fk join g using(pos) where fk.n >= g.g * "
+    "0.08), kp as (select k1.pos, k1.it i1, k2.it i2, sum(k1.wt) nab from kk k1 join kk k2 on k2.match_id = "
+    "k1.match_id and k2.pos = k1.pos and k1.it < k2.it group by 1, 2, 3) select a.p, a.i, round(a.n) n, "
+    "round(a.w) w, a.t, round(a.s) s, round(a.m) m, round(g.g) g, round(g.gw) gw, round(b.ne) ne, round(b.we) we, "
+    "round(b.nb) nb, round(b.wb) wb, round(a.x::numeric, 1) x from a join b on b.p = a.p and b.i = a.i join g on "
+    "g.pos = a.p union all select kk.pos, '#' || it, round(sum(kk.wt)), null, null, null, null, round(max(g.g)), "
+    "round(max(g.gw)), null, null, null, null, null from kk join g using(pos) where it > 0 group by kk.pos, it "
+    "having sum(kk.wt) >= greatest(2, max(g.g) * 0.03) union all select ku.pos, '&' || it, round(sum(ku.wt)), "
+    "null, null, null, null, round(max(g.g)), round(max(g.gw)), null, null, null, null, null from ku join g "
+    "using(pos) where it > 0 group by ku.pos, it having sum(ku.wt) >= greatest(2, max(g.g) * 0.03) union all "
+    "select kk.pos, '%%' || it, round(sum(kk.wt)), null, null, null, null, round(max(g.g40)), round(max(g.gw40)), "
+    "null, null, null, null, null from kk join g using(pos) where it > 0 and kk.dur >= 2400 group by kk.pos, it "
+    "having sum(kk.wt) >= greatest(2, max(g.g40) * 0.05) union all select bm.pos, '!' || bm.m, round(bm.nb), "
+    "round(bm.wb), null, null, null, round(g.g), round(g.gw), null, null, null, null, null from bm join g "
+    "using(pos) where bm.nb > 0 union all select a.pos, '=' || a.it || '.' || b.it, 1, null, null, null, null, "
+    "round(g.g), round(g.gw), null, null, null, null, null from fp a join fp b on b.pos = a.pos and a.it < b.it "
+    "join g on g.pos = a.pos left join kp on kp.pos = a.pos and kp.i1 = a.it and kp.i2 = b.it where a.n * b.n >= "
+    "5 * g.g and coalesce(kp.nab, 0) * g.g < 0.4 * a.n * b.n union all select lim.pos, '@' || prk.patch, "
+    "lim.kmax, null, null, null, null, round(max(g.g)), round(max(g.gw)), null, null, null, null, null from lim "
+    "join prk on prk.k = lim.kmax join g using(pos) group by lim.pos, prk.patch, lim.kmax"
 )
 
 POS_SQL = (
@@ -137,6 +176,19 @@ def explorer(sql):
     if data.get("err"):
         raise RuntimeError("explorer: %s" % str(data["err"])[:160])
     return data.get("rows") or []
+
+
+def buys_rows(h):
+    for i, limit in enumerate(BUYS_MATCHES):
+        try:
+            rows = explorer(BUYS_SQL % (h, limit, BUYS_PATCHES, h, BUYS_WANT, BUYS_CAP))
+        except RuntimeError as e:
+            if "timeout" in str(e).lower() and i + 1 < len(BUYS_MATCHES):
+                log("  build %d: timeout at %d matches, retry smaller", h, limit)
+                continue
+            raise
+        return [{k: v for k, v in r.items() if v is not None} for r in rows]
+    raise RuntimeError("no rows")
 
 
 def rec_id(rec):
@@ -477,14 +529,17 @@ def main():
         ok = 0
         for h in ids:
             try:
-                rows = explorer(BUYS_SQL % (h, BUYS_MATCHES, h))
-                write("builds/%d.json" % h, json.dumps(rows, separators=(",", ":")))
+                rows = buys_rows(h)
+                write("builds2/%d.json" % h, json.dumps(rows, separators=(",", ":")))
+                old = [{k: r.get(k) for k in BUYS_OLD} for r in rows if str(r.get("i", ""))[:1] not in "%!=@"]
+                write("builds/%d.json" % h, json.dumps(old, separators=(",", ":")))
                 ok += 1
             except Exception as e:
                 log("  build %d failed: %s", h, e)
         log("  builds: %d of %d", ok, len(ids))
         if ok < len(ids) * 0.8:
             raise RuntimeError("too many build failures")
+        manifest["builds2"] = int(time.time())
 
     step(manifest, "heroes", do_heroes)
     step(manifest, "items", do_items)
