@@ -445,13 +445,24 @@ local localization = qLocalization.new({
 		cd_set_news = "What's new in %s",
 		cd_news_open = "Open",
 		cd_nw1_t = "Item picks",
-		cd_nw1 = "Item picks in builds are improved.",
+		cd_nw1 = "Builds are more accurate, based on fresh games of the patch.",
+		cd_nw2_t = "Enemy items",
+		cd_nw2 = "Suggests answers to items the enemies buy.",
+		cd_nw3_t = "What next",
+		cd_nw3 = "Suggests what to buy after the build is done.",
+		cd_nw4_t = "Build panel menu",
+		cd_nw4 = "The cross on the in-game build panel: hide it, pick when to show or turn it off.",
+		cd_nw5_t = "Fixes",
+		cd_nw5 = "Fixed extra and missing items in builds.",
 		cd_gh_manifest = "checking for updates",
 		cd_gh_heroes = "hero list",
 		cd_gh_pro = "pro matches",
 		cd_gh_rules = "counter rules",
 		cd_p_hide_t = "Hide",
-		cd_p_hide = "Until the end of the match. Turn it off for good:\nsettings, Build panel, Show: Never",
+		cd_p_hide = "Hide until the match ends,\nshow only in the shop or turn off",
+		cd_pc_match = "Hide until the match ends",
+		cd_pc_cap = "SHOW",
+		cd_pc_off = "Turn the panel off",
 		cd_gh_ranked = "ranked, %s matches",
 		cd_gh_cm = "Captains Mode, %s matches",
 		cd_ld_step = "%s, step %d of %d",
@@ -699,13 +710,24 @@ local localization = qLocalization.new({
 		cd_set_news = "Что нового в %s",
 		cd_news_open = "Открыть",
 		cd_nw1_t = "Подбор предметов",
-		cd_nw1 = "Улучшен подбор предметов в сборках.",
+		cd_nw1 = "Сборка точнее, по свежим играм патча.",
+		cd_nw2_t = "Предметы врагов",
+		cd_nw2 = "Подсказывает ответ на предметы врагов.",
+		cd_nw3_t = "Что дальше",
+		cd_nw3 = "Подсказывает, что брать после сборки.",
+		cd_nw4_t = "Меню панели сборки",
+		cd_nw4 = "Крестик на панели сборки в игре: скрыть, когда показывать или выключить.",
+		cd_nw5_t = "Исправления",
+		cd_nw5 = "Убраны лишние и пропадающие предметы в сборке.",
 		cd_gh_manifest = "проверяю обновления",
 		cd_gh_heroes = "список героев",
 		cd_gh_pro = "про-матчи",
 		cd_gh_rules = "правила контр",
 		cd_p_hide_t = "Скрыть",
-		cd_p_hide = "До конца матча. Выключить совсем:\nнастройки, Панель сборки, Показывать: Нет",
+		cd_p_hide = "Скрыть до конца матча, показывать\nтолько в магазине или выключить",
+		cd_pc_match = "Скрыть до конца матча",
+		cd_pc_cap = "ПОКАЗЫВАТЬ",
+		cd_pc_off = "Выключить панель",
 		cd_gh_ranked = "рейтинг, %s матчей",
 		cd_gh_cm = "Captains Mode, %s матчей",
 		cd_ld_step = "%s, шаг %d из %d",
@@ -1044,8 +1066,12 @@ local K = {
 	LIFT_K = 4,
 	LIFT_LO = 0.6,
 	LIFT_HI = 1.4,
+	LIFT_POP = 0.2,
+	SITUATIONAL = {
+		aeon_disk = true, sphere = true, lotus_orb = true, pipe = true, crimson_guard = true, blade_mail = true,
+		heavens_halberd = true, nullifier = true, monkey_king_bar = true, spirit_vessel = true,
+	},
 	LATE_GAMES_MIN = 15,
-	SUB_KEPT = 0.6,
 	FATE_SKIP = { aghanims_shard = true, ultimate_scepter_2 = true },
 	BUYS_MIN = 30,
 	BUYS_KEEP = 30,
@@ -1121,6 +1147,9 @@ local K = {
 	REACT = {},
 	REACT_MAX = 2,
 	REACT_RATE = 0.03,
+	REACT_MIN = 0.6,
+	REACT_MORE_RATE = 0.05,
+	REACT_DROP = 0.15,
 	RATE_MIN_GAMES = 60,
 	PANEL_EVERY = 0.5,
 	QFLASH = 0.4,
@@ -1137,6 +1166,7 @@ local K = {
 	SIGNAL_MIN = 700,
 	SKIP_GAP = 420,
 	MORE_COST = 2000,
+	LATE_SHARE = 0.2,
 	MORE_SHARE = 0.08,
 	MORE_GAP = 300,
 	MORE_POP = 0.2,
@@ -1178,6 +1208,10 @@ local K = {
 	CNT_MAX = 30,
 	NEWS = {
 		{ "n", "\u{f290}", "cd_nw1_t", "cd_nw1" },
+		{ "n", "\u{f05b}", "cd_nw2_t", "cd_nw2" },
+		{ "n", "\u{f0ae}", "cd_nw3_t", "cd_nw3" },
+		{ "n", "\u{f00d}", "cd_nw4_t", "cd_nw4" },
+		{ "f", "\u{f0ad}", "cd_nw5_t", "cd_nw5" },
 	},
 	COVER = 0.8,
 	ENEMY_ITEMS = {},
@@ -2291,7 +2325,7 @@ do
 			if p and p >= 1 and p <= 5 and type(name) == "string" and n and n > 0 and g and g > 0 then
 				local d = by[p]
 				if not d then
-					d = { g = g, gw = 0, rows = {}, fin = {}, ufin = {}, late = {}, bm = {}, subs = {}, g40 = 0, gw40 = 0 }
+					d = { g = g, gw = 0, rows = {}, fin = {}, ufin = {}, late = {}, bm = {}, g40 = 0, gw40 = 0 }
 					by[p] = d
 				end
 				local late = math.tointeger(tonumber(name:match("^%%(%d+)$")))
@@ -2305,7 +2339,6 @@ do
 				local id = math.tointeger(tonumber(name:match("^#(%d+)$")))
 				local uid = math.tointeger(tonumber(name:match("^&(%d+)$")))
 				local bmin = math.tointeger(tonumber(name:match("^!(%d+)$")))
-				local sa, sb = name:match("^=(%d+)%.(%d+)$")
 				local patch = name:match("^@(.+)$")
 				if late then
 				elseif id then
@@ -2314,13 +2347,6 @@ do
 					d.ufin[uid] = n
 				elseif bmin then
 					d.bm[bmin] = { n = n, w = tonumber(r.w) or 0 }
-				elseif sa then
-					sa, sb = math.tointeger(tonumber(sa)), math.tointeger(tonumber(sb))
-					if sa and sb then
-						d.subs[sa] = d.subs[sa] or {}
-						d.subs[sb] = d.subs[sb] or {}
-						d.subs[sa][sb], d.subs[sb][sa] = true, true
-					end
 				elseif patch then
 					d.since, d.kmax = patch, n
 				elseif name:find("^%a") then
@@ -2866,7 +2892,7 @@ do
 	end
 
 	function I.react(slots, cands, them, seen, h, pos, locked, ew)
-		local added = {}
+		local added, later = {}, {}
 		local phys = I.physical(h, pos)
 		for _, rule in ipairs(K.REACT) do
 			local source, hits = nil, 0
@@ -2878,7 +2904,7 @@ do
 					end
 				end
 			end
-			if hits < K.ITEM_THREAT_MIN then
+			if hits < K.REACT_MIN then
 				source = nil
 			end
 			local covered = false
@@ -2902,9 +2928,11 @@ do
 				new.vs = { source.e }
 				new.must, new.reason = rule.threat, source
 				added[#added + 1] = new
+			elseif pick and I.rate(h, pos, pick) >= K.REACT_MORE_RATE then
+				later[#later + 1] = { name = pick, threat = rule.threat, source = source }
 			end
 		end
-		return added
+		return added, later
 	end
 
 	local function item_body(cd)
@@ -2964,7 +2992,8 @@ do
 		if data.gw < K.WIN_MIN then
 			return pop
 		end
-		return pop * clamp(1 + K.LIFT_K * I.lift(data, r), K.LIFT_LO, K.LIFT_HI)
+		local hi = pop >= K.LIFT_POP and K.LIFT_HI or 1
+		return pop * clamp(1 + K.LIFT_K * I.lift(data, r), K.LIFT_LO, hi)
 	end
 
 	function I.fates(data)
@@ -3001,16 +3030,6 @@ do
 		end
 		data.fate, data.fate_at = out, I.items_at
 		return out
-	end
-
-	function I.subst(data, a, b)
-		local s = data.subs and data.subs[a.id]
-		if not s or not s[b.id] then
-			return false
-		end
-		local fates = I.fates(data)
-		local fa, fb = fates[a.name], fates[b.name]
-		return fa ~= nil and fb ~= nil and fa.kept >= K.SUB_KEPT and fb.kept >= K.SUB_KEPT
 	end
 
 	function I.collect(data)
@@ -3354,7 +3373,7 @@ do
 		local function fits(cd)
 			local n = 0
 			for _, p in ipairs(picked) do
-				if related(p.item, cd.item) or (p ~= boots and siblings(p.item, cd.item)) or I.subst(data, p.item, cd.item) then
+				if related(p.item, cd.item) or (p ~= boots and siblings(p.item, cd.item)) then
 					return false
 				end
 				if side(p) == side(cd) then
@@ -3388,7 +3407,7 @@ do
 			if #picked >= slots_max then
 				break
 			end
-			if not cd.core and fits(cd) and math.max(cd.share, cd.endv) >= K.FILL_MIN then
+			if not cd.core and fits(cd) and math.max(cd.share, cd.endv) >= K.FILL_MIN and (cd.why or not K.SITUATIONAL[cd.item.name]) then
 				picked[#picked + 1] = cd
 			end
 		end
@@ -4545,7 +4564,7 @@ do
 		return best
 	end
 
-	local function place_owned(slots, data, T1, anti)
+	local function place_owned(slots, data, T1, anti, planned)
 		local function lowest(filter)
 			local worst, worst_v
 			for i, s in ipairs(slots) do
@@ -4566,7 +4585,7 @@ do
 		for _, name in ipairs(names) do
 			local item = I.by_name[name]
 			if eligible(name, item) then
-				local placed = false
+				local placed = planned[name] == true
 				for _, s in ipairs(slots) do
 					if s.item == item or (s.after and s.after.item == item) then
 						placed = true
@@ -4965,6 +4984,25 @@ do
 				end
 			end
 		end
+		local late_share, listed = {}, {}
+		if (data.g40 or 0) >= K.LATE_GAMES_MIN then
+			for id, n in pairs(data.late) do
+				local it = I.items[id]
+				if it then
+					late_share[it.name] = n / data.g40
+				end
+			end
+		end
+		for _, mo in ipairs(list) do
+			listed[mo.item] = true
+		end
+		for name, share in pairs(late_share) do
+			local it, r = I.by_name[name], data.rows[name]
+			if it and not listed[it] and share >= K.LATE_SHARE and eligible(name, it) and not K.BOOTS[name]
+				and it.cost >= K.MORE_COST and free(it) and (G.anti[name] or 0) < K.ANTI_HARD then
+				list[#list + 1] = { item = it, t = r and r.t or G.time, share = share }
+			end
+		end
 		local bless = I.by_name[K.BLESSING]
 		if bless and not owns(bless) then
 			local entry
@@ -4982,7 +5020,80 @@ do
 				entry.share, entry.frees = 1, true
 			end
 		end
+		for name in pairs(K.NO_SLOT) do
+			local it, r = I.by_name[name], data.rows[name]
+			local dup = false
+			for _, mo in ipairs(list) do
+				dup = dup or mo.item == it
+			end
+			if it and r and not dup and not owns(it) and free(it) and I.share(data, r) >= K.MORE_SHARE
+				and not (name == K.SHARD and r.n / data.g >= K.CONSUME_SHARE) and (G.anti[name] or 0) < K.ANTI_HARD then
+				list[#list + 1] = { item = it, t = r.t, share = I.share(data, r), noslot = true }
+			end
+		end
+		local fates = I.fates(data)
+		local function drop_of(name)
+			local f = fates[name]
+			return f and f.sold + (f.late_drop or 0) or 0
+		end
+		local function dis_source(item)
+			local best
+			for _, name in ipairs(bag) do
+				local it = I.by_name[name]
+				if it and K.DISASSEMBLE[name] and drop_of(name) >= K.REACT_DROP and not I.related(it, item) then
+					for _, a in ipairs(it.parts) do
+						for _, b in ipairs(item.parts) do
+							if a == b and not a:find("^recipe_") and (not best or drop_of(name) > drop_of(best.name)) then
+								best = it
+							end
+						end
+					end
+				end
+			end
+			return best
+		end
+		local function react_sell(item)
+			local best
+			for _, name in ipairs(bag) do
+				local it = I.by_name[name]
+				if it and it ~= item and not K.BOOTS[name] and not K.SELL_SKIP[name] and not K.STACK[name] and it.cost > 0
+					and drop_of(name) >= K.REACT_DROP and not needed(slots, it)
+					and (not best or drop_of(name) > drop_of(best.name)) then
+					best = it
+				end
+			end
+			return best and { name = best.name, label = best.label }
+		end
+		for _, rc in ipairs(G.react_more or {}) do
+			local it = I.by_name[rc.name]
+			local entry
+			for _, mo in ipairs(list) do
+				if mo.item == it then
+					entry = mo
+				end
+			end
+			local clear = it and not owns(it)
+			for _, t in ipairs(taken) do
+				if clear and (t == it or I.related(t, it) or I.related(it, t)) then
+					clear = false
+				end
+			end
+			if not entry and clear then
+				entry = { item = it, t = G.time }
+				list[#list + 1] = entry
+			end
+			if entry then
+				entry.react, entry.share, entry.instead, entry.swap = rc, 2, nil, nil
+				entry.dis = dis_source(it)
+			end
+		end
 		table.sort(list, function(a, b)
+			if (a.react ~= nil) ~= (b.react ~= nil) then
+				return a.react ~= nil
+			end
+			if (a.dis ~= nil) ~= (b.dis ~= nil) then
+				return a.dis ~= nil
+			end
 			if (a.instead ~= nil) ~= (b.instead ~= nil) then
 				return a.instead ~= nil
 			end
@@ -4995,6 +5106,30 @@ do
 			return a.item.name < b.item.name
 		end)
 		local room_left = room
+		local bag0, pack0 = { table.unpack(bag) }, G.pack
+		local function assign(mo)
+			mo.sell = nil
+			if mo.dis and in_bag[mo.dis.name] then
+				take(bag, mo.dis.name)
+				in_bag[mo.dis.name] = nil
+			elseif not mo.noslot and (not mo.instead or not (mo.swap or in_bag[mo.instead.name])) then
+				mo.dis = nil
+				if room_left > 0 then
+					room_left = room_left - 1
+				else
+					mo.sell = sell_for(slots, bag, mo.item, data) or (mo.react and react_sell(mo.item))
+					if not mo.sell then
+						return false
+					end
+					take(bag, mo.sell.name)
+					in_bag[mo.sell.name] = nil
+				end
+			end
+			if mo.frees or mo.merge then
+				room_left = room_left + 1
+			end
+			return true
+		end
 		local chosen = {}
 		for _, mo in ipairs(list) do
 			local ok = #chosen < K.MORE_MAX
@@ -5004,46 +5139,51 @@ do
 					ok = false
 				end
 			end
-			if ok and (not mo.instead or not (mo.swap or in_bag[mo.instead.name])) then
-				if room_left > 0 then
-					room_left = room_left - 1
-				else
-					mo.sell = sell_for(slots, bag, mo.item, data)
-					if mo.sell then
-						take(bag, mo.sell.name)
-					else
-						ok = false
-					end
-				end
-			end
-			if ok then
+			if ok and assign(mo) then
 				chosen[#chosen + 1] = mo
-				if mo.frees or mo.merge then
-					room_left = room_left + 1
-				end
 			end
 		end
-		list = chosen
 		local function rank(mo)
-			return mo.merge and 2 or (mo.frees and 1 or 0)
+			return mo.react and 3 or (mo.merge and 2 or (mo.frees and 1 or 0))
 		end
-		table.sort(list, function(a, b)
+		table.sort(chosen, function(a, b)
 			if rank(a) ~= rank(b) then
 				return rank(a) > rank(b)
 			end
 			return a.t < b.t
 		end)
+		for k = #bag, 1, -1 do
+			bag[k] = nil
+		end
+		for k, name in ipairs(bag0) do
+			bag[k] = name
+			in_bag[name] = true
+		end
+		room_left, G.pack, list = room, pack0, {}
+		for _, mo in ipairs(chosen) do
+			if assign(mo) then
+				list[#list + 1] = mo
+			end
+		end
 		local out = {}
 		for i, mo in ipairs(list) do
 			local d = { name = mo.item.name, label = mo.item.label, cost = mo.item.cost, t = mo.t, more = true }
-			if mo.swap then
+			if mo.react then
+				local hero = D.by_id[mo.react.source.e]
+				local lines = { L("cd_tip_item_vs"):format(hero and hero.name or "?"), L("cd_th_" .. mo.react.threat) }
+				if mo.dis then
+					d.base, d.kind = { name = mo.dis.name, label = mo.dis.label }, "dis"
+					table.insert(lines, 1, L("cd_tip_dis_from"):format(mo.dis.label))
+				end
+				d.body, d.reason = table.concat(lines, "\n"), mo.react.source.e
+			elseif mo.swap then
 				d.base, d.kind, d.from = { name = mo.instead.name, label = mo.instead.label }, "up", mo.instead.label
 				d.body = L("cd_tip_swap"):format(mo.instead.label)
 			elseif mo.instead then
 				d.base, d.kind = { name = mo.instead.name, label = mo.instead.label }, "up"
 				d.body = mo.frees and L("cd_tip_bless") or L("cd_tip_up_from"):format(mo.instead.label)
 			else
-				d.body = ""
+				d.body = mo.noslot and L("cd_tip_noslot") or ""
 			end
 			d.sell = mo.sell
 			out[i] = d
@@ -5064,6 +5204,7 @@ do
 			return nil
 		end
 		local adapt = cfg.padapt == 1
+		G.react_more = {}
 		local T0, T1, from, per1 = {}, {}, {}, {}
 		local counts = adapt and item_threat_counts() or nil
 		for _, e in ipairs(G.them) do
@@ -5087,7 +5228,14 @@ do
 		for i, cd in ipairs(base.slots) do
 			slots[i] = copy(cd)
 		end
-		place_owned(slots, data, T1, anti)
+		local planned = {}
+		for _, e in ipairs(base.early or {}) do
+			planned[e.item.name] = true
+		end
+		for _, e in ipairs(base.trans or {}) do
+			planned[e.item.name] = true
+		end
+		place_owned(slots, data, T1, anti, planned)
 		local cands = I.collect(data)
 		if adapt then
 			swap_slots(slots, cands, T0, T1, from, anti, anti_from)
@@ -5108,7 +5256,9 @@ do
 			for _, new in ipairs(I.vs(slots, cands, G.them, G.hero, G.bpos, locked, K.FORCE_MAX - forced - #added)) do
 				new.swapped, new.from = true, new.replaced
 			end
-			for _, new in ipairs(I.react(slots, cands, G.them, G.seen, G.hero, G.bpos, locked, G.ew)) do
+			local reacted, later = I.react(slots, cands, G.them, G.seen, G.hero, G.bpos, locked, G.ew)
+			G.react_more = later
+			for _, new in ipairs(reacted) do
 				new.swapped, new.from = true, new.replaced
 			end
 			drop_anti(slots, cands, anti, anti_from)
@@ -5182,7 +5332,12 @@ do
 			local done = step_done(st)
 			local dep = st.base or st.via
 			st.signal = done and 0 or progress(st.item, {}, 0, K.SIGNAL_MIN, (dep or {}).name)
-			local behind = last_t and st.t + K.SKIP_GAP < last_t
+			local behind
+			if st.early then
+				behind = (G.time or 0) > st.t + K.SKIP_GAP
+			else
+				behind = last_t and st.t + K.SKIP_GAP < last_t
+			end
 			if not done and not st.consume and st.signal == 0 and (behind or (dep and gone[dep.name])) then
 				if not st.early then
 					st.skipped = true
@@ -5620,7 +5775,7 @@ end
 
 local function cursor_in_window()
 	local cx, cy = Input.GetCursorPos()
-	if W.panel_rect and in_rect(W.panel_rect, cx, cy) and not over_menu(cx, cy) then
+	if (in_rect(W.panel_rect, cx, cy) or in_rect(W.pc_rect, cx, cy)) and not over_menu(cx, cy) then
 		return true
 	end
 	if not W.open or W.vis <= 0 or W.w == 0 or not W.x then
@@ -5629,7 +5784,7 @@ local function cursor_in_window()
 	if over_menu(cx, cy) then
 		return false
 	end
-	if W.pm_rect and in_rect(W.pm_rect, cx, cy) then
+	if in_rect(W.pm_rect, cx, cy) or in_rect(W.news_rect, cx, cy) then
 		return true
 	end
 	return cx >= W.x and cx <= W.x + W.w and cy >= W.y and cy <= W.y + W.h
@@ -5840,6 +5995,9 @@ local function click(right)
 	if W.slot_menu and kind ~= "smenu" and kind ~= "smbg" and not (kind == "slot" and right) then
 		W.slot_menu = nil
 	end
+	if W.pclose and kind ~= "pcmenu" and kind ~= "pcbg" and kind ~= "phide" then
+		W.pclose = nil
+	end
 	if W.set_gear and kind ~= "set_gear" and not in_rect(W.gear_pop, cx, cy) then
 		W.set_gear = nil
 	end
@@ -5941,8 +6099,18 @@ local function click(right)
 		if W.preview then
 			W.preview = false
 		else
-			W.phidden = G.match
+			W.pclose = not W.pclose and arg or nil
 		end
+	elseif kind == "pcmenu" then
+		if arg == "match" then
+			W.phidden = G.match
+		elseif arg == "always" or arg == "shop" then
+			set_cfg("pshop", arg == "shop" and 1 or 0)
+			return
+		elseif arg == "off" then
+			set_cfg("panel", 0)
+		end
+		W.pclose = nil
 	elseif kind == "pdrag" then
 		if not right then
 			W.pdrag, W.pdx, W.pdy = true, cx - W.px, cy - W.py
@@ -6345,7 +6513,7 @@ do
 	end
 
 	local function tip(id, x0, y0, x1, y1, title, body, pos)
-		if W.nohit or W.slot_menu or (W.pos_menu and id:sub(1, 2) ~= "pm") then
+		if W.nohit or W.slot_menu or W.pclose or (W.pos_menu and id:sub(1, 2) ~= "pm") then
 			return
 		end
 		if hovered(x0, y0, x1, y1) then
@@ -8000,8 +8168,13 @@ do
 		end
 		local ch = px(48) + walk(0, 0, false) + px(58)
 		local cx0 = math.floor(x + (w - cw) / 2)
-		local cy0 = math.floor(y + (h - ch) / 2 + px(10)) + slide
+		local screen = Render.ScreenSize()
+		local cy0 = math.floor(clamp(y + (h - ch) / 2 + px(10), 4, math.max(4, screen.y - ch - 4))) + slide
 		rect(cx0, cy0, cx0 + cw, cy0 + ch, fade(P.CARD, na), px(12))
+		if W.news then
+			W.news_rect = { cx0, cy0, cx0 + cw, cy0 + ch }
+			hit(cx0, cy0, cx0 + cw, cy0 + ch, "newsbg")
+		end
 		local hy = cy0 + px(28)
 		local tw0 = text(W.fonts.bold, px(15), L("cd_news_t"), cx0 + pad, hy, fade(P.TEXT, na))
 		local ver = K.VERSION
@@ -8363,8 +8536,73 @@ do
 			rect(bx0, hy - size / 2, bx1, hy + size / 2, fade(P.HOVER, a * hv * 1.5), px(6))
 		end
 		glyph("\u{f00d}", bx0 + size / 2, hy, px(10), fade(mix(P.MUTED, P.TEXT, hv), a))
-		hit(bx0, hy - size / 2, bx1, hy + size / 2, "phide")
+		hit(bx0, hy - size / 2, bx1, hy + size / 2, "phide", { x = bx1, y = hy + size / 2 + px(4) })
 		tip("phide", bx0, hy - size / 2, bx1, hy + size / 2, L("cd_p_hide_t"), L("cd_p_hide"))
+	end
+
+	function PN.close_menu(a)
+		local menu = W.pclose
+		local ma = approach("pc_a", menu and 1 or 0, 22) * a
+		if menu then
+			W.pc_last = menu
+		end
+		menu = menu or W.pc_last
+		if ma <= 0.01 or not menu then
+			return
+		end
+		local items = { { "match", "\u{f070}", L("cd_pc_match") }, { "off", "\u{f011}", L("cd_pc_off") } }
+		local modes = { { "always", L("cd_pm0") }, { "shop", L("cd_pm1") } }
+		local pad, row_h, seg_h, cap_h = px(8), px(30), px(30), px(20)
+		local w = px(220)
+		for _, it in ipairs(items) do
+			w = math.max(w, tw(W.fonts.medium, px(12), it[3]) + px(44))
+		end
+		for _, m in ipairs(modes) do
+			w = math.max(w, (tw(W.fonts.medium, px(11), m[2]) + px(24)) * 2 + pad * 2 + px(6))
+		end
+		local h = pad * 2 + cap_h + seg_h + px(8) + #items * row_h
+		local screen = Render.ScreenSize()
+		local x = math.floor(clamp(menu.x - w, 4, screen.x - w - 4))
+		local y = math.floor(clamp(menu.y, 4, screen.y - h - 4))
+		local live = W.pclose ~= nil
+		outline(x, y, x + w, y + h, ma, px(10))
+		if live then
+			hit(x, y, x + w, y + h, "pcbg")
+			W.pc_rect = { x, y, x + w, y + h }
+		end
+		local lx, rx = x + pad, x + w - pad
+		text(W.fonts.semi, px(10), L("cd_pc_cap"), lx + px(4), y + pad + cap_h / 2 - px(1), fade(P.DIM, ma))
+		local sy = y + pad + cap_h
+		rect(lx, sy, rx, sy + seg_h, fade(P.CELL, ma), px(7))
+		local half = (rx - lx - px(6)) / 2
+		local kx = tween("pc_seg_x", (cfg.pshop == 1 and half + px(3) or 0), K.MOVE)
+		rect(lx + px(3) + kx, sy + px(3), lx + px(3) + kx + half, sy + seg_h - px(3), fade(P.CHIP_ON, ma), px(5))
+		for k, m in ipairs(modes) do
+			local bx = lx + px(3) + (k - 1) * (half + px(3))
+			local on = approach("pc_seg_t" .. k, (cfg.pshop == 1) == (m[1] == "shop") and 1 or 0, 18)
+			local hv = approach("pc_seg_h" .. k, (live and on < 0.5 and hovered(bx, sy, bx + half, sy + seg_h)) and 1 or 0, 20)
+			local label_w = tw(W.fonts.medium, px(11), m[2])
+			text(W.fonts.medium, px(11), m[2], math.floor(bx + (half - label_w) / 2), sy + seg_h / 2,
+				fade(mix(P.MUTED, P.TEXT, math.max(on, hv * 0.6)), ma))
+			if live then
+				hit(bx, sy, bx + half, sy + seg_h, "pcmenu", m[1])
+			end
+		end
+		local ry = sy + seg_h + px(8)
+		for k, it in ipairs(items) do
+			local bad = it[1] == "off"
+			local hv = approach("pc_h" .. k, (live and hovered(lx, ry, rx, ry + row_h)) and 1 or 0, 20)
+			if hv > 0 then
+				rect(lx, ry, rx, ry + row_h, fade(P.HOVER, ma * hv * 1.5), px(7))
+			end
+			local cy = ry + row_h / 2
+			glyph(it[2], lx + px(15), cy, px(11), fade(bad and P.BAD or P.MUTED, ma))
+			text(W.fonts.medium, px(12), it[3], lx + px(30), cy, fade(bad and P.BAD or P.TEXT, ma))
+			if live then
+				hit(lx, ry, rx, ry + row_h, "pcmenu", it[1])
+			end
+			ry = ry + row_h
+		end
 	end
 
 	function PN.roles(plan, x, cy, size, a)
@@ -8642,7 +8880,7 @@ do
 	end
 
 	function draw_panel()
-		W.panel_rect = nil
+		W.panel_rect, W.pc_rect = nil, nil
 		if not W.open or cfg.panel ~= 1 then
 			W.preview = false
 		end
@@ -8661,7 +8899,7 @@ do
 		end
 		plan = W.pplan
 		if pa <= 0.01 or not plan then
-			W.pdrag = false
+			W.pdrag, W.pclose = false, nil
 			return
 		end
 		ensure_fonts()
@@ -8693,6 +8931,7 @@ do
 			W.panel_rect = { x, y, x + w, y + h }
 		end
 		draw(plan, x, y, pa, false)
+		PN.close_menu(pa)
 	end
 
 	function draw_tips()
@@ -8700,7 +8939,7 @@ do
 	end
 
 	function draw_window()
-		W.pm_rect, W.gear_block, W.news_block = nil, nil, nil
+		W.pm_rect, W.gear_block, W.news_block, W.news_rect = nil, nil, nil, nil
 		if W.slider then
 			if Input.IsKeyDown(K.MOUSE1, true) and W.slider_rect then
 				local cx = Input.GetCursorPos()
