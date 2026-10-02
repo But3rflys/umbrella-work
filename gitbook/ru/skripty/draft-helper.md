@@ -7,7 +7,7 @@ icon: chess
 Помощник драфта: кого пикнуть и кого забанить по контрпикам и синергии, готовая сборка против вражеского пика и панель сборки в игре.
 
 <!-- versions:start -->
-**Скачать:** [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.4.2/draft_helper.lua) — `draft-helper-v1.4.2`, 2026-10-01
+**Скачать:** [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.5.0/draft_helper.lua) — `draft-helper-v1.5.0`, 2026-10-02
 
 <details>
 
@@ -15,7 +15,8 @@ icon: chess
 
 | Версия | Дата | Файл | Загрузок |
 | --- | --- | --- | --- |
-| [`draft-helper-v1.4.2`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.4.2) | 2026-10-01 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.4.2/draft_helper.lua) | 0 |
+| [`draft-helper-v1.5.0`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.5.0) | 2026-10-02 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.5.0/draft_helper.lua) | 0 |
+| [`draft-helper-v1.4.2`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.4.2) | 2026-10-01 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.4.2/draft_helper.lua) | 4 |
 | [`draft-helper-v1.4.1`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.4.1) | 2026-10-01 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.4.1/draft_helper.lua) | 1 |
 | [`draft-helper-v1.4.0`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.4.0) | 2026-10-01 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.4.0/draft_helper.lua) | 65 |
 | [`draft-helper-v1.2.8`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v1.2.8) | 2026-09-30 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v1.2.8/draft_helper.lua) | 112 |
