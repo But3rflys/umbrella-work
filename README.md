@@ -58,17 +58,17 @@ The menu follows your cheat language; the scripts speak Russian and English.
 <!-- stats:start -->
 | script | downloads | latest |
 | --- | --- | --- |
-| [Lane Pull](scripts/lane_pull) | 297 | `lane-pull-v1.0.4` |
-| [DS Spot Block](scripts/ds_spot_block) | 58 | `ds-spot-block-v1.0.1` |
-| [Custom Background](scripts/custom_background) | 22 | `custom-background-v1.0.0` |
-| [Auto Stack](scripts/auto_stack) | 81 | `auto-stack-v1.1.0` |
-| [Draft Helper](scripts/draft_helper) | 326 | `draft-helper-v1.5.0` |
-| [MusicUI](scripts/musicui) | 874 | `musicui-v1.0.8` |
+| [Lane Pull](scripts/lane_pull) | 302 | `lane-pull-v1.0.4` |
+| [DS Spot Block](scripts/ds_spot_block) | 59 | `ds-spot-block-v1.0.1` |
+| [Custom Background](scripts/custom_background) | 23 | `custom-background-v1.0.0` |
+| [Auto Stack](scripts/auto_stack) | 86 | `auto-stack-v1.1.0` |
+| [Draft Helper](scripts/draft_helper) | 394 | `draft-helper-v1.5.0` |
+| [MusicUI](scripts/musicui) | 882 | `musicui-v1.0.8` |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/stats/stats-dark.svg">
   <img alt="Downloads over time" src=".github/stats/stats-light.svg" width="840">
 </picture>
 
-2026-10-02
+2026-10-03
 <!-- stats:end -->
