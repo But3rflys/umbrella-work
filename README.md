@@ -7,7 +7,6 @@ Lua-скрипты для Umbrella и приложение MusicUI.
 - [DS Spot Block](scripts/ds_spot_block) — блок спота Вакуумом за Dark Seer
 - [Custom Background](scripts/custom_background) — свои картинки на фоне меню
 - [Auto Stack](scripts/auto_stack) — автостак кемпов за Кунку и Инвокера
-- [Draft Helper](scripts/draft_helper) — подсказки на драфте: контрпики, синергия и баны
 - [MusicUI](scripts/musicui) — оверлей плеера: трек, обложка, эквалайзер, текст
 <!-- scripts:ru:end -->
 
@@ -35,7 +34,6 @@ Lua scripts for Umbrella and the MusicUI app.
 - [DS Spot Block](scripts/ds_spot_block) — Vacuum spot block for Dark Seer
 - [Custom Background](scripts/custom_background) — your own pictures behind the menu
 - [Auto Stack](scripts/auto_stack) — camp stacking for Kunkka and Invoker
-- [Draft Helper](scripts/draft_helper) — draft helper: counters, synergy and bans
 - [MusicUI](scripts/musicui) — player overlay: track, cover, equalizer, lyrics
 <!-- scripts:en:end -->
 
@@ -62,7 +60,6 @@ The menu follows your cheat language; the scripts speak Russian and English.
 | [DS Spot Block](scripts/ds_spot_block) | 59 | `ds-spot-block-v1.0.1` |
 | [Custom Background](scripts/custom_background) | 23 | `custom-background-v1.0.0` |
 | [Auto Stack](scripts/auto_stack) | 88 | `auto-stack-v1.1.0` |
-| [Draft Helper](scripts/draft_helper) | 424 | `draft-helper-v1.5.0` |
 | [MusicUI](scripts/musicui) | 890 | `musicui-v1.0.8` |
 
 <picture>
