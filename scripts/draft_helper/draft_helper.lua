@@ -326,6 +326,8 @@ local localization = qLocalization.new({
 		dh_news = "What's new",
 		dh_news_sub = "Changes in this update",
 		dh_news_row_sub = "Changes in the latest update",
+		dh_cl_b6fix_t = "Draft reading fixed",
+		dh_cl_b6fix_d = "Bans and picks are detected in every new lobby again, and picking a hero from the window works again.",
 		dh_cl_b5fps_t = "Higher FPS",
 		dh_cl_b5fps_d = "The window costs far less FPS, most of all in Captains Mode. With the window closed the script barely touches the game. Fixed an error in ranked All Pick.",
 		dh_cl_b4fix_t = "Position stays",
@@ -648,6 +650,8 @@ local localization = qLocalization.new({
 		dh_news = "Что нового",
 		dh_news_sub = "Что изменилось в обновлении",
 		dh_news_row_sub = "Изменения последнего обновления",
+		dh_cl_b6fix_t = "Чтение драфта исправлено",
+		dh_cl_b6fix_d = "Баны и пики снова определяются в каждом новом лобби, выбор героя из окна снова работает.",
 		dh_cl_b5fps_t = "Выше FPS",
 		dh_cl_b5fps_d = "Окно отнимает гораздо меньше FPS, особенно в Captains Mode. С закрытым окном скрипт почти не нагружает игру. Исправлена ошибка в рейтинговом All Pick.",
 		dh_cl_b4fix_t = "Позиция не сбрасывается",
@@ -984,7 +988,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.5",
+	VERSION = "2.0.0-beta.6",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1021,6 +1025,12 @@ local K = {
 	},
 
 	NEWS = {
+		{
+			v = "2.0.0-beta.6",
+			items = {
+				{ key = "dh_cl_b6fix", glyph = "wrench", tile = "t_green" },
+			},
+		},
 		{
 			v = "2.0.0-beta.5",
 			items = {
@@ -2825,13 +2835,7 @@ function live.after_players(d)
 end
 
 function live.pregame()
-	local p = live.pre_panel
-	if p and p:IsValid() then return p end
-	local now = os.clock()
-	if now < (live.next_pre or 0) then return nil end
-	live.next_pre = now + 1
-	live.pre_panel = Panorama.GetPanelByName("PreGame", false)
-	return live.pre_panel
+	return Panorama.GetPanelByName("PreGame", false)
 end
 
 function live.read(pre, now)
