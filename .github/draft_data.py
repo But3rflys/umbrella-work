@@ -1,6 +1,7 @@
 import gzip
 import json
 import os
+import re
 import struct
 import sys
 import time
@@ -26,6 +27,12 @@ CM_WINDOWS = 3 if QUICK else 400
 POS_MATCHES = 6000
 GAP = 1.1
 CALLS_MAX = 1900
+D2PT = "https://dota2protracker.com/hero/"
+D2PT_GAP = 3
+D2PT_EVERY = 3 * 86400
+D2PT_SHARE = 0.05
+D2PT_MATCHES = 200
+D2PT_FINAL = 0.01
 
 REC = struct.Struct("<QI10sBB")
 
@@ -269,6 +276,228 @@ def heroes():
     log("heroes: %d", len(out))
 
 
+class JsLiteral:
+    NUM = re.compile(r"-?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?")
+    KEY = re.compile(r"[A-Za-z_$0-9][\w$]*")
+    LITS = (("true", True), ("false", False), ("null", None), ("void 0", None), ("undefined", None),
+            ("NaN", None), ("-Infinity", None), ("Infinity", None))
+    ESC = {"n": "\n", "t": "\t", "r": "\r", "b": "\b", "f": "\f"}
+
+    def __init__(self, s, i=0):
+        self.s, self.i = s, i
+
+    def ws(self):
+        while self.i < len(self.s) and self.s[self.i] in " \t\r\n":
+            self.i += 1
+
+    def value(self):
+        self.ws()
+        s, i = self.s, self.i
+        c = s[i]
+        if c == "{":
+            return self.obj()
+        if c == "[":
+            return self.arr()
+        if c in "\"'":
+            return self.string()
+        m = self.NUM.match(s, i)
+        if m:
+            self.i = m.end()
+            t = m.group()
+            return float(t) if any(x in t for x in ".eE") else int(t)
+        for lit, v in self.LITS:
+            if s.startswith(lit, i):
+                self.i = i + len(lit)
+                return v
+        raise ValueError("bad value at %d" % i)
+
+    def string(self):
+        s, q, j, out = self.s, self.s[self.i], self.i + 1, []
+        while s[j] != q:
+            if s[j] == "\\":
+                n = s[j + 1]
+                if n == "u":
+                    out.append(chr(int(s[j + 2:j + 6], 16)))
+                    j += 6
+                    continue
+                out.append(self.ESC.get(n, n))
+                j += 2
+                continue
+            out.append(s[j])
+            j += 1
+        self.i = j + 1
+        return "".join(out)
+
+    def key(self):
+        self.ws()
+        if self.s[self.i] in "\"'":
+            return self.string()
+        m = self.KEY.match(self.s, self.i)
+        self.i = m.end()
+        return m.group()
+
+    def obj(self):
+        self.i += 1
+        out = {}
+        while True:
+            self.ws()
+            if self.s[self.i] == "}":
+                self.i += 1
+                return out
+            k = self.key()
+            self.ws()
+            if self.s[self.i] != ":":
+                raise ValueError("expected : at %d" % self.i)
+            self.i += 1
+            out[k] = self.value()
+            self.ws()
+            if self.s[self.i] == ",":
+                self.i += 1
+
+    def arr(self):
+        self.i += 1
+        out = []
+        while True:
+            self.ws()
+            if self.s[self.i] == "]":
+                self.i += 1
+                return out
+            out.append(self.value())
+            self.ws()
+            if self.s[self.i] == ",":
+                self.i += 1
+
+
+def d2pt_page(name, pos=None):
+    url = D2PT + urllib.parse.quote_plus(name) + "?section=builds" + ("&position=pos+%d" % pos if pos else "")
+    last = None
+    for attempt in range(4):
+        time.sleep(D2PT_GAP)
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": HEADERS["User-Agent"]}), timeout=90) as r:
+                html = r.read().decode("utf-8")
+            i = html.find("kit.start(app, element, {")
+            if i < 0:
+                raise RuntimeError("no page data")
+            return JsLiteral(html, html.find("data:", i) + 5).value()
+        except urllib.error.HTTPError as e:
+            last = "http %d" % e.code
+            if e.code == 429 or e.code >= 500:
+                time.sleep(30 * (attempt + 1))
+                continue
+            raise RuntimeError("%s for %s" % (last, url))
+        except (urllib.error.URLError, TimeoutError) as e:
+            last = type(e).__name__
+            time.sleep(10 * (attempt + 1))
+    raise RuntimeError("no answer: %s" % last)
+
+
+def d2pt_rows(hid, node, seen):
+    pos = int(str(node.get("position") or "0").replace("pos ", "") or 0)
+    builds = [b for b in node.get("buildData") or [] if isinstance(b, dict) and b.get("build_data")]
+    if not pos or not builds:
+        return []
+    bd = min(builds, key=lambda b: b.get("build_id", 99))["build_data"]
+    stats = {x.get("position"): x.get("matches") or 0 for x in node.get("heroStats") or []}
+    total = stats.get("all") or 0
+    share = round(100 * stats.get("pos %d" % pos, 0) / total) if total else 0
+    rows = ["h %d %d %d %d %d" % (hid, pos, bd.get("num_matches") or 0, round((bd.get("win_rate") or 0) * 1000), share)]
+    for opt in (bd.get("starting_items_new") or [])[:2]:
+        ids = [int(x) for x in opt[0]]
+        seen.update(ids)
+        rows.append("s %d %d %d %s" % (hid, pos, opt[1].get("count") or 0, ",".join(map(str, ids))))
+    for key, tag in (("anchor_items", "c"), ("items_mid_late", "m")):
+        for x in bd.get(key) or []:
+            i = int(x["raw_item_id"])
+            seen.add(i)
+            rows.append("%s %d %d %d %d %d %d" % (tag, hid, pos, i, round(x.get("pr", 0) * 1000),
+                                                round(x.get("avg_minute", 0) * 10), round((x.get("win_rate") or 0) * 1000)))
+    path = bd.get("anchor_build") or []
+    if path and isinstance(path[0], list):
+        stats_ai = bd.get("anchor_item_stats") or {}
+        mins = {int(x["raw_item_id"]): x.get("avg_minute", 0) for x in (bd.get("anchor_items") or []) + (bd.get("items_mid_late") or [])}
+        for i in path[0]:
+            i = int(i)
+            seen.add(i)
+            m = (stats_ai.get(str(i)) or {}).get("avg_minute")
+            rows.append("b %d %d %d %d" % (hid, pos, i, round((m if m is not None else mins.get(i, 0)) * 10)))
+    for x in bd.get("sixslot") or []:
+        if x.get("pick_rate", 0) >= D2PT_FINAL:
+            i = int(x["item_id"])
+            seen.add(i)
+            rows.append("f %d %d %d %d" % (hid, pos, i, round(x["pick_rate"] * 1000)))
+    return rows
+
+
+def items():
+    path = OUT / "manifest.json"
+    manifest = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    prev = (manifest.get("sets") or {}).get("items") or {}
+    if prev.get("src") == "d2pt" and time.time() - prev.get("time", 0) < D2PT_EVERY and (OUT / "stats/items.txt").exists():
+        log("items: fresh, skipped")
+        return None
+    consts = get(API + "constants/items")
+    game = {int(v["id"]): (k, int(v.get("cost") or 0)) for k, v in consts.items() if isinstance(v, dict) and v.get("id")}
+    parents = {}
+    for v in consts.values():
+        if isinstance(v, dict) and v.get("id"):
+            for c in v.get("components") or []:
+                parents.setdefault(c, set()).add(int(v["id"]))
+    ours = {h["id"] for h in json.loads((OUT / "heroes.json").read_text(encoding="utf-8"))}
+    first = d2pt_page("Anti-Mage")
+    common = first[0]["data"]
+    mapping, names = common.get("itemsMapping") or {}, common.get("heroesMapping") or {}
+    rows, seen, pages, heroes, patch = [], set(), 0, 0, ""
+    for hid_s, info in sorted(names.items(), key=lambda x: int(x[0])):
+        hid = int(hid_s)
+        if hid not in ours:
+            continue
+        try:
+            node = first[1]["data"] if hid == 1 else d2pt_page(info["displayName"])[1]["data"]
+        except Exception as e:
+            log("items: %s skipped: %s", info.get("displayName"), e)
+            continue
+        part = d2pt_rows(hid, node, seen)
+        if not part:
+            continue
+        pages += 1
+        heroes += 1
+        patch = node.get("patchversion") or patch
+        rows += part
+        main = int(str(node.get("position")).replace("pos ", ""))
+        stats = {x.get("position"): x.get("matches") or 0 for x in node.get("heroStats") or []}
+        total = stats.get("all") or 0
+        for pos in range(1, 6):
+            n = stats.get("pos %d" % pos, 0)
+            if pos == main or not total or n < D2PT_MATCHES or n / total < D2PT_SHARE:
+                continue
+            try:
+                extra = d2pt_rows(hid, d2pt_page(info["displayName"], pos)[1]["data"], seen)
+            except Exception as e:
+                log("items: %s pos %d skipped: %s", info.get("displayName"), pos, e)
+                continue
+            if extra:
+                pages += 1
+                rows += extra
+    if heroes < 100:
+        raise RuntimeError("d2pt builds for %d heroes only" % heroes)
+    lines = ["n %d" % pages, "v %s" % patch]
+    by_name = {}
+    for i in sorted(seen):
+        m = mapping.get(str(i)) or {}
+        name, cost = game.get(i, (m.get("shortName") or str(m.get("name") or "").replace("item_", ""), int(m.get("price") or 0)))
+        if name:
+            by_name[name] = i
+            lines.append("i %d %s %d" % (i, name, cost))
+    for name, i in sorted(by_name.items(), key=lambda x: x[1]):
+        up = sorted(p for p in parents.get(name, ()) if p in seen)
+        if up:
+            lines.append("u %d %s" % (i, " ".join(map(str, up))))
+    write("stats/items.txt", "\n".join(lines + rows) + "\n")
+    log("items: d2pt %s, %d heroes, %d pages, %d rows", patch, heroes, pages, len(rows))
+    return pages
+
+
 def step(key, fn):
     try:
         result = fn()
@@ -290,6 +519,10 @@ def main():
     step("heroes", heroes)
     if not (OUT / "heroes.json").exists():
         raise SystemExit("no heroes list")
+
+    done = step("items", items)
+    if done:
+        sets["items"] = {"n": done, "time": now, "src": "d2pt"}
 
     newest = None
     for rank in RANKS:
