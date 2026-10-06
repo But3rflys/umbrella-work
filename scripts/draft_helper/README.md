@@ -3,11 +3,12 @@
 подсказки на драфте и сборка предметов / draft hints and item builds
 
 <!-- releases:start -->
-Скачать: [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.3/draft_helper.lua) — `draft-helper-v2.0.0-beta.3`, 2026-10-06
+Скачать: [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.4/draft_helper.lua) — `draft-helper-v2.0.0-beta.4`, 2026-10-06
 
 | версия | дата | файл | загрузок |
 | --- | --- | --- | --- |
-| [`draft-helper-v2.0.0-beta.3`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.3) | 2026-10-06 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.3/draft_helper.lua) | 0 |
+| [`draft-helper-v2.0.0-beta.4`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.4) | 2026-10-06 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.4/draft_helper.lua) | 0 |
+| [`draft-helper-v2.0.0-beta.3`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.3) | 2026-10-06 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.3/draft_helper.lua) | 4 |
 | [`draft-helper-v2.0.0-beta.2`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.2) | 2026-10-06 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.2/draft_helper.lua) | 0 |
 
 [Все релизы](https://github.com/But3rflys/umbrella-work/releases?q=draft-helper&expanded=true)
