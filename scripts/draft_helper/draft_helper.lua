@@ -455,6 +455,9 @@ local localization = qLocalization.new({
 		dh_h_foot_manual = "You pick for the enemy in Captains Mode. Change it in settings.",
 		dh_h_last = "Last draft",
 		dh_h_last_foot = "It is shown on the board",
+		dh_h_clear = "Clear the board",
+		dh_h_clear_sub = "Remove this training from the board",
+		dh_clear = "Clear",
 		dh_h_training = "training",
 		dh_h_match = "match",
 		dh_h_last_chance = "draft win chance %d%%",
@@ -718,6 +721,9 @@ local localization = qLocalization.new({
 		dh_h_foot_manual = "За врага в Captains Mode пикаешь ты сам. Это меняется в настройках.",
 		dh_h_last = "Прошлый драфт",
 		dh_h_last_foot = "Он показан на доске слева",
+		dh_h_clear = "Очистить доску",
+		dh_h_clear_sub = "Убрать эту тренировку с доски",
+		dh_clear = "Очистить",
 		dh_h_training = "тренировка",
 		dh_h_match = "матч",
 		dh_h_last_chance = "шанс по драфту %d%%",
@@ -866,7 +872,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-alpha.8",
+	VERSION = "2.0.0-alpha.9",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1886,7 +1892,11 @@ end
 
 function draft.save_last()
 	local last = S.saved
-	if not last or not data.json then return end
+	if not data.json then return end
+	if not last then
+		data.write("session.json", "{}")
+		return
+	end
 	local out = { mode = last.mode, train = last.train, chance = last.chance, me = last.me, match = last.match, ap = last.ap }
 	if last.cm then
 		local pos = {}
@@ -1895,6 +1905,13 @@ function draft.save_last()
 	end
 	local ok, text = pcall(data.json.encode, data.json, out)
 	if ok and text then data.write("session.json", text) end
+end
+
+function draft.clear_last()
+	if not S.last or not S.last.train then return end
+	S.last, S.saved, S.bh = nil, nil, nil
+	draft.reset_turn()
+	draft.save_last()
 end
 
 function draft.show_last()
@@ -3128,11 +3145,11 @@ function view.reasons(r, ctx, x, cy, max_x)
 	end
 	if r.pos then
 		sep()
-		g.icon(asset.pos(r.pos), cx, cy - 8, 16, C.text2)
-		cx = cx + 21 + g.text(F(500), 12, r.share and (r.share .. "%") or L("dh_pos_" .. r.pos), cx + 21, cy, C.text2) + 6
+		g.icon(asset.pos(r.pos), cx, cy - 9, 18, C.text2)
+		cx = cx + 23 + g.text(F(500), 12, r.share and (r.share .. "%") or L("dh_pos_" .. r.pos), cx + 23, cy, C.text2) + 6
 	end
 	if ctx and SET.reasons == 1 then
-		local function item_w(e) return 23 + g.num_width(500, 12, signed(e[2])) + 6 end
+		local function item_w(e) return 27 + g.num_width(500, 12, signed(e[2])) + 6 end
 		for _, group in ipairs(r.why or {}) do
 			local label = L("dh_" .. group[1])
 			local need = (first and 0 or 7) + g.width(F(400), 12, label) + 5 + item_w(group[2][1])
@@ -3142,8 +3159,8 @@ function view.reasons(r, ctx, x, cy, max_x)
 			for n = 1, math.min(2, #group[2]) do
 				local h, v = group[2][n][1], group[2][n][2]
 				if n > 1 and cx + item_w(group[2][n]) > max_x then break end
-				g.icon(asset.icon(h), cx, cy - 9, 18)
-				cx = cx + 23
+				g.icon(asset.icon(h), cx, cy - 11, 22)
+				cx = cx + 27
 				cx = cx + g.num(500, 12, signed(v), cx, cy, v >= 0 and C.green or C.red) + 6
 			end
 		end
@@ -3466,10 +3483,17 @@ function view.home(y, a)
 	if S.last then
 		h = h + view.group_header(L("dh_h_last"), y + h, a)
 		local sub = L(S.last.train and "dh_h_training" or "dh_h_match") .. "  |  " .. string.format(L("dh_h_last_chance"), math.floor(S.last.chance * 100 + 0.5))
-		h = h + view.setting_rows({
+		local rows = {
 			{ tile = S.last.chance >= 0.5 and C.t_green or C.red, glyph = "finish", title = S.last.mode == "ap" and "All Pick" or "Captains Mode", sub = sub },
 			{ id = "home_builds", tile = C.t_purple, glyph = "bag", title = L("dh_b_row"), sub = L("dh_b_row_sub"), control = view.chevron(L("dh_open"), "home_builds"), act = build.open_team },
-		}, y + h, a)
+		}
+		if S.last.train then
+			rows[#rows + 1] = { id = "home_clear", tile = C.red, glyph = "trash", title = L("dh_h_clear"), sub = L("dh_h_clear_sub"), control = view.chevron(L("dh_clear"), "home_clear"), act = function()
+				draft.clear_last()
+				build.team, build.me = {}, nil
+			end }
+		end
+		h = h + view.setting_rows(rows, y + h, a)
 		h = h + view.foot(L("dh_h_last_foot"), y + h, a) + 22
 	end
 	h = h + view.group_header(L("dh_h_hints"), y + h, a)
