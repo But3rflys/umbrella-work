@@ -326,6 +326,8 @@ local localization = qLocalization.new({
 		dh_news = "What's new",
 		dh_news_sub = "Changes in this update",
 		dh_news_row_sub = "Changes in the latest update",
+		dh_cl_b4fix_t = "Position stays",
+		dh_cl_b4fix_d = "The chosen position no longer jumps back to Auto after someone else picks. It resets only once your team takes it.",
 		dh_cl_b2fix_t = "Fixes",
 		dh_cl_b2fix_d = "Minor changes and bug fixes.",
 		dh_cl_resize_t = "Resize by the corner",
@@ -644,6 +646,8 @@ local localization = qLocalization.new({
 		dh_news = "Что нового",
 		dh_news_sub = "Что изменилось в обновлении",
 		dh_news_row_sub = "Изменения последнего обновления",
+		dh_cl_b4fix_t = "Позиция не сбрасывается",
+		dh_cl_b4fix_d = "Выбранная позиция больше не прыгает на «Авто» после чужого пика. Она сбрасывается, только когда её заняла твоя команда.",
 		dh_cl_b2fix_t = "Исправления",
 		dh_cl_b2fix_d = "Мелкие изменения и исправления ошибок.",
 		dh_cl_resize_t = "Размер за уголок",
@@ -976,7 +980,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.3",
+	VERSION = "2.0.0-beta.4",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1013,6 +1017,12 @@ local K = {
 	},
 
 	NEWS = {
+		{
+			v = "2.0.0-beta.4",
+			items = {
+				{ key = "dh_cl_b4fix", glyph = "wrench", tile = "t_green" },
+			},
+		},
 		{
 			v = "2.0.0-beta.2",
 			items = {
@@ -2331,9 +2341,10 @@ function draft.pos_for(h)
 	return best or planned
 end
 
-function draft.reset_turn()
-	S.sel, S.ghost, S.filter, S.enemy_at = nil, nil, 0, nil
+function draft.reset_turn(keep_filter)
+	S.sel, S.ghost, S.enemy_at = nil, nil, nil
 	S.menu = nil
+	if not keep_filter or draft.our_pos()[S.filter] then S.filter = 0 end
 end
 
 function draft.snapshot()
@@ -2422,11 +2433,10 @@ function draft.commit(h, forced, auto)
 	local p = forced or draft.pos_for(h)
 	if draft.live() then
 		if live.act(h) then live.pos[h] = p end
-		draft.reset_turn()
+		draft.reset_turn(true)
 		S.query, S.focus = "", false
 		return
 	end
-	draft.reset_turn()
 	S.query, S.focus = "", false
 	if S.mode == "ap" then
 		S.ap.ours[#S.ap.ours + 1] = { h = h, p = p }
@@ -2438,6 +2448,7 @@ function draft.commit(h, forced, auto)
 		S.cm.pos[draft.cm_step()] = p
 		S.cm.picks[#S.cm.picks + 1] = h
 	end
+	draft.reset_turn(true)
 	draft.snapshot()
 end
 
@@ -2853,7 +2864,7 @@ function live.apply_cm(d)
 		S.cm.picks[i] = h
 	end
 	if not same or #S.cm.picks ~= before then
-		draft.reset_turn()
+		draft.reset_turn(true)
 		draft.snapshot()
 	end
 end
@@ -2870,7 +2881,7 @@ function live.apply_ap(d)
 	key = table.concat(key, ",")
 	if key ~= live.ap_key then
 		live.ap_key = key
-		draft.reset_turn()
+		draft.reset_turn(true)
 		draft.snapshot()
 	end
 end
