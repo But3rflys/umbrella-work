@@ -15,7 +15,7 @@ icon: layer-group
 
 | Версия | Дата | Файл | Загрузок |
 | --- | --- | --- | --- |
-| [`auto-stack-v1.1.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.1.0) | 2026-09-28 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.1.0/auto_stack.lua) | 76 |
+| [`auto-stack-v1.1.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.1.0) | 2026-09-28 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.1.0/auto_stack.lua) | 78 |
 | [`auto-stack-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/auto-stack-v1.0.0) | 2026-09-27 | [auto_stack.lua](https://github.com/But3rflys/umbrella-work/releases/download/auto-stack-v1.0.0/auto_stack.lua) | 14 |
 
 </details>
