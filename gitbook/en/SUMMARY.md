@@ -8,6 +8,7 @@
 * [DS Spot Block](scripts/ds-spot-block.md)
 * [Custom Background](scripts/custom-background.md)
 * [Auto Stack](scripts/auto-stack.md)
+* [Draft Helper](scripts/draft-helper.md)
 
 ## Apps
 
