@@ -866,7 +866,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-alpha.3",
+	VERSION = "2.0.0-alpha.4",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -908,6 +908,8 @@ local K = {
 	WHEEL = 112,
 	BOOST = 2.5,
 	GLASS = 0.3,
+	SINK_ALIVE = 0.4,
+	SINK_TIMEOUT = 1500,
 	TIP_DELAY = 0.35,
 	DEF = {
 		rank = 4,
@@ -965,20 +967,30 @@ local JS = {
 (function () {
 	let root = $.GetContextPanel();
 	while (root.GetParent()) root = root.GetParent();
-	let sink = root.FindChild('DraftHelperInput');
+	let sink = root.FindChild('TextInputProxy');
+	const drop = () => {
+		sink.text = '';
+		sink.DeleteAsync(0);
+	};
 	if (%s) {
 		if (!sink) {
-			sink = $.CreatePanel('TextEntry', root, 'DraftHelperInput');
+			sink = $.CreatePanel('TextEntry', root, 'TextInputProxy');
 			sink.style.width = '1px';
 			sink.style.height = '1px';
 			sink.style.opacity = '0';
 			sink.hittest = false;
+			const watch = () => {
+				if (!sink.IsValid()) return;
+				if (Date.now() - Number(sink.GetAttributeString('alive', '0')) > %d) return drop();
+				$.Schedule(0.25, watch);
+			};
+			$.Schedule(0.25, watch);
 		}
+		sink.SetAttributeString('alive', String(Date.now()));
 		sink.text = '';
 		sink.SetFocus();
 	} else if (sink) {
-		sink.text = '';
-		sink.DeleteAsync(0);
+		drop();
 	}
 })();
 ]],
@@ -1389,6 +1401,7 @@ function upd.tick()
 	local now = os.clock()
 	if upd.reload_at and now >= upd.reload_at then
 		upd.reload_at = nil
+		Engine.RunScript(JS.SINK:format("false", K.SINK_TIMEOUT))
 		Engine.ReloadScriptSystem()
 	elseif now >= upd.next_check then
 		upd.check(false)
@@ -3871,13 +3884,16 @@ function view.window()
 	g.frame(0, 0, K.W, K.H, C.border, 16)
 end
 
-local input = { swallow = false, held = {}, sink_on = false }
+local input = { swallow = false, held = {}, sink_on = false, sink_at = 0 }
 
 function input.sink(on, force)
-	if input.sink_on == on and not force then return end
-	input.sink_on = on
-	Engine.RunScript(JS.SINK:format(on and "true" or "false"))
+	local now = os.clock()
+	if input.sink_on == on and not force and not (on and now >= input.sink_at) then return end
+	input.sink_on, input.sink_at = on, now + K.SINK_ALIVE
+	Engine.RunScript(JS.SINK:format(on and "true" or "false", K.SINK_TIMEOUT))
 end
+
+Engine.RunScript(JS.SINK:format("false", K.SINK_TIMEOUT))
 
 local CHARS = {}
 for i = 0, 25 do
