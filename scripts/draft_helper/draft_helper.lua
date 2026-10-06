@@ -326,6 +326,12 @@ local localization = qLocalization.new({
 		dh_news = "What's new",
 		dh_news_sub = "Changes in this update",
 		dh_news_row_sub = "Changes in the latest update",
+		dh_cl_resize_t = "Resize by the corner",
+		dh_cl_resize_d = "Drag the corner at the bottom right of the window or the build panel to scale it. Fixed size options are gone.",
+		dh_cl_keep_t = "The draft stays after the match starts",
+		dh_cl_keep_d = "The draft is tied to the lobby while you pick, so it is no longer lost when scripts reload at the start of the match.",
+		dh_cl_items_t = "Cleaner answers",
+		dh_cl_items_d = "Sentries are suggested to supports only. Eternal Shroud is no longer an answer to magic damage.",
 		dh_cl_builds_t = "Item builds",
 		dh_cl_builds_d = "A build for your hero and role from 7000+ MMR games: starting items, then early, mid and late game.",
 		dh_cl_counter_t = "Answers to their draft",
@@ -343,7 +349,6 @@ local localization = qLocalization.new({
 		dh_bp_early = "Early",
 		dh_bp_mid = "Mid",
 		dh_bp_late = "Late",
-		dh_bp_size = "Size",
 		dh_bp_show = "Show",
 		dh_bp_show_shop = "With shop",
 		dh_bp_show_always = "Always",
@@ -548,7 +553,6 @@ local localization = qLocalization.new({
 		dh_s_window = "Window",
 		dh_s_auto = "Open on its own in the draft",
 		dh_s_auto_sub = "And close when the draft is over",
-		dh_s_scale = "Window size",
 		dh_s_blur = "Background blur",
 		dh_s_blur_power = "Blur strength",
 		dh_s_defaults = "Restore default settings",
@@ -638,6 +642,12 @@ local localization = qLocalization.new({
 		dh_news = "Что нового",
 		dh_news_sub = "Что изменилось в обновлении",
 		dh_news_row_sub = "Изменения последнего обновления",
+		dh_cl_resize_t = "Размер за уголок",
+		dh_cl_resize_d = "Потяни уголок справа внизу окна или панели сборки, чтобы изменить размер. Фиксированные варианты размера убраны.",
+		dh_cl_keep_t = "Драфт не теряется после начала матча",
+		dh_cl_keep_d = "Драфт привязывается к лобби ещё во время пиков, поэтому больше не пропадает, когда скрипты перезагружаются на старте матча.",
+		dh_cl_items_t = "Точнее ответы на драфт",
+		dh_cl_items_d = "Сентри советуются только саппортам. Eternal Shroud больше не предлагается против магического урона.",
 		dh_cl_builds_t = "Сборки предметов",
 		dh_cl_builds_d = "Сборка под твоего героя и роль по играм 7000+ MMR: стартовый закуп, ранняя игра, середина и поздняя.",
 		dh_cl_counter_t = "Ответы на их драфт",
@@ -655,7 +665,6 @@ local localization = qLocalization.new({
 		dh_bp_early = "Ранняя",
 		dh_bp_mid = "Середина",
 		dh_bp_late = "Поздняя",
-		dh_bp_size = "Размер",
 		dh_bp_show = "Показывать",
 		dh_bp_show_shop = "С магазином",
 		dh_bp_show_always = "Всегда",
@@ -860,7 +869,6 @@ local localization = qLocalization.new({
 		dh_s_window = "Окно",
 		dh_s_auto = "Открывать само на драфте",
 		dh_s_auto_sub = "И закрывать, когда драфт закончен",
-		dh_s_scale = "Размер окна",
 		dh_s_blur = "Размытие фона",
 		dh_s_blur_power = "Сила размытия",
 		dh_s_defaults = "Вернуть настройки по умолчанию",
@@ -964,7 +972,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-alpha.10",
+	VERSION = "2.0.0-alpha.11",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1002,6 +1010,14 @@ local K = {
 
 	NEWS = {
 		{
+			v = "2.0.0-alpha.11",
+			items = {
+				{ key = "dh_cl_resize", glyph = "expand", tile = "t_cyan" },
+				{ key = "dh_cl_keep", glyph = "flag", tile = "t_green" },
+				{ key = "dh_cl_items", glyph = "shield", tile = "red", icons = { "dust", "ward_sentry", "black_king_bar", "pipe", "glimmer_cape" } },
+			},
+		},
+		{
 			v = "2.0.0-alpha.10",
 			items = {
 				{ key = "dh_cl_builds", glyph = "bag", tile = "t_purple", icons = { "magic_wand", "power_treads", "bfury", "manta", "butterfly", "skadi" } },
@@ -1023,6 +1039,8 @@ local K = {
 	SINK_ALIVE = 0.4,
 	SINK_TIMEOUT = 1500,
 	TIP_DELAY = 0.35,
+	SCALE_MIN = 70,
+	SCALE_MAX = 160,
 	DEF = {
 		rank = 4,
 		count = 8,
@@ -1095,7 +1113,7 @@ local ITEM = {
 		target = { "sphere", "lotus_orb" },
 		silence = { "manta", "lotus_orb", "cyclone", "black_king_bar" },
 		escape = { "orchid", "bloodthorn", "rod_of_atos", "gungir", "sheepstick", "abyssal_blade" },
-		magic = { "black_king_bar", "pipe", "glimmer_cape", "eternal_shroud" },
+		magic = { "black_king_bar", "pipe", "glimmer_cape" },
 		phys = { "ghost", "force_staff", "solar_crest", "shivas_guard", "assault", "crimson_guard", "heavens_halberd", "blade_mail", "butterfly" },
 	},
 	CONSUMABLES = { dust = { 1, 2, 3, 4, 5 }, ward_sentry = { 4, 5 } },
@@ -2309,7 +2327,7 @@ function draft.snapshot()
 			for i, h in ipairs(S.cm.picks) do S.last.cm.picks[i], S.last.cm.pos[i] = h, S.cm.pos[i] end
 		end
 		S.last.me = draft.live() and live.d and live.d.me or nil
-		S.last.match = draft.live() and live.match or nil
+		S.last.match = draft.live() and live.lobby() or nil
 		S.saved = S.last
 		draft.save_last()
 	end
@@ -2906,9 +2924,15 @@ function live.rows(d)
 	return rows
 end
 
+function live.lobby()
+	local id = GameRules.GetLobbyID()
+	if not id or id == 0 then return nil end
+	return tostring(id)
+end
+
 function live.tick()
 	local now = os.clock()
-	local match = Engine.IsInGame() and tostring(GameRules.GetLobbyID()) or nil
+	local match = Engine.IsInGame() and live.lobby() or nil
 	if match ~= live.match then
 		live.match = match
 		draft.show_last()
@@ -4341,14 +4365,12 @@ function view.settings(y, a)
 	h = h + view.group_header(L("dh_bp"), y + h, a)
 	h = h + view.setting_rows({
 		{ tile = C.t_purple, glyph = "bag", title = L("dh_bp"), sub = L("dh_bp_tip"), control = view.switch("bp") },
-		{ fold = view.fold("bp", SET.bp == 1), tile = C.t_cyan, glyph = "expand", title = L("dh_bp_size"), control = view.choice("bp_scale", { { 90, "S" }, { 100, "M" }, { 115, "L" } }, SET.bp_scale, pick("bp_scale")) },
 		{ fold = view.fold("bp", SET.bp == 1), tile = C.t_blue, glyph = "eye", title = L("dh_bp_show"), control = view.choice("bp_show", { { "shop", L("dh_bp_show_shop") }, { "always", L("dh_bp_show_always") } }, SET.bp_show, pick("bp_show")) },
 	}, y + h, a) + 22
 	h = h + view.group_header(L("dh_s_window"), y + h, a)
 	h = h + view.setting_rows({
 		{ tile = C.t_purple, glyph = "wand", title = L("dh_s_auto"), sub = L("dh_s_auto_sub"), control = view.switch("auto") },
 		{ tile = C.t_blue, glyph = "pointer", title = L("dh_s_hover"), sub = L("dh_s_hover_sub"), control = view.switch("hints") },
-		{ tile = C.t_cyan, glyph = "expand", title = L("dh_s_scale"), control = view.choice("scale", { { 90, "90%" }, { 100, "100%" }, { 110, "110%" } }, SET.scale, pick("scale")) },
 		{ tile = C.t_indigo, glyph = "blur", title = L("dh_s_blur"), control = view.switch("blur") },
 		{ fold = view.fold("blur", SET.blur == 1), tile = C.t_indigo, glyph = "drop", title = L("dh_s_blur_power"), control = view.slider("blur_power", 10, 100) },
 	}, y + h, a) + 22
@@ -4885,6 +4907,20 @@ function view.menu()
 	end
 end
 
+function view.grip(w, h, id, on_down)
+	local hot = hit.is(id) or (S.resize ~= nil and S.resize.id == id)
+	local c = hot and C.text2 or C.text3
+	g.line(w - 6, h - 14, w - 14, h - 6, c, 1, 1.5)
+	g.line(w - 6, h - 9, w - 9, h - 6, c, 1, 1.5)
+	hit.add(w - 18, h - 18, 18, 18, id, { down = on_down })
+end
+
+function view.resize_to(mx)
+	local r = S.resize
+	local k = (r.w + mx - r.mx) / r.w
+	SET[r.key] = clamp(math.floor(r.scale * k + 0.5), K.SCALE_MIN, K.SCALE_MAX)
+end
+
 function view.window()
 	local screen = Render.ScreenSize()
 	g.s = math.max(0.7, screen.y / 1080) * SET.scale / 100
@@ -4910,6 +4946,9 @@ function view.window()
 	if S.view == "draft" and draft.positional() and S.query == "" and not S.reveal_at then view.segment() end
 	view.content()
 	view.bar()
+	view.grip(K.W, K.H, "grip", function(mx)
+		S.resize = { id = "grip", key = "scale", mx = mx, w = K.W * g.s, scale = SET.scale }
+	end)
 	view.menu()
 	view.tip()
 	g.frame(0, 0, K.W, K.H, C.border, 16)
@@ -5222,7 +5261,7 @@ function bp.frame()
 	local prev = bp.hits
 	bp.hits, bp.rect = {}, nil
 	if not bp.shown then
-		bp.hover, bp.tip_id, bp.press, bp.drag = nil, nil, nil, nil
+		bp.hover, bp.tip_id, bp.press, bp.drag, bp.resize = nil, nil, nil, nil, nil
 		return
 	end
 	local me = bp.me()
@@ -5249,10 +5288,19 @@ function bp.frame()
 	local labels, lab_w = bp.labels()
 	local rows, body_h = bp.rows(plan, labels)
 	local W = math.max(8 + 26 + 5 * 26 + 4 + 10, 8 + lab_w + bp.COLS * (bp.IW + 5) - 5 + 8)
-	local prefs_h = 2 + 26 + 6 + 26 + 6 + 20 + 10
+	local prefs_h = 2 + 26 + 6 + 20 + 10
 	if bp.prefs then body_h = prefs_h end
 	local H = bp.HEAD + body_h
 
+	if bp.resize then
+		if Input.IsKeyDown(Enum.ButtonCode.KEY_MOUSE1, true) then
+			local k = (bp.resize.w + mx - bp.resize.mx) / bp.resize.w
+			SET.bp_scale = clamp(math.floor(bp.resize.scale * k + 0.5), K.SCALE_MIN, K.SCALE_MAX)
+		else
+			bp.resize = nil
+			save_settings()
+		end
+	end
 	if bp.drag then
 		if Input.IsKeyDown(Enum.ButtonCode.KEY_MOUSE1, true) then
 			bp.drag.moved = bp.drag.moved or math.abs(mx - bp.drag.mx) + math.abs(my - bp.drag.my) > 3
@@ -5303,12 +5351,6 @@ function bp.frame()
 	local top = bp.HEAD
 	if bp.prefs then
 		local y = top + 2
-		g.text(F(400), 12, L("dh_bp_size"), 10, y + 13, C.text2, ca)
-		bp.seg("scale", { { v = 90, label = "S" }, { v = 100, label = "M" }, { v = 115, label = "L" } }, SET.bp_scale, W - 10, y + 13, ca, function(v)
-			SET.bp_scale = v
-			save_settings()
-		end)
-		y = y + 32
 		g.text(F(400), 12, L("dh_bp_show"), 10, y + 13, C.text2, ca)
 		bp.seg("show", { { v = "shop", label = L("dh_bp_show_shop") }, { v = "always", label = L("dh_bp_show_always") } }, SET.bp_show, W - 10, y + 13, ca, function(v)
 			SET.bp_show = v
@@ -5334,6 +5376,10 @@ function bp.frame()
 		end
 	end
 	g.unclip()
+	local grip = bp.hover == "bp_grip" or bp.resize ~= nil
+	g.line(W - 6, H - 14, W - 14, H - 6, grip and C.text2 or C.text3, 1, 1.5)
+	g.line(W - 6, H - 9, W - 9, H - 6, grip and C.text2 or C.text3, 1, 1.5)
+	bp.hit(W - 18, H - 18, 18, 18, "bp_grip", { grip = true })
 	g.frame(0, 0, W, H, C.border, 12)
 	bp.draw_tip(plan)
 end
@@ -5368,12 +5414,17 @@ function bp.key(e)
 		local h = bp.at(mx, my)
 		bp.press = { id = h and h.id, right = right }
 		if left and h and h.drag then bp.drag = { mx = mx, my = my, x = bp.x, y = bp.y } end
+		if left and h and h.grip then bp.resize = { mx = mx, w = bp.rect[3] - bp.rect[1], scale = SET.bp_scale } end
 		return false
 	elseif e.event == Enum.EKeyEvent.EKeyEvent_KEY_UP then
 		local p = bp.press
 		if not p then return nil end
 		bp.press = nil
 		if bp.drag then bp.save() end
+		if bp.resize then
+			bp.resize = nil
+			save_settings()
+		end
 		local h = bp.at(mx, my)
 		if h and h.id == p.id then
 			if h.item then
@@ -5449,8 +5500,8 @@ function input.end_drag()
 		Config.WriteInt(K.CFG, "wx", math.floor(S.wx))
 		Config.WriteInt(K.CFG, "wy", math.floor(S.wy))
 	end
-	if S.slide then save_settings() end
-	S.drag, S.sb_drag, S.slide = nil, nil, nil
+	if S.slide or S.resize then save_settings() end
+	S.drag, S.sb_drag, S.slide, S.resize = nil, nil, nil, nil
 end
 
 function input.key(key)
@@ -5535,6 +5586,7 @@ function script.OnFrame()
 		S.wx, S.wy = S.drag.wx + mx - S.drag.mx, S.drag.wy + my - S.drag.my
 	end
 	if S.slide then view.slide_to(mx) end
+	if S.resize and S.resize.key == "scale" then view.resize_to(mx) end
 	if S.sb_drag then
 		S.scroll_to = clamp(S.sb_drag.scroll + (my - S.sb_drag.my) * S.sb_drag.k, 0, math.max(0, S.content_h - S.view_h))
 		anim.snap("scroll", S.scroll_to)
