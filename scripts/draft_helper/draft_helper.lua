@@ -550,6 +550,7 @@ local localization = qLocalization.new({
 		dh_upd_pill_loading = "Downloading",
 		dh_upd_pill_done = "Restarting",
 		dh_upd_bad_file = "the downloaded file is not this script",
+		dh_upd_bad_version = "downloaded version %s instead of %s",
 		dh_upd_bad_manifest = "broken version.json",
 		dh_upd_write = "could not write the file",
 
@@ -812,6 +813,7 @@ local localization = qLocalization.new({
 		dh_upd_pill_loading = "Загрузка",
 		dh_upd_pill_done = "Перезапуск",
 		dh_upd_bad_file = "скачанный файл не похож на этот скрипт",
+		dh_upd_bad_version = "скачалась версия %s вместо %s",
 		dh_upd_bad_manifest = "битый version.json",
 		dh_upd_write = "не удалось записать файл",
 
@@ -864,7 +866,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-alpha.6",
+	VERSION = "2.0.0-alpha.7",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1374,10 +1376,11 @@ function upd.install()
 	upd.set("loading")
 	upd.request(upd.url, function(text, err)
 		if not text then return upd.set("error", err) end
-		local found = text:match('VERSION = "([^"]+)"')
-		if found ~= want or not text:find("^%-%-%[%[") or not text:find("return script%s*$") then
+		if not text:find("^%-%-%[%[") or not text:find("return script%s*$") then
 			return upd.set("error", L("dh_upd_bad_file"))
 		end
+		local found = text:match('VERSION = "([^"]+)"')
+		if found ~= want then return upd.set("error", string.format(L("dh_upd_bad_version"), tostring(found), want)) end
 		local tmp = upd.path .. ".tmp"
 		local f = io.open(tmp, "wb")
 		if not f then return upd.set("error", L("dh_upd_write")) end
