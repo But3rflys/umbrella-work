@@ -988,7 +988,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.6",
+	VERSION = "2.0.0-beta.7",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -2690,16 +2690,12 @@ function live.read_grid(pre, now)
 		if stale then break end
 		stale = not card.panel:IsValid() or not card.img:IsValid()
 	end
-	if stale then
-		cache.panel, cache.cards, cache.next_heroes = panel, {}, 0
+	if stale or now >= cache.next_heroes then
+		cache.panel, cache.cards, cache.next_heroes = panel, {}, now + K.LIVE_GRID_HEROES
 		for _, card in ipairs(live.children(panel, function(c) return c:HasClass("HeroCard") end, {})) do
 			local img = card:FindChildTraverse("HeroImage")
-			if img then cache.cards[#cache.cards + 1] = { panel = card, img = img } end
+			if img then cache.cards[#cache.cards + 1] = { panel = card, img = img, h = live.hero(img) } end
 		end
-	end
-	if now >= cache.next_heroes then
-		cache.next_heroes = now + K.LIVE_GRID_HEROES
-		for _, card in ipairs(cache.cards) do card.h = live.hero(card.img) end
 	end
 	local out = { banned = {}, picked = {}, off = {}, closed = {} }
 	for _, card in ipairs(cache.cards) do
