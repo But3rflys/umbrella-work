@@ -36,3 +36,16 @@ jobs:
           files: ${{ steps.notes.outputs.path }}
           name: ${{ steps.notes.outputs.title }} ${{ steps.notes.outputs.version }}
           body_path: body.md
+
+      - name: version manifest
+        if: steps.notes.outputs.manifest != ''
+        run: |
+          git fetch --depth 1 origin main
+          git checkout -B main origin/main
+          python .github/release_notes.py "$TAG" --manifest "$GITHUB_SHA"
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add scripts
+          git commit -m "${{ steps.notes.outputs.manifest }} ${TAG##*-v}: version manifest"
+          git pull --rebase
+          git push origin main
