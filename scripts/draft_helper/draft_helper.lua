@@ -326,6 +326,8 @@ local localization = qLocalization.new({
 		dh_news = "What's new",
 		dh_news_sub = "Changes in this update",
 		dh_news_row_sub = "Changes in the latest update",
+		dh_cl_b5fps_t = "Higher FPS",
+		dh_cl_b5fps_d = "The window costs far less FPS, most of all in Captains Mode. With the window closed the script barely touches the game. Fixed an error in ranked All Pick.",
 		dh_cl_b4fix_t = "Position stays",
 		dh_cl_b4fix_d = "The chosen position no longer jumps back to Auto after someone else picks. It resets only once your team takes it.",
 		dh_cl_b2fix_t = "Fixes",
@@ -646,6 +648,8 @@ local localization = qLocalization.new({
 		dh_news = "Что нового",
 		dh_news_sub = "Что изменилось в обновлении",
 		dh_news_row_sub = "Изменения последнего обновления",
+		dh_cl_b5fps_t = "Выше FPS",
+		dh_cl_b5fps_d = "Окно отнимает гораздо меньше FPS, особенно в Captains Mode. С закрытым окном скрипт почти не нагружает игру. Исправлена ошибка в рейтинговом All Pick.",
 		dh_cl_b4fix_t = "Позиция не сбрасывается",
 		dh_cl_b4fix_d = "Выбранная позиция больше не прыгает на «Авто» после чужого пика. Она сбрасывается, только когда её заняла твоя команда.",
 		dh_cl_b2fix_t = "Исправления",
@@ -980,7 +984,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.4",
+	VERSION = "2.0.0-beta.5",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1017,6 +1021,12 @@ local K = {
 	},
 
 	NEWS = {
+		{
+			v = "2.0.0-beta.5",
+			items = {
+				{ key = "dh_cl_b5fps", glyph = "chart", tile = "t_green" },
+			},
+		},
 		{
 			v = "2.0.0-beta.4",
 			items = {
@@ -1086,6 +1096,7 @@ local K = {
 		bp_show = "shop",
 	},
 	LIVE_READ = 0.1,
+	LIVE_IDLE = 0.5,
 	LIVE_CAPTAIN = 0.1,
 	LIVE_GRID = 0.3,
 	LIVE_GRID_HEROES = 2,
@@ -1369,7 +1380,18 @@ local function ease_in_out(t)
 	local f = 2 - 2 * t
 	return 1 - f * f * f / 2
 end
-local function signed(v) return (v >= 0 and "+" or "") .. string.format("%.1f", v) end
+local SIGNED, SIGNED_N = {}, 0
+local function signed(v)
+	local s = SIGNED[v]
+	if not s then
+		s = (v >= 0 and "+" or "") .. string.format("%.1f", v)
+		if SIGNED_N >= 4000 then SIGNED, SIGNED_N = {}, 0 end
+		SIGNED[v], SIGNED_N = s, SIGNED_N + 1
+	end
+	return s
+end
+local NUM_STR = {}
+for i = 0, 99 do NUM_STR[i] = tostring(i) end
 local function plural(n, base)
 	local m10, m100 = n % 10, n % 100
 	local form = (m10 == 1 and m100 ~= 11) and "_1" or ((m10 >= 2 and m10 <= 4 and (m100 < 12 or m100 > 14)) and "_2" or "_5")
@@ -1425,9 +1447,13 @@ function asset.icons()
 	return asset.fonts.icon
 end
 
+asset.budget, asset.dims = 2, {}
+
 function asset.image(path)
 	local h = asset.images[path]
 	if h == nil then
+		if asset.budget <= 0 then return nil end
+		asset.budget = asset.budget - 1
 		local ok, handle = pcall(Render.LoadImage, path)
 		h = ok and handle or false
 		asset.images[path] = h
@@ -1435,9 +1461,21 @@ function asset.image(path)
 	return h or nil
 end
 
-function asset.portrait(h) return asset.image(K.PORTRAIT:format(h)) end
-function asset.icon(h) return asset.image(K.ICON:format(h)) end
-function asset.pos(p) return asset.image(K.POS:format(K.POS_ICON[p])) end
+local function path_cache(fmt)
+	return setmetatable({}, { __index = function(t, k)
+		local v = fmt(k)
+		t[k] = v
+		return v
+	end })
+end
+
+local PORTRAIT_PATH = path_cache(function(h) return K.PORTRAIT:format(h) end)
+local ICON_PATH = path_cache(function(h) return K.ICON:format(h) end)
+local POS_PATH = path_cache(function(p) return K.POS:format(K.POS_ICON[p]) end)
+
+function asset.portrait(h) return asset.image(PORTRAIT_PATH[h]) end
+function asset.icon(h) return asset.image(ICON_PATH[h]) end
+function asset.pos(p) return asset.image(POS_PATH[p]) end
 
 local data = {
 	heroes = {}, list = {}, by_attr = {}, by_id = {},
@@ -2166,6 +2204,7 @@ function draft.stats()
 end
 
 function draft.step()
+	if S.in_frame and S.frame_step == S.frame then return S.calc end
 	local st = draft.stats()
 	if not st or draft.done() then return nil end
 	local ours, theirs, pos = draft.teams()
@@ -2189,6 +2228,7 @@ function draft.step()
 		S.calc_key = key
 		S.calc = mine and calc.step(st, ours, theirs, busy, lane) or calc.step(st, theirs, ours, nil)
 	end
+	if S.in_frame then S.frame_step = S.frame end
 	return S.calc
 end
 
@@ -2597,13 +2637,15 @@ function live.unit(unit)
 	return h
 end
 
-function live.slot_hero(slot)
-	local img = slot:FindChildTraverse("HeroImage")
+function live.slot_hero(slot, img)
+	img = img or slot:FindChildTraverse("HeroImage")
 	local h = live.hero(img)
-	local key = slot:GetID() .. (img and img:GetImageSrc() or "")
-	if not h and not live.missing[key] then
-		live.missing[key] = true
-		live.log("no hero in %s, image src: '%s'", slot:GetID(), img and img:GetImageSrc() or "")
+	if not h then
+		local key = slot:GetID() .. (img and img:GetImageSrc() or "")
+		if not live.missing[key] then
+			live.missing[key] = true
+			live.log("no hero in %s, image src: '%s'", slot:GetID(), img and img:GetImageSrc() or "")
+		end
 	end
 	return h
 end
@@ -2674,11 +2716,17 @@ function live.read_cm(pre)
 		our_turn = pre:HasClass("LocalTeamIsActive"), order = {},
 	}
 	for _, s in ipairs(live.cm_slots(board)) do
-		local n = tonumber(s.label:GetText())
+		s.n = s.n or tonumber(s.label:GetText())
+		local n = s.n
 		if n and s.panel:HasClass("HeroPickLocked") then
-			d.order[n] = live.slot_hero(s.panel)
-		elseif n and s.panel:HasClass("ActiveStage") then
-			d.turn = n
+			if not s.h then
+				if not s.img or not s.img:IsValid() then s.img = s.panel:FindChildTraverse("HeroImage") end
+				s.h = live.slot_hero(s.panel, s.img)
+			end
+			d.order[n] = s.h
+		else
+			s.h = nil
+			if n and s.panel:HasClass("ActiveStage") then d.turn = n end
 		end
 	end
 	live.read_players(d)
@@ -2720,9 +2768,9 @@ end
 
 function live.ranked()
 	local lobby = GameRules.GetLobbyID()
-	if live.lobby ~= lobby then
+	if live.ranked_lobby ~= lobby then
 		local v = data.decode(GameRules.GetLobbyObjectJson())
-		live.lobby, live.is_ranked = lobby, v ~= nil and K.RANKED[v.lobby_type] == true
+		live.ranked_lobby, live.is_ranked = lobby, v ~= nil and K.RANKED[v.lobby_type] == true
 		live.log("lobby %s: type %s, ranked %s", tostring(lobby), tostring(v and v.lobby_type), tostring(live.is_ranked))
 	end
 	return live.is_ranked
@@ -2776,8 +2824,18 @@ function live.after_players(d)
 	if d.ranked and SET.log == 1 then live.trace_roles(d) end
 end
 
+function live.pregame()
+	local p = live.pre_panel
+	if p and p:IsValid() then return p end
+	local now = os.clock()
+	if now < (live.next_pre or 0) then return nil end
+	live.next_pre = now + 1
+	live.pre_panel = Panorama.GetPanelByName("PreGame", false)
+	return live.pre_panel
+end
+
 function live.read(pre, now)
-	pre = pre or Panorama.GetPanelByName("PreGame", false)
+	pre = pre or live.pregame()
 	if not pre or not pre:IsVisible() then return nil end
 	local d
 	if pre:HasClass("CaptainsModeHeroPicking") or (draft.live() and S.mode == "cm") then
@@ -2964,15 +3022,18 @@ end
 
 function live.tick()
 	local now = os.clock()
-	local match = Engine.IsInGame() and live.lobby() or nil
-	if match ~= live.match then
-		live.match = match
-		draft.show_last()
-		live.log("match %s, saved draft %s", tostring(match), S.last and "shown" or "hidden")
+	if now >= (live.next_match or 0) then
+		live.next_match = now + 0.5
+		local match = Engine.IsInGame() and live.lobby() or nil
+		if match ~= live.match then
+			live.match = match
+			draft.show_last()
+			live.log("match %s, saved draft %s", tostring(match), S.last and "shown" or "hidden")
+		end
 	end
 	if now < live.next_read then return end
 	live.next_read = now + K.LIVE_READ
-	local pre = Panorama.GetPanelByName("PreGame", false)
+	local pre = live.pregame()
 	if SET.captain == 1 and pre and now >= live.next_captain and pre:HasClass("LocalTeamNeedsCaptain") then
 		live.next_captain = now + K.LIVE_CAPTAIN
 		local ok = Engine.RunScript(JS.CAPTAIN, pre)
@@ -2980,6 +3041,12 @@ function live.tick()
 	end
 	local d = live.read(pre, now)
 	live.d = d
+	if not d then live.next_read = now + K.LIVE_IDLE end
+	if SET.log == 1 or SET.panel == 1 then live.trace_state(d) end
+	live.apply(d)
+end
+
+function live.trace_state(d)
 	local parts = { d and ("mode=" .. d.mode) or "no draft" }
 	for _, row in ipairs(live.rows(d)) do parts[#parts + 1] = row.id .. "=" .. row.raw end
 	local trace = table.concat(parts, " ")
@@ -2987,7 +3054,6 @@ function live.tick()
 		live.trace = trace
 		live.log("%s", trace)
 	end
-	live.apply(d)
 end
 
 local inv = { items = {}, sig = "", match = nil, next_read = 0 }
@@ -3403,40 +3469,57 @@ function g.fit(weight, size, str, max_w)
 	g.fits[key] = out
 	return out
 end
-function g.num(weight, size, str, x, cy, c, a, align)
-	local font, px = asset.font(weight), g.fs(size)
+local NUM_LAYOUT, NUM_LAYOUT_N = {}, 0
+
+function g.num_layout(font, px, str)
+	if NUM_LAYOUT_N >= 2000 then NUM_LAYOUT, NUM_LAYOUT_N = {}, 0 end
+	local by_font = NUM_LAYOUT[font]
+	if not by_font then
+		by_font = {}
+		NUM_LAYOUT[font] = by_font
+	end
+	local key = px .. ":" .. str
+	local out = by_font[key]
+	if out then return out end
 	local dw = asset.digit_w(font, px)
-	local parts, total = {}, 0
+	local chars, total = {}, 0
 	for ch in str:gmatch(".") do
-		local w = ch:match("%d") and dw or asset.size(font, px, ch).x
-		parts[#parts + 1] = { ch, w }
+		local digit = ch:match("%d") ~= nil
+		local w = digit and dw or asset.size(font, px, ch).x
+		chars[#chars + 1] = { ch, total + (digit and (w - asset.size(font, px, ch).x) / 2 or 0) }
 		total = total + w
 	end
-	local ts = asset.size(font, px, str)
+	out = { chars = chars, total = total, h = asset.size(font, px, str).y }
+	by_font[key], NUM_LAYOUT_N = out, NUM_LAYOUT_N + 1
+	return out
+end
+function g.num(weight, size, str, x, cy, c, a, align)
+	local font, px = asset.font(weight), g.fs(size)
+	local lay = g.num_layout(font, px, str)
+	local total = lay.total
 	local tx = g.x + x * g.s
 	if align == "r" then tx = tx - total elseif align == "c" then tx = tx - total / 2 end
-	local ty = math.floor(g.y + cy * g.s - ts.y / 2 + 0.5)
+	local ty = math.floor(g.y + cy * g.s - lay.h / 2 + 0.5)
 	local col = g.col(c, a)
-	for _, part in ipairs(parts) do
-		local cw = part[2]
-		local off = part[1]:match("%d") and (cw - asset.size(font, px, part[1]).x) / 2 or 0
-		Render.Text(font, px, part[1], Vec2(math.floor(tx + off + 0.5), ty), col)
-		tx = tx + cw
+	for _, ch in ipairs(lay.chars) do
+		Render.Text(font, px, ch[1], Vec2(math.floor(tx + ch[2] + 0.5), ty), col)
 	end
 	return total / g.s
 end
 function g.num_width(weight, size, str)
 	local font, px = asset.font(weight), g.fs(size)
-	local dw, total = asset.digit_w(font, px), 0
-	for ch in str:gmatch(".") do total = total + (ch:match("%d") and dw or asset.size(font, px, ch).x) end
-	return total / g.s
+	return g.num_layout(font, px, str).total / g.s
 end
 function g.glyph(name, size, x, cy, c, a, align)
 	return g.text(asset.icons(), size, K.G[name], x, cy, c, a, align or "c")
 end
 function g.image(handle, x, y, w, h, r, a, gray, tint)
 	if not handle then return end
-	local size = Render.ImageSize(handle)
+	local size = asset.dims[handle]
+	if not size then
+		size = Render.ImageSize(handle)
+		asset.dims[handle] = size
+	end
 	local ia, ba = size.x / math.max(1, size.y), w / h
 	local u0, v0, u1, v1 = 0, 0, 1, 1
 	if ia > ba then
@@ -3476,8 +3559,14 @@ function anim.tween(key, target, time, curve)
 	return t.v
 end
 
+local HOVER_KEY = setmetatable({}, { __index = function(t, id)
+	local v = "hv:" .. id
+	t[id] = v
+	return v
+end })
+
 function anim.hover(id, on)
-	return anim.tween("hv:" .. id, on and 1 or 0, 0.12)
+	return anim.tween(HOVER_KEY[id], on and 1 or 0, 0.12)
 end
 
 function anim.snap(key, value)
@@ -3582,7 +3671,7 @@ function view.board_cm(o)
 		local y, ny = K.TOPY[i] + K.BOARD_Y, K.NUMY[i] + K.BOARD_Y
 		local x0, x1 = side == "r" and x + w or 214, side == "r" and 186 or x
 		g.rect(x0, ny, x1 - x0, 1, i == cur and C.tick_cur or C.sep2)
-		g.num(i == cur and 700 or 500, 11, tostring(i), 200, ny, i == cur and C.text or (i <= n and C.text2 or C.text3), 1, "c")
+		g.num(i == cur and 700 or 500, 11, NUM_STR[i], 200, ny, i == cur and C.text or (i <= n and C.text2 or C.text3), 1, "c")
 		view.slot(x, y, w, h, o.picks[i], {
 			ban = not pick, cur = i == cur, pos = pick and o.pos[i] or nil,
 			ghost = i == cur and o.ghost or nil, key = o.live and pick and o.picks[i] and ("c" .. i) or nil,
@@ -3619,7 +3708,7 @@ function view.board_ap(o)
 		end
 	end
 	for r = 1, 3 do
-		g.num(r == round and 700 or 500, 11, tostring(r), 200, K.AP_MID[r] + K.TB, r == round and C.text or (r < round and C.text2 or C.text3), 1, "c")
+		g.num(r == round and 700 or 500, 11, NUM_STR[r], 200, K.AP_MID[r] + K.TB, r == round and C.text or (r < round and C.text2 or C.text3), 1, "c")
 	end
 end
 
@@ -3910,15 +3999,29 @@ function view.segment()
 	end
 end
 
+function view.row_text(r)
+	local hero = data.heroes[r.h]
+	local t = r._text
+	if not t or t.rate ~= hero.rate or t.games ~= hero.games or t.lang ~= L("dh_matches") then
+		t = {
+			rate = hero.rate, games = hero.games, lang = L("dh_matches"),
+			d = r.d and signed(r.d), rate_s = string.format("%.1f%%", hero.rate),
+			games_s = string.format(L("dh_matches"), data.count(hero.games)),
+		}
+		r._text = t
+	end
+	return t
+end
+
 function view.value(r, ctx, right, cy, size)
 	local col = C.text
 	if ctx then col = r.d >= 0.05 and C.green or (r.d <= -0.05 and C.red or C.text2) end
-	local hero = data.heroes[r.h]
-	g.num(600, size, ctx and signed(r.d) or string.format("%.1f%%", hero.rate), right, cy - 9, col, 1, "r")
-	local mx = right - g.text(F(400), 11, string.format(L("dh_matches"), data.count(hero.games)), right, cy + 9, C.text3, 1, "r")
+	local t = view.row_text(r)
+	g.num(600, size, ctx and t.d or t.rate_s, right, cy - 9, col, 1, "r")
+	local mx = right - g.text(F(400), 11, t.games_s, right, cy + 9, C.text3, 1, "r")
 	if ctx then
 		g.vr(mx - 7, cy + 9, 9)
-		g.num(400, 11, string.format("%.1f%%", hero.rate), mx - 14, cy + 9, C.text3, 1, "r")
+		g.num(400, 11, t.rate_s, mx - 14, cy + 9, C.text3, 1, "r")
 	end
 end
 
@@ -3935,12 +4038,18 @@ function view.reasons(r, ctx, x, cy, max_x)
 	if r.pos then
 		sep()
 		g.icon(asset.pos(r.pos), cx, cy - 9, 18, C.text2)
-		cx = cx + 23 + g.text(F(500), 12, r.share and (r.share .. "%") or L("dh_pos_" .. r.pos), cx + 23, cy, C.text2) + 6
+		r._share = r._share or (r.share and (r.share .. "%"))
+		cx = cx + 23 + g.text(F(500), 12, r._share or L("dh_pos_" .. r.pos), cx + 23, cy, C.text2) + 6
 	end
 	if ctx and SET.reasons == 1 then
-		local function item_w(e) return 27 + g.num_width(500, 12, signed(e[2])) + 6 end
+		local function txt(e)
+			e[3] = e[3] or signed(e[2])
+			return e[3]
+		end
+		local function item_w(e) return 27 + g.width(F(500), 12, txt(e)) + 6 end
 		for _, group in ipairs(r.why or {}) do
-			local label = L("dh_" .. group[1])
+			group.key = group.key or ("dh_" .. group[1])
+			local label = L(group.key)
 			local need = (first and 0 or 7) + g.width(F(400), 12, label) + 5 + item_w(group[2][1])
 			if cx + need > max_x then break end
 			sep()
@@ -3950,7 +4059,7 @@ function view.reasons(r, ctx, x, cy, max_x)
 				if n > 1 and cx + item_w(group[2][n]) > max_x then break end
 				g.icon(asset.icon(h), cx, cy - 11, 22)
 				cx = cx + 27
-				cx = cx + g.num(500, 12, signed(v), cx, cy, v >= 0 and C.green or C.red) + 6
+				cx = cx + g.text(F(500), 12, txt(group[2][n]), cx, cy, v >= 0 and C.green or C.red) + 6
 			end
 		end
 	end
@@ -3968,22 +4077,31 @@ end
 
 function view.how() return L(SET.confirm == 1 and "dh_how_confirm" or "dh_how_click") end
 
+local ROW_ACTS = {}
+
 function view.row_actions(h)
-	return {
-		click = function() draft.place(h) end,
-		dbl = function() draft.commit(h) end,
-		rclick = function(mx, my) view.open_ctx(h, mx, my) end,
-	}
+	local acts = ROW_ACTS[h]
+	if not acts then
+		acts = {
+			click = function() draft.place(h) end,
+			dbl = function() draft.commit(h) end,
+			rclick = function(mx, my) view.open_ctx(h, mx, my) end,
+		}
+		ROW_ACTS[h] = acts
+	end
+	return acts
 end
 
 function view.best(r, ctx, y, a, can)
 	local x, w = K.CX, K.CW
-	local id = "h:" .. r.h
+	r._id = r._id or ("h:" .. r.h)
+	r._sel = r._sel or ("sel:" .. r.h)
+	local id = r._id
 	local sel = S.sel == r.h
 	g.rect(x, y, w, 100, C.card, 14, a)
 	local k = anim.hover(id, can and hit.is(id))
 	if k > 0 then g.rect(x, y, w, 100, C.hover, 14, a * k) end
-	local ks = anim.tween("sel:" .. r.h, sel and 1 or 0, 0.15)
+	local ks = anim.tween(r._sel, sel and 1 or 0, 0.15)
 	if ks > 0 then g.rect(x, y, w, 100, C.select, 14, a * ks) end
 	g.image(asset.portrait(r.h), x + K.P, y + K.P, 128, 72, 9, a)
 	view.hero_name(r.h, 20, 700, x + 156, y + 38)
@@ -4001,10 +4119,13 @@ function view.rows(list, ctx, y, a, can, na)
 	g.rect(x, y, w, #list * 56, C.card, 12, a)
 	for n, r in ipairs(list) do
 		local ry = y + (n - 1) * 56
-		local id = "h:" .. r.h
+		if S.vis_top and (ry + 56 < S.vis_top or ry > S.vis_bottom) then goto continue end
+		r._id = r._id or ("h:" .. r.h)
+		r._sel = r._sel or ("sel:" .. r.h)
+		local id = r._id
 		local sel = S.sel == r.h
 		local k = anim.hover(id, can and hit.is(id))
-		local ks = anim.tween("sel:" .. r.h, sel and 1 or 0, 0.15)
+		local ks = anim.tween(r._sel, sel and 1 or 0, 0.15)
 		if k > 0 or ks > 0 then
 			local flags = (n == 1 and #list == 1) and ROUND or (n == 1 and Enum.DrawFlags.RoundCornersTop or (n == #list and Enum.DrawFlags.RoundCornersBottom or Enum.DrawFlags.RoundCornersNone))
 			if k > 0 then g.rect(x, ry, w, 56, C.hover, 12, a * k, flags) end
@@ -4032,6 +4153,7 @@ function view.rows(list, ctx, y, a, can, na)
 			hit.add(x, ry, w, 56, id, view.row_actions(r.h))
 			view.hint(id, view.how())
 		end
+		::continue::
 	end
 	return #list * 56
 end
@@ -4102,9 +4224,11 @@ function view.draft_content(y, a)
 	end
 	local h = view.best(list[1], ctx, y, a, can)
 	if #list > 1 then
-		local rest = {}
-		for i = 2, #list do rest[#rest + 1] = list[i] end
-		h = h + 14 + view.rows(rest, ctx, y + h + 14, a, can)
+		if S.rest_of ~= list then
+			S.rest_of, S.rest = list, {}
+			for i = 2, #list do S.rest[#S.rest + 1] = list[i] end
+		end
+		h = h + 14 + view.rows(S.rest, ctx, y + h + 14, a, can)
 	end
 	local how = not can and L("dh_how_enemy") or (SET.confirm == 1 and L("dh_how_confirm") or L("dh_how_click"))
 	return h + 14 + view.text_block(how, y + h + 14, a)
@@ -4785,6 +4909,7 @@ function view.content()
 	g.clip(K.CX - 14, top, K.CW + 28, vh)
 	hit.clip = { g.x + (K.CX - 14) * g.s, g.y + top * g.s, g.x + (K.CX + K.CW + 14) * g.s, g.y + bottom * g.s }
 	local y = top - math.floor(S.scroll * g.s + 0.5) / g.s
+	S.vis_top, S.vis_bottom = top, bottom
 	local h
 	if S.view == "home" then h = view.home(y, a)
 	elseif S.view == "set" then h = view.settings(y, a)
@@ -4792,6 +4917,7 @@ function view.content()
 	elseif S.view == "build" then h = view.build(y, a)
 	elseif S.view == "news" then h = view.news(y, a)
 	else h = view.draft_content(y, a) end
+	S.vis_top, S.vis_bottom = nil, nil
 	hit.clip = nil
 	g.unclip()
 	S.content_h = h + 26 + (bar_on and 82 or 0)
@@ -5609,6 +5735,7 @@ function script.OnFrame()
 	local frame = GlobalVars.GetAbsFrameTime()
 	S.dt = clamp(frame > 0 and frame or (now - (S.now > 0 and S.now or now)), 0, 0.1)
 	S.now = now
+	asset.budget = 2
 	S.alpha = anim.tween("window", S.open and 1 or 0, 0.18)
 	if SET.panel == 1 then view.live_panel() end
 	bp.frame()
@@ -5638,7 +5765,9 @@ function script.OnFrame()
 		S.sb_until = S.now + 1.2
 	end
 	draft.tick()
+	S.frame, S.in_frame = (S.frame or 0) + 1, true
 	view.window()
+	S.in_frame = false
 end
 
 function script.OnKeyEvent(e)
