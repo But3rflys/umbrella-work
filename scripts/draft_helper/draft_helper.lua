@@ -331,7 +331,7 @@ local localization = qLocalization.new({
 		dh_cl_keep_t = "The draft stays after the match starts",
 		dh_cl_keep_d = "The draft is tied to the lobby while you pick, so it is no longer lost when scripts reload at the start of the match.",
 		dh_cl_items_t = "Cleaner answers",
-		dh_cl_items_d = "Sentries are suggested to supports only. Eternal Shroud is no longer an answer to magic damage.",
+		dh_cl_items_d = "Sentries are now suggested to supports only.",
 		dh_cl_builds_t = "Item builds",
 		dh_cl_builds_d = "A build for your hero and role from 7000+ MMR games: starting items, then early, mid and late game.",
 		dh_cl_counter_t = "Answers to their draft",
@@ -647,7 +647,7 @@ local localization = qLocalization.new({
 		dh_cl_keep_t = "Драфт не теряется после начала матча",
 		dh_cl_keep_d = "Драфт привязывается к лобби ещё во время пиков, поэтому больше не пропадает, когда скрипты перезагружаются на старте матча.",
 		dh_cl_items_t = "Точнее ответы на драфт",
-		dh_cl_items_d = "Сентри советуются только саппортам. Eternal Shroud больше не предлагается против магического урона.",
+		dh_cl_items_d = "Сентри теперь советуются только саппортам.",
 		dh_cl_builds_t = "Сборки предметов",
 		dh_cl_builds_d = "Сборка под твоего героя и роль по играм 7000+ MMR: стартовый закуп, ранняя игра, середина и поздняя.",
 		dh_cl_counter_t = "Ответы на их драфт",
@@ -1014,7 +1014,7 @@ local K = {
 			items = {
 				{ key = "dh_cl_resize", glyph = "expand", tile = "t_cyan" },
 				{ key = "dh_cl_keep", glyph = "flag", tile = "t_green" },
-				{ key = "dh_cl_items", glyph = "shield", tile = "red", icons = { "dust", "ward_sentry", "black_king_bar", "pipe", "glimmer_cape" } },
+				{ key = "dh_cl_items", glyph = "shield", tile = "red", icons = { "dust", "ward_sentry" } },
 			},
 		},
 		{
