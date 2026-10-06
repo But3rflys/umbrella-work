@@ -866,7 +866,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-alpha.7",
+	VERSION = "2.0.0-alpha.8",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1878,14 +1878,16 @@ function draft.snapshot()
 			for i, h in ipairs(S.cm.picks) do S.last.cm.picks[i], S.last.cm.pos[i] = h, S.cm.pos[i] end
 		end
 		S.last.me = draft.live() and live.d and live.d.me or nil
+		S.last.match = draft.live() and live.match or nil
+		S.saved = S.last
 		draft.save_last()
 	end
 end
 
 function draft.save_last()
-	local last = S.last
+	local last = S.saved
 	if not last or not data.json then return end
-	local out = { mode = last.mode, train = last.train, chance = last.chance, me = last.me, ap = last.ap }
+	local out = { mode = last.mode, train = last.train, chance = last.chance, me = last.me, match = last.match, ap = last.ap }
 	if last.cm then
 		local pos = {}
 		for i, p in pairs(last.cm.pos) do pos[tostring(i)] = p end
@@ -1893,6 +1895,11 @@ function draft.save_last()
 	end
 	local ok, text = pcall(data.json.encode, data.json, out)
 	if ok and text then data.write("session.json", text) end
+end
+
+function draft.show_last()
+	local saved = S.saved
+	S.last = saved and (saved.train or (saved.match ~= nil and saved.match == live.match)) and saved or nil
 end
 
 function draft.load_last()
@@ -1907,7 +1914,8 @@ function draft.load_last()
 		v.ap.ours, v.ap.theirs, v.ap.bans = v.ap.ours or {}, v.ap.theirs or {}, v.ap.bans or {}
 	end
 	v.chance = tonumber(v.chance) or 0.5
-	S.last = v
+	S.saved = v
+	draft.show_last()
 end
 
 function draft.ap_reveal(upto)
@@ -2400,8 +2408,8 @@ function live.apply(d)
 		if SET.auto == 1 then S.open = true end
 	end
 	if d.mode == "cm" then live.apply_cm(d) else live.apply_ap(d) end
-	if d.me and S.last and draft.done() and S.last.me ~= d.me then
-		S.last.me = d.me
+	if d.me and S.saved and draft.done() and S.saved.me ~= d.me then
+		S.saved.me = d.me
 		draft.save_last()
 	end
 end
@@ -2458,6 +2466,12 @@ end
 
 function live.tick()
 	local now = os.clock()
+	local match = Engine.IsInGame() and tostring(GameRules.GetLobbyID()) or nil
+	if match ~= live.match then
+		live.match = match
+		draft.show_last()
+		live.log("match %s, saved draft %s", tostring(match), S.last and "shown" or "hidden")
+	end
 	if now < live.next_read then return end
 	live.next_read = now + K.LIVE_READ
 	local pre = Panorama.GetPanelByName("PreGame", false)
