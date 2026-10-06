@@ -1,4 +1,5 @@
 {
-  "version": "2.0.0-beta.2",
-  "url": "https://raw.githubusercontent.com/But3rflys/umbrella-work/fcb810eefc77ef35244737e29666aa5824dff1d6/scripts/draft_helper/draft_helper.lua"
+  "version": "2.0.0-beta.3",
+  "url": "https://raw.githubusercontent.com/But3rflys/umbrella-work/76d737a91eeb7872e18feb289f7934e76a64468a/scripts/draft_helper/draft_helper.lua",
+  "release": "https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.3/draft_helper.lua"
 }
