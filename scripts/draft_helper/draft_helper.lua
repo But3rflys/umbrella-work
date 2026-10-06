@@ -333,7 +333,6 @@ local localization = qLocalization.new({
 		dh_d_yes = "yes",
 		dh_d_no = "no",
 		dh_d_me = "you",
-		dh_d_hover = "not locked",
 		dh_d_us = "Side",
 		dh_d_hero = "My hero",
 		dh_d_first = "First pick",
@@ -596,7 +595,6 @@ local localization = qLocalization.new({
 		dh_d_yes = "да",
 		dh_d_no = "нет",
 		dh_d_me = "вы",
-		dh_d_hover = "не выбран",
 		dh_d_us = "Сторона",
 		dh_d_hero = "Мой герой",
 		dh_d_first = "Первый пик",
@@ -866,7 +864,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-alpha.4",
+	VERSION = "2.0.0-alpha.5",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -936,6 +934,8 @@ local K = {
 	LIVE_CAPTAIN = 0.1,
 	LIVE_GRID = 0.3,
 	LIVE_GRID_HEROES = 2,
+	LANE_BITS = { [1] = 1, [2] = 3, [4] = 2, [8] = 4, [16] = 5 },
+	RANKED = { [7] = true, COMPETITIVE_MATCH = true },
 }
 
 local MODEL = {
@@ -1698,6 +1698,11 @@ function draft.step()
 	local our_turn = S.mode == "ap" or draft.cm_ours()
 	local mine = our_turn ~= ban
 	local busy = (mine and not ban) and draft.our_pos() or nil
+	local role = busy and draft.my_role()
+	if role then
+		busy = {}
+		for p = 1, 5 do busy[p] = p ~= role end
+	end
 	local lane = busy and SET.goal == "lane" and pos or nil
 	local parts = { draft.set_key(), st.time, mine and "o" or "t", SET.goal, busy and "p" or "-" }
 	for _, list in ipairs({ ours, theirs }) do
@@ -1827,6 +1832,10 @@ function draft.build_rows(st)
 	return out
 end
 
+function draft.my_role()
+	return S.mode == "ap" and draft.live() and live.d and live.d.my_role or nil
+end
+
 function draft.free_pos(p)
 	local busy = draft.our_pos()
 	if p and not busy[p] then return p end
@@ -1837,6 +1846,8 @@ end
 function draft.pos_for(h)
 	local hero = data.heroes[h]
 	if S.mode == "ap" then
+		local role = draft.my_role()
+		if role and S.filter == 0 then return role end
 		local r = draft.row_for(h)
 		return draft.free_pos(S.filter > 0 and S.filter or (r and r.pos) or (hero and hero.pos))
 	end
@@ -1863,7 +1874,37 @@ function draft.snapshot()
 			S.last.cm = { fp = S.cm.fp, us = S.cm.us, picks = {}, pos = {} }
 			for i, h in ipairs(S.cm.picks) do S.last.cm.picks[i], S.last.cm.pos[i] = h, S.cm.pos[i] end
 		end
+		S.last.me = draft.live() and live.d and live.d.me or nil
+		draft.save_last()
 	end
+end
+
+function draft.save_last()
+	local last = S.last
+	if not last or not data.json then return end
+	local out = { mode = last.mode, train = last.train, chance = last.chance, me = last.me, ap = last.ap }
+	if last.cm then
+		local pos = {}
+		for i, p in pairs(last.cm.pos) do pos[tostring(i)] = p end
+		out.cm = { fp = last.cm.fp, us = last.cm.us, picks = last.cm.picks, pos = pos }
+	end
+	local ok, text = pcall(data.json.encode, data.json, out)
+	if ok and text then data.write("session.json", text) end
+end
+
+function draft.load_last()
+	local v = data.decode(data.read("session.json"))
+	if not v or (v.mode ~= "cm" and v.mode ~= "ap") or not v[v.mode] then return end
+	if v.cm then
+		local pos = {}
+		for i, p in pairs(v.cm.pos or {}) do pos[tonumber(i)] = p end
+		v.cm.pos, v.cm.picks = pos, v.cm.picks or {}
+	end
+	if v.ap then
+		v.ap.ours, v.ap.theirs, v.ap.bans = v.ap.ours or {}, v.ap.theirs or {}, v.ap.bans or {}
+	end
+	v.chance = tonumber(v.chance) or 0.5
+	S.last = v
 end
 
 function draft.ap_reveal(upto)
@@ -2012,7 +2053,7 @@ function draft.slot_info(key)
 	local arr = t == "o" and S.ap.ours or S.ap.theirs
 	for i, e in ipairs(arr) do list[i] = { h = e.h, i = i } end
 	return { h = arr[j].h, p = arr[j].p, list = list,
-		get = function(x) return arr[x.i].p end, set = function(x, v) arr[x.i].p = v end, self = { i = j } }
+		get = function(x) return arr[x.i].p end, set = function(x, v) arr[x.i].p, arr[x.i].manual = v, true end, self = { i = j } }
 end
 
 function draft.set_slot_pos(key, p)
@@ -2023,6 +2064,8 @@ function draft.set_slot_pos(key, p)
 	info.set(info.self, p)
 	draft.snapshot()
 end
+
+draft.load_last()
 
 function live.log(fmt, ...)
 	if SET.log == 1 then Log.Write("[Draft Helper] " .. fmt:format(...)) end
@@ -2040,8 +2083,11 @@ end
 
 function live.hero(img)
 	local unit = img and (img:GetImageSrc() or ""):match("npc_dota_hero_([%w_]+)")
-	if not unit then return nil end
-	local h = unit:gsub("_png$", "")
+	return unit and live.unit(unit:gsub("_png$", ""):gsub("_persona%d+$", ""):gsub("_alt%d+$", "")) or nil
+end
+
+function live.unit(unit)
+	local h = unit:gsub("^npc_dota_hero_", "")
 	if not data.heroes[h] then
 		data.heroes[h] = { h = h, name = Engine.GetDisplayNameByUnitName("npc_dota_hero_" .. h) or h, attr = "all", rate = 50, games = "0", pos = 1 }
 	end
@@ -2132,7 +2178,7 @@ function live.read_cm(pre)
 			d.turn = n
 		end
 	end
-	live.read_players(pre, d)
+	live.read_players(d)
 	d.us = d.us or live.side(pre)
 	return d
 end
@@ -2164,27 +2210,67 @@ function live.read_ap(pre)
 		mode = "ap", pre = pre, us = live.side(pre),
 		ban_phase = pre:HasClass("IsInBanPhase"), in_control = pre:HasClass("LocalPlayerInControl"), selected = pre:HasClass("HasSelectedHero"),
 	}
-	live.read_players(pre, d)
+	live.read_players(d)
+	live.after_players(d)
 	return d
 end
 
-function live.read_players(pre, d)
+function live.ranked()
+	local lobby = GameRules.GetLobbyID()
+	if live.lobby ~= lobby then
+		local v = data.decode(GameRules.GetLobbyObjectJson())
+		live.lobby, live.is_ranked = lobby, v ~= nil and K.RANKED[v.lobby_type] == true
+		live.log("lobby %s: type %s, ranked %s", tostring(lobby), tostring(v and v.lobby_type), tostring(live.is_ranked))
+	end
+	return live.is_ranked
+end
+
+function live.trace_roles(d)
+	local found, total, parts, missing = 0, 0, {}, {}
+	for _, side in ipairs({ "r", "d" }) do
+		local list = {}
+		for _, p in ipairs(d.teams[side]) do
+			total = total + 1
+			if p.role then found = found + 1 else missing[#missing + 1] = p.name end
+			list[#list + 1] = ("%s=%s"):format(p.h or p.name, tostring(p.role))
+		end
+		parts[#parts + 1] = side .. "[" .. table.concat(list, " ") .. "]"
+	end
+	local line = ("roles: me %s, found %d/%d | %s"):format(tostring(d.my_role), found, total, table.concat(parts, " "))
+	if line == live.roles_line then return end
+	live.roles_line = line
+	live.log("%s", line)
+	if not d.my_role then live.log("roles: own role not found, GetTeamData has no lane_selection_flags") end
+	if #missing > 0 then live.log("roles: no role for %s, position falls back to hero stats", table.concat(missing, ", ")) end
+end
+
+function live.read_players(d)
 	d.teams = { r = {}, d = {} }
-	for side, id in pairs({ r = "RadiantTeamPlayers", d = "DireTeamPlayers" }) do
-		local root = live.find(pre, id)
-		for _, p in ipairs(root and live.children(root, function(c) return c:GetPanelType() == "DOTAHudHeroPickingPlayer" end, {}) or {}) do
-			local name = p:FindChildTraverse("PlayerName")
+	d.ranked = d.mode == "ap" and live.ranked()
+	local me = Players.GetLocal()
+	if not me then return end
+	local my_id, list = Player.GetPlayerID(me), Players.GetAll()
+	table.sort(list, function(a, b) return Player.GetPlayerID(a) < Player.GetPlayerID(b) end)
+	for _, p in ipairs(list) do
+		local team = Entity.GetTeamNum(p)
+		local side = team == Enum.TeamNum.TEAM_RADIANT and "r" or (team == Enum.TeamNum.TEAM_DIRE and "d" or nil)
+		if side then
+			local ok, td = pcall(Player.GetTeamData, p)
+			td = ok and type(td) == "table" and td or {}
+			local unit = Engine.GetHeroNameByID(math.tointeger(tonumber(td.selected_hero_id) or 0) or 0)
 			local player = {
-				name = name and name:GetText() or "?", me = p:HasClass("IsLocalPlayerPawn"), tentative = p:HasClass("HeroPickTentative"),
-				h = not p:HasClass("HeroPickNone") and live.hero(p:FindChildTraverse("HeroImage")) or nil,
+				name = Player.GetName(p) or "?", me = Player.GetPlayerID(p) == my_id,
+				h = unit and unit ~= "" and live.unit(unit) or nil,
+				role = d.ranked and K.LANE_BITS[math.tointeger(tonumber(td.lane_selection_flags) or 0) or 0] or nil,
 			}
-			if player.me then
-				d.us = side
-				d.me = not player.tentative and player.h or nil
-			end
+			if player.me then d.us, d.me, d.my_role = side, player.h, player.role end
 			table.insert(d.teams[side], player)
 		end
 	end
+end
+
+function live.after_players(d)
+	if d.ranked and SET.log == 1 then live.trace_roles(d) end
 end
 
 function live.read(pre, now)
@@ -2231,13 +2317,17 @@ function live.act(h)
 end
 
 function live.team(prev, players)
-	local present, out, taken = {}, {}, {}
+	local present, out, taken, roles = {}, {}, {}, {}
 	for _, p in ipairs(players) do
-		if p.h and not p.tentative then present[p.h] = true end
+		if p.h then
+			present[p.h] = true
+			roles[p.h] = p.role
+		end
 	end
 	for _, e in ipairs(prev) do
 		if present[e.h] then
 			present[e.h] = nil
+			if roles[e.h] and not e.manual then e.p = roles[e.h] end
 			out[#out + 1] = e
 			if e.p then taken[e.p] = true end
 		end
@@ -2245,7 +2335,7 @@ function live.team(prev, players)
 	for _, p in ipairs(players) do
 		if p.h and present[p.h] then
 			present[p.h] = nil
-			local pos = live.pos[p.h] or data.heroes[p.h].pos
+			local pos = p.role or live.pos[p.h] or data.heroes[p.h].pos
 			if not pos or taken[pos] then
 				for q = 1, 5 do if not taken[q] then pos = q break end end
 			end
@@ -2307,6 +2397,10 @@ function live.apply(d)
 		if SET.auto == 1 then S.open = true end
 	end
 	if d.mode == "cm" then live.apply_cm(d) else live.apply_ap(d) end
+	if d.me and S.last and draft.done() and S.last.me ~= d.me then
+		S.last.me = d.me
+		draft.save_last()
+	end
 end
 
 function live.rows(d)
@@ -2344,9 +2438,9 @@ function live.rows(d)
 		for _, s in ipairs({ "r", "d" }) do
 			local raw, names = {}, {}
 			for i, p in ipairs(d.teams[s]) do
-				raw[i] = (p.me and "*" or "") .. p.name .. ":" .. (p.h or "-") .. (p.tentative and "?" or "")
+				raw[i] = (p.me and "*" or "") .. p.name .. ":" .. (p.h or "-") .. (p.role and ("@" .. p.role) or "")
 				local who = p.me and ("%s (%s)"):format(p.name, L("dh_d_me")) or p.name
-				names[i] = ("%s %s%s"):format(who, name(p.h), p.tentative and (" (" .. L("dh_d_hover") .. ")") or "")
+				names[i] = ("%s %s"):format(who, name(p.h))
 			end
 			add("team_" .. s, table.concat(raw, ","), #names > 0 and table.concat(names, ", ") or "-")
 		end
@@ -2411,7 +2505,7 @@ function build.frame()
 	local list = build.slots(false)
 	table.sort(list, function(a, b) return (a.get() or 9) < (b.get() or 9) end)
 	build.team = list
-	local me = draft.live() and live.d and live.d.me
+	local me = draft.live() and live.d and live.d.me or (draft.home_board() and S.last and S.last.me)
 	if me and me ~= build.me and build.is_ours(me) then build.me, S.bh = me, me end
 	if S.view ~= "build" then return end
 	if #list == 0 then
