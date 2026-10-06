@@ -525,6 +525,16 @@ local localization = qLocalization.new({
 		dh_s_blur_power = "Blur strength",
 		dh_s_defaults = "Restore default settings",
 		dh_s_about = "About",
+		dh_s_hover = "Hover tips",
+		dh_s_hover_sub = "What buttons do and how to pick a hero",
+		dh_tip_close = "Close the window",
+		dh_tip_settings = "Settings",
+		dh_tip_back = "Back",
+		dh_tip_reset = "Start the training over",
+		dh_tip_undo = "Undo the last turn",
+		dh_tip_home = "Back to the main screen",
+		dh_tip_update = "Download and install the new version",
+		dh_tip_slot = "Click to change the hero position",
 		dh_version = "Version %s",
 		dh_upd_latest = "Latest version",
 		dh_upd_checking = "Checking for updates",
@@ -778,6 +788,16 @@ local localization = qLocalization.new({
 		dh_s_blur_power = "Сила размытия",
 		dh_s_defaults = "Вернуть настройки по умолчанию",
 		dh_s_about = "О скрипте",
+		dh_s_hover = "Подсказки при наведении",
+		dh_s_hover_sub = "Что делают кнопки и как выбирать героя",
+		dh_tip_close = "Закрыть окно",
+		dh_tip_settings = "Настройки",
+		dh_tip_back = "Назад",
+		dh_tip_reset = "Начать тренировку заново",
+		dh_tip_undo = "Отменить последний ход",
+		dh_tip_home = "На главный экран",
+		dh_tip_update = "Скачать и установить новую версию",
+		dh_tip_slot = "Клик меняет позицию героя",
 		dh_version = "Версия %s",
 		dh_upd_latest = "Последняя версия",
 		dh_upd_checking = "Проверяю обновления",
@@ -846,7 +866,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-alpha.1",
+	VERSION = "2.0.0-alpha.2",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -888,6 +908,7 @@ local K = {
 	WHEEL = 112,
 	BOOST = 2.5,
 	GLASS = 0.3,
+	TIP_DELAY = 0.35,
 	DEF = {
 		rank = 4,
 		count = 8,
@@ -907,6 +928,7 @@ local K = {
 		panel = 0,
 		blur = 0,
 		blur_power = 50,
+		hints = 1,
 	},
 	LIVE_READ = 0.1,
 	LIVE_CAPTAIN = 0.1,
@@ -2616,6 +2638,7 @@ function view.slot(x, y, w, h, hero, o, key)
 			if open or hit.is(o.key) then g.frame(x, y, w, h, C.text, 7, open and 1 or 0.5) end
 			local function open_menu() view.open_pos_menu(o.key, x + w, y) end
 			hit.add(x, y, w, h, o.key, { click = open_menu, rclick = open_menu })
+			view.hint(o.key, L("dh_tip_slot"))
 		end
 	elseif o.ghost then
 		g.clip(x, y, w, h)
@@ -2708,11 +2731,16 @@ function view.board()
 	end
 end
 
-function view.button_icon(name, x, id, on_click, active)
+function view.hint(id, text)
+	if SET.hints == 1 and hit.is(id) then S.tip = text end
+end
+
+function view.button_icon(name, x, id, on_click, active, tip)
 	local k = anim.hover(id, hit.is(id) or active)
 	if k > 0 then g.rect(x, 12, 32, 28, active and C.fill3 or C.fill4, 6, k) end
 	g.glyph(name, 16, x + 16, 26, (hit.is(id) or active) and C.text or C.text2)
 	hit.add(x, 12, 32, 28, id, { click = on_click })
+	if tip then view.hint(id, tip) end
 end
 
 function view.toolbar()
@@ -2737,7 +2765,7 @@ function view.toolbar()
 	local right = K.CX + K.CW - 32
 	view.button_icon("close", right, "tb_close", function()
 		S.open, S.menu, S.sel, S.focus = false, nil, nil, false
-	end)
+	end, false, L("dh_tip_close"))
 	right = right - 8
 	if S.view == "draft" or S.view == "pool" then
 		right = right - 210
@@ -2749,16 +2777,16 @@ function view.toolbar()
 	view.button_icon("gear", right, "tb_gear", function()
 		S.menu, S.sel = nil, nil
 		if in_set then S.view = S.ret else S.ret, S.view = S.view, "set" end
-	end, in_set)
+	end, in_set, L(in_set and "dh_tip_back" or "dh_tip_settings"))
 	if S.train then
 		right = right - 40
-		view.button_icon("trash", right, "tb_reset", function() draft.start_training(S.mode) end)
+		view.button_icon("trash", right, "tb_reset", function() draft.start_training(S.mode) end, false, L("dh_tip_reset"))
 		right = right - 40
-		view.button_icon("undo", right, "tb_undo", draft.undo)
+		view.button_icon("undo", right, "tb_undo", draft.undo, false, L("dh_tip_undo"))
 	end
 	if S.train or (S.env == "home" and S.view ~= "home") then
 		right = right - 40
-		view.button_icon("house", right, "tb_home", draft.go_home)
+		view.button_icon("house", right, "tb_home", draft.go_home, false, L("dh_tip_home"))
 	end
 	right = view.update_pill(right)
 
@@ -2818,6 +2846,7 @@ function view.update_pill(right)
 	if st == "available" or st == "error" then
 		hit.add(x, 12, w, 28, "tb_update", { click = upd.install })
 		if st == "error" and hit.is("tb_update") and upd.error then S.tip = upd.error end
+		if st == "available" then view.hint("tb_update", L("dh_tip_update")) end
 	end
 	return x
 end
@@ -3007,6 +3036,8 @@ function view.hero_name(h, size, weight, x, cy)
 	if in_pool(h) then g.glyph("star", size - 2, x + w + 6, cy, C.yellow, 1, "l") end
 end
 
+function view.how() return L(SET.confirm == 1 and "dh_how_confirm" or "dh_how_click") end
+
 function view.row_actions(h)
 	return {
 		click = function() draft.place(h) end,
@@ -3028,7 +3059,10 @@ function view.best(r, ctx, y, a, can)
 	view.hero_name(r.h, 20, 700, x + 156, y + 38)
 	view.reasons(r, ctx, x + 156, y + 63, x + w - 150)
 	view.value(r, ctx, x + w - K.P, y + 50, 28)
-	if can then hit.add(x, y, w, 100, id, view.row_actions(r.h)) end
+	if can then
+		hit.add(x, y, w, 100, id, view.row_actions(r.h))
+		view.hint(id, view.how())
+	end
 	return 100
 end
 
@@ -3064,7 +3098,10 @@ function view.rows(list, ctx, y, a, can, na)
 			view.reasons(r, ctx, x + 88, ry + 39, x + w - 140)
 			view.value(r, ctx, x + w - K.P, ry + 28, 15)
 		end
-		if can then hit.add(x, ry, w, 56, id, view.row_actions(r.h)) end
+		if can then
+			hit.add(x, ry, w, 56, id, view.row_actions(r.h))
+			view.hint(id, view.how())
+		end
 	end
 	return #list * 56
 end
@@ -3413,6 +3450,7 @@ function view.settings(y, a)
 	h = h + view.group_header(L("dh_s_window"), y + h, a)
 	h = h + view.setting_rows({
 		{ tile = C.t_purple, glyph = "wand", title = L("dh_s_auto"), sub = L("dh_s_auto_sub"), control = view.switch("auto") },
+		{ tile = C.t_blue, glyph = "pointer", title = L("dh_s_hover"), sub = L("dh_s_hover_sub"), control = view.switch("hints") },
 		{ tile = C.t_cyan, glyph = "expand", title = L("dh_s_scale"), control = view.choice("scale", { { 90, "90%" }, { 100, "100%" }, { 110, "110%" } }, SET.scale, pick("scale")) },
 		{ tile = C.t_indigo, glyph = "blur", title = L("dh_s_blur"), control = view.switch("blur") },
 		SET.blur == 1 and { tile = C.t_indigo, glyph = "drop", title = L("dh_s_blur_power"), control = view.slider("blur_power", 10, 100) } or nil,
@@ -3531,14 +3569,17 @@ function view.live_panel()
 end
 
 function view.tip()
+	if S.tip ~= S.tip_shown then S.tip_shown, S.tip_since = S.tip, S.now end
 	if not S.tip or S.menu then return end
+	local k = clamp((S.now - S.tip_since - K.TIP_DELAY) / 0.12, 0, 1)
+	if k <= 0 then return end
 	local mx, my = Input.GetCursorPos()
 	local w = g.width(F(600), 12, S.tip) + 20
 	local x = clamp((mx - g.x) / g.s + 12, 4, K.W - w - 4)
 	local y = clamp((my - g.y) / g.s + 18, 4, K.H - 30)
-	g.rect(x, y, w, 26, C.raised, 7)
-	g.frame(x, y, w, 26, C.outline, 7)
-	g.text(F(600), 12, S.tip, x + 10, y + 13, C.text)
+	g.rect(x, y, w, 26, C.raised, 7, k)
+	g.frame(x, y, w, 26, C.outline, 7, k)
+	g.text(F(600), 12, S.tip, x + 10, y + 13, C.text, k)
 end
 
 function view.matchup(a, b)
