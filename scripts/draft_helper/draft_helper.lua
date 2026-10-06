@@ -326,6 +326,8 @@ local localization = qLocalization.new({
 		dh_news = "What's new",
 		dh_news_sub = "Changes in this update",
 		dh_news_row_sub = "Changes in the latest update",
+		dh_cl_b2fix_t = "Fixes",
+		dh_cl_b2fix_d = "Role names fit in the position switch above the hero list. Text in What's new no longer breaks inside a word.",
 		dh_cl_resize_t = "Resize by the corner",
 		dh_cl_resize_d = "Drag the corner at the bottom right of the window or the build panel to scale it. Fixed size options are gone.",
 		dh_cl_keep_t = "The draft stays after the match starts",
@@ -642,6 +644,8 @@ local localization = qLocalization.new({
 		dh_news = "Что нового",
 		dh_news_sub = "Что изменилось в обновлении",
 		dh_news_row_sub = "Изменения последнего обновления",
+		dh_cl_b2fix_t = "Исправления",
+		dh_cl_b2fix_d = "Названия ролей помещаются в переключатель позиций над списком героев. Текст в «Что нового» больше не рвётся посреди слова.",
 		dh_cl_resize_t = "Размер за уголок",
 		dh_cl_resize_d = "Потяни уголок справа внизу окна или панели сборки, чтобы изменить размер. Фиксированные варианты размера убраны.",
 		dh_cl_keep_t = "Драфт не теряется после начала матча",
@@ -972,7 +976,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.1",
+	VERSION = "2.0.0-beta.2",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1009,6 +1013,12 @@ local K = {
 	},
 
 	NEWS = {
+		{
+			v = "2.0.0-beta.2",
+			items = {
+				{ key = "dh_cl_b2fix", glyph = "wrench", tile = "t_green" },
+			},
+		},
 		{
 			v = "2.0.0-beta.1",
 			items = {
@@ -3847,17 +3857,30 @@ end
 function view.segment()
 	local x, y, w, h = K.CX, K.TB + 112, K.CW, 32
 	g.rect(x, y, w, h, C.fill3, 9)
-	local bw = (w - 4) / 6
-	local tx = anim.tween("seg", x + 2 + S.filter * bw, 0.3, ease_in_out)
-	g.thumb(x, y, w, h, tx - x - 2, tx - x - 2 + bw, C.thumb, 7)
+	local labels, tws, cells, total = {}, {}, {}, 0
+	for p = 0, 5 do
+		labels[p] = p == 0 and L("dh_auto") or L("dh_pos_" .. p)
+		tws[p] = g.width(F(500), 13, labels[p]) + 24
+		total = total + tws[p]
+	end
+	local extra = math.max(0, (w - 4 - total) / 6)
+	local cx = x + 2
+	for p = 0, 5 do
+		cells[p] = { x = cx, w = tws[p] + extra }
+		cx = cx + cells[p].w
+	end
+	local cur = cells[S.filter] or cells[0]
+	local tx = anim.tween("seg", cur.x, 0.3, ease_in_out)
+	local tw_cur = anim.tween("seg_w", cur.w, 0.3, ease_in_out)
+	g.thumb(x, y, w, h, tx - x - 2, tx - x - 2 + tw_cur, C.thumb, 7)
 	local busy = draft.our_pos()
 	for p = 0, 5 do
-		local bx = x + 2 + p * bw
+		local bx, bw = cells[p].x, cells[p].w
 		local on, is_busy = S.filter == p, p > 0 and busy[p]
 		if p > 0 and not on and S.filter ~= p - 1 then g.rect(bx, y + 8, 1, h - 16, C.sep2) end
-		local label = p == 0 and L("dh_auto") or L("dh_pos_" .. p)
+		local label = labels[p]
 		local col = on and C.text or (is_busy and C.text3 or C.text2)
-		local tw = g.width(F(500), 13, label) + 24
+		local tw = tws[p]
 		local lx = math.floor(bx + (bw - tw) / 2 + 0.5)
 		if p == 0 then g.glyph("wand", 14, lx + 9, y + 16, col) else g.icon(asset.pos(p), lx, y + 7, 18, col) end
 		g.text(F(500), 13, label, lx + 24, y + 16, col)
@@ -4663,7 +4686,7 @@ function view.wrap(text, weight, size, max_w)
 	if out then return out end
 	out = {}
 	local line = ""
-	for word in text:gmatch("%S+") do
+	for word in text:gmatch("[^ \t\n]+") do
 		local try = line == "" and word or (line .. " " .. word)
 		if line ~= "" and g.width(F(weight), size, try) > max_w then
 			out[#out + 1] = line
