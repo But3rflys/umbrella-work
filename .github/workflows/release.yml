@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   release:
@@ -49,3 +50,9 @@ jobs:
           git commit -m "${{ steps.notes.outputs.manifest }} ${TAG##*-v}: version manifest"
           git pull --rebase
           git push origin main
+
+      - name: pages
+        if: steps.notes.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run readme.yml --ref main
