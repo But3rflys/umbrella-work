@@ -866,7 +866,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-alpha.2",
+	VERSION = "2.0.0-alpha.3",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -3574,9 +3574,14 @@ function view.tip()
 	local k = clamp((S.now - S.tip_since - K.TIP_DELAY) / 0.12, 0, 1)
 	if k <= 0 then return end
 	local mx, my = Input.GetCursorPos()
+	local cx, cy = (mx - g.x) / g.s, (my - g.y) / g.s
 	local w = g.width(F(600), 12, S.tip) + 20
-	local x = clamp((mx - g.x) / g.s + 12, 4, K.W - w - 4)
-	local y = clamp((my - g.y) / g.s + 18, 4, K.H - 30)
+	local over = hit.at(mx, my)
+	local top = over and (over[2] - g.y) / g.s or cy
+	local bottom = over and (over[4] - g.y) / g.s or cy
+	local y = math.max(bottom + 6, cy + 24)
+	if y + 30 > K.H then y = math.min(top - 32, cy - 34) end
+	local x = clamp(cx - w / 2, 4, K.W - w - 4)
 	g.rect(x, y, w, 26, C.raised, 7, k)
 	g.frame(x, y, w, 26, C.outline, 7, k)
 	g.text(F(600), 12, S.tip, x + 10, y + 13, C.text, k)
