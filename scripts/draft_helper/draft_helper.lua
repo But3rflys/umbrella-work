@@ -1097,7 +1097,7 @@ local MODEL = {
 }
 
 local ITEM = {
-	POS_MIN = 200,
+	POS_MIN = 100,
 	FILL = 0.25,
 	AGHS = 0.3,
 	FOLD_GAP = 10,
