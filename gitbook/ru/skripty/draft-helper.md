@@ -7,7 +7,17 @@ icon: list-ol
 Подсказки на драфте и сборка предметов: окно с героями под каждый ход, шанс на победу по драфту и сборка под твою роль против их пиков.
 
 <!-- versions:start -->
-**Скачать:** [draft_helper.lua](https://raw.githubusercontent.com/But3rflys/umbrella-work/main/scripts/draft_helper/draft_helper.lua) — `2.0.0-beta.2`, дальше скрипт обновляется сам
+**Скачать:** [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.2/draft_helper.lua) — `draft-helper-v2.0.0-beta.2`, 2026-10-06
+
+<details>
+
+<summary>Все версии</summary>
+
+| Версия | Дата | Файл | Загрузок |
+| --- | --- | --- | --- |
+| [`draft-helper-v2.0.0-beta.2`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.2) | 2026-10-06 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.2/draft_helper.lua) | 0 |
+
+</details>
 <!-- versions:end -->
 
 ## Как работает

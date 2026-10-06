@@ -7,7 +7,17 @@ icon: list-ol
 Draft hints and item builds: a window with heroes for every turn, the draft win chance and a build for your role against their picks.
 
 <!-- versions:start -->
-**Download:** [draft_helper.lua](https://raw.githubusercontent.com/But3rflys/umbrella-work/main/scripts/draft_helper/draft_helper.lua) — `2.0.0-beta.2`, the script updates itself after that
+**Download:** [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.2/draft_helper.lua) — `draft-helper-v2.0.0-beta.2`, 2026-10-06
+
+<details>
+
+<summary>All versions</summary>
+
+| Version | Date | File | Downloads |
+| --- | --- | --- | --- |
+| [`draft-helper-v2.0.0-beta.2`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.2) | 2026-10-06 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.2/draft_helper.lua) | 0 |
+
+</details>
 <!-- versions:end -->
 
 ## How it works
