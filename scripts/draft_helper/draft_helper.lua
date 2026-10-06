@@ -972,7 +972,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-alpha.11",
+	VERSION = "2.0.0-beta.1",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1010,7 +1010,7 @@ local K = {
 
 	NEWS = {
 		{
-			v = "2.0.0-alpha.11",
+			v = "2.0.0-beta.1",
 			items = {
 				{ key = "dh_cl_resize", glyph = "expand", tile = "t_cyan" },
 				{ key = "dh_cl_keep", glyph = "flag", tile = "t_green" },
