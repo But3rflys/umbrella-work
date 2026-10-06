@@ -976,7 +976,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.2",
+	VERSION = "2.0.0-beta.3",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1743,7 +1743,7 @@ function data.status(key)
 	return "loading"
 end
 
-local upd = { state = "idle", latest = nil, url = nil, error = nil, checked = false, check_failed = false, next_check = 0, reload_at = nil, changed_at = 0 }
+local upd = { state = "idle", latest = nil, urls = nil, error = nil, checked = false, check_failed = false, next_check = 0, reload_at = nil, changed_at = 0 }
 
 do
 	local ok, source = pcall(function() return debug.getinfo(1, "S").source end)
@@ -1815,7 +1815,9 @@ function upd.check(manual)
 			return
 		end
 		upd.checked, upd.check_failed = true, false
-		upd.latest, upd.url = v.version, v.url
+		upd.latest, upd.urls = v.version, {}
+		if type(v.release) == "string" then upd.urls[1] = v.release end
+		upd.urls[#upd.urls + 1] = v.url
 		upd.set(upd.newer(v.version, K.VERSION) and "available" or "idle")
 	end)
 end
@@ -1824,13 +1826,22 @@ function upd.install()
 	if upd.state ~= "available" and upd.state ~= "error" then return end
 	local want = upd.latest
 	upd.set("loading")
-	upd.request(upd.url, function(text, err)
-		if not text then return upd.set("error", err) end
-		if not text:find("^%-%-%[%[") or not text:find("return script%s*$") then
-			return upd.set("error", L("dh_upd_bad_file"))
+	upd.fetch(1, want)
+end
+
+function upd.fetch(i, want)
+	upd.request(upd.urls[i], function(text, err)
+		if text and (not text:find("^%-%-%[%[") or not text:find("return script%s*$")) then
+			text, err = nil, L("dh_upd_bad_file")
 		end
-		local found = text:match('VERSION = "([^"]+)"')
-		if found ~= want then return upd.set("error", string.format(L("dh_upd_bad_version"), tostring(found), want)) end
+		local found = text and text:match('VERSION = "([^"]+)"')
+		if text and found ~= want then
+			text, err = nil, string.format(L("dh_upd_bad_version"), tostring(found), want)
+		end
+		if not text then
+			if upd.urls[i + 1] then return upd.fetch(i + 1, want) end
+			return upd.set("error", err)
+		end
 		local tmp = upd.path .. ".tmp"
 		local f = io.open(tmp, "wb")
 		if not f then return upd.set("error", L("dh_upd_write")) end
