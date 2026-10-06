@@ -38,6 +38,7 @@ Mark your heroes in My hero pool: they go higher in the hints, or only they stay
 
 ## Install
 
-1. Download `draft_helper.lua` from the link above.
+1. Download `draft_helper.lua` from the latest release.
 2. Put the file into the `scripts` folder next to your cheat.
-3. Open **Scripts > Draft Helper**, turn on **Enable** and bind **Open window** if you like.
+3. Open **Scripts > Draft Helper** and turn on **Enable**.
+4. Bind a key to **Open window**: without it the window can't be opened.
