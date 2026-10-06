@@ -31,24 +31,3 @@ Mark your heroes in My hero pool: they go higher in the hints, or only they stay
 1. Download `draft_helper.lua` from the link above.
 2. Put the file into the `scripts` folder next to your cheat.
 3. Open **Scripts > Draft Helper**, turn on **Enable** and bind **Open window** if you like.
-
-<!-- changelog:start -->
-## Changelog
-
-**update v2.0.0-beta.2**
-
-* **fixes.** minor changes and bug fixes
-
-**update v2.0.0-beta.1**
-
-* **resize by the corner.** drag the corner at the bottom right of the window or the build panel to scale it
-* **the draft stays after the match starts.** the draft is tied to the lobby while you pick
-* **cleaner answers.** sentries are suggested to supports only
-
-**update v2.0.0-alpha.10**
-
-* **item builds.** a build for your hero and role from 7000+ MMR games
-* **answers to their draft.** the build adapts to enemy heroes and their items in the match
-* **build panel.** opens with the shop, buy or pin to quick buy in one click
-* **one cache file.** all downloaded data lives in `draft_helper_v2.dat`
-<!-- changelog:end -->
