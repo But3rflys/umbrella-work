@@ -30,8 +30,7 @@ CALLS_MAX = 1900
 D2PT = "https://dota2protracker.com/hero/"
 D2PT_GAP = 3
 D2PT_EVERY = 3 * 86400
-D2PT_SHARE = 0.05
-D2PT_MATCHES = 200
+D2PT_MATCHES = 100
 D2PT_FINAL = 0.01
 
 REC = struct.Struct("<QI10sBB")
@@ -433,7 +432,7 @@ def items():
     path = OUT / "manifest.json"
     manifest = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
     prev = (manifest.get("sets") or {}).get("items") or {}
-    if prev.get("src") == "d2pt" and time.time() - prev.get("time", 0) < D2PT_EVERY and (OUT / "stats/items.txt").exists():
+    if prev.get("src") == "d2pt" and prev.get("min") == D2PT_MATCHES and time.time() - prev.get("time", 0) < D2PT_EVERY and (OUT / "stats/items.txt").exists():
         log("items: fresh, skipped")
         return None
     consts = get(API + "constants/items")
@@ -466,10 +465,9 @@ def items():
         rows += part
         main = int(str(node.get("position")).replace("pos ", ""))
         stats = {x.get("position"): x.get("matches") or 0 for x in node.get("heroStats") or []}
-        total = stats.get("all") or 0
         for pos in range(1, 6):
             n = stats.get("pos %d" % pos, 0)
-            if pos == main or not total or n < D2PT_MATCHES or n / total < D2PT_SHARE:
+            if pos == main or n < D2PT_MATCHES:
                 continue
             try:
                 extra = d2pt_rows(hid, d2pt_page(info["displayName"], pos)[1]["data"], seen)
@@ -522,7 +520,7 @@ def main():
 
     done = step("items", items)
     if done:
-        sets["items"] = {"n": done, "time": now, "src": "d2pt"}
+        sets["items"] = {"n": done, "time": now, "src": "d2pt", "min": D2PT_MATCHES}
 
     newest = None
     for rank in RANKS:
