@@ -988,7 +988,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.7",
+	VERSION = "2.0.0-beta.8",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -2304,7 +2304,7 @@ function draft.rows()
 	local st = draft.step()
 	if not st then return {} end
 	local key = table.concat({ S.calc_key, S.filter, SET.pool_mode, SET.count, table.concat(SET.pool, ","),
-		tostring(draft.can_act()), tostring(live.d and live.d.grid), #S.cm.picks, #S.ap.ours, #S.ap.theirs }, "|")
+		tostring(draft.can_act()), draft.live() and live.d and live.d.grid and live.d.grid.sig or "", #S.cm.picks, #S.ap.ours, #S.ap.theirs }, "|")
 	if S.rows_key == key then return S.rows end
 	S.rows_key = key
 	S.rows = draft.build_rows(st)
@@ -2709,6 +2709,10 @@ function live.read_grid(pre, now)
 			end
 		end
 	end
+	local names = {}
+	for h in pairs(out.closed) do names[#names + 1] = h end
+	table.sort(names)
+	out.sig = table.concat(names, ",")
 	cache.last = out
 	return out
 end
