@@ -988,7 +988,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.11",
+	VERSION = "2.0.0-beta.10",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
