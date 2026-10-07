@@ -326,6 +326,8 @@ local localization = qLocalization.new({
 		dh_news = "What's new",
 		dh_news_sub = "Changes in this update",
 		dh_news_row_sub = "Changes in the latest update",
+		dh_cl_b10early_t = "Earlier answers to their draft",
+		dh_cl_b10early_d = "The build now picks the answer you can get sooner: Orchid by minute 20 against Puck or Storm instead of a late Hex.",
 		dh_cl_b6fix_t = "Draft reading fixed",
 		dh_cl_b6fix_d = "Bans and picks are detected in every new lobby again, and picking a hero from the window works again.",
 		dh_cl_b5fps_t = "Higher FPS",
@@ -650,6 +652,8 @@ local localization = qLocalization.new({
 		dh_news = "Что нового",
 		dh_news_sub = "Что изменилось в обновлении",
 		dh_news_row_sub = "Изменения последнего обновления",
+		dh_cl_b10early_t = "Ранние ответы на их драфт",
+		dh_cl_b10early_d = "Сборка выбирает ответ, который можно собрать раньше: орчид к 20 минуте против Пака или Шторма вместо позднего хекса.",
 		dh_cl_b6fix_t = "Чтение драфта исправлено",
 		dh_cl_b6fix_d = "Баны и пики снова определяются в каждом новом лобби, выбор героя из окна снова работает.",
 		dh_cl_b5fps_t = "Выше FPS",
@@ -988,7 +992,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.9",
+	VERSION = "2.0.0-beta.10",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1025,6 +1029,12 @@ local K = {
 	},
 
 	NEWS = {
+		{
+			v = "2.0.0-beta.10",
+			items = {
+				{ key = "dh_cl_b10early", glyph = "shield", tile = "red", icons = { "orchid", "rod_of_atos", "sheepstick" } },
+			},
+		},
 		{
 			v = "2.0.0-beta.6",
 			items = {
@@ -1138,6 +1148,7 @@ local ITEM = {
 	LATE = 30,
 	POOL = 0.05,
 	COUNTERS = 4,
+	SOONER = 3,
 	CAP = 1.5,
 	INV_READ = 1,
 	ICON = "panorama/images/items/%s_png.vtex_c",
@@ -1724,12 +1735,22 @@ function data.parse_items(text, time)
 			e.start[#e.start + 1] = { n = tonumber(n), ids = ids }
 		end
 	end
+	local times = {}
 	for tag, h, p, id, pr, m, wr in text:gmatch("\n([cm]) (%d+) (%d) (%d+) (%d+) (%d+) (%d+)") do
 		local e = entry(h, p)
 		if e then
 			local list = tag == "c" and e.core or e.mid
 			list[#list + 1] = { id = tonumber(id), pr = tonumber(pr) / 1000, min = tonumber(m) / 10, wr = tonumber(wr) / 1000 }
 		end
+		local i = tonumber(id)
+		times[i] = times[i] or {}
+		table.insert(times[i], tonumber(m) / 10)
+	end
+	it.typical = {}
+	for id, list in pairs(times) do
+		table.sort(list)
+		local n = #list
+		it.typical[id] = n % 2 == 1 and list[(n + 1) // 2] or (list[n // 2] + list[n // 2 + 1]) / 2
 	end
 	for h, p, id, m in text:gmatch("\nb (%d+) (%d) (%d+) (%d+)") do
 		local e = entry(h, p)
@@ -3170,6 +3191,160 @@ function build.threats(enemies)
 	return threat
 end
 
+function build.base_name(it, id)
+	local m = it.meta[id]
+	return m and (m.name:gsub("^dagon_%d$", "dagon"))
+end
+
+function build.start_kit(it, e, plan)
+	local in_start, kit = {}, e.start[1]
+	if not kit then return in_start end
+	local order, count = {}, {}
+	for _, id in ipairs(kit.ids) do
+		if it.meta[id] then
+			if not count[id] then order[#order + 1] = id end
+			count[id] = (count[id] or 0) + 1
+			in_start[id] = true
+		end
+	end
+	for _, id in ipairs(order) do plan.start[#plan.start + 1] = { name = it.meta[id].name, q = count[id] } end
+	return in_start
+end
+
+function build.rates(e)
+	local pr, mins = {}, {}
+	for _, list in ipairs({ e.core, e.mid }) do
+		for _, x in ipairs(list) do
+			pr[x.id] = math.max(pr[x.id] or 0, x.pr)
+			mins[x.id] = mins[x.id] or x.min
+		end
+	end
+	return pr, mins
+end
+
+function build.route(it, e, in_start)
+	local src = e.path
+	if #src == 0 then
+		src = {}
+		for _, x in ipairs(e.core) do src[#src + 1] = x end
+		for _, x in ipairs(e.mid) do
+			if x.pr >= ITEM.FILL then src[#src + 1] = x end
+		end
+		table.sort(src, function(p, q) return p.min < q.min end)
+	end
+	local path, at = {}, {}
+	for _, x in ipairs(src) do
+		local name = build.base_name(it, x.id)
+		if name and not in_start[x.id] then
+			local i = at[name]
+			if not i then
+				path[#path + 1] = { id = x.id, name = name, min = x.min, q = 1 }
+				at[name] = #path
+			elseif name == it.meta[x.id].name and i == #path then
+				path[i].q = path[i].q + 1
+			end
+		end
+	end
+	local function upgraded(i)
+		for _, p in ipairs(it.up[path[i].id] or {}) do
+			local j = at[build.base_name(it, p) or ""]
+			if j and j > i and path[j].name ~= path[i].name and path[j].min - path[i].min <= ITEM.FOLD_GAP then return true end
+		end
+		return false
+	end
+	local route = { list = {}, at = {} }
+	for i, x in ipairs(path) do
+		if not upgraded(i) then build.add(route, x) end
+	end
+	return route
+end
+
+function build.add(route, x)
+	if route.at[x.name] then return end
+	route.list[#route.list + 1] = x
+	route.at[x.name] = #route.list
+end
+
+function build.answer(tag, fits, when)
+	local list = {}
+	for i, name in ipairs(ITEM.ANSWERS[tag]) do
+		local f = fits(name)
+		if f > 0 then list[#list + 1] = { name = name, f = f, i = i, t = when(name) } end
+	end
+	table.sort(list, function(p, q)
+		if p.t ~= q.t then return p.t < q.t end
+		return p.i < q.i
+	end)
+	local t0 = list[1] and list[1].t
+	for j = 2, #list do
+		local x = list[j]
+		if x.t - t0 > ITEM.SOONER then break end
+		if x.f > list[1].f then list[1], list[j] = x, list[1] end
+	end
+	return list
+end
+
+function build.credit(c, src)
+	for _, s in ipairs(src) do
+		local by = c.by_hero[s.h]
+		if not by then
+			by = { h = s.h, w = 0, what = {} }
+			c.by_hero[s.h] = by
+			c.src[#c.src + 1] = by
+		end
+		by.w = by.w + s.w
+		for _, w in ipairs(s.what) do
+			local dup = false
+			for _, x in ipairs(by.what) do dup = dup or x == w end
+			if not dup then by.what[#by.what + 1] = w end
+		end
+	end
+end
+
+function build.counters(enemies, fits, when)
+	local threat, by_item, order = build.threats(enemies), {}, {}
+	for _, tag in ipairs(ITEM.ORDER) do
+		local t = threat[tag]
+		local score = t and t.w / (ITEM.THRESHOLD[tag] or 1) or 0
+		local list = score >= 1 and build.answer(tag, fits, when) or {}
+		if list[1] then
+			local name = list[1].name
+			local c = by_item[name]
+			if not c then
+				c = { name = name, score = 0, tags = {}, src = {}, by_hero = {} }
+				by_item[name] = c
+				order[#order + 1] = c
+			end
+			c.score = c.score + score
+			c.tags[#c.tags + 1] = tag
+			c.alt = c.alt or (list[2] and list[2].name)
+			build.credit(c, t.src)
+		end
+	end
+	table.sort(order, function(p, q) return p.score > q.score end)
+	return order
+end
+
+function build.stages(plan, path)
+	for i, x in ipairs(path) do x.i = i end
+	table.sort(path, function(p, q)
+		if p.min ~= q.min then return p.min < q.min end
+		return p.i < q.i
+	end)
+	for _, x in ipairs(path) do
+		local row = plan.stages[x.min < ITEM.EARLY and 1 or (x.min < ITEM.MID and 2 or 3)]
+		row[#row + 1] = x
+	end
+	local mid, late = plan.stages[2], plan.stages[3]
+	if (#mid == 0 and #late >= 3) or (#late == 0 and #mid >= 4) then
+		local all = {}
+		for _, x in ipairs(mid) do all[#all + 1] = x end
+		for _, x in ipairs(late) do all[#all + 1] = x end
+		local cut = math.floor(#all / 2)
+		plan.stages[2], plan.stages[3] = { table.unpack(all, 1, cut) }, { table.unpack(all, cut + 1) }
+	end
+end
+
 function build.plan(h, pos, enemies)
 	local it, hero = data.items(), data.heroes[h]
 	if not it or not hero or not hero.id then return nil end
@@ -3185,76 +3360,12 @@ function build.plan(h, pos, enemies)
 	end
 	plan.has = true
 
-	local in_start = {}
-	local kit = e.start[1]
-	if kit then
-		local order, count = {}, {}
-		for _, id in ipairs(kit.ids) do
-			local m = it.meta[id]
-			if m then
-				if not count[id] then order[#order + 1] = id end
-				count[id] = (count[id] or 0) + 1
-				in_start[id] = true
-			end
-		end
-		for _, id in ipairs(order) do plan.start[#plan.start + 1] = { name = it.meta[id].name, q = count[id] } end
-	end
-
-	local pr, mins = {}, {}
-	for _, list in ipairs({ e.core, e.mid }) do
-		for _, x in ipairs(list) do
-			pr[x.id] = math.max(pr[x.id] or 0, x.pr)
-			mins[x.id] = mins[x.id] or x.min
-		end
-	end
-	local function base(id)
-		local m = it.meta[id]
-		return m and (m.name:gsub("^dagon_%d$", "dagon"))
-	end
-	local src = e.path
-	if #src == 0 then
-		src = {}
-		for _, x in ipairs(e.core) do src[#src + 1] = x end
-		for _, x in ipairs(e.mid) do
-			if x.pr >= ITEM.FILL then src[#src + 1] = x end
-		end
-		table.sort(src, function(p, q) return p.min < q.min end)
-	end
-	local path, at = {}, {}
-	for _, x in ipairs(src) do
-		local name = base(x.id)
-		if name and not in_start[x.id] then
-			local i = at[name]
-			if not i then
-				path[#path + 1] = { id = x.id, name = name, min = x.min, q = 1 }
-				at[name] = #path
-			elseif name == it.meta[x.id].name and i == #path then
-				path[i].q = path[i].q + 1
-			end
-		end
-	end
-	local function upgraded(i)
-		for _, p in ipairs(it.up[path[i].id] or {}) do
-			local j = at[base(p) or ""]
-			if j and j > i and path[j].name ~= path[i].name and path[j].min - path[i].min <= ITEM.FOLD_GAP then return true end
-		end
-		return false
-	end
-	local keep = {}
-	for i, x in ipairs(path) do
-		if not upgraded(i) then keep[#keep + 1] = x end
-	end
-	path, at = keep, {}
-	for i, x in ipairs(path) do at[x.name] = i end
-
-	local function add(name, min)
-		if at[name] then return end
-		path[#path + 1] = { name = name, min = min, q = 1 }
-		at[name] = #path
-	end
+	local in_start = build.start_kit(it, e, plan)
+	local pr, mins = build.rates(e)
+	local route = build.route(it, e, in_start)
 	for _, name in ipairs({ ITEM.SCEPTER, ITEM.SHARD }) do
 		local id = it.by_name[name]
-		if id and (pr[id] or 0) >= ITEM.AGHS then add(name, mins[id] or ITEM.LATE) end
+		if id and (pr[id] or 0) >= ITEM.AGHS then build.add(route, { name = name, min = mins[id] or ITEM.LATE, q = 1 }) end
 	end
 
 	local pool = {}
@@ -3269,75 +3380,20 @@ function build.plan(h, pos, enemies)
 		end
 		return 0
 	end
-	local threat, by_item, order = build.threats(enemies), {}, {}
-	for _, tag in ipairs(ITEM.ORDER) do
-		local t = threat[tag]
-		local score = t and t.w / (ITEM.THRESHOLD[tag] or 1) or 0
-		if score >= 1 then
-			local list = {}
-			for i, name in ipairs(ITEM.ANSWERS[tag]) do
-				local f = fits(name)
-				if f > 0 then list[#list + 1] = { name = name, f = f, i = i } end
-			end
-			table.sort(list, function(p, q)
-				if p.f ~= q.f then return p.f > q.f end
-				return p.i < q.i
-			end)
-			if list[1] then
-				local name = list[1].name
-				local c = by_item[name]
-				if not c then
-					c = { name = name, score = 0, tags = {}, src = {}, by_hero = {} }
-					by_item[name] = c
-					order[#order + 1] = c
-				end
-				c.score = c.score + score
-				c.tags[#c.tags + 1] = tag
-				c.alt = c.alt or (list[2] and list[2].name)
-				for _, s in ipairs(t.src) do
-					local src_h = c.by_hero[s.h]
-					if not src_h then
-						src_h = { h = s.h, w = 0, what = {} }
-						c.by_hero[s.h] = src_h
-						c.src[#c.src + 1] = src_h
-					end
-					src_h.w = src_h.w + s.w
-					for _, w in ipairs(s.what) do
-						local dup = false
-						for _, x in ipairs(src_h.what) do dup = dup or x == w end
-						if not dup then src_h.what[#src_h.what + 1] = w end
-					end
-				end
-			end
-		end
+	local function when(name)
+		local i = route.at[name]
+		if i then return route.list[i].min end
+		local id = it.by_name[name]
+		return (id and (mins[id] or it.typical[id])) or (ITEM.CONSUMABLES[name] and ITEM.EARLY - 1) or ITEM.LATE
 	end
-	table.sort(order, function(p, q) return p.score > q.score end)
-	for i = 1, math.min(ITEM.COUNTERS, #order) do
-		local c = order[i]
+	for i, c in ipairs(build.counters(enemies, fits, when)) do
+		if i > ITEM.COUNTERS then break end
 		table.sort(c.src, function(p, q) return p.w > q.w end)
 		plan.counters[i] = c
-		local id = it.by_name[c.name]
-		add(c.name, (id and mins[id]) or (ITEM.CONSUMABLES[c.name] and ITEM.EARLY - 1) or ITEM.LATE)
+		build.add(route, { name = c.name, min = when(c.name), q = 1 })
 	end
 
-	for i, x in ipairs(path) do x.i = i end
-	table.sort(path, function(p, q)
-		if p.min ~= q.min then return p.min < q.min end
-		return p.i < q.i
-	end)
-	for _, x in ipairs(path) do
-		local s = x.min < ITEM.EARLY and 1 or (x.min < ITEM.MID and 2 or 3)
-		local row = plan.stages[s]
-		row[#row + 1] = x
-	end
-	local mid, late = plan.stages[2], plan.stages[3]
-	if (#mid == 0 and #late >= 3) or (#late == 0 and #mid >= 4) then
-		local all = {}
-		for _, x in ipairs(mid) do all[#all + 1] = x end
-		for _, x in ipairs(late) do all[#all + 1] = x end
-		local cut = math.floor(#all / 2)
-		plan.stages[2], plan.stages[3] = { table.unpack(all, 1, cut) }, { table.unpack(all, cut + 1) }
-	end
+	build.stages(plan, route.list)
 	return plan
 end
 
@@ -3511,10 +3567,6 @@ function g.num(weight, size, str, x, cy, c, a, align)
 		Render.Text(font, px, ch[1], Vec2(math.floor(tx + ch[2] + 0.5), ty), col)
 	end
 	return total / g.s
-end
-function g.num_width(weight, size, str)
-	local font, px = asset.font(weight), g.fs(size)
-	return g.num_layout(font, px, str).total / g.s
 end
 function g.glyph(name, size, x, cy, c, a, align)
 	return g.text(asset.icons(), size, K.G[name], x, cy, c, a, align or "c")
@@ -4191,7 +4243,7 @@ function view.draft_content(y, a)
 	if status ~= "ok" and not draft.done() then return view.data_state(status, y, a) end
 	if S.query ~= "" then
 		if draft.done() then return view.text_block(L("dh_search_done"), y + 20, a) + 20 end
-		local q, used, list, na = S.query:lower(), draft.used(), {}, {}
+		local q, used, list = S.query:lower(), draft.used(), {}
 		for _, hero in ipairs(data.list) do
 			if not used[hero.h] and hero.name:lower():find(q, 1, true) then list[#list + 1] = hero end
 			if #list >= 12 then break end
