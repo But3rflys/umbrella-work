@@ -326,8 +326,6 @@ local localization = qLocalization.new({
 		dh_news = "What's new",
 		dh_news_sub = "Changes in this update",
 		dh_news_row_sub = "Changes in the latest update",
-		dh_cl_b10early_t = "Earlier answers to their draft",
-		dh_cl_b10early_d = "The build now picks the answer you can get sooner: Orchid by minute 20 against Puck or Storm instead of a late Hex.",
 		dh_cl_b6fix_t = "Draft reading fixed",
 		dh_cl_b6fix_d = "Bans and picks are detected in every new lobby again, and picking a hero from the window works again.",
 		dh_cl_b5fps_t = "Higher FPS",
@@ -652,8 +650,6 @@ local localization = qLocalization.new({
 		dh_news = "Что нового",
 		dh_news_sub = "Что изменилось в обновлении",
 		dh_news_row_sub = "Изменения последнего обновления",
-		dh_cl_b10early_t = "Ранние ответы на их драфт",
-		dh_cl_b10early_d = "Сборка выбирает ответ, который можно собрать раньше: орчид к 20 минуте против Пака или Шторма вместо позднего хекса.",
 		dh_cl_b6fix_t = "Чтение драфта исправлено",
 		dh_cl_b6fix_d = "Баны и пики снова определяются в каждом новом лобби, выбор героя из окна снова работает.",
 		dh_cl_b5fps_t = "Выше FPS",
@@ -992,7 +988,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.10",
+	VERSION = "2.0.0-beta.11",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1029,12 +1025,6 @@ local K = {
 	},
 
 	NEWS = {
-		{
-			v = "2.0.0-beta.10",
-			items = {
-				{ key = "dh_cl_b10early", glyph = "shield", tile = "red", icons = { "orchid", "rod_of_atos", "sheepstick" } },
-			},
-		},
 		{
 			v = "2.0.0-beta.6",
 			items = {
