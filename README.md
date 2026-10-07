@@ -62,7 +62,7 @@ The menu follows your cheat language; the scripts speak Russian and English.
 | [DS Spot Block](scripts/ds_spot_block) | 60 | `ds-spot-block-v1.0.1` |
 | [Custom Background](scripts/custom_background) | 25 | `custom-background-v1.0.0` |
 | [Auto Stack](scripts/auto_stack) | 92 | `auto-stack-v1.1.0` |
-| [Draft Helper](scripts/draft_helper) | 16 | `draft-helper-v2.0.0-beta.7` |
+| [Draft Helper](scripts/draft_helper) | 19 | `draft-helper-v2.0.0-beta.8` |
 | [MusicUI](scripts/musicui) | 921 | `musicui-v1.0.8` |
 
 <picture>
@@ -70,5 +70,5 @@ The menu follows your cheat language; the scripts speak Russian and English.
   <img alt="Downloads over time" src=".github/stats/stats-light.svg" width="840">
 </picture>
 
-2026-10-06
+2026-10-07
 <!-- stats:end -->
