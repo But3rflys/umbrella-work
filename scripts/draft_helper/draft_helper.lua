@@ -988,7 +988,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.8",
+	VERSION = "2.0.0-beta.9",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1107,6 +1107,7 @@ local K = {
 	},
 	LIVE_READ = 0.1,
 	LIVE_IDLE = 0.5,
+	LIVE_SLOT_CHECK = 1,
 	LIVE_CAPTAIN = 0.1,
 	LIVE_GRID = 0.3,
 	LIVE_GRID_HEROES = 2,
@@ -2725,13 +2726,14 @@ function live.read_cm(pre)
 		captain = pre:HasClass("LocalPlayerIsCaptain"), need_captain = pre:HasClass("LocalTeamNeedsCaptain"),
 		our_turn = pre:HasClass("LocalTeamIsActive"), order = {},
 	}
+	local now = os.clock()
 	for _, s in ipairs(live.cm_slots(board)) do
 		s.n = s.n or tonumber(s.label:GetText())
 		local n = s.n
 		if n and s.panel:HasClass("HeroPickLocked") then
-			if not s.h then
+			if not s.h or now >= s.check then
 				if not s.img or not s.img:IsValid() then s.img = s.panel:FindChildTraverse("HeroImage") end
-				s.h = live.slot_hero(s.panel, s.img)
+				s.h, s.check = live.slot_hero(s.panel, s.img), now + K.LIVE_SLOT_CHECK
 			end
 			d.order[n] = s.h
 		else
