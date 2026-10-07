@@ -15,11 +15,11 @@ A Claude Code and Codex skill: the agent writes and fixes Lua scripts for Umbrel
 
 | Version | Date | File | Downloads |
 | --- | --- | --- | --- |
-| [`umbrella-lua-v1.0.4`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.4) | 2026-09-27 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.4/umbrella-lua.zip) | 55 |
-| [`umbrella-lua-v1.0.3`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.3) | 2026-09-24 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.3/umbrella-lua.zip) | 69 |
-| [`umbrella-lua-v1.0.2`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.2) | 2026-09-24 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.2/umbrella-lua.zip) | 2 |
-| [`umbrella-lua-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.1) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.1/umbrella-lua.zip) | 23 |
-| [`umbrella-lua-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.0) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.0/umbrella-lua.zip) | 8 |
+| [`umbrella-lua-v1.0.4`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.4) | 2026-09-27 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.4/umbrella-lua.zip) | 57 |
+| [`umbrella-lua-v1.0.3`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.3) | 2026-09-24 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.3/umbrella-lua.zip) | 70 |
+| [`umbrella-lua-v1.0.2`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.2) | 2026-09-24 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.2/umbrella-lua.zip) | 3 |
+| [`umbrella-lua-v1.0.1`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.1) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.1/umbrella-lua.zip) | 24 |
+| [`umbrella-lua-v1.0.0`](https://github.com/But3rflys/umbrella-work/releases/tag/umbrella-lua-v1.0.0) | 2026-09-23 | [umbrella-lua.zip](https://github.com/But3rflys/umbrella-work/releases/download/umbrella-lua-v1.0.0/umbrella-lua.zip) | 9 |
 
 </details>
 <!-- versions:end -->
