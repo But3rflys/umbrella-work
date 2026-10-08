@@ -14,8 +14,6 @@ NL = chr(10)
 
 START, END = "<!-- releases:start -->", "<!-- releases:end -->"
 CAT_RU_START, CAT_RU_END = "<!-- scripts:ru:start -->", "<!-- scripts:ru:end -->"
-DOC_START, DOC_END = "<!-- versions:start -->", "<!-- versions:end -->"
-LOG_START, LOG_END = "<!-- changelog:start -->", "<!-- changelog:end -->"
 CAT_EN_START, CAT_EN_END = "<!-- scripts:en:start -->", "<!-- scripts:en:end -->"
 
 INSTALL = {
@@ -158,62 +156,6 @@ def build_readme(script, rels):
     return len(mine)
 
 
-def gitbook_block(script, mine, lang):
-    ru = lang == "ru"
-    if not mine:
-        return NL.join(["Релизов пока нет." if ru else "No releases yet.", "",
-                        "[%s](%s)" % ("Релизы на GitHub" if ru else "Releases on GitHub",
-                                      all_link(script))])
-
-    top = mine[0]
-    a = asset_of(top, script)
-    day = (top.get("published_at") or "")[:10]
-    out = []
-    if a:
-        out += ["**%s** [%s](%s) — `%s`, %s"
-                % ("Скачать:" if ru else "Download:", a["name"], a["browser_download_url"],
-                   top["tag_name"], day), ""]
-    out += ["<details>", "", "<summary>%s</summary>" % ("Все версии" if ru else "All versions"), "",
-            "| %s | %s | %s | %s |" % (("Версия", "Дата", "Файл", "Загрузок") if ru
-                                       else ("Version", "Date", "File", "Downloads")),
-            "| --- | --- | --- | --- |"]
-    for r in mine:
-        a = asset_of(r, script)
-        link = "[%s](%s)" % (a["name"], a["browser_download_url"]) if a else "—"
-        count = a["download_count"] if a else 0
-        out.append("| [`%s`](%s) | %s | %s | %d |"
-                   % (r["tag_name"], r["html_url"], (r.get("published_at") or "")[:10], link, count))
-    out += ["", "</details>"]
-    return NL.join(out)
-
-
-def changelog_block(script, lang):
-    text = changelog(script, lang)
-    if not text:
-        return ""
-    lines = ["## %s" % ("Что нового" if lang == "ru" else "Changelog"), ""]
-    for line in text.splitlines():
-        lines.append("* " + line[2:] if line.startswith("- ") else line)
-    return NL.join(lines)
-
-
-def update_gitbook(script, mine):
-    name = script["tag"] + ".md"
-    for folder, lang in (("gitbook/ru", "ru"), ("gitbook/en", "en")):
-        root = BASE / folder
-        if not root.exists():
-            continue
-        pages = [p for p in sorted(root.rglob(name)) if DOC_START in p.read_text(encoding="utf-8")]
-        if not pages:
-            print("  no page %s in %s" % (name, folder))
-            continue
-        for path in pages:
-            patch(path, DOC_START, DOC_END, gitbook_block(script, mine, lang))
-            if LOG_START in path.read_text(encoding="utf-8"):
-                patch(path, LOG_START, LOG_END, changelog_block(script, lang))
-            print("  %s" % path.relative_to(BASE).as_posix())
-
-
 def catalog_list(lang):
     out = []
     for script in CATALOG["scripts"]:
@@ -240,7 +182,6 @@ def update_skill(rels):
     path = BASE / skill["folder"] / "README.md"
     if path.exists():
         patch(path, START, END, releases_block(skill, mine))
-    update_gitbook(skill, mine)
     print("%-20s releases: %d" % (skill["id"], len(mine)))
 
 
@@ -248,7 +189,6 @@ def main():
     rels = releases()
     for script in CATALOG["scripts"]:
         n = build_readme(script, rels)
-        update_gitbook(script, for_script(script, rels))
         print("%-20s releases: %d" % (script["id"], n))
     update_skill(rels)
     readme = BASE / "README.md"

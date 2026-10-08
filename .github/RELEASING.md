@@ -20,22 +20,19 @@ python tools/build.py
 ```
 
 `readme.yml` после релиза, раз в сутки и по кнопке пересчитывает загрузки и переписывает таблицы
-версий в README скриптов и на страницах GitBook.
+версий в README скриптов.
 
-Описания скриптов лежат в `catalog.json`. Генераторы: `pages.py` — README скриптов и страницы
-GitBook, `stats.py` — загрузки и график, `release_notes.py` — тело релиза.
+Описания скриптов лежат в `catalog.json`. Генераторы: `pages.py` — README скриптов, `stats.py` —
+загрузки и график, `release_notes.py` — тело релиза, `site.py` — сайт.
 
-## Что обновляется само
+## Сайт
 
-`readme.yml` после релиза, раз в сутки и по кнопке запускает `pages.py` и `stats.py`. Они
-переписывают в обоих пространствах GitBook два блока на каждой странице скрипта:
+https://but3rflys.github.io/umbrella-work/
 
-- `<!-- versions:start -->` — ссылка на свежий файл и таблица всех версий с загрузками
-- `<!-- changelog:start -->` — текст из `CHANGELOG.md` (русский) и `CHANGELOG.en.md` (английский)
-
-Страницы ищутся по имени файла в любой папке `gitbook/ru` и `gitbook/en`, поэтому переименование
-групп в GitBook ничего не ломает. Все остальное на страницах правится руками — хоть в репозитории,
-хоть прямо в GitBook.
+`site.yml` собирает сайт из `site/index.html` через `site.py` и выкладывает на GitHub Pages: после
+каждого `readme.yml`, при изменении сайта, `catalog.json`, статистики, превью или ченджлогов и по
+кнопке. Описания берутся из `catalog.json`, версии и загрузки из `.github/stats/stats.jsonl`,
+«Что нового» из `CHANGELOG.md` и `CHANGELOG.en.md`, превью из `.github/previews/<id>.png`.
 
 ## Скилл umbrella-lua
 
@@ -56,6 +53,4 @@ git push origin umbrella-lua-v1.0.2
 `umbrella-lua.zip`, создает релиз с телом из обоих ченджлогов и запускает `readme.yml`.
 
 Загрузки скилла идут в общий график, но не в таблицу скриптов: скилл описан в `catalog.json` отдельно
-от `scripts`. `pages.py` сам переписывает блоки `<!-- releases:start -->` в `skill/README.md`,
-`<!-- versions:start -->` и `<!-- changelog:start -->` на страницах GitBook `umbrella-lua.md`
-(раздел «Инструменты»). Руками их не трогать.
+от `scripts`. `pages.py` сам переписывает блоки `<!-- releases:start -->` в `skill/README.md`. Руками его не трогать.

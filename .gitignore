@@ -7,3 +7,4 @@ musicui-app/build/
 musicui-app/dist/
 *.spec
 skill/umbrella-lua/scripts/luatool.exe
+_site/

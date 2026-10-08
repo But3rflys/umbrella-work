@@ -2,6 +2,8 @@
 
 Lua-скрипты для Umbrella и приложение MusicUI.
 
+Сайт: https://but3rflys.github.io/umbrella-work/
+
 <!-- scripts:ru:start -->
 - [Lane Pull](scripts/lane_pull) — выпул вражеской волны крипом с Доминатора
 - [DS Spot Block](scripts/ds_spot_block) — блок спота Вакуумом за Dark Seer
@@ -29,6 +31,8 @@ MusicUI: распакуй архив, `MusicUI.lua` в `scripts`, запусти
 # English
 
 Lua scripts for Umbrella and the MusicUI app.
+
+Site: https://but3rflys.github.io/umbrella-work/
 
 <!-- scripts:en:start -->
 - [Lane Pull](scripts/lane_pull) — pull the enemy wave with your Dominator creep
