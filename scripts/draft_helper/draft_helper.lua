@@ -326,6 +326,8 @@ local localization = qLocalization.new({
 		dh_news = "What's new",
 		dh_news_sub = "Changes in this update",
 		dh_news_row_sub = "Changes in the latest update",
+		dh_cl_b14perf_t = "Performance",
+		dh_cl_b14perf_d = "Improved performance.",
 		dh_cl_b13modes_t = "Turbo and single draft",
 		dh_cl_b13modes_d = "Turbo and single draft get their own boards, in single draft your four heroes show right on the board.",
 		dh_cl_b13fix_t = "Sharper bans and picks",
@@ -675,6 +677,8 @@ local localization = qLocalization.new({
 		dh_news = "Что нового",
 		dh_news_sub = "Что изменилось в обновлении",
 		dh_news_row_sub = "Изменения последнего обновления",
+		dh_cl_b14perf_t = "Производительность",
+		dh_cl_b14perf_d = "Улучшена производительность.",
 		dh_cl_b13modes_t = "Турбо и сингл драфт",
 		dh_cl_b13modes_d = "Своя доска для турбо и сингл драфта, в сингл драфте твои четыре героя видны прямо на доске.",
 		dh_cl_b13fix_t = "Точнее баны и пики",
@@ -1018,7 +1022,22 @@ local localization = qLocalization.new({
 })
 
 local UI = localization.WrapLibrary(Menu)
-local L = localization.Get
+local Lc = { map = {}, lang = nil, get = localization.Get }
+
+function Lc.sync()
+	local lang = localization.GetLanguage()
+	if lang ~= Lc.lang then Lc.map, Lc.lang = {}, lang end
+end
+
+local function L(key)
+	if key == nil then return nil end
+	local v = Lc.map[key]
+	if v == nil then
+		v = Lc.get(key)
+		Lc.map[key] = v
+	end
+	return v
+end
 
 local ui = {}
 
@@ -1038,7 +1057,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.13",
+	VERSION = "2.0.0-beta.14",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1078,6 +1097,12 @@ local K = {
 	},
 
 	NEWS = {
+		{
+			v = "2.0.0-beta.14",
+			items = {
+				{ key = "dh_cl_b14perf", glyph = "chart", tile = "t_green" },
+			},
+		},
 		{
 			v = "2.0.0-beta.13",
 			items = {
@@ -1141,7 +1166,7 @@ local K = {
 	FADE = 0.2,
 	DOUBLE_CLICK = 0.35,
 	WHEEL = 112,
-	BOOST = 2.5,
+	BOOST = 0.5,
 	GLASS = 0.3,
 	SINK_ALIVE = 0.4,
 	SINK_TIMEOUT = 1500,
@@ -3706,15 +3731,32 @@ function build.open_team()
 	build.open(build.is_ours(S.bh) and S.bh or build.team[1].h)
 end
 
-local g = { x = 0, y = 0, s = 1, a = 1, fits = {} }
+local g = { x = 0, y = 0, s = 1, a = 1, fits = {}, vcache = {}, vc_n = 0, ccache = {}, cc_n = 0 }
 
 function g.px(x) return math.floor(g.x + x * g.s + 0.5) end
 function g.py(y) return math.floor(g.y + y * g.s + 0.5) end
-function g.v(x, y) return Vec2(g.px(x), g.py(y)) end
-function g.size(x, y, w, h) return Vec2(g.px(x + w) - g.px(x), g.py(y + h) - g.py(y)) end
+function g.pt(x, y)
+	local key = (x + 32768) * 65536 + y + 32768
+	local v = g.vcache[key]
+	if v then return v end
+	if g.vc_n >= 20000 then g.vcache, g.vc_n = {}, 0 end
+	v = Vec2(x, y)
+	g.vcache[key], g.vc_n = v, g.vc_n + 1
+	return v
+end
+function g.v(x, y) return g.pt(g.px(x), g.py(y)) end
+function g.size(x, y, w, h) return g.pt(g.px(x + w) - g.px(x), g.py(y + h) - g.py(y)) end
 function g.fs(size) return math.max(1, math.floor(size * g.s + 0.5)) end
 function g.col(c, a)
-	return Color(math.floor(c[1] + 0.5), math.floor(c[2] + 0.5), math.floor(c[3] + 0.5), math.floor((c[4] or 255) * (a or 1) * g.a + 0.5))
+	local r, gr, b = math.floor(c[1] + 0.5), math.floor(c[2] + 0.5), math.floor(c[3] + 0.5)
+	local al = math.floor((c[4] or 255) * (a or 1) * g.a + 0.5)
+	local key = ((r * 256 + gr) * 256 + b) * 256 + al
+	local v = g.ccache[key]
+	if v then return v end
+	if g.cc_n >= 8000 then g.ccache, g.cc_n = {}, 0 end
+	v = Color(r, gr, b, al)
+	g.ccache[key], g.cc_n = v, g.cc_n + 1
+	return v
 end
 function g.rect(x, y, w, h, c, r, a, flags)
 	Render.FilledRect(g.v(x, y), g.v(x + w, y + h), g.col(c, a), (r or 0) * g.s, flags or ROUND)
@@ -3731,7 +3773,7 @@ function g.thumb(x, y, w, h, from, to, c, r, a)
 	local x1, y1, x2, y2, i = g.px(x), g.py(y), g.px(x + w), g.py(y + h), g.inset()
 	local l = x1 + i
 	local k = (x2 - i - l) / (w - 4)
-	Render.FilledRect(Vec2(l + math.floor(from * k + 0.5), y1 + i), Vec2(l + math.floor(to * k + 0.5), y2 - i), g.col(c, a), r * g.s, ROUND)
+	Render.FilledRect(g.pt(l + math.floor(from * k + 0.5), y1 + i), g.pt(l + math.floor(to * k + 0.5), y2 - i), g.col(c, a), r * g.s, ROUND)
 end
 function g.frame(x, y, w, h, c, r, a, t)
 	Render.Rect(g.v(x, y), g.v(x + w, y + h), g.col(c, a), (r or 0) * g.s, ROUND, (t or 1) * g.s)
@@ -3747,7 +3789,7 @@ function g.text(font, size, str, x, cy, c, a, align)
 	local ts = asset.size(font, px, str)
 	local tx = g.x + x * g.s
 	if align == "r" then tx = tx - ts.x elseif align == "c" then tx = tx - ts.x / 2 end
-	Render.Text(font, px, str, Vec2(math.floor(tx + 0.5), math.floor(g.y + cy * g.s - ts.y / 2 + 0.5)), g.col(c, a))
+	Render.Text(font, px, str, g.pt(math.floor(tx + 0.5), math.floor(g.y + cy * g.s - ts.y / 2 + 0.5)), g.col(c, a))
 	return ts.x / g.s
 end
 function g.fit(weight, size, str, max_w)
@@ -3801,7 +3843,7 @@ function g.num(weight, size, str, x, cy, c, a, align)
 	local ty = math.floor(g.y + cy * g.s - lay.h / 2 + 0.5)
 	local col = g.col(c, a)
 	for _, ch in ipairs(lay.chars) do
-		Render.Text(font, px, ch[1], Vec2(math.floor(tx + ch[2] + 0.5), ty), col)
+		Render.Text(font, px, ch[1], g.pt(math.floor(tx + ch[2] + 0.5), ty), col)
 	end
 	return total / g.s
 end
@@ -4630,13 +4672,17 @@ function view.done(y, a)
 	return view.summary(y, a)
 end
 
+function view.hidden(y, h)
+	return S.vis_top ~= nil and (y + h < S.vis_top or y > S.vis_bottom)
+end
+
 function view.group_header(text, y, a)
-	g.text(F(700), 17, text, K.CX + K.P, y + 10, C.text, a)
+	if not view.hidden(y, 30) then g.text(F(700), 17, text, K.CX + K.P, y + 10, C.text, a) end
 	return 30
 end
 
 function view.foot(text, y, a)
-	g.text(F(400), 12, text, K.CX + K.P, y + 15, C.text3, a)
+	if not view.hidden(y, 26) then g.text(F(400), 12, text, K.CX + K.P, y + 15, C.text3, a) end
 	return 26
 end
 
@@ -4666,11 +4712,12 @@ function view.setting_rows(rows, y, a)
 		if hs[n] > 0 then last = n end
 	end
 	if total <= 0 then return 0 end
+	if view.hidden(y, total) then return total end
 	g.rect(x, y, w, total, C.card, 12, a)
 	local ry = y
 	for n, row in ipairs(rows) do
 		local f = row.fold or 1
-		if hs[n] > 0 then
+		if hs[n] > 0 and not view.hidden(ry, hs[n]) then
 			local ra = a * f * f
 			if f < 1 then g.clip(x, ry, w, hs[n]) end
 			if n > 1 then g.rect(x + 58, ry, w - 58, 1, C.sep2, 0, ra) end
@@ -6116,6 +6163,7 @@ local script = {}
 
 function script.OnUpdateEx()
 	if not ui.enable:Get() then return end
+	Lc.sync()
 	data.tick()
 	upd.tick()
 	live.tick()
@@ -6126,6 +6174,7 @@ end
 
 function script.OnFrame()
 	if not ui.enable:Get() then return end
+	Lc.sync()
 	local now = os.clock()
 	local frame = GlobalVars.GetAbsFrameTime()
 	S.dt = clamp(frame > 0 and frame or (now - (S.now > 0 and S.now or now)), 0, 0.1)
