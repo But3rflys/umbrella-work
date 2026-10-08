@@ -58,12 +58,12 @@ The menu follows your cheat language; the scripts speak Russian and English.
 <!-- stats:start -->
 | script | downloads | latest |
 | --- | --- | --- |
-| [Lane Pull](scripts/lane_pull) | 316 | `lane-pull-v1.0.4` |
+| [Lane Pull](scripts/lane_pull) | 317 | `lane-pull-v1.0.4` |
 | [DS Spot Block](scripts/ds_spot_block) | 60 | `ds-spot-block-v1.0.1` |
 | [Custom Background](scripts/custom_background) | 25 | `custom-background-v1.0.0` |
-| [Auto Stack](scripts/auto_stack) | 98 | `auto-stack-v1.1.0` |
-| [Draft Helper](scripts/draft_helper) | 195 | `draft-helper-v2.0.0-beta.12` |
-| [MusicUI](scripts/musicui) | 932 | `musicui-v1.0.8` |
+| [Auto Stack](scripts/auto_stack) | 99 | `auto-stack-v1.1.0` |
+| [Draft Helper](scripts/draft_helper) | 238 | `draft-helper-v2.0.0-beta.12` |
+| [MusicUI](scripts/musicui) | 933 | `musicui-v1.0.8` |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/stats/stats-dark.svg">
