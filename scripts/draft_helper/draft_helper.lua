@@ -326,6 +326,10 @@ local localization = qLocalization.new({
 		dh_news = "What's new",
 		dh_news_sub = "Changes in this update",
 		dh_news_row_sub = "Changes in the latest update",
+		dh_cl_b13modes_t = "Turbo and single draft",
+		dh_cl_b13modes_d = "Turbo and single draft get their own boards, in single draft your four heroes show right on the board.",
+		dh_cl_b13fix_t = "Sharper bans and picks",
+		dh_cl_b13fix_d = "Bans and taken heroes no longer get mixed up.",
 		dh_cl_b12fix_t = "Window opens",
 		dh_cl_b12fix_d = "Fixed a bug that kept the window from opening.",
 		dh_cl_b12vs_t = "Sharper vs their draft",
@@ -385,6 +389,7 @@ local localization = qLocalization.new({
 		dh_d_turn = "Current turn",
 		dh_d_order = "Turns",
 		dh_d_ban_phase = "Ban phase",
+		dh_d_ban_used = "Ban used",
 		dh_d_in_control = "Can pick",
 		dh_d_selected = "Hero picked",
 		dh_d_team_r = "Radiant",
@@ -392,6 +397,8 @@ local localization = qLocalization.new({
 		dh_d_banned = "Banned",
 		dh_d_picked = "Taken",
 		dh_d_off = "Unavailable",
+		dh_d_offer = "Options",
+		dh_d_lp = "Low priority",
 		dh_live_captain = "The captain bans and picks",
 		dh_live_wait = "Not your turn yet",
 		dh_bind_name = "Draft Helper",
@@ -405,6 +412,9 @@ local localization = qLocalization.new({
 		dh_side_d = "Dire",
 		dh_we = "Us",
 		dh_bans16 = "16 bans",
+		dh_sd_offer = "Your heroes",
+		dh_ph_ban = "Bans",
+		dh_ph_pick = "Picks",
 
 		dh_our_ban = "Our ban",
 		dh_enemy_ban = "Enemy ban",
@@ -434,6 +444,17 @@ local localization = qLocalization.new({
 		dh_ap_hidden = "Enemy picks are hidden until the round ends",
 		dh_ap_counter = "Counters to the revealed enemy heroes",
 		dh_ap_reveal = "Round over, the enemy reveals picks",
+		dh_turbo_of = "%d of 5 picked",
+		dh_turbo_last = "Last pick of the team",
+		dh_turbo_left = "%d picks left for the team",
+		dh_ban_turbo = "One ban per player",
+		dh_ban_ap = "Your ban nomination",
+		dh_ban_done = "Ban is in, picks come next",
+		dh_sd_title = "Your hero",
+		dh_sd_four = "Pick one of your four heroes",
+		dh_sd_waiting = "You have picked, the team is choosing",
+		dh_sd_sub = "Your four heroes ranked for this draft",
+		dh_sd_none = "Your four heroes are not visible yet",
 
 		dh_auto = "Auto",
 		dh_pos_1 = "Carry",
@@ -470,11 +491,13 @@ local localization = qLocalization.new({
 		dh_done = "Draft complete",
 		dh_done_cm = "All 24 turns are done",
 		dh_done_ap = "All three rounds are done",
+		dh_done_turbo = "All five picks are in",
 
 		dh_ban_word = "Ban",
 		dh_pick_word = "Pick",
 		dh_at_step = "turn %d",
 		dh_at_round = "round %d",
+		dh_at_turbo = "simultaneous",
 		dh_select = "Pick",
 		dh_ban_btn = "Ban",
 		dh_cancel = "Cancel",
@@ -491,8 +514,6 @@ local localization = qLocalization.new({
 
 		dh_home_sub = "No match right now. Train or tune the hints",
 		dh_h_train = "Training draft",
-		dh_h_cm_sub = "24 turns, bans and picks in order",
-		dh_h_ap_sub = "16 auto bans and three pick rounds",
 		dh_start = "Start",
 		dh_h_foot_auto = "The script plays for the enemy using its own hints. Change it in settings.",
 		dh_h_foot_manual = "You pick for the enemy in Captains Mode. Change it in settings.",
@@ -654,6 +675,10 @@ local localization = qLocalization.new({
 		dh_news = "Что нового",
 		dh_news_sub = "Что изменилось в обновлении",
 		dh_news_row_sub = "Изменения последнего обновления",
+		dh_cl_b13modes_t = "Турбо и сингл драфт",
+		dh_cl_b13modes_d = "Своя доска для турбо и сингл драфта, в сингл драфте твои четыре героя видны прямо на доске.",
+		dh_cl_b13fix_t = "Точнее баны и пики",
+		dh_cl_b13fix_d = "Баны и взятые герои больше не путаются.",
 		dh_cl_b12fix_t = "Окно открывается",
 		dh_cl_b12fix_d = "Исправлена ошибка, из-за которой окно не открывалось.",
 		dh_cl_b12vs_t = "Точнее под их драфт",
@@ -713,6 +738,7 @@ local localization = qLocalization.new({
 		dh_d_turn = "Текущий ход",
 		dh_d_order = "Ходы",
 		dh_d_ban_phase = "Фаза банов",
+		dh_d_ban_used = "Бан сделан",
 		dh_d_in_control = "Можно пикать",
 		dh_d_selected = "Герой выбран",
 		dh_d_team_r = "Свет",
@@ -720,6 +746,8 @@ local localization = qLocalization.new({
 		dh_d_banned = "Забанены",
 		dh_d_picked = "Взяты",
 		dh_d_off = "Недоступны",
+		dh_d_offer = "Варианты",
+		dh_d_lp = "Низкий приоритет",
 		dh_live_captain = "Банит и пикает капитан",
 		dh_live_wait = "Сейчас не твой ход",
 		dh_bind_name = "Draft Helper",
@@ -733,6 +761,9 @@ local localization = qLocalization.new({
 		dh_side_d = "Силы Тьмы",
 		dh_we = "Мы",
 		dh_bans16 = "16 банов",
+		dh_sd_offer = "Твои герои",
+		dh_ph_ban = "Баны",
+		dh_ph_pick = "Пики",
 
 		dh_our_ban = "Наш бан",
 		dh_enemy_ban = "Бан врага",
@@ -762,6 +793,17 @@ local localization = qLocalization.new({
 		dh_ap_hidden = "Пики врага скрыты до конца раунда",
 		dh_ap_counter = "Контрпики к открытым героям врага",
 		dh_ap_reveal = "Раунд окончен, враг открывает пики",
+		dh_turbo_of = "выбрано %d из 5",
+		dh_turbo_last = "Последний пик команды",
+		dh_turbo_left = "Команде осталось пиков: %d",
+		dh_ban_turbo = "Один бан на игрока",
+		dh_ban_ap = "Твоя номинация на бан",
+		dh_ban_done = "Бан сделан, дальше пики",
+		dh_sd_title = "Твой герой",
+		dh_sd_four = "Выбери одного из своих четырёх",
+		dh_sd_waiting = "Ты выбрал, команда ещё выбирает",
+		dh_sd_sub = "Твои четыре героя по силе в этом драфте",
+		dh_sd_none = "Твои четыре героя ещё не видны",
 
 		dh_auto = "Авто",
 		dh_pos_1 = "Керри",
@@ -798,11 +840,13 @@ local localization = qLocalization.new({
 		dh_done = "Драфт собран",
 		dh_done_cm = "Все 24 хода сделаны",
 		dh_done_ap = "Все три раунда позади",
+		dh_done_turbo = "Все пять пиков сделаны",
 
 		dh_ban_word = "Бан",
 		dh_pick_word = "Пик",
 		dh_at_step = "ход %d",
 		dh_at_round = "раунд %d",
+		dh_at_turbo = "одновременно",
 		dh_select = "Выбрать",
 		dh_ban_btn = "Забанить",
 		dh_cancel = "Отмена",
@@ -819,8 +863,6 @@ local localization = qLocalization.new({
 
 		dh_home_sub = "Матча сейчас нет. Можно потренироваться или настроить подсказки",
 		dh_h_train = "Тренировочный драфт",
-		dh_h_cm_sub = "24 хода, баны и пики по очереди",
-		dh_h_ap_sub = "16 автобанов и три раунда пиков",
 		dh_start = "Начать",
 		dh_h_foot_auto = "За врага ходит скрипт по своим подсказкам. Это меняется в настройках.",
 		dh_h_foot_manual = "За врага в Captains Mode пикаешь ты сам. Это меняется в настройках.",
@@ -996,7 +1038,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.12",
+	VERSION = "2.0.0-beta.13",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1012,6 +1054,9 @@ local K = {
 	AP_ROUND = { 1, 1, 2, 2, 3 },
 	AP_MID = { 237, 391, 517 },
 	AP_ROUND_END = { 2, 4, 5 },
+	TURBO_Y = { 190, 260, 330, 400, 470 },
+	TURBO_BANS = 10,
+	TURBO_PHASE_Y = 584,
 
 	ORDER = { "BF", "BF", "BS", "BS", "BF", "BS", "BS", "PF", "PS", "BF", "BF", "BS", "PS", "PF", "PF", "PS", "PS", "PF", "BF", "BS", "BF", "BS", "PF", "PS" },
 	RANKS = { 0, 50, 60, 70 },
@@ -1027,12 +1072,19 @@ local K = {
 		plus = "\u{f067}", minus = "\u{f068}", chart = "\u{e473}", list = "\u{f0cb}", comment = "\u{f4ad}", percent = "\u{f295}",
 		hand = "\u{f25a}", expand = "\u{f424}", house = "\u{f015}", chess = "\u{f43c}", users = "\u{f0c0}", robot = "\u{f544}",
 		flag = "\u{f024}", finish = "\u{f11e}", bag = "\u{f290}", crown = "\u{f521}", bug = "\u{f188}", close = "\u{f00d}",
-		blur = "\u{f042}", drop = "\u{f043}", eye = "\u{f06e}",
+		blur = "\u{f042}", drop = "\u{f043}", eye = "\u{f06e}", bolt = "\u{f0e7}",
 		arrow_down = "\u{f063}", alert = "\u{f06a}", info = "\u{f05a}", pin = "\u{f08d}",
 		shield = "\u{f3ed}", wrench = "\u{f0ad}", store = "\u{f54e}", gift = "\u{f06b}",
 	},
 
 	NEWS = {
+		{
+			v = "2.0.0-beta.13",
+			items = {
+				{ key = "dh_cl_b13modes", glyph = "bolt", tile = "t_cyan" },
+				{ key = "dh_cl_b13fix", glyph = "wrench", tile = "t_green" },
+			},
+		},
 		{
 			v = "2.0.0-beta.12",
 			items = {
@@ -1128,6 +1180,8 @@ local K = {
 	LIVE_GRID_HEROES = 2,
 	LANE_BITS = { [1] = 1, [2] = 3, [4] = 2, [8] = 4, [16] = 5 },
 	RANKED = { [7] = true, COMPETITIVE_MATCH = true },
+	KIND = { [23] = "turbo", DOTA_GAMEMODE_TURBO = "turbo", [4] = "sd", DOTA_GAMEMODE_SD = "sd" },
+	SD_OFFER_MAX = 6,
 }
 
 local MODEL = {
@@ -1380,7 +1434,7 @@ local JS = {
 	$.DispatchEvent('Activated', card, 'mouse');
 	$.Schedule(0.15, () => {
 		const button = pre.FindChildTraverse('%s');
-		if (button && pre.BHasClass('InspectedHeroAvailableToPick')) $.DispatchEvent('Activated', button, 'mouse');
+		if (button && %s) $.DispatchEvent('Activated', button, 'mouse');
 	});
 })();
 ]],
@@ -2194,9 +2248,9 @@ local function toggle_pool(h)
 end
 
 local S = {
-	open = false, alpha = 0, started = false, env = "home", train = false, mode = "cm", view = "home", ret = "home", pool_ret = "set",
+	open = false, alpha = 0, started = false, env = "home", train = false, mode = "cm", kind = nil, lp = false, view = "home", ret = "home", pool_ret = "set",
 	cm = { fp = "d", us = "d", picks = {}, pos = {} },
-	ap = { us = "d", ours = {}, theirs = {} },
+	ap = { us = "d", ours = {}, theirs = {}, offer = {} },
 	filter = 0, sel = nil, ghost = nil, query = "", focus = false, menu = nil, last = nil, press = nil,
 	enemy_at = nil, reveal_at = nil, reveal_need = 0,
 	scroll = 0, scroll_to = 0, content_h = 0, view_h = 0, content_key = "", step_key = "", fade_t = 1,
@@ -2207,7 +2261,7 @@ local S = {
 
 local draft = {}
 local live = {
-	d = nil, trace = nil, next_read = 0, next_captain = 0, next_grid = 0, pos = {}, missing = {}, ap_key = "",
+	d = nil, trace = nil, next_read = 0, turbo_seen = {}, next_captain = 0, next_grid = 0, pos = {}, missing = {}, ap_key = "",
 	grid = { panel = nil, cards = {}, last = nil, next_heroes = 0 }, found = {}, slots = { board = nil, list = {} }, view = { key = nil },
 }
 
@@ -2222,11 +2276,23 @@ function draft.cm_n() return #S.cm.picks end
 function draft.cm_step() return #S.cm.picks + 1 end
 function draft.cm_side() return side_of(S.cm.fp, draft.cm_step()) end
 function draft.cm_ours() return draft.cm_side() == S.cm.us end
+function draft.turbo() return S.mode == "ap" and S.kind == "turbo" end
+function draft.sd() return S.mode == "ap" and S.kind == "sd" end
+function draft.free() return S.mode == "ap" and S.kind ~= nil end
+function draft.mode_name(mode, kind)
+	if mode ~= "ap" then return "Captains Mode" end
+	return kind == "turbo" and "Turbo" or (kind == "sd" and "Single Draft" or "All Pick")
+end
 function draft.ap_round()
 	local k = #S.ap.ours
+	if draft.free() then return k < 5 and 1 or 4 end
 	return k < 2 and 1 or (k < 4 and 2 or (k < 5 and 3 or 4))
 end
-function draft.ap_reveal_for(k) return k >= 5 and 5 or (k >= 4 and 4 or (k >= 2 and 2 or 0)) end
+function draft.ap_reveal_for(k)
+	if draft.sd() then return k end
+	if draft.turbo() then return (S.train and k >= 5) and 5 or 0 end
+	return k >= 5 and 5 or (k >= 4 and 4 or (k >= 2 and 2 or 0))
+end
 function draft.home_board() return S.env == "home" and not S.train end
 function draft.live() return S.env ~= "home" and not S.train end
 function draft.manual_enemy() return S.train and SET.tr_enemy == "manual" end
@@ -2236,7 +2302,10 @@ function draft.done()
 	return draft.cm_n() >= 24
 end
 
-function draft.is_ban() return S.mode == "cm" and not draft.done() and kind(draft.cm_step()) == "B" end
+function draft.is_ban()
+	if S.mode == "ap" then return draft.live() and live.d ~= nil and live.d.ban_phase == true and not draft.done() end
+	return not draft.done() and kind(draft.cm_step()) == "B"
+end
 
 function draft.can_act()
 	if draft.live() then return not draft.done() and live.can_act() end
@@ -2303,7 +2372,7 @@ end
 
 function draft.positional()
 	if S.view ~= "draft" or draft.done() then return false end
-	if S.mode == "ap" then return true end
+	if S.mode == "ap" then return not draft.sd() and not draft.is_ban() end
 	local st = draft.step()
 	return kind(draft.cm_step()) == "P" and draft.cm_ours() and st and st.p
 end
@@ -2311,7 +2380,9 @@ end
 function draft.used()
 	local set = {}
 	local grid = draft.live() and live.d and live.d.grid
-	if grid then
+	if grid and draft.sd() then
+		for _, h in ipairs(grid.banned) do set[h] = true end
+	elseif grid then
 		for h in pairs(grid.closed) do set[h] = true end
 	end
 	if S.mode == "ap" then
@@ -2363,16 +2434,39 @@ function draft.rows()
 	local st = draft.step()
 	if not st then return {} end
 	local key = table.concat({ S.calc_key, S.filter, SET.pool_mode, SET.count, table.concat(SET.pool, ","),
-		tostring(draft.can_act()), draft.live() and live.d and live.d.grid and live.d.grid.sig or "", #S.cm.picks, #S.ap.ours, #S.ap.theirs }, "|")
+		tostring(draft.can_act()), draft.live() and live.d and live.d.grid and live.d.grid.sig or "", #S.cm.picks, #S.ap.ours, #S.ap.theirs,
+		table.concat(S.ap.offer or {}, ",") }, "|")
 	if S.rows_key == key then return S.rows end
 	S.rows_key = key
 	S.rows = draft.build_rows(st)
 	return S.rows
 end
 
-function draft.build_rows(st)
+function draft.offer()
+	if not draft.sd() or not draft.can_act() then return nil end
+	local set, n = {}, 0
+	for _, h in ipairs(S.ap.offer or {}) do
+		set[h], n = true, n + 1
+	end
+	return n > 0 and set or nil
+end
+
+function draft.sd_deal()
+	S.ap.offer = {}
+	if not draft.sd() or #S.ap.ours >= 5 then return end
 	local used = draft.used()
-	local function ok(r) return not used[r.h] and data.heroes[r.h] ~= nil end
+	for _, attr in ipairs(K.ATTRS) do
+		local list = {}
+		for _, hero in ipairs(data.by_attr[attr] or {}) do
+			if hero.id and not used[hero.h] then list[#list + 1] = hero.h end
+		end
+		if #list > 0 then S.ap.offer[#S.ap.offer + 1] = list[math.random(#list)] end
+	end
+end
+
+function draft.build_rows(st)
+	local used, offer = draft.used(), draft.offer()
+	local function ok(r) return not used[r.h] and data.heroes[r.h] ~= nil and (not offer or offer[r.h] == true) end
 	local list = {}
 	if draft.positional() and st.f and S.filter > 0 then
 		for _, r in ipairs(st.f[S.filter] or {}) do if ok(r) then list[#list + 1] = r end end
@@ -2458,9 +2552,9 @@ end
 
 function draft.snapshot()
 	if draft.done() and not draft.home_board() then
-		S.last = { mode = S.mode, train = S.train, chance = draft.chance() or 0.5 }
+		S.last = { mode = S.mode, kind = draft.free() and S.kind or nil, train = S.train, chance = draft.chance() or 0.5 }
 		if S.mode == "ap" then
-			S.last.ap = { us = S.ap.us, ours = {}, theirs = {}, bans = draft.live() and live.d and live.d.grid and live.d.grid.banned or {} }
+			S.last.ap = { us = S.ap.us, ours = {}, theirs = {}, bans = draft.live() and live.d and live.d.grid and live.d.grid.banned or {}, offer = S.ap.offer }
 			for i, e in ipairs(S.ap.ours) do S.last.ap.ours[i] = { h = e.h, p = e.p } end
 			for i, e in ipairs(S.ap.theirs) do S.last.ap.theirs[i] = { h = e.h, p = e.p } end
 		else
@@ -2481,7 +2575,7 @@ function draft.save_last()
 		cfg.write("session", "{}")
 		return
 	end
-	local out = { mode = last.mode, train = last.train, chance = last.chance, me = last.me, match = last.match, ap = last.ap }
+	local out = { mode = last.mode, kind = last.kind, train = last.train, chance = last.chance, me = last.me, match = last.match, ap = last.ap }
 	if last.cm then
 		local pos = {}
 		for i, p in pairs(last.cm.pos) do pos[tostring(i)] = p end
@@ -2512,7 +2606,7 @@ function draft.load_last()
 		v.cm.pos, v.cm.picks = pos, v.cm.picks or {}
 	end
 	if v.ap then
-		v.ap.ours, v.ap.theirs, v.ap.bans = v.ap.ours or {}, v.ap.theirs or {}, v.ap.bans or {}
+		v.ap.ours, v.ap.theirs, v.ap.bans, v.ap.offer = v.ap.ours or {}, v.ap.theirs or {}, v.ap.bans or {}, v.ap.offer or {}
 	end
 	v.chance = tonumber(v.chance) or 0.5
 	S.saved = v
@@ -2552,6 +2646,8 @@ function draft.commit(h, forced, auto)
 		local need = draft.ap_reveal_for(#S.ap.ours)
 		if need > #S.ap.theirs then
 			S.reveal_at, S.reveal_need = S.now + K.REVEAL_DELAY, need
+		else
+			draft.sd_deal()
 		end
 	else
 		S.cm.pos[draft.cm_step()] = p
@@ -2577,6 +2673,7 @@ function draft.undo()
 		S.ap.ours[#S.ap.ours] = nil
 		local keep = draft.ap_reveal_for(#S.ap.ours)
 		for j = #S.ap.theirs, keep + 1, -1 do S.ap.theirs[j] = nil end
+		draft.sd_deal()
 	else
 		if draft.cm_n() == 0 then return end
 		while draft.cm_n() > 0 and side_of(S.cm.fp, draft.cm_n()) ~= S.cm.us do
@@ -2591,14 +2688,15 @@ function draft.undo()
 	draft.reset_turn()
 end
 
-function draft.start_training(mode)
-	S.train, S.mode, S.view = true, mode, "draft"
+function draft.start_training(mode, kind)
+	S.train, S.mode, S.kind, S.lp, S.view = true, mode, mode == "ap" and kind or nil, false, "draft"
 	S.query, S.focus = "", false
 	S.reveal_at = nil
 	draft.reset_turn()
 	if mode == "ap" then
 		S.ap.us = SET.tr_side
 		S.ap.ours, S.ap.theirs = {}, {}
+		draft.sd_deal()
 	else
 		S.cm = { fp = SET.tr_first == "us" and SET.tr_side or other(SET.tr_side), us = SET.tr_side, picks = {}, pos = {} }
 	end
@@ -2610,16 +2708,16 @@ function draft.go_home()
 	draft.reset_turn()
 end
 
-function draft.set_env(env, us, fp)
-	S.env, S.train = env, false
+function draft.set_env(env, us, fp, kind)
+	S.env, S.train, S.kind = env, false, env == "ap" and kind or nil
 	S.query, S.focus, S.reveal_at = "", false, nil
 	draft.reset_turn()
 	if env == "home" then
-		S.view = "home"
+		S.view, S.lp = "home", false
 		return
 	end
 	S.mode, S.view = env, "draft"
-	S.ap = { us = us, ours = {}, theirs = {} }
+	S.ap = { us = us, ours = {}, theirs = {}, offer = {} }
 	S.cm = { fp = fp, us = us, picks = {}, pos = {} }
 end
 
@@ -2638,6 +2736,7 @@ function draft.tick()
 	if S.reveal_at and S.now >= S.reveal_at then
 		draft.ap_reveal(S.reveal_need)
 		S.reveal_at = nil
+		draft.sd_deal()
 		draft.snapshot()
 	end
 	local enemy_turn = S.train and S.mode == "cm" and not draft.done() and not draft.cm_ours() and not draft.manual_enemy()
@@ -2756,17 +2855,21 @@ function live.read_grid(pre, now)
 			if img then cache.cards[#cache.cards + 1] = { panel = card, img = img, h = live.hero(img) } end
 		end
 	end
-	local out = { banned = {}, picked = {}, off = {}, closed = {} }
+	local out = { banned = {}, picked = {}, off = {}, closed = {}, open = {} }
 	for _, card in ipairs(cache.cards) do
+		local list = card.panel:HasClass("Banned") and out.banned or (card.panel:HasClass("AlreadyPicked") and out.picked)
+		if list then card.h = live.hero(card.img) end
+		list = list or (card.panel:HasClass("Unavailable") and out.off)
 		local h = card.h
 		if h and not out.closed[h] then
-			local list = card.panel:HasClass("Banned") and out.banned or (card.panel:HasClass("AlreadyPicked") and out.picked)
-				or (card.panel:HasClass("Unavailable") and out.off)
 			if list then
 				list[#list + 1] = h
 				out.closed[h] = true
 			end
 		end
+	end
+	for _, card in ipairs(cache.cards) do
+		if card.h and not out.closed[card.h] then out.open[#out.open + 1] = card.h end
 	end
 	local names = {}
 	for h in pairs(out.closed) do names[#names + 1] = h end
@@ -2830,20 +2933,35 @@ function live.read_ap(pre)
 	local d = {
 		mode = "ap", pre = pre, us = live.side(pre),
 		ban_phase = pre:HasClass("IsInBanPhase"), in_control = pre:HasClass("LocalPlayerInControl"), selected = pre:HasClass("HasSelectedHero"),
+		banned = pre:HasClass("HasBannedHero"),
 	}
 	live.read_players(d)
+	d.kind = live.kind()
 	live.after_players(d)
 	return d
 end
 
-function live.ranked()
+function live.lobby_info()
 	local lobby = GameRules.GetLobbyID()
-	if live.ranked_lobby ~= lobby then
+	if not live.info or live.info.id ~= lobby then
 		local v = data.decode(GameRules.GetLobbyObjectJson())
-		live.ranked_lobby, live.is_ranked = lobby, v ~= nil and K.RANKED[v.lobby_type] == true
-		live.log("lobby %s: type %s, ranked %s", tostring(lobby), tostring(v and v.lobby_type), tostring(live.is_ranked))
+		live.info = {
+			id = lobby, ranked = v ~= nil and K.RANKED[v.lobby_type] == true,
+			lp = v ~= nil and (v.low_priority == true or v.low_priority == 1), kind = v ~= nil and K.KIND[v.game_mode] or nil,
+		}
+		live.log("lobby %s: type %s, mode %s, low priority %s", tostring(lobby), tostring(v and v.lobby_type), tostring(v and v.game_mode), tostring(v and v.low_priority))
 	end
-	return live.is_ranked
+	return live.info
+end
+
+function live.ranked() return live.lobby_info().ranked end
+
+function live.kind()
+	local ok, mode = pcall(GameRules.GetGameMode)
+	if ok and mode and mode ~= Enum.GameMode.DOTA_GAMEMODE_NONE then
+		return mode == Enum.GameMode.DOTA_GAMEMODE_TURBO and "turbo" or (mode == Enum.GameMode.DOTA_GAMEMODE_SD and "sd" or nil)
+	end
+	return live.lobby_info().kind
 end
 
 function live.trace_roles(d)
@@ -2868,6 +2986,7 @@ end
 function live.read_players(d)
 	d.teams = { r = {}, d = {} }
 	d.ranked = d.mode == "ap" and live.ranked()
+	d.lp = live.lobby_info().lp
 	local me = Players.GetLocal()
 	if not me then return end
 	local my_id, list = Player.GetPlayerID(me), Players.GetAll()
@@ -2908,19 +3027,59 @@ function live.read(pre, now)
 		d = live.read_ap(pre)
 	end
 	if d then d.grid = live.read_grid(pre, now or os.clock()) end
+	if d and d.kind == "turbo" and d.grid then live.turbo_allies(d) end
 	return d
+end
+
+function live.turbo_allies(d)
+	local us = d.us and d.teams[d.us]
+	if not us then return end
+	local known = {}
+	for _, side in ipairs({ "r", "d" }) do
+		for _, p in ipairs(d.teams[side]) do if p.h then known[p.h] = true end end
+	end
+	local seen = live.turbo_seen
+	local lobby = live.lobby_info().id
+	if seen.lobby ~= lobby then
+		seen = { lobby = lobby, list = {}, set = {} }
+		live.turbo_seen = seen
+	end
+	for _, h in ipairs(d.grid.picked) do
+		if not known[h] and not seen.set[h] then
+			seen.set[h] = true
+			seen.list[#seen.list + 1] = h
+		end
+	end
+	local added = {}
+	for _, h in ipairs(seen.list) do
+		if not known[h] then
+			for _, p in ipairs(us) do
+				if not p.h and not p.me then
+					p.h, p.grid = h, true
+					added[#added + 1] = h
+					break
+				end
+			end
+		end
+	end
+	local line = table.concat(added, ",")
+	if line ~= live.allies_line then
+		live.allies_line = line
+		if line ~= "" then live.log("turbo allies from grid: %s", line) end
+	end
 end
 
 function live.can_act()
 	local d = live.d
 	if not d then return false end
 	if d.mode == "cm" then return d.captain and d.our_turn end
-	return d.in_control and not d.selected and not d.ban_phase
+	if d.ban_phase then return not d.banned end
+	return d.in_control and not d.selected
 end
 
 function live.act(h)
 	local d = live.read()
-	local why, button
+	local why, button, cond = nil, nil, "pre.BHasClass('InspectedHeroAvailableToPick')"
 	if not d then
 		why = "no draft"
 	elseif d.grid and d.grid.closed[h] then
@@ -2928,15 +3087,18 @@ function live.act(h)
 	elseif d.mode == "cm" then
 		button = d.pre:HasClass("NextCaptainActionIsBan") and "CaptainsModeBanButton" or "CaptainsModeSelectButton"
 		why = not d.captain and "not captain" or (not d.our_turn and "not our turn" or nil)
+	elseif d.ban_phase then
+		button, cond = "BanButton", "!pre.BHasClass('InspectedHeroBanned') && !pre.BHasClass('HasBannedHero')"
+		why = d.banned and "ban already used" or nil
 	else
 		button = "LockInButton"
-		why = d.ban_phase and "ban phase" or (d.selected and "hero already selected" or (not d.in_control and "not our turn" or nil))
+		why = d.selected and "hero already selected" or (not d.in_control and "not our turn" or nil)
 	end
 	if why then
 		live.log("%s skipped: %s", h, why)
 		return false
 	end
-	local ok = Engine.RunScript(JS.ACT:format(h, button), d.pre)
+	local ok = Engine.RunScript(JS.ACT:format(h, button, cond), d.pre)
 	live.log("%s %s: script %s", button, h, ok and "sent" or "failed")
 	return ok
 end
@@ -2991,9 +3153,36 @@ function live.apply_cm(d)
 	end
 end
 
+function live.sd_offer(open, me)
+	local seen, list = {}, {}
+	for _, h in ipairs(open) do
+		if not seen[h] and data.heroes[h] then
+			seen[h] = true
+			list[#list + 1] = h
+		end
+	end
+	if me and not seen[me] and #list > 0 and #list < 4 then list[#list + 1] = me end
+	if #list == 0 or #list > K.SD_OFFER_MAX then return end
+	local cur, inside = S.ap.offer or {}, true
+	local known = {}
+	for _, h in ipairs(cur) do known[h] = true end
+	for _, h in ipairs(list) do inside = inside and known[h] == true end
+	if #cur > 0 and (inside or #list < 3) then return end
+	local rank = {}
+	for i, a in ipairs(K.ATTRS) do rank[a] = i end
+	table.sort(list, function(a, b)
+		local ra, rb = rank[data.heroes[a].attr] or 9, rank[data.heroes[b].attr] or 9
+		if ra ~= rb then return ra < rb end
+		return a < b
+	end)
+	S.ap.offer = list
+	live.log("single draft options: %s", table.concat(list, ","))
+end
+
 function live.apply_ap(d)
 	local us = d.us or S.ap.us
 	S.ap.us = us
+	if d.kind == "sd" then live.sd_offer(d.grid and d.grid.open or {}, d.me) end
 	S.ap.ours = live.team(S.ap.ours, d.teams[us])
 	S.ap.theirs = live.team(S.ap.theirs, d.teams[other(us)])
 	local key = {}
@@ -3016,11 +3205,12 @@ function live.apply(d)
 		end
 		return
 	end
-	if not draft.live() or S.mode ~= d.mode then
+	if not draft.live() or S.mode ~= d.mode or S.kind ~= d.kind then
 		live.pos, live.ap_key, live.next_grid = {}, "", 0
-		draft.set_env(d.mode, d.us or "r", d.fp or "r")
+		draft.set_env(d.mode, d.us or "r", d.fp or "r", d.kind)
 		if SET.auto == 1 then S.open = true end
 	end
+	S.lp = d.lp == true
 	if d.mode == "cm" then live.apply_cm(d) else live.apply_ap(d) end
 	if d.me and S.saved and draft.done() and S.saved.me ~= d.me then
 		S.saved.me = d.me
@@ -3042,6 +3232,7 @@ function live.rows(d)
 	end
 	add("us", side(d.us))
 	add("hero", tostring(d.me), d.me and name(d.me) or "-")
+	add("lp", yes(d.lp))
 	if d.mode == "cm" then
 		add("first", side(d.fp))
 		add("captain", yes(d.captain))
@@ -3058,6 +3249,7 @@ function live.rows(d)
 		add("order", table.concat(raw, ","), #names > 0 and table.concat(names, ", ") or "-")
 	else
 		add("ban_phase", yes(d.ban_phase))
+		add("ban_used", yes(d.banned))
 		add("in_control", yes(d.in_control))
 		add("selected", yes(d.selected))
 		for _, s in ipairs({ "r", "d" }) do
@@ -3074,6 +3266,14 @@ function live.rows(d)
 		add("banned", heroes(d.grid.banned))
 		add("picked", heroes(d.grid.picked))
 		add("off", heroes(d.grid.off))
+		if d.kind == "sd" then
+			local open = d.grid.open
+			local seen, uniq = {}, {}
+			for _, h in ipairs(open) do
+				if not seen[h] then seen[h], uniq[#uniq + 1] = true, h end
+			end
+			if #uniq <= K.SD_OFFER_MAX then add("offer", heroes(uniq)) else add("offer", tostring(#uniq)) end
+		end
 	end
 	return rows
 end
@@ -3807,22 +4007,98 @@ function view.board_ap(o)
 	end
 end
 
+function view.board_turbo(o)
+	view.titles(o.us, nil)
+	for i = 1, K.TURBO_BANS do
+		local x, y = 22 + ((i - 1) % 5) * 72, K.TB + 80 + math.floor((i - 1) / 5) * 43
+		view.slot(x, y, 66, 37, o.bans[i], { ban = true }, "tb" .. i)
+	end
+	for j = 1, 5 do
+		local y = K.TURBO_Y[j] + K.TB
+		local cur = j == #o.ours + 1
+		g.rect(172, y + 29, 56, 1, cur and C.tick_cur or C.sep2)
+		for _, side in ipairs({ "r", "d" }) do
+			local mine = side == o.us
+			local e = (mine and o.ours or o.theirs)[j]
+			view.slot(side == "r" and 68 or 228, y, 104, 58, e and e.h, {
+				cur = mine and cur, pos = e and e.p, ghost = mine and cur and o.ghost or nil,
+				hidden = not mine and not e,
+				key = o.live and e and ((mine and "o" or "t") .. j) or nil,
+			}, "tp" .. side .. j)
+		end
+	end
+	local phase = o.phase or 2
+	local y = K.TB + K.TURBO_PHASE_Y
+	g.rect(22, y - 24, 356, 1, C.sep2)
+	for i, key in ipairs({ "dh_ph_ban", "dh_ph_pick" }) do
+		local cx = 22 + 356 * (i - 0.5) / 2
+		g.text(F(i == phase and 700 or 500), 12, L(key), cx, y, i == phase and C.text or (i < phase and C.text2 or C.text3), 1, "c")
+		if i > 1 then g.vr(22 + 356 * (i - 1) / 2, y, 13) end
+	end
+end
+
+function view.board_sd(o)
+	view.titles(o.us, nil)
+	g.text(F(500), 11, L("dh_sd_offer"), 22, K.TB + 68, C.text3)
+	local used = o.used or {}
+	if #o.offer == 0 and o.live then g.text(F(400), 12, L("dh_sd_none"), 200, K.TB + 103, C.text3, 1, "c") end
+	for i = 1, #o.offer > 0 and 4 or 0 do
+		local h = o.offer[i]
+		local x, y = 22 + (i - 1) * 91, K.TB + 80
+		g.rect(x, y, 83, 47, C.fill4, 7)
+		if h and data.heroes[h] then
+			local id, gone = "sdo" .. i, used[h] == true
+			local on = not gone and (o.ghost == h or S.sel == h)
+			g.clip(x, y, 83, 47)
+			g.image(asset.portrait(h), x, y, 83, 47, 7, 1, gone and 1 or 0, gone and C.ban_tint or C.text)
+			g.unclip()
+			if on or (o.pick and not gone and hit.is(id)) then g.frame(x, y, 83, 47, C.text, 7, on and 1 or 0.5) end
+			if o.pick and not gone then hit.add(x, y, 83, 47, id, { click = function() draft.place(h) end }) end
+		end
+	end
+	for j = 1, 5 do
+		local y = K.TURBO_Y[j] + K.TB
+		local cur = o.pick and j == #o.ours + 1
+		g.rect(172, y + 29, 56, 1, cur and C.tick_cur or C.sep2)
+		for _, side in ipairs({ "r", "d" }) do
+			local mine = side == o.us
+			local e = (mine and o.ours or o.theirs)[j]
+			view.slot(side == "r" and 68 or 228, y, 104, 58, e and e.h, {
+				cur = mine and cur, pos = e and e.p, ghost = mine and cur and o.ghost or nil,
+				key = o.live and e and ((mine and "o" or "t") .. j) or nil,
+			}, "sp" .. side .. j)
+		end
+	end
+end
+
 function view.board()
 	g.rect(0, K.TB, K.PAN, K.H - K.TB, C.side, 16, 1, Enum.DrawFlags.RoundCornersBottomLeft)
 	g.rect(K.PAN - 1, K.TB, 1, K.H - K.TB, C.black)
 	local ghost = S.ghost or S.sel
 	if draft.home_board() then
 		local last = S.last
-		if last and last.mode == "ap" then
+		if last and last.mode == "ap" and last.kind == "sd" then
+			view.board_sd({ us = last.ap.us, ours = last.ap.ours, theirs = last.ap.theirs, offer = last.ap.offer or {}, used = {} })
+		elseif last and last.mode == "ap" and last.kind == "turbo" then
+			view.board_turbo({ us = last.ap.us, ours = last.ap.ours, theirs = last.ap.theirs, bans = last.ap.bans })
+		elseif last and last.mode == "ap" then
 			view.board_ap({ us = last.ap.us, ours = last.ap.ours, theirs = last.ap.theirs, bans = last.ap.bans, round = 4 })
 		elseif last then
 			view.board_cm({ fp = last.cm.fp, us = last.cm.us, picks = last.cm.picks, pos = last.cm.pos })
 		else
 			view.board_cm({ fp = "d", us = SET.tr_side, picks = {}, pos = {}, idle = true })
 		end
+	elseif draft.sd() then
+		view.board_sd({ us = S.ap.us, ours = S.ap.ours, theirs = S.ap.theirs, offer = S.ap.offer or {}, used = draft.used(), ghost = ghost, live = true,
+			pick = draft.can_act() and not draft.done() })
+	elseif draft.turbo() then
+		local d = draft.live() and live.d or nil
+		local bans = d and d.grid and d.grid.banned or {}
+		local phase = d and d.ban_phase and 1 or nil
+		view.board_turbo({ us = S.ap.us, ours = S.ap.ours, theirs = S.ap.theirs, bans = bans, ghost = not draft.is_ban() and ghost or nil, live = true, phase = phase })
 	elseif S.mode == "ap" then
 		local bans = draft.live() and live.d and live.d.grid and live.d.grid.banned or {}
-		view.board_ap({ us = S.ap.us, ours = S.ap.ours, theirs = S.ap.theirs, bans = bans, round = draft.ap_round(), ghost = ghost, live = true })
+		view.board_ap({ us = S.ap.us, ours = S.ap.ours, theirs = S.ap.theirs, bans = bans, round = draft.ap_round(), ghost = not draft.is_ban() and ghost or nil, live = true })
 	else
 		view.board_cm({ fp = S.cm.fp, us = S.cm.us, picks = S.cm.picks, pos = S.cm.pos, ghost = draft.can_act() and ghost or nil, live = true })
 	end
@@ -3848,7 +4124,7 @@ function view.toolbar()
 	x = x + g.text(F(700), 16, L("dh_title"), x, 26, C.text) + 14
 	g.vr(x, 26, 13)
 	x = x + 15
-	local mode_name = S.mode == "ap" and "All Pick" or "Captains Mode"
+	local mode_name = draft.mode_name(S.mode, S.mode == "ap" and S.kind or nil)
 	if draft.home_board() then
 		g.text(F(400), 13, L("dh_out"), x, 26, C.text2)
 	elseif S.train then
@@ -3877,7 +4153,7 @@ function view.toolbar()
 	end, in_set, L(in_set and "dh_tip_back" or "dh_tip_settings"))
 	if S.train then
 		right = right - 40
-		view.button_icon("trash", right, "tb_reset", function() draft.start_training(S.mode) end, false, L("dh_tip_reset"))
+		view.button_icon("trash", right, "tb_reset", function() draft.start_training(S.mode, S.kind) end, false, L("dh_tip_reset"))
 		right = right - 40
 		view.button_icon("undo", right, "tb_undo", draft.undo, false, L("dh_tip_undo"))
 	end
@@ -3989,7 +4265,7 @@ function view.head()
 	elseif S.view == "build" then
 		title, done_btn = L("dh_h_last"), "buildback"
 		if S.last then
-			add(S.last.mode == "ap" and "All Pick" or "Captains Mode", true)
+			add(draft.mode_name(S.last.mode, S.last.kind), true)
 			add(string.format(L("dh_h_last_chance"), math.floor(S.last.chance * 100 + 0.5)))
 		end
 	elseif S.query ~= "" then
@@ -3997,7 +4273,28 @@ function view.head()
 		add(draft.done() and L("dh_search_done") or (draft.can_act() and L("dh_search_sub") or L("dh_search_enemy")))
 	elseif draft.done() then
 		title = L("dh_done")
-		add(L(S.mode == "ap" and "dh_done_ap" or "dh_done_cm"))
+		add(L(draft.free() and "dh_done_turbo" or (S.mode == "ap" and "dh_done_ap" or "dh_done_cm")))
+	elseif draft.sd() then
+		title, of = L(draft.live() and "dh_sd_title" or "dh_our_pick"), string.format(L("dh_turbo_of"), #S.ap.ours)
+		if draft.live() then
+			if live.d and live.d.selected then
+				add(L("dh_sd_waiting"), true)
+			elseif not draft.can_act() then
+				add(L("dh_live_wait"), true)
+			else
+				add(L("dh_sd_four"), true)
+			end
+			add(#(S.ap.offer or {}) > 0 and L("dh_sd_sub") or L("dh_sd_none"))
+		end
+	elseif S.mode == "ap" and draft.is_ban() then
+		title = L("dh_our_ban")
+		add(L(live.d.banned and "dh_ban_done" or (draft.turbo() and "dh_ban_turbo" or "dh_ban_ap")), true)
+		add(L("dh_sub_our_ban"))
+	elseif draft.turbo() then
+		local left = 5 - #S.ap.ours
+		title, of = L("dh_our_pick"), string.format(L("dh_turbo_of"), #S.ap.ours)
+		if draft.live() and not draft.can_act() then add(L("dh_live_wait"), true) end
+		add(left == 1 and L("dh_turbo_last") or string.format(L("dh_turbo_left"), left), true)
 	elseif S.mode == "ap" then
 		local r = draft.ap_round()
 		local left = K.AP_ROUND_END[r] - #S.ap.ours
@@ -4507,15 +4804,17 @@ function view.home(y, a)
 	local function open_pool() S.pool_ret, S.ret, S.view = "home", "home", "pool" end
 	h = h + view.group_header(L("dh_h_train"), y + h, a)
 	h = h + view.setting_rows({
-		{ id = "tr_cm", tile = C.t_blue, glyph = "chess", title = "Captains Mode", sub = L("dh_h_cm_sub"), control = view.chevron(L("dh_start"), "tr_cm"), act = function() draft.start_training("cm") end },
-		{ id = "tr_ap", tile = C.t_indigo, glyph = "users", title = "All Pick", sub = L("dh_h_ap_sub"), control = view.chevron(L("dh_start"), "tr_ap"), act = function() draft.start_training("ap") end },
+		{ id = "tr_cm", tile = C.t_blue, glyph = "chess", title = "Captains Mode", control = view.chevron(L("dh_start"), "tr_cm"), act = function() draft.start_training("cm") end },
+		{ id = "tr_ap", tile = C.t_indigo, glyph = "users", title = "All Pick", control = view.chevron(L("dh_start"), "tr_ap"), act = function() draft.start_training("ap") end },
+		{ id = "tr_turbo", tile = C.t_cyan, glyph = "bolt", title = "Turbo", control = view.chevron(L("dh_start"), "tr_turbo"), act = function() draft.start_training("ap", "turbo") end },
+		{ id = "tr_sd", tile = C.t_teal, glyph = "list", title = "Single Draft", control = view.chevron(L("dh_start"), "tr_sd"), act = function() draft.start_training("ap", "sd") end },
 	}, y + h, a)
 	h = h + view.foot(L(SET.tr_enemy == "manual" and "dh_h_foot_manual" or "dh_h_foot_auto"), y + h, a) + 22
 	if S.last then
 		h = h + view.group_header(L("dh_h_last"), y + h, a)
 		local sub = L(S.last.train and "dh_h_training" or "dh_h_match") .. "  |  " .. string.format(L("dh_h_last_chance"), math.floor(S.last.chance * 100 + 0.5))
 		local rows = {
-			{ tile = S.last.chance >= 0.5 and C.t_green or C.red, glyph = "finish", title = S.last.mode == "ap" and "All Pick" or "Captains Mode", sub = sub },
+			{ tile = S.last.chance >= 0.5 and C.t_green or C.red, glyph = "finish", title = draft.mode_name(S.last.mode, S.last.kind), sub = sub },
 			{ id = "home_builds", tile = C.t_purple, glyph = "bag", title = L("dh_b_row"), sub = L("dh_b_row_sub"), control = view.chevron(L("dh_open"), "home_builds"), act = build.open_team },
 		}
 		if S.last.train then
@@ -4727,7 +5026,7 @@ function view.live_panel()
 		v.key, v.lines = key, {}
 		v.w = d and 460 or g.width(F(400), 13, L("dh_d_none")) + 2 * K.P
 		local rows = live.rows(d)
-		if d then table.insert(rows, 1, { id = "mode", text = d.mode == "ap" and "All Pick" or "Captains Mode" }) end
+		if d then table.insert(rows, 1, { id = "mode", text = draft.mode_name(d.mode, d.kind) }) end
 		for _, row in ipairs(rows) do
 			local label, line = L("dh_d_" .. row.id), ""
 			for word in row.text:gmatch("%S+%s*") do
@@ -4783,6 +5082,7 @@ function view.summary(y, a)
 	if #ours == 0 then return 0 end
 	if not build.is_ours(S.bh) then S.bh = ours[1].h end
 	table.sort(theirs, function(p, q) return (p.get() or 9) < (q.get() or 9) end)
+	if #theirs == 0 then return view.items(x, y, w, a) end
 
 	g.rect(x, y, w, 252, C.card, 12, a)
 	local lw = g.text(F(700), 11, L("dh_b_who"), x + K.P, y + 17, C.text3, a)
@@ -4983,7 +5283,7 @@ function view.content()
 	local top = view.no_head() and K.TB + 20 or ((S.view == "draft" and draft.positional() and S.query == "" and not S.reveal_at) and K.TB + 164 or K.TB + 112)
 	local bottom = K.H
 	local bar_on = S.sel ~= nil and S.view == "draft" and not draft.done()
-	local step_key = table.concat({ S.env, tostring(S.train), S.mode, S.view, S.mode == "ap" and (#S.ap.ours .. "/" .. #S.ap.theirs) or tostring(draft.cm_n()), S.view == "build" and S.bh or "" }, ":")
+	local step_key = table.concat({ S.env, tostring(S.train), S.mode, tostring(S.kind), S.view, S.mode == "ap" and (#S.ap.ours .. "/" .. #S.ap.theirs) or tostring(draft.cm_n()), S.view == "build" and S.bh or "" }, ":")
 	local key = step_key .. ":" .. S.filter
 	if key ~= S.content_key then
 		if step_key ~= S.step_key then
@@ -5057,7 +5357,7 @@ function view.bar()
 	g.image(asset.portrait(h), x + K.P, y + K.P, 78, 44, 7, k)
 	g.text(F(700), 15, data.heroes[h].name, x + 106, y + 27, C.text, k)
 	local ban = draft.is_ban()
-	local where = S.mode == "ap" and string.format(L("dh_at_round"), math.min(3, draft.ap_round())) or string.format(L("dh_at_step"), math.min(#K.ORDER, draft.cm_step()))
+	local where = draft.free() and L("dh_at_turbo") or S.mode == "ap" and string.format(L("dh_at_round"), math.min(3, draft.ap_round())) or string.format(L("dh_at_step"), math.min(#K.ORDER, draft.cm_step()))
 	local sx = x + 106 + g.text(F(400), 12, L(ban and "dh_ban_word" or "dh_pick_word") .. ", " .. where, x + 106, y + 47, C.text2, k)
 	local p = draft.pos_for(h)
 	if p then
