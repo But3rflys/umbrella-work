@@ -35,22 +35,42 @@ def read(path):
     return path.read_text(encoding="utf-8") if path.exists() else ""
 
 
+def owner(asset):
+    return asset.get("script") or CATALOG["skill"]["id"]
+
+
+def series():
+    seen = {}
+    out = []
+    for row in ROWS:
+        for a in row["assets"]:
+            seen[(a["tag"], a["file"])] = (owner(a), a["downloads"])
+        counts = Counter(LEGACY)
+        for key, (script_id, downloads) in seen.items():
+            counts[script_id] += downloads
+        out.append([row["date"], sum(counts.values()), dict(counts)])
+    return out
+
+
+SERIES = series()
+
+
 def entry(script, folder, kind):
     prefix = script["tag"] + "-v"
     assets = [a for a in ROWS[-1]["assets"] if a["tag"].startswith(prefix)]
-    versions = [{"v": a["tag"][len(prefix):], "date": a["date"], "dl": a["downloads"]} for a in assets]
+    versions = [{"v": a["tag"][len(prefix):], "date": a["date"], "dl": a["downloads"], "file": a.get("file") or script["file"]} for a in assets]
     versions.sort(key=lambda v: version_key(v["v"]), reverse=True)
     preview = GH / "previews" / (script["id"] + ".png")
     return {
         "id": script["id"],
         "title": script["title"],
         "kind": kind,
-        "file": script["file"],
+        "file": versions[0]["file"] if versions else script["file"],
+        "total": SERIES[-1][2].get(script["id"], 0),
         "tag": script["tag"],
         "folder": folder,
         "ru": script.get("ru") or SKILL_TEXT["ru"],
         "en": script.get("en") or SKILL_TEXT["en"],
-        "legacy": LEGACY.get(script["id"], 0),
         "preview": preview.exists(),
         "versions": versions,
         "changelog": {
@@ -60,22 +80,12 @@ def entry(script, folder, kind):
     }
 
 
-def series():
-    out = []
-    for row in ROWS:
-        counts = Counter(LEGACY)
-        for a in row["assets"]:
-            counts[a.get("script") or CATALOG["skill"]["id"]] += a["downloads"]
-        out.append([row["date"], row["total"], dict(counts)])
-    return out
-
-
 def main():
     items = [entry(s, "scripts/" + s["id"], s["kind"]) for s in CATALOG["scripts"]]
     skill = CATALOG["skill"]
     items.append(entry(skill, skill["folder"], "skill"))
     items = [i for i in items if i["versions"]]
-    data = "window.DATA=" + json.dumps({"repo": CATALOG["repo"], "items": items, "series": series()}, ensure_ascii=False)
+    data = "window.DATA=" + json.dumps({"repo": CATALOG["repo"], "items": items, "series": SERIES}, ensure_ascii=False)
 
     if OUT.exists():
         shutil.rmtree(OUT)

@@ -235,11 +235,11 @@ const T={
   steps:{lua:["Download <code>{f}</code> from the latest release.","Put it into the <code>scripts</code> folder next to your cheat.","Open <code>Scripts</code> in the cheat menu and turn it on."],app:["Download <code>{f}</code> and unzip it.","Put <code>MusicUI.lua</code> into the <code>scripts</code> folder.","Run <code>MusicUI.exe</code> and follow the console prompts."],skill:["Download <code>{f}</code> and unzip it.","Claude Code: put <code>umbrella-lua</code> into <code>%USERPROFILE%\\.claude\\skills\\</code>.","Codex: into <code>%USERPROFILE%\\.agents\\skills\\</code>, restart the agent."]}}
 }
 let lang="ru",filter="all",query=""
-const items=DATA.items.map(s=>({...s,total:s.versions.reduce((a,v)=>a+v.dl,0)+(s.legacy||0),last:s.versions[0]}))
+const items=DATA.items.map(s=>({...s,last:s.versions[0]}))
 const t=k=>T[lang][k]
 const nf=n=>n.toLocaleString(lang==="ru"?"ru-RU":"en-US")
 const fd=d=>new Date(d+"T00:00:00Z").toLocaleDateString(lang==="ru"?"ru-RU":"en-US",{day:"numeric",month:"short"})
-const url=(s,v)=>`${REPO}/releases/download/${s.tag}-v${v}/${s.file}`
+const url=(s,v)=>`${REPO}/releases/download/${s.tag}-v${v}/${(s.versions.find(x=>x.v===v)||s).file}`
 const isBeta=v=>/beta|rc|alpha/.test(v)
 const verChip=v=>`<span class="chip ${isBeta(v)?"beta":""}">v${v}</span>`
 
