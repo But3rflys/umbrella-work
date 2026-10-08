@@ -326,6 +326,10 @@ local localization = qLocalization.new({
 		dh_news = "What's new",
 		dh_news_sub = "Changes in this update",
 		dh_news_row_sub = "Changes in the latest update",
+		dh_cl_b12fix_t = "Window opens",
+		dh_cl_b12fix_d = "Fixed a bug that kept the window from opening.",
+		dh_cl_b12vs_t = "Sharper vs their draft",
+		dh_cl_b12vs_d = "Items against enemy heroes are picked more accurately.",
 		dh_cl_b6fix_t = "Draft reading fixed",
 		dh_cl_b6fix_d = "Bans and picks are detected in every new lobby again, and picking a hero from the window works again.",
 		dh_cl_b5fps_t = "Higher FPS",
@@ -650,6 +654,10 @@ local localization = qLocalization.new({
 		dh_news = "Что нового",
 		dh_news_sub = "Что изменилось в обновлении",
 		dh_news_row_sub = "Изменения последнего обновления",
+		dh_cl_b12fix_t = "Окно открывается",
+		dh_cl_b12fix_d = "Исправлена ошибка, из-за которой окно не открывалось.",
+		dh_cl_b12vs_t = "Точнее под их драфт",
+		dh_cl_b12vs_d = "Предметы против вражеских героев подбираются точнее.",
 		dh_cl_b6fix_t = "Чтение драфта исправлено",
 		dh_cl_b6fix_d = "Баны и пики снова определяются в каждом новом лобби, выбор героя из окна снова работает.",
 		dh_cl_b5fps_t = "Выше FPS",
@@ -988,7 +996,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.11",
+	VERSION = "2.0.0-beta.12",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1025,6 +1033,13 @@ local K = {
 	},
 
 	NEWS = {
+		{
+			v = "2.0.0-beta.12",
+			items = {
+				{ key = "dh_cl_b12fix", glyph = "wrench", tile = "t_green" },
+				{ key = "dh_cl_b12vs", glyph = "shield", tile = "red" },
+			},
+		},
 		{
 			v = "2.0.0-beta.6",
 			items = {
@@ -1165,19 +1180,19 @@ local ITEM = {
 		mekansm = "heal=0.5", guardian_greaves = "heal=0.5", mask_of_madness = "heal=0.5",
 		ghost = "save", glimmer_cape = "save invis=0.5", aeon_disk = "save", wind_waker = "save", cyclone = "save=0.5",
 		ethereal_blade = "save=0.5", solar_crest = "save=0.5",
-		butterfly = "evasion", talisman_of_evasion = "evasion=0.5",
+		butterfly = "evasion",
 		invis_sword = "invis", silver_edge = "invis", shadow_amulet = "invis=0.5",
 		manta = "units=0.5",
-		orchid = "silence=0.5", bloodthorn = "silence", rod_of_atos = "silence=0.5", gungir = "silence=0.5", heavens_halberd = "silence=0.5",
+		orchid = "silence=0.5", bloodthorn = "silence",
 		sheepstick = "target", abyssal_blade = "target=0.5",
 	},
 	HEROES = {
 		antimage = "escape:antimage_blink phys=0.5",
 		axe = "passive=0.5:axe_counter_helix",
-		bane = "target:bane_fiends_grip magic=0.5",
-		bloodseeker = "heal=0.5:bloodseeker_sanguivore target=0.5:bloodseeker_rupture phys=0.5",
-		crystal_maiden = "magic silence=0.5:crystal_maiden_frostbite",
-		drow_ranger = "phys silence=0.5:drow_ranger_wave_of_silence",
+		bane = "target:bane_fiends_grip",
+		bloodseeker = "heal=0.5:bloodseeker_sanguivore target=0.5:bloodseeker_rupture phys=0.5 silence=0.5:bloodseeker_blood_bath",
+		crystal_maiden = "magic",
+		drow_ranger = "phys silence=0.5:drow_ranger_wave_of_silence passive=0.5:drow_ranger_marksmanship",
 		earthshaker = "magic",
 		juggernaut = "phys heal=0.5:juggernaut_healing_ward",
 		mirana = "magic=0.5 escape=0.5:mirana_leap invis=0.5:mirana_invis",
@@ -1213,7 +1228,7 @@ local ITEM = {
 		venomancer = "magic units=0.5:venomancer_plague_ward",
 		faceless_void = "phys passive=0.5:faceless_void_time_lock escape=0.5:faceless_void_time_walk",
 		skeleton_king = "phys heal:skeleton_king_vampiric_spirit",
-		death_prophet = "magic silence:death_prophet_silence heal=0.5:death_prophet_spirit_siphon",
+		death_prophet = "magic silence:death_prophet_silence heal=0.5:death_prophet_spirit_siphon phys=0.5",
 		phantom_assassin = "phys evasion:phantom_assassin_immaterial passive:phantom_assassin_coup_de_grace",
 		pugna = "magic heal=0.5:pugna_life_drain save=0.5:pugna_decrepify",
 		templar_assassin = "phys invis=0.5:templar_assassin_meld",
@@ -1221,15 +1236,15 @@ local ITEM = {
 		luna = "phys magic=0.5",
 		dragon_knight = "phys=0.5 heal=0.5:dragon_knight_dragon_blood passive=0.5:dragon_knight_dragon_blood",
 		dazzle = "heal:dazzle_shadow_wave",
-		rattletrap = "magic=0.5 target=0.5:rattletrap_hookshot",
+		rattletrap = "magic=0.5",
 		leshrac = "magic",
-		furion = "units:furion_force_of_nature magic=0.5",
-		life_stealer = "phys heal:life_stealer_feast",
+		furion = "units:furion_force_of_nature magic=0.5 escape=0.5:furion_teleportation",
+		life_stealer = "phys heal:life_stealer_feast passive=0.5:life_stealer_feast",
 		dark_seer = "units=0.5:dark_seer_wall_of_replica magic=0.5",
 		clinkz = "phys invis:clinkz_wind_walk",
-		omniknight = "heal:omniknight_purification magic=0.5",
+		omniknight = "heal:omniknight_purification",
 		enchantress = "heal:enchantress_natures_attendants phys=0.5 units=0.5:enchantress_enchant",
-		huskar = "heal:huskar_berserkers_blood passive:huskar_berserkers_blood magic=0.5",
+		huskar = "heal:huskar_berserkers_blood passive:huskar_berserkers_blood magic=0.5 silence=0.5:huskar_inner_fire",
 		night_stalker = "phys silence:night_stalker_crippling_fear",
 		broodmother = "units:broodmother_spawn_spiderlings heal=0.5:broodmother_insatiable_hunger phys=0.5",
 		bounty_hunter = "invis:bounty_hunter_wind_walk phys=0.5",
@@ -1253,29 +1268,29 @@ local ITEM = {
 		lone_druid = "units:lone_druid_spirit_bear phys",
 		chaos_knight = "units:chaos_knight_phantasm phys",
 		meepo = "units:meepo_divided_we_stand phys=0.5 magic=0.5",
-		treant = "heal:treant_living_armor invis=0.5:treant_natures_guise silence=0.5:treant_overgrowth",
+		treant = "heal:treant_living_armor invis=0.5:treant_natures_guise",
 		ogre_magi = "magic",
 		undying = "heal=0.5:undying_soul_rip units=0.5:undying_tombstone magic=0.5",
 		rubick = "magic=0.5 target=0.5:rubick_telekinesis",
-		disruptor = "magic",
+		disruptor = "magic silence=0.5:disruptor_static_storm",
 		nyx_assassin = "magic invis:nyx_assassin_vendetta",
-		naga_siren = "units:naga_siren_mirror_image phys silence=0.5:naga_siren_ensnare",
+		naga_siren = "units:naga_siren_mirror_image phys",
 		keeper_of_the_light = "magic",
 		wisp = "heal:wisp_tether",
 		visage = "units:visage_summon_familiars magic=0.5",
 		slark = "phys escape:slark_shadow_dance heal:slark_shadow_dance passive=0.5:slark_essence_shift",
 		medusa = "phys magic=0.5",
 		troll_warlord = "phys passive=0.5:troll_warlord_fervor",
-		centaur = "magic=0.5",
+		centaur = "magic=0.5 passive=0.5:centaur_return",
 		magnataur = "phys=0.5 magic=0.5",
-		shredder = "magic heal=0.5:shredder_reactive_armor passive=0.5:shredder_reactive_armor",
+		shredder = "heal=0.5:shredder_reactive_armor passive=0.5:shredder_reactive_armor",
 		bristleback = "passive:bristleback_bristleback phys=0.5",
 		tusk = "phys=0.5",
 		skywrath_mage = "magic silence:skywrath_mage_ancient_seal",
-		abaddon = "heal:abaddon_borrowed_time save=0.5:abaddon_aphotic_shield",
+		abaddon = "heal:abaddon_borrowed_time save=0.5:abaddon_aphotic_shield passive=0.5:abaddon_borrowed_time",
 		elder_titan = "magic=0.5",
 		legion_commander = "target:legion_commander_duel phys=0.5 heal=0.5:legion_commander_press_the_attack",
-		ember_spirit = "escape:ember_spirit_fire_remnant phys=0.5 magic=0.5 silence=0.5:ember_spirit_searing_chains",
+		ember_spirit = "escape:ember_spirit_fire_remnant phys=0.5 magic=0.5",
 		earth_spirit = "escape=0.5:earth_spirit_rolling_boulder magic",
 		terrorblade = "units:terrorblade_conjure_image phys",
 		phoenix = "magic heal=0.5:phoenix_supernova escape=0.5:phoenix_icarus_dive",
@@ -1286,7 +1301,7 @@ local ITEM = {
 		abyssal_underlord = "magic=0.5",
 		monkey_king = "phys escape=0.5:monkey_king_tree_dance",
 		pangolier = "escape:pangolier_gyroshell magic=0.5 phys=0.5",
-		dark_willow = "magic escape=0.5:dark_willow_shadow_realm silence=0.5:dark_willow_bramble_maze",
+		dark_willow = "magic escape=0.5:dark_willow_shadow_realm",
 		grimstroke = "magic silence=0.5:grimstroke_ink_creature target=0.5:grimstroke_soul_chain",
 		mars = "phys=0.5 magic=0.5",
 		void_spirit = "escape:void_spirit_astral_step magic",
@@ -1382,6 +1397,38 @@ local C = {
 	t_blue = { 10, 132, 255 }, t_indigo = { 94, 92, 230 }, t_orange = { 255, 159, 10 }, t_gray = { 142, 142, 147 }, t_teal = { 48, 176, 199 },
 	t_green = { 48, 209, 88 }, t_purple = { 191, 90, 242 }, t_cyan = { 100, 210, 255 }, pill = { 58, 58, 60 },
 }
+
+local cfg = {}
+
+do
+	local api = type(Config) == "table" and Config or {}
+	local read_string, write_string = api.ReadString, api.WriteString
+	local read_int, write_int = api.ReadInt, api.WriteInt
+
+	function cfg.read(key, def)
+		if not read_string then return def end
+		local value = read_string(K.CFG, key, def)
+		return type(value) == "string" and value or def
+	end
+
+	function cfg.write(key, value)
+		if write_string then write_string(K.CFG, key, value) end
+	end
+
+	function cfg.read_int(key, def)
+		if read_int then return read_int(K.CFG, key, def) end
+		local value = tonumber(cfg.read(key, ""))
+		return value and math.floor(value) or def
+	end
+
+	function cfg.write_int(key, value)
+		if write_int then
+			write_int(K.CFG, key, value)
+		else
+			cfg.write(key, tostring(value))
+		end
+	end
+end
 
 local ROUND = Enum.DrawFlags.RoundCornersAll
 
@@ -1542,7 +1589,7 @@ function data.load_cache()
 	end
 	local session = data.file("draft_helper_session.json")
 	if session then
-		if Config.ReadString(K.CFG, "session", "") == "" then Config.WriteString(K.CFG, "session", session) end
+		if cfg.read("session", "") == "" then cfg.write("session", session) end
 		os.remove(data.path("draft_helper_session.json"))
 	end
 	os.remove(data.path("draft_helper.dat"))
@@ -1766,7 +1813,7 @@ function data.stats(key, parse)
 		return cur or nil
 	end
 	if cur and cur.time == info.time then return cur end
-	if Config.ReadInt(K.CFG, "set_" .. key, 0) == info.time then
+	if cfg.read_int("set_" .. key, 0) == info.time then
 		local text = data.read(key .. ".txt")
 		if text then
 			data.sets[key] = parse(text, info.time)
@@ -1776,7 +1823,7 @@ function data.stats(key, parse)
 	data.fetch("stats/" .. key .. ".txt", function(text)
 		if not text then return end
 		data.write(key .. ".txt", text)
-		Config.WriteInt(K.CFG, "set_" .. key, info.time)
+		cfg.write_int("set_" .. key, info.time)
 		data.sets[key] = parse(text, info.time)
 	end)
 	return cur or nil
@@ -2110,20 +2157,20 @@ end
 
 local function load_settings()
 	set_defaults()
-	for k, v in Config.ReadString(K.CFG, "settings", ""):gmatch("([%w_]+)=([%w_]+)") do
+	for k, v in cfg.read("settings", ""):gmatch("([%w_]+)=([%w_]+)") do
 		if K.DEF[k] ~= nil then
 			SET[k] = type(K.DEF[k]) == "number" and (tonumber(v) or K.DEF[k]) or v
 		end
 	end
 	SET.pool = {}
-	for h in Config.ReadString(K.CFG, "pool", ""):gsub("^p:", ""):gmatch("[%w_]+") do SET.pool[#SET.pool + 1] = h end
+	for h in cfg.read("pool", ""):gsub("^p:", ""):gmatch("[%w_]+") do SET.pool[#SET.pool + 1] = h end
 end
 
 local function save_settings()
 	local parts = {}
 	for k in pairs(K.DEF) do parts[#parts + 1] = k .. "=" .. tostring(SET[k]) end
-	Config.WriteString(K.CFG, "settings", table.concat(parts, ";"))
-	Config.WriteString(K.CFG, "pool", "p:" .. table.concat(SET.pool, ","))
+	cfg.write("settings", table.concat(parts, ";"))
+	cfg.write("pool", "p:" .. table.concat(SET.pool, ","))
 end
 
 load_settings()
@@ -2431,7 +2478,7 @@ function draft.save_last()
 	local last = S.saved
 	if not data.json then return end
 	if not last then
-		Config.WriteString(K.CFG, "session", "{}")
+		cfg.write("session", "{}")
 		return
 	end
 	local out = { mode = last.mode, train = last.train, chance = last.chance, me = last.me, match = last.match, ap = last.ap }
@@ -2441,7 +2488,7 @@ function draft.save_last()
 		out.cm = { fp = last.cm.fp, us = last.cm.us, picks = last.cm.picks, pos = pos }
 	end
 	local ok, text = pcall(data.json.encode, data.json, out)
-	if ok and text then Config.WriteString(K.CFG, "session", text) end
+	if ok and text then cfg.write("session", text) end
 end
 
 function draft.clear_last()
@@ -2457,7 +2504,7 @@ function draft.show_last()
 end
 
 function draft.load_last()
-	local v = data.decode(Config.ReadString(K.CFG, "session", ""))
+	local v = data.decode(cfg.read("session", ""))
 	if not v or (v.mode ~= "cm" and v.mode ~= "ap") or not v[v.mode] then return end
 	if v.cm then
 		local pos = {}
@@ -4869,7 +4916,7 @@ end
 function view.open_news()
 	if S.view ~= "news" then S.news_ret = S.view end
 	S.view, S.menu, S.query, S.focus = "news", nil, "", false
-	Config.WriteString(K.CFG, "news", K.NEWS[1].v)
+	cfg.write("news", K.NEWS[1].v)
 end
 
 view.wraps = {}
@@ -5144,8 +5191,8 @@ function view.window()
 	local screen = Render.ScreenSize()
 	g.s = math.max(0.7, screen.y / 1080) * SET.scale / 100
 	if not S.wx then
-		S.wx = Config.ReadInt(K.CFG, "wx", -1)
-		S.wy = Config.ReadInt(K.CFG, "wy", -1)
+		S.wx = cfg.read_int("wx", -1)
+		S.wy = cfg.read_int("wy", -1)
 		if S.wx < 0 then S.wx, S.wy = math.floor((screen.x - K.W * g.s) / 2), math.floor((screen.y - K.H * g.s) / 2) end
 	end
 	S.wx = clamp(S.wx, 0, math.max(0, screen.x - K.W * g.s))
@@ -5529,7 +5576,7 @@ function bp.frame()
 			bp.save()
 		end
 	elseif not bp.x then
-		local saved = Config.ReadString(K.CFG, "bp_pos", "")
+		local saved = cfg.read("bp_pos", "")
 		local sx, sy = saved:match("^(%d+),(%d+)$")
 		if sx then
 			bp.x, bp.y = tonumber(sx), tonumber(sy)
@@ -5618,7 +5665,7 @@ function bp.save()
 	bp.drag = nil
 	if d and d.moved then
 		local pos = string.format("%d,%d", math.floor(bp.x + 0.5), math.floor(bp.y + 0.5))
-		Config.WriteString(K.CFG, "bp_pos", pos)
+		cfg.write("bp_pos", pos)
 	end
 end
 
@@ -5716,8 +5763,8 @@ end
 
 function input.end_drag()
 	if S.drag then
-		Config.WriteInt(K.CFG, "wx", math.floor(S.wx))
-		Config.WriteInt(K.CFG, "wy", math.floor(S.wy))
+		cfg.write_int("wx", math.floor(S.wx))
+		cfg.write_int("wy", math.floor(S.wy))
 	end
 	if S.slide or S.resize then save_settings() end
 	S.drag, S.sb_drag, S.slide, S.resize = nil, nil, nil, nil
@@ -5792,7 +5839,7 @@ function script.OnFrame()
 	if not S.started then
 		S.started = true
 		draft.set_env("home")
-		if K.VERSION == K.NEWS[1].v and Config.ReadString(K.CFG, "news", "") ~= K.NEWS[1].v then view.open_news() end
+		if K.VERSION == K.NEWS[1].v and cfg.read("news", "") ~= K.NEWS[1].v then view.open_news() end
 	end
 	if S.press and not Input.IsKeyDown(Enum.ButtonCode.KEY_MOUSE1, true) then
 		input.end_drag()
