@@ -1,21 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 280" width="840" height="280" role="img" aria-label="Downloads: 1968">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 280" width="840" height="280" role="img" aria-label="Downloads: 2035">
 <rect width="840" height="280" fill="#ffffff"/>
 <text x="26" y="34" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#141412">Загрузки, всего</text>
 <line x1="56" y1="242.0" x2="814" y2="242.0" stroke="#ebeae6" stroke-width="1"/>
 <text x="46" y="246.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">200</text>
 <line x1="56" y1="197.0" x2="814" y2="197.0" stroke="#ebeae6" stroke-width="1"/>
-<text x="46" y="201.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">700</text>
+<text x="46" y="201.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">725</text>
 <line x1="56" y1="152.0" x2="814" y2="152.0" stroke="#ebeae6" stroke-width="1"/>
-<text x="46" y="156.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">1200</text>
+<text x="46" y="156.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">1250</text>
 <line x1="56" y1="107.0" x2="814" y2="107.0" stroke="#ebeae6" stroke-width="1"/>
-<text x="46" y="111.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">1700</text>
+<text x="46" y="111.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">1775</text>
 <line x1="56" y1="62.0" x2="814" y2="62.0" stroke="#ebeae6" stroke-width="1"/>
-<text x="46" y="66.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">2200</text>
+<text x="46" y="66.0" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">2300</text>
 <line x1="56" y1="242.0" x2="814" y2="242.0" stroke="#d7d6d1" stroke-width="1"/>
-<path d="M 56.0 242.0 L 56.0 219.8 L 95.9 211.6 L 135.8 210.0 L 175.7 189.4 L 215.6 178.0 L 255.5 165.6 L 295.4 157.8 L 335.3 151.2 L 375.2 145.0 L 415.1 138.0 L 454.9 124.6 L 494.8 104.8 L 534.7 98.9 L 574.6 90.7 L 614.5 85.8 L 654.4 121.8 L 694.3 117.5 L 734.2 109.4 L 774.1 93.0 L 814.0 82.9 L 814.0 242.0 Z" fill="#141412" fill-opacity="0.05"/>
-<polyline points="56.0,219.8 95.9,211.6 135.8,210.0 175.7,189.4 215.6,178.0 255.5,165.6 295.4,157.8 335.3,151.2 375.2,145.0 415.1,138.0 454.9,124.6 494.8,104.8 534.7,98.9 574.6,90.7 614.5,85.8 654.4,121.8 694.3,117.5 734.2,109.4 774.1,93.0 814.0,82.9" fill="none" stroke="#141412" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="814.0" cy="82.9" r="4.5" fill="#141412" stroke="#ffffff" stroke-width="2"/>
-<text x="814.0" y="68.9" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#141412">1968</text>
+<path d="M 56.0 242.0 L 56.0 220.8 L 95.9 213.0 L 135.8 211.5 L 175.7 191.9 L 215.6 181.1 L 255.5 169.2 L 295.4 161.8 L 335.3 155.5 L 375.2 149.6 L 415.1 142.9 L 454.9 130.1 L 494.8 111.3 L 534.7 105.7 L 574.6 97.9 L 614.5 93.3 L 654.4 127.5 L 694.3 123.5 L 734.2 115.7 L 774.1 100.1 L 814.0 84.7 L 814.0 242.0 Z" fill="#141412" fill-opacity="0.05"/>
+<polyline points="56.0,220.8 95.9,213.0 135.8,211.5 175.7,191.9 215.6,181.1 255.5,169.2 295.4,161.8 335.3,155.5 375.2,149.6 415.1,142.9 454.9,130.1 494.8,111.3 534.7,105.7 574.6,97.9 614.5,93.3 654.4,127.5 694.3,123.5 734.2,115.7 774.1,100.1 814.0,84.7" fill="none" stroke="#141412" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="814.0" cy="84.7" r="4.5" fill="#141412" stroke="#ffffff" stroke-width="2"/>
+<text x="814.0" y="70.7" text-anchor="end" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#141412">2035</text>
 <text x="56.0" y="266" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">09-20</text>
 <text x="255.5" y="266" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">09-25</text>
 <text x="454.9" y="266" text-anchor="middle" font-family="ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#5c5b55">09-30</text>
