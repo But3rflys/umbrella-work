@@ -10,9 +10,6 @@ on:
       - ".github/stats/**"
       - ".github/previews/**"
       - "**/CHANGELOG*.md"
-  workflow_run:
-    workflows: [readme]
-    types: [completed]
   workflow_dispatch:
 
 permissions:
