@@ -678,6 +678,10 @@ local localization = qLocalization.new({
 		dh_range = "{m1} {d1} to {m2} {d2}",
 		dh_s_source = "Matches",
 		dh_source_ap = "Ranked",
+		dh_mode_cm = "Captains Mode",
+		dh_mode_ap = "All Pick",
+		dh_mode_turbo = "Turbo",
+		dh_mode_sd = "Single Draft",
 		dh_pool_none = "No hero with this name",
 		dh_data_ok = "%s %s, %s",
 	},
@@ -1042,6 +1046,10 @@ local localization = qLocalization.new({
 		dh_range = "с {d1} {m1} по {d2} {m2}",
 		dh_s_source = "Матчи",
 		dh_source_ap = "Рейтинговые",
+		dh_mode_cm = "Captains Mode",
+		dh_mode_ap = "All Pick",
+		dh_mode_turbo = "Turbo",
+		dh_mode_sd = "Single Draft",
 		dh_pool_none = "Героя с таким именем нет",
 		dh_data_ok = "%s %s %s",
 	},
@@ -1406,6 +1414,10 @@ local localization = qLocalization.new({
 		dh_range = "{m1}{d1}日至{m2}{d2}日",
 		dh_s_source = "比赛来源",
 		dh_source_ap = "天梯",
+		dh_mode_cm = "队长模式",
+		dh_mode_ap = "全英雄选择",
+		dh_mode_turbo = "加速模式",
+		dh_mode_sd = "单一征召",
 		dh_pool_none = "没有这个名字的英雄",
 		dh_data_ok = "%s %s，%s",
 	},
@@ -1447,7 +1459,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.15",
+	VERSION = "2.0.0-beta.16",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1646,24 +1658,17 @@ local ITEM = {
 	LATE = 30,
 	POOL = 0.05,
 	COUNTERS = 4,
-	SOONER = 3,
-	CAP = 1.5,
 	INV_READ = 1,
 	ICON = "panorama/images/items/%s_png.vtex_c",
 	SCEPTER = "ultimate_scepter",
 	SHARD = "aghanims_shard",
-	THRESHOLD = {},
-	ORDER = { "save", "evasion", "invis" },
-	ANSWERS = {
-		save = { "nullifier" },
-		evasion = { "monkey_king_bar" },
-		invis = { "dust", "ward_sentry", "gem" },
-	},
 	CONSUMABLES = { dust = { 1, 2, 3, 4, 5 }, ward_sentry = { 4, 5 } },
 	ENEMY = {
-		aeon_disk = "save", wind_waker = "save",
-		butterfly = "evasion",
-		invis_sword = "invis", silver_edge = "invis", shadow_amulet = "invis=0.5", glimmer_cape = "invis=0.5",
+		aeon_disk = { "nullifier", "save" },
+		wind_waker = { "nullifier", "save" },
+		butterfly = { "monkey_king_bar", "evasion" },
+		invis_sword = { "dust", "invis" },
+		silver_edge = { "dust", "invis" },
 	},
 }
 
@@ -1869,8 +1874,7 @@ function asset.image(path)
 	if h == nil then
 		if asset.budget <= 0 then return nil end
 		asset.budget = asset.budget - 1
-		local ok, handle = pcall(Render.LoadImage, path)
-		h = ok and handle or false
+		h = Render.LoadImage(path) or false
 		asset.images[path] = h
 	end
 	return h or nil
@@ -1897,14 +1901,10 @@ local data = {
 	manifest = nil, sets = {}, busy = {}, wait = {}, failed = false, next_check = 0,
 }
 
-do
-	local ok, json = pcall(require, "assets.JSON")
-	data.json = ok and json or nil
-end
+data.json = require("assets.JSON")
 
 data.FILE = "draft_helper_v2.dat"
 data.MAGIC = "DHC2"
-data.LEGACY = { "manifest.json", "heroes.json", "items.txt", "ap_0.txt", "ap_50.txt", "ap_60.txt", "ap_70.txt", "cm_0.txt", "cm_50.txt", "cm_60.txt", "cm_70.txt" }
 
 function data.path(name)
 	local dir = Engine.GetCheatDirectory()
@@ -1933,23 +1933,7 @@ function data.load_cache()
 			cache[name] = blob:sub(start, start + len - 1)
 			i = start + len + 1
 		end
-		return
 	end
-	local moved = false
-	for _, name in ipairs(data.LEGACY) do
-		local text = data.file("draft_helper_" .. name)
-		if text then
-			cache[name], moved = text, true
-			os.remove(data.path("draft_helper_" .. name))
-		end
-	end
-	local session = data.file("draft_helper_session.json")
-	if session then
-		if cfg.read("session", "") == "" then cfg.write("session", session) end
-		os.remove(data.path("draft_helper_session.json"))
-	end
-	os.remove(data.path("draft_helper.dat"))
-	if moved then data.save_cache() end
 end
 
 function data.save_cache()
@@ -1991,9 +1975,9 @@ function data.write(name, text)
 end
 
 function data.decode(text)
-	if not text or not data.json then return nil end
-	local ok, v = pcall(data.json.decode, data.json, text)
-	return ok and type(v) == "table" and v or nil
+	if not text then return nil end
+	local v = data.json:decode(text)
+	return type(v) == "table" and v or nil
 end
 
 function data.fetch(name, done)
@@ -2027,21 +2011,36 @@ function data.fail(name, reason, code)
 	Log.Write("[Draft Helper] " .. data.error)
 end
 
+local function hero_name(unit)
+	local full = "npc_dota_hero_" .. unit
+	local english = Engine.GetDisplayNameByUnitName(full) or unit
+	local own = Localizer.Get(english)
+	if own and own ~= "" and own ~= english then return english, own end
+	local game = GameLocalizer.FindNPC(full)
+	return english, game ~= "" and game or english
+end
+
+local function hero_find(hero, query)
+	return hero.name:lower():find(query, 1, true) ~= nil
+		or (hero.en ~= nil and hero.en:lower():find(query, 1, true) ~= nil)
+end
+
 function data.set_heroes(list)
 	data.heroes, data.list, data.by_id = {}, {}, {}
 	for _, a in ipairs(K.ATTRS) do data.by_attr[a] = {} end
 	for _, e in ipairs(list) do
 		local shares, main = e.pos, 1
 		for p = 2, 5 do if shares[p] > shares[main] then main = p end end
+		local english, display = hero_name(e.name)
 		local hero = {
-			h = e.name, id = e.id, name = Engine.GetDisplayNameByUnitName("npc_dota_hero_" .. e.name) or e.name,
+			h = e.name, id = e.id, name = display, en = english,
 			attr = data.by_attr[e.attr] and e.attr or "all", pos = main, shares = shares, rate = 50, games = 0,
 		}
 		data.heroes[hero.h], data.by_id[hero.id] = hero, hero
 		data.list[#data.list + 1] = hero
 		table.insert(data.by_attr[hero.attr], hero)
 	end
-	local by_name = function(a, b) return a.name < b.name end
+	local by_name = function(a, b) return (a.en or a.name) < (b.en or b.name) end
 	table.sort(data.list, by_name)
 	for _, list in pairs(data.by_attr) do table.sort(list, by_name) end
 	data.shown, data.roles_from = nil, nil
@@ -2105,7 +2104,10 @@ function data.parse(text, time)
 end
 
 function data.parse_items(text, time)
-	local it = { time = time, patch = text:match("\nv (%S+)"), meta = {}, by_name = {}, up = {}, hero = {} }
+	local it = { time = time, patch = text:match("\nv (%S+)"), meta = {}, by_name = {}, up = {}, hero = {}, roles = {} }
+	for h, a, b, c, d, e in text:gmatch("\nr (%d+) (%d+) (%d+) (%d+) (%d+) (%d+)") do
+		it.roles[tonumber(h)] = { tonumber(a), tonumber(b), tonumber(c), tonumber(d), tonumber(e) }
+	end
 	for id, name, cost in text:gmatch("\ni (%d+) ([%w_]+) (%d+)") do
 		local i = tonumber(id)
 		it.meta[i] = { name = name, cost = tonumber(cost) }
@@ -2242,11 +2244,11 @@ function data.use_roles(it)
 	if not it or data.roles_from == it then return end
 	data.roles_from = it
 	for _, hero in pairs(data.heroes) do
-		local by_pos = hero.id and it.hero[hero.id]
-		if by_pos then
+		local by_pos, full = hero.id and it.hero[hero.id], hero.id and it.roles[hero.id]
+		if by_pos or full then
 			local shares, sum, main = {}, 0, 1
 			for p = 1, 5 do
-				shares[p] = by_pos[p] and by_pos[p].share or 0
+				shares[p] = full and full[p] or (by_pos[p] and by_pos[p].share or 0)
 				sum = sum + shares[p]
 			end
 			if sum > 0 then
@@ -2298,11 +2300,9 @@ end
 local upd = { state = "idle", latest = nil, urls = nil, error = nil, checked = false, check_failed = false, next_check = 0, reload_at = nil, changed_at = 0 }
 
 do
-	local ok, source = pcall(function() return debug.getinfo(1, "S").source end)
-	local own = ok and type(source) == "string" and source:match("^@(%a:[\\/].+%.lua)$")
 	local dir = Engine.GetCheatDirectory()
 	if not dir:match("[\\/]$") then dir = dir .. "\\" end
-	upd.path = own or (dir .. "scripts\\draft_helper.lua")
+	upd.path = dir .. "scripts\\draft_helper.lua"
 end
 
 function upd.parse(v)
@@ -2713,8 +2713,8 @@ function draft.turbo() return S.mode == "ap" and S.kind == "turbo" end
 function draft.sd() return S.mode == "ap" and S.kind == "sd" end
 function draft.free() return S.mode == "ap" and S.kind ~= nil end
 function draft.mode_name(mode, kind)
-	if mode ~= "ap" then return "Captains Mode" end
-	return kind == "turbo" and "Turbo" or (kind == "sd" and "Single Draft" or "All Pick")
+	if mode ~= "ap" then return L("dh_mode_cm") end
+	return kind == "turbo" and L("dh_mode_turbo") or (kind == "sd" and L("dh_mode_sd") or L("dh_mode_ap"))
 end
 function draft.ap_round()
 	local k = #S.ap.ours
@@ -3052,7 +3052,6 @@ end
 
 function draft.save_last()
 	local last = S.saved
-	if not data.json then return end
 	if not last then
 		cfg.write("session", "{}")
 		return
@@ -3063,8 +3062,7 @@ function draft.save_last()
 		for i, p in pairs(last.cm.pos) do pos[tostring(i)] = p end
 		out.cm = { fp = last.cm.fp, us = last.cm.us, picks = last.cm.picks, pos = pos }
 	end
-	local ok, text = pcall(data.json.encode, data.json, out)
-	if ok and text then cfg.write("session", text) end
+	cfg.write("session", data.json:encode(out))
 end
 
 function draft.clear_last()
@@ -3282,7 +3280,8 @@ end
 function live.unit(unit)
 	local h = unit:gsub("^npc_dota_hero_", "")
 	if not data.heroes[h] then
-		data.heroes[h] = { h = h, name = Engine.GetDisplayNameByUnitName("npc_dota_hero_" .. h) or h, attr = "all", rate = 50, games = "0", pos = 1 }
+		local english, display = hero_name(h)
+		data.heroes[h] = { h = h, name = display, en = english, attr = "all", rate = 50, games = "0", pos = 1 }
 	end
 	return h
 end
@@ -3439,8 +3438,8 @@ end
 function live.ranked() return live.lobby_info().ranked end
 
 function live.kind()
-	local ok, mode = pcall(GameRules.GetGameMode)
-	if ok and mode and mode ~= Enum.GameMode.DOTA_GAMEMODE_NONE then
+	local mode = GameRules.GetGameMode()
+	if mode and mode ~= Enum.GameMode.DOTA_GAMEMODE_NONE then
 		return mode == Enum.GameMode.DOTA_GAMEMODE_TURBO and "turbo" or (mode == Enum.GameMode.DOTA_GAMEMODE_SD and "sd" or nil)
 	end
 	return live.lobby_info().kind
@@ -3477,8 +3476,8 @@ function live.read_players(d)
 		local team = Entity.GetTeamNum(p)
 		local side = team == Enum.TeamNum.TEAM_RADIANT and "r" or (team == Enum.TeamNum.TEAM_DIRE and "d" or nil)
 		if side then
-			local ok, td = pcall(Player.GetTeamData, p)
-			td = ok and type(td) == "table" and td or {}
+			local td = Player.GetTeamData(p)
+			td = type(td) == "table" and td or {}
 			local unit = Engine.GetHeroNameByID(math.tointeger(tonumber(td.selected_hero_id) or 0) or 0)
 			local player = {
 				name = Player.GetName(p) or "?", me = Player.GetPlayerID(p) == my_id,
@@ -3839,64 +3838,16 @@ function inv.tick()
 	inv.sig = table.concat(parts, ";")
 end
 
-local build = { team = {}, me = nil, names = {}, rules = nil, cache = {}, cached = 0 }
+local build = { team = {}, me = nil, names = {}, cache = {}, cached = 0 }
 
 function build.item_name(name)
 	local s = build.names[name]
 	if not s then
-		local ok, v = pcall(GameLocalizer.FindItem, "item_" .. name)
-		s = ok and type(v) == "string" and v ~= "" and v or name
+		local v = GameLocalizer.FindItem("item_" .. name)
+		s = v ~= "" and v or name
 		build.names[name] = s
 	end
 	return s
-end
-
-function build.get_rules()
-	if build.rules then return build.rules end
-	local function parse(s)
-		local out = {}
-		for tok in s:gmatch("%S+") do
-			local tag, w, ab = tok:match("^(%a+)=?([%d%.]*):?([%w_]*)$")
-			if tag then out[#out + 1] = { tag = tag, w = tonumber(w) or 1, ab = ab ~= "" and ab or nil } end
-		end
-		return out
-	end
-	local rules = { enemy = {} }
-	for name, s in pairs(ITEM.ENEMY) do rules.enemy[name] = parse(s) end
-	build.rules = rules
-	return rules
-end
-
-function build.threats(enemies)
-	local rules, threat = build.get_rules(), {}
-	for _, e in ipairs(enemies) do
-		local per = {}
-		local function add(tag, w, what)
-			local p = per[tag]
-			if not p then
-				p = { w = 0, what = {} }
-				per[tag] = p
-			end
-			p.w = p.w + w
-			if what and what ~= "" then p.what[#p.what + 1] = what end
-		end
-		local own = inv.items[e]
-		if own then
-			for name in pairs(own.set) do
-				for _, r in ipairs(rules.enemy[name] or {}) do add(r.tag, r.w, build.item_name(name)) end
-			end
-		end
-		for tag, p in pairs(per) do
-			local t = threat[tag]
-			if not t then
-				t = { w = 0, src = {} }
-				threat[tag] = t
-			end
-			t.w = t.w + math.min(ITEM.CAP, p.w)
-			t.src[#t.src + 1] = { h = e, w = p.w, what = p.what }
-		end
-	end
-	return threat
 end
 
 function build.base_name(it, id)
@@ -4005,60 +3956,29 @@ function build.add(route, x)
 	route.at[x.name] = #route.list
 end
 
-function build.answer(tag, fits, when)
-	local list = {}
-	for i, name in ipairs(ITEM.ANSWERS[tag]) do
-		local f = fits(name)
-		if f > 0 then list[#list + 1] = { name = name, f = f, i = i, t = when(name) } end
-	end
-	table.sort(list, function(p, q)
-		if p.t ~= q.t then return p.t < q.t end
-		return p.i < q.i
-	end)
-	local t0 = list[1] and list[1].t
-	for j = 2, #list do
-		local x = list[j]
-		if x.t - t0 > ITEM.SOONER then break end
-		if x.f > list[1].f then list[1], list[j] = x, list[1] end
-	end
-	return list
-end
-
-function build.credit(c, src)
-	for _, s in ipairs(src) do
-		local by = c.by_hero[s.h]
-		if not by then
-			by = { h = s.h, w = 0, what = {} }
-			c.by_hero[s.h] = by
-			c.src[#c.src + 1] = by
-		end
-		by.w = by.w + s.w
-		for _, w in ipairs(s.what) do
-			local dup = false
-			for _, x in ipairs(by.what) do dup = dup or x == w end
-			if not dup then by.what[#by.what + 1] = w end
-		end
-	end
-end
-
-function build.counters(enemies, fits, when)
-	local threat, by_item, order = build.threats(enemies), {}, {}
-	for _, tag in ipairs(ITEM.ORDER) do
-		local t = threat[tag]
-		local score = t and t.w / (ITEM.THRESHOLD[tag] or 1) or 0
-		local list = score >= 1 and build.answer(tag, fits, when) or {}
-		if list[1] then
-			local name = list[1].name
-			local c = by_item[name]
-			if not c then
-				c = { name = name, score = 0, tags = {}, src = {}, by_hero = {} }
-				by_item[name] = c
-				order[#order + 1] = c
+function build.counters(enemies, fits)
+	local by_item, order = {}, {}
+	for _, e in ipairs(enemies) do
+		local own = inv.items[e]
+		for name in pairs(own and own.set or {}) do
+			local rule = ITEM.ENEMY[name]
+			if rule and fits(rule[1]) > 0 then
+				local c = by_item[rule[1]]
+				if not c then
+					c = { name = rule[1], score = 0, tags = { rule[2] }, src = {}, by_hero = {} }
+					by_item[rule[1]] = c
+					order[#order + 1] = c
+				end
+				c.score = c.score + 1
+				local by = c.by_hero[e]
+				if not by then
+					by = { h = e, w = 0, what = {} }
+					c.by_hero[e] = by
+					c.src[#c.src + 1] = by
+				end
+				by.w = by.w + 1
+				by.what[#by.what + 1] = build.item_name(name)
 			end
-			c.score = c.score + score
-			c.tags[#c.tags + 1] = tag
-			c.alt = c.alt or (list[2] and list[2].name)
-			build.credit(c, t.src)
 		end
 	end
 	table.sort(order, function(p, q) return p.score > q.score end)
@@ -4183,7 +4103,7 @@ function build.plan(h, pos, enemies)
 	end
 	local list, seen = ct and build.versus(ct, it, hero, pos, build.ids(enemies), pool, route, when) or {}, {}
 	for _, c in ipairs(list) do seen[c.name] = true end
-	for _, c in ipairs(build.counters(enemies, fits, when)) do
+	for _, c in ipairs(build.counters(enemies, fits)) do
 		if not seen[c.name] then list[#list + 1] = c end
 	end
 	for i, c in ipairs(list) do
@@ -4697,26 +4617,30 @@ function view.board_ap(o)
 	end
 end
 
-function view.board_turbo(o)
-	view.titles(o.us, nil)
-	for i = 1, K.TURBO_BANS do
-		local x, y = 22 + ((i - 1) % 5) * 72, K.TB + 80 + math.floor((i - 1) / 5) * 43
-		view.slot(x, y, 66, 37, o.bans[i], { ban = true }, "tb" .. i)
-	end
+function view.pairs(o, active, hide, prefix)
 	for j = 1, 5 do
 		local y = K.TURBO_Y[j] + K.TB
-		local cur = j == #o.ours + 1
+		local cur = active and j == #o.ours + 1
 		g.rect(172, y + 29, 56, 1, cur and C.tick_cur or C.sep2)
 		for _, side in ipairs({ "r", "d" }) do
 			local mine = side == o.us
 			local e = (mine and o.ours or o.theirs)[j]
 			view.slot(side == "r" and 68 or 228, y, 104, 58, e and e.h, {
 				cur = mine and cur, pos = e and e.p, ghost = mine and cur and o.ghost or nil,
-				hidden = not mine and not e,
+				hidden = hide and not mine and not e,
 				key = o.live and e and ((mine and "o" or "t") .. j) or nil,
-			}, "tp" .. side .. j)
+			}, prefix .. side .. j)
 		end
 	end
+end
+
+function view.board_turbo(o)
+	view.titles(o.us, nil)
+	for i = 1, K.TURBO_BANS do
+		local x, y = 22 + ((i - 1) % 5) * 72, K.TB + 80 + math.floor((i - 1) / 5) * 43
+		view.slot(x, y, 66, 37, o.bans[i], { ban = true }, "tb" .. i)
+	end
+	view.pairs(o, true, true, "tp")
 	local phase = o.phase or 2
 	local y = K.TB + K.TURBO_PHASE_Y
 	g.rect(22, y - 24, 356, 1, C.sep2)
@@ -4746,19 +4670,7 @@ function view.board_sd(o)
 			if o.pick and not gone then hit.add(x, y, 83, 47, id, { click = function() draft.place(h) end }) end
 		end
 	end
-	for j = 1, 5 do
-		local y = K.TURBO_Y[j] + K.TB
-		local cur = o.pick and j == #o.ours + 1
-		g.rect(172, y + 29, 56, 1, cur and C.tick_cur or C.sep2)
-		for _, side in ipairs({ "r", "d" }) do
-			local mine = side == o.us
-			local e = (mine and o.ours or o.theirs)[j]
-			view.slot(side == "r" and 68 or 228, y, 104, 58, e and e.h, {
-				cur = mine and cur, pos = e and e.p, ghost = mine and cur and o.ghost or nil,
-				key = o.live and e and ((mine and "o" or "t") .. j) or nil,
-			}, "sp" .. side .. j)
-		end
-	end
+	view.pairs(o, o.pick, false, "sp")
 end
 
 function view.board()
@@ -5273,7 +5185,7 @@ function view.draft_content(y, a)
 		if draft.done() then return view.text_block(L("dh_search_done"), y + 20, a) + 20 end
 		local q, used, list = S.query:lower(), draft.used(), {}
 		for _, hero in ipairs(data.list) do
-			if not used[hero.h] and hero.name:lower():find(q, 1, true) then list[#list + 1] = hero end
+			if not used[hero.h] and hero_find(hero, q) then list[#list + 1] = hero end
 			if #list >= 12 then break end
 		end
 		if #list == 0 then return view.text_block(L("dh_search_none"), y + 20, a) + 20 end
@@ -5507,6 +5419,25 @@ function view.hidden_short()
 	return n > 0 and heroes_n(n) or L("dh_s_hidden_none")
 end
 
+function view.role_row(x, y, bw, roles, id, a, close)
+	for p, r in ipairs(roles) do
+		local rid = id .. ":" .. p
+		local px = x + (p - 1) * (bw + 6)
+		local k = r.disabled and 0 or anim.hover(rid, hit.is(rid))
+		g.rect(px, y, bw, 28, r.on and C.red or C.fill4, 7, a * (r.on and 0.25 or 1))
+		if k > 0 then g.rect(px, y, bw, 28, C.blue, 7, a * k) end
+		g.icon(asset.pos(p), px + bw / 2 - 9, y + 5, 18, C.text, a * ((r.disabled or r.on) and 0.35 or 1))
+		if r.on then g.line(px + 10, y + 23, px + bw - 10, y + 5, C.red, a, 1.5) end
+		if hit.is(rid) then S.tip = L("dh_pos_" .. p) .. (r.hint and (": " .. r.hint) or "") end
+		if not r.disabled then
+			hit.add(px, y, bw, 28, rid, { click = function()
+				if close then S.menu = nil end
+				r.fn()
+			end })
+		end
+	end
+end
+
 function view.hidden_view(y, a)
 	local x, list = K.CX, view.hidden_heroes()
 	if #list == 0 then return view.text_block(L("dh_s_hidden_none"), y + 20, a) + 20 end
@@ -5522,17 +5453,9 @@ function view.hidden_view(y, a)
 		if n > 1 then g.rect(x + 82, ry, K.CW - 82, 1, C.sep2, 0, a) end
 		g.image(asset.portrait(hero.h), x + K.P, ry + 10, 54, 30, 6, a)
 		g.text(F(600), 14, hero.name, x + K.P + 66, ry + 25, C.text, a)
-		for p = 1, 5 do
-			local on, rid = calc.hidden(hero.h, p), "hid:" .. hero.h .. ":" .. p
-			local px = bx + (p - 1) * (bw + gap)
-			local k = anim.hover(rid, hit.is(rid))
-			g.rect(px, ry + 11, bw, 28, on and C.red or C.fill4, 7, a * (on and 0.25 or 1))
-			if k > 0 then g.rect(px, ry + 11, bw, 28, C.blue, 7, a * k) end
-			g.icon(asset.pos(p), px + bw / 2 - 9, ry + 16, 18, C.text, a * (on and 0.35 or 1))
-			if on then g.line(px + 10, ry + 34, px + bw - 10, ry + 16, C.red, a, 1.5) end
-			if hit.is(rid) then S.tip = L("dh_pos_" .. p) end
-			hit.add(px, ry + 11, bw, 28, rid, { click = function() toggle_hide(hero.h, p) end })
-		end
+		local row = {}
+		for p = 1, 5 do row[p] = { on = calc.hidden(hero.h, p), fn = function() toggle_hide(hero.h, p) end } end
+		view.role_row(bx, ry + 11, bw, row, "hid:" .. hero.h, a)
 	end
 	return 40 + #list * 50
 end
@@ -5547,10 +5470,10 @@ function view.home(y, a)
 	local function open_pool() S.pool_ret, S.ret, S.view = "home", "home", "pool" end
 	h = h + view.group_header(L("dh_h_train"), y + h, a)
 	h = h + view.setting_rows({
-		{ id = "tr_cm", tile = C.t_blue, glyph = "chess", title = "Captains Mode", control = view.chevron(L("dh_start"), "tr_cm"), act = function() draft.start_training("cm") end },
-		{ id = "tr_ap", tile = C.t_indigo, glyph = "users", title = "All Pick", control = view.chevron(L("dh_start"), "tr_ap"), act = function() draft.start_training("ap") end },
-		{ id = "tr_turbo", tile = C.t_cyan, glyph = "bolt", title = "Turbo", control = view.chevron(L("dh_start"), "tr_turbo"), act = function() draft.start_training("ap", "turbo") end },
-		{ id = "tr_sd", tile = C.t_teal, glyph = "list", title = "Single Draft", control = view.chevron(L("dh_start"), "tr_sd"), act = function() draft.start_training("ap", "sd") end },
+		{ id = "tr_cm", tile = C.t_blue, glyph = "chess", title = L("dh_mode_cm"), control = view.chevron(L("dh_start"), "tr_cm"), act = function() draft.start_training("cm") end },
+		{ id = "tr_ap", tile = C.t_indigo, glyph = "users", title = L("dh_mode_ap"), control = view.chevron(L("dh_start"), "tr_ap"), act = function() draft.start_training("ap") end },
+		{ id = "tr_turbo", tile = C.t_cyan, glyph = "bolt", title = L("dh_mode_turbo"), control = view.chevron(L("dh_start"), "tr_turbo"), act = function() draft.start_training("ap", "turbo") end },
+		{ id = "tr_sd", tile = C.t_teal, glyph = "list", title = L("dh_mode_sd"), control = view.chevron(L("dh_start"), "tr_sd"), act = function() draft.start_training("ap", "sd") end },
 	}, y + h, a)
 	h = h + view.foot(L(SET.tr_enemy == "manual" and "dh_h_foot_manual" or "dh_h_foot_auto"), y + h, a) + 22
 	if S.last then
@@ -5645,7 +5568,7 @@ function view.settings(y, a)
 	local line = view.data_line()
 	view.error_tip(K.CX + 58, y + h + 75, g.width(F(400), 12, line), 18)
 	h = h + view.setting_rows({
-		{ tile = C.t_blue, glyph = "users", title = L("dh_s_source"), control = view.choice("source", { { "cm", "Captains Mode" }, { "ap", L("dh_source_ap") } }, SET.source, pick("source")) },
+		{ tile = C.t_blue, glyph = "users", title = L("dh_s_source"), control = view.choice("source", { { "cm", L("dh_mode_cm") }, { "ap", L("dh_source_ap") } }, SET.source, pick("source")) },
 		{ tile = C.t_indigo, glyph = "chart", title = L("dh_s_rank"), sub = line, control = view.choice("rank", ranks, SET.rank, pick("rank")) },
 	}, y + h, a) + 22
 	h = h + view.group_header(L("dh_s_hints"), y + h, a)
@@ -5727,7 +5650,7 @@ function view.pool(y, a)
 	for _, attr in ipairs(K.ATTRS) do
 		local list = {}
 		for _, hero in ipairs(data.by_attr[attr]) do
-			if q == "" or hero.name:lower():find(q, 1, true) then list[#list + 1] = hero end
+			if q == "" or hero_find(hero, q) then list[#list + 1] = hero end
 		end
 		if #list > 0 then
 			local count = 0
@@ -6231,24 +6154,7 @@ function view.menu()
 			g.text(F(600), 11, it.section, x + 14, iy + 11, C.text3)
 			iy = iy + 22
 		elseif it.roles then
-			local bw, gap = 38, 6
-			local bx = x + (w - 5 * bw - 4 * gap) / 2
-			for p, r in ipairs(it.roles) do
-				local id = "menu" .. n .. ":" .. p
-				local px = bx + (p - 1) * (bw + gap)
-				local k = r.disabled and 0 or anim.hover(id, hit.is(id))
-				g.rect(px, iy + 2, bw, 28, r.on and C.red or C.fill4, 7, r.on and 0.25 or 1)
-				if k > 0 then g.rect(px, iy + 2, bw, 28, C.blue, 7, k) end
-				g.icon(asset.pos(p), px + bw / 2 - 9, iy + 7, 18, C.text, (r.disabled or r.on) and 0.35 or 1)
-				if r.on then g.line(px + 10, iy + 25, px + bw - 10, iy + 7, C.red, 1, 1.5) end
-				if hit.is(id) then S.tip = L("dh_pos_" .. p) .. (r.hint and (": " .. r.hint) or "") end
-				if not r.disabled then
-					hit.add(px, iy + 2, bw, 28, id, { click = function()
-						if it.close then S.menu = nil end
-						r.fn()
-					end })
-				end
-			end
+			view.role_row(x + (w - 5 * 38 - 24) / 2, iy + 2, 38, it.roles, "menu" .. n, 1, it.close)
 			iy = iy + 36
 		else
 			local id = "menu" .. n
@@ -6342,8 +6248,8 @@ function bp.default_pos(me)
 	end
 	local p = Players.GetLocal()
 	if p then
-		local ok, td = pcall(Player.GetTeamData, p)
-		local role = ok and type(td) == "table" and K.LANE_BITS[math.tointeger(tonumber(td.lane_selection_flags) or 0) or 0]
+		local td = Player.GetTeamData(p)
+		local role = type(td) == "table" and K.LANE_BITS[math.tointeger(tonumber(td.lane_selection_flags) or 0) or 0]
 		if role then return role end
 	end
 	return data.heroes[me] and data.heroes[me].pos or 1
@@ -6395,8 +6301,8 @@ end
 function bp.read_quick(it)
 	local out, p = {}, Players.GetLocal()
 	if not p then return out end
-	local ok, info = pcall(Player.GetQuickBuyInfo, p)
-	if not ok or type(info) ~= "table" then return out end
+	local info = Player.GetQuickBuyInfo(p)
+	if type(info) ~= "table" then return out end
 	for _, raw in ipairs(info.m_quickBuyItems or {}) do
 		local id = math.tointeger(tonumber(raw) or 0) or 0
 		local name = id > 0 and (it and it.meta[id] and it.meta[id].name or bp.catalog().name[id])
@@ -6422,7 +6328,7 @@ end
 
 function bp.set_quick(list)
 	if #list == 0 then
-		pcall(Engine.SetQuickBuy, "", true)
+		Engine.SetQuickBuy("", true)
 	else
 		for i, name in ipairs(list) do Engine.SetQuickBuy(name, i == 1) end
 	end
@@ -6481,7 +6387,7 @@ function bp.buy(name, bear)
 		local id, cost = cat.id[part], cat.cost[part] or 0
 		if cost > gold then break end
 		if id then
-			pcall(Player.PrepareUnitOrders, player, Enum.UnitOrder.DOTA_UNIT_ORDER_PURCHASE_ITEM, id, Vector(0, 0, 0), id,
+			Player.PrepareUnitOrders(player, Enum.UnitOrder.DOTA_UNIT_ORDER_PURCHASE_ITEM, id, Vector(0, 0, 0), id,
 				Enum.PlayerOrderIssuer.DOTA_ORDER_ISSUER_PASSED_UNIT_ONLY, hero, false, false, false, true, "draft_helper_buy", false)
 			gold = gold - cost
 		end
@@ -6906,7 +6812,7 @@ function input.key(key)
 			elseif S.view == "draft" and S.query ~= "" then
 				local used, q = draft.used(), S.query:lower()
 				for _, hero in ipairs(data.list) do
-					if not used[hero.h] and hero.name:lower():find(q, 1, true) then
+					if not used[hero.h] and hero_find(hero, q) then
 						draft.place(hero.h)
 						break
 					end
