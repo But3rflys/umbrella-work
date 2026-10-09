@@ -496,6 +496,138 @@ def items():
     return pages
 
 
+COUNTERS_EVERY = 3 * 86400
+COUNTERS_WINDOW = 10 * 86400
+COUNTERS_ITEMS = ("dust", "ward_sentry", "gem")
+COUNTERS_SQL = (
+    "select pm.match_id m, pm.hero_id h, pm.player_slot s, pm.gold_per_min g, m.duration d, "
+    "(select string_agg(distinct x->>'key', ' ') from unnest(pm.purchase_log) x) i "
+    "from matches m join player_matches pm using (match_id) where m.start_time >= %d and m.start_time < %d"
+)
+
+
+BEAR_SQL = (
+    "select pm.item_0 a, pm.item_1 b, pm.item_2 c, pm.item_3 d, pm.item_4 e, pm.item_5 f, "
+    "pm.backpack_0 g, pm.backpack_1 h, pm.backpack_2 i, pm.additional_units u "
+    "from player_matches pm join matches m using (match_id) where pm.hero_id = 80 and m.start_time >= %d"
+)
+BEAR_SLOTS = ("item_0", "item_1", "item_2", "item_3", "item_4", "item_5", "backpack_0", "backpack_1", "backpack_2")
+
+
+def bear_items(start):
+    names = get(API + "constants/item_ids")
+    hero, bear = {}, {}
+    for r in explorer(BEAR_SQL % start):
+        units = [u for u in (r.get("u") or []) if u.get("unitname") == "spirit_bear"]
+        if not units:
+            continue
+        for k in "abcdefghi":
+            if r.get(k):
+                hero[r[k]] = hero.get(r[k], 0) + 1
+        for k in BEAR_SLOTS:
+            i = units[0].get(k)
+            if i:
+                bear[i] = bear.get(i, 0) + 1
+    lines = []
+    for i in sorted(set(hero) | set(bear)):
+        total = hero.get(i, 0) + bear.get(i, 0)
+        name = names.get(str(i))
+        if name and total >= 10:
+            lines.append("k %s %d" % (name, round(1000 * bear.get(i, 0) / total)))
+    return lines
+
+
+def counters():
+    path = OUT / "manifest.json"
+    manifest = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    prev = (manifest.get("sets") or {}).get("counters") or {}
+    patches = get(API + "constants/patch")
+    patch = patches[-1]
+    start = int(time.mktime(time.strptime(patch["date"][:19], "%Y-%m-%dT%H:%M:%S")))
+    if prev.get("patch") == patch["name"] and time.time() - prev.get("time", 0) < COUNTERS_EVERY and (OUT / "stats/counters.txt").exists():
+        log("counters: fresh, skipped")
+        return None
+    rows, lo, now = [], start, int(time.time())
+    while lo < now:
+        rows += explorer(COUNTERS_SQL % (lo, lo + COUNTERS_WINDOW))
+        lo += COUNTERS_WINDOW
+    by_match = {}
+    for r in rows:
+        if r.get("i") and r.get("g") is not None:
+            by_match.setdefault(r["m"], []).append(r)
+    games = []
+    for ps in by_match.values():
+        if len(ps) != 10:
+            continue
+        teams = [sorted([p for p in ps if (p["s"] < 128) == side], key=lambda p: -p["g"]) for side in (True, False)]
+        if any(len(t) != 5 for t in teams):
+            continue
+        for t, other in ((teams[0], teams[1]), (teams[1], teams[0])):
+            for k, p in enumerate(t):
+                minutes = p["d"] / 60
+                games.append({
+                    "h": p["h"], "core": k < 3, "set": set(p["i"].split()),
+                    "db": 0 if minutes < 28 else (1 if minutes < 36 else (2 if minutes < 44 else 3)),
+                    "en": [q["h"] for q in other],
+                })
+    strat_n, strat_c = {}, {}
+    for p in games:
+        key = (p["h"], p["core"], p["db"])
+        strat_n[key] = strat_n.get(key, 0) + 1
+        c = strat_c.setdefault(key, {})
+        for it in p["set"]:
+            c[it] = c.get(it, 0) + 1
+    obs, exp = {}, {}
+    for p in games:
+        key = (p["h"], p["core"], p["db"])
+        n = strat_n[key]
+        if n < 2:
+            continue
+        for it, c in strat_c[key].items():
+            pr = (c - (it in p["set"])) / (n - 1)
+            for o in p["en"]:
+                exp[(it, o)] = exp.get((it, o), 0) + pr
+        for it in p["set"]:
+            for o in p["en"]:
+                obs[(it, o)] = obs.get((it, o), 0) + 1
+    lines = ["n %d" % len(games), "v %s" % patch["name"]]
+    base_n, base_c = {}, {}
+    for p in games:
+        key = (p["h"], 1 if p["core"] else 2)
+        base_n[key] = base_n.get(key, 0) + 1
+        for it in COUNTERS_ITEMS:
+            if it in p["set"]:
+                base_c[key + (it,)] = base_c.get(key + (it,), 0) + 1
+    for key, n in sorted(base_n.items()):
+        if n >= 30:
+            for it in COUNTERS_ITEMS:
+                lines.append("p %d %d %s %d" % (key[0], key[1], it, round(1000 * base_c.get(key + (it,), 0) / n)))
+    for (it, o), e in sorted(exp.items()):
+        ob = obs.get((it, o), 0)
+        if e < 3 and ob < 3:
+            continue
+        lift = (ob + 10) / (e + 10)
+        z = (ob - e) / (e + 1) ** 0.5
+        if z >= 4 and ob >= 20 and lift >= 1.3:
+            lines.append("e %s %d %d" % (it, o, round(lift * 100)))
+    lines += bear_items(start)
+    write("stats/counters.txt", "\n".join(lines) + "\n")
+    log("counters: %s, %d player-games, %d lines", patch["name"], len(games), len(lines))
+    return {"n": len(games), "patch": patch["name"]}
+
+
+def model(key, recs, prior=None):
+    import draft_model
+    if len(recs) < 5000:
+        raise RuntimeError("too few matches: %d" % len(recs))
+    base = None
+    if prior:
+        path = OUT / "stats" / ("model_%s.txt" % prior)
+        base = path.read_text(encoding="utf-8") if path.exists() else None
+    write("stats/model_%s.txt" % key, draft_model.fit(recs, log, base))
+    return True
+
+
 def step(key, fn):
     try:
         result = fn()
@@ -522,6 +654,10 @@ def main():
     if done:
         sets["items"] = {"n": done, "time": now, "src": "d2pt", "min": D2PT_MATCHES}
 
+    done = step("counters", counters)
+    if done:
+        sets["counters"] = dict(done, time=now)
+
     newest = None
     for rank in RANKS:
         recs = step("ap %d" % rank, lambda: update_ranked(rank))
@@ -529,6 +665,8 @@ def main():
             newest = max(newest or 0, rec_id(recs[0]))
             write("stats/ap_%d.txt" % rank, stats(recs))
             sets["ap_%d" % rank] = dict(describe(recs), time=now)
+            if step("model ap %d" % rank, lambda: model("ap_%d" % rank, recs)):
+                sets["model_ap_%d" % rank] = {"n": len(recs), "time": now}
 
     def cm():
         top = newest or int(explorer("select max(match_id) m from public_matches")[0]["m"])
@@ -540,6 +678,8 @@ def main():
             part = [r for r in recs if rec_tier(r) >= rank]
             write("stats/cm_%d.txt" % rank, stats(part))
             sets["cm_%d" % rank] = dict(describe(part), time=now)
+            if step("model cm %d" % rank, lambda: model("cm_%d" % rank, part, "ap_%d" % rank)):
+                sets["model_cm_%d" % rank] = {"n": len(part), "time": now}
 
     manifest["time"] = now
     path.write_text(json.dumps(manifest, separators=(",", ":"), sort_keys=True), encoding="utf-8", newline="\n")
