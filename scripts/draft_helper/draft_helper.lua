@@ -326,6 +326,16 @@ local localization = qLocalization.new({
 		dh_news = "What's new",
 		dh_news_sub = "Changes in this update",
 		dh_news_row_sub = "Changes in the latest update",
+		dh_cl_b15roles_t = "Heroes on their roles",
+		dh_cl_b15roles_d = "Hero roles come from 7000+ MMR games: Doom is no longer suggested as a carry. Your queued role and your pool are taken into account.",
+		dh_cl_b15hide_t = "Don't suggest",
+		dh_cl_b15hide_d = "Right-click a hero to hide it from hints on chosen roles. Bring heroes back in the settings.",
+		dh_cl_b15extra_t = "Situational",
+		dh_cl_b15extra_d = "A new build row with popular items that are not in the main build.",
+		dh_cl_b15lang_t = "Chinese",
+		dh_cl_b15lang_d = "The script is now available in Chinese.",
+		dh_cl_b15fix_t = "Fixes",
+		dh_cl_b15fix_d = "Builds for rare roles are no longer shown.",
 		dh_cl_b14perf_t = "Performance",
 		dh_cl_b14perf_d = "Improved performance.",
 		dh_cl_b13modes_t = "Turbo and single draft",
@@ -367,6 +377,7 @@ local localization = qLocalization.new({
 		dh_bp_early = "Early",
 		dh_bp_mid = "Mid",
 		dh_bp_late = "Late",
+		dh_bp_extra = "Situational",
 		dh_bp_show = "Show",
 		dh_bp_show_shop = "With shop",
 		dh_bp_show_always = "Always",
@@ -474,6 +485,7 @@ local localization = qLocalization.new({
 		dh_with = "with",
 		dh_weak = "weak vs",
 		dh_badwith = "bad with",
+		dh_risk = "countered by",
 		dh_by_rate = "by hero win rate",
 		dh_matches = "%s matches",
 		dh_how_confirm = "Click selects a hero, double click picks at once, right click opens the menu",
@@ -511,6 +523,11 @@ local localization = qLocalization.new({
 		dh_m_dbl = "double click",
 		dh_m_pool_add = "Add to pool",
 		dh_m_pool_del = "Remove from pool",
+		dh_m_hide_on = "Don't suggest as",
+		dh_s_hidden = "Don't suggest",
+		dh_s_hidden_none = "Right-click a hero in the hints list",
+		dh_s_hidden_clear = "Bring all back",
+		dh_hidden_sub = "Not suggested on crossed out roles",
 		dh_m_on_pos = "Pick as",
 		dh_m_taken = "taken",
 
@@ -637,19 +654,15 @@ local localization = qLocalization.new({
 		dh_b_or = "or %s",
 		dh_b_counter = "FOR THEIR DRAFT",
 		dh_b_counter_none = "No special answers needed",
+		dh_b_extra = "Situational",
+		dh_b_bear = "Spirit Bear",
+		dh_b_pick = "Bought in %d%% of games",
 		dh_b_data_none = "Item builds are not on GitHub yet",
 		dh_b_no_hero = "No item data for this hero yet",
-		dh_t_heal = "Healing and regen",
 		dh_t_save = "Dispellable saves",
 		dh_t_evasion = "Evasion",
 		dh_t_invis = "Invisibility",
-		dh_t_units = "Illusions and units",
-		dh_t_passive = "Strong passives",
-		dh_t_target = "Targeted disables",
-		dh_t_silence = "Silences and roots",
-		dh_t_escape = "Elusive heroes",
-		dh_t_magic = "Lots of magic damage",
-		dh_t_phys = "Lots of physical damage",
+		dh_t_draft = "Bought more often against them",
 		dh_data_loading = "Loading draft data from GitHub",
 		dh_data_error = "No connection to GitHub",
 		dh_data_empty = "empty response",
@@ -677,6 +690,16 @@ local localization = qLocalization.new({
 		dh_news = "Что нового",
 		dh_news_sub = "Что изменилось в обновлении",
 		dh_news_row_sub = "Изменения последнего обновления",
+		dh_cl_b15roles_t = "Герои на своих ролях",
+		dh_cl_b15roles_d = "Роли героев по играм 7000+ MMR: Дум больше не советуется на керри. Учитываются роль из очереди и твой пул.",
+		dh_cl_b15hide_t = "Не советовать",
+		dh_cl_b15hide_d = "ПКМ по герою убирает его из подсказок на выбранных ролях. Вернуть можно в настройках.",
+		dh_cl_b15extra_t = "По ситуации",
+		dh_cl_b15extra_d = "Новая строка в сборке с популярными предметами, которых нет в основной сборке.",
+		dh_cl_b15lang_t = "Китайский язык",
+		dh_cl_b15lang_d = "Скрипт переведён на китайский.",
+		dh_cl_b15fix_t = "Исправления",
+		dh_cl_b15fix_d = "Сборки для редких ролей больше не показываются.",
 		dh_cl_b14perf_t = "Производительность",
 		dh_cl_b14perf_d = "Улучшена производительность.",
 		dh_cl_b13modes_t = "Турбо и сингл драфт",
@@ -718,6 +741,7 @@ local localization = qLocalization.new({
 		dh_bp_early = "Ранняя",
 		dh_bp_mid = "Середина",
 		dh_bp_late = "Поздняя",
+		dh_bp_extra = "По ситуации",
 		dh_bp_show = "Показывать",
 		dh_bp_show_shop = "С магазином",
 		dh_bp_show_always = "Всегда",
@@ -825,6 +849,7 @@ local localization = qLocalization.new({
 		dh_with = "с",
 		dh_weak = "слаб против",
 		dh_badwith = "плохо с",
+		dh_risk = "контрят",
 		dh_by_rate = "по винрейту героя",
 		dh_matches = "%s матчей",
 		dh_how_confirm = "Клик выделяет героя, двойной клик выбирает сразу, правая кнопка открывает меню",
@@ -862,6 +887,11 @@ local localization = qLocalization.new({
 		dh_m_dbl = "двойной клик",
 		dh_m_pool_add = "Добавить в пул",
 		dh_m_pool_del = "Убрать из пула",
+		dh_m_hide_on = "Не советовать на",
+		dh_s_hidden = "Не советовать",
+		dh_s_hidden_none = "ПКМ по герою в списке подсказок",
+		dh_s_hidden_clear = "Вернуть всех",
+		dh_hidden_sub = "Не предлагаются на зачёркнутых ролях",
 		dh_m_on_pos = "Выбрать на позицию",
 		dh_m_taken = "занят",
 
@@ -988,19 +1018,15 @@ local localization = qLocalization.new({
 		dh_b_or = "или %s",
 		dh_b_counter = "ПОД ИХ ДРАФТ",
 		dh_b_counter_none = "Особых ответов не нужно",
+		dh_b_extra = "По ситуации",
+		dh_b_bear = "Медведь",
+		dh_b_pick = "Берут в %d%% игр",
 		dh_b_data_none = "Сборок на GitHub пока нет",
 		dh_b_no_hero = "По этому герою данных о предметах пока нет",
-		dh_t_heal = "Лечение и реген",
 		dh_t_save = "Сейвы, которые снимаются",
 		dh_t_evasion = "Уклонение",
 		dh_t_invis = "Невидимость",
-		dh_t_units = "Иллюзии и юниты",
-		dh_t_passive = "Сильные пассивки",
-		dh_t_target = "Точечный контроль",
-		dh_t_silence = "Сайленсы и руты",
-		dh_t_escape = "Неуловимые герои",
-		dh_t_magic = "Много магического урона",
-		dh_t_phys = "Много физического урона",
+		dh_t_draft = "Чаще берут против них",
 		dh_data_loading = "Загружаю данные драфта с GitHub",
 		dh_data_error = "Нет связи с GitHub",
 		dh_data_empty = "пустой ответ",
@@ -1018,6 +1044,370 @@ local localization = qLocalization.new({
 		dh_source_ap = "Рейтинговые",
 		dh_pool_none = "Героя с таким именем нет",
 		dh_data_ok = "%s %s %s",
+	},
+	cn = {
+		dh_group_main = "主要",
+		dh_enable = "启用",
+		dh_enable_tip = "显示选人助手窗口",
+		dh_key = "打开窗口",
+		dh_key_tip = "打开或关闭窗口",
+		dh_news = "更新内容",
+		dh_news_sub = "本次更新的变化",
+		dh_news_row_sub = "最近一次更新的变化",
+		dh_cl_b15roles_t = "英雄回到本职位置",
+		dh_cl_b15roles_d = "英雄位置来自 7000+ MMR 比赛：末日使者不再被推荐为一号位。会考虑你排队的位置和英雄池。",
+		dh_cl_b15hide_t = "不推荐",
+		dh_cl_b15hide_d = "右键点击英雄，可在所选位置上不再推荐该英雄。可在设置中恢复。",
+		dh_cl_b15extra_t = "视情况",
+		dh_cl_b15extra_d = "出装中新增一行，列出主出装之外的常用物品。",
+		dh_cl_b15lang_t = "中文",
+		dh_cl_b15lang_d = "脚本现已支持中文。",
+		dh_cl_b15fix_t = "修复",
+		dh_cl_b15fix_d = "不再显示冷门位置的出装。",
+		dh_cl_b14perf_t = "性能",
+		dh_cl_b14perf_d = "性能已优化。",
+		dh_cl_b13modes_t = "加速模式和单一征召",
+		dh_cl_b13modes_d = "加速模式和单一征召有了各自的选人面板，单一征召中你的四个英雄直接显示在面板上。",
+		dh_cl_b13fix_t = "禁用和选择更准确",
+		dh_cl_b13fix_d = "禁用的英雄和已选英雄不再混淆。",
+		dh_cl_b12fix_t = "窗口可以打开了",
+		dh_cl_b12fix_d = "修复了导致窗口无法打开的问题。",
+		dh_cl_b12vs_t = "更针对敌方阵容",
+		dh_cl_b12vs_d = "针对敌方英雄的物品推荐更准确。",
+		dh_cl_b6fix_t = "选人读取已修复",
+		dh_cl_b6fix_d = "每个新房间都能重新识别禁用和选择，从窗口选择英雄也恢复正常。",
+		dh_cl_b5fps_t = "帧数更高",
+		dh_cl_b5fps_d = "窗口占用的帧数大幅减少，队长模式中尤其明显。关闭窗口时脚本几乎不影响游戏。修复了天梯全英雄选择中的一个错误。",
+		dh_cl_b4fix_t = "位置不再重置",
+		dh_cl_b4fix_d = "别人选人后，已选的位置不再跳回“自动”。只有你的队伍占用该位置时才会重置。",
+		dh_cl_b2fix_t = "修复",
+		dh_cl_b2fix_d = "小改动和错误修复。",
+		dh_cl_resize_t = "拖动角落调整大小",
+		dh_cl_resize_d = "拖动窗口或出装面板右下角即可缩放。固定尺寸选项已移除。",
+		dh_cl_keep_t = "比赛开始后选人记录保留",
+		dh_cl_keep_d = "选人时记录与房间绑定，比赛开始重新加载脚本时不再丢失。",
+		dh_cl_items_t = "更合理的应对",
+		dh_cl_items_d = "岗哨守卫现在只推荐给辅助。",
+		dh_cl_builds_t = "物品出装",
+		dh_cl_builds_d = "根据 7000+ MMR 比赛为你的英雄和位置推荐出装：初始物品，然后是前期、中期和后期。",
+		dh_cl_counter_t = "针对敌方阵容",
+		dh_cl_counter_d = "出装会根据敌方英雄及其本局物品调整：对治疗出冰眼，对保命出否决坠饰，对隐身出显影之尘。",
+		dh_cl_panel_t = "出装面板",
+		dh_cl_panel_d = "与商店一起打开。左键将物品加入快速购买，Shift + 左键替换快速购买，右键直接购买。在标题栏切换位置，拖动标题栏移动面板。",
+		dh_cl_set_t = "设置",
+		dh_cl_set_d = "新增出装面板分组，相关选项平滑展开，列表最多 25 个英雄。",
+		dh_cl_cache_t = "单一缓存文件",
+		dh_cl_cache_d = "所有下载的数据现在保存在 draft_helper_v2.dat 中，而不是 configs 里的十几个文件。旧文件会自动迁移。",
+		dh_cl_fix_t = "修复",
+		dh_cl_fix_d = "训练中敌方位置不再重复。",
+		dh_bp = "出装面板",
+		dh_bp_tip = "在商店旁显示你英雄的小型物品列表",
+		dh_bp_early = "前期",
+		dh_bp_mid = "中期",
+		dh_bp_late = "后期",
+		dh_bp_extra = "视情况",
+		dh_bp_show = "显示",
+		dh_bp_show_shop = "随商店",
+		dh_bp_show_always = "始终",
+		dh_bp_all = "全部设置",
+		dh_bp_pinned = "在快速购买中",
+		dh_s_debug = "调试",
+		dh_s_log = "日志",
+		dh_s_log_sub = "将事件写入 debug.log",
+		dh_s_panel = "选人面板",
+		dh_s_panel_sub = "在屏幕上显示选人状态",
+		dh_d_mode = "模式",
+		dh_d_none = "当前没有选人",
+		dh_d_yes = "是",
+		dh_d_no = "否",
+		dh_d_me = "你",
+		dh_d_us = "阵营",
+		dh_d_hero = "我的英雄",
+		dh_d_first = "先选",
+		dh_d_captain = "你是队长",
+		dh_d_need_captain = "需要队长",
+		dh_d_our_turn = "轮到我方",
+		dh_d_turn = "当前回合",
+		dh_d_order = "回合",
+		dh_d_ban_phase = "禁用阶段",
+		dh_d_ban_used = "已禁用",
+		dh_d_in_control = "可以选择",
+		dh_d_selected = "已选英雄",
+		dh_d_team_r = "天辉",
+		dh_d_team_d = "夜魇",
+		dh_d_banned = "已禁用",
+		dh_d_picked = "已被选",
+		dh_d_off = "不可用",
+		dh_d_offer = "可选英雄",
+		dh_d_lp = "低优先级",
+		dh_live_captain = "由队长禁用和选择",
+		dh_live_wait = "还没轮到你",
+		dh_bind_name = "Draft Helper",
+
+		dh_title = "选人",
+		dh_out = "不在比赛中",
+		dh_training = "训练",
+		dh_search = "搜索英雄",
+		dh_chance = "阵容胜率",
+		dh_side_r = "天辉",
+		dh_side_d = "夜魇",
+		dh_we = "我方",
+		dh_bans16 = "16 个禁用",
+		dh_sd_offer = "你的英雄",
+		dh_ph_ban = "禁用",
+		dh_ph_pick = "选择",
+
+		dh_our_ban = "我方禁用",
+		dh_enemy_ban = "敌方禁用",
+		dh_our_pick = "我方选择",
+		dh_enemy_pick = "敌方选择",
+		dh_step_of = "第 %d 步，共 24 步",
+		dh_round_of = "第 %d 轮，共 3 轮",
+		dh_sub_noctx = "还没有选人，按英雄胜率排序",
+		dh_sub_our_ban = "对我们威胁最大的英雄",
+		dh_sub_enemy_ban = "我们的最佳选择，敌人可能会拿走",
+		dh_sub_our_pick = "适合当前阵容的最佳选择",
+		dh_sub_enemy_pick = "敌方针对我们的最佳选择",
+		dh_sub_filter = "针对敌方阵容的最佳%s",
+		dh_sub_lane = "对线时克制对方的对线英雄",
+		dh_s_goal = "选英雄的目标",
+		dh_s_goal_sub = "比赛：胜率。对线：克制你的对线对手",
+		dh_goal_draft = "比赛",
+		dh_goal_lane = "对线",
+		dh_double_next = "连选，下一步是第 %d 步",
+		dh_double_second = "连续第二次选择",
+		dh_enemy_auto_pick = "敌方正在选择，结果会自动填入",
+		dh_enemy_auto_ban = "敌方正在选择，禁用会自动填入",
+		dh_enemy_manual_pick = "替敌方选择",
+		dh_enemy_manual_ban = "替敌方禁用",
+		dh_ap_last = "本轮最后一次选择",
+		dh_ap_left = "本轮还剩 %d 次选择",
+		dh_ap_hidden = "本轮结束前看不到敌方选择",
+		dh_ap_counter = "克制已公开的敌方英雄",
+		dh_ap_reveal = "本轮结束，敌方公开选择",
+		dh_turbo_of = "已选 %d / 5",
+		dh_turbo_last = "队伍最后一次选择",
+		dh_turbo_left = "队伍还剩 %d 次选择",
+		dh_ban_turbo = "每名玩家一个禁用",
+		dh_ban_ap = "你的禁用提名",
+		dh_ban_done = "已禁用，接下来是选择",
+		dh_sd_title = "你的英雄",
+		dh_sd_four = "从你的四个英雄中选一个",
+		dh_sd_waiting = "你已选择，队友正在选",
+		dh_sd_sub = "你的四个英雄在当前阵容中的排名",
+		dh_sd_none = "还看不到你的四个英雄",
+
+		dh_auto = "自动",
+		dh_pos_1 = "一号位",
+		dh_pos_2 = "中单",
+		dh_pos_3 = "三号位",
+		dh_pos_4 = "四号位",
+		dh_pos_5 = "五号位",
+		dh_posa_1 = "一号位",
+		dh_posa_2 = "中单",
+		dh_posa_3 = "三号位",
+		dh_posa_4 = "四号位",
+		dh_posa_5 = "五号位",
+		dh_vs = "克制",
+		dh_close = "弥补",
+		dh_with = "配合",
+		dh_weak = "被克制",
+		dh_badwith = "配合差",
+		dh_risk = "被克制",
+		dh_by_rate = "按英雄胜率",
+		dh_matches = "%s 场比赛",
+		dh_how_confirm = "单击选中英雄，双击直接选择，右键打开菜单",
+		dh_how_click = "单击选择英雄，右键打开菜单",
+		dh_how_enemy = "这是对敌方回合的预测",
+		dh_empty_pos = "这个位置没有可选英雄",
+		dh_empty_pool = "英雄池中没有本回合可选的英雄",
+		dh_open_pool = "打开英雄池",
+
+		dh_search_title = "搜索",
+		dh_search_sub = "英雄与本回合的契合度",
+		dh_search_enemy = "现在是敌方回合，结果会自动填入",
+		dh_search_done = "选人已完成",
+		dh_search_none = "没有这个名字的可选英雄",
+		dh_no_data = "无数据",
+
+		dh_done = "选人完成",
+		dh_done_cm = "24 步全部完成",
+		dh_done_ap = "三轮全部完成",
+		dh_done_turbo = "五个英雄都已选定",
+
+		dh_ban_word = "禁用",
+		dh_pick_word = "选择",
+		dh_at_step = "第 %d 步",
+		dh_at_round = "第 %d 轮",
+		dh_at_turbo = "同时进行",
+		dh_select = "选择",
+		dh_ban_btn = "禁用",
+		dh_cancel = "取消",
+
+		dh_pos_of = "位置",
+		dh_swap = "与%s交换",
+		dh_m_select = "选择",
+		dh_m_click = "单击",
+		dh_m_dbl = "双击",
+		dh_m_pool_add = "加入英雄池",
+		dh_m_pool_del = "移出英雄池",
+		dh_m_hide_on = "不推荐担任",
+		dh_s_hidden = "不推荐",
+		dh_s_hidden_none = "在推荐列表中右键点击英雄",
+		dh_s_hidden_clear = "全部恢复",
+		dh_hidden_sub = "不会在划掉的位置上推荐",
+		dh_m_on_pos = "选为",
+		dh_m_taken = "已占用",
+
+		dh_home_sub = "当前没有比赛。可以训练或调整提示",
+		dh_h_train = "训练选人",
+		dh_start = "开始",
+		dh_h_foot_auto = "敌方由脚本根据自己的提示操作。可在设置中更改。",
+		dh_h_foot_manual = "队长模式中由你替敌方选择。可在设置中更改。",
+		dh_h_last = "上一局选人",
+		dh_h_last_foot = "显示在左侧面板上",
+		dh_h_clear = "清空面板",
+		dh_h_clear_sub = "从面板上移除这次训练",
+		dh_clear = "清空",
+		dh_h_training = "训练",
+		dh_h_match = "比赛",
+		dh_h_last_chance = "阵容胜率 %d%%",
+		dh_h_hints = "提示",
+		dh_pool = "我的英雄池",
+		dh_change = "修改",
+		dh_settings = "设置",
+		dh_settings_sub = "数据、提示、选英雄、窗口",
+		dh_open = "打开",
+
+		dh_pool_title = "我的英雄池",
+		dh_pool_boost_sub = "在我方选择的提示中排得更靠前",
+		dh_pool_only_sub = "我方选择的提示中只显示这些英雄",
+		dh_pool_off_sub = "目前不考虑英雄池",
+		dh_pool_boost = "提高排名",
+		dh_pool_only = "只看英雄池",
+		dh_pool_off = "不考虑",
+		dh_pool_clear = "清空英雄池",
+		dh_pool_count = "英雄池中 %d / %d",
+		dh_pool_short_boost = "排名提高",
+		dh_pool_short_only = "只看它们",
+		dh_pool_short_off = "不考虑",
+		dh_attr_str = "力量",
+		dh_attr_agi = "敏捷",
+		dh_attr_int = "智力",
+		dh_attr_all = "全才",
+		dh_hero_1 = "个英雄",
+		dh_hero_2 = "个英雄",
+		dh_hero_5 = "个英雄",
+
+		dh_set_sub = "立即保存",
+		dh_ready = "完成",
+		dh_s_data = "数据",
+		dh_s_rank = "比赛段位",
+		dh_rank_1 = "全部",
+		dh_rank_2 = "传奇+",
+		dh_rank_3 = "万古流芳+",
+		dh_rank_4 = "超凡入圣+",
+		dh_s_hints = "提示",
+		dh_s_count = "列表中的英雄数",
+		dh_s_reasons = "英雄下方的理由",
+		dh_s_reasons_sub = "他克制谁、与谁配合好",
+		dh_s_chance = "阵容胜率",
+		dh_s_pick = "选英雄",
+		dh_s_confirm = "确认选择",
+		dh_s_confirm_sub = "单击选中英雄，用按钮或 Enter 确认",
+		dh_s_captain = "自动当队长",
+		dh_s_captain_sub = "队长模式中立即担任队长",
+		dh_s_train = "训练",
+		dh_s_enemy = "敌方回合",
+		dh_s_enemy_sub = "仅限队长模式",
+		dh_s_enemy_auto = "脚本操作",
+		dh_s_enemy_manual = "手动",
+		dh_s_side = "我方阵营",
+		dh_s_light = "天辉",
+		dh_s_dark = "夜魇",
+		dh_s_first = "先选",
+		dh_s_first_sub = "仅限队长模式",
+		dh_s_first_us = "我方",
+		dh_s_first_them = "敌方",
+		dh_s_train_foot = "阵营和先选从下一次训练开始生效。",
+		dh_s_window = "窗口",
+		dh_s_auto = "选人时自动打开",
+		dh_s_auto_sub = "选人结束后自动关闭",
+		dh_s_blur = "背景模糊",
+		dh_s_blur_power = "模糊强度",
+		dh_s_defaults = "恢复默认设置",
+		dh_s_about = "关于",
+		dh_s_hover = "悬停提示",
+		dh_s_hover_sub = "按钮的作用以及如何选英雄",
+		dh_tip_close = "关闭窗口",
+		dh_tip_settings = "设置",
+		dh_tip_back = "返回",
+		dh_tip_reset = "重新开始训练",
+		dh_tip_undo = "撤销上一步",
+		dh_tip_home = "返回主界面",
+		dh_tip_update = "下载并安装新版本",
+		dh_tip_slot = "点击更改英雄位置",
+		dh_version = "版本 %s",
+		dh_upd_latest = "已是最新版本",
+		dh_upd_checking = "正在检查更新",
+		dh_upd_available = "%s 可用",
+		dh_upd_loading = "正在下载 %s",
+		dh_upd_done = "已安装，正在重启脚本",
+		dh_upd_failed = "更新失败",
+		dh_upd_check_failed = "无法检查更新",
+		dh_upd_check = "检查",
+		dh_upd_install = "更新",
+		dh_upd_retry = "重试",
+		dh_upd_ready = "完成",
+		dh_upd_pill = "更新到 %s",
+		dh_upd_pill_loading = "正在下载",
+		dh_upd_pill_done = "正在重启",
+		dh_upd_bad_file = "下载的文件不是这个脚本",
+		dh_upd_bad_version = "下载到的是 %s 版本，而不是 %s",
+		dh_upd_bad_manifest = "version.json 已损坏",
+		dh_upd_write = "无法写入文件",
+
+		dh_b_row = "物品出装",
+		dh_b_row_sub = "针对当前阵容为我方推荐",
+		dh_b_who = "克制关系",
+		dh_b_who_sub = "对胜率的影响 %，我方对敌方",
+		dh_b_total = "合计",
+		dh_b_build = "出装",
+		dh_b_m_build = "物品出装",
+		dh_b_start = "初始",
+		dh_b_stage1 = "前期",
+		dh_b_stage2 = "中期",
+		dh_b_stage3 = "后期",
+		dh_b_no_role = "这个位置没有出装",
+		dh_b_or = "或%s",
+		dh_b_counter = "针对敌方阵容",
+		dh_b_counter_none = "不需要特别应对",
+		dh_b_extra = "视情况",
+		dh_b_bear = "熊灵",
+		dh_b_pick = "%d%%的比赛会购买",
+		dh_b_data_none = "GitHub 上还没有物品出装",
+		dh_b_no_hero = "这个英雄还没有物品数据",
+		dh_t_save = "可驱散的保命效果",
+		dh_t_evasion = "闪避",
+		dh_t_invis = "隐身",
+		dh_t_draft = "对阵他们时更常购买",
+		dh_data_loading = "正在从 GitHub 加载选人数据",
+		dh_data_error = "无法连接 GitHub",
+		dh_data_empty = "响应为空",
+		dh_data_no_answer = "服务器没有响应",
+		dh_data_not_sent = "请求未发送",
+		dh_data_none = "这个段位还没有数据",
+		dh_data_missing = "GitHub 上还没有数据，每天生成一次",
+		dh_match_1 = "场比赛",
+		dh_match_2 = "场比赛",
+		dh_match_5 = "场比赛",
+		dh_months = "1月,2月,3月,4月,5月,6月,7月,8月,9月,10月,11月,12月",
+		dh_range_same = "{m1}{d1}日至{d2}日",
+		dh_range = "{m1}{d1}日至{m2}{d2}日",
+		dh_s_source = "比赛来源",
+		dh_source_ap = "天梯",
+		dh_pool_none = "没有这个名字的英雄",
+		dh_data_ok = "%s %s，%s",
 	},
 })
 
@@ -1057,7 +1447,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.14",
+	VERSION = "2.0.0-beta.15",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1093,10 +1483,20 @@ local K = {
 		flag = "\u{f024}", finish = "\u{f11e}", bag = "\u{f290}", crown = "\u{f521}", bug = "\u{f188}", close = "\u{f00d}",
 		blur = "\u{f042}", drop = "\u{f043}", eye = "\u{f06e}", bolt = "\u{f0e7}",
 		arrow_down = "\u{f063}", alert = "\u{f06a}", info = "\u{f05a}", pin = "\u{f08d}",
-		shield = "\u{f3ed}", wrench = "\u{f0ad}", store = "\u{f54e}", gift = "\u{f06b}",
+		shield = "\u{f3ed}", wrench = "\u{f0ad}", store = "\u{f54e}", gift = "\u{f06b}", lang = "\u{f1ab}",
 	},
 
 	NEWS = {
+		{
+			v = "2.0.0-beta.15",
+			items = {
+				{ key = "dh_cl_b15roles", glyph = "users", tile = "t_blue", roles = true },
+				{ key = "dh_cl_b15hide", glyph = "ban", tile = "red" },
+				{ key = "dh_cl_b15extra", glyph = "bag", tile = "t_purple", icons = { "blink", "mage_slayer", "silver_edge" } },
+				{ key = "dh_cl_b15lang", glyph = "lang", tile = "t_cyan" },
+				{ key = "dh_cl_b15fix", glyph = "wrench", tile = "t_green" },
+			},
+		},
 		{
 			v = "2.0.0-beta.14",
 			items = {
@@ -1166,7 +1566,7 @@ local K = {
 	FADE = 0.2,
 	DOUBLE_CLICK = 0.35,
 	WHEEL = 112,
-	BOOST = 0.5,
+	BOOST = 1.5,
 	GLASS = 0.3,
 	SINK_ALIVE = 0.4,
 	SINK_TIMEOUT = 1500,
@@ -1211,8 +1611,11 @@ local K = {
 
 local MODEL = {
 	PRIOR = 250,
-	PAIR = 600,
-	POS_MIN = 10,
+	PAIR = 2000,
+	POS_MIN = 15,
+	RISK = 0.3,
+	RISK_TOP = 2,
+	NICHE = 0.05,
 	REASON_MIN = 0.3,
 	THREAT = 0.15,
 	BASE_W = 0.4,
@@ -1223,10 +1626,21 @@ local MODEL = {
 }
 
 local ITEM = {
-	POS_MIN = 100,
+	POS_MIN = 300,
+	SHARE_MIN = 10,
+	RATE = 0.15,
+	LIFT = 1.4,
 	FILL = 0.25,
 	AGHS = 0.3,
-	FOLD_GAP = 10,
+	FOLD_GAP = 5,
+	UPGRADE = 0.15,
+	EXTRA = 0.07,
+	EXTRA_N = 5,
+	BEAR = 0.5,
+	SLOTS = 6,
+	BEAR_HERO = "lone_druid",
+	BEAR_PORTRAIT = "panorama/images/heroes/npc_dota_lone_druid_bear_png.vtex_c",
+	STEP_COST = 1500,
 	EARLY = 12,
 	MID = 25,
 	LATE = 30,
@@ -1238,161 +1652,18 @@ local ITEM = {
 	ICON = "panorama/images/items/%s_png.vtex_c",
 	SCEPTER = "ultimate_scepter",
 	SHARD = "aghanims_shard",
-	THRESHOLD = { magic = 2, phys = 2 },
-	ORDER = { "heal", "save", "evasion", "invis", "units", "passive", "target", "silence", "escape", "magic", "phys" },
+	THRESHOLD = {},
+	ORDER = { "save", "evasion", "invis" },
 	ANSWERS = {
-		heal = { "skadi", "spirit_vessel" },
 		save = { "nullifier" },
-		evasion = { "monkey_king_bar", "bloodthorn" },
+		evasion = { "monkey_king_bar" },
 		invis = { "dust", "ward_sentry", "gem" },
-		units = { "mjollnir", "bfury", "maelstrom", "radiance", "shivas_guard" },
-		passive = { "silver_edge" },
-		target = { "sphere", "lotus_orb" },
-		silence = { "manta", "lotus_orb", "cyclone", "black_king_bar" },
-		escape = { "orchid", "bloodthorn", "rod_of_atos", "gungir", "sheepstick", "abyssal_blade" },
-		magic = { "black_king_bar", "pipe", "glimmer_cape" },
-		phys = { "ghost", "force_staff", "solar_crest", "shivas_guard", "assault", "crimson_guard", "heavens_halberd", "blade_mail", "butterfly" },
 	},
 	CONSUMABLES = { dust = { 1, 2, 3, 4, 5 }, ward_sentry = { 4, 5 } },
 	ENEMY = {
-		heart = "heal", satanic = "heal", bloodstone = "heal=0.5", vladmir = "heal=0.5", holy_locket = "heal=0.5",
-		mekansm = "heal=0.5", guardian_greaves = "heal=0.5", mask_of_madness = "heal=0.5",
-		ghost = "save", glimmer_cape = "save invis=0.5", aeon_disk = "save", wind_waker = "save", cyclone = "save=0.5",
-		ethereal_blade = "save=0.5", solar_crest = "save=0.5",
+		aeon_disk = "save", wind_waker = "save",
 		butterfly = "evasion",
-		invis_sword = "invis", silver_edge = "invis", shadow_amulet = "invis=0.5",
-		manta = "units=0.5",
-		orchid = "silence=0.5", bloodthorn = "silence",
-		sheepstick = "target", abyssal_blade = "target=0.5",
-	},
-	HEROES = {
-		antimage = "escape:antimage_blink phys=0.5",
-		axe = "passive=0.5:axe_counter_helix",
-		bane = "target:bane_fiends_grip",
-		bloodseeker = "heal=0.5:bloodseeker_sanguivore target=0.5:bloodseeker_rupture phys=0.5 silence=0.5:bloodseeker_blood_bath",
-		crystal_maiden = "magic",
-		drow_ranger = "phys silence=0.5:drow_ranger_wave_of_silence passive=0.5:drow_ranger_marksmanship",
-		earthshaker = "magic",
-		juggernaut = "phys heal=0.5:juggernaut_healing_ward",
-		mirana = "magic=0.5 escape=0.5:mirana_leap invis=0.5:mirana_invis",
-		nevermore = "phys magic=0.5",
-		morphling = "escape:morphling_waveform phys=0.5 magic=0.5",
-		phantom_lancer = "units:phantom_lancer_juxtapose phys",
-		puck = "escape:puck_phase_shift magic silence=0.5:puck_waning_rift",
-		pudge = "target:pudge_dismember heal=0.5:pudge_dismember magic=0.5",
-		razor = "phys",
-		sand_king = "magic invis=0.5:sandking_sand_storm",
-		storm_spirit = "escape:storm_spirit_ball_lightning magic",
-		sven = "phys",
-		tiny = "phys=0.5 magic=0.5",
-		vengefulspirit = "phys=0.5",
-		windrunner = "evasion:windrunner_windrun save=0.5:windrunner_windrun escape=0.5:windrunner_windrun phys=0.5",
-		zuus = "magic",
-		kunkka = "phys=0.5 magic=0.5",
-		lina = "magic target=0.5:lina_laguna_blade",
-		lich = "magic",
-		lion = "magic target:lion_voodoo",
-		shadow_shaman = "target:shadow_shaman_shackles magic=0.5",
-		slardar = "phys passive:slardar_bash",
-		tidehunter = "passive=0.5:tidehunter_kraken_shell magic=0.5",
-		witch_doctor = "magic heal=0.5:witch_doctor_voodoo_restoration",
-		riki = "invis:riki_backstab passive=0.5:riki_backstab phys silence=0.5:riki_smoke_screen",
-		enigma = "units=0.5:enigma_demonic_conversion magic",
-		tinker = "magic",
-		sniper = "phys",
-		necrolyte = "heal:necrolyte_death_pulse save:necrolyte_ghost_shroud magic",
-		warlock = "units=0.5:warlock_rain_of_chaos heal=0.5:warlock_shadow_word magic",
-		beastmaster = "target:beastmaster_primal_roar units=0.5:beastmaster_summon_raptor phys=0.5",
-		queenofpain = "escape:queenofpain_blink magic",
-		venomancer = "magic units=0.5:venomancer_plague_ward",
-		faceless_void = "phys passive=0.5:faceless_void_time_lock escape=0.5:faceless_void_time_walk",
-		skeleton_king = "phys heal:skeleton_king_vampiric_spirit",
-		death_prophet = "magic silence:death_prophet_silence heal=0.5:death_prophet_spirit_siphon phys=0.5",
-		phantom_assassin = "phys evasion:phantom_assassin_immaterial passive:phantom_assassin_coup_de_grace",
-		pugna = "magic heal=0.5:pugna_life_drain save=0.5:pugna_decrepify",
-		templar_assassin = "phys invis=0.5:templar_assassin_meld",
-		viper = "magic=0.5 phys=0.5 target=0.5:viper_viper_strike",
-		luna = "phys magic=0.5",
-		dragon_knight = "phys=0.5 heal=0.5:dragon_knight_dragon_blood passive=0.5:dragon_knight_dragon_blood",
-		dazzle = "heal:dazzle_shadow_wave",
-		rattletrap = "magic=0.5",
-		leshrac = "magic",
-		furion = "units:furion_force_of_nature magic=0.5 escape=0.5:furion_teleportation",
-		life_stealer = "phys heal:life_stealer_feast passive=0.5:life_stealer_feast",
-		dark_seer = "units=0.5:dark_seer_wall_of_replica magic=0.5",
-		clinkz = "phys invis:clinkz_wind_walk",
-		omniknight = "heal:omniknight_purification",
-		enchantress = "heal:enchantress_natures_attendants phys=0.5 units=0.5:enchantress_enchant",
-		huskar = "heal:huskar_berserkers_blood passive:huskar_berserkers_blood magic=0.5 silence=0.5:huskar_inner_fire",
-		night_stalker = "phys silence:night_stalker_crippling_fear",
-		broodmother = "units:broodmother_spawn_spiderlings heal=0.5:broodmother_insatiable_hunger phys=0.5",
-		bounty_hunter = "invis:bounty_hunter_wind_walk phys=0.5",
-		weaver = "invis:weaver_shukuchi escape:weaver_time_lapse phys",
-		jakiro = "magic",
-		batrider = "target:batrider_flaming_lasso magic=0.5",
-		chen = "units:chen_holy_persuasion heal=0.5:chen_hand_of_god",
-		spectre = "phys passive:spectre_dispersion units=0.5:spectre_haunt",
-		doom_bringer = "target:doom_bringer_doom magic=0.5",
-		ancient_apparition = "magic",
-		ursa = "phys passive:ursa_fury_swipes",
-		spirit_breaker = "passive=0.5:spirit_breaker_greater_bash phys=0.5 target=0.5:spirit_breaker_nether_strike",
-		gyrocopter = "phys magic=0.5",
-		alchemist = "heal:alchemist_chemical_rage phys",
-		invoker = "magic invis=0.5:invoker_ghost_walk",
-		silencer = "magic silence:silencer_global_silence",
-		obsidian_destroyer = "magic",
-		lycan = "units:lycan_summon_wolves phys",
-		brewmaster = "phys=0.5 magic=0.5 evasion=0.5:brewmaster_drunken_brawler",
-		shadow_demon = "magic=0.5 target=0.5:shadow_demon_disruption",
-		lone_druid = "units:lone_druid_spirit_bear phys",
-		chaos_knight = "units:chaos_knight_phantasm phys",
-		meepo = "units:meepo_divided_we_stand phys=0.5 magic=0.5",
-		treant = "heal:treant_living_armor invis=0.5:treant_natures_guise",
-		ogre_magi = "magic",
-		undying = "heal=0.5:undying_soul_rip units=0.5:undying_tombstone magic=0.5",
-		rubick = "magic=0.5 target=0.5:rubick_telekinesis",
-		disruptor = "magic silence=0.5:disruptor_static_storm",
-		nyx_assassin = "magic invis:nyx_assassin_vendetta",
-		naga_siren = "units:naga_siren_mirror_image phys",
-		keeper_of_the_light = "magic",
-		wisp = "heal:wisp_tether",
-		visage = "units:visage_summon_familiars magic=0.5",
-		slark = "phys escape:slark_shadow_dance heal:slark_shadow_dance passive=0.5:slark_essence_shift",
-		medusa = "phys magic=0.5",
-		troll_warlord = "phys passive=0.5:troll_warlord_fervor",
-		centaur = "magic=0.5 passive=0.5:centaur_return",
-		magnataur = "phys=0.5 magic=0.5",
-		shredder = "heal=0.5:shredder_reactive_armor passive=0.5:shredder_reactive_armor",
-		bristleback = "passive:bristleback_bristleback phys=0.5",
-		tusk = "phys=0.5",
-		skywrath_mage = "magic silence:skywrath_mage_ancient_seal",
-		abaddon = "heal:abaddon_borrowed_time save=0.5:abaddon_aphotic_shield passive=0.5:abaddon_borrowed_time",
-		elder_titan = "magic=0.5",
-		legion_commander = "target:legion_commander_duel phys=0.5 heal=0.5:legion_commander_press_the_attack",
-		ember_spirit = "escape:ember_spirit_fire_remnant phys=0.5 magic=0.5",
-		earth_spirit = "escape=0.5:earth_spirit_rolling_boulder magic",
-		terrorblade = "units:terrorblade_conjure_image phys",
-		phoenix = "magic heal=0.5:phoenix_supernova escape=0.5:phoenix_icarus_dive",
-		oracle = "heal:oracle_purifying_flames magic=0.5",
-		techies = "magic",
-		winter_wyvern = "heal=0.5:winter_wyvern_cold_embrace magic",
-		arc_warden = "phys units=0.5:arc_warden_tempest_double",
-		abyssal_underlord = "magic=0.5",
-		monkey_king = "phys escape=0.5:monkey_king_tree_dance",
-		pangolier = "escape:pangolier_gyroshell magic=0.5 phys=0.5",
-		dark_willow = "magic escape=0.5:dark_willow_shadow_realm",
-		grimstroke = "magic silence=0.5:grimstroke_ink_creature target=0.5:grimstroke_soul_chain",
-		mars = "phys=0.5 magic=0.5",
-		void_spirit = "escape:void_spirit_astral_step magic",
-		snapfire = "magic",
-		hoodwink = "phys=0.5 magic=0.5 escape=0.5:hoodwink_scurry",
-		dawnbreaker = "heal=0.5:dawnbreaker_solar_guardian phys=0.5",
-		marci = "phys heal=0.5:marci_bodyguard",
-		primal_beast = "target:primal_beast_pulverize magic=0.5",
-		muerta = "magic",
-		ringmaster = "magic=0.5",
-		kez = "phys escape:kez_grappling_claw",
-		largo = "magic=0.5",
+		invis_sword = "invis", silver_edge = "invis", shadow_amulet = "invis=0.5", glimmer_cape = "invis=0.5",
 	},
 }
 
@@ -1540,10 +1811,16 @@ local function heroes_n(n) return n .. " " .. plural(n, "dh_hero") end
 local asset = { fonts = {}, images = {}, digits = {}, sizes = {} }
 
 function asset.font(weight)
-	local f = asset.fonts[weight]
+	local cjk = Lc.lang == "cn"
+	local key = cjk and -weight or weight
+	local f = asset.fonts[key]
 	if not f then
-		f = Render.LoadFont("Inter", Enum.FontCreate.FONTFLAG_ANTIALIAS, weight)
-		asset.fonts[weight] = f
+		if cjk then
+			f = Render.LoadFont("Microsoft YaHei", Enum.FontCreate.FONTFLAG_ANTIALIAS, weight >= 600 and 700 or 400)
+		else
+			f = Render.LoadFont("Inter", Enum.FontCreate.FONTFLAG_ANTIALIAS, weight)
+		end
+		asset.fonts[key] = f
 	end
 	return f
 end
@@ -1767,7 +2044,8 @@ function data.set_heroes(list)
 	local by_name = function(a, b) return a.name < b.name end
 	table.sort(data.list, by_name)
 	for _, list in pairs(data.by_attr) do table.sort(list, by_name) end
-	data.shown = nil
+	data.shown, data.roles_from = nil, nil
+	if data.sets.items then data.use_roles(data.sets.items) end
 end
 
 function data.boot()
@@ -1801,8 +2079,12 @@ function data.tick()
 end
 
 function data.prefetch()
-	if data.active then data.stats(data.active()) end
+	if data.active then
+		data.stats(data.active())
+		data.model(data.active())
+	end
 	data.items()
+	data.counters()
 end
 
 function data.parse(text, time)
@@ -1872,6 +2154,30 @@ function data.parse_items(text, time)
 		local e = entry(h, p)
 		if e then e.path[#e.path + 1] = { id = tonumber(id), min = tonumber(m) / 10 } end
 	end
+	local gaps = {}
+	for _, by_pos in pairs(it.hero) do
+		for _, e in pairs(by_pos) do
+			local at = {}
+			for _, x in ipairs(e.path) do at[x.id] = at[x.id] or x.min end
+			for c, m in pairs(at) do
+				for _, x in ipairs(it.up[c] or {}) do
+					if at[x] and at[x] > m then
+						local k = c * 65536 + x
+						gaps[k] = gaps[k] or {}
+						table.insert(gaps[k], at[x] - m)
+					end
+				end
+			end
+		end
+	end
+	it.gap = {}
+	for k, list in pairs(gaps) do
+		if #list >= 2 then
+			table.sort(list)
+			local n = #list
+			it.gap[k] = { n = n, v = n % 2 == 1 and list[(n + 1) // 2] or (list[n // 2] + list[n // 2 + 1]) / 2 }
+		end
+	end
 	for h, p, id, pr in text:gmatch("\nf (%d+) (%d) (%d+) (%d+)") do
 		local e = entry(h, p)
 		if e then e.final[tonumber(id)] = tonumber(pr) / 1000 end
@@ -1908,7 +2214,57 @@ function data.stats(key, parse)
 	return cur or nil
 end
 
-function data.items() return data.stats("items", data.parse_items) end
+function data.parse_model(text, time)
+	local m = { time = time, c = (tonumber(text:match("\nc (%-?%d+)")) or 0) / 10000, b = {}, s = {}, v = {} }
+	for id, x in text:gmatch("\nb (%d+) (%-?%d+)") do m.b[tonumber(id)] = tonumber(x) / 10000 end
+	for tag, a, b, x in text:gmatch("\n([sv]) (%d+) (%d+) (%-?%d+)") do
+		m[tag][tonumber(a) * 256 + tonumber(b)] = tonumber(x) / 10000
+	end
+	return m
+end
+
+function data.parse_counters(text, time)
+	local ct = { time = time, e = {}, p = {}, bear = {} }
+	for item, x in text:gmatch("\nk ([%w_]+) (%d+)") do ct.bear[item] = tonumber(x) / 1000 end
+	for item, id, x in text:gmatch("\ne ([%w_]+) (%d+) (%d+)") do
+		ct.e[item] = ct.e[item] or {}
+		ct.e[item][tonumber(id)] = tonumber(x) / 100
+	end
+	for id, tier, item, x in text:gmatch("\np (%d+) (%d) ([%w_]+) (%d+)") do
+		local k = tonumber(id) * 10 + tonumber(tier)
+		ct.p[k] = ct.p[k] or {}
+		ct.p[k][item] = tonumber(x) / 1000
+	end
+	return ct
+end
+
+function data.use_roles(it)
+	if not it or data.roles_from == it then return end
+	data.roles_from = it
+	for _, hero in pairs(data.heroes) do
+		local by_pos = hero.id and it.hero[hero.id]
+		if by_pos then
+			local shares, sum, main = {}, 0, 1
+			for p = 1, 5 do
+				shares[p] = by_pos[p] and by_pos[p].share or 0
+				sum = sum + shares[p]
+			end
+			if sum > 0 then
+				for p = 2, 5 do if shares[p] > shares[main] then main = p end end
+				hero.shares, hero.pos = shares, main
+			end
+		end
+	end
+end
+
+function data.items()
+	local it = data.stats("items", data.parse_items)
+	if it then data.use_roles(it) end
+	return it
+end
+
+function data.model(key) return data.stats("model_" .. key, data.parse_model) end
+function data.counters() return data.stats("counters", data.parse_counters) end
 
 function data.show(st)
 	if data.shown == st then return end
@@ -2074,6 +2430,7 @@ local function logit(p) return math.log(p / (1 - p)) end
 local function sigmoid(x) return 1 / (1 + math.exp(-x)) end
 
 function calc.base(st, id)
+	if st.m then return st.m.b[id] or 0 end
 	local v = st.base[id]
 	if not v then
 		v = logit(((st.hw[id] or 0) + MODEL.PRIOR * 0.5) / ((st.hg[id] or 0) + MODEL.PRIOR))
@@ -2088,11 +2445,16 @@ end
 
 function calc.with(st, a, b)
 	local k = a < b and a * 256 + b or b * 256 + a
+	if st.m then return st.m.s[k] or 0 end
 	return calc.pair(st.sg[k] or 0, st.sw[k] or 0, sigmoid(calc.base(st, a) + calc.base(st, b)))
 end
 
 function calc.vs(st, a, b)
 	local k = a < b and a * 256 + b or b * 256 + a
+	if st.m then
+		local v = st.m.v[k] or 0
+		return a < b and v or -v
+	end
 	local g, w = st.vg[k] or 0, st.vw[k] or 0
 	if a > b then w = g - w end
 	return calc.pair(g, w, sigmoid(calc.base(st, a) - calc.base(st, b)))
@@ -2115,7 +2477,11 @@ function calc.draft(st, ours, theirs)
 	return v
 end
 
-function calc.chance(st, ours, theirs) return sigmoid(calc.draft(st, ours, theirs)) end
+function calc.chance(st, ours, theirs, side)
+	local x = calc.draft(st, ours, theirs)
+	if st.m and side then x = x + (side == "r" and st.m.c or -st.m.c) end
+	return sigmoid(x)
+end
 
 function calc.why(groups, order)
 	local why = {}
@@ -2129,11 +2495,16 @@ function calc.why(groups, order)
 	return why
 end
 
-function calc.row(st, hero, ours, theirs, base, busy, need)
+function calc.hidden(h, p)
+	local x = data.hidden and data.hidden[h]
+	return x ~= nil and x[p] == true
+end
+
+function calc.row(st, hero, ours, theirs, base, busy, need, risk)
 	local function pp(x) return (sigmoid(base + x) - sigmoid(base)) * 100 end
 	local id, cover = hero.id, 0
 	local total = calc.base(st, id)
-	local groups = { close = {}, vs = {}, with = {}, weak = {}, badwith = {} }
+	local groups = { close = {}, vs = {}, with = {}, weak = {}, badwith = {}, risk = {} }
 	for _, b in ipairs(theirs) do
 		local x = calc.vs(st, id, b)
 		total = total + x
@@ -2150,22 +2521,40 @@ function calc.row(st, hero, ours, theirs, base, busy, need)
 		local v = pp(x)
 		if math.abs(v) >= MODEL.REASON_MIN then table.insert(groups[v > 0 and "with" or "badwith"], { data.by_id[a].h, v }) end
 	end
-	local why = calc.why(groups, { "close", "vs", "with", "weak", "badwith" })
+	local pick = st.n > 0 and (st.hg[id] or 0) / st.n or 0
+	local k = -(1 - MODEL.BASE_W * math.min(1, pick / MODEL.NICHE)) * pp(calc.base(st, id)) + MODEL.COVER * cover
+	if risk then
+		local top = {}
+		for _, y in ipairs(risk.foes) do
+			if y.id ~= id then
+				local x = calc.vs(st, y.id, id)
+				if x > 0 then top[#top + 1] = { y.h, x } end
+			end
+		end
+		table.sort(top, function(p, q) return p[2] > q[2] end)
+		local sum = 0
+		for i = 1, math.min(risk.n, MODEL.RISK_TOP, #top) do sum = sum + top[i][2] end
+		k = k - MODEL.RISK * pp(sum)
+		local v = top[1] and -pp(top[1][2])
+		if v and -v >= MODEL.REASON_MIN then groups.risk = { { top[1][1], v } } end
+	end
+	local why = calc.why(groups, { "close", "vs", "with", "weak", "badwith", "risk" })
 	local pos = hero.pos
 	if busy then
 		local best = -1
+		pos = nil
 		for p = 1, 5 do
-			if not busy[p] and hero.shares[p] >= MODEL.POS_MIN and hero.shares[p] > best then pos, best = p, hero.shares[p] end
+			if not busy[p] and hero.shares[p] >= MODEL.POS_MIN and hero.shares[p] > best and not calc.hidden(hero.h, p) then pos, best = p, hero.shares[p] end
 		end
 	end
 	local d = pp(total)
 	return {
-		h = hero.h, d = d, k = d - (1 - MODEL.BASE_W) * pp(calc.base(st, id)) + MODEL.COVER * cover,
-		pos = pos, share = hero.shares[pos], why = why,
+		h = hero.h, d = d, k = d + k, pos = pos, share = pos and hero.shares[pos], why = why,
 	}
 end
 
 function calc.lane(st, row, id, ours, theirs, pos, base)
+	if not row.pos then return row end
 	local function pp(x) return (sigmoid(base + x) - sigmoid(base)) * 100 end
 	local total, found = 0, false
 	local groups = { vs = {}, with = {}, weak = {}, badwith = {} }
@@ -2189,7 +2578,7 @@ function calc.lane(st, row, id, ours, theirs, pos, base)
 	}
 end
 
-function calc.step(st, ours, theirs, busy, lane)
+function calc.step(st, ours, theirs, busy, lane, risk)
 	local base = (#ours + #theirs > 0) and calc.draft(st, ours, theirs) or 0
 	local out = { c = #ours + #theirs > 0, p = busy ~= nil, r = {} }
 	local need = {}
@@ -2199,7 +2588,7 @@ function calc.step(st, ours, theirs, busy, lane)
 		need[b] = math.max(0, math.min(1, threat / MODEL.THREAT))
 	end
 	for _, hero in ipairs(data.list) do
-		if hero.id then out.r[#out.r + 1] = calc.row(st, hero, ours, theirs, base, busy, need) end
+		if hero.id then out.r[#out.r + 1] = calc.row(st, hero, ours, theirs, base, busy, need, risk) end
 	end
 	local general = out.r
 	if lane then
@@ -2214,7 +2603,7 @@ function calc.step(st, ours, theirs, busy, lane)
 			local list = {}
 			for _, r in ipairs(general) do
 				local hero = data.heroes[r.h]
-				if hero.shares[p] >= MODEL.POS_MIN then
+				if hero.shares[p] >= MODEL.POS_MIN and not calc.hidden(r.h, p) then
 					local x = { h = r.h, d = r.d, k = r.k, pos = p, share = hero.shares[p], why = r.why }
 					list[#list + 1] = lane and calc.lane(st, x, hero.id, ours, theirs, lane, base) or x
 				end
@@ -2243,6 +2632,11 @@ local function load_settings()
 	end
 	SET.pool = {}
 	for h in cfg.read("pool", ""):gsub("^p:", ""):gmatch("[%w_]+") do SET.pool[#SET.pool + 1] = h end
+	data.hidden, data.hide_sig = {}, cfg.read("hide", ""):gsub("^h:", "")
+	for h, p in data.hide_sig:gmatch("([%w_]+):(%d)") do
+		data.hidden[h] = data.hidden[h] or {}
+		data.hidden[h][tonumber(p)] = true
+	end
 end
 
 local function save_settings()
@@ -2250,6 +2644,20 @@ local function save_settings()
 	for k in pairs(K.DEF) do parts[#parts + 1] = k .. "=" .. tostring(SET[k]) end
 	cfg.write("settings", table.concat(parts, ";"))
 	cfg.write("pool", "p:" .. table.concat(SET.pool, ","))
+	local parts = {}
+	for h, roles in pairs(data.hidden) do
+		for p in pairs(roles) do parts[#parts + 1] = h .. ":" .. p end
+	end
+	table.sort(parts)
+	data.hide_sig = table.concat(parts, ",")
+	cfg.write("hide", "h:" .. data.hide_sig)
+end
+
+local function toggle_hide(h, p)
+	data.hidden[h] = data.hidden[h] or {}
+	data.hidden[h][p] = not data.hidden[h][p] or nil
+	if not next(data.hidden[h]) then data.hidden[h] = nil end
+	save_settings()
 end
 
 load_settings()
@@ -2361,9 +2769,54 @@ end
 function draft.set_key() return SET.source .. "_" .. K.RANKS[SET.rank] end
 
 function draft.stats()
-	local st = data.stats(draft.set_key())
+	local key = draft.set_key()
+	local st = data.stats(key)
+	if st then st.m = data.model(key) end
+	data.items()
 	data.show(st)
 	return st
+end
+
+function draft.side() return S.mode == "ap" and S.ap.us or S.cm.us end
+
+function draft.busy()
+	local role = draft.my_role()
+	if not role then return draft.our_pos() end
+	local busy = {}
+	for p = 1, 5 do busy[p] = p ~= role end
+	return busy
+end
+
+function draft.foe_picks()
+	if S.mode == "ap" then
+		local n = 0
+		for _ in ipairs(S.ap.theirs) do n = n + 1 end
+		return 5 - n
+	end
+	local n = 0
+	for j = draft.cm_step() + 1, #K.ORDER do
+		if kind(j) == "P" and side_of(S.cm.fp, j) ~= S.cm.us then n = n + 1 end
+	end
+	return n
+end
+
+function draft.risk(theirs, pos)
+	local n = draft.foe_picks()
+	if n <= 0 then return nil end
+	local taken = {}
+	for _, id in ipairs(theirs) do if pos[id] then taken[pos[id]] = true end end
+	local used, foes = draft.used(), {}
+	for _, hero in ipairs(data.list) do
+		if hero.id and not used[hero.h] then
+			for p = 1, 5 do
+				if not taken[p] and hero.shares[p] >= MODEL.POS_MIN then
+					foes[#foes + 1] = hero
+					break
+				end
+			end
+		end
+	end
+	return { n = n, foes = foes }
 end
 
 function draft.step()
@@ -2374,14 +2827,12 @@ function draft.step()
 	local ban = draft.is_ban()
 	local our_turn = S.mode == "ap" or draft.cm_ours()
 	local mine = our_turn ~= ban
-	local busy = (mine and not ban) and draft.our_pos() or nil
-	local role = busy and draft.my_role()
-	if role then
-		busy = {}
-		for p = 1, 5 do busy[p] = p ~= role end
-	end
+	local busy = (mine and not ban) and draft.busy() or nil
+	local risk = busy and draft.risk(theirs, pos) or nil
 	local lane = busy and SET.goal == "lane" and pos or nil
-	local parts = { draft.set_key(), st.time, mine and "o" or "t", SET.goal, busy and "p" or "-" }
+	local roles = data.roles_from
+	local parts = { draft.set_key(), st.time, st.m and st.m.time or "-", roles and roles.time or "-", mine and "o" or "t", SET.goal,
+		busy and "p" or "-", risk and risk.n or 0, risk and #risk.foes or 0, tostring(draft.my_role()), data.hide_sig or "" }
 	for _, list in ipairs({ ours, theirs }) do
 		for _, id in ipairs(list) do parts[#parts + 1] = id .. ":" .. tostring(pos[id]) end
 		parts[#parts + 1] = "/"
@@ -2389,7 +2840,7 @@ function draft.step()
 	local key = table.concat(parts, "|")
 	if S.calc_key ~= key then
 		S.calc_key = key
-		S.calc = mine and calc.step(st, ours, theirs, busy, lane) or calc.step(st, theirs, ours, nil)
+		S.calc = mine and calc.step(st, ours, theirs, busy, lane, risk) or calc.step(st, theirs, ours, nil)
 	end
 	if S.in_frame then S.frame_step = S.frame end
 	return S.calc
@@ -2436,7 +2887,7 @@ function draft.chance()
 	local st = draft.stats()
 	local ours, theirs = draft.teams()
 	if not st or #ours + #theirs == 0 or (S.mode == "ap" and #theirs == 0) then return nil end
-	return calc.chance(st, ours, theirs)
+	return calc.chance(st, ours, theirs, draft.side())
 end
 
 function draft.row_for(h)
@@ -2496,9 +2947,9 @@ function draft.build_rows(st)
 	if draft.positional() and st.f and S.filter > 0 then
 		for _, r in ipairs(st.f[S.filter] or {}) do if ok(r) then list[#list + 1] = r end end
 	elseif draft.positional() and st.f then
-		local busy, seen, extra = draft.our_pos(), {}, {}
+		local busy, seen, extra = draft.busy(), {}, {}
 		for _, r in ipairs(st.r) do
-			if ok(r) and not (r.pos and busy[r.pos]) then
+			if ok(r) and r.pos and not busy[r.pos] then
 				list[#list + 1] = r
 				seen[r.h] = true
 			end
@@ -2539,11 +2990,14 @@ function draft.my_role()
 	return S.mode == "ap" and draft.live() and live.d and live.d.my_role or nil
 end
 
-function draft.free_pos(p)
+function draft.free_pos(p, hero)
 	local busy = draft.our_pos()
 	if p and not busy[p] then return p end
-	for q = 1, 5 do if not busy[q] then return q end end
-	return nil
+	local best = nil
+	for q = 1, 5 do
+		if not busy[q] and (not best or (hero and hero.shares[q] > hero.shares[best])) then best = q end
+	end
+	return best
 end
 
 function draft.pos_for(h)
@@ -2552,12 +3006,15 @@ function draft.pos_for(h)
 		local role = draft.my_role()
 		if role and S.filter == 0 then return role end
 		local r = draft.row_for(h)
-		return draft.free_pos(S.filter > 0 and S.filter or (r and r.pos) or (hero and hero.pos))
+		return draft.free_pos(S.filter > 0 and S.filter or (r and r.pos) or (hero and hero.pos), hero)
 	end
 	local i = draft.cm_step()
 	if i > #K.ORDER or kind(i) ~= "P" then return nil end
 	local planned = hero and hero.pos
-	if side_of(S.cm.fp, i) == S.cm.us then return draft.free_pos(S.filter > 0 and S.filter or planned) end
+	if side_of(S.cm.fp, i) == S.cm.us then
+		local r = S.filter == 0 and draft.row_for(h)
+		return draft.free_pos(S.filter > 0 and S.filter or (r and r.pos) or planned, hero)
+	end
 	local busy = {}
 	for j, _ in ipairs(S.cm.picks) do
 		if kind(j) == "P" and side_of(S.cm.fp, j) ~= S.cm.us and S.cm.pos[j] then busy[S.cm.pos[j]] = true end
@@ -2646,7 +3103,7 @@ function draft.ap_reveal(upto)
 	for _ = #S.ap.theirs + 1, upto do
 		local ours, theirs = draft.teams()
 		for _, r in ipairs(calc.step(st, theirs, ours, taken).r) do
-			if not used[r.h] and not taken[r.pos] then
+			if not used[r.h] and r.pos and not taken[r.pos] then
 				S.ap.theirs[#S.ap.theirs + 1] = { h = r.h, p = r.pos }
 				used[r.h], taken[r.pos] = true, true
 				break
@@ -3351,7 +3808,8 @@ function inv.tick()
 	local now = os.clock()
 	if now < inv.next_read then return end
 	inv.next_read = now + ITEM.INV_READ
-	if live.match ~= inv.match then inv.match, inv.items, inv.sig = live.match, {}, "" end
+	local match = Engine.IsInGame() and (live.match or "local") or nil
+	if match ~= inv.match then inv.match, inv.items, inv.sig = match, {}, "" end
 	if not inv.match then return end
 	local me = Heroes.GetLocal()
 	if not me then return end
@@ -3381,7 +3839,7 @@ function inv.tick()
 	inv.sig = table.concat(parts, ";")
 end
 
-local build = { team = {}, me = nil, names = {}, abilities = {}, rules = nil, cache = {}, cached = 0 }
+local build = { team = {}, me = nil, names = {}, rules = nil, cache = {}, cached = 0 }
 
 function build.item_name(name)
 	local s = build.names[name]
@@ -3389,16 +3847,6 @@ function build.item_name(name)
 		local ok, v = pcall(GameLocalizer.FindItem, "item_" .. name)
 		s = ok and type(v) == "string" and v ~= "" and v or name
 		build.names[name] = s
-	end
-	return s
-end
-
-function build.ability_name(ab)
-	local s = build.abilities[ab]
-	if not s then
-		local ok, v = pcall(GameLocalizer.FindAbility, ab)
-		s = ok and type(v) == "string" and v or ""
-		build.abilities[ab] = s
 	end
 	return s
 end
@@ -3413,8 +3861,7 @@ function build.get_rules()
 		end
 		return out
 	end
-	local rules = { heroes = {}, enemy = {} }
-	for h, s in pairs(ITEM.HEROES) do rules.heroes[h] = parse(s) end
+	local rules = { enemy = {} }
 	for name, s in pairs(ITEM.ENEMY) do rules.enemy[name] = parse(s) end
 	build.rules = rules
 	return rules
@@ -3433,7 +3880,6 @@ function build.threats(enemies)
 			p.w = p.w + w
 			if what and what ~= "" then p.what[#p.what + 1] = what end
 		end
-		for _, r in ipairs(rules.heroes[e] or {}) do add(r.tag, r.w, r.ab and build.ability_name(r.ab)) end
 		local own = inv.items[e]
 		if own then
 			for name in pairs(own.set) do
@@ -3519,6 +3965,38 @@ function build.route(it, e, in_start)
 		if not upgraded(i) then build.add(route, x) end
 	end
 	return route
+end
+
+function build.steps(it, route, pr, mins)
+	local list = {}
+	for _, x in ipairs(route.list) do list[#list + 1] = x end
+	for _, x in ipairs(list) do
+		local id = it.by_name[x.name]
+		for _, up in ipairs(id and it.up[id] or {}) do
+			local name = build.base_name(it, up)
+			if name and not route.at[name] and (pr[up] or 0) >= ITEM.UPGRADE and mins[up] then
+				build.add(route, { name = name, min = mins[up], q = 1 })
+			end
+		end
+	end
+	for _, x in ipairs(list) do
+		local id = it.by_name[x.name]
+		local best, has = nil, false
+		for c, ups in pairs(it.up) do
+			for _, up in ipairs(ups) do
+				if up == id then
+					local name = build.base_name(it, c)
+					if name and route.at[name] then has = true end
+					local g = it.gap[c * 65536 + id]
+					local m = it.meta[c]
+					if g and g.v > ITEM.FOLD_GAP and m and m.cost >= ITEM.STEP_COST and (not best or g.n > best.n) then
+						best = { name = name, n = g.n, min = x.min - g.v }
+					end
+				end
+			end
+		end
+		if best and not has then build.add(route, { name = best.name, min = best.min, q = 1 }) end
+	end
 end
 
 function build.add(route, x)
@@ -3607,16 +4085,70 @@ function build.stages(plan, path)
 	end
 end
 
+function build.role_ok(e)
+	return e ~= nil and e.n >= ITEM.POS_MIN and e.share >= ITEM.SHARE_MIN
+end
+
+function build.ids(list)
+	local out = {}
+	for _, h in ipairs(list) do
+		local hero = data.heroes[h]
+		if hero and hero.id then out[#out + 1] = hero.id end
+	end
+	return out
+end
+
+function build.versus(ct, it, hero, pos, enemies, pool, route, when)
+	local cons, all, out = ct.p[hero.id * 10 + (pos <= 3 and 1 or 2)] or {}, {}, {}
+	for name, by in pairs(ct.e) do
+		local id = it.by_name[name]
+		local mult, src = 1, {}
+		for _, e in ipairs(enemies) do
+			local x = by[e]
+			if x then
+				mult = mult * x
+				src[#src + 1] = { h = data.by_id[e].h, w = x, what = { string.format("x%.1f", x) } }
+			end
+		end
+		if id and mult >= ITEM.LIFT and not route.at[name] then
+			local base = cons[name] or pool[id] or 0
+			local c = { name = name, id = id, base = base, score = math.min(0.95, base * mult) - base, tags = { "draft" }, src = src, by_hero = {} }
+			all[name] = c
+			if base > 0 and base * mult >= ITEM.RATE then out[#out + 1] = c end
+		end
+	end
+	table.sort(out, function(p, q) return p.score > q.score end)
+	local list, seen = {}, {}
+	for _, c in ipairs(out) do
+		for name, part in pairs(all) do
+			if not seen[name] and part.base > 0 and when(c.name) - when(name) > ITEM.FOLD_GAP then
+				for _, up in ipairs(it.up[part.id] or {}) do
+					if up == c.id and not seen[name] then
+						seen[name] = true
+						list[#list + 1] = part
+					end
+				end
+			end
+		end
+		if not seen[c.name] then
+			seen[c.name] = true
+			list[#list + 1] = c
+		end
+	end
+	return list
+end
+
 function build.plan(h, pos, enemies)
 	local it, hero = data.items(), data.heroes[h]
 	if not it or not hero or not hero.id then return nil end
-	local key = table.concat({ h, tostring(pos), table.concat(enemies, ","), inv.sig, tostring(it.time) }, "|")
+	local ct = data.counters()
+	local key = table.concat({ h, tostring(pos), table.concat(enemies, ","), inv.sig, tostring(it.time), tostring(ct and ct.time) }, "|")
 	if build.cache[key] then return build.cache[key] end
 	if build.cached >= 16 then build.cache, build.cached = {}, 0 end
-	local plan = { key = key, has = false, start = {}, stages = { {}, {}, {} }, counters = {} }
+	local plan = { key = key, has = false, start = {}, stages = { {}, {}, {} }, counters = {}, extra = {} }
 	build.cache[key], build.cached = plan, build.cached + 1
 	local e = it.hero[hero.id] and it.hero[hero.id][pos]
-	if not e or e.n < ITEM.POS_MIN then
+	if not build.role_ok(e) then
 		plan.no_role = true
 		return plan
 	end
@@ -3629,6 +4161,7 @@ function build.plan(h, pos, enemies)
 		local id = it.by_name[name]
 		if id and (pr[id] or 0) >= ITEM.AGHS then build.add(route, { name = name, min = mins[id] or ITEM.LATE, q = 1 }) end
 	end
+	build.steps(it, route, pr, mins)
 
 	local pool = {}
 	for id, p in pairs(e.final) do pool[id] = p end
@@ -3648,7 +4181,12 @@ function build.plan(h, pos, enemies)
 		local id = it.by_name[name]
 		return (id and (mins[id] or it.typical[id])) or (ITEM.CONSUMABLES[name] and ITEM.EARLY - 1) or ITEM.LATE
 	end
-	for i, c in ipairs(build.counters(enemies, fits, when)) do
+	local list, seen = ct and build.versus(ct, it, hero, pos, build.ids(enemies), pool, route, when) or {}, {}
+	for _, c in ipairs(list) do seen[c.name] = true end
+	for _, c in ipairs(build.counters(enemies, fits, when)) do
+		if not seen[c.name] then list[#list + 1] = c end
+	end
+	for i, c in ipairs(list) do
 		if i > ITEM.COUNTERS then break end
 		table.sort(c.src, function(p, q) return p.w > q.w end)
 		plan.counters[i] = c
@@ -3656,7 +4194,117 @@ function build.plan(h, pos, enemies)
 	end
 
 	build.stages(plan, route.list)
+	build.extra(it, e, plan, route, in_start)
+	build.levels(it, e, plan)
+	if h == ITEM.BEAR_HERO and ct and next(ct.bear) then
+		plan.split = true
+		for _, list in ipairs({ plan.start, plan.stages[1], plan.stages[2], plan.stages[3], plan.extra }) do
+			for _, x in ipairs(list) do
+				local v, m = ct.bear[x.name], it.meta[it.by_name[x.name] or -1]
+				if v then x.bear = v > ITEM.BEAR else x.bear = m ~= nil and m.cost >= ITEM.STEP_COST end
+			end
+		end
+		build.share_start(plan)
+	end
 	return plan
+end
+
+function build.share_start(plan)
+	local used = 0
+	for _, x in ipairs(plan.start) do
+		if not x.bear then used = used + (x.q or 1) end
+	end
+	local over = used - ITEM.SLOTS
+	while over > 0 do
+		local best = nil
+		for _, x in ipairs(plan.start) do
+			if not x.bear and (x.q or 1) > 1 and (not best or x.q > best.q) then best = x end
+		end
+		if not best then break end
+		local n = math.min(over, best.q - 1)
+		best.q, over = best.q - n, over - n
+		plan.start[#plan.start + 1] = { name = best.name, q = n, bear = true }
+	end
+end
+
+function build.levels(it, e, plan)
+	local top = {}
+	local function seen(id, pr)
+		local m = it.meta[id]
+		if not m then return end
+		local base, n = m.name:match("^(.-)_(%d)$")
+		if not base or base ~= build.base_name(it, id) then return end
+		if pr ~= nil and pr < ITEM.EXTRA then return end
+		n = tonumber(n)
+		if not top[base] or n > top[base].n then top[base] = { n = n, name = m.name } end
+	end
+	for _, x in ipairs(e.path) do seen(x.id) end
+	for _, list in ipairs({ e.core, e.mid }) do
+		for _, x in ipairs(list) do seen(x.id, x.pr) end
+	end
+	for _, list in ipairs({ plan.stages[1], plan.stages[2], plan.stages[3], plan.extra }) do
+		for _, x in ipairs(list) do
+			if top[x.name] then x.name = top[x.name].name end
+		end
+	end
+end
+
+function build.sections(plan)
+	local lists = { plan.start, plan.stages[1], plan.stages[2], plan.stages[3], plan.extra }
+	local out = {}
+	for _, bear in ipairs(plan.split and { false, true } or { false }) do
+		local sec = { who = plan.split and (bear and "bear" or "druid") or nil, rows = {} }
+		for i, src in ipairs(lists) do
+			local list = {}
+			for _, x in ipairs(src) do
+				if not plan.split or (x.bear == true) == bear then list[#list + 1] = x end
+			end
+			if #list > 0 or (i == 1 and not plan.split) then sec.rows[#sec.rows + 1] = { i = i, list = list } end
+		end
+		if #sec.rows > 0 then out[#out + 1] = sec end
+	end
+	return out
+end
+
+function build.who(who)
+	if who == "bear" then return asset.image(ITEM.BEAR_PORTRAIT), L("dh_b_bear") end
+	local hero = data.heroes[ITEM.BEAR_HERO]
+	return asset.portrait(ITEM.BEAR_HERO), hero and hero.name or ITEM.BEAR_HERO
+end
+
+function build.extra(it, e, plan, route, in_start)
+	local skip, ids = {}, {}
+	for _, x in ipairs(route.list) do
+		local id = it.by_name[x.name]
+		if id then ids[id] = true end
+	end
+	for c, ups in pairs(it.up) do
+		for _, up in ipairs(ups) do
+			if ids[up] then skip[c] = true end
+		end
+	end
+	local list, by = {}, {}
+	for _, x in ipairs(e.mid) do
+		local name = build.base_name(it, x.id)
+		local m = it.meta[x.id]
+		if name and m and m.cost >= ITEM.STEP_COST and x.pr >= ITEM.EXTRA and not route.at[name] and not skip[x.id] and not in_start[x.id] then
+			local old = by[name]
+			if not old then
+				by[name] = { id = x.id, name = name, min = x.min, q = 1, pr = x.pr }
+				list[#list + 1] = by[name]
+			elseif x.pr > old.pr then
+				old.id, old.min, old.pr = x.id, x.min, x.pr
+			end
+		end
+	end
+	local picked = {}
+	for _, x in ipairs(list) do picked[x.id] = true end
+	table.sort(list, function(p, q) return p.pr > q.pr end)
+	for _, x in ipairs(list) do
+		local up = false
+		for _, p in ipairs(it.up[x.id] or {}) do up = up or picked[p] == true end
+		if not up and #plan.extra < ITEM.EXTRA_N then plan.extra[#plan.extra + 1] = x end
+	end
 end
 
 function build.current()
@@ -3793,7 +4441,7 @@ function g.text(font, size, str, x, cy, c, a, align)
 	return ts.x / g.s
 end
 function g.fit(weight, size, str, max_w)
-	local key = weight .. ":" .. size .. ":" .. math.floor(max_w) .. ":" .. str
+	local key = (Lc.lang or "") .. ":" .. weight .. ":" .. size .. ":" .. math.floor(max_w) .. ":" .. str
 	local out = g.fits[key]
 	if out then return out end
 	local font = asset.font(weight)
@@ -4187,7 +4835,7 @@ function view.toolbar()
 		view.search(right, 12)
 		right = right - 8
 	end
-	local in_set = S.view == "set" or S.view == "pool"
+	local in_set = S.view == "set" or S.view == "pool" or S.view == "hidden"
 	right = right - 32
 	view.button_icon("gear", right, "tb_gear", function()
 		S.menu, S.sel = nil, nil
@@ -4300,6 +4948,10 @@ function view.head()
 		title, done_btn = L("dh_pool_title"), "poolback"
 		add(heroes_n(#SET.pool), true)
 		add(L(SET.pool_mode == "only" and "dh_pool_only_sub" or (SET.pool_mode == "off" and "dh_pool_off_sub" or "dh_pool_boost_sub")))
+	elseif S.view == "hidden" then
+		title, done_btn = L("dh_s_hidden"), "hiddenback"
+		add(heroes_n(#view.hidden_heroes()), true)
+		add(L("dh_hidden_sub"))
 	elseif S.view == "news" then
 		title, done_btn = L("dh_news"), "newsback"
 		add(K.NEWS[1].v, true)
@@ -4379,7 +5031,7 @@ function view.head()
 		if hit.is(id) then g.rect(right - w, K.TB + 37, w, 24, { 10, 132, 255, 36 }, 6) end
 		g.text(F(600), 15, L("dh_ready"), right - 6, K.TB + 49, C.blue, 1, "r")
 		hit.add(right - w, K.TB + 37, w, 24, id, { click = function()
-			S.view = done_btn == "poolback" and S.pool_ret or (done_btn == "buildback" and S.b_ret or (done_btn == "newsback" and S.news_ret or S.ret))
+			S.view = done_btn == "hiddenback" and "set" or done_btn == "poolback" and S.pool_ret or (done_btn == "buildback" and S.b_ret or (done_btn == "newsback" and S.news_ret or S.ret))
 		end })
 	end
 	local cx, cy = x, K.TB + 79
@@ -4841,6 +5493,50 @@ function view.chevron(label, id)
 	end
 end
 
+function view.hidden_heroes()
+	local list = {}
+	for h in pairs(data.hidden) do
+		if data.heroes[h] then list[#list + 1] = data.heroes[h] end
+	end
+	table.sort(list, function(p, q) return p.name < q.name end)
+	return list
+end
+
+function view.hidden_short()
+	local n = #view.hidden_heroes()
+	return n > 0 and heroes_n(n) or L("dh_s_hidden_none")
+end
+
+function view.hidden_view(y, a)
+	local x, list = K.CX, view.hidden_heroes()
+	if #list == 0 then return view.text_block(L("dh_s_hidden_none"), y + 20, a) + 20 end
+	local id = "hidden_clear"
+	g.text(F(400), 13, L("dh_s_hidden_clear"), x + K.CW - 6, y + 14, hit.is(id) and C.text or C.blue, a, "r")
+	hit.add(x + K.CW - 140, y, 140, 28, id, { click = function() data.hidden = {}; save_settings() end })
+	local top = y + 40
+	g.rect(x, top, K.CW, #list * 50, C.card, 12, a)
+	local bw, gap = 36, 6
+	local bx = x + K.CW - K.P - 5 * bw - 4 * gap
+	for n, hero in ipairs(list) do
+		local ry = top + (n - 1) * 50
+		if n > 1 then g.rect(x + 82, ry, K.CW - 82, 1, C.sep2, 0, a) end
+		g.image(asset.portrait(hero.h), x + K.P, ry + 10, 54, 30, 6, a)
+		g.text(F(600), 14, hero.name, x + K.P + 66, ry + 25, C.text, a)
+		for p = 1, 5 do
+			local on, rid = calc.hidden(hero.h, p), "hid:" .. hero.h .. ":" .. p
+			local px = bx + (p - 1) * (bw + gap)
+			local k = anim.hover(rid, hit.is(rid))
+			g.rect(px, ry + 11, bw, 28, on and C.red or C.fill4, 7, a * (on and 0.25 or 1))
+			if k > 0 then g.rect(px, ry + 11, bw, 28, C.blue, 7, a * k) end
+			g.icon(asset.pos(p), px + bw / 2 - 9, ry + 16, 18, C.text, a * (on and 0.35 or 1))
+			if on then g.line(px + 10, ry + 34, px + bw - 10, ry + 16, C.red, a, 1.5) end
+			if hit.is(rid) then S.tip = L("dh_pos_" .. p) end
+			hit.add(px, ry + 11, bw, 28, rid, { click = function() toggle_hide(hero.h, p) end })
+		end
+	end
+	return 40 + #list * 50
+end
+
 function view.pool_short()
 	local mode = SET.pool_mode == "only" and "dh_pool_short_only" or (SET.pool_mode == "off" and "dh_pool_short_off" or "dh_pool_short_boost")
 	return heroes_n(#SET.pool) .. "  |  " .. L(mode)
@@ -4955,6 +5651,8 @@ function view.settings(y, a)
 	h = h + view.group_header(L("dh_s_hints"), y + h, a)
 	h = h + view.setting_rows({
 		{ id = "set_pool", tile = C.t_orange, glyph = "star", title = L("dh_pool"), sub = view.pool_short(), control = view.chevron(L("dh_change"), "set_pool"), act = function() S.pool_ret, S.view = "set", "pool" end },
+		{ id = "set_hidden", tile = C.red, glyph = "ban", title = L("dh_s_hidden"), sub = view.hidden_short(),
+			control = view.chevron(L("dh_change"), "set_hidden"), act = function() S.view = "hidden" end },
 		{ tile = C.t_blue, glyph = "list", title = L("dh_s_count"), control = view.stepper },
 		{ tile = C.t_green, glyph = "flag", title = L("dh_s_goal"), sub = L("dh_s_goal_sub"), control = view.choice("goal", { { "draft", L("dh_goal_draft") }, { "lane", L("dh_goal_lane") } }, SET.goal, pick("goal")) },
 		{ tile = C.t_teal, glyph = "comment", title = L("dh_s_reasons"), sub = L("dh_s_reasons_sub"), control = view.switch("reasons") },
@@ -5100,7 +5798,7 @@ end
 
 function view.tip()
 	if S.tip ~= S.tip_shown then S.tip_shown, S.tip_since = S.tip, S.now end
-	if not S.tip or S.menu then return end
+	if not S.tip or (S.menu and not (hit.hover or ""):match("^menu%d+:")) then return end
 	local k = clamp((S.now - S.tip_since - K.TIP_DELAY) / 0.12, 0, 1)
 	if k <= 0 then return end
 	local mx, my = Input.GetCursorPos()
@@ -5186,11 +5884,13 @@ function view.items(x, y, w, a)
 	local plan, pos = build.current()
 	local hero = data.heroes[S.bh]
 	local nc = plan and #plan.counters or 0
+	local secs = plan and plan.has and build.sections(plan) or {}
 	local h = 120
 	if plan and plan.has then
-		h = 44 + 44
-		for _, row in ipairs(plan.stages) do
-			if #row > 0 then h = h + 44 end
+		h = 44
+		for _, sec in ipairs(secs) do
+			if sec.who then h = h + 30 end
+			h = h + #sec.rows * 44
 		end
 		h = h + 44 + (nc > 0 and nc * 50 or 30) + 6
 	end
@@ -5206,23 +5906,23 @@ function view.items(x, y, w, a)
 	end
 
 	local lx, ix, right = x + K.P, x + K.P + 104, x + w - K.P
-	local function label(text, ry) g.text(F(500), 12, text, lx, ry + 22, C.text2, a) end
+	local keys = { "dh_b_start", "dh_b_stage1", "dh_b_stage2", "dh_b_stage3", "dh_b_extra" }
 	local ry = y + 44
-	label(L("dh_b_start"), ry)
-	for i, e in ipairs(plan.start) do
-		local cx = ix + (i - 1) * 50
-		if cx + 44 > right then break end
-		view.item_icon(e.name, cx, ry + 6, a, "bs:" .. i, e.q)
-	end
-	ry = ry + 44
-
-	for s, row in ipairs(plan.stages) do
-		if #row > 0 then
-			label(L("dh_b_stage" .. s), ry)
-			for i, e in ipairs(row) do
+	for si, sec in ipairs(secs) do
+		if sec.who then
+			local img, name = build.who(sec.who)
+			g.image(img, lx, ry + 6, 36, 20, 4, a)
+			g.text(F(600), 12, name, lx + 44, ry + 16, C.text, a)
+			ry = ry + 30
+		end
+		for _, row in ipairs(sec.rows) do
+			g.text(F(500), 12, L(keys[row.i]), lx, ry + 22, C.text2, a)
+			for i, e in ipairs(row.list) do
 				local cx = ix + (i - 1) * 50
 				if cx + 44 > right then break end
-				view.item_icon(e.name, cx, ry + 6, a, "b" .. s .. ":" .. i, e.q)
+				local id = "b" .. si .. ":" .. row.i .. ":" .. i
+				view.item_icon(e.name, cx, ry + 6, a, id, e.q)
+				if e.pr and hit.is(id) then S.tip = build.item_name(e.name) .. ": " .. string.format(L("dh_b_pick"), math.floor(e.pr * 100 + 0.5)) end
 			end
 			ry = ry + 44
 		end
@@ -5268,17 +5968,41 @@ end
 
 view.wraps = {}
 
+local NO_LINE_START = {}
+for _, ch in ipairs({ "，", "。", "、", "；", "：", "！", "？", "）", "”", "」", "》", "%", ",", ".", ")" }) do NO_LINE_START[ch] = true end
+
 function view.wrap(text, weight, size, max_w)
-	local key = weight .. ":" .. size .. ":" .. math.floor(max_w) .. ":" .. text
+	local key = (Lc.lang or "") .. ":" .. weight .. ":" .. size .. ":" .. math.floor(max_w) .. ":" .. text
 	local out = view.wraps[key]
 	if out then return out end
 	out = {}
+	local tokens, buf, gap, buf_gap = {}, "", false, false
+	local function push()
+		if buf ~= "" then
+			tokens[#tokens + 1] = { buf, buf_gap }
+			buf = ""
+		end
+	end
+	for _, c in utf8.codes(text) do
+		if c == 32 or c == 9 or c == 10 then
+			push()
+			gap = true
+		elseif c >= 0x2E80 then
+			push()
+			tokens[#tokens + 1] = { utf8.char(c), gap }
+			gap = false
+		else
+			if buf == "" then buf_gap, gap = gap, false end
+			buf = buf .. utf8.char(c)
+		end
+	end
+	push()
 	local line = ""
-	for word in text:gmatch("[^ \t\n]+") do
-		local try = line == "" and word or (line .. " " .. word)
-		if line ~= "" and g.width(F(weight), size, try) > max_w then
+	for _, t in ipairs(tokens) do
+		local try = line == "" and t[1] or (line .. (t[2] and " " or "") .. t[1])
+		if line ~= "" and not NO_LINE_START[t[1]] and g.width(F(weight), size, try) > max_w then
 			out[#out + 1] = line
-			line = word
+			line = t[1]
 		else
 			line = try
 		end
@@ -5356,6 +6080,7 @@ function view.content()
 	if S.view == "home" then h = view.home(y, a)
 	elseif S.view == "set" then h = view.settings(y, a)
 	elseif S.view == "pool" then h = view.pool(y, a)
+	elseif S.view == "hidden" then h = view.hidden_view(y, a)
 	elseif S.view == "build" then h = view.build(y, a)
 	elseif S.view == "news" then h = view.news(y, a)
 	else h = view.draft_content(y, a) end
@@ -5470,17 +6195,24 @@ function view.menu()
 		item(L(ban and "dh_ban_btn" or "dh_select"), ban and "ban" or "check", L("dh_m_dbl"), function() draft.commit(h) end, { danger = ban })
 		if SET.confirm == 1 then item(L("dh_m_select"), "pointer", L("dh_m_click"), function() S.sel = h end) end
 		item(L(in_pool(h) and "dh_m_pool_del" or "dh_m_pool_add"), "star", nil, function() toggle_pool(h) end)
+		if not ban then items[#items + 1] = { sep = true } end
 		if not ban and (S.mode == "ap" or draft.cm_ours()) then
-			local busy = draft.our_pos()
-			items[#items + 1] = { sep = true }
-			items[#items + 1] = { section = L("dh_m_on_pos") }
+			local busy, row = draft.our_pos(), {}
 			for p = 1, 5 do
-				item(L("dh_pos_" .. p), p, busy[p] and L("dh_m_taken") or nil, function() draft.commit(h, p) end, { disabled = busy[p] })
+				row[p] = { disabled = busy[p], hint = busy[p] and L("dh_m_taken") or nil, fn = function() draft.commit(h, p) end }
 			end
+			items[#items + 1] = { section = L("dh_m_on_pos") }
+			items[#items + 1] = { roles = row, close = true }
+		end
+		if not ban then
+			local row = {}
+			for p = 1, 5 do row[p] = { on = calc.hidden(h, p), fn = function() toggle_hide(h, p) end } end
+			items[#items + 1] = { section = L("dh_m_hide_on") }
+			items[#items + 1] = { roles = row }
 		end
 	end
 	local w, h = 236, 36
-	for _, it in ipairs(items) do h = h + (it.sep and 11 or (it.section and 22 or 32)) end
+	for _, it in ipairs(items) do h = h + (it.sep and 11 or (it.section and 22 or (it.roles and 36 or 32))) end
 	local x = m.x
 	if x + w > K.W - 8 then x = x - w - (m.kind == "pos" and 90 or 4) end
 	local y = math.min(m.y, K.H - h - 8)
@@ -5498,6 +6230,26 @@ function view.menu()
 		elseif it.section then
 			g.text(F(600), 11, it.section, x + 14, iy + 11, C.text3)
 			iy = iy + 22
+		elseif it.roles then
+			local bw, gap = 38, 6
+			local bx = x + (w - 5 * bw - 4 * gap) / 2
+			for p, r in ipairs(it.roles) do
+				local id = "menu" .. n .. ":" .. p
+				local px = bx + (p - 1) * (bw + gap)
+				local k = r.disabled and 0 or anim.hover(id, hit.is(id))
+				g.rect(px, iy + 2, bw, 28, r.on and C.red or C.fill4, 7, r.on and 0.25 or 1)
+				if k > 0 then g.rect(px, iy + 2, bw, 28, C.blue, 7, k) end
+				g.icon(asset.pos(p), px + bw / 2 - 9, iy + 7, 18, C.text, (r.disabled or r.on) and 0.35 or 1)
+				if r.on then g.line(px + 10, iy + 25, px + bw - 10, iy + 7, C.red, 1, 1.5) end
+				if hit.is(id) then S.tip = L("dh_pos_" .. p) .. (r.hint and (": " .. r.hint) or "") end
+				if not r.disabled then
+					hit.add(px, iy + 2, bw, 28, id, { click = function()
+						if it.close then S.menu = nil end
+						r.fn()
+					end })
+				end
+			end
+			iy = iy + 36
 		else
 			local id = "menu" .. n
 			local disabled = it.opts.disabled
@@ -5699,9 +6451,20 @@ function bp.pin(name)
 	bp.next_scan = 0
 end
 
-function bp.buy(name)
+function bp.bear(hero)
+	for _, npc in ipairs(NPCs.GetAll()) do
+		local name = NPC.GetUnitName(npc)
+		if name and name:find("^npc_dota_lone_druid_bear") and Entity.IsAlive(npc) and Entity.RecursiveGetOwner(npc) == Entity.RecursiveGetOwner(hero) then
+			return npc
+		end
+	end
+	return nil
+end
+
+function bp.buy(name, bear)
 	local player, hero = Players.GetLocal(), Heroes.GetLocal()
 	if not player or not hero then return end
+	if bear then hero = bp.bear(hero) or hero end
 	local cat = bp.catalog()
 	local have = {}
 	for i = 0, 14 do
@@ -5760,7 +6523,7 @@ function bp.inside(mx, my)
 end
 
 function bp.labels()
-	local labels = { L("dh_b_start"), L("dh_bp_early"), L("dh_bp_mid"), L("dh_bp_late") }
+	local labels = { L("dh_b_start"), L("dh_bp_early"), L("dh_bp_mid"), L("dh_bp_late"), L("dh_bp_extra") }
 	local w = 0
 	for _, t in ipairs(labels) do w = math.max(w, g.width(F(400), 12, t)) end
 	return labels, math.ceil(w) + 12
@@ -5769,12 +6532,18 @@ end
 function bp.rows(plan, labels)
 	if not plan or not plan.has then return nil, 40 end
 	local rows, h = {}, 2
-	for i, list in ipairs({ plan.start, plan.stages[1], plan.stages[2], plan.stages[3] }) do
-		if #list > 0 then
-			local lines = math.ceil(#list / bp.COLS)
-			local rh = lines * bp.IH + (lines - 1) * 5
-			rows[#rows + 1] = { label = labels[i], list = list, y = h, h = rh }
-			h = h + rh + 6
+	for _, sec in ipairs(build.sections(plan)) do
+		if sec.who then
+			rows[#rows + 1] = { who = sec.who, y = h, h = 22 }
+			h = h + 22 + 4
+		end
+		for _, r in ipairs(sec.rows) do
+			if #r.list > 0 then
+				local lines = math.ceil(#r.list / bp.COLS)
+				local rh = lines * bp.IH + (lines - 1) * 5
+				rows[#rows + 1] = { label = labels[r.i], list = r.list, y = h, h = rh }
+				h = h + rh + 6
+			end
 		end
 	end
 	return rows, h - 6 + 10
@@ -5800,7 +6569,7 @@ function bp.item(e, x, y, a, idx)
 		g.rect(x + w - 10, y - 4, 14, 14, C.blue, 7, a)
 		g.glyph("pin", 8, x + w - 3, y + 3, C.text, a)
 	end
-	bp.hit(x, y, w, h, id, { item = e.name })
+	bp.hit(x, y, w, h, id, { item = e.name, bear = e.bear })
 end
 
 function bp.seg(key, options, cur, right, cy, a, on_pick)
@@ -5835,6 +6604,9 @@ function bp.draw_tip(plan)
 	end
 	if not h or not h.item then return end
 	local lines = { { F(600), 12, build.item_name(h.item), C.text } }
+	for _, x in ipairs(plan and plan.extra or {}) do
+		if x.name == h.item then lines[#lines + 1] = { F(400), 11, string.format(L("dh_b_pick"), math.floor(x.pr * 100 + 0.5)), C.text2 } end
+	end
 	for _, c in ipairs(plan and plan.counters or {}) do
 		if c.name == h.item then
 			local tags = {}
@@ -5949,7 +6721,7 @@ function bp.frame()
 	local by_pos = it and it.hero[data.heroes[me].id] or nil
 	for p = 1, 5 do
 		local id = "bp_role" .. p
-		local has = by_pos and by_pos[p] and by_pos[p].n >= ITEM.POS_MIN
+		local has = by_pos and build.role_ok(by_pos[p])
 		local alpha = (p == pos or bp.hover == id) and (has and 1 or 0.6) or (has and 0.55 or 0.22)
 		g.icon(asset.pos(p), rx + 2 + (p - 1) * 26 + 5, 10, 16, C.text, alpha)
 		bp.hit(rx + 2 + (p - 1) * 26, 7, 26, 22, id, { left = function() bp.pos = p end })
@@ -5980,8 +6752,13 @@ function bp.frame()
 	else
 		local n = 0
 		for _, r in ipairs(rows) do
-			g.text(F(400), 12, r.label, 9, top + r.y + bp.IH / 2, C.text3, ca)
-			for i, e in ipairs(r.list) do
+			if r.who then
+				local img, name = build.who(r.who)
+				g.image(img, 9, top + r.y + 2, 32, 18, 4, ca)
+				g.text(F(600), 12, name, 47, top + r.y + 11, C.text, ca)
+			end
+			if r.label then g.text(F(400), 12, r.label, 9, top + r.y + bp.IH / 2, C.text3, ca) end
+			for i, e in ipairs(r.list or {}) do
 				n = n + 1
 				local col, line = (i - 1) % bp.COLS, math.floor((i - 1) / bp.COLS)
 				bp.item(e, 8 + lab_w + col * (bp.IW + 5), top + r.y + line * (bp.IH + 5), ca, n)
@@ -6002,7 +6779,7 @@ function bp.open_settings()
 		S.started = true
 		draft.set_env("home")
 	end
-	if S.view ~= "set" and S.view ~= "pool" then S.ret = S.view end
+	if S.view ~= "set" and S.view ~= "pool" and S.view ~= "hidden" then S.ret = S.view end
 	S.open, S.view, S.menu, S.query, S.focus = true, "set", nil, "", false
 	bp.prefs, bp.switched = false, S.now
 end
@@ -6041,7 +6818,7 @@ function bp.key(e)
 		local h = bp.at(mx, my)
 		if h and h.id == p.id then
 			if h.item then
-				if p.right then bp.buy(h.item) else bp.pin(h.item) end
+				if p.right then bp.buy(h.item, h.bear) else bp.pin(h.item) end
 			elseif not p.right and h.left then
 				h.left()
 			end
