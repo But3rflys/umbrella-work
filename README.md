@@ -20,8 +20,6 @@ Lua-скрипты для Umbrella и приложение MusicUI.
 Скачай `.lua` из релиза и положи в папку `scripts` рядом с читом, включи в меню `Scripts`.
 MusicUI: распакуй архив, `MusicUI.lua` в `scripts`, запусти `MusicUI.exe`.
 
-Язык меню берется из языка чита, скрипты понимают русский и английский.
-
 ## Спасибо
 
 `lib/qlocalizer.lua` — библиотека qLocalization, автор qfun (qfun_g9s).
@@ -50,8 +48,6 @@ Open a script: its page has the description, install steps and every version wit
 Download the `.lua` from a release, drop it into the `scripts` folder next to your cheat and turn
 it on under `Scripts`.
 MusicUI: unzip the archive, put `MusicUI.lua` into `scripts`, run `MusicUI.exe`.
-
-The menu follows your cheat language; the scripts speak Russian and English.
 
 ## Credits
 

@@ -29,8 +29,6 @@ Lua-оверлей и приложение MusicUI.exe: приложение б�
 2. Положи `MusicUI.lua` в папку `scripts` рядом с читом.
 3. Запусти `MusicUI.exe` и следуй подсказкам в консоли.
 
-Язык меню берется из языка чита, скрипт понимает русский и английский.
-
 ## Что нового
 
 **update v1.0.8**
@@ -56,8 +54,6 @@ A Lua overlay plus MusicUI.exe: the app reads Spotify and the Windows player, th
 1. Download `MusicUI.zip` from the latest release and unzip it.
 2. Put `MusicUI.lua` into the `scripts` folder next to your cheat.
 3. Run `MusicUI.exe` and follow the prompts in the console.
-
-The menu follows your cheat language; the script speaks Russian and English.
 
 ## Changelog
 

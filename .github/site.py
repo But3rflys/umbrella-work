@@ -17,12 +17,12 @@ SKILL_TEXT = {
     "ru": {
         "tagline": "скилл для Claude Code и Codex: пишет Lua-скрипты Umbrella",
         "about": "Пишет и правит Lua-скрипты Umbrella по общим правилам. Меню по одному эталону и встроенная локализация en/ru.",
-        "features": ["меню по одному эталону", "локализация en/ru из коробки", "проверка кода через luatool.exe", "работает без Python и Lua"],
+        "features": [],
     },
     "en": {
         "tagline": "Claude Code and Codex skill for Umbrella Lua scripts",
         "about": "Writes and edits Umbrella Lua scripts by shared rules, with one reference menu layout and en/ru localization built in.",
-        "features": ["one reference menu layout", "en/ru localization built in", "code checks via luatool.exe", "no Python or Lua needed"],
+        "features": [],
     },
 }
 

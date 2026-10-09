@@ -121,10 +121,6 @@ def section(script, lang, mine):
     out += ["", "## %s" % ("Установка" if ru else "Install"), ""]
     steps = INSTALL[script["kind"]][lang]
     out += ["%d. %s" % (i + 1, s % {"file": script["file"]}) for i, s in enumerate(steps)]
-    out += [""]
-    out += ["Язык меню берется из языка чита, скрипт понимает русский и английский."
-            if ru else
-            "The menu follows your cheat language; the script speaks Russian and English."]
     text = changelog(script, lang)
     if mine and text:
         out += ["", "## %s" % ("Что нового" if ru else "Changelog"), "", text]

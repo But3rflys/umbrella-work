@@ -42,8 +42,6 @@
 2. Положи файл в папку `scripts` рядом с читом.
 3. Открой `Scripts` в меню чита и включи скрипт.
 
-Язык меню берется из языка чита, скрипт понимает русский и английский.
-
 ---
 
 # Draft Helper (English)
@@ -66,6 +64,4 @@ A window with heroes for every draft turn, the draft win chance and a build for 
 1. Download `draft_helper.lua` from the latest release.
 2. Put the file into the `scripts` folder next to your cheat.
 3. Open `Scripts` in the cheat menu and turn it on.
-
-The menu follows your cheat language; the script speaks Russian and English.
 

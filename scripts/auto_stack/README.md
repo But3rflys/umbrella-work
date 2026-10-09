@@ -15,23 +15,20 @@
 
 ## Что умеет
 
-Кунка кидает Torrent, Инвокер кидает Tornado по кемпу в нужную секунду каждой минуты.
+Стакает кемпы: Кунка через Torrent, Инвокер через Tornado.
 
-- Кунка: секунда каста подобрана под каждый кемп карты, с поправкой на пинг
-- Инвокер: считает, когда торнадо поднимет крипов выше кемпа, по уровню Quas и Wex и пингу
-- бросок выбирается так, чтобы задеть всех крипов в кемпе
-- за Инвокера может сам создать торнадо перед броском
-- четыре режима: сам, сам с клавишей вкл/выкл, по клавише ближайший кемп или кемп под курсором
-- кольца над кемпами, клик включает и выключает кемп
-- статус над кемпом: отсчет до каста, КД, мана, итог стака и причина, если не вышло
+- тайминг под каждый кемп с учётом пинга
+- бросок задевает всех крипов в кемпе
+- Инвокер сам создаёт Tornado перед броском
+- авто, по клавише или кемп под курсором
+- клик по кольцу над кемпом включает его
+- статус над кемпом: отсчёт, КД, итог
 
 ## Установка
 
 1. Скачай `auto_stack.lua` из последнего релиза.
 2. Положи файл в папку `scripts` рядом с читом.
 3. Открой `Scripts` в меню чита и включи скрипт.
-
-Язык меню берется из языка чита, скрипт понимает русский и английский.
 
 ## Что нового
 
@@ -46,23 +43,20 @@
 
 ## What it does
 
-Kunkka throws Torrent, Invoker throws Tornado on a camp at the right second of every minute.
+Stacks camps: Kunkka with Torrent, Invoker with Tornado.
 
-- Kunkka: the cast second is tuned for every camp on the map, with ping compensation
-- Invoker: works out when Tornado lifts the creeps above the camp, from Quas, Wex and ping
-- the throw is aimed to hit every creep in the camp
-- as Invoker it can invoke Tornado right before the throw
-- four modes: automatic, automatic with an on/off key, key on the nearest camp or the camp under the cursor
-- rings over the camps, click one to turn that camp on or off
-- status over the camp: countdown, cooldown, mana, stack result and why it failed
+- timing tuned per camp, with ping
+- the throw hits every creep in the camp
+- Invoker invokes Tornado before the throw
+- auto, on a key or the camp under the cursor
+- click a camp ring to turn it on or off
+- status over the camp: countdown, cooldown, result
 
 ## Install
 
 1. Download `auto_stack.lua` from the latest release.
 2. Put the file into the `scripts` folder next to your cheat.
 3. Open `Scripts` in the cheat menu and turn it on.
-
-The menu follows your cheat language; the script speaks Russian and English.
 
 ## Changelog
 

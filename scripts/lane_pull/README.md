@@ -32,8 +32,6 @@
 2. Положи файл в папку `scripts` рядом с читом.
 3. Открой `Scripts` в меню чита и включи скрипт.
 
-Язык меню берется из языка чита, скрипт понимает русский и английский.
-
 ## Что нового
 
 **update v1.0.4**
@@ -62,8 +60,6 @@ One key and your dominated creep goes for the enemy wave and drags it to you.
 1. Download `lane_pull.lua` from the latest release.
 2. Put the file into the `scripts` folder next to your cheat.
 3. Open `Scripts` in the cheat menu and turn it on.
-
-The menu follows your cheat language; the script speaks Russian and English.
 
 ## Changelog
 

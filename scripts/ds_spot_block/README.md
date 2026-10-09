@@ -28,8 +28,6 @@
 2. Положи файл в папку `scripts` рядом с читом.
 3. Открой `Scripts` в меню чита и включи скрипт.
 
-Язык меню берется из языка чита, скрипт понимает русский и английский.
-
 ---
 
 # DS Spot Block (English)
@@ -49,6 +47,4 @@ Draws the camps, the Vacuum radius, the cast point and where to stand. One key w
 1. Download `ds_spot_block.lua` from the latest release.
 2. Put the file into the `scripts` folder next to your cheat.
 3. Open `Scripts` in the cheat menu and turn it on.
-
-The menu follows your cheat language; the script speaks Russian and English.
 
