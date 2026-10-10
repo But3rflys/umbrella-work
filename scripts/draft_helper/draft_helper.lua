@@ -326,6 +326,14 @@ local localization = qLocalization.new({
 		dh_news = "What's new",
 		dh_news_sub = "Changes in this update",
 		dh_news_row_sub = "Changes in the latest update",
+		dh_cl_b17look_t = "Appearance",
+		dh_cl_b17look_d = "Four background themes and six accent colors. Set them in the Appearance section.",
+		dh_cl_b17compact_t = "Compact mode",
+		dh_cl_b17compact_d = "Less spacing, more heroes fit in the window.",
+		dh_cl_b17suggest_t = "Suggest a hero",
+		dh_cl_b17suggest_d = "During the draft, right-click a hero to suggest it to your allies.",
+		dh_cl_b17fix_t = "Fixes",
+		dh_cl_b17fix_d = "The script is more stable.",
 		dh_cl_b15roles_t = "Heroes on their roles",
 		dh_cl_b15roles_d = "Hero roles come from 7000+ MMR games: Doom is no longer suggested as a carry. Your queued role and your pool are taken into account.",
 		dh_cl_b15hide_t = "Don't suggest",
@@ -530,6 +538,8 @@ local localization = qLocalization.new({
 		dh_hidden_sub = "Not suggested on crossed out roles",
 		dh_m_on_pos = "Pick as",
 		dh_m_taken = "taken",
+		dh_m_suggest = "Suggest",
+		dh_how_suggest = "Right-click a hero to suggest it",
 
 		dh_home_sub = "No match right now. Train or tune the hints",
 		dh_h_train = "Training draft",
@@ -607,6 +617,22 @@ local localization = qLocalization.new({
 		dh_s_auto_sub = "And close when the draft is over",
 		dh_s_blur = "Background blur",
 		dh_s_blur_power = "Blur strength",
+		dh_s_look = "Appearance",
+		dh_s_theme = "Theme",
+		dh_theme_graphite = "Graphite",
+		dh_theme_midnight = "Midnight",
+		dh_theme_warm = "Warm",
+		dh_theme_oled = "OLED",
+		dh_s_accent = "Accent color",
+		dh_s_accent_sub = "Buttons, selection and sliders",
+		dh_acc_blue = "Blue",
+		dh_acc_purple = "Purple",
+		dh_acc_pink = "Pink",
+		dh_acc_orange = "Orange",
+		dh_acc_teal = "Teal",
+		dh_acc_green = "Green",
+		dh_s_compact = "Compact mode",
+		dh_s_compact_sub = "Less spacing, more heroes on screen",
 		dh_s_defaults = "Restore default settings",
 		dh_s_about = "About",
 		dh_s_hover = "Hover tips",
@@ -694,6 +720,14 @@ local localization = qLocalization.new({
 		dh_news = "Что нового",
 		dh_news_sub = "Что изменилось в обновлении",
 		dh_news_row_sub = "Изменения последнего обновления",
+		dh_cl_b17look_t = "Оформление",
+		dh_cl_b17look_d = "Четыре темы фона и шесть акцентных цветов. Настраивается в разделе «Оформление».",
+		dh_cl_b17compact_t = "Компактный режим",
+		dh_cl_b17compact_d = "Меньше отступов, в окно помещается больше героев.",
+		dh_cl_b17suggest_t = "Предложить героя",
+		dh_cl_b17suggest_d = "Во время драфта ПКМ по герою предлагает его союзникам.",
+		dh_cl_b17fix_t = "Исправления",
+		dh_cl_b17fix_d = "Скрипт работает стабильнее.",
 		dh_cl_b15roles_t = "Герои на своих ролях",
 		dh_cl_b15roles_d = "Роли героев по играм 7000+ MMR: Дум больше не советуется на керри. Учитываются роль из очереди и твой пул.",
 		dh_cl_b15hide_t = "Не советовать",
@@ -898,6 +932,8 @@ local localization = qLocalization.new({
 		dh_hidden_sub = "Не предлагаются на зачёркнутых ролях",
 		dh_m_on_pos = "Выбрать на позицию",
 		dh_m_taken = "занят",
+		dh_m_suggest = "Предложить",
+		dh_how_suggest = "ПКМ по герою, чтобы предложить его",
 
 		dh_home_sub = "Матча сейчас нет. Можно потренироваться или настроить подсказки",
 		dh_h_train = "Тренировочный драфт",
@@ -975,6 +1011,22 @@ local localization = qLocalization.new({
 		dh_s_auto_sub = "И закрывать, когда драфт закончен",
 		dh_s_blur = "Размытие фона",
 		dh_s_blur_power = "Сила размытия",
+		dh_s_look = "Оформление",
+		dh_s_theme = "Тема",
+		dh_theme_graphite = "Графит",
+		dh_theme_midnight = "Полночь",
+		dh_theme_warm = "Тёплая",
+		dh_theme_oled = "OLED",
+		dh_s_accent = "Акцентный цвет",
+		dh_s_accent_sub = "Кнопки, выделение и ползунки",
+		dh_acc_blue = "Синий",
+		dh_acc_purple = "Фиолетовый",
+		dh_acc_pink = "Розовый",
+		dh_acc_orange = "Оранжевый",
+		dh_acc_teal = "Бирюзовый",
+		dh_acc_green = "Зелёный",
+		dh_s_compact = "Компактный режим",
+		dh_s_compact_sub = "Меньше отступов, больше героев на экране",
 		dh_s_defaults = "Вернуть настройки по умолчанию",
 		dh_s_about = "О скрипте",
 		dh_s_hover = "Подсказки при наведении",
@@ -1062,6 +1114,14 @@ local localization = qLocalization.new({
 		dh_news = "更新内容",
 		dh_news_sub = "本次更新的变化",
 		dh_news_row_sub = "最近一次更新的变化",
+		dh_cl_b17look_t = "外观",
+		dh_cl_b17look_d = "四种背景主题和六种强调色，可在“外观”中设置。",
+		dh_cl_b17compact_t = "紧凑模式",
+		dh_cl_b17compact_d = "间距更小，窗口中可显示更多英雄。",
+		dh_cl_b17suggest_t = "推荐英雄",
+		dh_cl_b17suggest_d = "选人阶段右键点击英雄，即可推荐给队友。",
+		dh_cl_b17fix_t = "修复",
+		dh_cl_b17fix_d = "脚本运行更稳定。",
 		dh_cl_b15roles_t = "英雄回到本职位置",
 		dh_cl_b15roles_d = "英雄位置来自 7000+ MMR 比赛：末日使者不再被推荐为一号位。会考虑你排队的位置和英雄池。",
 		dh_cl_b15hide_t = "不推荐",
@@ -1266,6 +1326,8 @@ local localization = qLocalization.new({
 		dh_hidden_sub = "不会在划掉的位置上推荐",
 		dh_m_on_pos = "选为",
 		dh_m_taken = "已占用",
+		dh_m_suggest = "推荐",
+		dh_how_suggest = "右键点击英雄进行推荐",
 
 		dh_home_sub = "当前没有比赛。可以训练或调整提示",
 		dh_h_train = "训练选人",
@@ -1343,6 +1405,22 @@ local localization = qLocalization.new({
 		dh_s_auto_sub = "选人结束后自动关闭",
 		dh_s_blur = "背景模糊",
 		dh_s_blur_power = "模糊强度",
+		dh_s_look = "外观",
+		dh_s_theme = "主题",
+		dh_theme_graphite = "石墨",
+		dh_theme_midnight = "午夜",
+		dh_theme_warm = "暖色",
+		dh_theme_oled = "OLED",
+		dh_s_accent = "强调色",
+		dh_s_accent_sub = "按钮、选中项和滑块",
+		dh_acc_blue = "蓝色",
+		dh_acc_purple = "紫色",
+		dh_acc_pink = "粉色",
+		dh_acc_orange = "橙色",
+		dh_acc_teal = "青色",
+		dh_acc_green = "绿色",
+		dh_s_compact = "紧凑模式",
+		dh_s_compact_sub = "更小的间距，一屏显示更多英雄",
 		dh_s_defaults = "恢复默认设置",
 		dh_s_about = "关于",
 		dh_s_hover = "悬停提示",
@@ -1459,7 +1537,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.16",
+	VERSION = "2.0.0-beta.17",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1493,12 +1571,21 @@ local K = {
 		plus = "\u{f067}", minus = "\u{f068}", chart = "\u{e473}", list = "\u{f0cb}", comment = "\u{f4ad}", percent = "\u{f295}",
 		hand = "\u{f25a}", expand = "\u{f424}", house = "\u{f015}", chess = "\u{f43c}", users = "\u{f0c0}", robot = "\u{f544}",
 		flag = "\u{f024}", finish = "\u{f11e}", bag = "\u{f290}", crown = "\u{f521}", bug = "\u{f188}", close = "\u{f00d}",
-		blur = "\u{f042}", drop = "\u{f043}", eye = "\u{f06e}", bolt = "\u{f0e7}",
+		blur = "\u{f042}", drop = "\u{f043}", eye = "\u{f06e}", bolt = "\u{f0e7}", palette = "\u{f53f}", moon = "\u{f186}", compress = "\u{f066}",
 		arrow_down = "\u{f063}", alert = "\u{f06a}", info = "\u{f05a}", pin = "\u{f08d}",
 		shield = "\u{f3ed}", wrench = "\u{f0ad}", store = "\u{f54e}", gift = "\u{f06b}", lang = "\u{f1ab}",
 	},
 
 	NEWS = {
+		{
+			v = "2.0.0-beta.17",
+			items = {
+				{ key = "dh_cl_b17look", glyph = "palette", tile = "t_indigo" },
+				{ key = "dh_cl_b17compact", glyph = "compress", tile = "t_teal" },
+				{ key = "dh_cl_b17suggest", glyph = "comment", tile = "t_blue" },
+				{ key = "dh_cl_b17fix", glyph = "wrench", tile = "t_green" },
+			},
+		},
 		{
 			v = "2.0.0-beta.15",
 			items = {
@@ -1608,11 +1695,30 @@ local K = {
 		bp = 1,
 		bp_scale = 100,
 		bp_show = "shop",
+		theme = "graphite",
+		accent = "blue",
+		compact = 0,
 	},
+	THEMES = {
+		{ id = "graphite", main = { 15, 15, 16 }, side = { 22, 22, 24 }, bar = { 26, 26, 28 }, card = { 28, 28, 30 }, raised = { 44, 44, 46 }, pill = { 58, 58, 60 }, thumb = { 99, 99, 102 } },
+		{ id = "midnight", main = { 11, 14, 24 }, side = { 16, 20, 33 }, bar = { 20, 25, 40 }, card = { 22, 27, 43 }, raised = { 36, 44, 66 }, pill = { 49, 58, 84 }, thumb = { 84, 96, 130 } },
+		{ id = "warm", main = { 19, 16, 14 }, side = { 27, 23, 20 }, bar = { 31, 27, 23 }, card = { 34, 29, 25 }, raised = { 52, 45, 39 }, pill = { 66, 58, 51 }, thumb = { 108, 97, 88 } },
+		{ id = "oled", main = { 0, 0, 0 }, side = { 8, 8, 9 }, bar = { 12, 12, 13 }, card = { 17, 17, 18 }, raised = { 34, 34, 36 }, pill = { 48, 48, 50 }, thumb = { 92, 92, 96 } },
+	},
+	ACCENTS = {
+		{ id = "blue", c = { 10, 132, 255 } },
+		{ id = "purple", c = { 191, 90, 242 } },
+		{ id = "pink", c = { 255, 55, 95 } },
+		{ id = "orange", c = { 255, 159, 10 } },
+		{ id = "teal", c = { 48, 176, 199 } },
+		{ id = "green", c = { 48, 209, 88 } },
+	},
+	ACCENT_ALPHA = { accent = 255, select = 51, focus = 230, accent_soft = 36, accent_pill = 90 },
+	THEME_FADE = 0.3,
 	LIVE_READ = 0.1,
 	LIVE_IDLE = 0.5,
 	LIVE_SLOT_CHECK = 1,
-	LIVE_CAPTAIN = 0.1,
+	LIVE_CAPTAIN = 1,
 	LIVE_GRID = 0.3,
 	LIVE_GRID_HEROES = 2,
 	LANE_BITS = { [1] = 1, [2] = 3, [4] = 2, [8] = 4, [16] = 5 },
@@ -1715,12 +1821,6 @@ local JS = {
 	}
 })();
 ]],
-	CAPTAIN = [[
-(function () {
-	const button = $.GetContextPanel().FindChildTraverse('CaptainsModeBecomeCaptainButton');
-	if (button) $.DispatchEvent('Activated', button, 'mouse');
-})();
-]],
 	ACT = [[
 (function () {
 	const pre = $.GetContextPanel();
@@ -1746,7 +1846,7 @@ local C = {
 	text = { 255, 255, 255 }, text2 = { 235, 235, 245, 153 }, text3 = { 235, 235, 245, 77 }, text4 = { 235, 235, 245, 46 },
 	sep = { 84, 84, 88, 153 }, sep2 = { 84, 84, 88, 87 }, fill2 = { 120, 120, 128, 82 }, fill3 = { 118, 118, 128, 61 }, fill4 = { 118, 118, 128, 46 },
 	slot_cur = { 120, 120, 128, 87 }, slot_line = { 255, 255, 255, 56 }, tick_cur = { 255, 255, 255, 140 },
-	green = { 48, 209, 88 }, red = { 255, 69, 58 }, blue = { 10, 132, 255 }, thumb = { 99, 99, 102 }, yellow = { 255, 214, 10 }, black = { 0, 0, 0 },
+	green = { 48, 209, 88 }, red = { 255, 69, 58 }, accent = { 10, 132, 255 }, accent_soft = { 10, 132, 255, 36 }, accent_pill = { 10, 132, 255, 90 }, thumb = { 99, 99, 102 }, yellow = { 255, 214, 10 }, black = { 0, 0, 0 },
 	hover = { 255, 255, 255, 9 }, select = { 10, 132, 255, 51 }, badge = { 0, 0, 0, 168 }, key = { 0, 0, 0, 72 }, border = { 255, 255, 255, 20 }, outline = { 255, 255, 255, 26 },
 	ban_tint = { 115, 115, 115 }, focus = { 10, 132, 255, 230 }, sb = { 235, 235, 245, 77 }, sb_hover = { 235, 235, 245, 140 },
 	t_blue = { 10, 132, 255 }, t_indigo = { 94, 92, 230 }, t_orange = { 255, 159, 10 }, t_gray = { 142, 142, 147 }, t_teal = { 48, 176, 199 },
@@ -2660,7 +2760,45 @@ local function toggle_hide(h, p)
 	save_settings()
 end
 
+local theme = { from = {}, to = {}, k = 1 }
+
+function theme.find(list, id)
+	for _, x in ipairs(list) do if x.id == id then return x end end
+	return list[1]
+end
+
+function theme.target()
+	local base, pick = theme.find(K.THEMES, SET.theme), theme.find(K.ACCENTS, SET.accent)
+	SET.theme, SET.accent = base.id, pick.id
+	local acc, out = pick.c, {}
+	for name, c in pairs(base) do
+		if name ~= "id" then out[name] = { c[1], c[2], c[3], c[4] or 255 } end
+	end
+	for name, al in pairs(K.ACCENT_ALPHA) do out[name] = { acc[1], acc[2], acc[3], al } end
+	return out
+end
+
+function theme.tick(dt)
+	if theme.k >= 1 then return end
+	theme.k = math.min(1, theme.k + dt / K.THEME_FADE)
+	local e = ease_in_out(theme.k)
+	for name, c in pairs(theme.to) do
+		local f, d = theme.from[name], C[name]
+		for i = 1, 4 do d[i] = f[i] + (c[i] - f[i]) * e end
+	end
+end
+
+function theme.set(instant)
+	theme.to, theme.from, theme.k = theme.target(), {}, 0
+	for name in pairs(theme.to) do
+		local d = C[name]
+		theme.from[name] = { d[1], d[2], d[3], d[4] or 255 }
+	end
+	if instant then theme.tick(K.THEME_FADE) end
+end
+
 load_settings()
+theme.set(true)
 data.active = function() return SET.source .. "_" .. K.RANKS[SET.rank] end
 
 local function in_pool(h)
@@ -2744,6 +2882,20 @@ function draft.can_act()
 	if draft.live() then return not draft.done() and live.can_act() end
 	if S.mode == "ap" then return true end
 	return not draft.done() and (draft.cm_ours() or draft.manual_enemy())
+end
+
+function draft.can_suggest()
+	if not draft.live() or draft.done() or draft.sd() then return false end
+	local d = live.d
+	return d ~= nil and not (d.mode == "cm" and d.captain)
+end
+
+function draft.suggest_ban()
+	if S.mode == "ap" then return draft.is_ban() end
+	for i = draft.cm_step(), #K.ORDER do
+		if side_of(S.cm.fp, i) == S.cm.us then return kind(i) == "B" end
+	end
+	return false
 end
 
 function draft.teams()
@@ -3558,30 +3710,57 @@ function live.can_act()
 	return d.in_control and not d.selected
 end
 
+function live.cmd(text)
+	Engine.ExecuteCommand(text)
+	live.log("command: %s", text)
+	return true
+end
+
 function live.act(h)
 	local d = live.read()
-	local why, button, cond = nil, nil, "pre.BHasClass('InspectedHeroAvailableToPick')"
+	local why, cmd = nil, nil
 	if not d then
 		why = "no draft"
+	elseif not h:match("^[%w_]+$") then
+		why = "bad hero name"
 	elseif d.grid and d.grid.closed[h] then
 		why = "hero is not available"
 	elseif d.mode == "cm" then
-		button = d.pre:HasClass("NextCaptainActionIsBan") and "CaptainsModeBanButton" or "CaptainsModeSelectButton"
+		cmd = d.pre:HasClass("NextCaptainActionIsBan") and "dota_captain_ban_hero" or "dota_captain_select_hero"
 		why = not d.captain and "not captain" or (not d.our_turn and "not our turn" or nil)
 	elseif d.ban_phase then
-		button, cond = "BanButton", "!pre.BHasClass('InspectedHeroBanned') && !pre.BHasClass('HasBannedHero')"
 		why = d.banned and "ban already used" or nil
 	else
-		button = "LockInButton"
+		cmd = "dota_select_hero"
 		why = d.selected and "hero already selected" or (not d.in_control and "not our turn" or nil)
 	end
 	if why then
 		live.log("%s skipped: %s", h, why)
 		return false
 	end
-	local ok = Engine.RunScript(JS.ACT:format(h, button, cond), d.pre)
-	live.log("%s %s: script %s", button, h, ok and "sent" or "failed")
+	if cmd then return live.cmd(cmd .. " npc_dota_hero_" .. h) end
+	local ok = Engine.RunScript(JS.ACT:format(h, "BanButton", "!pre.BHasClass('InspectedHeroBanned') && !pre.BHasClass('HasBannedHero')"), d.pre)
+	live.log("BanButton %s: script %s", h, ok and "sent" or "failed")
 	return ok
+end
+
+function live.suggest(h, ban)
+	local d = live.read()
+	local why
+	if not d then
+		why = "no draft"
+	elseif not h:match("^[%w_]+$") then
+		why = "bad hero name"
+	elseif d.grid and d.grid.closed[h] then
+		why = "hero is not available"
+	elseif d.mode == "cm" and d.captain then
+		why = "captain picks himself"
+	end
+	if why then
+		live.log("suggest %s skipped: %s", h, why)
+		return false
+	end
+	return live.cmd("suggest_hero_pick " .. h .. " 0" .. (ban and " ban" or ""))
 end
 
 function live.team(prev, players)
@@ -3781,8 +3960,7 @@ function live.tick()
 	local pre = live.pregame()
 	if SET.captain == 1 and pre and now >= live.next_captain and pre:HasClass("LocalTeamNeedsCaptain") then
 		live.next_captain = now + K.LIVE_CAPTAIN
-		local ok = Engine.RunScript(JS.CAPTAIN, pre)
-		live.log("become captain: script %s", ok and "sent" or "failed")
+		live.cmd("dota_captain_select_captain")
 	end
 	local d = live.read(pre, now)
 	live.d = d
@@ -4299,7 +4477,9 @@ function build.open_team()
 	build.open(build.is_ours(S.bh) and S.bh or build.team[1].h)
 end
 
-local g = { x = 0, y = 0, s = 1, a = 1, fits = {}, vcache = {}, vc_n = 0, ccache = {}, cc_n = 0 }
+local g = { x = 0, y = 0, s = 1, a = 1, cmp = 0, fits = {}, vcache = {}, vc_n = 0, ccache = {}, cc_n = 0 }
+
+function g.lay(n, c) return n + (c - n) * g.cmp end
 
 function g.px(x) return math.floor(g.x + x * g.s + 0.5) end
 function g.py(y) return math.floor(g.y + y * g.s + 0.5) end
@@ -4442,7 +4622,16 @@ function g.icon(handle, x, y, size, c, a)
 end
 function g.clip(x, y, w, h) Render.PushClip(g.v(x, y), g.v(x + w, y + h), true) end
 function g.unclip() Render.PopClip() end
-function g.vr(x, cy, h, a) g.rect(x, cy - h / 2, 1, h, C.sep, 0, a) end
+function g.hair() return math.max(1, math.floor(g.s)) end
+function g.hl(x, y, w, c, a)
+	local y0 = g.py(y)
+	Render.FilledRect(g.pt(g.px(x), y0), g.pt(g.px(x + w), y0 + g.hair()), g.col(c, a))
+end
+function g.vl(x, y, h, c, a)
+	local x0 = g.px(x)
+	Render.FilledRect(g.pt(x0, g.py(y)), g.pt(x0 + g.hair(), g.py(y + h)), g.col(c, a))
+end
+function g.vr(x, cy, h, a) g.vl(x, cy - h / 2, h, C.sep, a) end
 
 local function F(w) return asset.font(w) end
 
@@ -4575,7 +4764,7 @@ function view.board_cm(o)
 		local x = side == "r" and 156 - w or (pick and 239 or 240)
 		local y, ny = K.TOPY[i] + K.BOARD_Y, K.NUMY[i] + K.BOARD_Y
 		local x0, x1 = side == "r" and x + w or 214, side == "r" and 186 or x
-		g.rect(x0, ny, x1 - x0, 1, i == cur and C.tick_cur or C.sep2)
+		g.hl(x0, ny, x1 - x0, i == cur and C.tick_cur or C.sep2)
 		g.num(i == cur and 700 or 500, 11, NUM_STR[i], 200, ny, i == cur and C.text or (i <= n and C.text2 or C.text3), 1, "c")
 		view.slot(x, y, w, h, o.picks[i], {
 			ban = not pick, cur = i == cur, pos = pick and o.pos[i] or nil,
@@ -4600,7 +4789,7 @@ function view.board_ap(o)
 			local y, r = K.AP_Y[j] + K.TB, K.AP_ROUND[j]
 			local e = arr[j]
 			local cur = mine and j == #o.ours + 1 and round <= 3
-			g.rect(side == "r" and x + 104 or 212, y + 29, 16, 1, r == round and C.tick_cur or C.sep2)
+			g.hl(side == "r" and x + 104 or 212, y + 29, 16, r == round and C.tick_cur or C.sep2)
 			view.slot(x, y, 104, 58, e and e.h, {
 				cur = cur, pos = e and e.p, ghost = cur and o.ghost or nil,
 				hidden = not mine and not e and r == round,
@@ -4609,7 +4798,7 @@ function view.board_ap(o)
 		end
 		for r = 1, 2 do
 			local a, b = K.AP_Y[r * 2 - 1] + K.TB + 29, K.AP_Y[r * 2] + K.TB + 29
-			g.rect(side == "r" and 187 or 212, a, 1, b - a + 1, r == round and C.tick_cur or C.sep2)
+			g.vl(side == "r" and 187 or 212, a, b - a + 1, r == round and C.tick_cur or C.sep2)
 		end
 	end
 	for r = 1, 3 do
@@ -4621,7 +4810,7 @@ function view.pairs(o, active, hide, prefix)
 	for j = 1, 5 do
 		local y = K.TURBO_Y[j] + K.TB
 		local cur = active and j == #o.ours + 1
-		g.rect(172, y + 29, 56, 1, cur and C.tick_cur or C.sep2)
+		g.hl(172, y + 29, 56, cur and C.tick_cur or C.sep2)
 		for _, side in ipairs({ "r", "d" }) do
 			local mine = side == o.us
 			local e = (mine and o.ours or o.theirs)[j]
@@ -4643,7 +4832,7 @@ function view.board_turbo(o)
 	view.pairs(o, true, true, "tp")
 	local phase = o.phase or 2
 	local y = K.TB + K.TURBO_PHASE_Y
-	g.rect(22, y - 24, 356, 1, C.sep2)
+	g.hl(22, y - 24, 356, C.sep2)
 	for i, key in ipairs({ "dh_ph_ban", "dh_ph_pick" }) do
 		local cx = 22 + 356 * (i - 0.5) / 2
 		g.text(F(i == phase and 700 or 500), 12, L(key), cx, y, i == phase and C.text or (i < phase and C.text2 or C.text3), 1, "c")
@@ -4675,7 +4864,7 @@ end
 
 function view.board()
 	g.rect(0, K.TB, K.PAN, K.H - K.TB, C.side, 16, 1, Enum.DrawFlags.RoundCornersBottomLeft)
-	g.rect(K.PAN - 1, K.TB, 1, K.H - K.TB, C.black)
+	g.vl(K.PAN - 1, K.TB, K.H - K.TB, C.black)
 	local ghost = S.ghost or S.sel
 	if draft.home_board() then
 		local last = S.last
@@ -4720,7 +4909,7 @@ end
 
 function view.toolbar()
 	g.rect(0, 0, K.W, K.TB, C.bar, 16, 1, Enum.DrawFlags.RoundCornersTop)
-	g.rect(0, K.TB - 1, K.W, 1, C.black)
+	g.hl(0, K.TB - 1, K.W, C.black)
 	hit.add(0, 0, K.W, K.TB, "drag", { down = function(mx, my) S.drag = { mx = mx, my = my, wx = S.wx, wy = S.wy } end })
 	local x = 22
 	x = x + g.text(F(700), 16, L("dh_title"), x, 26, C.text) + 14
@@ -4784,9 +4973,9 @@ function view.update_pill(right)
 	local shown = st == "available" or st == "loading" or st == "done" or st == "error"
 	local glyph, label, col, text_col
 	if st == "available" then
-		glyph, label, col, text_col = "arrow_down", string.format(L("dh_upd_pill"), upd.short(upd.latest)), C.blue, C.text
+		glyph, label, col, text_col = "arrow_down", string.format(L("dh_upd_pill"), upd.short(upd.latest)), C.accent, C.text
 	elseif st == "loading" then
-		label, col, text_col = L("dh_upd_pill_loading"), { 10, 132, 255, 90 }, C.text
+		label, col, text_col = L("dh_upd_pill_loading"), C.accent_pill, C.text
 	elseif st == "done" then
 		glyph, label, col, text_col = "check", L("dh_upd_pill_done"), { 48, 209, 88, 72 }, C.green
 	elseif st == "error" then
@@ -4797,7 +4986,7 @@ function view.update_pill(right)
 	local k = anim.tween("upd_a", shown and 1 or 0, 0.2)
 	if w < 1 then return right end
 	local x = right - 8 - w
-	local prev = upd.col_prev or col or C.blue
+	local prev = upd.col_prev or col or C.accent
 	local mix = math.min(1, (os.clock() - upd.changed_at) / 0.25)
 	if mix >= 1 then upd.col_prev = col end
 	local bg = col and prev and {
@@ -4935,18 +5124,19 @@ function view.head()
 		else text = L(ban and (us and "dh_sub_our_ban" or "dh_sub_enemy_ban") or (us and "dh_sub_our_pick" or "dh_sub_enemy_pick")) end
 		add(text)
 	end
-	g.text(F(800), 28, title, x, K.TB + 47, C.text)
-	if of then g.text(F(400), 13, of, right, K.TB + 49, C.text3, 1, "r") end
+	local ty = K.TB + g.lay(47, 44)
+	g.text(F(800), 28, title, x, ty, C.text)
+	if of then g.text(F(400), 13, of, right, ty + 2, C.text3, 1, "r") end
 	if done_btn then
 		local w = g.width(F(600), 15, L("dh_ready")) + 12
 		local id = "head_" .. done_btn
-		if hit.is(id) then g.rect(right - w, K.TB + 37, w, 24, { 10, 132, 255, 36 }, 6) end
-		g.text(F(600), 15, L("dh_ready"), right - 6, K.TB + 49, C.blue, 1, "r")
-		hit.add(right - w, K.TB + 37, w, 24, id, { click = function()
+		if hit.is(id) then g.rect(right - w, ty - 10, w, 24, C.accent_soft, 6) end
+		g.text(F(600), 15, L("dh_ready"), right - 6, ty + 2, C.accent, 1, "r")
+		hit.add(right - w, ty - 10, w, 24, id, { click = function()
 			S.view = done_btn == "hiddenback" and "set" or done_btn == "poolback" and S.pool_ret or (done_btn == "buildback" and S.b_ret or (done_btn == "newsback" and S.news_ret or S.ret))
 		end })
 	end
-	local cx, cy = x, K.TB + 79
+	local cx, cy = x, K.TB + g.lay(79, 74)
 	g.clip(x, cy - 12, K.CW, 24)
 	for n, part in ipairs(sub) do
 		if n > 1 then
@@ -4964,7 +5154,7 @@ function view.head()
 end
 
 function view.segment()
-	local x, y, w, h = K.CX, K.TB + 112, K.CW, 32
+	local x, y, w, h = K.CX, K.TB + g.lay(112, 102), K.CW, 32
 	g.rect(x, y, w, h, C.fill3, 9)
 	local labels, tws, cells, total = {}, {}, {}, 0
 	for p = 0, 5 do
@@ -4986,7 +5176,7 @@ function view.segment()
 	for p = 0, 5 do
 		local bx, bw = cells[p].x, cells[p].w
 		local on, is_busy = S.filter == p, p > 0 and busy[p]
-		if p > 0 and not on and S.filter ~= p - 1 then g.rect(bx, y + 8, 1, h - 16, C.sep2) end
+		if p > 0 and not on and S.filter ~= p - 1 then g.vl(bx, y + 8, h - 16, C.sep2) end
 		local label = labels[p]
 		local col = on and C.text or (is_busy and C.text3 or C.text2)
 		local tw = tws[p]
@@ -5024,7 +5214,8 @@ function view.value(r, ctx, right, cy, size)
 end
 
 function view.reasons(r, ctx, x, cy, max_x)
-	g.clip(x, cy - 10, max_x - x, 20)
+	local is, ps = g.lay(22, 18), g.lay(18, 16)
+	g.clip(x, cy - is / 2 + 1, max_x - x, is - 2)
 	local cx, first = x, true
 	local function sep()
 		if not first then
@@ -5035,16 +5226,16 @@ function view.reasons(r, ctx, x, cy, max_x)
 	end
 	if r.pos then
 		sep()
-		g.icon(asset.pos(r.pos), cx, cy - 9, 18, C.text2)
+		g.icon(asset.pos(r.pos), cx, cy - ps / 2, ps, C.text2)
 		r._share = r._share or (r.share and (r.share .. "%"))
-		cx = cx + 23 + g.text(F(500), 12, r._share or L("dh_pos_" .. r.pos), cx + 23, cy, C.text2) + 6
+		cx = cx + ps + 5 + g.text(F(500), 12, r._share or L("dh_pos_" .. r.pos), cx + ps + 5, cy, C.text2) + 6
 	end
 	if ctx and SET.reasons == 1 then
 		local function txt(e)
 			e[3] = e[3] or signed(e[2])
 			return e[3]
 		end
-		local function item_w(e) return 27 + g.width(F(500), 12, txt(e)) + 6 end
+		local function item_w(e) return is + 5 + g.width(F(500), 12, txt(e)) + 6 end
 		for _, group in ipairs(r.why or {}) do
 			group.key = group.key or ("dh_" .. group[1])
 			local label = L(group.key)
@@ -5055,8 +5246,8 @@ function view.reasons(r, ctx, x, cy, max_x)
 			for n = 1, math.min(2, #group[2]) do
 				local h, v = group[2][n][1], group[2][n][2]
 				if n > 1 and cx + item_w(group[2][n]) > max_x then break end
-				g.icon(asset.icon(h), cx, cy - 11, 22)
-				cx = cx + 27
+				g.icon(asset.icon(h), cx, cy - is / 2, is)
+				cx = cx + is + 5
 				cx = cx + g.text(F(500), 12, txt(group[2][n]), cx, cy, v >= 0 and C.green or C.red) + 6
 			end
 		end
@@ -5090,34 +5281,50 @@ function view.row_actions(h)
 	return acts
 end
 
+local ROW_SUGGEST = {}
+
+function view.row_hit(h, id, x, y, w, rh, can)
+	if can then
+		hit.add(x, y, w, rh, id, view.row_actions(h))
+		view.hint(id, view.how())
+	elseif draft.can_suggest() then
+		local acts = ROW_SUGGEST[h]
+		if not acts then
+			acts = { rclick = function(mx, my) view.open_ctx(h, mx, my) end }
+			ROW_SUGGEST[h] = acts
+		end
+		hit.add(x, y, w, rh, id, acts)
+		view.hint(id, L("dh_how_suggest"))
+	end
+end
+
 function view.best(r, ctx, y, a, can)
 	local x, w = K.CX, K.CW
 	r._id = r._id or ("h:" .. r.h)
 	r._sel = r._sel or ("sel:" .. r.h)
 	local id = r._id
 	local sel = S.sel == r.h
-	g.rect(x, y, w, 100, C.card, 14, a)
+	local h, pw = g.lay(100, 76), g.lay(128, 96)
+	g.rect(x, y, w, h, C.card, 14, a)
 	local k = anim.hover(id, can and hit.is(id))
-	if k > 0 then g.rect(x, y, w, 100, C.hover, 14, a * k) end
+	if k > 0 then g.rect(x, y, w, h, C.hover, 14, a * k) end
 	local ks = anim.tween(r._sel, sel and 1 or 0, 0.15)
-	if ks > 0 then g.rect(x, y, w, 100, C.select, 14, a * ks) end
-	g.image(asset.portrait(r.h), x + K.P, y + K.P, 128, 72, 9, a)
-	view.hero_name(r.h, 20, 700, x + 156, y + 38)
-	view.reasons(r, ctx, x + 156, y + 63, x + w - 150)
-	view.value(r, ctx, x + w - K.P, y + 50, 28)
-	if can then
-		hit.add(x, y, w, 100, id, view.row_actions(r.h))
-		view.hint(id, view.how())
-	end
-	return 100
+	if ks > 0 then g.rect(x, y, w, h, C.select, 14, a * ks) end
+	g.image(asset.portrait(r.h), x + K.P, y + g.lay(K.P, 11), pw, pw * 9 / 16, 9, a)
+	view.hero_name(r.h, 20, 700, x + K.P + pw + 14, y + g.lay(38, 27))
+	view.reasons(r, ctx, x + K.P + pw + 14, y + g.lay(63, 51), x + w - 150)
+	view.value(r, ctx, x + w - K.P, y + g.lay(50, 38), 28)
+	view.row_hit(r.h, id, x, y, w, h, can)
+	return h
 end
 
 function view.rows(list, ctx, y, a, can, na)
 	local x, w = K.CX, K.CW
-	g.rect(x, y, w, #list * 56, C.card, 12, a)
+	local rh, py, ny, ly = g.lay(56, 48), g.lay(11, 7), g.lay(19, 16), g.lay(39, 34)
+	g.rect(x, y, w, #list * rh, C.card, 12, a)
 	for n, r in ipairs(list) do
-		local ry = y + (n - 1) * 56
-		if S.vis_top and (ry + 56 < S.vis_top or ry > S.vis_bottom) then goto continue end
+		local ry = y + (n - 1) * rh
+		if S.vis_top and (ry + rh < S.vis_top or ry > S.vis_bottom) then goto continue end
 		r._id = r._id or ("h:" .. r.h)
 		r._sel = r._sel or ("sel:" .. r.h)
 		local id = r._id
@@ -5126,34 +5333,31 @@ function view.rows(list, ctx, y, a, can, na)
 		local ks = anim.tween(r._sel, sel and 1 or 0, 0.15)
 		if k > 0 or ks > 0 then
 			local flags = (n == 1 and #list == 1) and ROUND or (n == 1 and Enum.DrawFlags.RoundCornersTop or (n == #list and Enum.DrawFlags.RoundCornersBottom or Enum.DrawFlags.RoundCornersNone))
-			if k > 0 then g.rect(x, ry, w, 56, C.hover, 12, a * k, flags) end
-			if ks > 0 then g.rect(x, ry, w, 56, C.select, 12, a * ks, flags) end
+			if k > 0 then g.rect(x, ry, w, rh, C.hover, 12, a * k, flags) end
+			if ks > 0 then g.rect(x, ry, w, rh, C.select, 12, a * ks, flags) end
 		end
-		if n > 1 and not sel and S.sel ~= list[n - 1].h then g.rect(x + 88, ry, w - 88, 1, C.sep2, 0, a) end
-		g.image(asset.portrait(r.h), x + K.P, ry + 11, 60, 34, 6, a)
-		view.hero_name(r.h, 15, 600, x + 88, ry + 19)
+		if n > 1 and not sel and S.sel ~= list[n - 1].h then g.hl(x + 88, ry, w - 88, C.sep2, a) end
+		g.image(asset.portrait(r.h), x + K.P, ry + py, 60, 34, 6, a)
+		view.hero_name(r.h, 15, 600, x + 88, ry + ny)
 		if na then
 			local hero = data.heroes[r.h]
 			local cx = x + 88
 			if hero.pos then
-				g.icon(asset.pos(hero.pos), cx, ry + 31, 16, C.text2, a)
-				cx = cx + 21 + g.text(F(500), 12, L("dh_pos_" .. hero.pos), cx + 21, ry + 39, C.text2, a) + 7
-				g.vr(cx, ry + 39, 13, a)
+				g.icon(asset.pos(hero.pos), cx, ry + ly - 8, 16, C.text2, a)
+				cx = cx + 21 + g.text(F(500), 12, L("dh_pos_" .. hero.pos), cx + 21, ry + ly, C.text2, a) + 7
+				g.vr(cx, ry + ly, 13, a)
 				cx = cx + 7
 			end
-			g.text(F(400), 12, L("dh_attr_" .. hero.attr), cx, ry + 39, C.text3, a)
-			g.text(F(400), 12, na, x + w - K.P, ry + 28, C.text3, a, "r")
+			g.text(F(400), 12, L("dh_attr_" .. hero.attr), cx, ry + ly, C.text3, a)
+			g.text(F(400), 12, na, x + w - K.P, ry + rh / 2, C.text3, a, "r")
 		else
-			view.reasons(r, ctx, x + 88, ry + 39, x + w - 140)
-			view.value(r, ctx, x + w - K.P, ry + 28, 15)
+			view.reasons(r, ctx, x + 88, ry + ly, x + w - 140)
+			view.value(r, ctx, x + w - K.P, ry + rh / 2, 15)
 		end
-		if can then
-			hit.add(x, ry, w, 56, id, view.row_actions(r.h))
-			view.hint(id, view.how())
-		end
+		view.row_hit(r.h, id, x, ry, w, rh, can)
 		::continue::
 	end
-	return #list * 56
+	return #list * rh
 end
 
 function view.text_block(text, y, a)
@@ -5161,10 +5365,9 @@ function view.text_block(text, y, a)
 	return 14
 end
 
-function view.button(label, glyph, x, y, primary, id, on_click, a)
+function view.button(label, glyph, x, y, id, on_click, a)
 	local w = g.width(F(500), 14, label) + 32 + (glyph and 20 or 0)
-	local col = primary == "blue" and C.blue or (primary == "red" and C.red or C.fill2)
-	g.rect(x, y, w, 34, col, 8, hit.is(id) and a * 0.9 or a)
+	g.rect(x, y, w, 34, C.fill2, 8, hit.is(id) and a * 0.9 or a)
 	local tx = x + 16
 	if glyph then
 		g.glyph(glyph, 14, tx + 6, y + 17, C.text, a)
@@ -5214,22 +5417,22 @@ function view.draft_content(y, a)
 		view.text_block(L(only and "dh_empty_pool" or "dh_empty_pos"), y + 30, a)
 		if only then
 			local w = g.width(F(500), 14, L("dh_open_pool")) + 52
-			view.button(L("dh_open_pool"), "star", K.CX + (K.CW - w) / 2, y + 56, nil, "open_pool", function()
+			view.button(L("dh_open_pool"), "star", K.CX + (K.CW - w) / 2, y + 56, "open_pool", function()
 				S.pool_ret, S.ret, S.view = "draft", "draft", "pool"
 			end, a)
 		end
 		return 100
 	end
-	local h = view.best(list[1], ctx, y, a, can)
+	local h, gap = view.best(list[1], ctx, y, a, can), g.lay(14, 8)
 	if #list > 1 then
 		if S.rest_of ~= list then
 			S.rest_of, S.rest = list, {}
 			for i = 2, #list do S.rest[#S.rest + 1] = list[i] end
 		end
-		h = h + 14 + view.rows(S.rest, ctx, y + h + 14, a, can)
+		h = h + gap + view.rows(S.rest, ctx, y + h + gap, a, can)
 	end
 	local how = not can and L("dh_how_enemy") or (SET.confirm == 1 and L("dh_how_confirm") or L("dh_how_click"))
-	return h + 14 + view.text_block(how, y + h + 14, a)
+	return h + gap + view.text_block(how, y + h + gap, a)
 end
 
 function view.done(y, a)
@@ -5241,9 +5444,12 @@ function view.hidden(y, h)
 end
 
 function view.group_header(text, y, a)
-	if not view.hidden(y, 30) then g.text(F(700), 17, text, K.CX + K.P, y + 10, C.text, a) end
-	return 30
+	local h = g.lay(30, 28)
+	if not view.hidden(y, h) then g.text(F(700), 17, text, K.CX + K.P, y + g.lay(10, 9), C.text, a) end
+	return h
 end
+
+function view.gap() return g.lay(22, 14) end
 
 function view.foot(text, y, a)
 	if not view.hidden(y, 26) then g.text(F(400), 12, text, K.CX + K.P, y + 15, C.text3, a) end
@@ -5267,11 +5473,18 @@ function view.fold(key, on)
 	return anim.tween("fold_" .. key, on and 1 or 0, 0.26, ease_in_out)
 end
 
+function view.row_geom(sub)
+	local rh, ts = sub and g.lay(50, 46) or g.lay(50, 42), g.lay(30, 26)
+	return rh, ts, K.P + ts + 14
+end
+
 function view.setting_rows(rows, y, a)
 	local x, w = K.CX, K.CW
-	local hs, total, last = {}, 0, 0
+	local _, ts, tx = view.row_geom()
+	local rhs, hs, total, last = {}, {}, 0, 0
 	for n, row in ipairs(rows) do
-		hs[n] = math.floor(50 * (row.fold or 1) + 0.5)
+		rhs[n] = view.row_geom(row.sub)
+		hs[n] = math.floor(rhs[n] * (row.fold or 1) + 0.5)
 		total = total + hs[n]
 		if hs[n] > 0 then last = n end
 	end
@@ -5280,31 +5493,32 @@ function view.setting_rows(rows, y, a)
 	g.rect(x, y, w, total, C.card, 12, a)
 	local ry = y
 	for n, row in ipairs(rows) do
-		local f = row.fold or 1
+		local f, rh = row.fold or 1, rhs[n]
+		local cy = rh / 2
 		if hs[n] > 0 and not view.hidden(ry, hs[n]) then
 			local ra = a * f * f
 			if f < 1 then g.clip(x, ry, w, hs[n]) end
-			if n > 1 then g.rect(x + 58, ry, w - 58, 1, C.sep2, 0, ra) end
+			if n > 1 then g.hl(x + tx, ry, w - tx, C.sep2, ra) end
 			local k = row.act and anim.hover(row.id, hit.is(row.id)) or 0
 			if k > 0 then
 				local flags = (last == 1) and ROUND or (n == 1 and Enum.DrawFlags.RoundCornersTop or (n == last and Enum.DrawFlags.RoundCornersBottom or Enum.DrawFlags.RoundCornersNone))
-				g.rect(x, ry, w, 50, C.hover, 12, ra * k, flags)
+				g.rect(x, ry, w, rh, C.hover, 12, ra * k, flags)
 			end
-			g.rect(x + K.P, ry + 10, 30, 30, row.tile, 8, ra)
-			g.glyph(row.glyph, 16, x + K.P + 15, ry + 25, C.text, ra)
+			g.rect(x + K.P, ry + (rh - ts) / 2, ts, ts, row.tile, 8, ra)
+			g.glyph(row.glyph, g.lay(16, 14), x + K.P + ts / 2, ry + cy, C.text, ra)
 			if row.sub then
-				g.text(F(600), 14, row.title, x + 58, ry + 17, C.text, ra)
-				g.text(F(400), 12, row.sub, x + 58, ry + 34, C.text3, ra)
+				g.text(F(600), 14, row.title, x + tx, ry + cy - g.lay(8, 7), C.text, ra)
+				g.text(F(400), 12, row.sub, x + tx, ry + cy + g.lay(9, 8), C.text3, ra)
 			else
-				g.text(F(600), 14, row.title, x + 58, ry + 25, C.text, ra)
+				g.text(F(600), 14, row.title, x + tx, ry + cy, C.text, ra)
 			end
-			if row.control and f > 0.98 then row.control(x + w - K.P, ry + 25, ra) elseif row.control then
+			if row.control and f > 0.98 then row.control(x + w - K.P, ry + cy, ra) elseif row.control then
 				local hold = hit.list
 				hit.list = {}
-				row.control(x + w - K.P, ry + 25, ra)
+				row.control(x + w - K.P, ry + cy, ra)
 				hit.list = hold
 			end
-			if row.act and f > 0.98 then hit.add(x, ry, w, 50, row.id, { click = row.act }) end
+			if row.act and f > 0.98 then hit.add(x, ry, w, rh, row.id, { click = row.act }) end
 			if f < 1 then g.unclip() end
 		end
 		ry = ry + hs[n]
@@ -5356,6 +5570,25 @@ function view.choice(id, options, current, on_pick)
 	end
 end
 
+function view.swatches(right, cy, a)
+	local step, r = 30, 9
+	local x0 = right - (#K.ACCENTS - 1) * step - r - 4
+	for i, acc in ipairs(K.ACCENTS) do
+		local cx, id = x0 + (i - 1) * step, "acc_" .. acc.id
+		local on = anim.tween(id, SET.accent == acc.id and 1 or 0, 0.2, ease_in_out)
+		local ring = math.max(on, anim.hover(id, hit.is(id)) * 0.35)
+		if ring > 0 then Render.Circle(g.v(cx, cy), (r + 4) * g.s, g.col(C.text, a * ring), 1.5 * g.s) end
+		Render.FilledCircle(g.v(cx, cy), r * g.s, g.col(acc.c, a))
+		hit.add(cx - 13, cy - 13, 26, 26, id, { click = function()
+			if SET.accent == acc.id then return end
+			SET.accent = acc.id
+			save_settings()
+			theme.set()
+		end })
+		view.hint(id, L("dh_acc_" .. acc.id))
+	end
+end
+
 function view.slider(key, min, max)
 	return function(right, cy, a)
 		local tw = 180
@@ -5366,7 +5599,7 @@ function view.slider(key, min, max)
 		local hot = hit.is(id) or (S.slide ~= nil and S.slide.key == key)
 		g.num(600, 13, SET[key] .. "%", x - 18, cy, C.text2, a, "r")
 		g.rect(x, cy - 2, tw, 4, C.fill2, 2, a)
-		g.rect(x, cy - 2, tw * v, 4, C.blue, 2, a)
+		g.rect(x, cy - 2, tw * v, 4, C.accent, 2, a)
 		Render.FilledCircle(g.v(x + tw * v, cy), (hot and 11 or 10) * g.s, g.col(C.text, a))
 		hit.add(x - 12, cy - 14, tw + 24, 28, id, { down = function(mx)
 			S.slide = { key = key, min = min, max = max, x = sx, w = sw }
@@ -5425,7 +5658,7 @@ function view.role_row(x, y, bw, roles, id, a, close)
 		local px = x + (p - 1) * (bw + 6)
 		local k = r.disabled and 0 or anim.hover(rid, hit.is(rid))
 		g.rect(px, y, bw, 28, r.on and C.red or C.fill4, 7, a * (r.on and 0.25 or 1))
-		if k > 0 then g.rect(px, y, bw, 28, C.blue, 7, a * k) end
+		if k > 0 then g.rect(px, y, bw, 28, C.accent, 7, a * k) end
 		g.icon(asset.pos(p), px + bw / 2 - 9, y + 5, 18, C.text, a * ((r.disabled or r.on) and 0.35 or 1))
 		if r.on then g.line(px + 10, y + 23, px + bw - 10, y + 5, C.red, a, 1.5) end
 		if hit.is(rid) then S.tip = L("dh_pos_" .. p) .. (r.hint and (": " .. r.hint) or "") end
@@ -5442,22 +5675,22 @@ function view.hidden_view(y, a)
 	local x, list = K.CX, view.hidden_heroes()
 	if #list == 0 then return view.text_block(L("dh_s_hidden_none"), y + 20, a) + 20 end
 	local id = "hidden_clear"
-	g.text(F(400), 13, L("dh_s_hidden_clear"), x + K.CW - 6, y + 14, hit.is(id) and C.text or C.blue, a, "r")
+	g.text(F(400), 13, L("dh_s_hidden_clear"), x + K.CW - 6, y + 14, hit.is(id) and C.text or C.accent, a, "r")
 	hit.add(x + K.CW - 140, y, 140, 28, id, { click = function() data.hidden = {}; save_settings() end })
-	local top = y + 40
-	g.rect(x, top, K.CW, #list * 50, C.card, 12, a)
+	local top, rh = y + 40, g.lay(50, 42)
+	g.rect(x, top, K.CW, #list * rh, C.card, 12, a)
 	local bw, gap = 36, 6
 	local bx = x + K.CW - K.P - 5 * bw - 4 * gap
 	for n, hero in ipairs(list) do
-		local ry = top + (n - 1) * 50
-		if n > 1 then g.rect(x + 82, ry, K.CW - 82, 1, C.sep2, 0, a) end
-		g.image(asset.portrait(hero.h), x + K.P, ry + 10, 54, 30, 6, a)
-		g.text(F(600), 14, hero.name, x + K.P + 66, ry + 25, C.text, a)
+		local ry = top + (n - 1) * rh
+		if n > 1 then g.hl(x + 82, ry, K.CW - 82, C.sep2, a) end
+		g.image(asset.portrait(hero.h), x + K.P, ry + (rh - 30) / 2, 54, 30, 6, a)
+		g.text(F(600), 14, hero.name, x + K.P + 66, ry + rh / 2, C.text, a)
 		local row = {}
 		for p = 1, 5 do row[p] = { on = calc.hidden(hero.h, p), fn = function() toggle_hide(hero.h, p) end } end
-		view.role_row(bx, ry + 11, bw, row, "hid:" .. hero.h, a)
+		view.role_row(bx, ry + (rh - 28) / 2, bw, row, "hid:" .. hero.h, a)
 	end
-	return 40 + #list * 50
+	return 40 + #list * rh
 end
 
 function view.pool_short()
@@ -5475,7 +5708,7 @@ function view.home(y, a)
 		{ id = "tr_turbo", tile = C.t_cyan, glyph = "bolt", title = L("dh_mode_turbo"), control = view.chevron(L("dh_start"), "tr_turbo"), act = function() draft.start_training("ap", "turbo") end },
 		{ id = "tr_sd", tile = C.t_teal, glyph = "list", title = L("dh_mode_sd"), control = view.chevron(L("dh_start"), "tr_sd"), act = function() draft.start_training("ap", "sd") end },
 	}, y + h, a)
-	h = h + view.foot(L(SET.tr_enemy == "manual" and "dh_h_foot_manual" or "dh_h_foot_auto"), y + h, a) + 22
+	h = h + view.foot(L(SET.tr_enemy == "manual" and "dh_h_foot_manual" or "dh_h_foot_auto"), y + h, a) + view.gap()
 	if S.last then
 		h = h + view.group_header(L("dh_h_last"), y + h, a)
 		local sub = L(S.last.train and "dh_h_training" or "dh_h_match") .. "  |  " .. string.format(L("dh_h_last_chance"), math.floor(S.last.chance * 100 + 0.5))
@@ -5490,7 +5723,7 @@ function view.home(y, a)
 			end }
 		end
 		h = h + view.setting_rows(rows, y + h, a)
-		h = h + view.foot(L("dh_h_last_foot"), y + h, a) + 22
+		h = h + view.foot(L("dh_h_last_foot"), y + h, a) + view.gap()
 	end
 	h = h + view.group_header(L("dh_h_hints"), y + h, a)
 	h = h + view.setting_rows({
@@ -5529,7 +5762,8 @@ end
 function view.update_tip(y)
 	local line = view.update_line()
 	if not line or not upd.error or not (upd.state == "error" or upd.check_failed) then return end
-	hit.add(K.CX + 58, y + 25, g.width(F(400), 12, line), 18, "upd_error", {})
+	local rh, _, tx = view.row_geom(true)
+	hit.add(K.CX + tx, y + rh / 2 + g.lay(9, 8) - 9, g.width(F(400), 12, line), 18, "upd_error", {})
 	if hit.is("upd_error") then S.tip = upd.error end
 end
 
@@ -5548,11 +5782,11 @@ function view.update_button(right, cy, a)
 	local w = g.width(F(500), 14, label) + 24
 	local x, on = right - w, hit.is("set_update")
 	if st == "available" then
-		g.rect(x, cy - 15, w, 30, C.blue, 8, a * (on and 0.85 or 1))
+		g.rect(x, cy - 15, w, 30, C.accent, 8, a * (on and 0.85 or 1))
 		g.text(F(500), 14, label, x + w / 2, cy, C.text, a, "c")
 	else
-		if on then g.rect(x, cy - 15, w, 30, { 10, 132, 255, 36 }, 8, a) end
-		g.text(F(500), 14, label, x + w / 2, cy, st == "error" and C.red or C.blue, a, "c")
+		if on then g.rect(x, cy - 15, w, 30, C.accent_soft, 8, a) end
+		g.text(F(500), 14, label, x + w / 2, cy, st == "error" and C.red or C.accent, a, "c")
 	end
 	hit.add(x, cy - 15, w, 30, "set_update", { click = function()
 		if st == "idle" then upd.check(true) else upd.install() end
@@ -5566,11 +5800,13 @@ function view.settings(y, a)
 	local function pick(key) return function(v) SET[key] = v; save_settings() end end
 	h = h + view.group_header(L("dh_s_data"), y + h, a)
 	local line = view.data_line()
-	view.error_tip(K.CX + 58, y + h + 75, g.width(F(400), 12, line), 18)
+	local rh1, _, tx = view.row_geom()
+	local rh2 = view.row_geom(true)
+	view.error_tip(K.CX + tx, y + h + rh1 + rh2 / 2 + g.lay(9, 8) - 9, g.width(F(400), 12, line), 18)
 	h = h + view.setting_rows({
 		{ tile = C.t_blue, glyph = "users", title = L("dh_s_source"), control = view.choice("source", { { "cm", L("dh_mode_cm") }, { "ap", L("dh_source_ap") } }, SET.source, pick("source")) },
 		{ tile = C.t_indigo, glyph = "chart", title = L("dh_s_rank"), sub = line, control = view.choice("rank", ranks, SET.rank, pick("rank")) },
-	}, y + h, a) + 22
+	}, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_hints"), y + h, a)
 	h = h + view.setting_rows({
 		{ id = "set_pool", tile = C.t_orange, glyph = "star", title = L("dh_pool"), sub = view.pool_short(), control = view.chevron(L("dh_change"), "set_pool"), act = function() S.pool_ret, S.view = "set", "pool" end },
@@ -5580,53 +5816,68 @@ function view.settings(y, a)
 		{ tile = C.t_green, glyph = "flag", title = L("dh_s_goal"), sub = L("dh_s_goal_sub"), control = view.choice("goal", { { "draft", L("dh_goal_draft") }, { "lane", L("dh_goal_lane") } }, SET.goal, pick("goal")) },
 		{ tile = C.t_teal, glyph = "comment", title = L("dh_s_reasons"), sub = L("dh_s_reasons_sub"), control = view.switch("reasons") },
 		{ tile = C.t_green, glyph = "percent", title = L("dh_s_chance"), control = view.switch("chance") },
-	}, y + h, a) + 22
+	}, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_pick"), y + h, a)
 	h = h + view.setting_rows({
 		{ tile = C.t_orange, glyph = "hand", title = L("dh_s_confirm"), sub = L("dh_s_confirm_sub"), control = view.switch("confirm") },
 		{ tile = C.t_blue, glyph = "crown", title = L("dh_s_captain"), sub = L("dh_s_captain_sub"), control = view.switch("captain") },
-	}, y + h, a) + 22
+	}, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_train"), y + h, a)
 	h = h + view.setting_rows({
 		{ tile = C.t_indigo, glyph = "robot", title = L("dh_s_enemy"), sub = L("dh_s_enemy_sub"), control = view.choice("tr_enemy", { { "auto", L("dh_s_enemy_auto") }, { "manual", L("dh_s_enemy_manual") } }, SET.tr_enemy, pick("tr_enemy")) },
 		{ tile = C.t_green, glyph = "flag", title = L("dh_s_side"), control = view.choice("tr_side", { { "r", L("dh_s_light") }, { "d", L("dh_s_dark") } }, SET.tr_side, pick("tr_side")) },
 		{ tile = C.t_orange, glyph = "hand", title = L("dh_s_first"), sub = L("dh_s_first_sub"), control = view.choice("tr_first", { { "us", L("dh_s_first_us") }, { "them", L("dh_s_first_them") } }, SET.tr_first, pick("tr_first")) },
 	}, y + h, a)
-	h = h + view.foot(L("dh_s_train_foot"), y + h, a) + 22
+	h = h + view.foot(L("dh_s_train_foot"), y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_bp"), y + h, a)
 	h = h + view.setting_rows({
 		{ tile = C.t_purple, glyph = "bag", title = L("dh_bp"), sub = L("dh_bp_tip"), control = view.switch("bp") },
 		{ fold = view.fold("bp", SET.bp == 1), tile = C.t_blue, glyph = "eye", title = L("dh_bp_show"), control = view.choice("bp_show", { { "shop", L("dh_bp_show_shop") }, { "always", L("dh_bp_show_always") } }, SET.bp_show, pick("bp_show")) },
-	}, y + h, a) + 22
+	}, y + h, a) + view.gap()
+	local themes = {}
+	for i, t in ipairs(K.THEMES) do themes[i] = { t.id, L("dh_theme_" .. t.id) } end
+	h = h + view.group_header(L("dh_s_look"), y + h, a)
+	h = h + view.setting_rows({
+		{ tile = C.t_indigo, glyph = "moon", title = L("dh_s_theme"), control = view.choice("theme", themes, SET.theme, function(v)
+			if SET.theme == v then return end
+			SET.theme = v
+			save_settings()
+			theme.set()
+		end) },
+		{ tile = C.accent, glyph = "palette", title = L("dh_s_accent"), sub = L("dh_s_accent_sub"), control = view.swatches },
+		{ tile = C.t_teal, glyph = "compress", title = L("dh_s_compact"), sub = L("dh_s_compact_sub"), control = view.switch("compact") },
+	}, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_window"), y + h, a)
 	h = h + view.setting_rows({
 		{ tile = C.t_purple, glyph = "wand", title = L("dh_s_auto"), sub = L("dh_s_auto_sub"), control = view.switch("auto") },
 		{ tile = C.t_blue, glyph = "pointer", title = L("dh_s_hover"), sub = L("dh_s_hover_sub"), control = view.switch("hints") },
 		{ tile = C.t_indigo, glyph = "blur", title = L("dh_s_blur"), control = view.switch("blur") },
 		{ fold = view.fold("blur", SET.blur == 1), tile = C.t_indigo, glyph = "drop", title = L("dh_s_blur_power"), control = view.slider("blur_power", 10, 100) },
-	}, y + h, a) + 22
+	}, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_debug"), y + h, a)
 	h = h + view.setting_rows({
 		{ tile = C.t_gray, glyph = "bug", title = L("dh_s_log"), sub = L("dh_s_log_sub"), control = view.switch("log") },
 		{ tile = C.t_teal, glyph = "eye", title = L("dh_s_panel"), sub = L("dh_s_panel_sub"), control = view.switch("panel") },
-	}, y + h, a) + 22
+	}, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_about"), y + h, a)
 	view.update_tip(y + h)
 	h = h + view.setting_rows({
 		{ tile = C.t_gray, glyph = "info", title = string.format(L("dh_version"), K.VERSION), sub = view.update_line(), control = view.update_button },
 		{ id = "set_news", tile = C.t_indigo, glyph = "gift", title = L("dh_news"), sub = L("dh_news_row_sub"), control = view.chevron(L("dh_open"), "set_news"), act = function() view.open_news() end },
-	}, y + h, a) + 22
-	g.rect(K.CX, y + h, K.CW, 48, C.card, 12, a)
+	}, y + h, a) + view.gap()
+	local dh = g.lay(48, 40)
+	g.rect(K.CX, y + h, K.CW, dh, C.card, 12, a)
 	local kd = anim.hover("defaults", hit.is("defaults"))
-	if kd > 0 then g.rect(K.CX, y + h, K.CW, 48, C.hover, 12, a * kd) end
-	g.text(F(400), 14, L("dh_s_defaults"), K.CX + K.P, y + h + 24, C.red, a)
-	hit.add(K.CX, y + h, K.CW, 48, "defaults", { click = function()
+	if kd > 0 then g.rect(K.CX, y + h, K.CW, dh, C.hover, 12, a * kd) end
+	g.text(F(400), 14, L("dh_s_defaults"), K.CX + K.P, y + h + dh / 2, C.red, a)
+	hit.add(K.CX, y + h, K.CW, dh, "defaults", { click = function()
 		local pool = SET.pool
 		set_defaults()
 		SET.pool = pool
 		save_settings()
+		theme.set()
 	end })
-	return h + 48
+	return h + dh
 end
 
 function view.pool(y, a)
@@ -5638,7 +5889,7 @@ function view.pool(y, a)
 	choice(x + mw, y + 14, a)
 	if #SET.pool > 0 then
 		local id = "pool_clear"
-		g.text(F(400), 13, L("dh_pool_clear"), x + K.CW - 6, y + 14, hit.is(id) and C.text or C.blue, a, "r")
+		g.text(F(400), 13, L("dh_pool_clear"), x + K.CW - 6, y + 14, hit.is(id) and C.text or C.accent, a, "r")
 		hit.add(x + K.CW - 110, y, 110, 28, id, { click = function() SET.pool = {}; save_settings() end })
 	end
 	h = 48
@@ -5665,7 +5916,7 @@ function view.pool(y, a)
 				local hover = hit.is(id)
 				g.image(asset.portrait(hero.h), px, py, 58, 33, 6, a * (hover and 0.85 or (0.5 + 0.5 * k)), (1 - k) * 0.65)
 				if k > 0 then
-					Render.FilledCircle(g.v(px + 50, py + 8), 8 * g.s, g.col(C.blue, a * k))
+					Render.FilledCircle(g.v(px + 50, py + 8), 8 * g.s, g.col(C.accent, a * k))
 					g.glyph("check", 10, px + 50, py + 8, C.text, a * k)
 				end
 				hit.add(px, py, 58, 33, id, { click = function() toggle_pool(hero.h) end })
@@ -5851,7 +6102,7 @@ function view.items(x, y, w, a)
 		end
 	end
 
-	g.rect(lx, ry + 4, w - 2 * K.P, 1, C.sep2, 0, a)
+	g.hl(lx, ry + 4, w - 2 * K.P, C.sep2, a)
 	g.text(F(700), 11, L("dh_b_counter"), lx, ry + 26, C.text3, a)
 	ry = ry + 44
 	if nc == 0 then g.text(F(400), 12, L("dh_b_counter_none"), lx, ry + 10, C.text3, a) end
@@ -5974,7 +6225,7 @@ function view.build(y, a)
 end
 
 function view.content()
-	local top = view.no_head() and K.TB + 20 or ((S.view == "draft" and draft.positional() and S.query == "" and not S.reveal_at) and K.TB + 164 or K.TB + 112)
+	local top = view.no_head() and K.TB + g.lay(20, 16) or ((S.view == "draft" and draft.positional() and S.query == "" and not S.reveal_at) and K.TB + g.lay(164, 150) or K.TB + g.lay(112, 104))
 	local bottom = K.H
 	local bar_on = S.sel ~= nil and S.view == "draft" and not draft.done()
 	local step_key = table.concat({ S.env, tostring(S.train), S.mode, tostring(S.kind), S.view, S.mode == "ap" and (#S.ap.ours .. "/" .. #S.ap.theirs) or tostring(draft.cm_n()), S.view == "build" and S.bh or "" }, ":")
@@ -6071,7 +6322,7 @@ function view.bar()
 		hit.add(bx, y + 18, bw, 36, id, { click = fn })
 		return bx
 	end
-	local bx = btn(L(ban and "dh_ban_btn" or "dh_select"), "Enter", x + w - K.P, ban and C.red or C.blue, "bar_ok", function() draft.commit(S.sel) end)
+	local bx = btn(L(ban and "dh_ban_btn" or "dh_select"), "Enter", x + w - K.P, ban and C.red or C.accent, "bar_ok", function() draft.commit(S.sel) end)
 	btn(L("dh_cancel"), "Esc", bx - 8, nil, "bar_cancel", function() S.sel = nil end)
 end
 
@@ -6080,7 +6331,8 @@ function view.open_pos_menu(key, x, y)
 end
 
 function view.open_ctx(h, mx, my)
-	if draft.done() or S.reveal_at or draft.used()[h] or not draft.can_act() then return end
+	if draft.done() or S.reveal_at or draft.used()[h] then return end
+	if not draft.can_act() and not draft.can_suggest() then return end
 	S.menu = { kind = "ctx", h = h, x = (mx - g.x) / g.s + 2, y = (my - g.y) / g.s + 2 }
 end
 
@@ -6113,13 +6365,16 @@ function view.menu()
 			item(L("dh_b_m_build"), "bag", nil, function() build.open(info.h) end)
 		end
 	else
-		local h, ban = m.h, draft.is_ban()
+		local h, ban, act = m.h, draft.is_ban(), draft.can_act()
 		header = { "", data.heroes[h].name }
-		item(L(ban and "dh_ban_btn" or "dh_select"), ban and "ban" or "check", L("dh_m_dbl"), function() draft.commit(h) end, { danger = ban })
-		if SET.confirm == 1 then item(L("dh_m_select"), "pointer", L("dh_m_click"), function() S.sel = h end) end
+		if act then
+			item(L(ban and "dh_ban_btn" or "dh_select"), ban and "ban" or "check", L("dh_m_dbl"), function() draft.commit(h) end, { danger = ban })
+			if SET.confirm == 1 then item(L("dh_m_select"), "pointer", L("dh_m_click"), function() S.sel = h end) end
+		end
+		if draft.can_suggest() then item(L("dh_m_suggest"), "comment", nil, function() live.suggest(h, draft.suggest_ban()) end) end
 		item(L(in_pool(h) and "dh_m_pool_del" or "dh_m_pool_add"), "star", nil, function() toggle_pool(h) end)
 		if not ban then items[#items + 1] = { sep = true } end
-		if not ban and (S.mode == "ap" or draft.cm_ours()) then
+		if act and not ban and (S.mode == "ap" or draft.cm_ours()) then
 			local busy, row = draft.our_pos(), {}
 			for p = 1, 5 do
 				row[p] = { disabled = busy[p], hint = busy[p] and L("dh_m_taken") or nil, fn = function() draft.commit(h, p) end }
@@ -6148,7 +6403,7 @@ function view.menu()
 	local iy = y + 33
 	for n, it in ipairs(items) do
 		if it.sep then
-			g.rect(x + 9, iy + 5, w - 18, 1, C.sep2)
+			g.hl(x + 9, iy + 5, w - 18, C.sep2)
 			iy = iy + 11
 		elseif it.section then
 			g.text(F(600), 11, it.section, x + 14, iy + 11, C.text3)
@@ -6161,7 +6416,7 @@ function view.menu()
 			local disabled = it.opts.disabled
 			local a = disabled and 0.35 or 1
 			local k = disabled and 0 or anim.hover(id, hit.is(id))
-			if k > 0 then g.rect(x + 5, iy, w - 10, 32, it.opts.danger and C.red or C.blue, 7, k) end
+			if k > 0 then g.rect(x + 5, iy, w - 10, 32, it.opts.danger and C.red or C.accent, 7, k) end
 			if type(it.icon) == "number" then g.icon(asset.pos(it.icon), x + 13, iy + 7, 18, C.text, a)
 			else g.glyph(it.icon, 14, x + 22, iy + 16, C.text, a) end
 			local lw = g.text(F(400), 13, it.label, x + 39, iy + 16, C.text, a)
@@ -6203,6 +6458,7 @@ function view.window()
 	S.wx = clamp(S.wx, 0, math.max(0, screen.x - K.W * g.s))
 	S.wy = clamp(S.wy, 0, math.max(0, screen.y - K.H * g.s))
 	g.x, g.y, g.a = S.wx, S.wy, S.alpha
+	g.cmp = anim.tween("compact", SET.compact == 1 and 1 or 0, 0.25, ease_in_out)
 	hit.begin()
 	build.frame()
 	S.tip = nil
@@ -6472,7 +6728,7 @@ function bp.item(e, x, y, a, idx)
 	end
 	if pin then
 		g.rect(x + w - 11, y - 5, 16, 16, C.main, 8, a)
-		g.rect(x + w - 10, y - 4, 14, 14, C.blue, 7, a)
+		g.rect(x + w - 10, y - 4, 14, 14, C.accent, 7, a)
 		g.glyph("pin", 8, x + w - 3, y + 3, C.text, a)
 	end
 	bp.hit(x, y, w, h, id, { item = e.name, bear = e.bear })
@@ -6649,7 +6905,7 @@ function bp.frame()
 		end)
 		y = y + 32
 		local lw = g.width(F(500), 12, L("dh_bp_all"))
-		g.text(F(500), 12, L("dh_bp_all"), 10, y + 10, C.blue, ca * (bp.hover == "bp_all" and 0.7 or 1))
+		g.text(F(500), 12, L("dh_bp_all"), 10, y + 10, C.accent, ca * (bp.hover == "bp_all" and 0.7 or 1))
 		bp.hit(10, y, lw, 20, "bp_all", { left = bp.open_settings })
 	elseif not plan or not plan.has then
 		local status = data.status("items")
@@ -6862,6 +7118,7 @@ function script.OnFrame()
 	local frame = GlobalVars.GetAbsFrameTime()
 	S.dt = clamp(frame > 0 and frame or (now - (S.now > 0 and S.now or now)), 0, 0.1)
 	S.now = now
+	theme.tick(S.dt)
 	asset.budget = 2
 	S.alpha = anim.tween("window", S.open and 1 or 0, 0.18)
 	if SET.panel == 1 then view.live_panel() end
