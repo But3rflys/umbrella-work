@@ -3,15 +3,16 @@
 подсказки на драфте и сборка предметов / draft hints and item builds
 
 <!-- releases:start -->
-Скачать: [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.16/draft_helper.lua) — `draft-helper-v2.0.0-beta.16`, 2026-10-09
+Скачать: [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.17/draft_helper.lua) — `draft-helper-v2.0.0-beta.17`, 2026-10-10
 
 | версия | дата | файл | загрузок |
 | --- | --- | --- | --- |
-| [`draft-helper-v2.0.0-beta.16`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.16) | 2026-10-09 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.16/draft_helper.lua) | 78 |
-| [`draft-helper-v2.0.0-beta.15`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.15) | 2026-10-09 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.15/draft_helper.lua) | 116 |
-| [`draft-helper-v2.0.0-beta.14`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.14) | 2026-10-08 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.14/draft_helper.lua) | 80 |
+| [`draft-helper-v2.0.0-beta.17`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.17) | 2026-10-10 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.17/draft_helper.lua) | 0 |
+| [`draft-helper-v2.0.0-beta.16`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.16) | 2026-10-09 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.16/draft_helper.lua) | 96 |
+| [`draft-helper-v2.0.0-beta.15`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.15) | 2026-10-09 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.15/draft_helper.lua) | 117 |
+| [`draft-helper-v2.0.0-beta.14`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.14) | 2026-10-08 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.14/draft_helper.lua) | 81 |
 | [`draft-helper-v2.0.0-beta.13`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.13) | 2026-10-08 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.13/draft_helper.lua) | 13 |
-| [`draft-helper-v2.0.0-beta.12`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.12) | 2026-10-08 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.12/draft_helper.lua) | 92 |
+| [`draft-helper-v2.0.0-beta.12`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.12) | 2026-10-08 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.12/draft_helper.lua) | 96 |
 | [`draft-helper-v2.0.0-beta.11`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.11) | 2026-10-07 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.11/draft_helper.lua) | 136 |
 | [`draft-helper-v2.0.0-beta.9`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.9) | 2026-10-07 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.9/draft_helper.lua) | 29 |
 | [`draft-helper-v2.0.0-beta.8`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.8) | 2026-10-07 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.8/draft_helper.lua) | 2 |
