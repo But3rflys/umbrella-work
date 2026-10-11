@@ -61,9 +61,9 @@ MusicUI: unzip the archive, put `MusicUI.lua` into `scripts`, run `MusicUI.exe`.
 | [Lane Pull](scripts/lane_pull) | 329 | `lane-pull-v1.0.4` |
 | [DS Spot Block](scripts/ds_spot_block) | 60 | `ds-spot-block-v1.0.1` |
 | [Custom Background](scripts/custom_background) | 28 | `custom-background-v1.0.0` |
-| [Auto Stack](scripts/auto_stack) | 106 | `auto-stack-v1.1.0` |
-| [Draft Helper](scripts/draft_helper) | 778 | `draft-helper-v2.0.0-beta.17` |
-| [MusicUI](scripts/musicui) | 952 | `musicui-v1.0.8` |
+| [Auto Stack](scripts/auto_stack) | 107 | `auto-stack-v1.1.0` |
+| [Draft Helper](scripts/draft_helper) | 817 | `draft-helper-v2.0.0-beta.18` |
+| [MusicUI](scripts/musicui) | 955 | `musicui-v1.0.8` |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/stats/stats-dark.svg">
