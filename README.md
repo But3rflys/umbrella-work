@@ -62,7 +62,7 @@ MusicUI: unzip the archive, put `MusicUI.lua` into `scripts`, run `MusicUI.exe`.
 | [DS Spot Block](scripts/ds_spot_block) | 60 | `ds-spot-block-v1.0.1` |
 | [Custom Background](scripts/custom_background) | 28 | `custom-background-v1.0.0` |
 | [Auto Stack](scripts/auto_stack) | 107 | `auto-stack-v1.1.0` |
-| [Draft Helper](scripts/draft_helper) | 817 | `draft-helper-v2.0.0-beta.18` |
+| [Draft Helper](scripts/draft_helper) | 817 | `draft-helper-v2.0.0-beta.19` |
 | [MusicUI](scripts/musicui) | 955 | `musicui-v1.0.8` |
 
 <picture>
