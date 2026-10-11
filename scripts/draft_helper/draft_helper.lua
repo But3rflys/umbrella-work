@@ -1561,7 +1561,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.18",
+	VERSION = "2.0.0-beta.19",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1602,7 +1602,7 @@ local K = {
 
 	NEWS = {
 		{
-			v = "2.0.0-beta.18",
+			v = "2.0.0-beta.19",
 			items = {
 				{ key = "dh_cl_b18build", glyph = "bag", tile = "t_indigo" },
 				{ key = "dh_cl_b18vars", glyph = "list", tile = "t_teal" },
