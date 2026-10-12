@@ -24,6 +24,7 @@ CM_PAGE = 500
 CM_WINDOW = 4000000
 CM_WINDOW_MIN = 250000
 CM_WINDOWS = 3 if QUICK else 400
+POS_MATCHES = 6000
 GAP = 1.1
 CALLS_MAX = 1900
 D2PT = "https://dota2protracker.com/hero/"
@@ -36,6 +37,15 @@ REC = struct.Struct("<QI10sBB")
 
 MATCH_COLS = "match_id m, start_time s, radiant_team r, dire_team d, radiant_win w, avg_rank_tier t"
 
+POS_SQL = (
+    "with m as (select match_id from matches order by match_id desc limit %d), "
+    "p as (select pm.match_id, pm.hero_id h, pm.player_slot < 128 t, coalesce(pm.lane_role, 4) l, pm.gold_per_min g "
+    "from player_matches pm join m using (match_id) where pm.gold_per_min is not null), "
+    "c as (select *, row_number() over (partition by match_id, t, l order by g desc) lr from p), "
+    "d as (select *, case when l in (1, 2, 3) and lr = 1 then l end core from c), "
+    "e as (select *, row_number() over (partition by match_id, t, (core is null) order by g desc) sr from d) "
+    "select h, coalesce(core, case when sr = 1 then 4 else 5 end) pos, count(*) n from e group by 1, 2"
+) % POS_MATCHES
 
 calls = 0
 
@@ -245,33 +255,24 @@ def describe(recs):
     return {"n": len(recs), "from": rec_time(recs[-1]) if recs else 0, "to": rec_time(recs[0]) if recs else 0}
 
 
-def d2pt_roles():
-    path = OUT / "stats" / "items.txt"
-    full, pages = {}, {}
-    if path.exists():
-        for line in path.read_text(encoding="utf-8").splitlines():
-            p = line.split()
-            if p and p[0] == "r" and len(p) == 7:
-                full[int(p[1])] = [int(x) for x in p[2:]]
-            elif p and p[0] == "h" and len(p) == 6:
-                pages.setdefault(int(p[1]), [0] * 5)[int(p[2]) - 1] = int(p[5])
-    pages.update(full)
-    return pages
-
-
 def heroes():
     data = get(API + "heroes")
-    roles = d2pt_roles()
+    pos = {}
+    for row in explorer(POS_SQL):
+        pos.setdefault(int(row["h"]), [0] * 5)[int(row["pos"]) - 1] += int(row["n"])
     out = []
     for h in data:
         if not isinstance(h, dict) or not h.get("id") or not str(h.get("name", "")).startswith("npc_dota_hero_"):
             continue
-        out.append({"id": h["id"], "name": h["name"][14:], "attr": h.get("primary_attr") or "all", "pos": roles.get(h["id"], [0] * 5)})
+        counts = pos.get(h["id"], [0] * 5)
+        total = sum(counts)
+        shares = [round(c * 100 / total) for c in counts] if total else [0] * 5
+        out.append({"id": h["id"], "name": h["name"][14:], "attr": h.get("primary_attr") or "all", "pos": shares})
     if len(out) < 100:
         raise RuntimeError("bad heroes list")
     out.sort(key=lambda x: x["id"])
     write("heroes.json", json.dumps(out, separators=(",", ":")))
-    log("heroes: %d, roles for %d", len(out), sum(1 for h in out if any(h["pos"])))
+    log("heroes: %d", len(out))
 
 
 class JsLiteral:
@@ -431,7 +432,7 @@ def items():
     path = OUT / "manifest.json"
     manifest = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
     prev = (manifest.get("sets") or {}).get("items") or {}
-    if prev.get("src") == "d2pt" and prev.get("min") == D2PT_MATCHES and time.time() - prev.get("time", 0) < D2PT_EVERY and (OUT / "stats/items.txt").exists() and (OUT / "stats/build.txt").exists():
+    if prev.get("src") == "d2pt" and prev.get("min") == D2PT_MATCHES and time.time() - prev.get("time", 0) < D2PT_EVERY and (OUT / "stats/items.txt").exists():
         log("items: fresh, skipped")
         return None
     consts = get(API + "constants/items")
@@ -445,8 +446,7 @@ def items():
     first = d2pt_page("Anti-Mage")
     common = first[0]["data"]
     mapping, names = common.get("itemsMapping") or {}, common.get("heroesMapping") or {}
-    ctx = build_ctx(consts)
-    rows, seen, pages, heroes, patch, full = [], set(), 0, 0, "", []
+    rows, seen, pages, heroes, patch = [], set(), 0, 0, ""
     for hid_s, info in sorted(names.items(), key=lambda x: int(x[0])):
         hid = int(hid_s)
         if hid not in ours:
@@ -463,28 +463,20 @@ def items():
         heroes += 1
         patch = node.get("patchversion") or patch
         rows += part
-        full += build_rows(hid, node, ctx)
         main = int(str(node.get("position")).replace("pos ", ""))
         stats = {x.get("position"): x.get("matches") or 0 for x in node.get("heroStats") or []}
-        total = sum(stats.get("pos %d" % p, 0) for p in range(1, 6))
-        if total:
-            line = "r %d %s" % (hid, " ".join(str(round(100 * stats.get("pos %d" % p, 0) / total)) for p in range(1, 6)))
-            rows.append(line)
-            full.append(line)
         for pos in range(1, 6):
             n = stats.get("pos %d" % pos, 0)
             if pos == main or n < D2PT_MATCHES:
                 continue
             try:
-                node = d2pt_page(info["displayName"], pos)[1]["data"]
+                extra = d2pt_rows(hid, d2pt_page(info["displayName"], pos)[1]["data"], seen)
             except Exception as e:
                 log("items: %s pos %d skipped: %s", info.get("displayName"), pos, e)
                 continue
-            extra = d2pt_rows(hid, node, seen)
             if extra:
                 pages += 1
                 rows += extra
-                full += build_rows(hid, node, ctx)
     if heroes < 100:
         raise RuntimeError("d2pt builds for %d heroes only" % heroes)
     lines = ["n %d" % pages, "v %s" % patch]
@@ -501,188 +493,7 @@ def items():
             lines.append("u %d %s" % (i, " ".join(map(str, up))))
     write("stats/items.txt", "\n".join(lines + rows) + "\n")
     log("items: d2pt %s, %d heroes, %d pages, %d rows", patch, heroes, pages, len(rows))
-    write("stats/build.txt", "\n".join(["n %d" % pages, "v %s" % patch] + build_items(ctx, full) + full) + "\n")
-    log("build: %d rows", len(full))
     return pages
-
-
-BUILD_PATH = 0.3
-BUILD_FIN = 0.1
-BUILD_FIN_TOP = 9
-BUILD_LATE_FOLLOW = 100
-BUILD_FOLD = 5
-BUILD_LEVEL = 0.07
-BUILD_POOL = 0.01
-BUILD_VAR_SHARE = 20
-BUILD_VAR_GAMES = 300
-BUILD_NOSLOT = {"aghanims_shard"}
-BUILD_LEVELS = re.compile(r"^(dagon|travel_boots)(_\d)?$")
-BUILD_EXTRA = ("ultimate_scepter_2",)
-
-
-def build_ctx(consts):
-    ctx = {"name": {}, "id": {}, "cost": {}, "parents": {}, "cons": set()}
-    for k, v in consts.items():
-        if not isinstance(v, dict) or not v.get("id"):
-            continue
-        i = int(v["id"])
-        ctx["name"][i], ctx["id"][k], ctx["cost"][k] = k, i, int(v.get("cost") or 0)
-        if v.get("qual") == "consumable":
-            ctx["cons"].add(k)
-        for c in v.get("components") or []:
-            ctx["parents"].setdefault(c, set()).add(k)
-    ctx["cons"] -= {"aghanims_shard", "moon_shard", "bottle"}
-    return ctx
-
-
-def build_ups(ctx, name):
-    out = set()
-    for p in ctx["parents"].get(name, ()):
-        if p not in out:
-            out |= {p} | build_ups(ctx, p)
-    return out
-
-
-def build_base(name):
-    m = BUILD_LEVELS.match(name)
-    return m.group(1) if m else name
-
-
-def build_path(bd, ctx):
-    names, cons = ctx["name"], ctx["cons"]
-    info, ais = {}, {}
-
-    def put(i, pr, minute):
-        name = names.get(int(i))
-        if not name or name in cons:
-            return
-        e = info.setdefault(name, {"pr": 0.0, "min": None})
-        e["pr"] = max(e["pr"], pr)
-        if minute is not None and e["min"] is None:
-            e["min"] = minute
-
-    for x in (bd.get("anchor_items") or []) + (bd.get("items_mid_late") or []):
-        put(x["raw_item_id"], x.get("pr") or 0, x.get("avg_minute"))
-    for k, v in (bd.get("anchor_item_stats") or {}).items():
-        name = names.get(int(k))
-        if not name:
-            continue
-        ais[name] = (v.get("pr") or 0) / 100
-        if name in info:
-            if info[name]["min"] is None:
-                info[name]["min"] = v.get("avg_minute")
-        else:
-            put(k, 0.0, v.get("avg_minute"))
-    six = {names.get(x["item_id"]): x["pick_rate"] for x in bd.get("sixslot") or [] if names.get(x["item_id"])}
-    late = {k: {names.get(i) for i in v} for k, v in (bd.get("anchor_lategame_inventories") or {}).items()}
-    fin = dict(six)
-    for name, e in info.items():
-        key = ais.get(name, 0)
-        if name not in six and name not in BUILD_NOSLOT and not (build_ups(ctx, name) & set(six)):
-            fin[name] = max(e["pr"], key) * (0.5 * (name in late.get("45+", ())) + 0.5 * (name in late.get("55+", ())))
-
-    top = {}
-    for name, e in info.items():
-        b = build_base(name)
-        if b != name or BUILD_LEVELS.match(name):
-            if (e["pr"] >= BUILD_LEVEL or name == b) and (b not in top or name > top[b]):
-                top[b] = name
-
-    cand = {}
-
-    def add(name):
-        if not name or name not in info or info[name]["min"] is None:
-            return
-        b = build_base(name)
-        key = top.get(b, name)
-        if key in cand:
-            return
-        same = [x for x in info if build_base(x) == b and info[x]["min"] is not None]
-        cand[key] = {
-            "name": key,
-            "min": min(info[x]["min"] for x in same),
-            "pr": max(info[x]["pr"] for x in same),
-            "fin": min(1.0, sum(fin.get(x, 0) for x in same)),
-        }
-
-    endgame = late.get("45+", set()) | late.get("55+", set())
-    anchor = [names.get(int(i)) for i in (bd.get("anchor_build") or [[]])[0]]
-    for name in anchor:
-        if name in info and (max(info[name]["pr"], ais.get(name, 0)) >= BUILD_PATH or name in endgame):
-            add(name)
-    for name, f in sorted(fin.items(), key=lambda kv: -kv[1])[:BUILD_FIN_TOP]:
-        if f >= BUILD_FIN:
-            add(name)
-    for name in ("ultimate_scepter", "aghanims_shard"):
-        if name in info and info[name]["pr"] >= BUILD_PATH:
-            add(name)
-    for e in list(cand.values()):
-        ups = build_ups(ctx, e["name"])
-        if ups and not any(u in cand for u in ups):
-            best = max((u for u in ups if u in info and info[u]["min"] is not None and info[u]["min"] > e["min"] and info[u]["pr"] >= 0.5 * e["pr"]),
-                       key=lambda u: info[u]["pr"], default=None)
-            if best:
-                add(best)
-    path = sorted(cand.values(), key=lambda e: e["min"])
-    out = []
-    for e in path:
-        ups = build_ups(ctx, e["name"])
-        later = [u["min"] for u in path if u is not e and u["name"] in ups and u["min"] >= e["min"]]
-        if later and min(later) - e["min"] <= BUILD_FOLD:
-            continue
-        out.append(e)
-    return out, info, fin
-
-
-def build_rows(hid, node, ctx):
-    pos = int(str(node.get("position") or "0").replace("pos ", "") or 0)
-    builds = sorted((b for b in node.get("buildData") or [] if isinstance(b, dict) and b.get("build_data")), key=lambda b: b.get("build_id", 99))
-    if not pos or not builds:
-        return []
-    stats = {x.get("position"): x.get("matches") or 0 for x in node.get("heroStats") or []}
-    total = stats.get("all") or 0
-    share = round(100 * stats.get("pos %d" % pos, 0) / total) if total else 0
-    ids, rows, var = ctx["id"], [], 0
-    for b in builds:
-        if var and (b.get("pick_rate", 0) < BUILD_VAR_SHARE or (b.get("num_matches") or 0) < BUILD_VAR_GAMES):
-            continue
-        bd = b["build_data"]
-        path, info, fin = build_path(bd, ctx)
-        if not path:
-            continue
-        key = "%d %d %d" % (hid, pos, var)
-        rows.append("h %s %d %d %d %d" % (key, b.get("num_matches") or 0, round((bd.get("win_rate") or 0) * 1000), share, round(b.get("pick_rate") or 0)))
-        for opt in (bd.get("starting_items_new") or [])[:1]:
-            rows.append("s %s %d %s" % (key, opt[1].get("count") or 0, ",".join(str(int(x)) for x in opt[0])))
-        for e in path:
-            rows.append("b %s %d %d %d %d" % (key, ids[e["name"]], round(e["min"] * 10), round(e["fin"] * 1000), round(e["pr"] * 1000)))
-        late = {k: [ctx["name"].get(i) for i in v] for k, v in (bd.get("anchor_lategame_inventories") or {}).items()}
-        anchor = {ctx["name"].get(int(i)) for i in (bd.get("anchor_build") or [[]])[0]}
-        follow = max((x.get("purchases") or 0 for x in (bd.get("anchor_item_stats") or {}).values()), default=0)
-        for name in [] if follow < BUILD_LATE_FOLLOW else sorted({n for n in late.get("55+", []) if n and n in ids and n not in ctx["cons"] and n not in BUILD_NOSLOT}):
-            rows.append("l %s %d %d" % (key, ids[name], 1 if name in anchor or name in late.get("45+", []) else 0))
-        for name, e in sorted(info.items()):
-            if e["pr"] >= BUILD_POOL and e["min"] is not None:
-                rows.append("a %s %d %d %d %d" % (key, ids[name], round(e["pr"] * 1000), round(e["min"] * 10), round(min(1.0, fin.get(name, 0)) * 1000)))
-        var += 1
-    return rows
-
-
-def build_items(ctx, rows):
-    used = {int(p[4]) for p in (r.split() for r in rows) if p[0] in ("a", "b", "l")}
-    for r in rows:
-        p = r.split()
-        if p[0] == "s":
-            used |= {int(x) for x in p[5].split(",")}
-    used |= {ctx["id"][n] for n in BUILD_EXTRA if n in ctx["id"]}
-    names = {ctx["name"][i] for i in used if i in ctx["name"]}
-    out = ["i %d %s %d" % (i, ctx["name"][i], ctx["cost"][ctx["name"][i]]) for i in sorted(used) if i in ctx["name"]]
-    for i in sorted(used):
-        name = ctx["name"].get(i)
-        up = sorted(ctx["id"][p] for p in ctx["parents"].get(name, ()) if p in names)
-        if up:
-            out.append("u %d %s" % (i, " ".join(map(str, up))))
-    return out
 
 
 COUNTERS_EVERY = 3 * 86400
@@ -805,295 +616,6 @@ def counters():
     return {"n": len(games), "patch": patch["name"]}
 
 
-ANSWERS_EVERY = 3 * 86400
-ANSWERS_WINDOW = 7 * 86400
-ANSWERS_STEP = 300
-ANSWERS_MAX = 75 * 60
-ANSWERS_MAJOR = 1800
-ANSWERS_MIN_COST = 1000
-ANSWERS_MIN_BUYS = 100
-ANSWERS_KEPT = 0.25
-ANSWERS_LAM = 4.0
-ANSWERS_DOM = 0.7
-ANSWERS_MINE = (1, 2, 3, 4, 5, 6)
-ANSWERS_RICH = (2, 4, 6, 9, 12, 15, 19, 24)
-ANSWERS_LIFT = 1.4
-ANSWERS_Z_HERO = 4.0
-ANSWERS_Z_ITEM = 5.0
-ANSWERS_OBS = 20
-ANSWERS_FINAL = 0.03
-ANSWERS_FINAL_GAMES = 30
-ANSWERS_FINAL_LONG = 40 * 60
-ANSWERS_COMPAT = 0.2
-ANSWERS_COMPAT_EXP = 10
-ANSWERS_SIT_LIFT = 1.3
-ANSWERS_SIT_Z = 3.0
-ANSWERS_CONS = ("dust", "ward_sentry", "gem")
-ANSWERS_SQL = (
-    "select pm.match_id m, pm.hero_id h, pm.player_slot s, pm.gold_per_min g, m.duration d, "
-    "pm.item_0 i0, pm.item_1 i1, pm.item_2 i2, pm.item_3 i3, pm.item_4 i4, pm.item_5 i5, pm.backpack_0 b0, pm.backpack_1 b1, pm.backpack_2 b2, "
-    "(select string_agg((x->>'key') || ':' || (x->>'time'), ' ') from unnest(pm.purchase_log) x) p "
-    "from matches m join player_matches pm using (match_id) where m.start_time >= %d and m.start_time < %d"
-)
-ANSWERS_SLOTS = ("i0", "i1", "i2", "i3", "i4", "i5", "b0", "b1", "b2")
-
-
-def answers():
-    import calendar
-    import numpy as np
-    path = OUT / "manifest.json"
-    manifest = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
-    prev = (manifest.get("sets") or {}).get("answers") or {}
-    patch = get(API + "constants/patch")[-1]
-    if prev.get("patch") == patch["name"] and time.time() - prev.get("time", 0) < ANSWERS_EVERY and (OUT / "stats/answers.txt").exists():
-        log("answers: fresh, skipped")
-        return None
-    start = calendar.timegm(time.strptime(patch["date"][:19], "%Y-%m-%dT%H:%M:%S"))
-    consts = get(API + "constants/items")
-    cost = {k: int(v.get("cost") or 0) for k, v in consts.items() if isinstance(v, dict)}
-    by_id = {int(v["id"]): k for k, v in consts.items() if isinstance(v, dict) and v.get("id")}
-    cons = {k for k, v in consts.items() if isinstance(v, dict) and v.get("qual") == "consumable"} - {"gem"}
-
-    by_match, lo, now = {}, start, int(time.time())
-    while lo < now:
-        for r in explorer(ANSWERS_SQL % (lo, lo + ANSWERS_WINDOW)):
-            if r.get("p"):
-                by_match.setdefault(r["m"], []).append(r)
-        lo += ANSWERS_WINDOW
-    players = []
-    for ps in by_match.values():
-        if len(ps) != 10:
-            continue
-        for p in ps:
-            buys = []
-            for t in p["p"].split():
-                k, _, s = t.rpartition(":")
-                buys.append((int(s), k))
-            buys.sort()
-            p["b"], p["r"] = buys, p["s"] < 128
-        for p in ps:
-            players.append((p, [q for q in ps if q["r"] != p["r"]]))
-    if len(players) < 20000:
-        raise RuntimeError("too few pro players: %d" % len(players))
-
-    bought, kept = {}, {}
-    for p, _ in players:
-        fin = {by_id.get(p.get(k) or 0) for k in ANSWERS_SLOTS}
-        for k in {k for _, k in p["b"]}:
-            bought[k] = bought.get(k, 0) + 1
-            kept[k] = kept.get(k, 0) + (k in fin)
-
-    def big(k):
-        return k not in cons and not k.startswith("recipe") and cost.get(k, 0) >= ANSWERS_MIN_COST and bought[k] >= ANSWERS_MIN_BUYS
-
-    complete = {k for k in bought if big(k) and kept[k] / bought[k] >= ANSWERS_KEPT}
-    targets = sorted(complete | {k for k in ANSWERS_CONS if k in bought})
-    parents = {}
-    for k, v in consts.items():
-        if isinstance(v, dict):
-            for c in v.get("components") or []:
-                parents.setdefault(c, set()).add(k)
-    then = {}
-    for p, _ in players:
-        for i, (_, k) in enumerate(p["b"]):
-            if k in parents and k not in complete:
-                nxt = next((k2 for _, k2 in p["b"][i + 1:] if k2 in parents[k]), None)
-                then.setdefault(k, {})[nxt] = then.setdefault(k, {}).get(nxt, 0) + 1
-    dom = {}
-    for k, c in then.items():
-        total = sum(c.values())
-        top = max((x for x in c if x is not None), key=lambda x: c[x], default=None)
-        if top in complete and total >= ANSWERS_MIN_BUYS and c[top] / total >= ANSWERS_DOM:
-            dom[k] = top
-    expo = sorted(complete)
-    heroes = sorted({p["h"] for p, _ in players})
-    ti = {k: i for i, k in enumerate(targets)}
-    xs = [("i", k) for k in expo] + [("h", h) for h in heroes]
-    xi = {k: i for i, k in enumerate(xs)}
-    nx = len(xs)
-
-    def bucket(n, cuts):
-        return next((i for i, c in enumerate(cuts) if n < c), len(cuts))
-
-    sid, S, own, ev, ex = {}, [], ([0], []), ([0], []), ([0], [])
-    for p, en in players:
-        first = {}
-        for t, k in p["b"]:
-            if k in ti and k not in first:
-                first[k] = t
-        mine = [t for t, k in p["b"] if cost.get(k, 0) >= ANSWERS_MAJOR]
-        theirs = sorted((t, k) for q in en for t, k in q["b"])
-        rich = [t for t, k in theirs if cost.get(k, 0) >= ANSWERS_MAJOR]
-        seen = {}
-        for t, k in theirs:
-            k = k if k in complete else dom.get(k)
-            if k:
-                seen.setdefault(k, t)
-        hx = [xi[("h", q["h"])] for q in en]
-        L = 0
-        while L + ANSWERS_STEP <= min(p["d"], ANSWERS_MAX):
-            key = (L // ANSWERS_STEP, p["h"], bucket(sum(t < L for t in mine), ANSWERS_MINE), bucket(sum(t < L for t in rich), ANSWERS_RICH))
-            S.append(sid.setdefault(key, len(sid)))
-            for (ptr, idx), vals in ((own, [ti[k] for k, t in first.items() if t < L]),
-                                     (ev, [ti[k] for k, t in first.items() if L <= t < L + ANSWERS_STEP]),
-                                     (ex, hx + [xi[("i", k)] for k, t in seen.items() if t < L and ("i", k) in xi])):
-                idx += vals
-                ptr.append(len(idx))
-            L += ANSWERS_STEP
-    S = np.array(S)
-    n, ns = len(S), len(sid)
-
-    def rows_of(pair):
-        return np.repeat(np.arange(n), np.diff(np.array(pair[0]))), np.array(pair[1], dtype=np.int64)
-
-    own_r, own_t = rows_of(own)
-    ev_r, ev_t = rows_of(ev)
-    ex_r, ex_x = rows_of(ex)
-    del own, ev, ex
-    log("answers: %d players, %d records, %d strata, %d targets, %d exposures", len(players), n, ns, len(targets), nx)
-
-    lines = ["n %d" % len(players), "v %s" % patch["name"]] + ["d %s %s" % kv for kv in sorted(dom.items())]
-    for j, name in enumerate(targets):
-        risk = np.ones(n, bool)
-        risk[own_r[own_t == j]] = False
-        y = np.zeros(n)
-        y[ev_r[ev_t == j]] = 1
-        y *= risk
-        R = np.bincount(S, weights=risk, minlength=ns)
-        E = np.bincount(S, weights=y, minlength=ns)
-        base = np.where(risk & (R[S] >= 2), (E[S] - y) / np.maximum(R[S] - 1, 1), 0.0)
-        live = base > 0
-        keep = np.nonzero(live)[0]
-        remap = -np.ones(n, np.int64)
-        remap[keep] = np.arange(len(keep))
-        sel = remap[ex_r] >= 0
-        rr, xx = remap[ex_r[sel]], ex_x[sel]
-        m_n, yv, lp = len(keep), y[keep], np.log(base[keep])
-
-        def xv(v):
-            return np.bincount(rr, weights=v[xx], minlength=m_n)
-
-        def xtv(v):
-            return np.bincount(xx, weights=v[rr], minlength=nx)
-
-        obs = xtv(yv)
-        beta = np.zeros(nx)
-        m = np.exp(lp)
-        ll = np.sum(yv * lp - m)
-        g_prev = z_prev = d_prev = None
-        for _ in range(300):
-            g = obs - xtv(m) - ANSWERS_LAM * beta
-            z = g / (xtv(m) + ANSWERS_LAM)
-            d = z
-            if d_prev is not None:
-                d = z + max(0.0, (z @ (g - g_prev)) / max(z_prev @ g_prev, 1e-12)) * d_prev
-                if d @ g <= 0:
-                    d = z
-            xd, t = xv(d), 0.0
-            for _ in range(8):
-                mt = m * np.exp(t * xd)
-                f1 = np.sum((yv - mt) * xd) - ANSWERS_LAM * (beta + t * d) @ d
-                f2 = -np.sum(mt * xd * xd) - ANSWERS_LAM * d @ d
-                t -= f1 / f2
-                if abs(f1 / f2) < 1e-6:
-                    break
-            beta = beta + t * d
-            eta = lp + xv(beta)
-            m = np.exp(eta)
-            new = np.sum(yv * eta - m) - ANSWERS_LAM / 2 * beta @ beta
-            g_prev, z_prev, d_prev = g, z, d
-            if abs(new - ll) < 1e-9 * max(1.0, abs(ll)):
-                break
-            ll = new
-        zs = beta * np.sqrt(xtv(m) + ANSWERS_LAM)
-        lift = np.exp(beta)
-        sig = np.where((lift >= ANSWERS_SIT_LIFT) & (zs >= ANSWERS_SIT_Z), beta, 0.0)
-        lines.append("s %s %d" % (name, round(1000 * np.sum(yv * (1 - np.exp(-xv(sig)))) / max(np.sum(yv), 1))))
-        for i in np.nonzero((lift >= ANSWERS_LIFT) & (obs >= ANSWERS_OBS))[0]:
-            kind, x = xs[i]
-            if zs[i] >= (ANSWERS_Z_HERO if kind == "h" else ANSWERS_Z_ITEM):
-                lines.append("%s %s %s %d" % ("e" if kind == "h" else "x", name, x, round(lift[i] * 100)))
-
-    base_n, base_c = {}, {}
-    for ps in by_match.values():
-        if len(ps) != 10:
-            continue
-        for side in (True, False):
-            team = sorted((q for q in ps if q["r"] == side), key=lambda q: -(q.get("g") or 0))
-            for k, q in enumerate(team):
-                key = (q["h"], 1 if k < 3 else 2)
-                base_n[key] = base_n.get(key, 0) + 1
-                have = {b for _, b in q["b"]}
-                for it in ANSWERS_CONS:
-                    if it in have:
-                        base_c[key + (it,)] = base_c.get(key + (it,), 0) + 1
-    for key, cnt in sorted(base_n.items()):
-        if cnt >= 30:
-            for it in ANSWERS_CONS:
-                lines.append("p %d %d %s %d" % (key[0], key[1], it, round(1000 * base_c.get(key + (it,), 0) / cnt)))
-    lines += answers_compat(by_match, complete)
-    lines += answers_finals(by_match, by_id, cons)
-    lines += bear_items(start)
-    write("stats/answers.txt", "\n".join(lines) + "\n")
-    log("answers: %s, %d lines", patch["name"], len(lines))
-    return {"n": len(players), "patch": patch["name"]}
-
-
-def answers_finals(by_match, by_id, cons):
-    games, have = {}, {}
-    for ps in by_match.values():
-        if len(ps) != 10:
-            continue
-        for side in (True, False):
-            team = sorted((q for q in ps if q["r"] == side), key=lambda q: -(q.get("g") or 0))
-            for k, q in enumerate(team):
-                if (q.get("d") or 0) < ANSWERS_FINAL_LONG:
-                    continue
-                key = (q["h"], 1 if k < 3 else 2)
-                games[key] = games.get(key, 0) + 1
-                for name in {by_id.get(q.get(slot) or 0) for slot in ANSWERS_SLOTS}:
-                    if name and name not in cons and not name.startswith("recipe"):
-                        have[key + (name,)] = have.get(key + (name,), 0) + 1
-    lines = []
-    for key, n in sorted(games.items()):
-        if n < ANSWERS_FINAL_GAMES:
-            continue
-        lines.append("g %d %d %d" % (key[0], key[1], n))
-        for (h, t, name), c in sorted(have.items()):
-            if (h, t) == key and c / n >= ANSWERS_FINAL:
-                lines.append("f %d %d %s %d" % (h, t, name, round(1000 * c / n)))
-    return lines
-
-
-def answers_compat(by_match, items):
-    lines = []
-    for tier in (1, 2):
-        sets = []
-        for ps in by_match.values():
-            if len(ps) != 10:
-                continue
-            for side in (True, False):
-                team = sorted((q for q in ps if q["r"] == side), key=lambda q: -(q.get("g") or 0))
-                for k, q in enumerate(team):
-                    if (1 if k < 3 else 2) == tier:
-                        sets.append(sorted({b for _, b in q["b"] if b in items}))
-        n = len(sets)
-        one, two = {}, {}
-        for s in sets:
-            for i, a in enumerate(s):
-                one[a] = one.get(a, 0) + 1
-                for b in s[i + 1:]:
-                    two[(a, b)] = two.get((a, b), 0) + 1
-        names = sorted(one)
-        for i, a in enumerate(names):
-            for b in names[i + 1:]:
-                exp = one[a] * one[b] / n
-                lift = (two.get((a, b), 0) + 1) / (exp + 1)
-                if exp >= ANSWERS_COMPAT_EXP and lift <= ANSWERS_COMPAT:
-                    lines.append("c %d %s %s %d" % (tier, a, b, round(lift * 100)))
-    return lines
-
-
 def model(key, recs, prior=None):
     import draft_model
     if len(recs) < 5000:
@@ -1131,16 +653,10 @@ def main():
     done = step("items", items)
     if done:
         sets["items"] = {"n": done, "time": now, "src": "d2pt", "min": D2PT_MATCHES}
-        sets["build"] = {"n": done, "time": now}
-        step("roles", heroes)
 
     done = step("counters", counters)
     if done:
         sets["counters"] = dict(done, time=now)
-
-    done = step("answers", answers)
-    if done:
-        sets["answers"] = dict(done, time=now)
 
     newest = None
     for rank in RANKS:
