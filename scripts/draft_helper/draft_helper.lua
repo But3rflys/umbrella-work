@@ -334,6 +334,12 @@ local localization = qLocalization.new({
 		dh_cl_b17suggest_d = "During the draft, right-click a hero to suggest it to your allies.",
 		dh_cl_b17fix_t = "Fixes",
 		dh_cl_b17fix_d = "The script is more stable.",
+		dh_cl_b21build_t = "Builds",
+		dh_cl_b21build_d = "One-row build for the whole game: what to sell, what to disassemble and what to buy late.",
+		dh_cl_b21vs_t = "Counter items",
+		dh_cl_b21vs_d = "Items are picked with enemy heroes and their items in mind.",
+		dh_cl_b21pos_t = "All positions",
+		dh_cl_b21pos_d = "Builds for almost every position with data.",
 		dh_cl_b15roles_t = "Heroes on their roles",
 		dh_cl_b15roles_d = "Hero roles come from 7000+ MMR games: Doom is no longer suggested as a carry. Your queued role and your pool are taken into account.",
 		dh_cl_b15hide_t = "Don't suggest",
@@ -382,10 +388,6 @@ local localization = qLocalization.new({
 		dh_cl_fix_d = "Enemy positions in training no longer repeat.",
 		dh_bp = "Build panel",
 		dh_bp_tip = "Small item list for your hero next to the shop",
-		dh_bp_early = "Early",
-		dh_bp_mid = "Mid",
-		dh_bp_late = "Late",
-		dh_bp_extra = "Situational",
 		dh_bp_show = "Show",
 		dh_bp_show_shop = "With shop",
 		dh_bp_show_always = "Always",
@@ -675,22 +677,17 @@ local localization = qLocalization.new({
 		dh_b_build = "BUILD",
 		dh_b_m_build = "Item build",
 		dh_b_start = "Start",
-		dh_b_stage1 = "Early game",
-		dh_b_stage2 = "Mid game",
-		dh_b_stage3 = "Late game",
 		dh_b_no_role = "No build for this role",
-		dh_b_or = "or %s",
-		dh_b_counter = "FOR THEIR DRAFT",
-		dh_b_counter_none = "No special answers needed",
-		dh_b_extra = "Situational",
+		dh_b_path = "Build",
+		dh_b_vs = "Against %s",
+		dh_b_sell = "Sell %s",
+		dh_b_keep = "%s for %s",
+		dh_b_split_short = "Disassemble %s",
+		dh_b_eat = "Consume Aghanim's Scepter for the Blessing",
+		dh_b_consume = "Consume right away",
 		dh_b_bear = "Spirit Bear",
-		dh_b_pick = "Bought in %d%% of games",
 		dh_b_data_none = "Item builds are not on GitHub yet",
 		dh_b_no_hero = "No item data for this hero yet",
-		dh_t_save = "Dispellable saves",
-		dh_t_evasion = "Evasion",
-		dh_t_invis = "Invisibility",
-		dh_t_draft = "Bought more often against them",
 		dh_data_loading = "Loading draft data from GitHub",
 		dh_data_error = "No connection to GitHub",
 		dh_data_empty = "empty response",
@@ -730,6 +727,12 @@ local localization = qLocalization.new({
 		dh_cl_b17suggest_d = "Во время драфта ПКМ по герою предлагает его союзникам.",
 		dh_cl_b17fix_t = "Исправления",
 		dh_cl_b17fix_d = "Скрипт работает стабильнее.",
+		dh_cl_b21build_t = "Сборки",
+		dh_cl_b21build_d = "Сборка на всю игру одной строкой: что продать, что разобрать и что докупить в лейте.",
+		dh_cl_b21vs_t = "Под их драфт",
+		dh_cl_b21vs_d = "Предметы подбираются с учётом вражеских героев и их предметов.",
+		dh_cl_b21pos_t = "Все позиции",
+		dh_cl_b21pos_d = "Сборки почти на все позиции, по которым есть данные.",
 		dh_cl_b15roles_t = "Герои на своих ролях",
 		dh_cl_b15roles_d = "Роли героев по играм 7000+ MMR: Дум больше не советуется на керри. Учитываются роль из очереди и твой пул.",
 		dh_cl_b15hide_t = "Не советовать",
@@ -778,10 +781,6 @@ local localization = qLocalization.new({
 		dh_cl_fix_d = "Позиции врагов в тренировке больше не повторяются.",
 		dh_bp = "Панель сборки",
 		dh_bp_tip = "Маленький список предметов твоего героя у магазина",
-		dh_bp_early = "Ранняя",
-		dh_bp_mid = "Середина",
-		dh_bp_late = "Поздняя",
-		dh_bp_extra = "По ситуации",
 		dh_bp_show = "Показывать",
 		dh_bp_show_shop = "С магазином",
 		dh_bp_show_always = "Всегда",
@@ -1071,22 +1070,17 @@ local localization = qLocalization.new({
 		dh_b_build = "СБОРКА",
 		dh_b_m_build = "Сборка предметов",
 		dh_b_start = "Старт",
-		dh_b_stage1 = "Ранняя игра",
-		dh_b_stage2 = "Середина",
-		dh_b_stage3 = "Поздняя игра",
 		dh_b_no_role = "Для этой роли сборки нет",
-		dh_b_or = "или %s",
-		dh_b_counter = "ПОД ИХ ДРАФТ",
-		dh_b_counter_none = "Особых ответов не нужно",
-		dh_b_extra = "По ситуации",
+		dh_b_path = "Сборка",
+		dh_b_vs = "Против: %s",
+		dh_b_sell = "Продать %s",
+		dh_b_keep = "%s на %s",
+		dh_b_split_short = "Разобрать %s",
+		dh_b_eat = "Съесть Aghanim's Scepter ради Blessing",
+		dh_b_consume = "Съесть сразу",
 		dh_b_bear = "Медведь",
-		dh_b_pick = "Берут в %d%% игр",
 		dh_b_data_none = "Сборок на GitHub пока нет",
 		dh_b_no_hero = "По этому герою данных о предметах пока нет",
-		dh_t_save = "Сейвы, которые снимаются",
-		dh_t_evasion = "Уклонение",
-		dh_t_invis = "Невидимость",
-		dh_t_draft = "Чаще берут против них",
 		dh_data_loading = "Загружаю данные драфта с GitHub",
 		dh_data_error = "Нет связи с GitHub",
 		dh_data_empty = "пустой ответ",
@@ -1126,6 +1120,12 @@ local localization = qLocalization.new({
 		dh_cl_b17suggest_d = "选人阶段右键点击英雄，即可推荐给队友。",
 		dh_cl_b17fix_t = "修复",
 		dh_cl_b17fix_d = "脚本运行更稳定。",
+		dh_cl_b21build_t = "出装",
+		dh_cl_b21build_d = "一行显示整局出装：卖什么、拆什么、后期补什么。",
+		dh_cl_b21vs_t = "针对敌方阵容",
+		dh_cl_b21vs_d = "根据敌方英雄及其物品推荐物品。",
+		dh_cl_b21pos_t = "所有位置",
+		dh_cl_b21pos_d = "几乎所有有数据的位置都有出装。",
 		dh_cl_b15roles_t = "英雄回到本职位置",
 		dh_cl_b15roles_d = "英雄位置来自 7000+ MMR 比赛：末日使者不再被推荐为一号位。会考虑你排队的位置和英雄池。",
 		dh_cl_b15hide_t = "不推荐",
@@ -1174,10 +1174,6 @@ local localization = qLocalization.new({
 		dh_cl_fix_d = "训练中敌方位置不再重复。",
 		dh_bp = "出装面板",
 		dh_bp_tip = "在商店旁显示你英雄的小型物品列表",
-		dh_bp_early = "前期",
-		dh_bp_mid = "中期",
-		dh_bp_late = "后期",
-		dh_bp_extra = "视情况",
 		dh_bp_show = "显示",
 		dh_bp_show_shop = "随商店",
 		dh_bp_show_always = "始终",
@@ -1467,22 +1463,17 @@ local localization = qLocalization.new({
 		dh_b_build = "出装",
 		dh_b_m_build = "物品出装",
 		dh_b_start = "初始",
-		dh_b_stage1 = "前期",
-		dh_b_stage2 = "中期",
-		dh_b_stage3 = "后期",
 		dh_b_no_role = "这个位置没有出装",
-		dh_b_or = "或%s",
-		dh_b_counter = "针对敌方阵容",
-		dh_b_counter_none = "不需要特别应对",
-		dh_b_extra = "视情况",
+		dh_b_path = "出装",
+		dh_b_vs = "针对：%s",
+		dh_b_sell = "卖掉%s",
+		dh_b_keep = "%s用于%s",
+		dh_b_split_short = "拆分%s",
+		dh_b_eat = "吃掉阿哈利姆神杖获得祝福",
+		dh_b_consume = "立即使用",
 		dh_b_bear = "熊灵",
-		dh_b_pick = "%d%%的比赛会购买",
 		dh_b_data_none = "GitHub 上还没有物品出装",
 		dh_b_no_hero = "这个英雄还没有物品数据",
-		dh_t_save = "可驱散的保命效果",
-		dh_t_evasion = "闪避",
-		dh_t_invis = "隐身",
-		dh_t_draft = "对阵他们时更常购买",
 		dh_data_loading = "正在从 GitHub 加载选人数据",
 		dh_data_error = "无法连接 GitHub",
 		dh_data_empty = "响应为空",
@@ -1543,7 +1534,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.20",
+	VERSION = "2.0.0-beta.21",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -1583,6 +1574,14 @@ local K = {
 	},
 
 	NEWS = {
+		{
+			v = "2.0.0-beta.21",
+			items = {
+				{ key = "dh_cl_b21build", glyph = "bag", tile = "t_purple" },
+				{ key = "dh_cl_b21vs", glyph = "shield", tile = "t_blue" },
+				{ key = "dh_cl_b21pos", glyph = "users", tile = "t_teal", roles = true },
+			},
+		},
 		{
 			v = "2.0.0-beta.17",
 			items = {
@@ -1724,11 +1723,12 @@ local K = {
 	ACCENT_ALPHA = { accent = 255, select = 51, focus = 230, accent_soft = 36, accent_pill = 90 },
 	THEME_FADE = 0.3,
 	LIVE_READ = 0.1,
+	STEP_TTL = 0.5,
 	LIVE_IDLE = 0.5,
 	LIVE_SLOT_CHECK = 1,
 	LIVE_CAPTAIN = 1,
 	LIVE_GRID = 0.3,
-	LIVE_GRID_HEROES = 2,
+	LIVE_GRID_HEROES = 30,
 	LANE_BITS = { [1] = 1, [2] = 3, [4] = 2, [8] = 4, [16] = 5 },
 	RANKED = { [7] = true, COMPETITIVE_MATCH = true },
 	KIND = { [23] = "turbo", DOTA_GAMEMODE_TURBO = "turbo", [4] = "sd", DOTA_GAMEMODE_SD = "sd" },
@@ -1752,37 +1752,65 @@ local MODEL = {
 }
 
 local ITEM = {
-	POS_MIN = 300,
-	SHARE_MIN = 10,
-	RATE = 0.15,
-	LIFT = 1.4,
+	POS_MIN = 100,
+	SHARE_MIN = 0,
 	FILL = 0.25,
 	AGHS = 0.3,
 	FOLD_GAP = 5,
 	UPGRADE = 0.15,
-	EXTRA = 0.07,
-	EXTRA_N = 5,
 	BEAR = 0.5,
 	SLOTS = 6,
 	BEAR_HERO = "lone_druid",
 	BEAR_PORTRAIT = "panorama/images/heroes/npc_dota_lone_druid_bear_png.vtex_c",
 	STEP_COST = 1500,
-	EARLY = 12,
-	MID = 25,
 	LATE = 30,
 	POOL = 0.05,
-	COUNTERS = 4,
+	COUNTERS = 2,
+	COUNTERS_USED = 1,
+	COUNTER_P = 0.2,
+	COUNTER_S = 0.9,
+	LUX_PR = 0.1,
+	LUX_MIN = 25,
+	KEEP = 0.08,
+	CHEAP = 1000,
+	PART_FINAL = 0.15,
+	EARLY_PART = 15,
+	HOLD = 5,
+	EAT_MIN = 35,
+	SELL_FINAL = 0.25,
+	SOLD_SOON = 15,
+	SPLIT_PART = 800,
+	SPLIT_WAIT = 12,
+	LEFT_W = 0.05,
+	FINAL_MIN = 0.08,
+	FINAL_FROM_PR = 0.7,
+	SUNK = 0.15,
+	LATE_EXTRA = 2,
+	GROW = 0.03,
+	HYPER_MIN = 50,
+	BOOTS_W = 0.3,
+	BOOTS_UP = 0.15,
+	HYPER_SELL = { boots = true, power_treads = true, phase_boots = true, arcane_boots = true, tranquil_boots = true },
+	LATE_SWAP_W = 0.6,
+	HYPER_W = 0.08,
+	HYPER_COST = 3500,
+	TIE = 2,
+	TIE_PR = 0.1,
+	LATE_COST = 4000,
+	LATE_W = 0.3,
+	LATE_SWAP = 2500,
+	LATE_DROP = 28,
 	INV_READ = 1,
 	ICON = "panorama/images/items/%s_png.vtex_c",
 	SCEPTER = "ultimate_scepter",
 	SHARD = "aghanims_shard",
-	CONSUMABLES = { dust = { 1, 2, 3, 4, 5 }, ward_sentry = { 4, 5 } },
-	ENEMY = {
-		aeon_disk = { "nullifier", "save" },
-		wind_waker = { "nullifier", "save" },
-		butterfly = { "monkey_king_bar", "evasion" },
-		invis_sword = { "dust", "invis" },
-		silver_edge = { "dust", "invis" },
+	BLESSING = "ultimate_scepter_2",
+	CONSUME = { moon_shard = true },
+	TRAVEL = { travel_boots = true, travel_boots_2 = true },
+	FAMILY = { yasha = true, sange = true, kaya = true },
+	BOOTS = {
+		boots = true, power_treads = true, phase_boots = true, arcane_boots = true, tranquil_boots = true,
+		travel_boots = true, travel_boots_2 = true, guardian_greaves = true, boots_of_bearing = true,
 	},
 }
 
@@ -2334,17 +2362,8 @@ function data.parse_model(text, time)
 end
 
 function data.parse_counters(text, time)
-	local ct = { time = time, e = {}, p = {}, bear = {} }
+	local ct = { time = time, bear = {} }
 	for item, x in text:gmatch("\nk ([%w_]+) (%d+)") do ct.bear[item] = tonumber(x) / 1000 end
-	for item, id, x in text:gmatch("\ne ([%w_]+) (%d+) (%d+)") do
-		ct.e[item] = ct.e[item] or {}
-		ct.e[item][tonumber(id)] = tonumber(x) / 100
-	end
-	for id, tier, item, x in text:gmatch("\np (%d+) (%d) ([%w_]+) (%d+)") do
-		local k = tonumber(id) * 10 + tonumber(tier)
-		ct.p[k] = ct.p[k] or {}
-		ct.p[k][item] = tonumber(x) / 1000
-	end
 	return ct
 end
 
@@ -2375,6 +2394,28 @@ end
 
 function data.model(key) return data.stats("model_" .. key, data.parse_model) end
 function data.counters() return data.stats("counters", data.parse_counters) end
+
+function data.parse_answers(text, time)
+	local ans = { time = time, l = {}, e = {}, x = {}, p = {}, used = {} }
+	for item, m in text:gmatch("\nl ([%w_]+) (%d+)") do ans.l[item] = tonumber(m) end
+	for item, id, b in text:gmatch("\ne ([%w_]+) (%d+) (%-?%d+)") do
+		ans.e[item] = ans.e[item] or {}
+		ans.e[item][tonumber(id)] = tonumber(b) / 1000
+	end
+	for item, other, b in text:gmatch("\nx ([%w_]+) ([%w_]+) (%-?%d+)") do
+		ans.x[item] = ans.x[item] or {}
+		ans.x[item][other] = tonumber(b) / 1000
+	end
+	for id, tier, item, x in text:gmatch("\np (%d+) (%d) ([%w_]+) (%d+)") do
+		local k = tonumber(id) * 10 + tonumber(tier)
+		ans.p[k] = ans.p[k] or {}
+		ans.p[k][item] = tonumber(x) / 1000
+		ans.used[item] = true
+	end
+	return ans
+end
+
+function data.answers() return data.stats("answers", data.parse_answers) end
 
 function data.show(st)
 	if data.shown == st then return end
@@ -2747,7 +2788,10 @@ local function load_settings()
 	end
 end
 
+local SET_VER = 0
+
 local function save_settings()
+	SET_VER = SET_VER + 1
 	local parts = {}
 	for k in pairs(K.DEF) do parts[#parts + 1] = k .. "=" .. tostring(SET[k]) end
 	cfg.write("settings", table.concat(parts, ";"))
@@ -2793,6 +2837,7 @@ function theme.tick(dt)
 	for name, c in pairs(theme.to) do
 		local f, d = theme.from[name], C[name]
 		for i = 1, 4 do d[i] = f[i] + (c[i] - f[i]) * e end
+		d.key = nil
 	end
 end
 
@@ -2926,7 +2971,20 @@ function draft.teams()
 	return ours, theirs, pos
 end
 
-function draft.set_key() return SET.source .. "_" .. K.RANKS[SET.rank] end
+local set_keys = {}
+function draft.set_key()
+	local by = set_keys[SET.source]
+	if not by then
+		by = {}
+		set_keys[SET.source] = by
+	end
+	local k = by[SET.rank]
+	if not k then
+		k = SET.source .. "_" .. K.RANKS[SET.rank]
+		by[SET.rank] = k
+	end
+	return k
+end
 
 function draft.stats()
 	local key = draft.set_key()
@@ -2979,10 +3037,38 @@ function draft.risk(theirs, pos)
 	return { n = n, foes = foes }
 end
 
+local EMPTY_ROWS = {}
+
+function draft.quick_sig()
+	local v = (S.mode == "ap" and 1 or 2) + (S.train and 4 or 0) + SET_VER * 8
+	local cm, ap = S.cm, S.ap
+	for i, h in ipairs(cm.picks) do v = v * 1.0001 + i * 7 + (cm.pos[i] or 0) * 131 + #h end
+	for j, e in ipairs(ap.ours) do v = v * 1.0003 + j * 17 + (e.p or 0) * 257 + #e.h end
+	for j, e in ipairs(ap.theirs) do v = v * 1.0007 + j * 29 + (e.p or 0) * 521 + #e.h end
+	for j, h in ipairs(ap.offer or {}) do v = v * 1.0011 + j * 37 + #h end
+	return v
+end
+
+function draft.quick_grid()
+	local d = draft.live() and live.d
+	return d and d.grid and d.grid.sig or "", d and d.my_role or 0
+end
+
 function draft.step()
 	if S.in_frame and S.frame_step == S.frame then return S.calc end
+	local q = draft.quick_sig()
+	local gsig, role = draft.quick_grid()
+	if S.calc_q == q and S.calc_g == gsig and S.calc_r == role and S.calc_h == data.hide_sig and S.now - (S.calc_at or -1) < K.STEP_TTL then
+		if S.in_frame then S.frame_step = S.frame end
+		return S.calc
+	end
+	S.calc_q, S.calc_g, S.calc_r, S.calc_h, S.calc_at = q, gsig, role, data.hide_sig, S.now
 	local st = draft.stats()
-	if not st or draft.done() then return nil end
+	if not st or draft.done() then
+		S.calc, S.calc_key = nil, nil
+		if S.in_frame then S.frame_step = S.frame end
+		return nil
+	end
 	local ours, theirs, pos = draft.teams()
 	local ban = draft.is_ban()
 	local our_turn = S.mode == "ap" or draft.cm_ours()
@@ -3068,7 +3154,11 @@ end
 
 function draft.rows()
 	local st = draft.step()
-	if not st then return {} end
+	if not st then return EMPTY_ROWS end
+	if S.rows and S.rows_st == st and S.rows_q == S.calc_q and S.rows_g == S.calc_g and S.rows_f == S.filter and S.rows_v == SET_VER and S.now - (S.rows_at or -1) < K.STEP_TTL then
+		return S.rows
+	end
+	S.rows_st, S.rows_q, S.rows_g, S.rows_f, S.rows_v, S.rows_at = st, S.calc_q, S.calc_g, S.filter, SET_VER, S.now
 	local key = table.concat({ S.calc_key, S.filter, SET.pool_mode, SET.count, table.concat(SET.pool, ","),
 		tostring(draft.can_act()), draft.live() and live.d and live.d.grid and live.d.grid.sig or "", #S.cm.picks, #S.ap.ours, #S.ap.theirs,
 		table.concat(S.ap.offer or {}, ",") }, "|")
@@ -3499,7 +3589,7 @@ function live.read_grid(pre, now)
 	local out = { banned = {}, picked = {}, off = {}, closed = {}, open = {} }
 	for _, card in ipairs(cache.cards) do
 		local list = card.panel:HasClass("Banned") and out.banned or (card.panel:HasClass("AlreadyPicked") and out.picked)
-		if list then card.h = live.hero(card.img) end
+		if list and not card.h then card.h = live.hero(card.img) end
 		list = list or (card.panel:HasClass("Unavailable") and out.off)
 		local h = card.h
 		if h and not out.closed[h] then
@@ -3655,7 +3745,13 @@ function live.after_players(d)
 end
 
 function live.pregame()
-	return Panorama.GetPanelByName("PreGame", false)
+	local p = live.pre_panel
+	if p and p:IsValid() then return p end
+	local now = os.clock()
+	if now < (live.pre_retry or 0) then return nil end
+	p = Panorama.GetPanelByName("PreGame", false)
+	live.pre_panel, live.pre_retry = p, p and 0 or now + 5
+	return p
 end
 
 function live.read(pre, now)
@@ -4067,6 +4163,19 @@ function build.rates(e)
 	return pr, mins
 end
 
+function build.popular(it, e, id)
+	local m = it.meta[id]
+	if not m then return false end
+	if m.cost < ITEM.CHEAP then return true end
+	local p = e.final[id] or 0
+	for _, list in ipairs({ e.core, e.mid }) do
+		for _, x in ipairs(list) do
+			if x.id == id and x.pr > p then p = x.pr end
+		end
+	end
+	return p >= ITEM.KEEP
+end
+
 function build.route(it, e, in_start)
 	local src = e.path
 	if #src == 0 then
@@ -4080,7 +4189,7 @@ function build.route(it, e, in_start)
 	local path, at = {}, {}
 	for _, x in ipairs(src) do
 		local name = build.base_name(it, x.id)
-		if name and not in_start[x.id] then
+		if name and not in_start[x.id] and build.popular(it, e, x.id) then
 			local i = at[name]
 			if not i then
 				path[#path + 1] = { id = x.id, name = name, min = x.min, q = 1 }
@@ -4109,12 +4218,13 @@ function build.steps(it, route, pr, mins)
 	for _, x in ipairs(route.list) do list[#list + 1] = x end
 	for _, x in ipairs(list) do
 		local id = it.by_name[x.name]
+		local best, bp, has = nil, ITEM.UPGRADE, false
 		for _, up in ipairs(id and it.up[id] or {}) do
 			local name = build.base_name(it, up)
-			if name and not route.at[name] and (pr[up] or 0) >= ITEM.UPGRADE and mins[up] then
-				build.add(route, { name = name, min = mins[up], q = 1 })
-			end
+			if name and route.at[name] then has = true end
+			if name and not route.at[name] and (pr[up] or 0) >= bp and mins[up] then best, bp = up, pr[up] end
 		end
+		if best and not has then build.add(route, { name = build.base_name(it, best), min = mins[best], q = 1 }) end
 	end
 	for _, x in ipairs(list) do
 		local id = it.by_name[x.name]
@@ -4142,116 +4252,810 @@ function build.add(route, x)
 	route.at[x.name] = #route.list
 end
 
-function build.counters(enemies, fits)
-	local by_item, order = {}, {}
-	for _, e in ipairs(enemies) do
-		local own = inv.items[e]
-		for name in pairs(own and own.set or {}) do
-			local rule = ITEM.ENEMY[name]
-			if rule and fits(rule[1]) > 0 then
-				local c = by_item[rule[1]]
-				if not c then
-					c = { name = rule[1], score = 0, tags = { rule[2] }, src = {}, by_hero = {} }
-					by_item[rule[1]] = c
-					order[#order + 1] = c
-				end
-				c.score = c.score + 1
-				local by = c.by_hero[e]
-				if not by then
-					by = { h = e, w = 0, what = {} }
-					c.by_hero[e] = by
-					c.src[#c.src + 1] = by
-				end
-				by.w = by.w + 1
-				by.what[#by.what + 1] = build.item_name(name)
-			end
-		end
-	end
-	table.sort(order, function(p, q) return p.score > q.score end)
-	return order
-end
-
-function build.stages(plan, path)
-	for i, x in ipairs(path) do x.i = i end
-	table.sort(path, function(p, q)
-		if p.min ~= q.min then return p.min < q.min end
-		return p.i < q.i
-	end)
-	for _, x in ipairs(path) do
-		local row = plan.stages[x.min < ITEM.EARLY and 1 or (x.min < ITEM.MID and 2 or 3)]
-		row[#row + 1] = x
-	end
-	local mid, late = plan.stages[2], plan.stages[3]
-	if (#mid == 0 and #late >= 3) or (#late == 0 and #mid >= 4) then
-		local all = {}
-		for _, x in ipairs(mid) do all[#all + 1] = x end
-		for _, x in ipairs(late) do all[#all + 1] = x end
-		local cut = math.floor(#all / 2)
-		plan.stages[2], plan.stages[3] = { table.unpack(all, 1, cut) }, { table.unpack(all, cut + 1) }
-	end
-end
-
 function build.role_ok(e)
 	return e ~= nil and e.n >= ITEM.POS_MIN and e.share >= ITEM.SHARE_MIN
 end
 
-function build.ids(list)
-	local out = {}
-	for _, h in ipairs(list) do
-		local hero = data.heroes[h]
-		if hero and hero.id then out[#out + 1] = hero.id end
+function build.walk(it, id, out)
+	for _, p in ipairs(it.up[id] or {}) do
+		if not out[p] then
+			out[p] = true
+			build.walk(it, p, out)
+		end
 	end
 	return out
 end
 
-function build.versus(ct, it, hero, pos, enemies, pool, route, when)
-	local cons, all, out = ct.p[hero.id * 10 + (pos <= 3 and 1 or 2)] or {}, {}, {}
-	for name, by in pairs(ct.e) do
-		local id = it.by_name[name]
-		local mult, src = 1, {}
-		for _, e in ipairs(enemies) do
-			local x = by[e]
-			if x then
-				mult = mult * x
-				src[#src + 1] = { h = data.by_id[e].h, w = x, what = { string.format("x%.1f", x) } }
-			end
-		end
-		if id and mult >= ITEM.LIFT and not route.at[name] then
-			local base = cons[name] or pool[id] or 0
-			local c = { name = name, id = id, base = base, score = math.min(0.95, base * mult) - base, tags = { "draft" }, src = src, by_hero = {} }
-			all[name] = c
-			if base > 0 and base * mult >= ITEM.RATE then out[#out + 1] = c end
-		end
+function build.chain(it, id)
+	if build.chains_of ~= it then build.chains_of, build.chains = it, {} end
+	local out = build.chains[id]
+	if not out then
+		out = build.walk(it, id, {})
+		build.chains[id] = out
 	end
-	table.sort(out, function(p, q) return p.score > q.score end)
-	local list, seen = {}, {}
-	for _, c in ipairs(out) do
-		for name, part in pairs(all) do
-			if not seen[name] and part.base > 0 and when(c.name) - when(name) > ITEM.FOLD_GAP then
-				for _, up in ipairs(it.up[part.id] or {}) do
-					if up == c.id and not seen[name] then
-						seen[name] = true
-						list[#list + 1] = part
+	return out
+end
+
+function build.inside(it, name, route)
+	local id = it.by_name[name]
+	if not id then return false end
+	for p in pairs(build.chain(it, id)) do
+		local m = it.meta[p]
+		if m and route.at[build.base_name(it, p)] then return true end
+	end
+	return false
+end
+
+function build.answers(it, hero, pos, enemies, pool, route)
+	local ans = data.answers()
+	if not ans then return {} end
+	local base = ans.p[hero.id * 10 + (pos <= 3 and 1 or 2)] or {}
+	local list, by = {}, {}
+	for name, lm in pairs(ans.l) do
+		local id = it.by_name[name]
+		local p0 = (id and pool[id]) or base[name] or 0
+		local own = route.at[name] ~= nil
+		if (own or p0 >= ITEM.POOL) and not build.inside(it, name, route) then
+			local s, src = 0, {}
+			for _, e in ipairs(enemies) do
+				local hid = data.heroes[e] and data.heroes[e].id
+				local w = hid and ans.e[name] and ans.e[name][hid] or 0
+				local what, own = {}, inv.items[e]
+				for item in pairs(own and own.set or {}) do
+					local x = ans.x[name] and ans.x[name][item]
+					if x then
+						w = w + x
+						what[#what + 1] = build.item_name(item)
 					end
+				end
+				if w > 0 then
+					s = s + w
+					src[#src + 1] = { h = e, w = w, what = what }
+				end
+			end
+			if s > 0 then
+				local q = math.min(p0, 0.95)
+				local p = 1 / (1 + math.exp(-(math.log(q / (1 - q)) + s)))
+				if s >= ITEM.COUNTER_S and p >= ITEM.COUNTER_P then
+					table.sort(src, function(a, b) return a.w > b.w end)
+					local c = { name = name, id = id, gain = p - p0, src = src, min = lm, used = ans.used[name] == true, own = own }
+					list[#list + 1] = c
+					by[name] = c
 				end
 			end
 		end
-		if not seen[c.name] then
-			seen[c.name] = true
-			list[#list + 1] = c
+	end
+	local out = {}
+	for _, c in ipairs(list) do
+		local up = false
+		for p in pairs(c.id and build.chain(it, c.id) or {}) do
+			local u = it.meta[p] and by[it.meta[p].name]
+			if u and u.gain >= c.gain * 0.7 then up = true end
+		end
+		if not up then out[#out + 1] = c end
+	end
+	table.sort(out, function(a, b) return a.gain > b.gain end)
+	local picked, items, used = {}, 0, 0
+	for _, c in ipairs(out) do
+		if c.own then
+			picked[#picked + 1] = c
+		elseif c.used and used < ITEM.COUNTERS_USED then
+			used = used + 1
+			picked[#picked + 1] = c
+		elseif not c.used and items < ITEM.COUNTERS then
+			items = items + 1
+			picked[#picked + 1] = c
 		end
 	end
+	return picked
+end
+
+function build.order(list)
+	for i, x in ipairs(list) do x.i = i end
+	table.sort(list, function(p, q)
+		if p.min ~= q.min then return p.min < q.min end
+		return p.i < q.i
+	end)
 	return list
+end
+
+function build.cost(it, name)
+	local m = it.meta[it.by_name[name] or -1]
+	if m then return m.cost end
+	build.splits()
+	return build.prices[name] or 0
+end
+function build.splits()
+	if build.split_set then return build.split_set end
+	local set = {}
+	build.split_set, build.recipes, build.prices = set, {}, {}
+	local dir = Engine.GetCheatDirectory()
+	if not dir:match("[\\/]$") then dir = dir .. "\\" end
+	local f = io.open(dir .. "assets\\data\\items.json", "rb")
+	if not f then return set end
+	local text = f:read("a")
+	f:close()
+	local keys = {}
+	for at, name in text:gmatch('()"item_([%w_]+)"%s*:%s*{') do keys[#keys + 1] = { at = at, name = name } end
+	local function owner(at, k)
+		while keys[k + 1] and keys[k + 1].at < at do k = k + 1 end
+		return keys[k] and keys[k].at < at and keys[k].name or nil, k
+	end
+	local k, name = 1, nil
+	for at in text:gmatch('()"ItemDisassembleRule"%s*:%s*"DOTA_ITEM_DISASSEMBLE_ALWAYS"') do
+		name, k = owner(at, k)
+		if name then set[name] = true end
+	end
+	k = 1
+	for at, cost in text:gmatch('()"ItemCost"%s*:%s*"(%d+)"') do
+		name, k = owner(at, k)
+		if name then build.prices[name] = tonumber(cost) end
+	end
+	k = 1
+	for at, list in text:gmatch('()"ItemRequirements"%s*:%s*{%s*"01"%s*:%s*"([^"]+)"') do
+		name, k = owner(at, k)
+		local result = name and name:match("^recipe_(.+)$")
+		if result then
+			local parts = {}
+			for part in list:gmatch("item_([%w_]+)") do parts[#parts + 1] = part end
+			build.recipes[result] = parts
+		end
+	end
+	return set
+end
+function build.parts(it, name)
+	build.splits()
+	local own = build.recipes[name]
+	if own then return own end
+	local id, out = it.by_name[name], {}
+	if not id then return out end
+	for c, ups in pairs(it.up) do
+		for _, p in ipairs(ups) do
+			if p == id and it.meta[c] then out[#out + 1] = it.meta[c].name end
+		end
+	end
+	return out
+end
+function build.boots(name)
+	return ITEM.BOOTS[name] == true
+end
+
+function build.keepness(it, fin, name)
+	local id = it.by_name[name]
+	local w = build.weight or fin
+	return (id and w[id] or 0) + build.cost(it, name) / 1e6 + (id and build.final and build.final[id] and 1 or 0)
+end
+
+function build.sim(it, list, fin)
+	local hero, bear = {}, {}
+	for _, x in ipairs(list) do
+		if x.bear then bear[#bear + 1] = x else hero[#hero + 1] = x end
+	end
+	local held = build.sim_one(it, hero, fin)
+	for _, y in ipairs(build.sim_one(it, bear, fin)) do
+		y.bear = true
+		held[#held + 1] = y
+	end
+	return held
+end
+
+function build.family(it, name)
+	local out = nil
+	if ITEM.FAMILY[name] then out = { [name] = true } end
+	for _, p in ipairs(build.parts(it, name)) do
+		if ITEM.FAMILY[p] then
+			out = out or {}
+			out[p] = true
+		end
+	end
+	return out
+end
+
+function build.same_family(it, a, b)
+	local fa = build.family(it, a)
+	if not fa then return false end
+	for f in pairs(build.family(it, b) or {}) do
+		if fa[f] then return true end
+	end
+	return false
+end
+
+function build.uses(it, name, part)
+	if name == part then return true end
+	for _, p in ipairs(build.parts(it, name)) do
+		if p == part then return true end
+	end
+	local pid, fid = it.by_name[part], it.by_name[name]
+	return pid ~= nil and fid ~= nil and build.chain(it, pid)[fid] == true
+end
+
+function build.reuse(it, list, i, name)
+	local keeps, missing, taken = {}, {}, {}
+	for _, part in ipairs(build.parts(it, name)) do
+		if build.cost(it, part) >= ITEM.SPLIT_PART then
+			local target = nil
+			for k = i, #list do
+				if list[k].min - list[i].min > ITEM.SPLIT_WAIT then break end
+				if not taken[k] and build.uses(it, list[k].name, part) then
+					target = k
+					break
+				end
+			end
+			if target then
+				taken[target] = true
+				keeps[#keeps + 1] = { part = part, ["for"] = list[target].name, now = target == i }
+			else
+				missing[#missing + 1] = part
+			end
+		end
+	end
+	return keeps, missing
+end
+
+function build.split_into(held, x, victim, keeps)
+	x.acts[#x.acts + 1] = { kind = "split", item = victim, keeps = keeps }
+	for _, k in ipairs(keeps) do
+		if not k.now then table.insert(held, #held + 1, { name = k.part, min = x.min }) end
+	end
+end
+
+function build.sim_one(it, list, fin)
+	local held, splits = {}, build.splits()
+	for i, x in ipairs(list) do
+		x.acts = {}
+		local id = it.by_name[x.name]
+		if ITEM.CONSUME[x.name] then
+			x.acts[1] = { kind = "consume", item = x.name }
+		elseif id and x.name ~= ITEM.SHARD and not x.used then
+			for j = #held, 1, -1 do
+				local hid = it.by_name[held[j].name]
+				if hid and build.chain(it, hid)[id] then table.remove(held, j) end
+			end
+			for _, part in ipairs(build.parts(it, x.name)) do
+				local direct = false
+				for _, y in ipairs(held) do direct = direct or y.name == part end
+				if not direct then
+					for j = #held, 1, -1 do
+						local y = held[j]
+						local yid = it.by_name[y.name]
+						local has = false
+						for _, inner in ipairs(splits[y.name] and build.parts(it, y.name) or {}) do has = has or inner == part end
+						local later = false
+						for k = i + 1, #list do later = later or build.uses(it, list[k].name, y.name) end
+						if has and not later and held[j] == y then
+							local keeps, missing = build.reuse(it, list, i, y.name)
+							local final = yid and build.final and build.final[yid]
+							local now = false
+							for _, kp in ipairs(keeps) do now = now or (kp.now and kp.part == part) end
+							if now and (not final or #missing == 0) then
+								table.remove(held, j)
+								build.split_into(held, x, y.name, keeps)
+							elseif now and build.blocked then
+								build.blocked[#build.blocked + 1] = { missing = missing, at = x.bear, min = x.min }
+							end
+						end
+					end
+				end
+			end
+			if build.boots(x.name) then
+				for j = #held, 1, -1 do
+					if build.boots(held[j].name) then
+						x.acts[#x.acts + 1] = { kind = "sell", item = table.remove(held, j).name }
+					end
+				end
+			end
+			for _ = 1, x.q or 1 do held[#held + 1] = { name = x.name, min = x.min } end
+			local future = {}
+			for k = i + 1, #list do
+				local fid = it.by_name[list[k].name]
+				if fid then future[fid] = true end
+			end
+			local function needed(name)
+				local hid = it.by_name[name]
+				for p in pairs(hid and build.chain(it, hid) or {}) do
+					if future[p] then return true end
+				end
+				return false
+			end
+			while #held > ITEM.SLOTS do
+				local vi, vs, aghs = nil, math.huge, nil
+				if x.swap then
+					for j = 1, #held - 1 do
+						if held[j].name == x.swap then vi, vs = j, -1 end
+					end
+				end
+				if x.hyper then
+					for j = 1, #held - 1 do
+						if build.boots(held[j].name) then vi, vs = j, -1 end
+					end
+				end
+				for pass = 1, 2 do
+					for j = 1, #held - 1 do
+						if held[j].name == ITEM.SCEPTER then aghs = j end
+					end
+					if vi then break end
+					for j = 1, #held - 1 do
+						local y = held[j]
+						if y.name == ITEM.SCEPTER then
+							aghs = j
+						elseif (not build.boots(y.name) or build.boots(x.name)) and (pass == 2 or (not needed(y.name) and x.min - y.min >= ITEM.HOLD)) then
+							local v = build.keepness(it, fin, y.name)
+							if v < vs then vi, vs = j, v end
+						end
+					end
+					if vi then break end
+				end
+				local spare = not (build.final and build.final[it.by_name[ITEM.SCEPTER] or -1])
+				if aghs and not x.swap and (x.blessing or (spare and (not vi or vs >= 1)) or (x.min >= ITEM.EAT_MIN and (not vi or vs >= build.keepness(it, fin, ITEM.SCEPTER)))) then
+					x.acts[#x.acts + 1] = { kind = "eat", item = ITEM.SCEPTER }
+					table.remove(held, aghs)
+				elseif vi then
+					local victim = table.remove(held, vi).name
+					local keeps = splits[victim] and build.reuse(it, list, i, victim) or {}
+					if #keeps > 0 then
+						build.split_into(held, x, victim, keeps)
+					else
+						x.acts[#x.acts + 1] = { kind = "sell", item = victim }
+					end
+				else
+					x.over = true
+					break
+				end
+			end
+		end
+	end
+	return held
+end
+
+function build.final_set(it, e, counters, route, start)
+	local cand, pr, w = {}, build.rates(e), {}
+	for id, p in pairs(e.final) do w[id] = p end
+	for id, p in pairs(pr) do
+		if (w[id] or 0) == 0 and p >= ITEM.UPGRADE then w[id] = p * ITEM.FINAL_FROM_PR end
+	end
+	local sunk = {}
+	for _, x in ipairs(route.list) do
+		local id = it.by_name[x.name]
+		local m = id and it.meta[id]
+		if m and m.cost >= ITEM.STEP_COST then
+			for u in pairs(build.chain(it, id)) do sunk[u] = true end
+		end
+	end
+	for id, p in pairs(w) do
+		local m = it.meta[id]
+		if m and p >= ITEM.FINAL_MIN and (m.cost >= ITEM.STEP_COST or build.boots(m.name)) and not ITEM.CONSUME[m.name] then
+			cand[#cand + 1] = { id = id, w = p + (sunk[id] and ITEM.SUNK or 0) }
+		end
+	end
+	table.sort(cand, function(a, b) return a.w > b.w end)
+	local set, n, boots = {}, 0, false
+	local walk, shoes = false, {}
+	for _, x in ipairs(start or {}) do
+		if build.boots(x.name) then
+			walk = true
+			local id = it.by_name[x.name]
+			for u in pairs(id and build.chain(it, id) or {}) do shoes[u] = true end
+		end
+	end
+	for _, x in ipairs(route.list) do
+		if build.boots(x.name) then
+			walk = true
+			local id = it.by_name[x.name]
+			for u in pairs(id and build.chain(it, id) or {}) do shoes[u] = true end
+		end
+	end
+	if walk then
+		n = 1
+		local plain = it.by_name.boots
+		for u in pairs(plain and build.chain(it, plain) or {}) do
+			if it.meta[u] and ITEM.TRAVEL[it.meta[u].name] then shoes[u] = true end
+		end
+	end
+	local function siblings(a, b)
+		for _, ups in pairs(it.up) do
+			local ha, hb = false, false
+			for _, u in ipairs(ups) do
+				ha, hb = ha or u == a, hb or u == b
+			end
+			if ha and hb then return true end
+		end
+		return false
+	end
+	local blink = it.by_name.blink
+	local blinks = blink and build.chain(it, blink) or {}
+	local function clash(id)
+		local up = build.chain(it, id)
+		for other, v in pairs(set) do
+			if up[other] or build.chain(it, other)[id] then return true end
+			if blinks[id] and blinks[other] then return true end
+			if build.same_family(it, it.meta[id].name, it.meta[other].name) then return true end
+			if v == 2 and not build.boots(it.meta[id].name) and siblings(id, other) then return true end
+		end
+		return false
+	end
+	if not walk then
+		local total, best = 0, nil
+		for _, c in ipairs(cand) do
+			local name = it.meta[c.id].name
+			if build.boots(name) then
+				total = total + c.w
+				if not best or (it.meta[best.id].name == "boots" and c.w >= ITEM.BOOTS_UP) then best = c end
+			end
+		end
+		if best and total >= ITEM.BOOTS_W then
+			set[best.id] = 1
+			n, boots = n + 1, true
+		end
+	end
+	for _, c in ipairs(counters) do
+		if c.id and not c.used and not set[c.id] then
+			set[c.id] = 2
+			n = n + 1
+			boots = boots or build.boots(c.name)
+		end
+	end
+	for _, c in ipairs(cand) do
+		if n >= ITEM.SLOTS then break end
+		local name = it.meta[c.id].name
+		local b = build.boots(name)
+		if not set[c.id] and not clash(c.id) and not (b and boots) and not (b and walk and not shoes[c.id]) then
+			set[c.id] = 1
+			if not (b and walk) then n = n + 1 end
+			boots = boots or b
+		end
+	end
+	local function upgrade()
+		local ids = {}
+		for id in pairs(set) do ids[#ids + 1] = id end
+		for _, id in ipairs(ids) do
+			local best, bp = nil, ITEM.UPGRADE
+			for _, u in ipairs(it.up[id] or {}) do
+				if it.meta[u] and not set[u] and (pr[u] or 0) >= bp then best, bp = u, pr[u] end
+			end
+			if best then set[best], set[id] = set[id], nil end
+		end
+	end
+	upgrade()
+	local aghs = it.by_name[ITEM.SCEPTER]
+	if aghs and set[aghs] then
+		for _, c in ipairs(cand) do
+			local name = it.meta[c.id].name
+			if not set[c.id] and not clash(c.id) and not build.boots(name) then
+				set[c.id] = 4
+				break
+			end
+		end
+		upgrade()
+	end
+	local cheap = {}
+	for id, v in pairs(set) do
+		local m = it.meta[id]
+		local grows = false
+		for u in pairs(build.chain(it, id)) do grows = grows or math.max(w[u] or 0, pr[u] or 0) >= ITEM.GROW end
+		if v == 1 and m and m.cost < ITEM.LATE_SWAP and (w[id] or 0) < ITEM.LATE_SWAP_W and not build.boots(m.name) and not grows then
+			cheap[#cheap + 1] = id
+		end
+	end
+	table.sort(cheap, function(a, b) return (w[a] or 0) < (w[b] or 0) end)
+	build.swaps = {}
+	local extra = 0
+	for _, c in ipairs(cand) do
+		if extra >= math.min(#cheap, ITEM.LATE_EXTRA) then break end
+		local m = it.meta[c.id]
+		if not set[c.id] and not clash(c.id) and not build.boots(m.name) and m.cost >= ITEM.LATE_COST and c.w >= ITEM.LATE_W then
+			set[c.id] = 3
+			extra = extra + 1
+			build.swaps[c.id] = it.meta[cheap[extra]].name
+		end
+	end
+	upgrade()
+	build.weight = w
+	return set
+end
+
+function build.fill(it, e, route, mins, final)
+	local keep = {}
+	for _, x in ipairs(route.list) do
+		local id = it.by_name[x.name]
+		local ok = true
+		if id and not final[id] and not x.counter and x.min >= ITEM.LATE_DROP and x.name ~= ITEM.SHARD and x.name ~= ITEM.SCEPTER then
+			ok = false
+			for f in pairs(final) do
+				if build.chain(it, id)[f] then ok = true end
+			end
+		end
+		if ok then keep[#keep + 1] = x end
+	end
+	route.list, route.at = {}, {}
+	for _, x in ipairs(keep) do build.add(route, x) end
+	local late = {}
+	for id, v in pairs(final) do
+		local m = it.meta[id]
+		local name = m and build.base_name(it, id)
+		if name and v >= 3 then
+			late[#late + 1] = { name = name, w = build.weight[id] or 0, blessing = v == 4, swap = build.swaps[id] }
+		elseif name and not route.at[name] then
+			build.add(route, { name = name, min = math.max(mins[id] or it.typical[id] or ITEM.LATE, ITEM.LUX_MIN), q = 1, lux = true })
+		end
+	end
+	table.sort(late, function(a, b) return a.w > b.w end)
+	for _, x in ipairs(late) do
+		local last = 0
+		for _, y in ipairs(route.list) do last = math.max(last, y.min) end
+		local i = route.at[x.name]
+		if i then table.remove(route.list, i) end
+		route.at = {}
+		for j, y in ipairs(route.list) do route.at[y.name] = j end
+		build.add(route, { name = x.name, min = math.max(last + 2, ITEM.EAT_MIN), q = 1, lux = true, blessing = x.blessing, swap = x.swap })
+	end
+	for name in pairs(ITEM.CONSUME) do
+		local id = it.by_name[name]
+		local p = 0
+		for _, list in ipairs({ e.core, e.mid }) do
+			for _, x in ipairs(list) do
+				if x.id == id then p = math.max(p, x.pr) end
+			end
+		end
+		if id and p >= ITEM.LUX_PR and not route.at[name] then
+			local last = 0
+			for _, y in ipairs(route.list) do last = math.max(last, y.min) end
+			build.add(route, { name = name, min = math.max(last, mins[id] or 0), q = 1 })
+		end
+	end
+end
+
+function build.worth(it, fin, x)
+	if x.over then return false end
+	for _, act in ipairs(x.acts) do
+		if act.kind == "sell" and build.keepness(it, fin, act.item) >= ITEM.SELL_FINAL then return false end
+	end
+	return true
+end
+
+function build.prune(it, e, plan)
+	while true do
+		build.sim(it, plan.row, e.final)
+		local drop, at = nil, {}
+		for i, x in ipairs(plan.row) do at[x.name] = i end
+		for i, x in ipairs(plan.row) do
+			local id = it.by_name[x.name]
+			if not drop and not x.counter and not (id and build.final[id]) and not build.worth(it, e.final, x) then drop = i end
+			for _, act in ipairs(x.acts) do
+				local j = at[act.item]
+				local y = j and plan.row[j]
+				local yid = y and it.by_name[y.name]
+				if not drop and act.kind == "sell" and y and not y.counter and not (yid and build.final[yid]) and build.cost(it, y.name) >= ITEM.STEP_COST and x.min - y.min < ITEM.SOLD_SOON then drop = j end
+			end
+		end
+		if not drop then return end
+		table.remove(plan.row, drop)
+	end
+end
+
+function build.stepping(it, e, route)
+	local keep = {}
+	for i, x in ipairs(route.list) do
+		local id = it.by_name[x.name]
+		local ok = true
+		if id and it.up[id] and x.min > ITEM.EARLY_PART and (e.final[id] or 0) < ITEM.PART_FINAL and not x.counter then
+			ok = false
+			local ups = build.chain(it, id)
+			for j = i + 1, #route.list do
+				local u = it.by_name[route.list[j].name]
+				if u and ups[u] then ok = true end
+			end
+		end
+		if ok and id then
+			local ups = build.chain(it, id)
+			for j = 1, i - 1 do
+				local u = it.by_name[route.list[j].name]
+				if u and ups[u] then ok = false end
+			end
+		end
+		if ok then keep[#keep + 1] = x end
+	end
+	route.list, route.at = {}, {}
+	for _, x in ipairs(keep) do build.add(route, x) end
+end
+
+function build.blessing(plan)
+	local row = {}
+	for _, x in ipairs(plan.row) do
+		local rest = {}
+		for _, act in ipairs(x.acts or {}) do
+			if act.kind == "eat" then
+				row[#row + 1] = { name = ITEM.BLESSING, min = x.min, q = 1, used = true, acts = { act }, bear = x.bear }
+			else
+				rest[#rest + 1] = act
+			end
+		end
+		x.acts = rest
+		row[#row + 1] = x
+	end
+	plan.row = row
+end
+
+function build.grow(it, e, plan, mins)
+	local pr, have, last = build.rates(e), {}, {}
+	for _, x in ipairs(plan.row) do
+		have[x.name] = true
+		local k = x.bear and 2 or 1
+		last[k] = math.max(last[k] or 0, x.min)
+	end
+	local added, held, shod = false, build.sim(it, plan.row, e.final), {}
+	for _, y in ipairs(held) do
+		if build.boots(y.name) then shod[y.bear and 2 or 1] = true end
+	end
+	for _, y in ipairs(held) do
+		local id = it.by_name[y.name]
+		local best, bp = nil, ITEM.GROW
+		for _, u in ipairs(id and it.up[id] or {}) do
+			local m = it.meta[u]
+			local w = math.max(pr[u] or 0, e.final[u] or 0)
+			local extra_boots = build.boots(m and m.name or "") and not build.boots(y.name) and shod[y.bear and 2 or 1]
+			if m and not extra_boots and not have[build.base_name(it, u)] and w >= bp then best, bp = u, w end
+		end
+		if best then
+			local name = build.base_name(it, best)
+			local k = y.bear and 2 or 1
+			have[name] = true
+			plan.row[#plan.row + 1] = { name = name, min = math.max(mins[best] or it.typical[best] or 0, (last[k] or 0) + 1), q = 1, lux = true, bear = y.bear }
+			added = true
+		end
+	end
+	if added then
+		build.order(plan.row)
+		build.prune(it, e, plan)
+	end
+end
+
+function build.hyper(it, e, plan, pos)
+	local w, pr = build.weight or e.final, build.rates(e)
+	local held, shoe, have, last = build.sim(it, plan.row, e.final), nil, {}, 0
+	for _, x in ipairs(plan.row) do
+		have[x.name] = true
+		if not x.bear then last = math.max(last, x.min) end
+	end
+	for _, y in ipairs(held) do
+		if not y.bear and build.boots(y.name) then shoe = y end
+	end
+	if pos > 3 or not shoe or not ITEM.HYPER_SELL[shoe.name] then return end
+	for name in pairs(ITEM.TRAVEL) do
+		local id = it.by_name[name]
+		if id and math.max(w[id] or 0, pr[id] or 0) >= ITEM.LUX_PR then return end
+	end
+	local best, bv = nil, ITEM.HYPER_W
+	for id, v in pairs(w) do
+		local m = it.meta[id]
+		if m and v >= bv and m.cost >= ITEM.HYPER_COST and not build.boots(m.name) and not ITEM.CONSUME[m.name] and not have[build.base_name(it, id)] then
+			local clash = false
+			local blink = it.by_name.blink
+			local blinks = blink and build.chain(it, blink) or {}
+			for _, y in ipairs(held) do
+				local hid = it.by_name[y.name]
+				if hid and (build.chain(it, hid)[id] or build.chain(it, id)[hid] or (blinks[id] and blinks[hid])) then clash = true end
+				if build.same_family(it, y.name, m.name) then clash = true end
+			end
+			if not clash then best, bv = id, v end
+		end
+	end
+	if not best then return end
+	plan.row[#plan.row + 1] = { name = build.base_name(it, best), min = math.max(last + 3, ITEM.HYPER_MIN), q = 1, lux = true, hyper = true }
+	build.sim(it, plan.row, e.final)
+end
+
+function build.alts(it, route, final)
+	local drop = {}
+	local function counter(id)
+		local x = route.list[route.at[build.base_name(it, id)]]
+		return x and x.counter ~= nil
+	end
+	for c, ups in pairs(it.up) do
+		local here = {}
+		for _, u in ipairs(ups) do
+			local name = build.base_name(it, u)
+			if name and route.at[name] then here[#here + 1] = u end
+		end
+		for i = 1, #here do
+			for j = 1, #here do
+				local a, b = here[i], here[j]
+				if a ~= b and not build.chain(it, a)[b] and not build.chain(it, b)[a] and not build.boots(it.meta[a].name) then
+					local wins = counter(b) and not counter(a)
+					if wins or (not counter(a) and final[b] and not final[a]) then drop[build.base_name(it, a)] = true end
+				end
+			end
+		end
+	end
+	local w = build.weight or {}
+	for i, x in ipairs(route.list) do
+		for j, y in ipairs(route.list) do
+			local a, b = it.by_name[x.name], it.by_name[y.name]
+			if i ~= j and a and b and not build.chain(it, a)[b] and not build.chain(it, b)[a] and build.same_family(it, x.name, y.name) then
+				local fa, fb = final[a] ~= nil or x.counter ~= nil, final[b] ~= nil or y.counter ~= nil
+				if (fb and not fa) or (fa == fb and ((w[b] or 0) > (w[a] or 0) or ((w[b] or 0) == (w[a] or 0) and j < i))) then drop[x.name] = true end
+			end
+		end
+	end
+	local keep = {}
+	for _, x in ipairs(route.list) do
+		if not drop[x.name] or x.counter then keep[#keep + 1] = x end
+	end
+	route.list, route.at = {}, {}
+	for _, x in ipairs(keep) do build.add(route, x) end
+end
+
+function build.leftover(it, e, plan)
+	build.blocked = {}
+	build.sim(it, plan.row, e.final)
+	local blocked = build.blocked
+	build.blocked = nil
+	if #blocked == 0 then return end
+	local pr, w = build.rates(e), build.weight or e.final
+	local have, last = {}, 0
+	for _, x in ipairs(plan.row) do
+		have[x.name] = true
+		if not x.bear then last = math.max(last, x.min) end
+	end
+	local added = false
+	for _, b in ipairs(blocked) do
+		local picks = {}
+		for _, part in ipairs(b.missing) do
+			local pid = it.by_name[part]
+			local best, bv = nil, ITEM.LEFT_W
+			for u in pairs(pid and build.chain(it, pid) or {}) do
+				local m = it.meta[u]
+				local v = math.max(pr[u] or 0, w[u] or 0)
+				if m and v >= bv and m.cost >= ITEM.STEP_COST and not build.boots(m.name) and not have[build.base_name(it, u)] then best, bv = u, v end
+			end
+			if not best then
+				picks = nil
+				break
+			end
+			picks[#picks + 1] = best
+		end
+		for _, u in ipairs(picks or {}) do
+			local name = build.base_name(it, u)
+			if not have[name] then
+				have[name] = true
+				plan.row[#plan.row + 1] = { name = name, min = b.min + 3, q = 1, lux = true, bear = b.at }
+				added = true
+			end
+		end
+	end
+	if added then
+		build.order(plan.row)
+		build.prune(it, e, plan)
+	end
+end
+
+function build.bears(it, ct, plan)
+	for _, list in ipairs({ plan.start, plan.row }) do
+		for _, x in ipairs(list) do
+			local v = ct.bear[x.name]
+			if v then x.bear = v > ITEM.BEAR else x.bear = build.cost(it, x.name) >= ITEM.STEP_COST end
+		end
+	end
+end
+
+function build.tidy(it, row, pool)
+	for i = 1, #row - 1 do
+		local a, b = row[i], row[i + 1]
+		local pa, pb = pool[it.by_name[a.name] or -1] or 0, pool[it.by_name[b.name] or -1] or 0
+		if a.bear == b.bear and not a.used and not b.used and b.min - a.min < ITEM.TIE and pb > pa + ITEM.TIE_PR then
+			row[i], row[i + 1] = b, a
+			b.min, a.min = a.min, b.min
+		end
+	end
 end
 
 function build.plan(h, pos, enemies)
 	local it, hero = data.items(), data.heroes[h]
 	if not it or not hero or not hero.id then return nil end
-	local ct = data.counters()
-	local key = table.concat({ h, tostring(pos), table.concat(enemies, ","), inv.sig, tostring(it.time), tostring(ct and ct.time) }, "|")
+	local ans, ct = data.answers(), data.counters()
+	local key = table.concat({ h, tostring(pos), table.concat(enemies, ","), inv.sig, tostring(it.time), tostring(ans and ans.time), tostring(ct and ct.time) }, "|")
 	if build.cache[key] then return build.cache[key] end
 	if build.cached >= 16 then build.cache, build.cached = {}, 0 end
-	local plan = { key = key, has = false, start = {}, stages = { {}, {}, {} }, counters = {}, extra = {} }
+	local plan = { key = key, has = false, start = {}, row = {}, counters = {} }
 	build.cache[key], build.cached = plan, build.cached + 1
 	local e = it.hero[hero.id] and it.hero[hero.id][pos]
 	if not build.role_ok(e) then
@@ -4272,46 +5076,36 @@ function build.plan(h, pos, enemies)
 	local pool = {}
 	for id, p in pairs(e.final) do pool[id] = p end
 	for id, p in pairs(pr) do pool[id] = math.max(pool[id] or 0, p) end
-	local function fits(name)
-		local id = it.by_name[name]
-		local p = id and pool[id] or 0
-		if p >= ITEM.POOL then return 1 + p end
-		for _, role in ipairs(ITEM.CONSUMABLES[name] or {}) do
-			if role == pos then return 0.5 end
-		end
-		return 0
-	end
-	local function when(name)
-		local i = route.at[name]
-		if i then return route.list[i].min end
-		local id = it.by_name[name]
-		return (id and (mins[id] or it.typical[id])) or (ITEM.CONSUMABLES[name] and ITEM.EARLY - 1) or ITEM.LATE
-	end
-	local list, seen = ct and build.versus(ct, it, hero, pos, build.ids(enemies), pool, route, when) or {}, {}
-	for _, c in ipairs(list) do seen[c.name] = true end
-	for _, c in ipairs(build.counters(enemies, fits)) do
-		if not seen[c.name] then list[#list + 1] = c end
-	end
-	for i, c in ipairs(list) do
-		if i > ITEM.COUNTERS then break end
-		table.sort(c.src, function(p, q) return p.w > q.w end)
+	for i, c in ipairs(build.answers(it, hero, pos, enemies, pool, route)) do
 		plan.counters[i] = c
-		build.add(route, { name = c.name, min = when(c.name), q = 1 })
-	end
-
-	build.stages(plan, route.list)
-	build.extra(it, e, plan, route, in_start)
-	build.levels(it, e, plan)
-	if h == ITEM.BEAR_HERO and ct and next(ct.bear) then
-		plan.split = true
-		for _, list in ipairs({ plan.start, plan.stages[1], plan.stages[2], plan.stages[3], plan.extra }) do
-			for _, x in ipairs(list) do
-				local v, m = ct.bear[x.name], it.meta[it.by_name[x.name] or -1]
-				if v then x.bear = v > ITEM.BEAR else x.bear = m ~= nil and m.cost >= ITEM.STEP_COST end
-			end
+		if c.own then
+			route.list[route.at[c.name]].counter = c
+		else
+			local m = c.id and (mins[c.id] or it.typical[c.id]) or c.min + 2
+			build.add(route, { name = c.name, min = m, q = 1, counter = c, used = c.used })
 		end
-		build.share_start(plan)
 	end
+	build.order(route.list)
+	route.at = {}
+	for i, x in ipairs(route.list) do route.at[x.name] = i end
+	build.stepping(it, e, route)
+	local final = build.final_set(it, e, plan.counters, route, plan.start)
+	build.final = final
+	build.fill(it, e, route, mins, final)
+	build.alts(it, route, final)
+	plan.row = build.order(route.list)
+	build.tidy(it, plan.row, pool)
+	plan.split = h == ITEM.BEAR_HERO and ct ~= nil and next(ct.bear) ~= nil
+	if plan.split then build.bears(it, ct, plan) end
+	build.levels(it, e, plan)
+	build.prune(it, e, plan)
+	build.grow(it, e, plan, mins)
+	build.leftover(it, e, plan)
+	if plan.split then build.bears(it, ct, plan) end
+	build.prune(it, e, plan)
+	build.hyper(it, e, plan, pos)
+	build.blessing(plan)
+	if plan.split then build.share_start(plan) end
 	return plan
 end
 
@@ -4340,7 +5134,7 @@ function build.levels(it, e, plan)
 		if not m then return end
 		local base, n = m.name:match("^(.-)_(%d)$")
 		if not base or base ~= build.base_name(it, id) then return end
-		if pr ~= nil and pr < ITEM.EXTRA then return end
+		if pr ~= nil and pr < ITEM.LUX_PR then return end
 		n = tonumber(n)
 		if not top[base] or n > top[base].n then top[base] = { n = n, name = m.name } end
 	end
@@ -4348,15 +5142,19 @@ function build.levels(it, e, plan)
 	for _, list in ipairs({ e.core, e.mid }) do
 		for _, x in ipairs(list) do seen(x.id, x.pr) end
 	end
-	for _, list in ipairs({ plan.stages[1], plan.stages[2], plan.stages[3], plan.extra }) do
-		for _, x in ipairs(list) do
-			if top[x.name] then x.name = top[x.name].name end
-		end
+	for _, x in ipairs(plan.row) do
+		if top[x.name] then x.name = top[x.name].name end
 	end
 end
 
 function build.sections(plan)
-	local lists = { plan.start, plan.stages[1], plan.stages[2], plan.stages[3], plan.extra }
+	if plan.secs then return plan.secs end
+	plan.secs = build.sections_of(plan)
+	return plan.secs
+end
+
+function build.sections_of(plan)
+	local lists = { plan.start, plan.row }
 	local out = {}
 	for _, bear in ipairs(plan.split and { false, true } or { false }) do
 		local sec = { who = plan.split and (bear and "bear" or "druid") or nil, rows = {} }
@@ -4365,7 +5163,7 @@ function build.sections(plan)
 			for _, x in ipairs(src) do
 				if not plan.split or (x.bear == true) == bear then list[#list + 1] = x end
 			end
-			if #list > 0 or (i == 1 and not plan.split) then sec.rows[#sec.rows + 1] = { i = i, list = list } end
+			if #list > 0 then sec.rows[#sec.rows + 1] = { i = i, list = list } end
 		end
 		if #sec.rows > 0 then out[#out + 1] = sec end
 	end
@@ -4378,39 +5176,53 @@ function build.who(who)
 	return asset.portrait(ITEM.BEAR_HERO), hero and hero.name or ITEM.BEAR_HERO
 end
 
-function build.extra(it, e, plan, route, in_start)
-	local skip, ids = {}, {}
-	for _, x in ipairs(route.list) do
-		local id = it.by_name[x.name]
-		if id then ids[id] = true end
+function build.act_text(act, short)
+	if act.kind == "sell" then return string.format(L("dh_b_sell"), build.item_name(act.item)) end
+	if act.kind == "split" and short then return string.format(L("dh_b_split_short"), build.item_name(act.item)) end
+	if act.kind == "split" then
+		local parts = {}
+		for _, k in ipairs(act.keeps) do parts[#parts + 1] = string.format(L("dh_b_keep"), build.item_name(k.part), build.item_name(k["for"])) end
+		return string.format(L("dh_b_split_short"), build.item_name(act.item)) .. ": " .. table.concat(parts, ", ")
 	end
-	for c, ups in pairs(it.up) do
-		for _, up in ipairs(ups) do
-			if ids[up] then skip[c] = true end
+	if act.kind == "eat" then return L("dh_b_eat") end
+	return L("dh_b_consume")
+end
+
+function build.tip(e)
+	local lines = {}
+	if e.counter then
+		local names = {}
+		for _, s in ipairs(e.counter.src) do
+			local name = data.heroes[s.h] and data.heroes[s.h].name or s.h
+			names[#names + 1] = #s.what > 0 and (name .. " (" .. table.concat(s.what, ", ") .. ")") or name
 		end
+		lines[#lines + 1] = string.format(L("dh_b_vs"), table.concat(names, ", "))
 	end
-	local list, by = {}, {}
-	for _, x in ipairs(e.mid) do
-		local name = build.base_name(it, x.id)
-		local m = it.meta[x.id]
-		if name and m and m.cost >= ITEM.STEP_COST and x.pr >= ITEM.EXTRA and not route.at[name] and not skip[x.id] and not in_start[x.id] then
-			local old = by[name]
-			if not old then
-				by[name] = { id = x.id, name = name, min = x.min, q = 1, pr = x.pr }
-				list[#list + 1] = by[name]
-			elseif x.pr > old.pr then
-				old.id, old.min, old.pr = x.id, x.min, x.pr
+	for _, act in ipairs(e.acts or {}) do lines[#lines + 1] = build.act_text(act) end
+	return lines
+end
+
+function build.plan_notes(plan)
+	if not plan.notes then plan.notes = build.notes(plan.row) end
+	return plan.notes
+end
+
+function build.notes(row)
+	local out, by = {}, {}
+	for _, x in ipairs(row) do
+		for _, act in ipairs(x.acts or {}) do
+			if act.kind ~= "consume" and act.kind ~= "eat" then
+				local key = act.kind .. ":" .. act.item
+				if by[key] then
+					by[key].n = by[key].n + 1
+				else
+					by[key] = { at = x.name, act = act, n = 1 }
+					out[#out + 1] = by[key]
+				end
 			end
 		end
 	end
-	local picked = {}
-	for _, x in ipairs(list) do picked[x.id] = true end
-	table.sort(list, function(p, q) return p.pr > q.pr end)
-	for _, x in ipairs(list) do
-		local up = false
-		for _, p in ipairs(it.up[x.id] or {}) do up = up or picked[p] == true end
-		if not up and #plan.extra < ITEM.EXTRA_N then plan.extra[#plan.extra + 1] = x end
-	end
+	return out
 end
 
 function build.current()
@@ -4485,37 +5297,92 @@ function build.open_team()
 	build.open(build.is_ours(S.bh) and S.bh or build.team[1].h)
 end
 
-local g = { x = 0, y = 0, s = 1, a = 1, cmp = 0, fits = {}, vcache = {}, vc_n = 0, ccache = {}, cc_n = 0 }
+local g = { x = 0, y = 0, s = 1, a = 1, cmp = 0, fits = {} }
 
 function g.lay(n, c) return n + (c - n) * g.cmp end
 
-function g.px(x) return math.floor(g.x + x * g.s + 0.5) end
-function g.py(y) return math.floor(g.y + y * g.s + 0.5) end
-function g.pt(x, y)
-	local key = (x + 32768) * 65536 + y + 32768
-	local v = g.vcache[key]
-	if v then return v end
-	if g.vc_n >= 20000 then g.vcache, g.vc_n = {}, 0 end
-	v = Vec2(x, y)
-	g.vcache[key], g.vc_n = v, g.vc_n + 1
+local floor, Vec2_, Color_ = math.floor, Vec2, Color
+local filled_rect, draw_text = Render.FilledRect, Render.Text
+local vcache, vc_n, ccache, cc_n = {}, 0, {}, 0
+
+local function nest(root, a, b, c)
+	local t1 = root[a]
+	if not t1 then
+		t1 = {}
+		root[a] = t1
+	end
+	local t2 = t1[b]
+	if not t2 then
+		t2 = {}
+		t1[b] = t2
+	end
+	local t3 = t2[c]
+	if not t3 then
+		t3 = {}
+		t2[c] = t3
+	end
+	return t3
+end
+
+local cats = {}
+local function cat(a, b)
+	local t = cats[a]
+	if not t then
+		t = {}
+		cats[a] = t
+	end
+	local v = t[b]
+	if not v then
+		v = a .. b
+		t[b] = v
+	end
 	return v
 end
-function g.v(x, y) return g.pt(g.px(x), g.py(y)) end
-function g.size(x, y, w, h) return g.pt(g.px(x + w) - g.px(x), g.py(y + h) - g.py(y)) end
-function g.fs(size) return math.max(1, math.floor(size * g.s + 0.5)) end
-function g.col(c, a)
-	local r, gr, b = math.floor(c[1] + 0.5), math.floor(c[2] + 0.5), math.floor(c[3] + 0.5)
-	local al = math.floor((c[4] or 255) * (a or 1) * g.a + 0.5)
-	local key = ((r * 256 + gr) * 256 + b) * 256 + al
-	local v = g.ccache[key]
+
+local function pt(x, y)
+	local key = (x + 32768) * 65536 + y + 32768
+	local v = vcache[key]
 	if v then return v end
-	if g.cc_n >= 8000 then g.ccache, g.cc_n = {}, 0 end
-	v = Color(r, gr, b, al)
-	g.ccache[key], g.cc_n = v, g.cc_n + 1
+	if vc_n >= 20000 then vcache, vc_n = {}, 0 end
+	v = Vec2_(x, y)
+	vcache[key], vc_n = v, vc_n + 1
 	return v
+end
+
+local function col(c, a)
+	local base = c.key
+	if not base then
+		base = (floor(c[1] + 0.5) * 256 + floor(c[2] + 0.5)) * 256 + floor(c[3] + 0.5)
+		c.key = base
+	end
+	local al = floor((c[4] or 255) * (a or 1) * g.a + 0.5)
+	local key = base * 256 + al
+	local v = ccache[key]
+	if v then return v end
+	if cc_n >= 8000 then ccache, cc_n = {}, 0 end
+	v = Color_(floor(c[1] + 0.5), floor(c[2] + 0.5), floor(c[3] + 0.5), al)
+	ccache[key], cc_n = v, cc_n + 1
+	return v
+end
+
+function g.px(x) return floor(g.x + x * g.s + 0.5) end
+function g.py(y) return floor(g.y + y * g.s + 0.5) end
+g.pt, g.col = pt, col
+function g.v(x, y)
+	local s = g.s
+	return pt(floor(g.x + x * s + 0.5), floor(g.y + y * s + 0.5))
+end
+function g.size(x, y, w, h)
+	local gx, gy, s = g.x, g.y, g.s
+	return pt(floor(gx + (x + w) * s + 0.5) - floor(gx + x * s + 0.5), floor(gy + (y + h) * s + 0.5) - floor(gy + y * s + 0.5))
+end
+function g.fs(size)
+	local v = floor(size * g.s + 0.5)
+	return v > 1 and v or 1
 end
 function g.rect(x, y, w, h, c, r, a, flags)
-	Render.FilledRect(g.v(x, y), g.v(x + w, y + h), g.col(c, a), (r or 0) * g.s, flags or ROUND)
+	local gx, gy, s = g.x, g.y, g.s
+	filled_rect(pt(floor(gx + x * s + 0.5), floor(gy + y * s + 0.5)), pt(floor(gx + (x + w) * s + 0.5), floor(gy + (y + h) * s + 0.5)), col(c, a), (r or 0) * s, flags or ROUND)
 end
 function g.glass(x, y, w, h, r, solid)
 	local blur = SET.blur == 1
@@ -4541,16 +5408,18 @@ function g.width(font, size, str)
 	return asset.size(font, g.fs(size), str).x / g.s
 end
 function g.text(font, size, str, x, cy, c, a, align)
-	local px = g.fs(size)
+	local s = g.s
+	local px = floor(size * s + 0.5)
+	if px < 1 then px = 1 end
 	local ts = asset.size(font, px, str)
-	local tx = g.x + x * g.s
+	local tx = g.x + x * s
 	if align == "r" then tx = tx - ts.x elseif align == "c" then tx = tx - ts.x / 2 end
-	Render.Text(font, px, str, g.pt(math.floor(tx + 0.5), math.floor(g.y + cy * g.s - ts.y / 2 + 0.5)), g.col(c, a))
-	return ts.x / g.s
+	draw_text(font, px, str, pt(floor(tx + 0.5), floor(g.y + cy * s - ts.y / 2 + 0.5)), col(c, a))
+	return ts.x / s
 end
 function g.fit(weight, size, str, max_w)
-	local key = (Lc.lang or "") .. ":" .. weight .. ":" .. size .. ":" .. math.floor(max_w) .. ":" .. str
-	local out = g.fits[key]
+	local leaf = nest(g.fits, Lc.lang or "", weight * 1000 + size, floor(max_w))
+	local out = leaf[str]
 	if out then return out end
 	local font = asset.font(weight)
 	out = str
@@ -4563,7 +5432,7 @@ function g.fit(weight, size, str, max_w)
 			if g.width(font, size, s) <= max_w then out = s break end
 		end
 	end
-	g.fits[key] = out
+	leaf[str] = out
 	return out
 end
 local NUM_LAYOUT, NUM_LAYOUT_N = {}, 0
@@ -4575,8 +5444,12 @@ function g.num_layout(font, px, str)
 		by_font = {}
 		NUM_LAYOUT[font] = by_font
 	end
-	local key = px .. ":" .. str
-	local out = by_font[key]
+	local by_px = by_font[px]
+	if not by_px then
+		by_px = {}
+		by_font[px] = by_px
+	end
+	local out = by_px[str]
 	if out then return out end
 	local dw = asset.digit_w(font, px)
 	local chars, total = {}, 0
@@ -4587,7 +5460,7 @@ function g.num_layout(font, px, str)
 		total = total + w
 	end
 	out = { chars = chars, total = total, h = asset.size(font, px, str).y }
-	by_font[key], NUM_LAYOUT_N = out, NUM_LAYOUT_N + 1
+	by_px[str], NUM_LAYOUT_N = out, NUM_LAYOUT_N + 1
 	return out
 end
 function g.num(weight, size, str, x, cy, c, a, align)
@@ -4596,24 +5469,26 @@ function g.num(weight, size, str, x, cy, c, a, align)
 	local total = lay.total
 	local tx = g.x + x * g.s
 	if align == "r" then tx = tx - total elseif align == "c" then tx = tx - total / 2 end
-	local ty = math.floor(g.y + cy * g.s - lay.h / 2 + 0.5)
-	local col = g.col(c, a)
-	for _, ch in ipairs(lay.chars) do
-		Render.Text(font, px, ch[1], g.pt(math.floor(tx + ch[2] + 0.5), ty), col)
+	local ty = floor(g.y + cy * g.s - lay.h / 2 + 0.5)
+	local cc = col(c, a)
+	local chars = lay.chars
+	for i = 1, #chars do
+		local ch = chars[i]
+		draw_text(font, px, ch[1], pt(floor(tx + ch[2] + 0.5), ty), cc)
 	end
 	return total / g.s
 end
 function g.glyph(name, size, x, cy, c, a, align)
 	return g.text(asset.icons(), size, K.G[name], x, cy, c, a, align or "c")
 end
-function g.image(handle, x, y, w, h, r, a, gray, tint)
-	if not handle then return end
-	local size = asset.dims[handle]
-	if not size then
-		size = Render.ImageSize(handle)
-		asset.dims[handle] = size
-	end
-	local ia, ba = size.x / math.max(1, size.y), w / h
+local UV0, UV1 = Vec2(0, 0), Vec2(1, 1)
+local uv_cache = {}
+local draw_image = Render.Image
+
+local function uv(ia, ba)
+	local key = floor(ia / ba * 1000 + 0.5)
+	local e = uv_cache[key]
+	if e then return e[1], e[2] end
 	local u0, v0, u1, v1 = 0, 0, 1, 1
 	if ia > ba then
 		local k = ba / ia
@@ -4622,22 +5497,38 @@ function g.image(handle, x, y, w, h, r, a, gray, tint)
 		local k = ia / ba
 		v0, v1 = (1 - k) / 2, (1 + k) / 2
 	end
-	Render.Image(handle, g.v(x, y), g.size(x, y, w, h), g.col(tint or C.text, a), (r or 0) * g.s, ROUND, Vec2(u0, v0), Vec2(u1, v1), gray or 0)
+	e = { Vec2(u0, v0), Vec2(u1, v1) }
+	uv_cache[key] = e
+	return e[1], e[2]
+end
+
+function g.image(handle, x, y, w, h, r, a, gray, tint)
+	if not handle then return end
+	local size = asset.dims[handle]
+	if not size then
+		size = Render.ImageSize(handle)
+		asset.dims[handle] = size
+	end
+	local a0, a1 = uv(size.x / math.max(1, size.y), w / h)
+	draw_image(handle, g.v(x, y), g.size(x, y, w, h), col(tint or C.text, a), (r or 0) * g.s, ROUND, a0, a1, gray or 0)
 end
 function g.icon(handle, x, y, size, c, a)
 	if not handle then return end
-	Render.Image(handle, g.v(x, y), g.size(x, y, size, size), g.col(c or C.text, a), 0, ROUND, Vec2(0, 0), Vec2(1, 1), 0)
+	draw_image(handle, g.v(x, y), g.size(x, y, size, size), col(c or C.text, a), 0, ROUND, UV0, UV1, 0)
 end
 function g.clip(x, y, w, h) Render.PushClip(g.v(x, y), g.v(x + w, y + h), true) end
 function g.unclip() Render.PopClip() end
-function g.hair() return math.max(1, math.floor(g.s)) end
 function g.hl(x, y, w, c, a)
-	local y0 = g.py(y)
-	Render.FilledRect(g.pt(g.px(x), y0), g.pt(g.px(x + w), y0 + g.hair()), g.col(c, a))
+	local gx, s = g.x, g.s
+	local y0 = floor(g.y + y * s + 0.5)
+	local t = floor(s)
+	filled_rect(pt(floor(gx + x * s + 0.5), y0), pt(floor(gx + (x + w) * s + 0.5), y0 + (t > 1 and t or 1)), col(c, a))
 end
 function g.vl(x, y, h, c, a)
-	local x0 = g.px(x)
-	Render.FilledRect(g.pt(x0, g.py(y)), g.pt(x0 + g.hair(), g.py(y + h)), g.col(c, a))
+	local gy, s = g.y, g.s
+	local x0 = floor(g.x + x * s + 0.5)
+	local t = floor(s)
+	filled_rect(pt(x0, floor(gy + y * s + 0.5)), pt(x0 + (t > 1 and t or 1), floor(gy + (y + h) * s + 0.5)), col(c, a))
 end
 function g.vr(x, cy, h, a) g.vl(x, cy - h / 2, h, C.sep, a) end
 
@@ -4675,10 +5566,12 @@ function anim.snap(key, value)
 	S.tweens[key] = { from = value, to = value, v = value, k = 1 }
 end
 
-local hit = { list = {}, prev = {}, hover = nil, clip = nil }
+local hit = { list = {}, prev = {}, hover = nil, clip = nil, pools = { {}, {} }, side = 1, used = 0 }
+local NO_EVENTS = {}
 
 function hit.begin()
 	hit.prev, hit.list, hit.clip = hit.list, {}, nil
+	hit.side, hit.used = 3 - hit.side, 0
 	local mx, my = Input.GetCursorPos()
 	hit.hover = nil
 	for i = #hit.prev, 1, -1 do
@@ -4698,7 +5591,16 @@ function hit.add(x, y, w, h, id, on)
 		x2, y2 = math.min(x2, hit.clip[3]), math.min(y2, hit.clip[4])
 		if x2 <= x1 or y2 <= y1 then return end
 	end
-	hit.list[#hit.list + 1] = { x1, y1, x2, y2, id, on or {} }
+	local n = hit.used + 1
+	hit.used = n
+	local pool = hit.pools[hit.side]
+	local e = pool[n]
+	if not e then
+		e = {}
+		pool[n] = e
+	end
+	e[1], e[2], e[3], e[4], e[5], e[6] = x1, y1, x2, y2, id, on or NO_EVENTS
+	hit.list[#hit.list + 1] = e
 end
 
 function hit.is(id) return hit.hover == id end
@@ -4713,28 +5615,80 @@ end
 
 local view = {}
 
+local fmt_cache = {}
+local function fmt(f, a, b)
+	if a == nil then return string.format(f, a, b) end
+	local t = fmt_cache[f]
+	if not t then
+		t = {}
+		fmt_cache[f] = t
+	end
+	if b == nil then
+		local v = t[a]
+		if not v then
+			v = string.format(f, a)
+			t[a] = v
+		end
+		return v
+	end
+	local t2 = t[a]
+	if not t2 then
+		t2 = {}
+		t[a] = t2
+	end
+	local v = t2[b]
+	if not v then
+		v = string.format(f, a, b)
+		t2[b] = v
+	end
+	return v
+end
+
+local ON = {
+	drag = { down = function(mx, my) S.drag = { mx = mx, my = my, wx = S.wx, wy = S.wy } end },
+	wheel = { wheel = function(dir)
+		S.scroll_to = clamp(S.scroll_to + dir * K.WHEEL, 0, math.max(0, S.content_h - S.view_h))
+		S.sb_until = S.now + 1.2
+	end },
+	sb = { down = function(mx, my)
+		local rel = (my - g.y) / g.s - S.sb_y - S.sb_th / 2
+		S.scroll_to = clamp(rel / (S.sb_h - S.sb_th), 0, 1) * S.sb_max
+	end },
+	sb_thumb = { down = function(mx, my)
+		S.sb_drag = { my = my, scroll = S.scroll, k = S.sb_max / math.max(1, S.sb_h - S.sb_th) }
+	end },
+}
+
+local function tb_close() S.open, S.menu, S.sel, S.focus = false, nil, nil, false end
+local function tb_gear()
+	S.menu, S.sel = nil, nil
+	if S.view == "set" or S.view == "pool" or S.view == "hidden" then S.view = S.ret else S.ret, S.view = S.view, "set" end
+end
+local function tb_reset() draft.start_training(S.mode, S.kind) end
+
+local BAN_DX, BAN_DY = math.cos(math.rad(24)), math.sin(math.rad(24))
+
 function view.slot(x, y, w, h, hero, o, key)
 	local filled = hero ~= nil
 	g.rect(x, y, w, h, o.cur and C.slot_cur or C.fill4, 7)
 	if o.cur then g.frame(x, y, w, h, C.slot_line, 7) end
-	local k = anim.tween("slot" .. key, filled and 1 or 0, 0.3)
-	local kg = anim.tween("ghost" .. key, (not filled and o.ghost) and (o.ghost == S.sel and 0.8 or 0.45) or 0, 0.15)
+	local k = anim.tween(cat("slot", key), filled and 1 or 0, 0.3)
+	local kg = anim.tween(cat("ghost", key), (not filled and o.ghost) and (o.ghost == S.sel and 0.8 or 0.45) or 0, 0.15)
 	if filled and k > 0 then
-		g.clip(x, y, w, h)
 		local ban = o.ban
 		g.image(asset.portrait(hero), x, y, w, h, 7, k, ban and 1 or 0, ban and C.ban_tint or C.text)
 		if ban then
+			g.clip(x, y, w, h)
 			local cx, cy, len = x + w / 2, y + h / 2, w * 0.58
-			local dx, dy = math.cos(math.rad(24)) * len, math.sin(math.rad(24)) * len
-			g.line(cx - dx, cy + dy, cx + dx, cy - dy, C.red, k, 1.5)
+			g.line(cx - BAN_DX * len, cy + BAN_DY * len, cx + BAN_DX * len, cy - BAN_DY * len, C.red, k, 1.5)
+			g.unclip()
 		end
-		g.unclip()
 		if o.pos then
 			g.rect(x + 3, y + h - 22, 19, 19, C.badge, 5, k)
 			g.icon(asset.pos(o.pos), x + 5, y + h - 20, 15, C.text, k)
 		end
 		if S.view == "build" and not ban and build.is_ours(hero) then
-			local id, on = "bs:" .. key, S.bh == hero
+			local id, on = cat("bs:", key), S.bh == hero
 			if on or hit.is(id) then g.frame(x, y, w, h, C.text, 7, on and 1 or 0.5) end
 			hit.add(x, y, w, h, id, { click = function() build.open(hero) end })
 		elseif o.key then
@@ -4762,6 +5716,9 @@ function view.titles(us, active)
 	end
 end
 
+local CM_OPTS, CM_KEYS = {}, {}
+for i = 1, 24 do CM_OPTS[i], CM_KEYS[i] = {}, "c" .. i end
+
 function view.board_cm(o)
 	local n = #o.picks
 	local cur = (n < 24 and not o.idle) and n + 1 or nil
@@ -4774,11 +5731,34 @@ function view.board_cm(o)
 		local x0, x1 = side == "r" and x + w or 214, side == "r" and 186 or x
 		g.hl(x0, ny, x1 - x0, i == cur and C.tick_cur or C.sep2)
 		g.num(i == cur and 700 or 500, 11, NUM_STR[i], 200, ny, i == cur and C.text or (i <= n and C.text2 or C.text3), 1, "c")
-		view.slot(x, y, w, h, o.picks[i], {
-			ban = not pick, cur = i == cur, pos = pick and o.pos[i] or nil,
-			ghost = i == cur and o.ghost or nil, key = o.live and pick and o.picks[i] and ("c" .. i) or nil,
-		}, "c" .. i)
+		local opt = CM_OPTS[i]
+		opt.ban, opt.cur, opt.pos = not pick, i == cur, pick and o.pos[i] or nil
+		opt.ghost, opt.key = i == cur and o.ghost or nil, o.live and pick and o.picks[i] and CM_KEYS[i] or nil
+		view.slot(x, y, w, h, o.picks[i], opt, CM_KEYS[i])
 	end
+end
+
+local SIDES = { "r", "d" }
+local AP_OPTS, AP_BAN, AP_KEYS, AP_BKEY = {}, { ban = true }, {}, {}
+for _, side in ipairs(SIDES) do
+	for j = 1, 5 do
+		AP_OPTS[side .. j], AP_KEYS[side .. j] = {}, side .. j
+	end
+end
+for i = 1, 24 do AP_BKEY[i] = "b" .. i end
+local SLOT_KEY = {}
+local function slot_key(prefix, mine, j)
+	local t = SLOT_KEY[prefix]
+	if not t then
+		t = { [true] = {}, [false] = {} }
+		SLOT_KEY[prefix] = t
+	end
+	local v = t[mine][j]
+	if not v then
+		v = (mine and "o" or "t") .. j
+		t[mine][j] = v
+	end
+	return v
 end
 
 function view.board_ap(o)
@@ -4787,9 +5767,9 @@ function view.board_ap(o)
 	g.text(F(500), 11, L("dh_bans16"), 22, K.TB + 68, C.text3)
 	for i = 1, 16 do
 		local x, y = 22 + ((i - 1) % 8) * 45, K.TB + 80 + math.floor((i - 1) / 8) * 28
-		view.slot(x, y, 40, 23, o.bans[i], { ban = true }, "b" .. i)
+		view.slot(x, y, 40, 23, o.bans[i], AP_BAN, AP_BKEY[i])
 	end
-	for _, side in ipairs({ "r", "d" }) do
+	for _, side in ipairs(SIDES) do
 		local mine = side == o.us
 		local arr = mine and o.ours or o.theirs
 		local x = side == "r" and 68 or 228
@@ -4798,11 +5778,12 @@ function view.board_ap(o)
 			local e = arr[j]
 			local cur = mine and j == #o.ours + 1 and round <= 3
 			g.hl(side == "r" and x + 104 or 212, y + 29, 16, r == round and C.tick_cur or C.sep2)
-			view.slot(x, y, 104, 58, e and e.h, {
-				cur = cur, pos = e and e.p, ghost = cur and o.ghost or nil,
-				hidden = not mine and not e and r == round,
-				key = o.live and e and ((mine and "o" or "t") .. j) or nil,
-			}, side .. j)
+			local key = AP_KEYS[side .. j]
+			local opt = AP_OPTS[key]
+			opt.cur, opt.pos, opt.ghost = cur, e and e.p, cur and o.ghost or nil
+			opt.hidden = not mine and not e and r == round
+			opt.key = o.live and e and slot_key("ap", mine, j) or nil
+			view.slot(x, y, 104, 58, e and e.h, opt, key)
 		end
 		for r = 1, 2 do
 			local a, b = K.AP_Y[r * 2 - 1] + K.TB + 29, K.AP_Y[r * 2] + K.TB + 29
@@ -4814,28 +5795,45 @@ function view.board_ap(o)
 	end
 end
 
+local PAIR_OPTS, PAIR_KEYS = {}, {}
+
 function view.pairs(o, active, hide, prefix)
+	local keys = PAIR_KEYS[prefix]
+	if not keys then
+		keys = {}
+		for _, side in ipairs(SIDES) do
+			for j = 1, 5 do
+				keys[side .. j] = prefix .. side .. j
+				PAIR_OPTS[prefix .. side .. j] = {}
+			end
+		end
+		PAIR_KEYS[prefix] = keys
+	end
 	for j = 1, 5 do
 		local y = K.TURBO_Y[j] + K.TB
 		local cur = active and j == #o.ours + 1
 		g.hl(172, y + 29, 56, cur and C.tick_cur or C.sep2)
-		for _, side in ipairs({ "r", "d" }) do
+		for _, side in ipairs(SIDES) do
 			local mine = side == o.us
 			local e = (mine and o.ours or o.theirs)[j]
-			view.slot(side == "r" and 68 or 228, y, 104, 58, e and e.h, {
-				cur = mine and cur, pos = e and e.p, ghost = mine and cur and o.ghost or nil,
-				hidden = hide and not mine and not e,
-				key = o.live and e and ((mine and "o" or "t") .. j) or nil,
-			}, prefix .. side .. j)
+			local key = keys[side .. j]
+			local opt = PAIR_OPTS[key]
+			opt.cur, opt.pos, opt.ghost = mine and cur, e and e.p, mine and cur and o.ghost or nil
+			opt.hidden = hide and not mine and not e
+			opt.key = o.live and e and slot_key("pair", mine, j) or nil
+			view.slot(side == "r" and 68 or 228, y, 104, 58, e and e.h, opt, key)
 		end
 	end
 end
+
+local TB_KEY = {}
+for i = 1, 30 do TB_KEY[i] = "tb" .. i end
 
 function view.board_turbo(o)
 	view.titles(o.us, nil)
 	for i = 1, K.TURBO_BANS do
 		local x, y = 22 + ((i - 1) % 5) * 72, K.TB + 80 + math.floor((i - 1) / 5) * 43
-		view.slot(x, y, 66, 37, o.bans[i], { ban = true }, "tb" .. i)
+		view.slot(x, y, 66, 37, o.bans[i], AP_BAN, TB_KEY[i])
 	end
 	view.pairs(o, true, true, "tp")
 	local phase = o.phase or 2
@@ -4918,7 +5916,7 @@ end
 function view.toolbar()
 	g.rect(0, 0, K.W, K.TB, C.bar, 16, 1, Enum.DrawFlags.RoundCornersTop)
 	g.hl(0, K.TB - 1, K.W, C.black)
-	hit.add(0, 0, K.W, K.TB, "drag", { down = function(mx, my) S.drag = { mx = mx, my = my, wx = S.wx, wy = S.wy } end })
+	hit.add(0, 0, K.W, K.TB, "drag", ON.drag)
 	local x = 22
 	x = x + g.text(F(700), 16, L("dh_title"), x, 26, C.text) + 14
 	g.vr(x, 26, 13)
@@ -4935,9 +5933,7 @@ function view.toolbar()
 	end
 
 	local right = K.CX + K.CW - 32
-	view.button_icon("close", right, "tb_close", function()
-		S.open, S.menu, S.sel, S.focus = false, nil, nil, false
-	end, false, L("dh_tip_close"))
+	view.button_icon("close", right, "tb_close", tb_close, false, L("dh_tip_close"))
 	right = right - 8
 	if S.view == "draft" or S.view == "pool" then
 		right = right - 210
@@ -4946,13 +5942,10 @@ function view.toolbar()
 	end
 	local in_set = S.view == "set" or S.view == "pool" or S.view == "hidden"
 	right = right - 32
-	view.button_icon("gear", right, "tb_gear", function()
-		S.menu, S.sel = nil, nil
-		if in_set then S.view = S.ret else S.ret, S.view = S.view, "set" end
-	end, in_set, L(in_set and "dh_tip_back" or "dh_tip_settings"))
+	view.button_icon("gear", right, "tb_gear", tb_gear, in_set, L(in_set and "dh_tip_back" or "dh_tip_settings"))
 	if S.train then
 		right = right - 40
-		view.button_icon("trash", right, "tb_reset", function() draft.start_training(S.mode, S.kind) end, false, L("dh_tip_reset"))
+		view.button_icon("trash", right, "tb_reset", tb_reset, false, L("dh_tip_reset"))
 		right = right - 40
 		view.button_icon("undo", right, "tb_undo", draft.undo, false, L("dh_tip_undo"))
 	end
@@ -4981,7 +5974,7 @@ function view.update_pill(right)
 	local shown = st == "available" or st == "loading" or st == "done" or st == "error"
 	local glyph, label, col, text_col
 	if st == "available" then
-		glyph, label, col, text_col = "arrow_down", string.format(L("dh_upd_pill"), upd.short(upd.latest)), C.accent, C.text
+		glyph, label, col, text_col = "arrow_down", fmt(L("dh_upd_pill"), upd.short(upd.latest)), C.accent, C.text
 	elseif st == "loading" then
 		label, col, text_col = L("dh_upd_pill_loading"), C.accent_pill, C.text
 	elseif st == "done" then
@@ -5042,10 +6035,24 @@ end
 
 function view.no_head() return S.view == "draft" and draft.done() and S.query == "" end
 
+local HEAD = { n = 0 }
+local function head_add(text, bold, spin)
+	local n = HEAD.n + 1
+	HEAD.n = n
+	local e = HEAD[n]
+	if not e then
+		e = {}
+		HEAD[n] = e
+	end
+	e.text, e.bold, e.spin = text, bold, spin
+end
+local HEAD_DONE, HEAD_ID = {}, {}
+
 function view.head()
 	local x, right = K.CX, K.CX + K.CW
-	local title, of, sub = "", nil, {}
-	local function add(text, bold, spin) sub[#sub + 1] = { text = text, bold = bold, spin = spin } end
+	local title, of = "", nil
+	local add = head_add
+	HEAD.n = 0
 	local done_btn
 	if S.view == "home" then
 		title = L("dh_title")
@@ -5069,7 +6076,7 @@ function view.head()
 		title, done_btn = L("dh_h_last"), "buildback"
 		if S.last then
 			add(draft.mode_name(S.last.mode, S.last.kind), true)
-			add(string.format(L("dh_h_last_chance"), math.floor(S.last.chance * 100 + 0.5)))
+			add(fmt(L("dh_h_last_chance"), math.floor(S.last.chance * 100 + 0.5)))
 		end
 	elseif S.query ~= "" then
 		title = L("dh_search_title")
@@ -5078,7 +6085,7 @@ function view.head()
 		title = L("dh_done")
 		add(L(draft.free() and "dh_done_turbo" or (S.mode == "ap" and "dh_done_ap" or "dh_done_cm")))
 	elseif draft.sd() then
-		title, of = L(draft.live() and "dh_sd_title" or "dh_our_pick"), string.format(L("dh_turbo_of"), #S.ap.ours)
+		title, of = L(draft.live() and "dh_sd_title" or "dh_our_pick"), fmt(L("dh_turbo_of"), #S.ap.ours)
 		if draft.live() then
 			if live.d and live.d.selected then
 				add(L("dh_sd_waiting"), true)
@@ -5095,30 +6102,31 @@ function view.head()
 		add(L("dh_sub_our_ban"))
 	elseif draft.turbo() then
 		local left = 5 - #S.ap.ours
-		title, of = L("dh_our_pick"), string.format(L("dh_turbo_of"), #S.ap.ours)
+		title, of = L("dh_our_pick"), fmt(L("dh_turbo_of"), #S.ap.ours)
 		if draft.live() and not draft.can_act() then add(L("dh_live_wait"), true) end
-		add(left == 1 and L("dh_turbo_last") or string.format(L("dh_turbo_left"), left), true)
+		add(left == 1 and L("dh_turbo_last") or fmt(L("dh_turbo_left"), left), true)
 	elseif S.mode == "ap" then
 		local r = draft.ap_round()
 		local left = K.AP_ROUND_END[r] - #S.ap.ours
-		title, of = L("dh_our_pick"), string.format(L("dh_round_of"), r)
+		title, of = L("dh_our_pick"), fmt(L("dh_round_of"), r)
 		if draft.live() and not draft.can_act() then add(L("dh_live_wait"), true) end
-		add(left == 1 and L("dh_ap_last") or string.format(L("dh_ap_left"), left), true)
+		add(left == 1 and L("dh_ap_last") or fmt(L("dh_ap_left"), left), true)
 		add(S.reveal_at and L("dh_ap_reveal") or (r == 1 and L("dh_ap_hidden") or L("dh_ap_counter")))
 	else
 		local i, side = draft.cm_step(), draft.cm_side()
 		local us, ban = side == S.cm.us, kind(i) == "B"
 		title = L(ban and (us and "dh_our_ban" or "dh_enemy_ban") or (us and "dh_our_pick" or "dh_enemy_pick"))
-		of = string.format(L("dh_step_of"), i)
+		of = fmt(L("dh_step_of"), i)
 		if not us then
 			if draft.manual_enemy() then add(L(ban and "dh_enemy_manual_ban" or "dh_enemy_manual_pick"), true)
 			else add(L(ban and "dh_enemy_auto_ban" or "dh_enemy_auto_pick"), true, true) end
 		elseif draft.live() and not draft.can_act() then
 			add(L("dh_live_captain"), true)
 		elseif not ban then
-			for _, j in ipairs({ i - 1, i + 1 }) do
+			for d = -1, 1, 2 do
+				local j = i + d
 				if j >= 1 and j <= 24 and kind(j) == "P" and side_of(S.cm.fp, j) == side then
-					add(j > i and string.format(L("dh_double_next"), j) or L("dh_double_second"), true)
+					add(j > i and fmt(L("dh_double_next"), j) or L("dh_double_second"), true)
 					break
 				end
 			end
@@ -5128,7 +6136,7 @@ function view.head()
 		if not st then text = L("dh_data_" .. data.status(draft.set_key()))
 		elseif not st.c then text = L("dh_sub_noctx")
 		elseif draft.positional() and st.lane then text = L("dh_sub_lane")
-		elseif draft.positional() and S.filter > 0 then text = string.format(L("dh_sub_filter"), L("dh_posa_" .. S.filter))
+		elseif draft.positional() and S.filter > 0 then text = fmt(L("dh_sub_filter"), L("dh_posa_" .. S.filter))
 		else text = L(ban and (us and "dh_sub_our_ban" or "dh_sub_enemy_ban") or (us and "dh_sub_our_pick" or "dh_sub_enemy_pick")) end
 		add(text)
 	end
@@ -5137,16 +6145,23 @@ function view.head()
 	if of then g.text(F(400), 13, of, right, ty + 2, C.text3, 1, "r") end
 	if done_btn then
 		local w = g.width(F(600), 15, L("dh_ready")) + 12
-		local id = "head_" .. done_btn
+		local id = HEAD_ID[done_btn]
+		if not id then
+			id = "head_" .. done_btn
+			HEAD_ID[done_btn] = id
+			local btn = done_btn
+			HEAD_DONE[btn] = { click = function()
+				S.view = btn == "hiddenback" and "set" or btn == "poolback" and S.pool_ret or (btn == "buildback" and S.b_ret or (btn == "newsback" and S.news_ret or S.ret))
+			end }
+		end
 		if hit.is(id) then g.rect(right - w, ty - 10, w, 24, C.accent_soft, 6) end
 		g.text(F(600), 15, L("dh_ready"), right - 6, ty + 2, C.accent, 1, "r")
-		hit.add(right - w, ty - 10, w, 24, id, { click = function()
-			S.view = done_btn == "hiddenback" and "set" or done_btn == "poolback" and S.pool_ret or (done_btn == "buildback" and S.b_ret or (done_btn == "newsback" and S.news_ret or S.ret))
-		end })
+		hit.add(right - w, ty - 10, w, 24, id, HEAD_DONE[done_btn])
 	end
 	local cx, cy = x, K.TB + g.lay(79, 74)
 	g.clip(x, cy - 12, K.CW, 24)
-	for n, part in ipairs(sub) do
+	for n = 1, HEAD.n do
+		local part = HEAD[n]
 		if n > 1 then
 			g.vr(cx, cy, 13)
 			cx = cx + 11
@@ -5161,20 +6176,30 @@ function view.head()
 	g.unclip()
 end
 
+local SEG = { lang = nil, labels = {}, tws = {}, cells = {}, on = {}, ids = {} }
+for p = 0, 5 do
+	SEG.cells[p], SEG.ids[p] = {}, "seg" .. p
+	SEG.on[p] = { click = function() S.filter = p end }
+end
+
 function view.segment()
 	local x, y, w, h = K.CX, K.TB + g.lay(112, 102), K.CW, 32
 	g.rect(x, y, w, h, C.fill3, 9)
-	local labels, tws, cells, total = {}, {}, {}, 0
-	for p = 0, 5 do
-		labels[p] = p == 0 and L("dh_auto") or L("dh_pos_" .. p)
-		tws[p] = g.width(F(500), 13, labels[p]) + 24
-		total = total + tws[p]
+	local labels, tws, cells = SEG.labels, SEG.tws, SEG.cells
+	if SEG.lang ~= Lc.lang then
+		SEG.lang, SEG.total = Lc.lang, 0
+		for p = 0, 5 do
+			labels[p] = p == 0 and L("dh_auto") or L("dh_pos_" .. p)
+			tws[p] = g.width(F(500), 13, labels[p]) + 24
+			SEG.total = SEG.total + tws[p]
+		end
 	end
-	local extra = math.max(0, (w - 4 - total) / 6)
+	local extra = math.max(0, (w - 4 - SEG.total) / 6)
 	local cx = x + 2
 	for p = 0, 5 do
-		cells[p] = { x = cx, w = tws[p] + extra }
-		cx = cx + cells[p].w
+		local c = cells[p]
+		c.x, c.w = cx, tws[p] + extra
+		cx = cx + c.w
 	end
 	local cur = cells[S.filter] or cells[0]
 	local tx = anim.tween("seg", cur.x, 0.3, ease_in_out)
@@ -5191,7 +6216,7 @@ function view.segment()
 		local lx = math.floor(bx + (bw - tw) / 2 + 0.5)
 		if p == 0 then g.glyph("wand", 14, lx + 9, y + 16, col) else g.icon(asset.pos(p), lx, y + 7, 18, col) end
 		g.text(F(500), 13, label, lx + 24, y + 16, col)
-		hit.add(bx, y, bw, h, "seg" .. p, { click = function() S.filter = p end })
+		hit.add(bx, y, bw, h, SEG.ids[p], SEG.on[p])
 	end
 end
 
@@ -5202,7 +6227,7 @@ function view.row_text(r)
 		t = {
 			rate = hero.rate, games = hero.games, lang = L("dh_matches"),
 			d = r.d and signed(r.d), rate_s = string.format("%.1f%%", hero.rate),
-			games_s = string.format(L("dh_matches"), data.count(hero.games)),
+			games_s = fmt(L("dh_matches"), data.count(hero.games)),
 		}
 		r._text = t
 	end
@@ -5221,47 +6246,49 @@ function view.value(r, ctx, right, cy, size)
 	end
 end
 
+local function reason_txt(e)
+	e[3] = e[3] or signed(e[2])
+	return e[3]
+end
+
+local function reason_w(is, e) return is + 5 + g.width(F(500), 12, reason_txt(e)) + 6 end
+
 function view.reasons(r, ctx, x, cy, max_x)
 	local is, ps = g.lay(22, 18), g.lay(18, 16)
 	g.clip(x, cy - is / 2 + 1, max_x - x, is - 2)
 	local cx, first = x, true
-	local function sep()
-		if not first then
-			g.vr(cx, cy, 13)
-			cx = cx + 7
-		end
-		first = false
-	end
 	if r.pos then
-		sep()
+		first = false
 		g.icon(asset.pos(r.pos), cx, cy - ps / 2, ps, C.text2)
 		r._share = r._share or (r.share and (r.share .. "%"))
 		cx = cx + ps + 5 + g.text(F(500), 12, r._share or L("dh_pos_" .. r.pos), cx + ps + 5, cy, C.text2) + 6
 	end
 	if ctx and SET.reasons == 1 then
-		local function txt(e)
-			e[3] = e[3] or signed(e[2])
-			return e[3]
-		end
-		local function item_w(e) return is + 5 + g.width(F(500), 12, txt(e)) + 6 end
 		for _, group in ipairs(r.why or {}) do
 			group.key = group.key or ("dh_" .. group[1])
 			local label = L(group.key)
-			local need = (first and 0 or 7) + g.width(F(400), 12, label) + 5 + item_w(group[2][1])
+			local need = (first and 0 or 7) + g.width(F(400), 12, label) + 5 + reason_w(is, group[2][1])
 			if cx + need > max_x then break end
-			sep()
+			if not first then
+				g.vr(cx, cy, 13)
+				cx = cx + 7
+			end
+			first = false
 			cx = cx + g.text(F(400), 12, label, cx, cy, C.text3) + 5
 			for n = 1, math.min(2, #group[2]) do
 				local h, v = group[2][n][1], group[2][n][2]
-				if n > 1 and cx + item_w(group[2][n]) > max_x then break end
+				if n > 1 and cx + reason_w(is, group[2][n]) > max_x then break end
 				g.icon(asset.icon(h), cx, cy - is / 2, is)
 				cx = cx + is + 5
-				cx = cx + g.text(F(500), 12, txt(group[2][n]), cx, cy, v >= 0 and C.green or C.red) + 6
+				cx = cx + g.text(F(500), 12, reason_txt(group[2][n]), cx, cy, v >= 0 and C.green or C.red) + 6
 			end
 		end
 	end
 	if not ctx and not r.pos then
-		sep()
+		if not first then
+			g.vr(cx, cy, 13)
+			cx = cx + 7
+		end
 		g.text(F(400), 12, L("dh_by_rate"), cx, cy, C.text3)
 	end
 	g.unclip()
@@ -5473,12 +6500,12 @@ end
 
 function view.error_tip(x, y, w, h)
 	if not data.failed or not data.error then return end
-	hit.add(x, y, w, h, "data_error", {})
+	hit.add(x, y, w, h, "data_error", NO_EVENTS)
 	if hit.is("data_error") then S.tip = data.error end
 end
 
 function view.fold(key, on)
-	return anim.tween("fold_" .. key, on and 1 or 0, 0.26, ease_in_out)
+	return anim.tween(cat("fold_", key), on and 1 or 0, 0.26, ease_in_out)
 end
 
 function view.row_geom(sub)
@@ -5486,10 +6513,13 @@ function view.row_geom(sub)
 	return rh, ts, K.P + ts + 14
 end
 
+local ROW_RHS, ROW_HS, ROW_ON = {}, {}, {}
+local ROW_TMP = {}
+
 function view.setting_rows(rows, y, a)
 	local x, w = K.CX, K.CW
 	local _, ts, tx = view.row_geom()
-	local rhs, hs, total, last = {}, {}, 0, 0
+	local rhs, hs, total, last = ROW_RHS, ROW_HS, 0, 0
 	for n, row in ipairs(rows) do
 		rhs[n] = view.row_geom(row.sub)
 		hs[n] = math.floor(rhs[n] * (row.fold or 1) + 0.5)
@@ -5522,11 +6552,20 @@ function view.setting_rows(rows, y, a)
 			end
 			if row.control and f > 0.98 then row.control(x + w - K.P, ry + cy, ra) elseif row.control then
 				local hold = hit.list
-				hit.list = {}
+				for i = #ROW_TMP, 1, -1 do ROW_TMP[i] = nil end
+				hit.list = ROW_TMP
 				row.control(x + w - K.P, ry + cy, ra)
 				hit.list = hold
 			end
-			if row.act and f > 0.98 then hit.add(x, ry, w, rh, row.id, { click = row.act }) end
+			if row.act and f > 0.98 then
+				local on = ROW_ON[row.id]
+				if not on then
+					on = {}
+					ROW_ON[row.id] = on
+				end
+				on.click = row.act
+				hit.add(x, ry, w, rh, row.id, on)
+			end
 			if f < 1 then g.unclip() end
 		end
 		ry = ry + hs[n]
@@ -5534,132 +6573,192 @@ function view.setting_rows(rows, y, a)
 	return total
 end
 
+local SWITCH = {}
 function view.switch(key)
-	return function(right, cy, a)
+	local st = SWITCH[key]
+	if st then return st.fn end
+	st = { anim = "sw" .. key, id = "sw" .. key, bg = {} }
+	st.on = { click = function()
+		SET[key] = SET[key] == 1 and 0 or 1
+		save_settings()
+	end }
+	st.fn = function(right, cy, a)
 		local on = SET[key] == 1
-		local k = anim.tween("sw" .. key, on and 1 or 0, 0.25, ease_in_out)
+		local k = anim.tween(st.anim, on and 1 or 0, 0.25, ease_in_out)
 		local x = right - 42
-		local bg = { 120 + (48 - 120) * k, 120 + (209 - 120) * k, 128 + (88 - 128) * k, 82 + (255 - 82) * k }
+		local bg = st.bg
+		bg[1], bg[2], bg[3], bg[4], bg.key = 120 + (48 - 120) * k, 120 + (209 - 120) * k, 128 + (88 - 128) * k, 82 + (255 - 82) * k, nil
 		g.rect(x, cy - 13, 42, 26, bg, 13, a)
 		local x1, y1, x2, y2 = g.px(x), g.py(cy - 13), g.px(x + 42), g.py(cy + 13)
 		local half = (y2 - y1) / 2
-		Render.FilledCircle(Vec2(x1 + half + (x2 - x1 - 2 * half) * k, y1 + half), half - g.inset(), g.col(C.text, a))
-		hit.add(x, cy - 13, 42, 26, "sw" .. key, { click = function()
-			SET[key] = on and 0 or 1
-			save_settings()
-		end })
+		Render.FilledCircle(g.pt(floor(x1 + half + (x2 - x1 - 2 * half) * k + 0.5), floor(y1 + half + 0.5)), half - g.inset(), g.col(C.text, a))
+		hit.add(x, cy - 13, 42, 26, st.id, st.on)
+	end
+	SWITCH[key] = st
+	return st.fn
+end
+local CHOICE = {}
+
+local function choice_state(id)
+	local st = CHOICE[id]
+	if not st then
+		st = { widths = {}, on = {}, kx = id .. "_x", kw = id .. "_w", ids = {} }
+		CHOICE[id] = st
+	end
+	return st
+end
+
+local function choice_draw(st, right, cy, a)
+	local options, current, widths = st.options, st.current, st.widths
+	local total = 4
+	for i, o in ipairs(options) do
+		widths[i] = g.width(F(500), 12, o[2]) + 22
+		total = total + widths[i]
+	end
+	local x = right - total
+	g.rect(x, cy - 14, total, 28, C.fill3, 8, a)
+	local sel_x, sel_w, bx = 2, widths[1], 2
+	for i, o in ipairs(options) do
+		if o[1] == current then sel_x, sel_w = bx, widths[i] end
+		bx = bx + widths[i]
+	end
+	local tx = anim.tween(st.kx, sel_x, 0.28, ease_in_out)
+	local tw = anim.tween(st.kw, sel_w, 0.28, ease_in_out)
+	g.thumb(x, cy - 14, total, 28, tx - 2, tx - 2 + tw, C.thumb, 6, a)
+	bx = x + 2
+	for i, o in ipairs(options) do
+		local on, disabled = o[1] == current, o[3]
+		g.text(F(500), 12, o[2], bx + widths[i] / 2, cy, on and C.text or (disabled and C.text4 or C.text2), a, "c")
+		if not disabled then
+			local h = st.on[i]
+			if not h then
+				h = { click = function() st.pick(st.options[i][1]) end }
+				st.on[i], st.ids[i] = h, st.id .. i
+			end
+			hit.add(bx, cy - 12, widths[i], 24, st.ids[i], h)
+		end
+		bx = bx + widths[i]
 	end
 end
 
 function view.choice(id, options, current, on_pick)
-	return function(right, cy, a)
-		local widths, total = {}, 4
-		for i, o in ipairs(options) do
-			widths[i] = g.width(F(500), 12, o[2]) + 22
-			total = total + widths[i]
-		end
-		local x = right - total
-		g.rect(x, cy - 14, total, 28, C.fill3, 8, a)
-		local sel_x, sel_w, bx = 2, widths[1], 2
-		for i, o in ipairs(options) do
-			if o[1] == current then sel_x, sel_w = bx, widths[i] end
-			bx = bx + widths[i]
-		end
-		local tx = anim.tween(id .. "_x", sel_x, 0.28, ease_in_out)
-		local tw = anim.tween(id .. "_w", sel_w, 0.28, ease_in_out)
-		g.thumb(x, cy - 14, total, 28, tx - 2, tx - 2 + tw, C.thumb, 6, a)
-		bx = x + 2
-		for i, o in ipairs(options) do
-			local on, disabled = o[1] == current, o[3]
-			g.text(F(500), 12, o[2], bx + widths[i] / 2, cy, on and C.text or (disabled and C.text4 or C.text2), a, "c")
-			if not disabled then hit.add(bx, cy - 12, widths[i], 24, id .. i, { click = function() on_pick(o[1]) end }) end
-			bx = bx + widths[i]
-		end
+	local st = choice_state(id)
+	st.id, st.options, st.current, st.pick = id, options, current, on_pick
+	local draw = st.draw
+	if not draw then
+		draw = function(right, cy, a) choice_draw(st, right, cy, a) end
+		st.draw = draw
 	end
+	return draw
 end
 
+local SWATCH = {}
 function view.swatches(right, cy, a)
 	local step, r = 30, 9
 	local x0 = right - (#K.ACCENTS - 1) * step - r - 4
 	for i, acc in ipairs(K.ACCENTS) do
-		local cx, id = x0 + (i - 1) * step, "acc_" .. acc.id
+		local st = SWATCH[i]
+		if not st then
+			st = { id = "acc_" .. acc.id, hint = "dh_acc_" .. acc.id }
+			st.on = { click = function()
+				if SET.accent == acc.id then return end
+				SET.accent = acc.id
+				save_settings()
+				theme.set()
+			end }
+			SWATCH[i] = st
+		end
+		local cx, id = x0 + (i - 1) * step, st.id
 		local on = anim.tween(id, SET.accent == acc.id and 1 or 0, 0.2, ease_in_out)
 		local ring = math.max(on, anim.hover(id, hit.is(id)) * 0.35)
 		if ring > 0 then Render.Circle(g.v(cx, cy), (r + 4) * g.s, g.col(C.text, a * ring), 1.5 * g.s) end
 		Render.FilledCircle(g.v(cx, cy), r * g.s, g.col(acc.c, a))
-		hit.add(cx - 13, cy - 13, 26, 26, id, { click = function()
-			if SET.accent == acc.id then return end
-			SET.accent = acc.id
-			save_settings()
-			theme.set()
-		end })
-		view.hint(id, L("dh_acc_" .. acc.id))
+		hit.add(cx - 13, cy - 13, 26, 26, id, st.on)
+		view.hint(id, L(st.hint))
 	end
 end
-
+local SLIDER = {}
 function view.slider(key, min, max)
-	return function(right, cy, a)
+	local st = SLIDER[key]
+	if st then return st.fn end
+	st = { id = "sl_" .. key }
+	st.on = { down = function(mx)
+		S.slide = { key = key, min = min, max = max, x = st.sx, w = st.sw }
+		view.slide_to(mx)
+	end }
+	st.fn = function(right, cy, a)
 		local tw = 180
 		local x = right - tw - 10
 		local v = (SET[key] - min) / (max - min)
-		local sx, sw = g.x + x * g.s, tw * g.s
-		local id = "sl_" .. key
-		local hot = hit.is(id) or (S.slide ~= nil and S.slide.key == key)
-		g.num(600, 13, SET[key] .. "%", x - 18, cy, C.text2, a, "r")
+		st.sx, st.sw = g.x + x * g.s, tw * g.s
+		local hot = hit.is(st.id) or (S.slide ~= nil and S.slide.key == key)
+		g.num(600, 13, fmt("%d%%", SET[key]), x - 18, cy, C.text2, a, "r")
 		g.rect(x, cy - 2, tw, 4, C.fill2, 2, a)
 		g.rect(x, cy - 2, tw * v, 4, C.accent, 2, a)
 		Render.FilledCircle(g.v(x + tw * v, cy), (hot and 11 or 10) * g.s, g.col(C.text, a))
-		hit.add(x - 12, cy - 14, tw + 24, 28, id, { down = function(mx)
-			S.slide = { key = key, min = min, max = max, x = sx, w = sw }
-			view.slide_to(mx)
-		end })
+		hit.add(x - 12, cy - 14, tw + 24, 28, st.id, st.on)
 	end
+	SLIDER[key] = st
+	return st.fn
 end
-
 function view.slide_to(mx)
 	local s = S.slide
 	local v = clamp((mx - s.x) / s.w, 0, 1)
 	SET[s.key] = s.min + math.floor((s.max - s.min) * v / 5 + 0.5) * 5
 end
 
+local STEP_ON = {}
+for _, d in ipairs({ -1, 1 }) do
+	STEP_ON[d] = { click = function()
+		SET.count = clamp(SET.count + d, 4, 25)
+		save_settings()
+	end }
+end
+
 function view.stepper(right, cy, a)
 	local x = right - 88
 	g.rect(x, cy - 14, 88, 28, C.fill3, 8, a)
-	local function btn(bx, glyph, delta, enabled, id)
-		g.glyph(glyph, 13, bx + 15, cy, enabled and (hit.is(id) and C.text or C.text2) or C.text4, a)
-		if enabled then
-			hit.add(bx, cy - 14, 30, 28, id, { click = function()
-				SET.count = clamp(SET.count + delta, 4, 25)
-				save_settings()
-			end })
-		end
-	end
-	btn(x, "minus", -1, SET.count > 4, "cnt_minus")
-	g.num(600, 13, tostring(SET.count), x + 44, cy, C.text, a, "c")
-	btn(x + 58, "plus", 1, SET.count < 25, "cnt_plus")
+	local can_minus, can_plus = SET.count > 4, SET.count < 25
+	g.glyph("minus", 13, x + 15, cy, can_minus and (hit.is("cnt_minus") and C.text or C.text2) or C.text4, a)
+	if can_minus then hit.add(x, cy - 14, 30, 28, "cnt_minus", STEP_ON[-1]) end
+	g.num(600, 13, NUM_STR[SET.count] or tostring(SET.count), x + 44, cy, C.text, a, "c")
+	g.glyph("plus", 13, x + 58 + 15, cy, can_plus and (hit.is("cnt_plus") and C.text or C.text2) or C.text4, a)
+	if can_plus then hit.add(x + 58, cy - 14, 30, 28, "cnt_plus", STEP_ON[1]) end
 end
-
+local CHEVRON = {}
 function view.chevron(label, id)
-	return function(right, cy, a)
-		g.glyph("chevron", 12, right - 5, cy, hit.is(id) and C.text or C.text2, a)
-		g.text(F(400), 13, label, right - 17, cy, hit.is(id) and C.text or C.text2, a, "r")
+	local st = CHEVRON[id]
+	if not st then
+		st = { id = id }
+		st.fn = function(right, cy, a)
+			local col = hit.is(st.id) and C.text or C.text2
+			g.glyph("chevron", 12, right - 5, cy, col, a)
+			g.text(F(400), 13, st.label, right - 17, cy, col, a, "r")
+		end
+		CHEVRON[id] = st
 	end
+	st.label = label
+	return st.fn
 end
-
+local hidden_cache = { sig = nil, n = -1, list = {} }
 function view.hidden_heroes()
-	local list = {}
-	for h in pairs(data.hidden) do
-		if data.heroes[h] then list[#list + 1] = data.heroes[h] end
+	local c = hidden_cache
+	if c.sig ~= data.hide_sig or c.n ~= #data.list then
+		c.sig, c.n, c.list = data.hide_sig, #data.list, {}
+		for h in pairs(data.hidden) do
+			if data.heroes[h] then c.list[#c.list + 1] = data.heroes[h] end
+		end
+		table.sort(c.list, function(p, q) return p.name < q.name end)
 	end
-	table.sort(list, function(p, q) return p.name < q.name end)
-	return list
+	return c.list
 end
-
 function view.hidden_short()
 	local n = #view.hidden_heroes()
-	return n > 0 and heroes_n(n) or L("dh_s_hidden_none")
+	if n == 0 then return L("dh_s_hidden_none") end
+	local t = nest(short_cache, Lc.lang or "", "hidden", n)
+	if not t.v then t.v = heroes_n(n) end
+	return t.v
 end
-
 function view.role_row(x, y, bw, roles, id, a, close)
 	for p, r in ipairs(roles) do
 		local rid = id .. ":" .. p
@@ -5701,48 +6800,80 @@ function view.hidden_view(y, a)
 	return 40 + #list * rh
 end
 
+local short_cache = {}
 function view.pool_short()
 	local mode = SET.pool_mode == "only" and "dh_pool_short_only" or (SET.pool_mode == "off" and "dh_pool_short_off" or "dh_pool_short_boost")
-	return heroes_n(#SET.pool) .. "  |  " .. L(mode)
+	local t = nest(short_cache, Lc.lang or "", mode, #SET.pool)
+	if not t.v then t.v = heroes_n(#SET.pool) .. "  |  " .. L(mode) end
+	return t.v
+end
+local HOME = { lang = nil }
+local function home_open_pool() S.pool_ret, S.ret, S.view = "home", "home", "pool" end
+local function home_open_set() S.ret, S.view = "home", "set" end
+local function home_clear()
+	draft.clear_last()
+	build.team, build.me = {}, nil
+end
+local function home_train(mode, kind) return function() draft.start_training(mode, kind) end end
+local HOME_ACT = { cm = home_train("cm"), ap = home_train("ap"), turbo = home_train("ap", "turbo"), sd = home_train("ap", "sd") }
+
+local function home_rows()
+	if HOME.lang == Lc.lang then return HOME end
+	HOME.lang = Lc.lang
+	HOME.train = {
+		{ id = "tr_cm", tile = C.t_blue, glyph = "chess", title = L("dh_mode_cm"), control = view.chevron(L("dh_start"), "tr_cm"), act = HOME_ACT.cm },
+		{ id = "tr_ap", tile = C.t_indigo, glyph = "users", title = L("dh_mode_ap"), control = view.chevron(L("dh_start"), "tr_ap"), act = HOME_ACT.ap },
+		{ id = "tr_turbo", tile = C.t_cyan, glyph = "bolt", title = L("dh_mode_turbo"), control = view.chevron(L("dh_start"), "tr_turbo"), act = HOME_ACT.turbo },
+		{ id = "tr_sd", tile = C.t_teal, glyph = "list", title = L("dh_mode_sd"), control = view.chevron(L("dh_start"), "tr_sd"), act = HOME_ACT.sd },
+	}
+	local finish = { glyph = "finish" }
+	local builds = { id = "home_builds", tile = C.t_purple, glyph = "bag", title = L("dh_b_row"), sub = L("dh_b_row_sub"), control = view.chevron(L("dh_open"), "home_builds"), act = build.open_team }
+	local clear = { id = "home_clear", tile = C.red, glyph = "trash", title = L("dh_h_clear"), sub = L("dh_h_clear_sub"), control = view.chevron(L("dh_clear"), "home_clear"), act = home_clear }
+	HOME.finish, HOME.last2, HOME.last3 = finish, { finish, builds }, { finish, builds, clear }
+	HOME.hints = {
+		{ id = "home_pool", tile = C.t_orange, glyph = "star", title = L("dh_pool"), control = view.chevron(L("dh_change"), "home_pool"), act = home_open_pool },
+		{ id = "home_set", tile = C.t_gray, glyph = "gear", title = L("dh_settings"), sub = L("dh_settings_sub"), control = view.chevron(L("dh_open"), "home_set"), act = home_open_set },
+	}
+	HOME.sub_key = nil
+	return HOME
 end
 
 function view.home(y, a)
+	local rows = home_rows()
 	local h = 0
-	local function open_pool() S.pool_ret, S.ret, S.view = "home", "home", "pool" end
 	h = h + view.group_header(L("dh_h_train"), y + h, a)
-	h = h + view.setting_rows({
-		{ id = "tr_cm", tile = C.t_blue, glyph = "chess", title = L("dh_mode_cm"), control = view.chevron(L("dh_start"), "tr_cm"), act = function() draft.start_training("cm") end },
-		{ id = "tr_ap", tile = C.t_indigo, glyph = "users", title = L("dh_mode_ap"), control = view.chevron(L("dh_start"), "tr_ap"), act = function() draft.start_training("ap") end },
-		{ id = "tr_turbo", tile = C.t_cyan, glyph = "bolt", title = L("dh_mode_turbo"), control = view.chevron(L("dh_start"), "tr_turbo"), act = function() draft.start_training("ap", "turbo") end },
-		{ id = "tr_sd", tile = C.t_teal, glyph = "list", title = L("dh_mode_sd"), control = view.chevron(L("dh_start"), "tr_sd"), act = function() draft.start_training("ap", "sd") end },
-	}, y + h, a)
+	h = h + view.setting_rows(rows.train, y + h, a)
 	h = h + view.foot(L(SET.tr_enemy == "manual" and "dh_h_foot_manual" or "dh_h_foot_auto"), y + h, a) + view.gap()
 	if S.last then
 		h = h + view.group_header(L("dh_h_last"), y + h, a)
-		local sub = L(S.last.train and "dh_h_training" or "dh_h_match") .. "  |  " .. string.format(L("dh_h_last_chance"), math.floor(S.last.chance * 100 + 0.5))
-		local rows = {
-			{ tile = S.last.chance >= 0.5 and C.t_green or C.red, glyph = "finish", title = draft.mode_name(S.last.mode, S.last.kind), sub = sub },
-			{ id = "home_builds", tile = C.t_purple, glyph = "bag", title = L("dh_b_row"), sub = L("dh_b_row_sub"), control = view.chevron(L("dh_open"), "home_builds"), act = build.open_team },
-		}
-		if S.last.train then
-			rows[#rows + 1] = { id = "home_clear", tile = C.red, glyph = "trash", title = L("dh_h_clear"), sub = L("dh_h_clear_sub"), control = view.chevron(L("dh_clear"), "home_clear"), act = function()
-				draft.clear_last()
-				build.team, build.me = {}, nil
-			end }
+		local pct = math.floor(S.last.chance * 100 + 0.5)
+		local key = (S.last.train and 1000 or 0) + pct
+		local finish = rows.finish
+		if rows.sub_key ~= key or finish.last ~= S.last then
+			rows.sub_key = key
+			finish.last = S.last
+			finish.sub = L(S.last.train and "dh_h_training" or "dh_h_match") .. "  |  " .. fmt(L("dh_h_last_chance"), pct)
+			finish.title = draft.mode_name(S.last.mode, S.last.kind)
+			finish.tile = S.last.chance >= 0.5 and C.t_green or C.red
 		end
-		h = h + view.setting_rows(rows, y + h, a)
+		h = h + view.setting_rows(S.last.train and rows.last3 or rows.last2, y + h, a)
 		h = h + view.foot(L("dh_h_last_foot"), y + h, a) + view.gap()
 	end
 	h = h + view.group_header(L("dh_h_hints"), y + h, a)
-	h = h + view.setting_rows({
-		{ id = "home_pool", tile = C.t_orange, glyph = "star", title = L("dh_pool"), sub = view.pool_short(), control = view.chevron(L("dh_change"), "home_pool"), act = open_pool },
-		{ id = "home_set", tile = C.t_gray, glyph = "gear", title = L("dh_settings"), sub = L("dh_settings_sub"), control = view.chevron(L("dh_open"), "home_set"), act = function() S.ret, S.view = "home", "set" end },
-	}, y + h, a)
+	rows.hints[1].sub = view.pool_short()
+	h = h + view.setting_rows(rows.hints, y + h, a)
 	return h
 end
-
+local data_line_cache = {}
 function view.data_line()
 	local info = data.manifest and data.manifest.sets[draft.set_key()]
+	local key = info and info.time or (data.manifest and "m" or data.status())
+	local t = nest(data_line_cache, Lc.lang or "", draft.set_key(), key)
+	if not t.v then t.v = view.data_line_of(info) end
+	return t.v
+end
+
+function view.data_line_of(info)
 	if not info then
 		local status = data.status()
 		return L("dh_data_" .. ((status == "ok" or data.manifest) and "none" or status))
@@ -5759,8 +6890,8 @@ end
 function view.update_line()
 	local st = upd.state
 	if st == "checking" then return L("dh_upd_checking") end
-	if st == "available" then return string.format(L("dh_upd_available"), upd.latest) end
-	if st == "loading" then return string.format(L("dh_upd_loading"), upd.latest) end
+	if st == "available" then return fmt(L("dh_upd_available"), upd.latest) end
+	if st == "loading" then return fmt(L("dh_upd_loading"), upd.latest) end
 	if st == "done" then return L("dh_upd_done") end
 	if st == "error" then return L("dh_upd_failed") end
 	if upd.check_failed then return L("dh_upd_check_failed") end
@@ -5771,9 +6902,13 @@ function view.update_tip(y)
 	local line = view.update_line()
 	if not line or not upd.error or not (upd.state == "error" or upd.check_failed) then return end
 	local rh, _, tx = view.row_geom(true)
-	hit.add(K.CX + tx, y + rh / 2 + g.lay(9, 8) - 9, g.width(F(400), 12, line), 18, "upd_error", {})
+	hit.add(K.CX + tx, y + rh / 2 + g.lay(9, 8) - 9, g.width(F(400), 12, line), 18, "upd_error", NO_EVENTS)
 	if hit.is("upd_error") then S.tip = upd.error end
 end
+
+local UPD_ON = { click = function()
+	if upd.state == "idle" then upd.check(true) else upd.install() end
+end }
 
 function view.update_button(right, cy, a)
 	local st = upd.state
@@ -5796,109 +6931,176 @@ function view.update_button(right, cy, a)
 		if on then g.rect(x, cy - 15, w, 30, C.accent_soft, 8, a) end
 		g.text(F(500), 14, label, x + w / 2, cy, st == "error" and C.red or C.accent, a, "c")
 	end
-	hit.add(x, cy - 15, w, 30, "set_update", { click = function()
-		if st == "idle" then upd.check(true) else upd.install() end
-	end })
+	hit.add(x, cy - 15, w, 30, "set_update", UPD_ON)
+end
+
+local SETS = { lang = nil }
+local PICK = {}
+local function pick(key)
+	local f = PICK[key]
+	if not f then
+		f = function(v) SET[key] = v; save_settings() end
+		PICK[key] = f
+	end
+	return f
+end
+local function set_theme(v)
+	if SET.theme == v then return end
+	SET.theme = v
+	save_settings()
+	theme.set()
+end
+local function set_open_pool() S.pool_ret, S.view = "set", "pool" end
+local function set_open_hidden() S.view = "hidden" end
+local function set_open_news() view.open_news() end
+local SET_DEFAULTS = { click = function()
+	local pool = SET.pool
+	set_defaults()
+	SET.pool = pool
+	save_settings()
+	theme.set()
+end }
+
+local function settings_rows()
+	if SETS.lang == Lc.lang then return SETS end
+	SETS.lang = Lc.lang
+	local ranks = {}
+	for i = 1, 4 do ranks[i] = { i, L("dh_rank_" .. i) } end
+	local themes = {}
+	for i, t in ipairs(K.THEMES) do themes[i] = { t.id, L("dh_theme_" .. t.id) } end
+	SETS.opt = {
+		source = { { "cm", L("dh_mode_cm") }, { "ap", L("dh_source_ap") } },
+		ranks = ranks, themes = themes,
+		goal = { { "draft", L("dh_goal_draft") }, { "lane", L("dh_goal_lane") } },
+		tr_enemy = { { "auto", L("dh_s_enemy_auto") }, { "manual", L("dh_s_enemy_manual") } },
+		tr_side = { { "r", L("dh_s_light") }, { "d", L("dh_s_dark") } },
+		tr_first = { { "us", L("dh_s_first_us") }, { "them", L("dh_s_first_them") } },
+		bp_show = { { "shop", L("dh_bp_show_shop") }, { "always", L("dh_bp_show_always") } },
+	}
+	SETS.rank = { tile = C.t_indigo, glyph = "chart", title = L("dh_s_rank") }
+	SETS.data = { { tile = C.t_blue, glyph = "users", title = L("dh_s_source") }, SETS.rank }
+	SETS.pool = { id = "set_pool", tile = C.t_orange, glyph = "star", title = L("dh_pool"), control = view.chevron(L("dh_change"), "set_pool"), act = set_open_pool }
+	SETS.hidden = { id = "set_hidden", tile = C.red, glyph = "ban", title = L("dh_s_hidden"), control = view.chevron(L("dh_change"), "set_hidden"), act = set_open_hidden }
+	SETS.goal = { tile = C.t_green, glyph = "flag", title = L("dh_s_goal"), sub = L("dh_s_goal_sub") }
+	SETS.hints = {
+		SETS.pool, SETS.hidden,
+		{ tile = C.t_blue, glyph = "list", title = L("dh_s_count"), control = view.stepper },
+		SETS.goal,
+		{ tile = C.t_teal, glyph = "comment", title = L("dh_s_reasons"), sub = L("dh_s_reasons_sub"), control = view.switch("reasons") },
+		{ tile = C.t_green, glyph = "percent", title = L("dh_s_chance"), control = view.switch("chance") },
+	}
+	SETS.pick = {
+		{ tile = C.t_orange, glyph = "hand", title = L("dh_s_confirm"), sub = L("dh_s_confirm_sub"), control = view.switch("confirm") },
+		{ tile = C.t_blue, glyph = "crown", title = L("dh_s_captain"), sub = L("dh_s_captain_sub"), control = view.switch("captain") },
+	}
+	SETS.train = {
+		{ tile = C.t_indigo, glyph = "robot", title = L("dh_s_enemy"), sub = L("dh_s_enemy_sub") },
+		{ tile = C.t_green, glyph = "flag", title = L("dh_s_side") },
+		{ tile = C.t_orange, glyph = "hand", title = L("dh_s_first"), sub = L("dh_s_first_sub") },
+	}
+	SETS.bp_show = { tile = C.t_blue, glyph = "eye", title = L("dh_bp_show") }
+	SETS.bp = { { tile = C.t_purple, glyph = "bag", title = L("dh_bp"), sub = L("dh_bp_tip"), control = view.switch("bp") }, SETS.bp_show }
+	SETS.theme = { tile = C.t_indigo, glyph = "moon", title = L("dh_s_theme") }
+	SETS.accent = { glyph = "palette", title = L("dh_s_accent"), sub = L("dh_s_accent_sub"), control = view.swatches }
+	SETS.look = { SETS.theme, SETS.accent, { tile = C.t_teal, glyph = "compress", title = L("dh_s_compact"), sub = L("dh_s_compact_sub"), control = view.switch("compact") } }
+	SETS.blur_power = { tile = C.t_indigo, glyph = "drop", title = L("dh_s_blur_power"), control = view.slider("blur_power", 10, 100) }
+	SETS.window = {
+		{ tile = C.t_purple, glyph = "wand", title = L("dh_s_auto"), sub = L("dh_s_auto_sub"), control = view.switch("auto") },
+		{ tile = C.t_blue, glyph = "pointer", title = L("dh_s_hover"), sub = L("dh_s_hover_sub"), control = view.switch("hints") },
+		{ tile = C.t_indigo, glyph = "blur", title = L("dh_s_blur"), control = view.switch("blur") },
+		SETS.blur_power,
+	}
+	SETS.debug = {
+		{ tile = C.t_gray, glyph = "bug", title = L("dh_s_log"), sub = L("dh_s_log_sub"), control = view.switch("log") },
+		{ tile = C.t_teal, glyph = "eye", title = L("dh_s_panel"), sub = L("dh_s_panel_sub"), control = view.switch("panel") },
+	}
+	SETS.version = { tile = C.t_gray, glyph = "info", title = fmt(L("dh_version"), K.VERSION), control = view.update_button }
+	SETS.about = { SETS.version, { id = "set_news", tile = C.t_indigo, glyph = "gift", title = L("dh_news"), sub = L("dh_news_row_sub"), control = view.chevron(L("dh_open"), "set_news"), act = set_open_news } }
+	return SETS
 end
 
 function view.settings(y, a)
+	local R = settings_rows()
+	local O = R.opt
 	local h = 0
-	local ranks = {}
-	for i = 1, 4 do ranks[i] = { i, L("dh_rank_" .. i) } end
-	local function pick(key) return function(v) SET[key] = v; save_settings() end end
 	h = h + view.group_header(L("dh_s_data"), y + h, a)
 	local line = view.data_line()
 	local rh1, _, tx = view.row_geom()
 	local rh2 = view.row_geom(true)
 	view.error_tip(K.CX + tx, y + h + rh1 + rh2 / 2 + g.lay(9, 8) - 9, g.width(F(400), 12, line), 18)
-	h = h + view.setting_rows({
-		{ tile = C.t_blue, glyph = "users", title = L("dh_s_source"), control = view.choice("source", { { "cm", L("dh_mode_cm") }, { "ap", L("dh_source_ap") } }, SET.source, pick("source")) },
-		{ tile = C.t_indigo, glyph = "chart", title = L("dh_s_rank"), sub = line, control = view.choice("rank", ranks, SET.rank, pick("rank")) },
-	}, y + h, a) + view.gap()
+	R.data[1].control = view.choice("source", O.source, SET.source, pick("source"))
+	R.rank.sub, R.rank.control = line, view.choice("rank", O.ranks, SET.rank, pick("rank"))
+	h = h + view.setting_rows(R.data, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_hints"), y + h, a)
-	h = h + view.setting_rows({
-		{ id = "set_pool", tile = C.t_orange, glyph = "star", title = L("dh_pool"), sub = view.pool_short(), control = view.chevron(L("dh_change"), "set_pool"), act = function() S.pool_ret, S.view = "set", "pool" end },
-		{ id = "set_hidden", tile = C.red, glyph = "ban", title = L("dh_s_hidden"), sub = view.hidden_short(),
-			control = view.chevron(L("dh_change"), "set_hidden"), act = function() S.view = "hidden" end },
-		{ tile = C.t_blue, glyph = "list", title = L("dh_s_count"), control = view.stepper },
-		{ tile = C.t_green, glyph = "flag", title = L("dh_s_goal"), sub = L("dh_s_goal_sub"), control = view.choice("goal", { { "draft", L("dh_goal_draft") }, { "lane", L("dh_goal_lane") } }, SET.goal, pick("goal")) },
-		{ tile = C.t_teal, glyph = "comment", title = L("dh_s_reasons"), sub = L("dh_s_reasons_sub"), control = view.switch("reasons") },
-		{ tile = C.t_green, glyph = "percent", title = L("dh_s_chance"), control = view.switch("chance") },
-	}, y + h, a) + view.gap()
+	R.pool.sub, R.hidden.sub = view.pool_short(), view.hidden_short()
+	R.goal.control = view.choice("goal", O.goal, SET.goal, pick("goal"))
+	h = h + view.setting_rows(R.hints, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_pick"), y + h, a)
-	h = h + view.setting_rows({
-		{ tile = C.t_orange, glyph = "hand", title = L("dh_s_confirm"), sub = L("dh_s_confirm_sub"), control = view.switch("confirm") },
-		{ tile = C.t_blue, glyph = "crown", title = L("dh_s_captain"), sub = L("dh_s_captain_sub"), control = view.switch("captain") },
-	}, y + h, a) + view.gap()
+	h = h + view.setting_rows(R.pick, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_train"), y + h, a)
-	h = h + view.setting_rows({
-		{ tile = C.t_indigo, glyph = "robot", title = L("dh_s_enemy"), sub = L("dh_s_enemy_sub"), control = view.choice("tr_enemy", { { "auto", L("dh_s_enemy_auto") }, { "manual", L("dh_s_enemy_manual") } }, SET.tr_enemy, pick("tr_enemy")) },
-		{ tile = C.t_green, glyph = "flag", title = L("dh_s_side"), control = view.choice("tr_side", { { "r", L("dh_s_light") }, { "d", L("dh_s_dark") } }, SET.tr_side, pick("tr_side")) },
-		{ tile = C.t_orange, glyph = "hand", title = L("dh_s_first"), sub = L("dh_s_first_sub"), control = view.choice("tr_first", { { "us", L("dh_s_first_us") }, { "them", L("dh_s_first_them") } }, SET.tr_first, pick("tr_first")) },
-	}, y + h, a)
+	R.train[1].control = view.choice("tr_enemy", O.tr_enemy, SET.tr_enemy, pick("tr_enemy"))
+	R.train[2].control = view.choice("tr_side", O.tr_side, SET.tr_side, pick("tr_side"))
+	R.train[3].control = view.choice("tr_first", O.tr_first, SET.tr_first, pick("tr_first"))
+	h = h + view.setting_rows(R.train, y + h, a)
 	h = h + view.foot(L("dh_s_train_foot"), y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_bp"), y + h, a)
-	h = h + view.setting_rows({
-		{ tile = C.t_purple, glyph = "bag", title = L("dh_bp"), sub = L("dh_bp_tip"), control = view.switch("bp") },
-		{ fold = view.fold("bp", SET.bp == 1), tile = C.t_blue, glyph = "eye", title = L("dh_bp_show"), control = view.choice("bp_show", { { "shop", L("dh_bp_show_shop") }, { "always", L("dh_bp_show_always") } }, SET.bp_show, pick("bp_show")) },
-	}, y + h, a) + view.gap()
-	local themes = {}
-	for i, t in ipairs(K.THEMES) do themes[i] = { t.id, L("dh_theme_" .. t.id) } end
+	R.bp_show.fold, R.bp_show.control = view.fold("bp", SET.bp == 1), view.choice("bp_show", O.bp_show, SET.bp_show, pick("bp_show"))
+	h = h + view.setting_rows(R.bp, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_look"), y + h, a)
-	h = h + view.setting_rows({
-		{ tile = C.t_indigo, glyph = "moon", title = L("dh_s_theme"), control = view.choice("theme", themes, SET.theme, function(v)
-			if SET.theme == v then return end
-			SET.theme = v
-			save_settings()
-			theme.set()
-		end) },
-		{ tile = C.accent, glyph = "palette", title = L("dh_s_accent"), sub = L("dh_s_accent_sub"), control = view.swatches },
-		{ tile = C.t_teal, glyph = "compress", title = L("dh_s_compact"), sub = L("dh_s_compact_sub"), control = view.switch("compact") },
-	}, y + h, a) + view.gap()
+	R.theme.control = view.choice("theme", O.themes, SET.theme, set_theme)
+	R.accent.tile = C.accent
+	h = h + view.setting_rows(R.look, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_window"), y + h, a)
-	h = h + view.setting_rows({
-		{ tile = C.t_purple, glyph = "wand", title = L("dh_s_auto"), sub = L("dh_s_auto_sub"), control = view.switch("auto") },
-		{ tile = C.t_blue, glyph = "pointer", title = L("dh_s_hover"), sub = L("dh_s_hover_sub"), control = view.switch("hints") },
-		{ tile = C.t_indigo, glyph = "blur", title = L("dh_s_blur"), control = view.switch("blur") },
-		{ fold = view.fold("blur", SET.blur == 1), tile = C.t_indigo, glyph = "drop", title = L("dh_s_blur_power"), control = view.slider("blur_power", 10, 100) },
-	}, y + h, a) + view.gap()
+	R.blur_power.fold = view.fold("blur", SET.blur == 1)
+	h = h + view.setting_rows(R.window, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_debug"), y + h, a)
-	h = h + view.setting_rows({
-		{ tile = C.t_gray, glyph = "bug", title = L("dh_s_log"), sub = L("dh_s_log_sub"), control = view.switch("log") },
-		{ tile = C.t_teal, glyph = "eye", title = L("dh_s_panel"), sub = L("dh_s_panel_sub"), control = view.switch("panel") },
-	}, y + h, a) + view.gap()
+	h = h + view.setting_rows(R.debug, y + h, a) + view.gap()
 	h = h + view.group_header(L("dh_s_about"), y + h, a)
 	view.update_tip(y + h)
-	h = h + view.setting_rows({
-		{ tile = C.t_gray, glyph = "info", title = string.format(L("dh_version"), K.VERSION), sub = view.update_line(), control = view.update_button },
-		{ id = "set_news", tile = C.t_indigo, glyph = "gift", title = L("dh_news"), sub = L("dh_news_row_sub"), control = view.chevron(L("dh_open"), "set_news"), act = function() view.open_news() end },
-	}, y + h, a) + view.gap()
+	R.version.sub = view.update_line()
+	h = h + view.setting_rows(R.about, y + h, a) + view.gap()
 	local dh = g.lay(48, 40)
 	g.rect(K.CX, y + h, K.CW, dh, C.card, 12, a)
 	local kd = anim.hover("defaults", hit.is("defaults"))
 	if kd > 0 then g.rect(K.CX, y + h, K.CW, dh, C.hover, 12, a * kd) end
 	g.text(F(400), 14, L("dh_s_defaults"), K.CX + K.P, y + h + dh / 2, C.red, a)
-	hit.add(K.CX, y + h, K.CW, dh, "defaults", { click = function()
-		local pool = SET.pool
-		set_defaults()
-		SET.pool = pool
-		save_settings()
-		theme.set()
-	end })
+	hit.add(K.CX, y + h, K.CW, dh, "defaults", SET_DEFAULTS)
 	return h + dh
+end
+local POOL_ID, POOL_ON = {}, {}
+local pool_lists = { q = nil, by = {} }
+local function pool_set_mode(v) SET.pool_mode = v; save_settings() end
+local function pool_clear() SET.pool = {}; save_settings() end
+local POOL_CLEAR = { click = pool_clear }
+
+local function pool_list(attr, q)
+	if pool_lists.q ~= q then pool_lists.q, pool_lists.by = q, {} end
+	local src = data.by_attr[attr]
+	local e = pool_lists.by[attr]
+	if not e or e.src ~= src or e.n ~= #src then
+		e = { src = src, n = #src, list = {} }
+		for _, hero in ipairs(src) do
+			if q == "" or hero_find(hero, q) then e.list[#e.list + 1] = hero end
+		end
+		pool_lists.by[attr] = e
+	end
+	return e.list
 end
 
 function view.pool(y, a)
 	local x, h = K.CX, 0
-	local modes = { { "boost", L("dh_pool_boost") }, { "only", L("dh_pool_only") }, { "off", L("dh_pool_off") } }
-	local choice = view.choice("pool_mode", modes, SET.pool_mode, function(v) SET.pool_mode = v; save_settings() end)
-	local mw = 4
-	for _, m in ipairs(modes) do mw = mw + g.width(F(500), 12, m[2]) + 22 end
-	choice(x + mw, y + 14, a)
+	local modes = S.pool_modes
+	if not modes or modes.lang ~= Lc.lang then
+		modes = { { "boost", L("dh_pool_boost") }, { "only", L("dh_pool_only") }, { "off", L("dh_pool_off") }, lang = Lc.lang }
+		modes.w = 4
+		for _, m in ipairs(modes) do modes.w = modes.w + g.width(F(500), 12, m[2]) + 22 end
+		S.pool_modes = modes
+	end
+	view.choice("pool_mode", modes, SET.pool_mode, pool_set_mode)(x + modes.w, y + 14, a)
 	if #SET.pool > 0 then
 		local id = "pool_clear"
 		g.text(F(400), 13, L("dh_pool_clear"), x + K.CW - 6, y + 14, hit.is(id) and C.text or C.accent, a, "r")
-		hit.add(x + K.CW - 110, y, 110, 28, id, { click = function() SET.pool = {}; save_settings() end })
+		hit.add(x + K.CW - 110, y, 110, 28, id, POOL_CLEAR)
 	end
 	h = 48
 	local status = data.status()
@@ -5906,28 +7108,37 @@ function view.pool(y, a)
 	local q = S.query:lower()
 	local cols = math.floor((K.CW + 6) / 64)
 	local start = h
+	local set = {}
+	for _, p in ipairs(SET.pool) do set[p] = true end
+	local top, bottom = S.vis_top, S.vis_bottom
 	for _, attr in ipairs(K.ATTRS) do
-		local list = {}
-		for _, hero in ipairs(data.by_attr[attr]) do
-			if q == "" or hero_find(hero, q) then list[#list + 1] = hero end
-		end
+		local list = pool_list(attr, q)
 		if #list > 0 then
 			local count = 0
-			for _, hero in ipairs(list) do if in_pool(hero.h) then count = count + 1 end end
+			for _, hero in ipairs(list) do if set[hero.h] then count = count + 1 end end
 			local tw = g.text(F(700), 17, L("dh_attr_" .. attr), x, y + h + 10, C.text, a)
-			g.text(F(400), 13, count > 0 and string.format(L("dh_pool_count"), count, #list) or tostring(#list), x + tw + 8, y + h + 11, C.text3, a)
+			g.text(F(400), 13, count > 0 and fmt(L("dh_pool_count"), count, #list) or tostring(#list), x + tw + 8, y + h + 11, C.text3, a)
 			h = h + 30
 			for n, hero in ipairs(list) do
 				local px, py = x + ((n - 1) % cols) * 64, y + h + math.floor((n - 1) / cols) * 39
-				local on, id = in_pool(hero.h), "pool:" .. hero.h
-				local k = anim.tween(id, on and 1 or 0, 0.18)
-				local hover = hit.is(id)
-				g.image(asset.portrait(hero.h), px, py, 58, 33, 6, a * (hover and 0.85 or (0.5 + 0.5 * k)), (1 - k) * 0.65)
-				if k > 0 then
-					Render.FilledCircle(g.v(px + 50, py + 8), 8 * g.s, g.col(C.accent, a * k))
-					g.glyph("check", 10, px + 50, py + 8, C.text, a * k)
+				if not top or (py + 33 >= top and py <= bottom) then
+					local hh = hero.h
+					local id = POOL_ID[hh]
+					if not id then
+						id = "pool:" .. hh
+						POOL_ID[hh] = id
+						POOL_ON[hh] = { click = function() toggle_pool(hh) end }
+					end
+					local on = set[hh] == true
+					local k = anim.tween(id, on and 1 or 0, 0.18)
+					local hover = hit.is(id)
+					g.image(asset.portrait(hh), px, py, 58, 33, 6, a * (hover and 0.85 or (0.5 + 0.5 * k)), (1 - k) * 0.65)
+					if k > 0 then
+						Render.FilledCircle(g.v(px + 50, py + 8), 8 * g.s, g.col(C.accent, a * k))
+						g.glyph("check", 10, px + 50, py + 8, C.text, a * k)
+					end
+					hit.add(px, py, 58, 33, id, POOL_ON[hh])
 				end
-				hit.add(px, py, 58, 33, id, { click = function() toggle_pool(hero.h) end })
 			end
 			h = h + math.ceil(#list / cols) * 39 + 22
 		end
@@ -6051,30 +7262,54 @@ function view.summary(y, a)
 	return 262 + view.items(x, y + 262, w, a)
 end
 
-function view.item_icon(name, x, y, a, id, q)
-	g.rect(x, y, 44, 32, C.fill4, 5, a)
-	g.image(asset.image(ITEM.ICON:format(name)), x, y, 44, 32, 5, a)
-	if q and q > 1 then
-		g.rect(x + 26, y + 18, 18, 14, C.badge, 4, a)
-		g.text(F(700), 10, "×" .. q, x + 35, y + 25, C.text, a, "c")
+function build.badges(e, x, y, w, h, a)
+	if e.counter and e.counter.src[1] then
+		local d = math.floor(w * 0.42 + 0.5)
+		g.rect(x - 4, y - 4, d + 2, d + 2, C.main, (d + 2) / 2, a)
+		g.icon(asset.icon(e.counter.src[1].h), x - 3, y - 3, d, C.text, a)
 	end
+	local act = e.acts and e.acts[1]
+	if act and act.kind ~= "consume" and act.kind ~= "eat" then
+		local bw = math.floor(w * 0.5 + 0.5)
+		local bh = math.floor(bw * 0.73 + 0.5)
+		local bx, by = x - 3, y + h - bh + 3
+		g.rect(bx, by, bw, bh, C.main, 3, a)
+		g.image(asset.image(ITEM.ICON:format(act.item)), bx, by, bw, bh, 3, a)
+		g.frame(bx, by, bw, bh, C.red, 3, a, 1.5)
+	end
+end
+
+function view.item_icon(e, x, y, a, id)
+	g.rect(x, y, 44, 32, C.fill4, 5, a)
+	g.image(asset.image(ITEM.ICON:format(e.name)), x, y, 44, 32, 5, a)
+	if e.q and e.q > 1 then
+		g.rect(x + 26, y + 18, 18, 14, C.badge, 4, a)
+		g.text(F(700), 10, "×" .. e.q, x + 35, y + 25, C.text, a, "c")
+	end
+	build.badges(e, x, y, 44, 32, a)
 	hit.add(x, y, 44, 32, id, {})
-	if hit.is(id) then S.tip = build.item_name(name) end
+	if hit.is(id) then
+		local lines = build.tip(e)
+		S.tip = build.item_name(e.name) .. (#lines > 0 and (": " .. table.concat(lines, "; ")) or "")
+	end
 end
 
 function view.items(x, y, w, a)
 	local plan, pos = build.current()
 	local hero = data.heroes[S.bh]
-	local nc = plan and #plan.counters or 0
 	local secs = plan and plan.has and build.sections(plan) or {}
+	local notes = plan and plan.has and build.plan_notes(plan) or {}
+	local lx, ix, right = x + K.P, x + K.P + 104, x + w - K.P
+	local per = math.max(1, math.floor((right - ix + 6) / 50))
 	local h = 120
 	if plan and plan.has then
 		h = 44
 		for _, sec in ipairs(secs) do
 			if sec.who then h = h + 30 end
-			h = h + #sec.rows * 44
+			for _, row in ipairs(sec.rows) do h = h + math.ceil(#row.list / per) * 44 end
 		end
-		h = h + 44 + (nc > 0 and nc * 50 or 30) + 6
+		if #notes > 0 then h = h + 12 + #notes * 26 end
+		h = h + 6
 	end
 	g.rect(x, y, w, h, C.card, 12, a)
 	local bw = g.text(F(700), 11, L("dh_b_build"), x + K.P, y + 23, C.text3, a)
@@ -6087,8 +7322,7 @@ function view.items(x, y, w, a)
 		return h
 	end
 
-	local lx, ix, right = x + K.P, x + K.P + 104, x + w - K.P
-	local keys = { "dh_b_start", "dh_b_stage1", "dh_b_stage2", "dh_b_stage3", "dh_b_extra" }
+	local keys = { "dh_b_start", "dh_b_path" }
 	local ry = y + 44
 	for si, sec in ipairs(secs) do
 		if sec.who then
@@ -6100,43 +7334,21 @@ function view.items(x, y, w, a)
 		for _, row in ipairs(sec.rows) do
 			g.text(F(500), 12, L(keys[row.i]), lx, ry + 22, C.text2, a)
 			for i, e in ipairs(row.list) do
-				local cx = ix + (i - 1) * 50
-				if cx + 44 > right then break end
-				local id = "b" .. si .. ":" .. row.i .. ":" .. i
-				view.item_icon(e.name, cx, ry + 6, a, id, e.q)
-				if e.pr and hit.is(id) then S.tip = build.item_name(e.name) .. ": " .. string.format(L("dh_b_pick"), math.floor(e.pr * 100 + 0.5)) end
+				local col, line = (i - 1) % per, (i - 1) // per
+				view.item_icon(e, ix + col * 50, ry + 6 + line * 44, a, "b" .. si .. ":" .. row.i .. ":" .. i)
 			end
-			ry = ry + 44
+			ry = ry + math.ceil(#row.list / per) * 44
 		end
 	end
-
-	g.hl(lx, ry + 4, w - 2 * K.P, C.sep2, a)
-	g.text(F(700), 11, L("dh_b_counter"), lx, ry + 26, C.text3, a)
-	ry = ry + 44
-	if nc == 0 then g.text(F(400), 12, L("dh_b_counter_none"), lx, ry + 10, C.text3, a) end
-	for i, c in ipairs(plan.counters) do
-		local cy = ry + (i - 1) * 50
-		view.item_icon(c.name, lx, cy + 9, a, "bc:" .. i)
-		local tx = lx + 58
-		g.text(F(600), 13, build.item_name(c.name), tx, cy + 17, C.text, a)
-		local tags = {}
-		for _, t in ipairs(c.tags) do tags[#tags + 1] = L("dh_t_" .. t) end
-		local hx = right - #c.src * 26 + 4
-		local line = g.fit(400, 12, table.concat(tags, ", "), hx - 12 - tx)
-		local lw = g.text(F(400), 12, line, tx, cy + 35, C.text2, a)
-		if c.alt then
-			local alt = string.format(L("dh_b_or"), build.item_name(c.alt))
-			if tx + lw + 4 + g.width(F(400), 12, alt) <= hx - 12 then g.text(F(400), 12, alt, tx + lw + 4, cy + 35, C.text3, a) end
-		end
-		for j, src in ipairs(c.src) do
-			local id = "bch:" .. i .. ":" .. j
-			local px = hx + (j - 1) * 26
-			g.icon(asset.icon(src.h), px, cy + 14, 22, C.text, a)
-			hit.add(px, cy + 14, 22, 22, id, {})
-			if hit.is(id) then
-				local name = data.heroes[src.h] and data.heroes[src.h].name or src.h
-				S.tip = #src.what > 0 and (name .. ": " .. table.concat(src.what, ", ")) or name
-			end
+	if #notes > 0 then
+		g.hl(lx, ry + 4, w - 2 * K.P, C.sep2, a)
+		ry = ry + 12
+		for _, n in ipairs(notes) do
+			g.rect(lx, ry + 1, 30, 22, C.fill4, 3, a)
+			g.image(asset.image(ITEM.ICON:format(n.act.item)), lx, ry + 1, 30, 22, 3, a)
+			local text = g.fit(400, 13, build.act_text(n.act, true) .. (n.n > 1 and (" ×" .. n.n) or ""), right - lx - 40)
+			g.text(F(400), 13, text, lx + 40, ry + 12, C.text2, a)
+			ry = ry + 26
 		end
 	end
 	return h
@@ -6154,8 +7366,8 @@ local NO_LINE_START = {}
 for _, ch in ipairs({ "，", "。", "、", "；", "：", "！", "？", "）", "”", "」", "》", "%", ",", ".", ")" }) do NO_LINE_START[ch] = true end
 
 function view.wrap(text, weight, size, max_w)
-	local key = (Lc.lang or "") .. ":" .. weight .. ":" .. size .. ":" .. math.floor(max_w) .. ":" .. text
-	local out = view.wraps[key]
+	local leaf = nest(view.wraps, Lc.lang or "", weight * 1000 + size, floor(max_w))
+	local out = leaf[text]
 	if out then return out end
 	out = {}
 	local tokens, buf, gap, buf_gap = {}, "", false, false
@@ -6190,14 +7402,14 @@ function view.wrap(text, weight, size, max_w)
 		end
 	end
 	if line ~= "" then out[#out + 1] = line end
-	view.wraps[key] = out
+	leaf[text] = out
 	return out
 end
 
 function view.news(y, a)
 	local x, w, h = K.CX, K.CW, 0
 	for _, rel in ipairs(K.NEWS) do
-		h = h + view.group_header(string.format(L("dh_version"), rel.v), y + h, a)
+		h = h + view.group_header(fmt(L("dh_version"), rel.v), y + h, a)
 		for _, e in ipairs(rel.items) do
 			local lines = view.wrap(L(e.key .. "_d"), 400, 13, w - 58 - K.P)
 			local strip = (e.icons or e.roles) and 44 or 0
@@ -6250,12 +7462,15 @@ function view.content()
 	local vh = bottom - top
 	S.view_h = vh
 	S.scroll = anim.tween("scroll", S.scroll_to, 0.24)
-	hit.add(K.CX - 14, top, K.CW + 28, vh, "content", { wheel = function(dir)
-		S.scroll_to = clamp(S.scroll_to + dir * K.WHEEL, 0, math.max(0, S.content_h - S.view_h))
-		S.sb_until = S.now + 1.2
-	end })
+	hit.add(K.CX - 14, top, K.CW + 28, vh, "content", ON.wheel)
 	g.clip(K.CX - 14, top, K.CW + 28, vh)
-	hit.clip = { g.x + (K.CX - 14) * g.s, g.y + top * g.s, g.x + (K.CX + K.CW + 14) * g.s, g.y + bottom * g.s }
+	local hc = S.hit_clip
+	if not hc then
+		hc = {}
+		S.hit_clip = hc
+	end
+	hc[1], hc[2], hc[3], hc[4] = g.x + (K.CX - 14) * g.s, g.y + top * g.s, g.x + (K.CX + K.CW + 14) * g.s, g.y + bottom * g.s
+	hit.clip = hc
 	local y = top - math.floor(S.scroll * g.s + 0.5) / g.s
 	S.vis_top, S.vis_bottom = top, bottom
 	local h
@@ -6275,6 +7490,8 @@ function view.content()
 	view.scrollbar(top, vh, max_scroll)
 end
 
+local SB_TRACK = { 255, 255, 255, 13 }
+
 function view.scrollbar(top, vh, max_scroll)
 	if max_scroll <= 0 then return end
 	local x, y, h = K.W - 24, top + 6, vh - 26
@@ -6284,17 +7501,13 @@ function view.scrollbar(top, vh, max_scroll)
 	local k = anim.tween("sb", (hover or S.now < S.sb_until) and 1 or 0, 0.2)
 	local wide = anim.tween("sb_w", hover and 1 or 0, 0.15)
 	if k > 0 then
-		g.rect(x + 2, y, 8, h, { 255, 255, 255, 13 }, 4, k * wide)
+		g.rect(x + 2, y, 8, h, SB_TRACK, 4, k * wide)
 		local w = 6 + 2 * wide
 		g.rect(x + 10 - w, ty, w, th, hover and C.sb_hover or C.sb, w / 2, k)
 	end
-	hit.add(x, y, 12, h, "sb", { down = function(mx, my)
-		local rel = (my - g.y) / g.s - y - th / 2
-		S.scroll_to = clamp(rel / (h - th), 0, 1) * max_scroll
-	end })
-	hit.add(x, ty, 12, th, "sb_thumb", { down = function(mx, my)
-		S.sb_drag = { my = my, scroll = S.scroll, k = max_scroll / math.max(1, h - th) }
-	end })
+	S.sb_y, S.sb_th, S.sb_h, S.sb_max = y, th, h, max_scroll
+	hit.add(x, y, 12, h, "sb", ON.sb)
+	hit.add(x, ty, 12, th, "sb_thumb", ON.sb_thumb)
 end
 
 function view.bar()
@@ -6311,7 +7524,7 @@ function view.bar()
 	g.image(asset.portrait(h), x + K.P, y + K.P, 78, 44, 7, k)
 	g.text(F(700), 15, data.heroes[h].name, x + 106, y + 27, C.text, k)
 	local ban = draft.is_ban()
-	local where = draft.free() and L("dh_at_turbo") or S.mode == "ap" and string.format(L("dh_at_round"), math.min(3, draft.ap_round())) or string.format(L("dh_at_step"), math.min(#K.ORDER, draft.cm_step()))
+	local where = draft.free() and L("dh_at_turbo") or S.mode == "ap" and fmt(L("dh_at_round"), math.min(3, draft.ap_round())) or fmt(L("dh_at_step"), math.min(#K.ORDER, draft.cm_step()))
 	local sx = x + 106 + g.text(F(400), 12, L(ban and "dh_ban_word" or "dh_pick_word") .. ", " .. where, x + 106, y + 47, C.text2, k)
 	local p = draft.pos_for(h)
 	if p then
@@ -6364,7 +7577,7 @@ function view.menu()
 			for _, x in ipairs(info.list) do
 				if x.h ~= info.h and info.get(x) == p then swap = x.h end
 			end
-			item(L("dh_pos_" .. p), p, swap and string.format(L("dh_swap"), data.heroes[swap].name) or nil, function()
+			item(L("dh_pos_" .. p), p, swap and fmt(L("dh_swap"), data.heroes[swap].name) or nil, function()
 				draft.set_slot_pos(m.key, p)
 			end, { check = info.p == p and not swap })
 		end
@@ -6490,7 +7703,7 @@ function view.window()
 end
 
 local bp = {
-	HEAD = 36, IW = 40, IH = 29, COLS = 6, x = nil, y = nil, rect = nil, hits = {}, hover = nil, press = nil, drag = nil,
+	HEAD = 36, IW = 48, IH = 35, COLS = 6, x = nil, y = nil, rect = nil, hits = {}, hover = nil, press = nil, drag = nil,
 	hero = nil, match = nil, pos = nil, prefs = false, switched = 0, shown = false,
 	quick = {}, enemies = {}, next_scan = 0, cat = nil, tip_id = nil, tip_since = 0,
 }
@@ -6687,13 +7900,19 @@ function bp.at(mx, my)
 	return nil
 end
 
+function bp.covered(mx, my)
+	if not S.win_on then return false end
+	if S.menu ~= nil then return true end
+	return mx >= S.wx and my >= S.wy and mx < S.win_x2 and my < S.win_y2
+end
+
 function bp.inside(mx, my)
 	local r = bp.rect
-	return r and mx >= r[1] and mx < r[3] and my >= r[2] and my < r[4]
+	return r and mx >= r[1] and mx < r[3] and my >= r[2] and my < r[4] and not bp.covered(mx, my)
 end
 
 function bp.labels()
-	local labels = { L("dh_b_start"), L("dh_bp_early"), L("dh_bp_mid"), L("dh_bp_late"), L("dh_bp_extra") }
+	local labels = { L("dh_b_start"), L("dh_b_path") }
 	local w = 0
 	for _, t in ipairs(labels) do w = math.max(w, g.width(F(400), 12, t)) end
 	return labels, math.ceil(w) + 12
@@ -6701,6 +7920,14 @@ end
 
 function bp.rows(plan, labels)
 	if not plan or not plan.has then return nil, 40 end
+	local key = table.concat(labels, "|")
+	if plan.bp_key == key then return plan.bp_rows, plan.bp_h end
+	plan.bp_key = key
+	plan.bp_rows, plan.bp_h = bp.rows_of(plan, labels)
+	return plan.bp_rows, plan.bp_h
+end
+
+function bp.rows_of(plan, labels)
 	local rows, h = {}, 2
 	for _, sec in ipairs(build.sections(plan)) do
 		if sec.who then
@@ -6716,11 +7943,17 @@ function bp.rows(plan, labels)
 			end
 		end
 	end
+	local notes = build.plan_notes(plan)
+	if #notes > 0 then h = h + 4 end
+	for _, n in ipairs(notes) do
+		rows[#rows + 1] = { note = n, y = h, h = 22 }
+		h = h + 26
+	end
 	return rows, h - 6 + 10
 end
 
 function bp.item(e, x, y, a, idx)
-	local id = "bi:" .. idx
+	local id = cat("bi:", idx)
 	local pin = bp.has_quick(e.name)
 	local over = bp.hover == id
 	local w, h = bp.IW, bp.IH
@@ -6734,12 +7967,18 @@ function bp.item(e, x, y, a, idx)
 		g.rect(x + w - 16, y + h - 13, 16, 13, C.badge, 3, a)
 		g.text(F(700), 10, "×" .. e.q, x + w - 8, y + h - 6.5, C.text, a, "c")
 	end
+	build.badges(e, x, y, w, h, a)
 	if pin then
 		g.rect(x + w - 11, y - 5, 16, 16, C.main, 8, a)
 		g.rect(x + w - 10, y - 4, 14, 14, C.accent, 7, a)
 		g.glyph("pin", 8, x + w - 3, y + 3, C.text, a)
 	end
-	bp.hit(x, y, w, h, id, { item = e.name, bear = e.bear })
+	local on = e.hit_on
+	if not on then
+		on = { item = e.name, bear = e.bear, entry = e }
+		e.hit_on = on
+	end
+	bp.hit(x, y, w, h, id, on)
 end
 
 function bp.seg(key, options, cur, right, cy, a, on_pick)
@@ -6757,7 +7996,7 @@ function bp.seg(key, options, cur, right, cy, a, on_pick)
 	end
 	local px = anim.tween("bp_seg_" .. key, at, 0.22, ease_in_out)
 	local pw = anim.tween("bp_segw_" .. key, w_at, 0.22, ease_in_out)
-	g.rect(x0 + 2 + px, cy - 9, pw, 18, C.pill, 5, a)
+	g.thumb(x0, cy - 11, total, 22, px, px + pw, C.pill, 5, a)
 	x = x0 + 2
 	for i, o in ipairs(options) do
 		g.text(F(500), 11, o.label, x + widths[i] / 2, cy, o.v == cur and C.text or C.text2, a, "c")
@@ -6774,20 +8013,7 @@ function bp.draw_tip(plan)
 	end
 	if not h or not h.item then return end
 	local lines = { { F(600), 12, build.item_name(h.item), C.text } }
-	for _, x in ipairs(plan and plan.extra or {}) do
-		if x.name == h.item then lines[#lines + 1] = { F(400), 11, string.format(L("dh_b_pick"), math.floor(x.pr * 100 + 0.5)), C.text2 } end
-	end
-	for _, c in ipairs(plan and plan.counters or {}) do
-		if c.name == h.item then
-			local tags = {}
-			for _, t in ipairs(c.tags) do tags[#tags + 1] = L("dh_t_" .. t) end
-			lines[#lines + 1] = { F(400), 11, table.concat(tags, ", "), C.text2 }
-			for _, s in ipairs(c.src) do
-				local name = data.heroes[s.h] and data.heroes[s.h].name or s.h
-				lines[#lines + 1] = { F(400), 11, #s.what > 0 and (name .. ": " .. table.concat(s.what, ", ")) or name, C.text2 }
-			end
-		end
-	end
+	for _, t in ipairs(h.entry and build.tip(h.entry) or {}) do lines[#lines + 1] = { F(400), 11, t, C.text2 } end
 	if bp.has_quick(h.item) then
 		lines[#lines + 1] = { F(400), 11, L("dh_bp_pinned"), C.text3 }
 	end
@@ -6809,16 +8035,26 @@ function bp.draw_tip(plan)
 	g.x, g.y, g.a = ox, oy, oa
 end
 
+local BP_ROLE, BP_ROLE_ID = {}, {}
+for p = 1, 5 do
+	BP_ROLE[p] = { left = function() bp.pos = p end }
+	BP_ROLE_ID[p] = "bp_role" .. p
+end
+local BP_GEAR = { left = function() bp.prefs, bp.switched = not bp.prefs, S.now end }
+
 function bp.frame()
 	local vis = bp.visible()
 	local a = anim.tween("bp", vis and 1 or 0, 0.18)
 	bp.shown = a > 0.01
-	local prev = bp.hits
-	bp.hits, bp.rect = {}, nil
 	if not bp.shown then
-		bp.hover, bp.tip_id, bp.press, bp.drag, bp.resize = nil, nil, nil, nil, nil
+		if bp.rect then
+			bp.hits, bp.rect = {}, nil
+			bp.hover, bp.tip_id, bp.press, bp.drag, bp.resize = nil, nil, nil, nil, nil
+		end
 		return
 	end
+	local prev = bp.hits
+	bp.hits, bp.rect = {}, nil
 	local me = bp.me()
 	if not me or not data.heroes[me] then return end
 	local screen = Render.ScreenSize()
@@ -6827,11 +8063,13 @@ function bp.frame()
 	g.a = a
 	local mx, my = Input.GetCursorPos()
 	bp.hover = nil
-	for i = #prev, 1, -1 do
-		local h = prev[i]
-		if mx >= h[1] and mx < h[3] and my >= h[2] and my < h[4] then
-			bp.hover = h.id
-			break
+	if not bp.covered(mx, my) then
+		for i = #prev, 1, -1 do
+			local h = prev[i]
+			if mx >= h[1] and mx < h[3] and my >= h[2] and my < h[4] then
+				bp.hover = h.id
+				break
+			end
 		end
 	end
 	if bp.press and bp.hover ~= bp.press.id then bp.hover = nil end
@@ -6886,21 +8124,21 @@ function bp.frame()
 	local rx = 36
 	g.rect(rx, 5, 5 * 26 + 4, 26, C.fill3, 8, 1)
 	local px = anim.tween("bp_role", (pos - 1) * 26, 0.22, ease_in_out)
-	g.rect(rx + 2 + px, 7, 26, 22, C.pill, 6, 1)
+	g.thumb(rx, 5, 5 * 26 + 4, 26, px, px + 26, C.pill, 6, 1)
 	local it = data.items()
 	local by_pos = it and it.hero[data.heroes[me].id] or nil
 	for p = 1, 5 do
-		local id = "bp_role" .. p
+		local id = BP_ROLE_ID[p]
 		local has = by_pos and build.role_ok(by_pos[p])
 		local alpha = (p == pos or bp.hover == id) and (has and 1 or 0.6) or (has and 0.55 or 0.22)
 		g.icon(asset.pos(p), rx + 2 + (p - 1) * 26 + 5, 10, 16, C.text, alpha)
-		bp.hit(rx + 2 + (p - 1) * 26, 7, 26, 22, id, { left = function() bp.pos = p end })
+		bp.hit(rx + 2 + (p - 1) * 26, 7, 26, 22, id, BP_ROLE[p])
 	end
 	local gx = W - 32
 	local gear_on = bp.prefs or bp.hover == "bp_gear"
 	if gear_on then g.rect(gx, 6, 24, 24, C.fill3, 6, 1) end
 	g.glyph("gear", 12, gx + 12, 18, gear_on and C.text or C.text2, 1)
-	bp.hit(gx, 6, 24, 24, "bp_gear", { left = function() bp.prefs, bp.switched = not bp.prefs, S.now end })
+	bp.hit(gx, 6, 24, 24, "bp_gear", BP_GEAR)
 	g.clip(0, bp.HEAD, W, H - bp.HEAD)
 
 	local top = bp.HEAD
@@ -6928,6 +8166,11 @@ function bp.frame()
 				g.text(F(600), 12, name, 47, top + r.y + 11, C.text, ca)
 			end
 			if r.label then g.text(F(400), 12, r.label, 9, top + r.y + bp.IH / 2, C.text3, ca) end
+			if r.note then
+				g.rect(9, top + r.y, 30, 22, C.fill4, 3, ca)
+				g.image(asset.image(ITEM.ICON:format(r.note.act.item)), 9, top + r.y, 30, 22, 3, ca)
+				g.text(F(400), 12, g.fit(400, 12, build.act_text(r.note.act, true) .. (r.note.n > 1 and (" ×" .. r.note.n) or ""), W - 58), 47, top + r.y + 11, C.text2, ca)
+			end
 			for i, e in ipairs(r.list or {}) do
 				n = n + 1
 				local col, line = (i - 1) % bp.COLS, math.floor((i - 1) / bp.COLS)
@@ -7132,7 +8375,10 @@ function script.OnFrame()
 	if SET.panel == 1 then view.live_panel() end
 	bp.frame()
 	input.sink(S.focus and S.open)
-	if S.alpha <= 0 then return end
+	if S.alpha <= 0 then
+		S.win_on = false
+		return
+	end
 	if not S.started then
 		S.started = true
 		draft.set_env("home")
@@ -7160,6 +8406,7 @@ function script.OnFrame()
 	S.frame, S.in_frame = (S.frame or 0) + 1, true
 	view.window()
 	S.in_frame = false
+	S.win_on, S.win_x2, S.win_y2 = S.alpha > 0.01, S.wx + K.W * g.s, S.wy + K.H * g.s
 end
 
 function script.OnKeyEvent(e)
