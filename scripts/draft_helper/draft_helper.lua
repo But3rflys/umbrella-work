@@ -1534,7 +1534,7 @@ do
 end
 
 local K = {
-	VERSION = "2.0.0-beta.21",
+	VERSION = "2.0.0-beta.22",
 	CFG = "draft_helper",
 	W = 1100,
 	H = 716,
@@ -3745,12 +3745,12 @@ function live.after_players(d)
 end
 
 function live.pregame()
-	local p = live.pre_panel
-	if p and p:IsValid() then return p end
-	local now = os.clock()
-	if now < (live.pre_retry or 0) then return nil end
+	local p, now = live.pre_panel, os.clock()
+	local valid = p and p:IsValid()
+	if valid and p:IsVisible() then return p end
+	if now < (live.pre_retry or 0) then return valid and p or nil end
 	p = Panorama.GetPanelByName("PreGame", false)
-	live.pre_panel, live.pre_retry = p, p and 0 or now + 5
+	live.pre_panel, live.pre_retry = p, now + 1
 	return p
 end
 
