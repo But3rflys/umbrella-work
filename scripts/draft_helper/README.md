@@ -7,9 +7,9 @@
 
 | версия | дата | файл | загрузок |
 | --- | --- | --- | --- |
-| [`draft-helper-v2.0.0-beta.22`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.22) | 2026-10-24 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.22/draft_helper.lua) | 165 |
-| [`draft-helper-v2.0.0-beta.21`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.21) | 2026-10-22 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.21/draft_helper.lua) | 210 |
-| [`draft-helper-v2.0.0-beta.20`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.20) | 2026-10-13 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.20/draft_helper.lua) | 523 |
+| [`draft-helper-v2.0.0-beta.22`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.22) | 2026-10-24 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.22/draft_helper.lua) | 223 |
+| [`draft-helper-v2.0.0-beta.21`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.21) | 2026-10-22 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.21/draft_helper.lua) | 219 |
+| [`draft-helper-v2.0.0-beta.20`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.20) | 2026-10-13 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.20/draft_helper.lua) | 536 |
 | [`draft-helper-v2.0.0-beta.19`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.19) | 2026-10-11 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.19/draft_helper.lua) | 249 |
 | [`draft-helper-v2.0.0-beta.18`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.18) | 2026-10-11 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.18/draft_helper.lua) | 0 |
 | [`draft-helper-v2.0.0-beta.17`](https://github.com/But3rflys/umbrella-work/releases/tag/draft-helper-v2.0.0-beta.17) | 2026-10-10 | [draft_helper.lua](https://github.com/But3rflys/umbrella-work/releases/download/draft-helper-v2.0.0-beta.17/draft_helper.lua) | 223 |
