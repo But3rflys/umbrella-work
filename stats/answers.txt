@@ -1,0 +1,910 @@
+n 88450
+v 7.41
+p 1 1 dust 118
+p 1 1 ward_sentry 107
+p 1 1 gem 3
+p 2 1 dust 113
+p 2 1 ward_sentry 159
+p 2 1 gem 8
+p 2 2 dust 346
+p 2 2 ward_sentry 474
+p 2 2 gem 51
+p 3 2 dust 511
+p 3 2 ward_sentry 999
+p 3 2 gem 345
+p 4 1 dust 68
+p 4 1 ward_sentry 95
+p 4 1 gem 0
+p 5 2 dust 349
+p 5 2 ward_sentry 975
+p 5 2 gem 94
+p 6 1 dust 9
+p 6 1 ward_sentry 126
+p 6 1 gem 1
+p 7 1 dust 120
+p 7 1 ward_sentry 491
+p 7 1 gem 28
+p 7 2 dust 403
+p 7 2 ward_sentry 925
+p 7 2 gem 119
+p 8 1 dust 116
+p 8 1 ward_sentry 74
+p 8 1 gem 3
+p 9 1 dust 64
+p 9 1 ward_sentry 277
+p 9 1 gem 43
+p 9 2 dust 423
+p 9 2 ward_sentry 999
+p 9 2 gem 324
+p 10 1 dust 29
+p 10 1 ward_sentry 129
+p 10 1 gem 0
+p 11 1 dust 27
+p 11 1 ward_sentry 162
+p 11 1 gem 3
+p 12 1 dust 129
+p 12 1 ward_sentry 105
+p 12 1 gem 12
+p 13 1 dust 303
+p 13 1 ward_sentry 606
+p 13 1 gem 22
+p 14 1 dust 102
+p 14 1 ward_sentry 283
+p 14 1 gem 14
+p 14 2 dust 239
+p 14 2 ward_sentry 778
+p 14 2 gem 54
+p 15 1 dust 106
+p 15 1 ward_sentry 89
+p 15 1 gem 4
+p 16 1 dust 159
+p 16 1 ward_sentry 611
+p 16 1 gem 4
+p 17 1 dust 324
+p 17 1 ward_sentry 475
+p 17 1 gem 9
+p 18 1 dust 36
+p 18 1 ward_sentry 111
+p 18 1 gem 4
+p 19 1 dust 71
+p 19 1 ward_sentry 142
+p 19 1 gem 5
+p 19 2 dust 447
+p 19 2 ward_sentry 939
+p 19 2 gem 61
+p 20 1 dust 114
+p 20 1 ward_sentry 123
+p 20 1 gem 0
+p 20 2 dust 252
+p 20 2 ward_sentry 849
+p 20 2 gem 25
+p 21 1 dust 139
+p 21 1 ward_sentry 209
+p 21 1 gem 9
+p 21 2 dust 484
+p 21 2 ward_sentry 991
+p 21 2 gem 162
+p 22 1 dust 15
+p 22 1 ward_sentry 279
+p 22 1 gem 8
+p 22 2 dust 205
+p 22 2 ward_sentry 886
+p 22 2 gem 10
+p 23 1 dust 109
+p 23 1 ward_sentry 253
+p 23 1 gem 20
+p 25 1 dust 52
+p 25 1 ward_sentry 408
+p 25 1 gem 2
+p 26 1 dust 38
+p 26 1 ward_sentry 660
+p 26 1 gem 0
+p 26 2 dust 413
+p 26 2 ward_sentry 966
+p 26 2 gem 64
+p 27 2 dust 422
+p 27 2 ward_sentry 983
+p 27 2 gem 54
+p 28 1 dust 78
+p 28 1 ward_sentry 246
+p 28 1 gem 8
+p 28 2 dust 180
+p 28 2 ward_sentry 311
+p 28 2 gem 16
+p 29 1 dust 141
+p 29 1 ward_sentry 110
+p 29 1 gem 12
+p 29 2 dust 186
+p 29 2 ward_sentry 203
+p 29 2 gem 0
+p 30 2 dust 449
+p 30 2 ward_sentry 990
+p 30 2 gem 262
+p 31 2 dust 443
+p 31 2 ward_sentry 991
+p 31 2 gem 195
+p 32 1 dust 133
+p 32 1 ward_sentry 265
+p 32 1 gem 72
+p 33 1 dust 195
+p 33 1 ward_sentry 313
+p 33 1 gem 7
+p 34 1 dust 129
+p 34 1 ward_sentry 386
+p 34 1 gem 15
+p 35 1 dust 10
+p 35 1 ward_sentry 274
+p 35 1 gem 2
+p 36 1 dust 72
+p 36 1 ward_sentry 238
+p 36 1 gem 9
+p 37 2 dust 358
+p 37 2 ward_sentry 982
+p 37 2 gem 167
+p 38 1 dust 200
+p 38 1 ward_sentry 232
+p 38 1 gem 8
+p 39 1 dust 108
+p 39 1 ward_sentry 423
+p 39 1 gem 8
+p 40 1 dust 311
+p 40 1 ward_sentry 607
+p 40 1 gem 148
+p 40 2 dust 486
+p 40 2 ward_sentry 989
+p 40 2 gem 255
+p 41 1 dust 44
+p 41 1 ward_sentry 98
+p 41 1 gem 6
+p 42 1 dust 73
+p 42 1 ward_sentry 40
+p 42 1 gem 0
+p 43 1 dust 121
+p 43 1 ward_sentry 324
+p 43 1 gem 0
+p 44 1 dust 119
+p 44 1 ward_sentry 85
+p 44 1 gem 0
+p 45 2 dust 394
+p 45 2 ward_sentry 971
+p 45 2 gem 202
+p 46 1 dust 13
+p 46 1 ward_sentry 120
+p 46 1 gem 0
+p 47 1 dust 107
+p 47 1 ward_sentry 387
+p 47 1 gem 8
+p 48 1 dust 19
+p 48 1 ward_sentry 122
+p 48 1 gem 4
+p 49 1 dust 143
+p 49 1 ward_sentry 250
+p 49 1 gem 8
+p 50 2 dust 444
+p 50 2 ward_sentry 986
+p 50 2 gem 362
+p 51 2 dust 559
+p 51 2 ward_sentry 993
+p 51 2 gem 228
+p 52 1 dust 60
+p 52 1 ward_sentry 530
+p 52 1 gem 5
+p 53 1 dust 153
+p 53 1 ward_sentry 255
+p 53 1 gem 15
+p 53 2 dust 380
+p 53 2 ward_sentry 935
+p 53 2 gem 65
+p 54 1 dust 83
+p 54 1 ward_sentry 82
+p 54 1 gem 1
+p 55 1 dust 218
+p 55 1 ward_sentry 308
+p 55 1 gem 12
+p 56 1 dust 95
+p 56 1 ward_sentry 132
+p 56 1 gem 5
+p 57 1 dust 194
+p 57 1 ward_sentry 236
+p 57 1 gem 28
+p 57 2 dust 622
+p 57 2 ward_sentry 892
+p 57 2 gem 297
+p 58 2 dust 517
+p 58 2 ward_sentry 994
+p 58 2 gem 269
+p 59 1 dust 138
+p 59 1 ward_sentry 466
+p 59 1 gem 3
+p 60 1 dust 284
+p 60 1 ward_sentry 118
+p 60 1 gem 22
+p 61 1 dust 116
+p 61 1 ward_sentry 295
+p 61 1 gem 11
+p 62 2 dust 277
+p 62 2 ward_sentry 996
+p 62 2 gem 152
+p 63 1 dust 120
+p 63 1 ward_sentry 114
+p 63 1 gem 3
+p 63 2 dust 651
+p 63 2 ward_sentry 984
+p 63 2 gem 48
+p 64 2 dust 431
+p 64 2 ward_sentry 989
+p 64 2 gem 147
+p 65 1 dust 315
+p 65 1 ward_sentry 285
+p 65 1 gem 21
+p 65 2 dust 552
+p 65 2 ward_sentry 948
+p 65 2 gem 133
+p 66 2 dust 425
+p 66 2 ward_sentry 993
+p 66 2 gem 306
+p 67 1 dust 328
+p 67 1 ward_sentry 167
+p 67 1 gem 10
+p 68 2 dust 464
+p 68 2 ward_sentry 995
+p 68 2 gem 230
+p 69 1 dust 187
+p 69 1 ward_sentry 163
+p 69 1 gem 7
+p 70 1 dust 106
+p 70 1 ward_sentry 71
+p 70 1 gem 0
+p 71 1 dust 151
+p 71 1 ward_sentry 186
+p 71 1 gem 5
+p 71 2 dust 443
+p 71 2 ward_sentry 914
+p 71 2 gem 43
+p 72 1 dust 38
+p 72 1 ward_sentry 143
+p 72 1 gem 3
+p 72 2 dust 569
+p 72 2 ward_sentry 983
+p 72 2 gem 241
+p 73 1 dust 61
+p 73 1 ward_sentry 199
+p 73 1 gem 6
+p 74 1 dust 59
+p 74 1 ward_sentry 505
+p 74 1 gem 24
+p 74 2 dust 107
+p 74 2 ward_sentry 800
+p 74 2 gem 40
+p 75 2 dust 393
+p 75 2 ward_sentry 985
+p 75 2 gem 227
+p 76 1 dust 100
+p 76 1 ward_sentry 544
+p 76 1 gem 4
+p 77 1 dust 335
+p 77 1 ward_sentry 177
+p 77 1 gem 3
+p 78 1 dust 264
+p 78 1 ward_sentry 164
+p 78 1 gem 25
+p 79 2 dust 474
+p 79 2 ward_sentry 990
+p 79 2 gem 125
+p 80 1 dust 72
+p 80 1 ward_sentry 129
+p 80 1 gem 0
+p 81 1 dust 88
+p 81 1 ward_sentry 52
+p 81 1 gem 4
+p 82 1 dust 7
+p 82 1 ward_sentry 182
+p 82 1 gem 7
+p 83 2 dust 453
+p 83 2 ward_sentry 997
+p 83 2 gem 303
+p 84 1 dust 155
+p 84 1 ward_sentry 302
+p 84 1 gem 26
+p 84 2 dust 309
+p 84 2 ward_sentry 883
+p 84 2 gem 52
+p 85 1 dust 227
+p 85 1 ward_sentry 223
+p 85 1 gem 5
+p 85 2 dust 517
+p 85 2 ward_sentry 986
+p 85 2 gem 283
+p 86 1 dust 111
+p 86 1 ward_sentry 507
+p 86 1 gem 39
+p 86 2 dust 451
+p 86 2 ward_sentry 985
+p 86 2 gem 111
+p 87 2 dust 413
+p 87 2 ward_sentry 965
+p 87 2 gem 124
+p 88 2 dust 468
+p 88 2 ward_sentry 980
+p 88 2 gem 127
+p 89 1 dust 30
+p 89 1 ward_sentry 97
+p 89 1 gem 15
+p 90 1 dust 110
+p 90 1 ward_sentry 602
+p 90 1 gem 23
+p 90 2 dust 494
+p 90 2 ward_sentry 964
+p 90 2 gem 255
+p 91 1 dust 132
+p 91 1 ward_sentry 217
+p 91 1 gem 9
+p 91 2 dust 528
+p 91 2 ward_sentry 981
+p 91 2 gem 74
+p 92 1 dust 198
+p 92 1 ward_sentry 128
+p 92 1 gem 12
+p 93 1 dust 169
+p 93 1 ward_sentry 704
+p 93 1 gem 48
+p 94 1 dust 5
+p 94 1 ward_sentry 117
+p 94 1 gem 0
+p 95 1 dust 69
+p 95 1 ward_sentry 45
+p 95 1 gem 0
+p 96 1 dust 221
+p 96 1 ward_sentry 179
+p 96 1 gem 6
+p 96 2 dust 205
+p 96 2 ward_sentry 159
+p 96 2 gem 91
+p 97 1 dust 101
+p 97 1 ward_sentry 214
+p 97 1 gem 0
+p 97 2 dust 340
+p 97 2 ward_sentry 755
+p 97 2 gem 132
+p 98 1 dust 114
+p 98 1 ward_sentry 176
+p 98 1 gem 19
+p 99 1 dust 150
+p 99 1 ward_sentry 106
+p 99 1 gem 6
+p 100 2 dust 530
+p 100 2 ward_sentry 994
+p 100 2 gem 162
+p 101 1 dust 139
+p 101 1 ward_sentry 556
+p 101 1 gem 28
+p 101 2 dust 443
+p 101 2 ward_sentry 968
+p 101 2 gem 107
+p 102 1 dust 86
+p 102 1 ward_sentry 31
+p 102 1 gem 8
+p 102 2 dust 488
+p 102 2 ward_sentry 930
+p 102 2 gem 116
+p 103 2 dust 575
+p 103 2 ward_sentry 975
+p 103 2 gem 325
+p 104 1 dust 32
+p 104 1 ward_sentry 91
+p 104 1 gem 6
+p 105 1 dust 250
+p 105 1 ward_sentry 794
+p 105 1 gem 162
+p 105 2 dust 506
+p 105 2 ward_sentry 997
+p 105 2 gem 247
+p 106 1 dust 242
+p 106 1 ward_sentry 516
+p 106 1 gem 10
+p 107 1 dust 327
+p 107 1 ward_sentry 536
+p 107 1 gem 13
+p 107 2 dust 446
+p 107 2 ward_sentry 962
+p 107 2 gem 89
+p 108 1 dust 141
+p 108 1 ward_sentry 218
+p 108 1 gem 6
+p 109 1 dust 11
+p 109 1 ward_sentry 98
+p 109 1 gem 2
+p 110 1 dust 232
+p 110 1 ward_sentry 333
+p 110 1 gem 53
+p 110 2 dust 499
+p 110 2 ward_sentry 988
+p 110 2 gem 319
+p 111 2 dust 414
+p 111 2 ward_sentry 995
+p 111 2 gem 222
+p 112 2 dust 488
+p 112 2 ward_sentry 995
+p 112 2 gem 419
+p 113 1 dust 132
+p 113 1 ward_sentry 324
+p 113 1 gem 0
+p 114 1 dust 141
+p 114 1 ward_sentry 175
+p 114 1 gem 1
+p 114 2 dust 385
+p 114 2 ward_sentry 615
+p 114 2 gem 26
+p 119 2 dust 549
+p 119 2 ward_sentry 996
+p 119 2 gem 159
+p 120 1 dust 189
+p 120 1 ward_sentry 391
+p 120 1 gem 9
+p 121 2 dust 495
+p 121 2 ward_sentry 986
+p 121 2 gem 184
+p 123 1 dust 182
+p 123 1 ward_sentry 750
+p 123 1 gem 91
+p 123 2 dust 543
+p 123 2 ward_sentry 996
+p 123 2 gem 224
+p 126 1 dust 251
+p 126 1 ward_sentry 490
+p 126 1 gem 11
+p 128 1 dust 104
+p 128 1 ward_sentry 543
+p 128 1 gem 12
+p 128 2 dust 453
+p 128 2 ward_sentry 988
+p 128 2 gem 94
+p 129 1 dust 120
+p 129 1 ward_sentry 139
+p 129 1 gem 15
+p 129 2 dust 88
+p 129 2 ward_sentry 206
+p 129 2 gem 0
+p 131 2 dust 520
+p 131 2 ward_sentry 997
+p 131 2 gem 212
+p 135 1 dust 153
+p 135 1 ward_sentry 174
+p 135 1 gem 8
+p 136 1 dust 250
+p 136 1 ward_sentry 310
+p 136 1 gem 0
+p 136 2 dust 448
+p 136 2 ward_sentry 975
+p 136 2 gem 79
+p 137 1 dust 152
+p 137 1 ward_sentry 218
+p 137 1 gem 3
+p 138 1 dust 13
+p 138 1 ward_sentry 136
+p 138 1 gem 5
+p 138 2 dust 543
+p 138 2 ward_sentry 936
+p 138 2 gem 106
+p 145 1 dust 60
+p 145 1 ward_sentry 197
+p 145 1 gem 7
+p 155 1 dust 185
+p 155 1 ward_sentry 225
+p 155 1 gem 9
+p 155 2 dust 452
+p 155 2 ward_sentry 958
+p 155 2 gem 157
+l power_treads 5
+l spirit_vessel 11
+l ultimate_scepter 20
+l kaya_and_sange 16
+l aghanims_shard 17
+l phase_boots 5
+l mask_of_madness 9
+l vladmir 11
+l manta 16
+l arcane_boots 9
+l blink 15
+l glimmer_cape 19
+l yasha_and_kaya 16
+l octarine_core 27
+l diffusal_blade 11
+l disperser 30
+l hand_of_midas 9
+l sheepstick 33
+l mage_slayer 11
+l force_staff 20
+l hurricane_pike 20
+l refresher 34
+l black_king_bar 22
+l falcon_blade 4
+l desolator 14
+l vanguard 5
+l crimson_guard 18
+l ancient_janggo 10
+l guardian_greaves 18
+l mjollnir 15
+l monkey_king_bar 29
+l radiance 13
+l armlet 10
+l orchid 16
+l bloodthorn 27
+l rod_of_atos 14
+l ghost 23
+l butterfly 24
+l aeon_disk 33
+l assault 27
+l solar_crest 20
+l lotus_orb 20
+l skadi 26
+l shivas_guard 26
+l aether_lens 19
+l travel_boots 12
+l greater_crit 25
+l heart 23
+l cyclone 19
+l gungir 25
+l bfury 12
+l basher 25
+l swift_blink 36
+l silver_edge 22
+l ethereal_blade 25
+l satanic 31
+l sange_and_yasha 19
+l blade_mail 11
+l pipe 17
+l devastator 24
+l bloodstone 24
+l holy_locket 14
+l abyssal_blade 33
+l sphere 27
+l harpoon 19
+l phylactery 10
+l dagon 12
+l dagon_2 20
+l dagon_3 21
+l boots_of_bearing 13
+l overwhelming_blink 38
+l rapier 41
+l nullifier 31
+l wind_waker 40
+l meteor_hammer 9
+l ultimate_scepter_2 43
+l helm_of_the_dominator 7
+l helm_of_the_overlord 13
+l travel_boots_2 37
+l moon_shard 37
+l orb_of_corrosion 3
+l hydras_breath 21
+l essence_distiller 13
+l consecrated_wraps 14
+l crellas_crozier 29
+l dust 12
+l ward_sentry 3
+l gem 25
+e power_treads 102 533
+e spirit_vessel 14 364
+e spirit_vessel 36 1136
+e spirit_vessel 43 558
+e spirit_vessel 58 382
+e spirit_vessel 59 997
+e spirit_vessel 73 659
+e spirit_vessel 85 378
+e spirit_vessel 90 572
+e spirit_vessel 91 821
+e spirit_vessel 98 680
+e spirit_vessel 99 452
+e spirit_vessel 112 568
+e ultimate_scepter 7 362
+e ultimate_scepter 33 373
+e ultimate_scepter 42 379
+e ultimate_scepter 111 360
+e kaya_and_sange 42 683
+e phase_boots 53 354
+e phase_boots 77 491
+e mask_of_madness 44 756
+e manta 6 401
+e manta 28 743
+e manta 41 400
+e manta 46 522
+e manta 47 559
+e manta 75 963
+e manta 83 1096
+e manta 89 1018
+e manta 101 435
+e manta 106 551
+e manta 119 372
+e arcane_boots 20 485
+e arcane_boots 94 599
+e arcane_boots 104 391
+e blink 3 436
+e blink 21 367
+e blink 30 462
+e blink 33 644
+e blink 50 404
+e blink 55 435
+e blink 68 360
+e blink 96 354
+e blink 105 369
+e blink 112 356
+e blink 119 386
+e blink 123 424
+e glimmer_cape 13 867
+e glimmer_cape 16 433
+e glimmer_cape 17 713
+e glimmer_cape 36 482
+e glimmer_cape 67 534
+e glimmer_cape 107 363
+e octarine_core 30 382
+e octarine_core 39 561
+e octarine_core 85 394
+e octarine_core 105 377
+e diffusal_blade 94 2265
+e disperser 94 1441
+e sheepstick 13 740
+e mage_slayer 14 440
+e mage_slayer 16 578
+e mage_slayer 22 719
+e mage_slayer 39 636
+e mage_slayer 75 367
+e mage_slayer 101 540
+e force_staff 15 643
+e force_staff 32 809
+e force_staff 51 639
+e force_staff 53 591
+e force_staff 60 903
+e force_staff 69 501
+e force_staff 70 482
+e force_staff 100 400
+e force_staff 108 933
+e force_staff 114 425
+e force_staff 135 511
+e hurricane_pike 15 811
+e hurricane_pike 51 703
+e hurricane_pike 53 799
+e hurricane_pike 70 594
+e hurricane_pike 108 470
+e hurricane_pike 135 398
+e black_king_bar 7 440
+e black_king_bar 13 839
+e black_king_bar 16 483
+e black_king_bar 29 860
+e black_king_bar 51 379
+e black_king_bar 55 473
+e black_king_bar 60 573
+e black_king_bar 78 403
+e black_king_bar 92 589
+e black_king_bar 98 399
+e black_king_bar 105 562
+e black_king_bar 107 598
+e black_king_bar 108 854
+e black_king_bar 110 360
+e black_king_bar 119 456
+e black_king_bar 120 557
+e black_king_bar 121 651
+e black_king_bar 126 649
+e black_king_bar 138 998
+e black_king_bar 155 424
+e vanguard 28 372
+e vanguard 46 608
+e vanguard 56 657
+e vanguard 72 703
+e vanguard 77 904
+e vanguard 79 489
+e vanguard 94 999
+e vanguard 109 901
+e crimson_guard 28 434
+e crimson_guard 94 991
+e crimson_guard 109 779
+e ancient_janggo 110 382
+e guardian_greaves 75 1605
+e guardian_greaves 83 464
+e mjollnir 12 1319
+e monkey_king_bar 21 1470
+e monkey_king_bar 44 1303
+e monkey_king_bar 72 655
+e radiance 12 943
+e radiance 89 979
+e orchid 13 1360
+e orchid 17 752
+e orchid 39 604
+e orchid 54 621
+e orchid 78 663
+e orchid 106 415
+e rod_of_atos 14 382
+e rod_of_atos 106 350
+e ghost 8 568
+e ghost 12 465
+e ghost 28 772
+e ghost 44 1007
+e ghost 46 672
+e ghost 56 1167
+e ghost 60 542
+e ghost 63 759
+e ghost 67 831
+e ghost 70 704
+e ghost 77 664
+e ghost 80 366
+e ghost 93 680
+e ghost 99 465
+e ghost 114 457
+e ghost 120 463
+e ghost 145 606
+e butterfly 18 915
+e butterfly 28 429
+e butterfly 56 630
+e butterfly 70 681
+e butterfly 80 581
+e butterfly 93 667
+e butterfly 109 883
+e butterfly 114 569
+e aeon_disk 2 514
+e aeon_disk 7 676
+e aeon_disk 9 455
+e aeon_disk 19 450
+e aeon_disk 29 633
+e aeon_disk 68 669
+e aeon_disk 138 476
+e assault 80 640
+e assault 120 499
+e solar_crest 28 677
+e solar_crest 120 625
+e lotus_orb 3 954
+e lotus_orb 4 800
+e lotus_orb 8 871
+e lotus_orb 15 496
+e lotus_orb 27 519
+e lotus_orb 28 605
+e lotus_orb 38 1202
+e lotus_orb 65 898
+e lotus_orb 69 786
+e lotus_orb 73 516
+e lotus_orb 75 1541
+e lotus_orb 83 777
+e lotus_orb 89 950
+e lotus_orb 90 622
+e lotus_orb 101 530
+e lotus_orb 106 553
+e lotus_orb 137 1163
+e skadi 91 766
+e shivas_guard 12 672
+e shivas_guard 53 371
+e shivas_guard 109 545
+e travel_boots 53 574
+e travel_boots 80 507
+e travel_boots 131 460
+e travel_boots 155 440
+e heart 7 723
+e heart 9 508
+e heart 123 535
+e cyclone 2 584
+e cyclone 23 636
+e cyclone 33 730
+e cyclone 47 390
+e cyclone 68 605
+e cyclone 70 996
+e cyclone 71 930
+e cyclone 75 371
+e cyclone 95 908
+e cyclone 97 617
+e swift_blink 120 603
+e silver_edge 29 1415
+e silver_edge 47 658
+e silver_edge 58 738
+e silver_edge 67 754
+e silver_edge 99 2297
+e satanic 80 716
+e sange_and_yasha 2 534
+e sange_and_yasha 26 371
+e sange_and_yasha 69 520
+e sange_and_yasha 71 438
+e sange_and_yasha 104 676
+e blade_mail 6 442
+e blade_mail 21 694
+e blade_mail 35 1033
+e blade_mail 52 730
+e blade_mail 138 1035
+e pipe 16 1295
+e pipe 22 1009
+e pipe 31 549
+e pipe 36 1045
+e pipe 39 518
+e pipe 48 763
+e pipe 64 430
+e pipe 65 515
+e pipe 101 565
+e pipe 105 476
+e pipe 108 535
+e pipe 110 534
+e pipe 128 432
+e pipe 137 646
+e pipe 138 594
+e bloodstone 16 687
+e sphere 3 467
+e sphere 4 925
+e sphere 38 1390
+e sphere 47 410
+e sphere 49 585
+e sphere 65 1065
+e sphere 69 1468
+e sphere 71 1734
+e sphere 104 1700
+e sphere 112 424
+e sphere 121 639
+e sphere 137 1157
+e harpoon 53 880
+e harpoon 108 500
+e phylactery 99 677
+e boots_of_bearing 47 601
+e overwhelming_blink 35 1088
+e nullifier 31 452
+e nullifier 36 1157
+e nullifier 45 972
+e nullifier 121 680
+e nullifier 131 1042
+e nullifier 155 609
+e wind_waker 33 712
+e meteor_hammer 34 1178
+e ultimate_scepter_2 80 716
+e ultimate_scepter_2 126 536
+e helm_of_the_dominator 3 820
+e helm_of_the_dominator 9 758
+e helm_of_the_dominator 51 580
+e helm_of_the_dominator 55 808
+e helm_of_the_dominator 78 766
+e helm_of_the_dominator 105 702
+e helm_of_the_dominator 107 628
+e helm_of_the_dominator 119 527
+e helm_of_the_dominator 123 378
+e helm_of_the_overlord 3 789
+e travel_boots_2 53 1127
+e travel_boots_2 80 1079
+e travel_boots_2 155 548
+e orb_of_corrosion 84 810
+e hydras_breath 12 769
+e hydras_breath 14 619
+e hydras_breath 98 593
+e essence_distiller 9 965
+e essence_distiller 21 417
+e essence_distiller 49 375
+e essence_distiller 60 685
+e essence_distiller 62 559
+e essence_distiller 78 442
+e essence_distiller 105 376
+e essence_distiller 123 436
+e essence_distiller 145 527
+e consecrated_wraps 16 617
+e consecrated_wraps 30 473
+e consecrated_wraps 40 498
+e consecrated_wraps 49 506
+e consecrated_wraps 50 459
+e consecrated_wraps 52 512
+e consecrated_wraps 72 749
+e consecrated_wraps 88 555
+e consecrated_wraps 105 560
+e crellas_crozier 21 501
+e crellas_crozier 36 795
+e crellas_crozier 112 599
+e dust 9 1288
+e dust 16 1242
+e dust 19 879
+e dust 23 396
+e dust 32 1634
+e dust 45 504
+e dust 56 1629
+e dust 62 1667
+e dust 63 710
+e dust 74 1293
+e dust 80 729
+e dust 83 1098
+e dust 88 1165
+e dust 145 491
+e ward_sentry 62 506
+e gem 9 376
+e gem 83 445
+x arcane_boots specialists_array 704
+x monkey_king_bar eagle 1118
+x phylactery blade_mail 936
+x nullifier ghost 683
+x dust invis_sword 769
