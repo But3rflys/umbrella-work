@@ -60,15 +60,15 @@ MusicUI: unzip the archive, put `MusicUI.lua` into `scripts`, run `MusicUI.exe`.
 | --- | --- | --- |
 | [Lane Pull](scripts/lane_pull) | 498 | `lane-pull-v1.0.4` |
 | [DS Spot Block](scripts/ds_spot_block) | 103 | `ds-spot-block-v1.0.1` |
-| [Custom Background](scripts/custom_background) | 114 | `custom-background-v1.0.0` |
-| [Auto Stack](scripts/auto_stack) | 250 | `auto-stack-v1.1.0` |
-| [Draft Helper](scripts/draft_helper) | 2466 | `draft-helper-v2.0.0-beta.22` |
-| [MusicUI](scripts/musicui) | 1327 | `musicui-v1.0.8` |
+| [Custom Background](scripts/custom_background) | 116 | `custom-background-v1.0.0` |
+| [Auto Stack](scripts/auto_stack) | 252 | `auto-stack-v1.1.0` |
+| [Draft Helper](scripts/draft_helper) | 2473 | `draft-helper-v2.0.0-beta.22` |
+| [MusicUI](scripts/musicui) | 1338 | `musicui-v1.0.8` |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/stats/stats-dark.svg">
   <img alt="Downloads over time" src=".github/stats/stats-light.svg" width="840">
 </picture>
 
-2026-11-08
+2026-11-09
 <!-- stats:end -->
