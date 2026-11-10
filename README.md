@@ -58,17 +58,17 @@ MusicUI: unzip the archive, put `MusicUI.lua` into `scripts`, run `MusicUI.exe`.
 <!-- stats:start -->
 | script | downloads | latest |
 | --- | --- | --- |
-| [Lane Pull](scripts/lane_pull) | 498 | `lane-pull-v1.0.4` |
+| [Lane Pull](scripts/lane_pull) | 501 | `lane-pull-v1.0.4` |
 | [DS Spot Block](scripts/ds_spot_block) | 103 | `ds-spot-block-v1.0.1` |
-| [Custom Background](scripts/custom_background) | 116 | `custom-background-v1.0.0` |
-| [Auto Stack](scripts/auto_stack) | 252 | `auto-stack-v1.1.0` |
-| [Draft Helper](scripts/draft_helper) | 2473 | `draft-helper-v2.0.0-beta.22` |
-| [MusicUI](scripts/musicui) | 1338 | `musicui-v1.0.8` |
+| [Custom Background](scripts/custom_background) | 118 | `custom-background-v1.0.0` |
+| [Auto Stack](scripts/auto_stack) | 253 | `auto-stack-v1.1.0` |
+| [Draft Helper](scripts/draft_helper) | 2481 | `draft-helper-v2.0.0-beta.22` |
+| [MusicUI](scripts/musicui) | 1346 | `musicui-v1.0.8` |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/stats/stats-dark.svg">
   <img alt="Downloads over time" src=".github/stats/stats-light.svg" width="840">
 </picture>
 
-2026-11-09
+2026-11-10
 <!-- stats:end -->
